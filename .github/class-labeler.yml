@@ -1,8 +1,8 @@
-:strawberry: frontend
-- 'frontend/**'
+":strawberry: frontend":
+  - "frontend/**/*"
 
-:leaves: backend
-- 'backend/**'
+":leaves: backend":
+  - "backend/**/*"
 
-:green_apple: iOS
-- 'iOS/**'
+":green_apple: iOS":
+  - "iOS/**/*"
