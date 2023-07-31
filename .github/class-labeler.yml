@@ -1,0 +1,8 @@
+:strawberry: frontend
+- any: ['frontend/**/*']
+
+:leaves: backend
+- any: ['backend/**/*']
+
+:green_apple: iOS
+- any: ['iOS/**/*']
