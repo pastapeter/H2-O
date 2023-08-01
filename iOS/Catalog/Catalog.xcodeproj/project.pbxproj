@@ -14,6 +14,9 @@
 		B155C0C12A7920A900F540CB /* CatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0C02A7920A900F540CB /* CatalogTests.swift */; };
 		B155C0CB2A7920A900F540CB /* CatalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0CA2A7920A900F540CB /* CatalogUITests.swift */; };
 		B155C0CD2A7920A900F540CB /* CatalogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0CC2A7920A900F540CB /* CatalogUITestsLaunchTests.swift */; };
+		B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0DB2A7923A100F540CB /* IntentType.swift */; };
+		B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0DD2A7923AA00F540CB /* IntentBindingType.swift */; };
+		B155C0E02A7923AE00F540CB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0DF2A7923AE00F540CB /* Container.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		B155C0C62A7920A900F540CB /* CatalogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B155C0CA2A7920A900F540CB /* CatalogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogUITests.swift; sourceTree = "<group>"; };
 		B155C0CC2A7920A900F540CB /* CatalogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B155C0DB2A7923A100F540CB /* IntentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentType.swift; sourceTree = "<group>"; };
+		B155C0DD2A7923AA00F540CB /* IntentBindingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentBindingType.swift; sourceTree = "<group>"; };
+		B155C0DF2A7923AE00F540CB /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
 				B155C0AF2A7920A800F540CB /* CatalogApp.swift */,
 				B155C0B12A7920A800F540CB /* ContentView.swift */,
 				B155C0B32A7920A900F540CB /* Assets.xcassets */,
@@ -125,6 +132,16 @@
 				B155C0CC2A7920A900F540CB /* CatalogUITestsLaunchTests.swift */,
 			);
 			path = CatalogUITests;
+			sourceTree = "<group>";
+		};
+		B155C0DA2A79238B00F540CB /* ArchitectureKit */ = {
+			isa = PBXGroup;
+			children = (
+				B155C0DB2A7923A100F540CB /* IntentType.swift */,
+				B155C0DD2A7923AA00F540CB /* IntentBindingType.swift */,
+				B155C0DF2A7923AE00F540CB /* Container.swift */,
+			);
+			path = ArchitectureKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +297,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
+				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
+				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
 				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 			);
