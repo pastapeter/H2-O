@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B155C0792A79089400F540CB /* Car_ta_logApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0782A79089400F540CB /* Car_ta_logApp.swift */; };
+		B155C07B2A79089400F540CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C07A2A79089400F540CB /* ContentView.swift */; };
+		B155C07D2A79089600F540CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C07C2A79089600F540CB /* Assets.xcassets */; };
+		B155C0802A79089600F540CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C07F2A79089600F540CB /* Preview Assets.xcassets */; };
+		B155C08A2A79089600F540CB /* Car_ta_logTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0892A79089600F540CB /* Car_ta_logTests.swift */; };
+		B155C0942A79089600F540CB /* Car_ta_logUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0932A79089600F540CB /* Car_ta_logUITests.swift */; };
+		B155C0962A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0952A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B155C0862A79089600F540CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B155C06D2A79089400F540CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B155C0742A79089400F540CB;
+			remoteInfo = "Car-ta-log";
+		};
+		B155C0902A79089600F540CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B155C06D2A79089400F540CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B155C0742A79089400F540CB;
+			remoteInfo = "Car-ta-log";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B155C0752A79089400F540CB /* Car-ta-log.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Car-ta-log.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B155C0782A79089400F540CB /* Car_ta_logApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logApp.swift; sourceTree = "<group>"; };
+		B155C07A2A79089400F540CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B155C07C2A79089600F540CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B155C07F2A79089600F540CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B155C0852A79089600F540CB /* Car-ta-logTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Car-ta-logTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B155C0892A79089600F540CB /* Car_ta_logTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logTests.swift; sourceTree = "<group>"; };
+		B155C08F2A79089600F540CB /* Car-ta-logUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Car-ta-logUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B155C0932A79089600F540CB /* Car_ta_logUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logUITests.swift; sourceTree = "<group>"; };
+		B155C0952A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B155C0722A79089400F540CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B155C0822A79089600F540CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B155C08C2A79089600F540CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B155C06C2A79089400F540CB = {
+			isa = PBXGroup;
+			children = (
+				B155C0772A79089400F540CB /* Car-ta-log */,
+				B155C0882A79089600F540CB /* Car-ta-logTests */,
+				B155C0922A79089600F540CB /* Car-ta-logUITests */,
+				B155C0762A79089400F540CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B155C0762A79089400F540CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B155C0752A79089400F540CB /* Car-ta-log.app */,
+				B155C0852A79089600F540CB /* Car-ta-logTests.xctest */,
+				B155C08F2A79089600F540CB /* Car-ta-logUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B155C0772A79089400F540CB /* Car-ta-log */ = {
+			isa = PBXGroup;
+			children = (
+				B155C0782A79089400F540CB /* Car_ta_logApp.swift */,
+				B155C07A2A79089400F540CB /* ContentView.swift */,
+				B155C07C2A79089600F540CB /* Assets.xcassets */,
+				B155C07E2A79089600F540CB /* Preview Content */,
+			);
+			path = "Car-ta-log";
+			sourceTree = "<group>";
+		};
+		B155C07E2A79089600F540CB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B155C07F2A79089600F540CB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B155C0882A79089600F540CB /* Car-ta-logTests */ = {
+			isa = PBXGroup;
+			children = (
+				B155C0892A79089600F540CB /* Car_ta_logTests.swift */,
+			);
+			path = "Car-ta-logTests";
+			sourceTree = "<group>";
+		};
+		B155C0922A79089600F540CB /* Car-ta-logUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B155C0932A79089600F540CB /* Car_ta_logUITests.swift */,
+				B155C0952A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift */,
+			);
+			path = "Car-ta-logUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B155C0742A79089400F540CB /* Car-ta-log */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B155C0992A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-log" */;
+			buildPhases = (
+				B155C0712A79089400F540CB /* Sources */,
+				B155C0722A79089400F540CB /* Frameworks */,
+				B155C0732A79089400F540CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Car-ta-log";
+			productName = "Car-ta-log";
+			productReference = B155C0752A79089400F540CB /* Car-ta-log.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B155C0842A79089600F540CB /* Car-ta-logTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B155C09C2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logTests" */;
+			buildPhases = (
+				B155C0812A79089600F540CB /* Sources */,
+				B155C0822A79089600F540CB /* Frameworks */,
+				B155C0832A79089600F540CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B155C0872A79089600F540CB /* PBXTargetDependency */,
+			);
+			name = "Car-ta-logTests";
+			productName = "Car-ta-logTests";
+			productReference = B155C0852A79089600F540CB /* Car-ta-logTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B155C08E2A79089600F540CB /* Car-ta-logUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B155C09F2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logUITests" */;
+			buildPhases = (
+				B155C08B2A79089600F540CB /* Sources */,
+				B155C08C2A79089600F540CB /* Frameworks */,
+				B155C08D2A79089600F540CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B155C0912A79089600F540CB /* PBXTargetDependency */,
+			);
+			name = "Car-ta-logUITests";
+			productName = "Car-ta-logUITests";
+			productReference = B155C08F2A79089600F540CB /* Car-ta-logUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B155C06D2A79089400F540CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					B155C0742A79089400F540CB = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					B155C0842A79089600F540CB = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = B155C0742A79089400F540CB;
+					};
+					B155C08E2A79089600F540CB = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = B155C0742A79089400F540CB;
+					};
+				};
+			};
+			buildConfigurationList = B155C0702A79089400F540CB /* Build configuration list for PBXProject "Car-ta-log" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B155C06C2A79089400F540CB;
+			productRefGroup = B155C0762A79089400F540CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B155C0742A79089400F540CB /* Car-ta-log */,
+				B155C0842A79089600F540CB /* Car-ta-logTests */,
+				B155C08E2A79089600F540CB /* Car-ta-logUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B155C0732A79089400F540CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B155C0802A79089600F540CB /* Preview Assets.xcassets in Resources */,
+				B155C07D2A79089600F540CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B155C0832A79089600F540CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B155C08D2A79089600F540CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B155C0712A79089400F540CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B155C07B2A79089400F540CB /* ContentView.swift in Sources */,
+				B155C0792A79089400F540CB /* Car_ta_logApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B155C0812A79089600F540CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B155C08A2A79089600F540CB /* Car_ta_logTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B155C08B2A79089600F540CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B155C0942A79089600F540CB /* Car_ta_logUITests.swift in Sources */,
+				B155C0962A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B155C0872A79089600F540CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B155C0742A79089400F540CB /* Car-ta-log */;
+			targetProxy = B155C0862A79089600F540CB /* PBXContainerItemProxy */;
+		};
+		B155C0912A79089600F540CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B155C0742A79089400F540CB /* Car-ta-log */;
+			targetProxy = B155C0902A79089600F540CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B155C0972A79089600F540CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B155C0982A79089600F540CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B155C09A2A79089600F540CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Car-ta-log/Preview Content\"";
+				DEVELOPMENT_TEAM = 693WY75AQY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-log";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B155C09B2A79089600F540CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Car-ta-log/Preview Content\"";
+				DEVELOPMENT_TEAM = 693WY75AQY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-log";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B155C09D2A79089600F540CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 693WY75AQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Car-ta-log.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Car-ta-log";
+			};
+			name = Debug;
+		};
+		B155C09E2A79089600F540CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 693WY75AQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Car-ta-log.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Car-ta-log";
+			};
+			name = Release;
+		};
+		B155C0A02A79089600F540CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 693WY75AQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Car-ta-log";
+			};
+			name = Debug;
+		};
+		B155C0A12A79089600F540CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 693WY75AQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Car-ta-log";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B155C0702A79089400F540CB /* Build configuration list for PBXProject "Car-ta-log" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B155C0972A79089600F540CB /* Debug */,
+				B155C0982A79089600F540CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B155C0992A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-log" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B155C09A2A79089600F540CB /* Debug */,
+				B155C09B2A79089600F540CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B155C09C2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B155C09D2A79089600F540CB /* Debug */,
+				B155C09E2A79089600F540CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B155C09F2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B155C0A02A79089600F540CB /* Debug */,
+				B155C0A12A79089600F540CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B155C06D2A79089400F540CB /* Project object */;
+}
