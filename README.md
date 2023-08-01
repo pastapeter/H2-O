@@ -10,7 +10,7 @@
 
 📌 **WIKI.** TDB
 
-📌 **Notion.** https://www.notion.so/H2-O-771d170b10dd4679bd3bfb349876a91a?pvs=4
+📌 **Notion.** https://classic-molecule-29c.notion.site/H2-O-771d170b10dd4679bd3bfb349876a91a?pvs=4
 
 ## 🛠 기술스택
 
