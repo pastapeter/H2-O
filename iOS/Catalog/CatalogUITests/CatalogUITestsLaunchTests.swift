@@ -1,13 +1,13 @@
 //
-//  Car_ta_logUITestsLaunchTests.swift
-//  Car-ta-logUITests
+//  CatalogUITestsLaunchTests.swift
+//  CatalogUITests
 //
 //  Created by Jung peter on 8/1/23.
 //
 
 import XCTest
 
-final class Car_ta_logUITestsLaunchTests: XCTestCase {
+final class CatalogUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

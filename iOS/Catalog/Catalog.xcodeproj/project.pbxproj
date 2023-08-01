@@ -7,61 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B155C0792A79089400F540CB /* Car_ta_logApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0782A79089400F540CB /* Car_ta_logApp.swift */; };
-		B155C07B2A79089400F540CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C07A2A79089400F540CB /* ContentView.swift */; };
-		B155C07D2A79089600F540CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C07C2A79089600F540CB /* Assets.xcassets */; };
-		B155C0802A79089600F540CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C07F2A79089600F540CB /* Preview Assets.xcassets */; };
-		B155C08A2A79089600F540CB /* Car_ta_logTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0892A79089600F540CB /* Car_ta_logTests.swift */; };
-		B155C0942A79089600F540CB /* Car_ta_logUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0932A79089600F540CB /* Car_ta_logUITests.swift */; };
-		B155C0962A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0952A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift */; };
+		B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0AF2A7920A800F540CB /* CatalogApp.swift */; };
+		B155C0B22A7920A800F540CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0B12A7920A800F540CB /* ContentView.swift */; };
+		B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0B32A7920A900F540CB /* Assets.xcassets */; };
+		B155C0B72A7920A900F540CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0B62A7920A900F540CB /* Preview Assets.xcassets */; };
+		B155C0C12A7920A900F540CB /* CatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0C02A7920A900F540CB /* CatalogTests.swift */; };
+		B155C0CB2A7920A900F540CB /* CatalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0CA2A7920A900F540CB /* CatalogUITests.swift */; };
+		B155C0CD2A7920A900F540CB /* CatalogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0CC2A7920A900F540CB /* CatalogUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B155C0862A79089600F540CB /* PBXContainerItemProxy */ = {
+		B155C0BD2A7920A900F540CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B155C06D2A79089400F540CB /* Project object */;
+			containerPortal = B155C0A42A7920A800F540CB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B155C0742A79089400F540CB;
-			remoteInfo = "Car-ta-log";
+			remoteGlobalIDString = B155C0AB2A7920A800F540CB;
+			remoteInfo = Catalog;
 		};
-		B155C0902A79089600F540CB /* PBXContainerItemProxy */ = {
+		B155C0C72A7920A900F540CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B155C06D2A79089400F540CB /* Project object */;
+			containerPortal = B155C0A42A7920A800F540CB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B155C0742A79089400F540CB;
-			remoteInfo = "Car-ta-log";
+			remoteGlobalIDString = B155C0AB2A7920A800F540CB;
+			remoteInfo = Catalog;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B155C0752A79089400F540CB /* Car-ta-log.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Car-ta-log.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B155C0782A79089400F540CB /* Car_ta_logApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logApp.swift; sourceTree = "<group>"; };
-		B155C07A2A79089400F540CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B155C07C2A79089600F540CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B155C07F2A79089600F540CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B155C0852A79089600F540CB /* Car-ta-logTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Car-ta-logTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B155C0892A79089600F540CB /* Car_ta_logTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logTests.swift; sourceTree = "<group>"; };
-		B155C08F2A79089600F540CB /* Car-ta-logUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Car-ta-logUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B155C0932A79089600F540CB /* Car_ta_logUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logUITests.swift; sourceTree = "<group>"; };
-		B155C0952A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_ta_logUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B155C0AC2A7920A800F540CB /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B155C0AF2A7920A800F540CB /* CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogApp.swift; sourceTree = "<group>"; };
+		B155C0B12A7920A800F540CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B155C0B32A7920A900F540CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B155C0B62A7920A900F540CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B155C0BC2A7920A900F540CB /* CatalogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B155C0C02A7920A900F540CB /* CatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogTests.swift; sourceTree = "<group>"; };
+		B155C0C62A7920A900F540CB /* CatalogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B155C0CA2A7920A900F540CB /* CatalogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogUITests.swift; sourceTree = "<group>"; };
+		B155C0CC2A7920A900F540CB /* CatalogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B155C0722A79089400F540CB /* Frameworks */ = {
+		B155C0A92A7920A800F540CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B155C0822A79089600F540CB /* Frameworks */ = {
+		B155C0B92A7920A900F540CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B155C08C2A79089600F540CB /* Frameworks */ = {
+		B155C0C32A7920A900F540CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,142 +71,143 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B155C06C2A79089400F540CB = {
+		B155C0A32A7920A800F540CB = {
 			isa = PBXGroup;
 			children = (
-				B155C0772A79089400F540CB /* Car-ta-log */,
-				B155C0882A79089600F540CB /* Car-ta-logTests */,
-				B155C0922A79089600F540CB /* Car-ta-logUITests */,
-				B155C0762A79089400F540CB /* Products */,
+				B155C0AE2A7920A800F540CB /* Catalog */,
+				B155C0BF2A7920A900F540CB /* CatalogTests */,
+				B155C0C92A7920A900F540CB /* CatalogUITests */,
+				B155C0AD2A7920A800F540CB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B155C0762A79089400F540CB /* Products */ = {
+		B155C0AD2A7920A800F540CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B155C0752A79089400F540CB /* Car-ta-log.app */,
-				B155C0852A79089600F540CB /* Car-ta-logTests.xctest */,
-				B155C08F2A79089600F540CB /* Car-ta-logUITests.xctest */,
+				B155C0AC2A7920A800F540CB /* Catalog.app */,
+				B155C0BC2A7920A900F540CB /* CatalogTests.xctest */,
+				B155C0C62A7920A900F540CB /* CatalogUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B155C0772A79089400F540CB /* Car-ta-log */ = {
+		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				B155C0782A79089400F540CB /* Car_ta_logApp.swift */,
-				B155C07A2A79089400F540CB /* ContentView.swift */,
-				B155C07C2A79089600F540CB /* Assets.xcassets */,
-				B155C07E2A79089600F540CB /* Preview Content */,
+				B155C0AF2A7920A800F540CB /* CatalogApp.swift */,
+				B155C0B12A7920A800F540CB /* ContentView.swift */,
+				B155C0B32A7920A900F540CB /* Assets.xcassets */,
+				B155C0B52A7920A900F540CB /* Preview Content */,
 			);
-			path = "Car-ta-log";
+			path = Catalog;
 			sourceTree = "<group>";
 		};
-		B155C07E2A79089600F540CB /* Preview Content */ = {
+		B155C0B52A7920A900F540CB /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				B155C07F2A79089600F540CB /* Preview Assets.xcassets */,
+				B155C0B62A7920A900F540CB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B155C0882A79089600F540CB /* Car-ta-logTests */ = {
+		B155C0BF2A7920A900F540CB /* CatalogTests */ = {
 			isa = PBXGroup;
 			children = (
-				B155C0892A79089600F540CB /* Car_ta_logTests.swift */,
+				B155C0C02A7920A900F540CB /* CatalogTests.swift */,
 			);
-			path = "Car-ta-logTests";
+			path = CatalogTests;
 			sourceTree = "<group>";
 		};
-		B155C0922A79089600F540CB /* Car-ta-logUITests */ = {
+		B155C0C92A7920A900F540CB /* CatalogUITests */ = {
 			isa = PBXGroup;
 			children = (
-				B155C0932A79089600F540CB /* Car_ta_logUITests.swift */,
-				B155C0952A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift */,
+				B155C0CA2A7920A900F540CB /* CatalogUITests.swift */,
+				B155C0CC2A7920A900F540CB /* CatalogUITestsLaunchTests.swift */,
 			);
-			path = "Car-ta-logUITests";
+			path = CatalogUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B155C0742A79089400F540CB /* Car-ta-log */ = {
+		B155C0AB2A7920A800F540CB /* Catalog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B155C0992A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-log" */;
+			buildConfigurationList = B155C0D02A7920A900F540CB /* Build configuration list for PBXNativeTarget "Catalog" */;
 			buildPhases = (
-				B155C0712A79089400F540CB /* Sources */,
-				B155C0722A79089400F540CB /* Frameworks */,
-				B155C0732A79089400F540CB /* Resources */,
+				B155C0D92A7920D400F540CB /* SwiftLint Script */,
+				B155C0A82A7920A800F540CB /* Sources */,
+				B155C0A92A7920A800F540CB /* Frameworks */,
+				B155C0AA2A7920A800F540CB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Car-ta-log";
-			productName = "Car-ta-log";
-			productReference = B155C0752A79089400F540CB /* Car-ta-log.app */;
+			name = Catalog;
+			productName = Catalog;
+			productReference = B155C0AC2A7920A800F540CB /* Catalog.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B155C0842A79089600F540CB /* Car-ta-logTests */ = {
+		B155C0BB2A7920A900F540CB /* CatalogTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B155C09C2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logTests" */;
+			buildConfigurationList = B155C0D32A7920A900F540CB /* Build configuration list for PBXNativeTarget "CatalogTests" */;
 			buildPhases = (
-				B155C0812A79089600F540CB /* Sources */,
-				B155C0822A79089600F540CB /* Frameworks */,
-				B155C0832A79089600F540CB /* Resources */,
+				B155C0B82A7920A900F540CB /* Sources */,
+				B155C0B92A7920A900F540CB /* Frameworks */,
+				B155C0BA2A7920A900F540CB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B155C0872A79089600F540CB /* PBXTargetDependency */,
+				B155C0BE2A7920A900F540CB /* PBXTargetDependency */,
 			);
-			name = "Car-ta-logTests";
-			productName = "Car-ta-logTests";
-			productReference = B155C0852A79089600F540CB /* Car-ta-logTests.xctest */;
+			name = CatalogTests;
+			productName = CatalogTests;
+			productReference = B155C0BC2A7920A900F540CB /* CatalogTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B155C08E2A79089600F540CB /* Car-ta-logUITests */ = {
+		B155C0C52A7920A900F540CB /* CatalogUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B155C09F2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logUITests" */;
+			buildConfigurationList = B155C0D62A7920A900F540CB /* Build configuration list for PBXNativeTarget "CatalogUITests" */;
 			buildPhases = (
-				B155C08B2A79089600F540CB /* Sources */,
-				B155C08C2A79089600F540CB /* Frameworks */,
-				B155C08D2A79089600F540CB /* Resources */,
+				B155C0C22A7920A900F540CB /* Sources */,
+				B155C0C32A7920A900F540CB /* Frameworks */,
+				B155C0C42A7920A900F540CB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B155C0912A79089600F540CB /* PBXTargetDependency */,
+				B155C0C82A7920A900F540CB /* PBXTargetDependency */,
 			);
-			name = "Car-ta-logUITests";
-			productName = "Car-ta-logUITests";
-			productReference = B155C08F2A79089600F540CB /* Car-ta-logUITests.xctest */;
+			name = CatalogUITests;
+			productName = CatalogUITests;
+			productReference = B155C0C62A7920A900F540CB /* CatalogUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B155C06D2A79089400F540CB /* Project object */ = {
+		B155C0A42A7920A800F540CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					B155C0742A79089400F540CB = {
+					B155C0AB2A7920A800F540CB = {
 						CreatedOnToolsVersion = 14.3;
 					};
-					B155C0842A79089600F540CB = {
+					B155C0BB2A7920A900F540CB = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = B155C0742A79089400F540CB;
+						TestTargetID = B155C0AB2A7920A800F540CB;
 					};
-					B155C08E2A79089600F540CB = {
+					B155C0C52A7920A900F540CB = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = B155C0742A79089400F540CB;
+						TestTargetID = B155C0AB2A7920A800F540CB;
 					};
 				};
 			};
-			buildConfigurationList = B155C0702A79089400F540CB /* Build configuration list for PBXProject "Car-ta-log" */;
+			buildConfigurationList = B155C0A72A7920A800F540CB /* Build configuration list for PBXProject "Catalog" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,36 +215,36 @@
 				en,
 				Base,
 			);
-			mainGroup = B155C06C2A79089400F540CB;
-			productRefGroup = B155C0762A79089400F540CB /* Products */;
+			mainGroup = B155C0A32A7920A800F540CB;
+			productRefGroup = B155C0AD2A7920A800F540CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B155C0742A79089400F540CB /* Car-ta-log */,
-				B155C0842A79089600F540CB /* Car-ta-logTests */,
-				B155C08E2A79089600F540CB /* Car-ta-logUITests */,
+				B155C0AB2A7920A800F540CB /* Catalog */,
+				B155C0BB2A7920A900F540CB /* CatalogTests */,
+				B155C0C52A7920A900F540CB /* CatalogUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B155C0732A79089400F540CB /* Resources */ = {
+		B155C0AA2A7920A800F540CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B155C0802A79089600F540CB /* Preview Assets.xcassets in Resources */,
-				B155C07D2A79089600F540CB /* Assets.xcassets in Resources */,
+				B155C0B72A7920A900F540CB /* Preview Assets.xcassets in Resources */,
+				B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B155C0832A79089600F540CB /* Resources */ = {
+		B155C0BA2A7920A900F540CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B155C08D2A79089600F540CB /* Resources */ = {
+		B155C0C42A7920A900F540CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,50 +253,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B155C0D92A7920D400F540CB /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		B155C0712A79089400F540CB /* Sources */ = {
+		B155C0A82A7920A800F540CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B155C07B2A79089400F540CB /* ContentView.swift in Sources */,
-				B155C0792A79089400F540CB /* Car_ta_logApp.swift in Sources */,
+				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
+				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B155C0812A79089600F540CB /* Sources */ = {
+		B155C0B82A7920A900F540CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B155C08A2A79089600F540CB /* Car_ta_logTests.swift in Sources */,
+				B155C0C12A7920A900F540CB /* CatalogTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B155C08B2A79089600F540CB /* Sources */ = {
+		B155C0C22A7920A900F540CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B155C0942A79089600F540CB /* Car_ta_logUITests.swift in Sources */,
-				B155C0962A79089600F540CB /* Car_ta_logUITestsLaunchTests.swift in Sources */,
+				B155C0CD2A7920A900F540CB /* CatalogUITestsLaunchTests.swift in Sources */,
+				B155C0CB2A7920A900F540CB /* CatalogUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B155C0872A79089600F540CB /* PBXTargetDependency */ = {
+		B155C0BE2A7920A900F540CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B155C0742A79089400F540CB /* Car-ta-log */;
-			targetProxy = B155C0862A79089600F540CB /* PBXContainerItemProxy */;
+			target = B155C0AB2A7920A800F540CB /* Catalog */;
+			targetProxy = B155C0BD2A7920A900F540CB /* PBXContainerItemProxy */;
 		};
-		B155C0912A79089600F540CB /* PBXTargetDependency */ = {
+		B155C0C82A7920A900F540CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B155C0742A79089400F540CB /* Car-ta-log */;
-			targetProxy = B155C0902A79089600F540CB /* PBXContainerItemProxy */;
+			target = B155C0AB2A7920A800F540CB /* Catalog */;
+			targetProxy = B155C0C72A7920A900F540CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		B155C0972A79089600F540CB /* Debug */ = {
+		B155C0CE2A7920A900F540CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -355,7 +378,7 @@
 			};
 			name = Debug;
 		};
-		B155C0982A79089600F540CB /* Release */ = {
+		B155C0CF2A7920A900F540CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -409,14 +432,14 @@
 			};
 			name = Release;
 		};
-		B155C09A2A79089600F540CB /* Debug */ = {
+		B155C0D12A7920A900F540CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Car-ta-log/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Catalog/Preview Content\"";
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -430,7 +453,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-log";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.Catalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -438,14 +461,14 @@
 			};
 			name = Debug;
 		};
-		B155C09B2A79089600F540CB /* Release */ = {
+		B155C0D22A7920A900F540CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Car-ta-log/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Catalog/Preview Content\"";
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -459,7 +482,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-log";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.Catalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -467,7 +490,7 @@
 			};
 			name = Release;
 		};
-		B155C09D2A79089600F540CB /* Debug */ = {
+		B155C0D42A7920A900F540CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -478,16 +501,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.CatalogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Car-ta-log.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Car-ta-log";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catalog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Catalog";
 			};
 			name = Debug;
 		};
-		B155C09E2A79089600F540CB /* Release */ = {
+		B155C0D52A7920A900F540CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -498,16 +521,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.CatalogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Car-ta-log.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Car-ta-log";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catalog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Catalog";
 			};
 			name = Release;
 		};
-		B155C0A02A79089600F540CB /* Debug */ = {
+		B155C0D72A7920A900F540CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -516,16 +539,16 @@
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.CatalogUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Car-ta-log";
+				TEST_TARGET_NAME = Catalog;
 			};
 			name = Debug;
 		};
-		B155C0A12A79089600F540CB /* Release */ = {
+		B155C0D82A7920A900F540CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -534,55 +557,55 @@
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pastapter.Car-ta-logUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.CatalogUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Car-ta-log";
+				TEST_TARGET_NAME = Catalog;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B155C0702A79089400F540CB /* Build configuration list for PBXProject "Car-ta-log" */ = {
+		B155C0A72A7920A800F540CB /* Build configuration list for PBXProject "Catalog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B155C0972A79089600F540CB /* Debug */,
-				B155C0982A79089600F540CB /* Release */,
+				B155C0CE2A7920A900F540CB /* Debug */,
+				B155C0CF2A7920A900F540CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B155C0992A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-log" */ = {
+		B155C0D02A7920A900F540CB /* Build configuration list for PBXNativeTarget "Catalog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B155C09A2A79089600F540CB /* Debug */,
-				B155C09B2A79089600F540CB /* Release */,
+				B155C0D12A7920A900F540CB /* Debug */,
+				B155C0D22A7920A900F540CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B155C09C2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logTests" */ = {
+		B155C0D32A7920A900F540CB /* Build configuration list for PBXNativeTarget "CatalogTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B155C09D2A79089600F540CB /* Debug */,
-				B155C09E2A79089600F540CB /* Release */,
+				B155C0D42A7920A900F540CB /* Debug */,
+				B155C0D52A7920A900F540CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B155C09F2A79089600F540CB /* Build configuration list for PBXNativeTarget "Car-ta-logUITests" */ = {
+		B155C0D62A7920A900F540CB /* Build configuration list for PBXNativeTarget "CatalogUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B155C0A02A79089600F540CB /* Debug */,
-				B155C0A12A79089600F540CB /* Release */,
+				B155C0D72A7920A900F540CB /* Debug */,
+				B155C0D82A7920A900F540CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B155C06D2A79089400F540CB /* Project object */;
+	rootObject = B155C0A42A7920A800F540CB /* Project object */;
 }

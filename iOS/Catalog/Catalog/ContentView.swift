@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Car-ta-log
+//  Catalog
 //
 //  Created by Jung peter on 8/1/23.
 //
