@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HyundaiSansText-Bold.otf</string>
+		<string>HyundaiSansText-Medium.otf</string>
+		<string>HyundaiSansText-Regular.otf</string>
+		<string>HyundaiSansTextKROTFBold.otf</string>
+		<string>HyundaiSansTextKROTFMedium.otf</string>
+		<string>HyundaiSansTextKROTFRegular.otf</string>
+		<string>HyundaiSansHead-Regular.otf</string>
+		<string>HyundaiSansHead-Medium.otf</string>
+		<string>HyundaiSansHead-Bold.otf</string>
+		<string>HyundaiSansHeadKROTFBold.otf</string>
+		<string>HyundaiSansHeadKROTFMedium.otf</string>
+		<string>HyundaiSansHeadKROTFRegular.otf</string>
+	</array>
+</dict>
+</plist>
