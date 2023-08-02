@@ -27,7 +27,7 @@ extension Color {
   static let gray700 = Color("Gray700")
   static let gray800 = Color("Gray800")
   static let gray900 = Color("Gray900")
-  
+
   static let primary100 = Color("PrimaryColor100")
   static let primary200 = Color("PrimaryColor200")
   static let primary300 = Color("PrimaryColor300")
@@ -41,5 +41,4 @@ extension Color {
   static let sand = Color("Sand")
   static let sand2 = Color("Sand2")
   static let lightSand = Color("LightSand")
-  
 }

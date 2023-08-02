@@ -192,10 +192,8 @@ extension CatalogTextType {
       return UIFont(name: "HyundaiSansText-Medium", size: 16)!
     case .TextENMedium14:
       return UIFont(name: "HyundaiSansText-Medium", size: 14)!
-   
     case .CaptionENMedium14:
       return UIFont(name: "HyundaiSansText-Medium", size: 14)!
-   
     case .CaptionENMedium12:
       return UIFont(name: "HyundaiSansText-Medium", size: 12)!
     case .TextKRBold12:
