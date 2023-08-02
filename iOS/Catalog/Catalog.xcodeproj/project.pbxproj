@@ -19,6 +19,19 @@
 		B155C0E02A7923AE00F540CB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0DF2A7923AE00F540CB /* Container.swift */; };
 		B155C0E62A79269D00F540CB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0E52A79269D00F540CB /* Colors.xcassets */; };
 		B155C0E92A792BB100F540CB /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0E82A792BB100F540CB /* Color+.swift */; };
+		B155C0FA2A79327A00F540CB /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0F92A79327A00F540CB /* Font+.swift */; };
+		B155C1122A7A52CE00F540CB /* HyundaiSansText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C10F2A7A415700F540CB /* HyundaiSansText-Bold.otf */; };
+		B155C1132A7A52D700F540CB /* HyundaiSansHead-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C10A2A7A411A00F540CB /* HyundaiSansHead-Bold.otf */; };
+		B155C1142A7A530600F540CB /* HyundaiSansText-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1112A7A415700F540CB /* HyundaiSansText-Medium.otf */; };
+		B155C1152A7A530700F540CB /* HyundaiSansText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1102A7A415700F540CB /* HyundaiSansText-Regular.otf */; };
+		B155C1162A7A530A00F540CB /* HyundaiSansTextKROTFBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C10D2A7A414000F540CB /* HyundaiSansTextKROTFBold.otf */; };
+		B155C1172A7A530C00F540CB /* HyundaiSansTextKROTFMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C10E2A7A414000F540CB /* HyundaiSansTextKROTFMedium.otf */; };
+		B155C1182A7A530E00F540CB /* HyundaiSansTextKROTFRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C10C2A7A414000F540CB /* HyundaiSansTextKROTFRegular.otf */; };
+		B155C1192A7A531100F540CB /* HyundaiSansHead-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1092A7A411A00F540CB /* HyundaiSansHead-Medium.otf */; };
+		B155C11A2A7A531300F540CB /* HyundaiSansHead-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1082A7A411A00F540CB /* HyundaiSansHead-Regular.otf */; };
+		B155C11B2A7A531500F540CB /* HyundaiSansHeadKROTFBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1062A7A410C00F540CB /* HyundaiSansHeadKROTFBold.otf */; };
+		B155C11C2A7A531700F540CB /* HyundaiSansHeadKROTFMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1052A7A410C00F540CB /* HyundaiSansHeadKROTFMedium.otf */; };
+		B155C11D2A7A531A00F540CB /* HyundaiSansHeadKROTFRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1072A7A410C00F540CB /* HyundaiSansHeadKROTFRegular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,19 +67,20 @@
 		B155C0DF2A7923AE00F540CB /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		B155C0E52A79269D00F540CB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B155C0E82A792BB100F540CB /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		B155C0EB2A792F9800F540CB /* HyundaiSansTextKRRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansTextKRRegular.ttf; sourceTree = "<group>"; };
-		B155C0EC2A792FAE00F540CB /* HyundaiSansTextKRMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansTextKRMedium.ttf; sourceTree = "<group>"; };
-		B155C0ED2A792FAF00F540CB /* HyundaiSansTextKRBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansTextKRBold.ttf; sourceTree = "<group>"; };
-		B155C0EE2A792FDA00F540CB /* HyundaiSansHeadKRMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansHeadKRMedium.ttf; sourceTree = "<group>"; };
-		B155C0EF2A792FDA00F540CB /* HyundaiSansHeadKRBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansHeadKRBold.ttf; sourceTree = "<group>"; };
-		B155C0F02A792FDA00F540CB /* HyundaiSansHeadKRRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansHeadKRRegular.ttf; sourceTree = "<group>"; };
-		B155C0F12A79302300F540CB /* HyundaiSansHead-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansHead-Regular.otf"; sourceTree = "<group>"; };
-		B155C0F22A79302300F540CB /* HyundaiSansHead-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansHead-Bold.otf"; sourceTree = "<group>"; };
-		B155C0F32A79302300F540CB /* HyundaiSansHead-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansHead-Medium.otf"; sourceTree = "<group>"; };
-		B155C0F42A79302300F540CB /* HyundaiSansHead-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansHead-Light.otf"; sourceTree = "<group>"; };
-		B155C0F52A79305300F540CB /* HyundaiSansText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Regular.otf"; sourceTree = "<group>"; };
-		B155C0F62A79305300F540CB /* HyundaiSansText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Bold.otf"; sourceTree = "<group>"; };
-		B155C0F72A79305300F540CB /* HyundaiSansText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Medium.otf"; sourceTree = "<group>"; };
+		B155C0F82A7931B500F540CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B155C0F92A79327A00F540CB /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		B155C1052A7A410C00F540CB /* HyundaiSansHeadKROTFMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansHeadKROTFMedium.otf; sourceTree = "<group>"; };
+		B155C1062A7A410C00F540CB /* HyundaiSansHeadKROTFBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansHeadKROTFBold.otf; sourceTree = "<group>"; };
+		B155C1072A7A410C00F540CB /* HyundaiSansHeadKROTFRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansHeadKROTFRegular.otf; sourceTree = "<group>"; };
+		B155C1082A7A411A00F540CB /* HyundaiSansHead-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansHead-Regular.otf"; sourceTree = "<group>"; };
+		B155C1092A7A411A00F540CB /* HyundaiSansHead-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansHead-Medium.otf"; sourceTree = "<group>"; };
+		B155C10A2A7A411A00F540CB /* HyundaiSansHead-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansHead-Bold.otf"; sourceTree = "<group>"; };
+		B155C10C2A7A414000F540CB /* HyundaiSansTextKROTFRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansTextKROTFRegular.otf; sourceTree = "<group>"; };
+		B155C10D2A7A414000F540CB /* HyundaiSansTextKROTFBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansTextKROTFBold.otf; sourceTree = "<group>"; };
+		B155C10E2A7A414000F540CB /* HyundaiSansTextKROTFMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HyundaiSansTextKROTFMedium.otf; sourceTree = "<group>"; };
+		B155C10F2A7A415700F540CB /* HyundaiSansText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Bold.otf"; sourceTree = "<group>"; };
+		B155C1102A7A415700F540CB /* HyundaiSansText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Regular.otf"; sourceTree = "<group>"; };
+		B155C1112A7A415700F540CB /* HyundaiSansText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +131,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				B155C0F82A7931B500F540CB /* Info.plist */,
 				B155C0EA2A792F6800F540CB /* Font */,
 				B155C0E72A792BA300F540CB /* Colors */,
 				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
@@ -175,19 +190,19 @@
 		B155C0EA2A792F6800F540CB /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				B155C0F62A79305300F540CB /* HyundaiSansText-Bold.otf */,
-				B155C0F72A79305300F540CB /* HyundaiSansText-Medium.otf */,
-				B155C0F52A79305300F540CB /* HyundaiSansText-Regular.otf */,
-				B155C0F22A79302300F540CB /* HyundaiSansHead-Bold.otf */,
-				B155C0F42A79302300F540CB /* HyundaiSansHead-Light.otf */,
-				B155C0F32A79302300F540CB /* HyundaiSansHead-Medium.otf */,
-				B155C0F12A79302300F540CB /* HyundaiSansHead-Regular.otf */,
-				B155C0EF2A792FDA00F540CB /* HyundaiSansHeadKRBold.ttf */,
-				B155C0EE2A792FDA00F540CB /* HyundaiSansHeadKRMedium.ttf */,
-				B155C0F02A792FDA00F540CB /* HyundaiSansHeadKRRegular.ttf */,
-				B155C0EB2A792F9800F540CB /* HyundaiSansTextKRRegular.ttf */,
-				B155C0ED2A792FAF00F540CB /* HyundaiSansTextKRBold.ttf */,
-				B155C0EC2A792FAE00F540CB /* HyundaiSansTextKRMedium.ttf */,
+				B155C10F2A7A415700F540CB /* HyundaiSansText-Bold.otf */,
+				B155C1112A7A415700F540CB /* HyundaiSansText-Medium.otf */,
+				B155C1102A7A415700F540CB /* HyundaiSansText-Regular.otf */,
+				B155C10D2A7A414000F540CB /* HyundaiSansTextKROTFBold.otf */,
+				B155C10E2A7A414000F540CB /* HyundaiSansTextKROTFMedium.otf */,
+				B155C10C2A7A414000F540CB /* HyundaiSansTextKROTFRegular.otf */,
+				B155C10A2A7A411A00F540CB /* HyundaiSansHead-Bold.otf */,
+				B155C1092A7A411A00F540CB /* HyundaiSansHead-Medium.otf */,
+				B155C1082A7A411A00F540CB /* HyundaiSansHead-Regular.otf */,
+				B155C1062A7A410C00F540CB /* HyundaiSansHeadKROTFBold.otf */,
+				B155C1052A7A410C00F540CB /* HyundaiSansHeadKROTFMedium.otf */,
+				B155C1072A7A410C00F540CB /* HyundaiSansHeadKROTFRegular.otf */,
+				B155C0F92A79327A00F540CB /* Font+.swift */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -297,8 +312,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B155C1182A7A530E00F540CB /* HyundaiSansTextKROTFRegular.otf in Resources */,
+				B155C11D2A7A531A00F540CB /* HyundaiSansHeadKROTFRegular.otf in Resources */,
+				B155C11C2A7A531700F540CB /* HyundaiSansHeadKROTFMedium.otf in Resources */,
+				B155C1192A7A531100F540CB /* HyundaiSansHead-Medium.otf in Resources */,
+				B155C11A2A7A531300F540CB /* HyundaiSansHead-Regular.otf in Resources */,
+				B155C11B2A7A531500F540CB /* HyundaiSansHeadKROTFBold.otf in Resources */,
+				B155C1172A7A530C00F540CB /* HyundaiSansTextKROTFMedium.otf in Resources */,
+				B155C1132A7A52D700F540CB /* HyundaiSansHead-Bold.otf in Resources */,
+				B155C1142A7A530600F540CB /* HyundaiSansText-Medium.otf in Resources */,
 				B155C0E62A79269D00F540CB /* Colors.xcassets in Resources */,
+				B155C1122A7A52CE00F540CB /* HyundaiSansText-Bold.otf in Resources */,
+				B155C1152A7A530700F540CB /* HyundaiSansText-Regular.otf in Resources */,
 				B155C0B72A7920A900F540CB /* Preview Assets.xcassets in Resources */,
+				B155C1162A7A530A00F540CB /* HyundaiSansTextKROTFBold.otf in Resources */,
 				B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
+				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
@@ -513,6 +541,7 @@
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Catalog/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -542,6 +571,7 @@
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Catalog/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
