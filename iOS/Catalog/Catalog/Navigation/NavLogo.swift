@@ -9,9 +9,7 @@ import SwiftUI
 
 struct NavLogo: View {
   
-  @ObservedObject var container: Container<NavigationIndentType, NavigationModel.State>
-  var intent: NavigationIndentType { container.intent }
-  var state: NavigationModel.State { intent.state }
+  var intent: NavigationIndentType
 
   var body: some View {
     ZStack(alignment: .center) {

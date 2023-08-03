@@ -24,7 +24,7 @@ extension NavigationView: View {
 
   var body: some View {
     VStack {
-    NavLogo(container: container)
+      NavLogo(intent: intent)
       NavigationMenuView(currentPage: currentPageBinding)
       TabView(selection: currentPageBinding) {
         MockView(image: mockImageName[0]).tag(0)
