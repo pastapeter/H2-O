@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct NavigationView: IntentBindingType {
+struct CLNavigationView: IntentBindingType {
   @StateObject var container: Container<NavigationIndentType, CLNavigationModel.State>
   var intent: NavigationIndentType { container.intent }
   var state: CLNavigationModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
 }
 
-extension NavigationView {
+extension CLNavigationView {
   var currentPageBinding: Binding<Int> {
     .init(get: { state.currentPage }, set: {  intent.send(action: .onTapNavTab(index: $0))})
   }
 }
 
-extension NavigationView: View {
+extension CLNavigationView: View {
 
   var body: some View {
     VStack {
@@ -39,10 +39,10 @@ extension NavigationView: View {
   }
 }
 
-extension NavigationView {
+extension CLNavigationView {
   @ViewBuilder
   static func build(intent: CLNavigationIndent) -> some View {
-    NavigationView(container: .init(
+    CLNavigationView(container: .init(
       intent: intent as CLNavigationIndent,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange))
