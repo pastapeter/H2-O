@@ -141,6 +141,23 @@ const resetCSS = css`
     padding: 0;
   }
 
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+  }
+
+  ul {
+    list-style: none;
+  }
+
   * {
     box-sizing: border-box;
   }
