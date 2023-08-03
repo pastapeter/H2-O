@@ -11,6 +11,7 @@ import Combine
 protocol NavigationIndentType {
   var state: NavigationModel.State { get }
   func send(action: NavigationModel.ViewAction)
+  func send(action: NavigationModel.ViewAction, viewEffect: (() -> Void)?)
 }
 
 final class NavigationIndent: ObservableObject {
