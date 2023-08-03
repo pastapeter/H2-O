@@ -12,6 +12,7 @@ struct CLNavigationView: IntentBindingType {
   var intent: CLNavigationIndentType { container.intent }
   var state: CLNavigationModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
+  @SwiftUI.State var menuStatus: [CLNavigationMenuTitleView.Status] = [.inactive, .inactive, .inactive, .inactive, .inactive, .inactive]
 }
 
 extension CLNavigationView {
@@ -25,7 +26,7 @@ extension CLNavigationView: View {
   var body: some View {
     VStack {
       CLTopNaviBar(intent: intent)
-      CLNavigationMenuView(currentPage: currentPageBinding)
+      CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: $menuStatus)
       TabView(selection: currentPageBinding) {
         MockView(image: mockImageName[0]).tag(0)
         MockView(image: mockImageName[1]).tag(1)
@@ -46,5 +47,11 @@ extension CLNavigationView {
       intent: intent as CLNavigationIndent,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange))
+  }
+}
+
+struct CLNavigationView_Previews: PreviewProvider {
+  static var previews: some View {
+    return CLNavigationView.build(intent: CLNavigationIndent(initialState: .init(currentPage: 0)))
   }
 }

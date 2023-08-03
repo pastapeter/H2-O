@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CLNavigationMenuView: View {
+  
   @Binding var currentPage: Int
+  @Binding var menuStatus: [CLNavigationMenuTitleView.Status]
   @Namespace var namespace
   var navigationMenuTitles = ["트림", "타입", "외장", "내장", "옵션", "완료"]
   var body: some View {
@@ -17,9 +19,9 @@ struct CLNavigationMenuView: View {
         ForEach(Array(zip(self.navigationMenuTitles.indices,
                           self.navigationMenuTitles)), id: \.0) { index, name in
           CLNavigationMenuTitleView(currentPage: self.$currentPage,
-                                  namespace: namespace.self,
-                                  navigationMenuTitle: name,
-                                  page: index)
+                                    status: $menuStatus[index], namespace: namespace.self,
+                                    navigationMenuTitle: name,
+                                    page: index)
             .frame(width: 52)
         }
       }
