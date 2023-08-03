@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol NavigationIndentType {
+protocol CLNavigationIndentType {
   var state: CLNavigationModel.State { get }
   func send(action: CLNavigationModel.ViewAction)
   func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
@@ -30,7 +30,7 @@ final class CLNavigationIndent: ObservableObject {
   var cancellable: Set<AnyCancellable> = []
 }
 
-extension CLNavigationIndent: NavigationIndentType, IntentType {
+extension CLNavigationIndent: CLNavigationIndentType, IntentType {
   
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
