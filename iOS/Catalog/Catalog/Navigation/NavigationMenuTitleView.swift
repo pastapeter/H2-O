@@ -10,10 +10,8 @@ import SwiftUI
 struct NavigationMenuTitleView: View {
   @Binding var currentPage: Int
   let namespace: Namespace.ID
-  
   var navigationMenuTitle: String
   var page: Int
-  
   var body: some View {
     Button {
       currentPage = page
@@ -35,4 +33,3 @@ struct NavigationMenuTitleView: View {
 
   }
 }
-
