@@ -145,7 +145,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				B155C11E2A7A789400F540CB /* Navigation */,
+				B155C11E2A7A789400F540CB /* CLNavigation */,
 				B155C0F82A7931B500F540CB /* Info.plist */,
 				B155C0EA2A792F6800F540CB /* Font */,
 				B155C0E72A792BA300F540CB /* Colors */,
@@ -222,7 +222,7 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		B155C11E2A7A789400F540CB /* Navigation */ = {
+		B155C11E2A7A789400F540CB /* CLNavigation */ = {
 			isa = PBXGroup;
 			children = (
 				B1F2BC5F2A7B5B63005385E0 /* MockView.swift */,
@@ -233,7 +233,7 @@
 				B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */,
 				B1F2BC692A7B62E7005385E0 /* CLNavigationIndent.swift */,
 			);
-			path = Navigation;
+			path = CLNavigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
