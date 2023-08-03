@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 protocol NavigationIndentType {
-  var state: NavigationModel.State { get }
-  func send(action: NavigationModel.ViewAction)
-  func send(action: NavigationModel.ViewAction, viewEffect: (() -> Void)?)
+  var state: CLNavigationModel.State { get }
+  func send(action: CLNavigationModel.ViewAction)
+  func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
 }
 
 final class NavigationIndent: ObservableObject {
@@ -23,8 +23,8 @@ final class NavigationIndent: ObservableObject {
   }
 
   // MARK: - Internal
-  typealias State = NavigationModel.State
-  typealias ViewAction = NavigationModel.ViewAction
+  typealias State = CLNavigationModel.State
+  typealias ViewAction = CLNavigationModel.ViewAction
 
   @Published var state: State = State(currentPage: 0)
   var cancellable: Set<AnyCancellable> = []
@@ -32,7 +32,7 @@ final class NavigationIndent: ObservableObject {
 
 extension NavigationIndent: NavigationIndentType, IntentType {
   
-  func mutate(action: NavigationModel.ViewAction, viewEffect: (() -> Void)?) {
+  func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onTapNavTab(let index):
       state.currentPage = index

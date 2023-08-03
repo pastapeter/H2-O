@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NavigationView: IntentBindingType {
-  @StateObject var container: Container<NavigationIndentType, NavigationModel.State>
+  @StateObject var container: Container<NavigationIndentType, CLNavigationModel.State>
   var intent: NavigationIndentType { container.intent }
-  var state: NavigationModel.State { intent.state }
+  var state: CLNavigationModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NavigationModel {
+enum CLNavigationModel {
   
   struct State: Equatable {
     var currentPage: Int
