@@ -1,0 +1,9 @@
+export { ReactComponent as ArrowBack } from './arrow-back.svg';
+export { ReactComponent as ArrowDown } from './arrow-down.svg';
+export { ReactComponent as ArrowRight } from './arrow-right.svg';
+export { ReactComponent as Cancel } from './cancel.svg';
+export { ReactComponent as CarbonSearch } from './carbon-search.svg';
+export { ReactComponent as Check } from './check.svg';
+export { ReactComponent as InfoOutline } from './info-outline.svg';
+export { ReactComponent as Link } from './link.svg';
+export { ReactComponent as Plus } from './plus.svg';

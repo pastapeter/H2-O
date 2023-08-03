@@ -1,0 +1,26 @@
+{
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "importOrder": [
+    "^react",
+    "^@[^/]+/(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/types/(.*)$",
+    "^@/components/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/providers/(.*)$",
+    "^@/styles/(.*)$",
+    "^@/assets/(.*)$",
+    "^~"
+  ],
+  "importOrderSortSpecifiers": true
+}
