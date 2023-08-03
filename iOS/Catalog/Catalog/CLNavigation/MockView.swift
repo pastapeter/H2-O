@@ -11,6 +11,8 @@ struct MockView: View {
   var image: String
   var body: some View {
     Image(image)
+      .resizable()
+      .aspectRatio(contentMode: .fit)
       .edgesIgnoringSafeArea(.all)
   }
 }
