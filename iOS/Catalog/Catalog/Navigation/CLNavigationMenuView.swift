@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationMenuView: View {
+struct CLNavigationMenuView: View {
   @Binding var currentPage: Int
   @Namespace var namespace
   var navigationMenuTitles = ["트림", "타입", "외장", "내장", "옵션", "완료"]

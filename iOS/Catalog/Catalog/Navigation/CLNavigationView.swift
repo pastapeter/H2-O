@@ -25,7 +25,7 @@ extension CLNavigationView: View {
   var body: some View {
     VStack {
       NavLogo(intent: intent)
-      NavigationMenuView(currentPage: currentPageBinding)
+      CLNavigationMenuView(currentPage: currentPageBinding)
       TabView(selection: currentPageBinding) {
         MockView(image: mockImageName[0]).tag(0)
         MockView(image: mockImageName[1]).tag(1)
