@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MockView: View {
-  var color: Color
+  var image: String
   var body: some View {
-    color
+    Image(image)
       .edgesIgnoringSafeArea(.all)
   }
 }
@@ -18,6 +18,6 @@ struct MockView: View {
 
 struct MockView_Previews: PreviewProvider {
     static var previews: some View {
-      MockView(color: .activeBlue)
+      MockView(image: "trim")
     }
 }
