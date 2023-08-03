@@ -14,7 +14,7 @@ protocol NavigationIndentType {
   func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
 }
 
-final class NavigationIndent: ObservableObject {
+final class CLNavigationIndent: ObservableObject {
 
   // MARK: - LifeCycle
 
@@ -30,7 +30,7 @@ final class NavigationIndent: ObservableObject {
   var cancellable: Set<AnyCancellable> = []
 }
 
-extension NavigationIndent: NavigationIndentType, IntentType {
+extension CLNavigationIndent: NavigationIndentType, IntentType {
   
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {

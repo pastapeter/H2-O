@@ -11,7 +11,7 @@ import SwiftUI
 struct CatalogApp: App {
     var body: some Scene {
         WindowGroup {
-          NavigationView.build(intent: NavigationIndent(initialState: .init(currentPage: 0)))
+          NavigationView.build(intent: CLNavigationIndent(initialState: .init(currentPage: 0)))
         }
     }
 }

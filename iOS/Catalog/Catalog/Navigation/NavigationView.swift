@@ -41,9 +41,9 @@ extension NavigationView: View {
 
 extension NavigationView {
   @ViewBuilder
-  static func build(intent: NavigationIndent) -> some View {
+  static func build(intent: CLNavigationIndent) -> some View {
     NavigationView(container: .init(
-      intent: intent as NavigationIndent,
+      intent: intent as CLNavigationIndent,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange))
   }
