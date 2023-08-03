@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationMenuTitleView: View {
+struct CLNavigationMenuTitleView: View {
   @Binding var currentPage: Int
   let namespace: Namespace.ID
   var navigationMenuTitle: String

@@ -16,7 +16,7 @@ struct CLNavigationMenuView: View {
       HStack(spacing: 11) {
         ForEach(Array(zip(self.navigationMenuTitles.indices,
                           self.navigationMenuTitles)), id: \.0) { index, name in
-          NavigationMenuTitleView(currentPage: self.$currentPage,
+          CLNavigationMenuTitleView(currentPage: self.$currentPage,
                                   namespace: namespace.self,
                                   navigationMenuTitle: name,
                                   page: index)
