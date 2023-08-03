@@ -48,9 +48,18 @@ struct CLNavigationMenuTitleView: View {
           Color.clear.frame(height: 2)
         }
       }
+      .fixedSize()
       .animation(.spring(), value: self.currentPage)
     }
     .buttonStyle(.plain)
 
+  }
+}
+
+fileprivate struct ViewSizeKey: PreferenceKey {
+  static var defaultValue: CGSize = .zero
+  
+  static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+    value = nextValue()
   }
 }
