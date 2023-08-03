@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavLogo: View {
+struct CLTopNaviBar: View {
   
   var intent: NavigationIndentType
 
