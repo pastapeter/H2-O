@@ -38,7 +38,7 @@ extension NavigationIndent: NavigationIndentType, IntentType {
     case .onTapFinish:
       print("didTapFinish")
     case .onTapLogo:
-      print("didTapLogo")
+      state.currentPage = 0
     case .onTapSwitchVehicleModel:
       print("didTapSwitchVehicleModel")
     }
