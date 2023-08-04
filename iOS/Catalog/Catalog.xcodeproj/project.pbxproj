@@ -39,6 +39,8 @@
 		B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */; };
 		B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */; };
 		B1F2BC6A2A7B62E8005385E0 /* CLNavigationIndent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC692A7B62E7005385E0 /* CLNavigationIndent.swift */; };
+		ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0B72A7A84C50063A6B4 /* CLButton.swift */; };
+		ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationMenuView.swift; sourceTree = "<group>"; };
 		B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationModel.swift; sourceTree = "<group>"; };
 		B1F2BC692A7B62E7005385E0 /* CLNavigationIndent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationIndent.swift; sourceTree = "<group>"; };
+		ED91A0B72A7A84C50063A6B4 /* CLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
+		ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDualChoiceButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 			children = (
 				B155C11E2A7A789400F540CB /* CLNavigation */,
 				B155C0F82A7931B500F540CB /* Info.plist */,
+				ED779C3F2A7A799E007F67B7 /* Component */,
+				ED779C3E2A7A799A007F67B7 /* View */,
 				B155C0EA2A792F6800F540CB /* Font */,
 				B155C0E72A792BA300F540CB /* Colors */,
 				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
@@ -234,6 +240,30 @@
 				B1F2BC692A7B62E7005385E0 /* CLNavigationIndent.swift */,
 			);
 			path = CLNavigation;
+			sourceTree = "<group>";
+		};
+		ED779C3E2A7A799A007F67B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ED779C3F2A7A799E007F67B7 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				ED779C402A7A79E2007F67B7 /* BottomButton */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		ED779C402A7A79E2007F67B7 /* BottomButton */ = {
+			isa = PBXGroup;
+			children = (
+				ED91A0B72A7A84C50063A6B4 /* CLButton.swift */,
+				ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */,
+			);
+			path = BottomButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +435,8 @@
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIndent.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
+				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
+				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
@@ -590,9 +622,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.Catalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -620,9 +655,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pastapter.Catalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
