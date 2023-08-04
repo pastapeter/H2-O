@@ -1,7 +1,7 @@
 ---
 name: New feature
 about: 기능 추가 및 변경
-title: 'feature:  '
+title: 'feature:  (시간)'
 labels: ":star2: feature"
 assignees: ''
 
