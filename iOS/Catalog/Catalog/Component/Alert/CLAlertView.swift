@@ -15,15 +15,17 @@ struct CLAlertView: View {
 
     var body: some View {
       VStack(alignment: .center) {
-        Spacer().frame(height: 50)
+        Spacer().frame(height: 57)
+        Text(message ?? "")
+          .catalogFont(type: .TextKRMedium14)
+          .frame(height: 51, alignment: .top)
           .multilineTextAlignment(.center)
-          Text(message ?? "")
-          .multilineTextAlignment(.center)
+          .padding(.horizontal, 30)
         Spacer().frame(height: 40)
         CLDualChoiceButton(leftText: "취소", rightText: "종료", height: 52, leftAction: cancelAction, rightAction: submitAction)
       }
-      .padding(.horizontal, 20)
-      
+      .background(.white)
+      .cornerRadius(5)
     }
 }
 
