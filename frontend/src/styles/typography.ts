@@ -199,6 +199,13 @@ export const TYPOGRAPHY = {
     lineHeight: '18px',
     letterSpacing: '-0.03em',
   },
+  TextKRMedium10: {
+    fontFamily: 'Hyundai Sans Text KR',
+    fontSize: '10px',
+    fontWeight: 500,
+    lineHeight: '16px',
+    letterSpacing: '-0.03em',
+  },
 
   HeadKRRegular26: {
     fontFamily: 'Hyundai Sans Head KR',

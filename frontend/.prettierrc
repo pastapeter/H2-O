@@ -9,6 +9,7 @@
   "endOfLine": "auto",
   "bracketSameLine": false,
   "bracketSpacing": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
     "^react",
     "^@[^/]+/(.*)$",

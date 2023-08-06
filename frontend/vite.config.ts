@@ -5,5 +5,9 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr(), tsconfigPaths()],
+  plugins: [
+    react({ jsxImportSource: '@emotion/react', babel: { plugins: ['@emotion/babel-plugin'] } }),
+    svgr(),
+    tsconfigPaths(),
+  ],
 });

@@ -24,6 +24,11 @@ export const FLEX = {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  flexEndRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
 } as const;
 
 export const SPACING = {
