@@ -1,22 +1,28 @@
-import type { PropsWithChildren } from 'react';
-import styled from '@emotion/styled';
+import type { ButtonHTMLAttributes } from 'react';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 type TabState = 'active' | 'inactive' | 'complete';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   state?: TabState;
 }
 
-function Tab({ children, state = 'inactive' }: PropsWithChildren<Props>) {
-  return <StyledTab state={state}>{children}</StyledTab>;
+function Tab({ children, state = 'inactive', ...restProps }: Props) {
+  return (
+    <StyledTab state={state} {...restProps}>
+      {children}
+    </StyledTab>
+  );
 }
 
 export default Tab;
 
 const StyledTab = styled.button<Pick<Props, 'state'>>`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 52px;
   height: 100%;
   position: relative;

@@ -189,7 +189,7 @@ export const TYPOGRAPHY = {
     fontFamily: 'Hyundai Sans Text KR',
     fontSize: '14px',
     fontWeight: 500,
-    lineHeight: '18px',
+    lineHeight: '22px',
     letterSpacing: '-0.03em',
   },
   TextKRMedium12: {

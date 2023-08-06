@@ -108,10 +108,6 @@ const resetCSS = css`
     display: block;
   }
 
-  body {
-    line-height: 1;
-  }
-
   ol,
   ul {
     list-style: none;
@@ -150,12 +146,19 @@ const resetCSS = css`
   }
 
   button {
+    background: transparent;
     cursor: pointer;
     border: none;
+    padding: 0;
   }
 
   ul {
     list-style: none;
+  }
+
+  body {
+    line-height: 1;
+    width: 100%;
   }
 
   * {

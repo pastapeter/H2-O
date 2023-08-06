@@ -1,48 +1,62 @@
-import { Icon } from '@/components/common';
-import { ReactComponent as Logo } from '@/assets/logo/logo.svg';
 import styled from '@emotion/styled';
 import NavBar from './NavBar';
+import { Icon } from '@/components/common';
+import { ReactComponent as Logo } from '@/assets/logo/logo.svg';
 
 function Header() {
   return (
     <HeaderContainer>
-      <LogoContainer>
-        <h1>
-          <Logo />
-        </h1>
-        <Divider />
-        <ModelContainer>
-          <span>팰리세이드</span>
-          <Icon iconType='ArrowDown' size={12} />
-        </ModelContainer>
-      </LogoContainer>
-      <NavBar />
-      <EndContainer>
+      <h1>
+        <Logo />
+      </h1>
+      <div>
+        <HeaderLeft>
+          <Divider />
+          <ModelSelector>
+            <span>팰리세이드</span>
+            <Icon iconType='ArrowDown' size={12} />
+          </ModelSelector>
+        </HeaderLeft>
+        <NavBar />
+      </div>
+      <CloseButton>
         <span>종료</span>
         <Icon iconType='Cancel' size={12} />
-      </EndContainer>
+      </CloseButton>
     </HeaderContainer>
   );
 }
 
 export default Header;
 
-const HeaderContainer = styled.div`
-  ${({ theme }) => theme.flex.flexBetweenRow}
-  ${({ theme }) => theme.spacing.spaceDefault}
+const HeaderContainer = styled.header`
+  ${({ theme }) => theme.flex.flexCenterRow}
   ${({ theme }) => theme.typography.TextKRMedium14}
   color: ${({ theme }) => theme.colors.gray800};
+  background-color: white;
   border-bottom: 2px solid ${({ theme }) => theme.colors.gray200};
+  padding-top: 28px;
+  padding-bottom: 10px;
   position: fixed;
   top: 0;
   width: 100%;
   height: 60px;
+  z-index: 5;
+
+  & > div {
+    ${({ theme }) => theme.flex.flexBetweenRow}
+    width: 1024px;
+  }
+
+  h1 {
+    ${({ theme }) => theme.flex.flexCenterRow}
+    cursor: pointer;
+    margin-right: 20px;
+  }
 `;
 
-const LogoContainer = styled.div`
+const HeaderLeft = styled.div`
   ${({ theme }) => theme.flex.flexCenterRow}
-  padding-top: 28px;
-  padding-bottom: 10px;
   gap: 20px;
 `;
 
@@ -52,14 +66,12 @@ const Divider = styled.div`
   height: 13px;
 `;
 
-const ModelContainer = styled.div`
+const ModelSelector = styled.button`
   ${({ theme }) => theme.flex.flexCenterRow}
   gap: 4px;
 `;
 
-const EndContainer = styled.div`
+const CloseButton = styled.button`
   ${({ theme }) => theme.flex.flexCenterRow}
-  padding-top: 28px;
-  padding-bottom: 10px;
   gap: 8px;
 `;
