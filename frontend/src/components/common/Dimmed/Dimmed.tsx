@@ -11,6 +11,7 @@ const Dimmed = styled.div<Props>`
   width: 100%;
   height: 100%;
   backdrop-filter: blur(6px);
+  z-index: 10;
 `;
 
 export default Dimmed;
