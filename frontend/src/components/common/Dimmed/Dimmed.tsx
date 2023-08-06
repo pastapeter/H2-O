@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 type Props = HTMLAttributes<HTMLDivElement>;
 
 const Dimmed = styled.div<Props>`
+  ${({ theme }) => theme.flex.flexCenterCol}
   background-color: ${({ theme }) => theme.colors.dimmed};
   position: fixed;
   top: 0;
