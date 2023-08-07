@@ -1,9 +1,10 @@
 import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react';
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { CTAButton, Dimmed, Icon, Portal } from '..';
 import { Toggle } from '../Toggle';
 import { useSafeContext } from '@/hooks';
+import { toSeparatedNumberFormat } from '@/utils/number';
 import { SlideContext } from '@/providers/SlideProvider';
 import ExTeriorIMG from '@/assets/car-images/exterior.png';
 import InTeriorIMG from '@/assets/car-images/interior.png';
@@ -22,13 +23,29 @@ const COMPLETE_TAB_IDX = 5;
 const MOCK_DATA_TRIM: Option[] = [
   { type: '모델', name: '팰리세이드', price: 3880000 },
   { type: '트림', name: '팰리세이드', price: 3880000 },
-  { type: '파워트레인', name: '디젤2.2', price: 280000 },
+  { type: '파워트레인', name: '디젤2.2', price: -280000 },
   { type: '바디타입', name: '7인승', price: 0 },
   { type: '구동방식', name: '2WD', price: 0 },
   { type: '외장색상', name: '어비스 블랙펄', price: 150000 },
   { type: '내장색상', name: '어비스 블랙펄', price: 0 },
 ];
+const MOCK_DATA_OPTION: Option[] = [
+  { type: '옵션', name: '팰리세이드', price: 3880000 },
+  { type: '옵션', name: '팰리세이드', price: 3880000 },
+  { type: '옵션', name: '팰리세이드', price: 3880000 },
+  { type: '옵션', name: '팰리세이드', price: 3880000 },
+  { type: '옵션', name: '팰리세이드', price: 3880000 },
+  { type: '옵션', name: '팰리세이드', price: 3880000 },
+];
+const NOW_PRICE = 38560000;
 
+/**
+ *
+ * @example
+ * ```tsx
+ *  <SummaryPopup setIsOpenPopup={setIsOpenPopup} />
+ * ```
+ */
 function SummaryPopup({ setIsOpenPopup }: Props) {
   const { setCurrentSlide } = useSafeContext(SlideContext);
   const [isExterior, setIsExterior] = useState(true);
@@ -57,20 +74,43 @@ function SummaryPopup({ setIsOpenPopup }: Props) {
           </LeftContainer>
           <RightContainer>
             {MOCK_DATA_TRIM.map((opt, idx) => (
-              <>
+              <div key={idx}>
+                <Option>
+                  <OptionType>{opt.type}</OptionType>
+                  <OptionName>{opt.name}</OptionName>
+                  <OptionPrice>
+                    {opt.price >= 0 && '+'}
+                    {toSeparatedNumberFormat(opt.price)}원
+                  </OptionPrice>
+                </Option>
+                {[1, 4, 6].includes(idx) && <Divider />}
+              </div>
+            ))}
+            {MOCK_DATA_OPTION.length ? (
+              MOCK_DATA_OPTION.map((opt, idx) => (
                 <Option key={idx}>
                   <OptionType>{opt.type}</OptionType>
                   <OptionName>{opt.name}</OptionName>
-                  <OptionPrice>{opt.price}</OptionPrice>
+                  <OptionPrice>
+                    {opt.price >= 0 && '+'}
+                    {toSeparatedNumberFormat(opt.price)}원
+                  </OptionPrice>
                 </Option>
-                {[1, 4, 6].includes(idx) && <Divider />}
+              ))
+            ) : (
+              <>
+                <Option>
+                  <OptionType>옵션</OptionType>
+                  <OptionName>-</OptionName>
+                  <OptionPrice>+0원</OptionPrice>
+                </Option>
               </>
-            ))}
+            )}
           </RightContainer>
         </MainContainer>
         <PriceContainer>
           <span>현재 총 가격</span>
-          <Price>38,560,000 원</Price>
+          <Price>{toSeparatedNumberFormat(NOW_PRICE)}원</Price>
         </PriceContainer>
         <CTAButton size='large' onClick={handleClickButton}>
           견적 완료하기
@@ -114,13 +154,16 @@ const MainContainer = styled.div`
 
 const LeftContainer = styled.div`
   ${({ theme }) => theme.flex.flexCenterCol};
+  padding-top: 62px;
   margin-left: 40px;
   gap: 20px;
 `;
 
 const RightContainer = styled.div`
   width: 324px;
+  height: 304px;
   margin-right: 36px;
+  overflow: scroll;
 `;
 
 const PriceContainer = styled.div`
