@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+mybatis:
+  type-aliases-package: com.h2o.h2oServer.domain
+  mapper-locations: static/mapper/*.xml
+
+server:
+  port: 8080

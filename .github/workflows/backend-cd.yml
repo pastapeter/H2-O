@@ -43,6 +43,11 @@ jobs:
         uses: docker/build-push-action@v4.0.0
         with:
           context: ${{ env.working-directory }}
+          build-args: |
+            MYSQL_URL = ${{ secrets.MYSQL_URL }}
+            MYSQL_USERNAME = ${{ secrets.MYSQL_USERNAME }}
+            MYSQL_PASSWORD = ''
+            MYSQL_DRIVER = ${{ secrets.mysql_driver }}
           push: true
           tags: bumstead/h2o-backend-server:latest
 
