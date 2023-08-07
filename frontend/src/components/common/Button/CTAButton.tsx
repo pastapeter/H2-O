@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from 'react';
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 type ButtonSize = 'small' | 'medium' | 'large';
 
