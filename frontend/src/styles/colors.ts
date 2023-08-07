@@ -35,6 +35,7 @@ export const COLORS = {
   sand: '#B67B5E',
   sand2: '#E4DCD3',
   lightSand: '#F6F3F2',
+  priceSummaryHead: '#343434',
 
   // dimmed background
   dimmed: '#1F1F1FB3',
