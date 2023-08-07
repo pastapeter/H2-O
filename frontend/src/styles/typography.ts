@@ -113,6 +113,13 @@ export const TYPOGRAPHY = {
     lineHeight: '28px',
     letterSpacing: '-0.03em',
   },
+  HeadKRBold12: {
+    fontFamily: 'Hyundai Sans Head KR',
+    fontSize: '12px',
+    fontWeight: 700,
+    lineHeight: '18px',
+  },
+
   TextKRBold12: {
     fontFamily: 'Hyundai Sans Text KR',
     fontSize: '12px',
@@ -254,7 +261,7 @@ export const TYPOGRAPHY = {
     fontFamily: 'Hyundai Sans Text KR',
     fontSize: '14px',
     fontWeight: 400,
-    lineHeight: '18px',
+    lineHeight: '22px',
     letterSpacing: '-0.03em',
   },
   TextKRRegular12: {
@@ -262,6 +269,13 @@ export const TYPOGRAPHY = {
     fontSize: '12px',
     fontWeight: 400,
     lineHeight: '18px',
+    letterSpacing: '-0.03em',
+  },
+  TextKRRegular10: {
+    fontFamily: 'Hyundai Sans Text KR',
+    fontSize: '10px',
+    fontWeight: 400,
+    lineHeight: '16px',
     letterSpacing: '-0.03em',
   },
 } as const;

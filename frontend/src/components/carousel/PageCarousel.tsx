@@ -28,7 +28,7 @@ const CarouselContainer = styled.div`
 const CarouselSlideList = styled.ul<Pick<CarouselProps, 'currentSlide'>>`
   display: flex;
   gap: 12px;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 1s ease-in-out;
   transform: translateX(calc(-${({ currentSlide }) => currentSlide} * (100% + 12px)));
 `;
 
