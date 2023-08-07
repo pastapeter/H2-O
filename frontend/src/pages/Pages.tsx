@@ -1,3 +1,4 @@
+import TrimPage from './TrimPage';
 import { PageCarousel as Carousel } from '@/components/carousel';
 import { useSafeContext } from '@/hooks';
 import { SlideContext } from '@/providers/SlideProvider';
@@ -7,7 +8,9 @@ function Pages() {
 
   return (
     <Carousel currentSlide={currentSlide}>
-      <Carousel.Slide>1</Carousel.Slide>
+      <Carousel.Slide>
+        <TrimPage />
+      </Carousel.Slide>
       <Carousel.Slide>2</Carousel.Slide>
       <Carousel.Slide>3</Carousel.Slide>
       <Carousel.Slide>4</Carousel.Slide>

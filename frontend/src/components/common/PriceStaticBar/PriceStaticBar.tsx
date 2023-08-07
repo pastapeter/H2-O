@@ -3,6 +3,7 @@ import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import Slider from './Slider';
 import { Icon } from '@/components/common';
+import { toSeparatedNumberFormat } from '@/utils/number';
 
 const MAX_PRICE: number = 4300;
 const MIN_PRICE: number = 3850;
@@ -38,7 +39,7 @@ function PriceStaticBar({ isComplete, nowPrice }: PriceStaticBarProps) {
         <Summary>
           설정한 예산까지 &nbsp;
           <Price isOverPrice={sliderInfo.isOverPrice}>
-            {Math.round(Math.abs((sliderInfo.value - nowPrice) * 10000)).toLocaleString('ko-KR')}원
+            {toSeparatedNumberFormat(Math.round(Math.abs((sliderInfo.value - nowPrice) * 10000)))}원
           </Price>
           &nbsp;{sliderInfo.isOverPrice ? '더 들었어요.' : '남았어요.'}
         </Summary>
