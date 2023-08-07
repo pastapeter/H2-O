@@ -33,22 +33,16 @@ function Popup({
       <Dimmed onClick={closePopup} />
       <PopupContainer {...restProps}>
         <ContentContainer>{children}</ContentContainer>
-        {hasCancelButton ? (
-          <ButtonContainer>
+        <ButtonContainer>
+          {hasCancelButton && (
             <CTACTypeButton size='small' color='gray' onClick={closePopup}>
               취소
             </CTACTypeButton>
-            <CTACTypeButton size='small' color='primary' onClick={handleOnClickButton}>
-              {buttonLabel}
-            </CTACTypeButton>
-          </ButtonContainer>
-        ) : (
-          <ButtonContainer>
-            <CTACTypeButton size='large' color='primary' onClick={handleOnClickButton}>
-              {buttonLabel}
-            </CTACTypeButton>
-          </ButtonContainer>
-        )}
+          )}
+          <CTACTypeButton size={hasCancelButton ? 'small' : 'large'} color='primary' onClick={handleOnClickButton}>
+            {buttonLabel}
+          </CTACTypeButton>
+        </ButtonContainer>
       </PopupContainer>
     </Portal>
   );
