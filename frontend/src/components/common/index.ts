@@ -5,3 +5,4 @@ export { HMGTag } from './HMGTag';
 export { CTAButton, CTACTypeButton, OptionTagButton, ImageButton, PriceSummaryButton } from './Button';
 export { Portal } from './Portal';
 export { Dimmed } from './Dimmed';
+export { Popup } from './Popup';

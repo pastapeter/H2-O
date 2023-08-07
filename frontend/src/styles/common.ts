@@ -29,6 +29,11 @@ export const FLEX = {
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
+  flexEndCol: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  },
 } as const;
 
 export const SPACING = {
