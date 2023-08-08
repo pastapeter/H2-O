@@ -1,6 +1,10 @@
-import { memo } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
+import { css } from '@emotion/react';
+import { Offsets } from '@/types';
 import { Banner } from '@/components/common';
-import { PracticalInfo, TrimImageList, TrimSelector } from '@/components/trim';
+import { GuidePopup, PracticalInfo, TrimImageList, TrimSelector } from '@/components/trim';
+import useToggle from '@/hooks/useToggle';
+import { hasLocalStorageItem, setLocalStorageItem } from '@/utils/localStorage';
 
 const mockOptions = [
   { name: '안전 하차 보조', count: 42 },
@@ -37,11 +41,38 @@ const mockTrims = [
   },
 ];
 
+const DISABLE_GUIDE_VIEW = 'disable-guide-view';
+
 function TrimPage() {
+  const isGuideViewDisabled = !hasLocalStorageItem(DISABLE_GUIDE_VIEW);
+  const { status: isOpenPopup, setOff } = useToggle(isGuideViewDisabled);
+  const [offsets, setOffsets] = useState<Offsets>({ offsetX: 0, offsetY: 0 });
+  const targetRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!targetRef.current) return;
+
+    const { left, top } = targetRef.current.getBoundingClientRect();
+    setOffsets({ offsetX: left, offsetY: top });
+  }, [targetRef.current]);
+
+  const closePopup = () => {
+    setOff();
+    setLocalStorageItem(DISABLE_GUIDE_VIEW, 'true');
+  };
+
   return (
     <>
       <Banner title='Le Blanc' subTitle='기본에 충실한 팰리세이드'>
-        <PracticalInfo options={mockOptions} />
+        <PracticalInfo options={mockOptions} ref={targetRef} />
+        <GuidePopup isOpen={isOpenPopup} onClose={closePopup} offsets={offsets}>
+          <PracticalInfo
+            options={mockOptions}
+            css={css`
+              background-color: white;
+            `}
+          />
+        </GuidePopup>
         <TrimImageList imageSrcList={mockImages} />
       </Banner>
       <TrimSelector trimList={mockTrims} />

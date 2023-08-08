@@ -1,7 +1,19 @@
 import type { HTMLAttributes } from 'react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-type Props = HTMLAttributes<HTMLDivElement>;
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  enableAnimation?: boolean;
+}
+
+const dimmed = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const Dimmed = styled.div<Props>`
   background-color: ${({ theme }) => theme.colors.dimmed};
@@ -12,6 +24,12 @@ const Dimmed = styled.div<Props>`
   height: 100%;
   backdrop-filter: blur(6px);
   z-index: 10;
+  
+  ${({ enableAnimation }) =>
+    enableAnimation &&
+    css`
+      animation: ${dimmed} 1s ease;
+    `}
 `;
 
 export default Dimmed;
