@@ -39,6 +39,9 @@
 		B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */; };
 		B1604D1D2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */; };
 		B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */; };
+		B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D202A825FBA00C7B07D /* SecureType.swift */; };
+		B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D222A82609600C7B07D /* CLNetworkError.swift */; };
+		B1604D252A8261B400C7B07D /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D242A8261B400C7B07D /* ContentType.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -110,6 +113,9 @@
 		B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimSelectionRequestProtocol.swift; sourceTree = "<group>"; };
 		B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimAPIConstant.swift; sourceTree = "<group>"; };
+		B1604D202A825FBA00C7B07D /* SecureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureType.swift; sourceTree = "<group>"; };
+		B1604D222A82609600C7B07D /* CLNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNetworkError.swift; sourceTree = "<group>"; };
+		B1604D242A8261B400C7B07D /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -294,6 +300,9 @@
 				B1604D132A8256DA00C7B07D /* RequestType.swift */,
 				B1604D172A82577A00C7B07D /* MockURLProtocol.swift */,
 				B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */,
+				B1604D202A825FBA00C7B07D /* SecureType.swift */,
+				B1604D222A82609600C7B07D /* CLNetworkError.swift */,
+				B1604D242A8261B400C7B07D /* ContentType.swift */,
 			);
 			path = NetworkProtocol;
 			sourceTree = "<group>";
@@ -512,6 +521,7 @@
 				B1604D1D2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift in Sources */,
 				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
 				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
+				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
 				B194363D2A80AC8200C2FD69 /* CLOptionQuitAlertContentView.swift in Sources */,
 				B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */,
@@ -521,6 +531,7 @@
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
+				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
@@ -531,6 +542,7 @@
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
 				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,
+				B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */,
 				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

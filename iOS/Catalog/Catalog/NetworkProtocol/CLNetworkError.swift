@@ -9,4 +9,9 @@ import Foundation
 
 enum CLNetworkError: Error {
   case invalidURL
+  case urlRequestValidationFailed(reason: CLURLRequestFailureReason)
+}
+
+enum CLURLRequestFailureReason {
+  case bodyDataInGETRequest
 }
