@@ -20,7 +20,7 @@ struct CLAlertView<AlertContent: AlertContentable>: AlertView {
 
 extension CLAlertView {
   @ViewBuilder
-  static func build(cancelAction: @escaping ()->Void, submitAction: @escaping () -> Void) -> some View {
+  static func build(cancelAction: @escaping () -> Void, submitAction: @escaping () -> Void) -> some View {
     CLAlertView(cancelAction: cancelAction, submitAction: submitAction)
   }
 }

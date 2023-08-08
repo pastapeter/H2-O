@@ -16,7 +16,11 @@ struct AlertViewComponent<AlertContent: View>: View {
   var body: some View {
     VStack {
       content()
-      CLDualChoiceButton(leftText: "취소", rightText: "종료", height: 52, leftAction: { cancelAction() }, rightAction: { submitAction() })
+      CLDualChoiceButton(leftText: "취소",
+                         rightText: "종료",
+                         height: 52,
+                         leftAction: { cancelAction() },
+                         rightAction: { submitAction() })
     }
     .background(.white)
     .cornerRadius(5)

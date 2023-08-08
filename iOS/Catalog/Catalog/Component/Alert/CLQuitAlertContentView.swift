@@ -22,7 +22,6 @@ struct CLQuitAlertContentView: AlertContentable {
     }
 }
 
-
 struct CLQuitAlertContentView_Previews: PreviewProvider {
     static var previews: some View {
       CLQuitAlertContentView()
