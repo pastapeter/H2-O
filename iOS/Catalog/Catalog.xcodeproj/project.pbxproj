@@ -37,7 +37,6 @@
 		B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D132A8256DA00C7B07D /* RequestType.swift */; };
 		B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D172A82577A00C7B07D /* MockURLProtocol.swift */; };
 		B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */; };
-		B1604D1D2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */; };
 		B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */; };
 		B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D202A825FBA00C7B07D /* SecureType.swift */; };
 		B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D222A82609600C7B07D /* CLNetworkError.swift */; };
@@ -115,7 +114,6 @@
 		B1604D132A8256DA00C7B07D /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		B1604D172A82577A00C7B07D /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
-		B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimSelectionRequestProtocol.swift; sourceTree = "<group>"; };
 		B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimAPIConstant.swift; sourceTree = "<group>"; };
 		B1604D202A825FBA00C7B07D /* SecureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureType.swift; sourceTree = "<group>"; };
 		B1604D222A82609600C7B07D /* CLNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNetworkError.swift; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 		B1604D0F2A8255E000C7B07D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */,
 				B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */,
 			);
 			path = Data;
@@ -530,7 +527,6 @@
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
-				B1604D1D2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift in Sources */,
 				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
 				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
