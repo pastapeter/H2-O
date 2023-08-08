@@ -7,8 +7,6 @@
 
 import Foundation
 
-protocol RequestInterceptor { }
-
 protocol CachedResponseHandler { }
 
 protocol APIManagerProtocol {
