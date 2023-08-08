@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class H2oServerApplicationTests {
 
 	@Test
-	void contextLoads() throws Exception {
+	void contextLoads() {
 	}
 
 }

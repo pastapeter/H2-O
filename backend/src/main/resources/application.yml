@@ -7,7 +7,8 @@ spring:
 
 mybatis:
   type-aliases-package: com.h2o.h2oServer.domain
-  mapper-locations: static/mapper/*.xml
+  mapper-locations: static/mapper/**/*.xml
 
 server:
   port: 8080
+
