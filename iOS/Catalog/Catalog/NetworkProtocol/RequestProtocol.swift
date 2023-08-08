@@ -54,7 +54,9 @@ extension RequestProtocol {
     urlRequest.setValue(contentType.rawValue, forHTTPHeaderField: "Content-Type")
 
     // GET, JSONBody invalid
-    if requestType == .GET && !params.isEmpty { throw CLNetworkError.urlRequestValidationFailed(reason: .bodyDataInGETRequest) }
+    if requestType == .GET && !params.isEmpty {
+      throw CLNetworkError.urlRequestValidationFailed(reason: .bodyDataInGETRequest)
+    }
 
     if !params.isEmpty {
       urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
