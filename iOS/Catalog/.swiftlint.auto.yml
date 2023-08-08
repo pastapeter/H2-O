@@ -1,3 +1,2 @@
-whitelist_rules:
- - trailing_whitespace
- - leading_whitespace
+whitelist_rules:e
+  - trailing_whitespacee
