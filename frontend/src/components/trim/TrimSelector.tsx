@@ -27,6 +27,7 @@ function TrimSelector({ trimList }: Props) {
         <TrimList>
           {trimList.map(({ id, title, ...rest }) => (
             <TrimCard
+              as='li'
               key={id}
               title={title}
               isSelected={title === selectedTrim}

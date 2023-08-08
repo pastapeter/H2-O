@@ -33,7 +33,9 @@ const CarouselSlideList = styled.ul<Pick<CarouselProps, 'currentSlide'>>`
 `;
 
 const CarouselSlide = styled.li`
+  position: relative;
   width: 100%;
   min-height: calc(100vh - 60px);
   flex-shrink: 0;
+  transform: translateX(0);
 `;

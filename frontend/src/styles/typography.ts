@@ -281,4 +281,4 @@ export const TYPOGRAPHY = {
 } as const;
 
 export type TypographyType = typeof TYPOGRAPHY;
-export type TypographVariant = keyof TypographyType;
+export type TypographyVariant = keyof TypographyType;

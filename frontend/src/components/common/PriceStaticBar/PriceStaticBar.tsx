@@ -20,7 +20,7 @@ interface PriceStaticBarProps {
 
 // 사용법: <PriceStaticBar isComplete={true} nowPrice={4100} />
 
-function PriceStaticBar({ isComplete, nowPrice }: PriceStaticBarProps) {
+function PriceStaticBar({ isComplete, nowPrice, ...restProps }: PriceStaticBarProps) {
   const theme = useTheme();
   const [isActive, setIsActive] = useState(false);
   const [sliderInfo, setSliderInfo] = useState<SliderInfo>({
@@ -33,7 +33,7 @@ function PriceStaticBar({ isComplete, nowPrice }: PriceStaticBarProps) {
   };
 
   return (
-    <PriceStaticBarContainer isActive={isActive}>
+    <PriceStaticBarContainer isActive={isActive} {...restProps}>
       <PriceInfo>
         <Title>예산 범위</Title>
         <Summary>

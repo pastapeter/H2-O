@@ -8,4 +8,8 @@ export { Dimmed } from './Dimmed';
 export { Popup, SummaryPopup } from './Popup';
 export { Banner } from './Banner';
 export { Card } from './Card';
+export { Flex } from './Flex';
+export { Typography } from './Typography';
+export { Footer } from './Footer';
+export { Divider } from './Divider';
 export { Toggle } from './Toggle';
