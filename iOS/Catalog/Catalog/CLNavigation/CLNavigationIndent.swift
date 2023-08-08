@@ -9,9 +9,13 @@ import Foundation
 import Combine
 
 protocol CLNavigationIndentType {
+
   var state: CLNavigationModel.State { get }
+
   func send(action: CLNavigationModel.ViewAction)
+
   func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
+
 }
 
 final class CLNavigationIndent: ObservableObject {
@@ -31,7 +35,7 @@ final class CLNavigationIndent: ObservableObject {
 }
 
 extension CLNavigationIndent: CLNavigationIndentType, IntentType {
-  
+
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onTapNavTab(let index):

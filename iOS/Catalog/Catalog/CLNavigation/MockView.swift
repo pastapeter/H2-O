@@ -17,7 +17,6 @@ struct MockView: View {
   }
 }
 
-
 struct MockView_Previews: PreviewProvider {
     static var previews: some View {
       MockView(image: "trim")

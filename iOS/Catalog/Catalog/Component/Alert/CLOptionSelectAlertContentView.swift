@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CLOptionSelectAlertContentView: AlertContentable {
-  
+
   var info: String?
-  
+
     var body: some View {
       VStack {
         Spacer().frame(height: 57)

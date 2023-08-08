@@ -12,12 +12,18 @@ struct CLNavigationView: IntentBindingType {
   var intent: CLNavigationIndentType { container.intent }
   var state: CLNavigationModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
-  @SwiftUI.State var menuStatus: [CLNavigationMenuTitleView.Status] = [.inactive, .inactive, .inactive, .inactive, .inactive, .inactive]
+  @SwiftUI.State var menuStatus: [CLNavigationMenuTitleView.Status] = [.inactive,
+                                                                       .inactive,
+                                                                       .inactive,
+                                                                       .inactive,
+                                                                       .inactive,
+                                                                       .inactive]
 }
 
 extension CLNavigationView {
   var currentPageBinding: Binding<Int> {
-    .init(get: { state.currentPage }, set: {  intent.send(action: .onTapNavTab(index: $0))})
+    .init(get: { state.currentPage },
+          set: { intent.send(action: .onTapNavTab(index: $0)) })
   }
 }
 

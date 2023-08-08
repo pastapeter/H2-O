@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CLNavigationMenuTitleView: View {
-  
+
   enum Status {
     case completed
     case active
     case inactive
-    
+
     var color: Color {
       switch self {
       case .completed:
@@ -25,13 +25,13 @@ struct CLNavigationMenuTitleView: View {
       }
     }
   }
-  
+
   @Binding var currentPage: Int
   @Binding var status: Status
   let namespace: Namespace.ID
   var navigationMenuTitle: String
   var page: Int
-  
+
   var body: some View {
     Button {
       currentPage = page

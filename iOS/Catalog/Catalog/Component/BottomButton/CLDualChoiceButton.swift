@@ -14,7 +14,7 @@ struct CLDualChoiceButton: View {
     @State var width: CGFloat?
     let leftAction: () -> Void
     let rightAction: () -> Void
-    
+
     var body: some View {
         HStack(spacing: 0) {
             Button {
@@ -38,8 +38,8 @@ struct CLDualChoiceButton_Previews: PreviewProvider {
         CLDualChoiceButton(leftText: "취소",
                            rightText: "완료",
                            height: 52,
-                           leftAction: { print("left")},
-                           rightAction: { print("right")})
+                           leftAction: { print("left") },
+                           rightAction: { print("right") })
     }
 }
 

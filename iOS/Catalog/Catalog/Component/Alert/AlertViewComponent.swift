@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct AlertViewComponent<AlertContent: View>: View {
-  
+
   var cancelAction: () -> Void
   var submitAction: () -> Void
-  
+
   @ViewBuilder var content: () -> AlertContent
   var body: some View {
     VStack {

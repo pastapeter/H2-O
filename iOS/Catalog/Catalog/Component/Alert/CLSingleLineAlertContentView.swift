@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CLSingleLineAlertContentView: AlertContentable {
-  
+
   var info: String?
-  
+
     var body: some View {
       VStack {
         Spacer().frame(height: 65)
