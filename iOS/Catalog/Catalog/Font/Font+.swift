@@ -285,7 +285,7 @@ extension CatalogTextType {
     case .TextKRMedium16:
       return 18
     case .TextKRMedium14:
-      return 18
+      return 22
     case .TextKRMedium12:
       return 18
 
