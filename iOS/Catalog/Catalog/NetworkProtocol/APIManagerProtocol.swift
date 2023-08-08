@@ -17,13 +17,17 @@ class APIManager: APIManagerProtocol {
   private let interceptor: RequestInterceptor?
   private let cachedResponseHandler: CachedResponseHandler?
 
-  init(urlSession: URLSession, intercepter: RequestInterceptor? = nil, cachedResponseHandler: CachedResponseHandler? = nil) {
+  init(urlSession: URLSession,
+       intercepter: RequestInterceptor? = nil,
+       cachedResponseHandler: CachedResponseHandler? = nil) {
     self.urlSession = urlSession
     self.cachedResponseHandler = cachedResponseHandler
     self.interceptor = intercepter
   }
 
-  convenience init(configuation: URLSessionConfiguration = URLSessionConfiguration.default, interceptor: RequestInterceptor? = nil, cachedResponseHandler: CachedResponseHandler? = nil) {
+  convenience init(configuation: URLSessionConfiguration = URLSessionConfiguration.default,
+                   interceptor: RequestInterceptor? = nil,
+                   cachedResponseHandler: CachedResponseHandler? = nil) {
     let session = URLSession(configuration: configuation)
     self.init(urlSession: session, intercepter: interceptor, cachedResponseHandler: cachedResponseHandler)
   }
