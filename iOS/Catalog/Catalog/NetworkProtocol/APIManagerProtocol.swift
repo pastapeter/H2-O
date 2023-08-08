@@ -7,8 +7,6 @@
 
 import Foundation
 
-protocol CachedResponseHandler { }
-
 protocol APIManagerProtocol {
   func perform(_ request: RequestProtocol) async throws -> Data
 }
