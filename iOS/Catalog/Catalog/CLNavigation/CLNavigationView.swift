@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CLNavigationView: IntentBindingType {
-  @StateObject var container: Container<CLNavigationIndentType, CLNavigationModel.State>
-  var intent: CLNavigationIndentType { container.intent }
+  @StateObject var container: Container<CLNavigationIntentType, CLNavigationModel.State>
+  var intent: CLNavigationIntentType { container.intent }
   var state: CLNavigationModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
   @SwiftUI.State var menuStatus: [CLNavigationMenuTitleView.Status] = [.inactive,
@@ -48,9 +48,9 @@ extension CLNavigationView: View {
 
 extension CLNavigationView {
   @ViewBuilder
-  static func build(intent: CLNavigationIndent) -> some View {
+  static func build(intent: CLNavigationIntent) -> some View {
     CLNavigationView(container: .init(
-      intent: intent as CLNavigationIndent,
+      intent: intent as CLNavigationIntent,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange))
   }
@@ -58,6 +58,6 @@ extension CLNavigationView {
 
 struct CLNavigationView_Previews: PreviewProvider {
   static var previews: some View {
-    return CLNavigationView.build(intent: CLNavigationIndent(initialState: .init(currentPage: 0)))
+    return CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0)))
   }
 }

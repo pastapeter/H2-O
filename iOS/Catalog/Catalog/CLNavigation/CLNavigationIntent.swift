@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol CLNavigationIndentType {
+protocol CLNavigationIntentType {
 
   var state: CLNavigationModel.State { get }
 
@@ -18,7 +18,7 @@ protocol CLNavigationIndentType {
 
 }
 
-final class CLNavigationIndent: ObservableObject {
+final class CLNavigationIntent: ObservableObject {
 
   // MARK: - LifeCycle
 
@@ -34,7 +34,7 @@ final class CLNavigationIndent: ObservableObject {
   var cancellable: Set<AnyCancellable> = []
 }
 
-extension CLNavigationIndent: CLNavigationIndentType, IntentType {
+extension CLNavigationIntent: CLNavigationIntentType, IntentType {
 
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {

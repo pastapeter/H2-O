@@ -45,7 +45,7 @@
 		B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC612A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift */; };
 		B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */; };
 		B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */; };
-		B1F2BC6A2A7B62E8005385E0 /* CLNavigationIndent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC692A7B62E7005385E0 /* CLNavigationIndent.swift */; };
+		B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */; };
 		ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0B72A7A84C50063A6B4 /* CLButton.swift */; };
 		ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */; };
 /* End PBXBuildFile section */
@@ -110,7 +110,7 @@
 		B1F2BC612A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationMenuTitleView.swift; sourceTree = "<group>"; };
 		B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationMenuView.swift; sourceTree = "<group>"; };
 		B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationModel.swift; sourceTree = "<group>"; };
-		B1F2BC692A7B62E7005385E0 /* CLNavigationIndent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationIndent.swift; sourceTree = "<group>"; };
+		B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationIntent.swift; sourceTree = "<group>"; };
 		ED91A0B72A7A84C50063A6B4 /* CLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
 		ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDualChoiceButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,7 +251,7 @@
 				B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */,
 				B155C11F2A7A78A700F540CB /* CLNavigationView.swift */,
 				B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */,
-				B1F2BC692A7B62E7005385E0 /* CLNavigationIndent.swift */,
+				B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */,
 			);
 			path = CLNavigation;
 			sourceTree = "<group>";
@@ -463,7 +463,7 @@
 			files = (
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
-				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIndent.swift in Sources */,
+				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
 				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
 				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,

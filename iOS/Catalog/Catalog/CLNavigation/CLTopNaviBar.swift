@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CLTopNaviBar: View {
 
-  var intent: CLNavigationIndentType
+  var intent: CLNavigationIntentType
 
   var body: some View {
     ZStack(alignment: .center) {
