@@ -42,6 +42,8 @@
 		B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D202A825FBA00C7B07D /* SecureType.swift */; };
 		B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D222A82609600C7B07D /* CLNetworkError.swift */; };
 		B1604D252A8261B400C7B07D /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D242A8261B400C7B07D /* ContentType.swift */; };
+		B1604D272A8265B500C7B07D /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D262A8265B500C7B07D /* RequestManager.swift */; };
+		B1604D292A82660700C7B07D /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D282A82660700C7B07D /* APIManagerProtocol.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -116,6 +118,8 @@
 		B1604D202A825FBA00C7B07D /* SecureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureType.swift; sourceTree = "<group>"; };
 		B1604D222A82609600C7B07D /* CLNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNetworkError.swift; sourceTree = "<group>"; };
 		B1604D242A8261B400C7B07D /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
+		B1604D262A8265B500C7B07D /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		B1604D282A82660700C7B07D /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 				B1604D202A825FBA00C7B07D /* SecureType.swift */,
 				B1604D222A82609600C7B07D /* CLNetworkError.swift */,
 				B1604D242A8261B400C7B07D /* ContentType.swift */,
+				B1604D262A8265B500C7B07D /* RequestManager.swift */,
+				B1604D282A82660700C7B07D /* APIManagerProtocol.swift */,
 			);
 			path = NetworkProtocol;
 			sourceTree = "<group>";
@@ -523,6 +529,8 @@
 				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
+				B1604D272A8265B500C7B07D /* RequestManager.swift in Sources */,
+				B1604D292A82660700C7B07D /* APIManagerProtocol.swift in Sources */,
 				B194363D2A80AC8200C2FD69 /* CLOptionQuitAlertContentView.swift in Sources */,
 				B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */,
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 enum CLNetworkError: Error {
   case invalidURL
   case urlRequestValidationFailed(reason: CLURLRequestFailureReason)
+  case invalidServerResponse
 }
 
 enum CLURLRequestFailureReason {
