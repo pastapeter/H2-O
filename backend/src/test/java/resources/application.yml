@@ -5,6 +5,12 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 
+  sql:
+    init:
+      schema-locations: classpath:/schema.sql
+      data-locations: classpath:/data.sql
+      mode: always
+
 mybatis:
   type-aliases-package: com.h2o.h2oServer.domain
   mapper-locations: static/mapper/**/*.xml
