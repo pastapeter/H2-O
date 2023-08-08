@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CLNavigationMenuView: View {
-  
+
   @Binding var currentPage: Int
   @Binding var menuStatus: [CLNavigationMenuTitleView.Status]
   @Namespace var namespace

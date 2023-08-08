@@ -8,13 +8,17 @@
 import Foundation
 import Combine
 
-protocol CLNavigationIndentType {
+protocol CLNavigationIntentType {
+
   var state: CLNavigationModel.State { get }
+
   func send(action: CLNavigationModel.ViewAction)
+
   func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
+
 }
 
-final class CLNavigationIndent: ObservableObject {
+final class CLNavigationIntent: ObservableObject {
 
   // MARK: - LifeCycle
 
@@ -30,8 +34,8 @@ final class CLNavigationIndent: ObservableObject {
   var cancellable: Set<AnyCancellable> = []
 }
 
-extension CLNavigationIndent: CLNavigationIndentType, IntentType {
-  
+extension CLNavigationIntent: CLNavigationIntentType, IntentType {
+
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onTapNavTab(let index):

@@ -15,16 +15,16 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
           Text("Hello, world!").catalogFont(type: .HeadENBold26)
-          
+
             CLButton(buttonState: $buttonState,
-                mainText: "Le Blanc 선택하기",
-                                inActiveText: "옵션을 선택해 추가해보세요.",
+                     mainText: "Le Blanc 선택하기",
+                     inActiveText: "옵션을 선택해 추가해보세요.",
                      height: 52, buttonAction: { print("clicked") })
             CLDualChoiceButton(leftText: "취소",
                                rightText: "완료",
                                height: 52,
-                               leftAction: { print("left")},
-                               rightAction: { print("right")})
+                               leftAction: { print("left") },
+                               rightAction: { print("right") })
         }
     }
 }

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CLButton: View {
-    
+
     enum CLButtonState {
         case `default`
         case isClicked
         case inActive
     }
-    
+
     @Binding var buttonState: CLButtonState
     @State var subText: String?
     @State var mainText: String
@@ -22,7 +22,7 @@ struct CLButton: View {
     @State var height: CGFloat
     @State var width: CGFloat?
     let buttonAction: () -> Void
-    
+
     var body: some View {
         Button {
             buttonState = .isClicked

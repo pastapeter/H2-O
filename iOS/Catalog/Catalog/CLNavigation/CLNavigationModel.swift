@@ -11,13 +11,9 @@ enum CLNavigationModel {
 
   struct State: Equatable {
     var currentPage: Int
-    
-    init(currentPage: Int) {
-      self.currentPage = currentPage
-    }
-    
+
   }
-  
+
   enum ViewAction: Equatable {
     case onTapNavTab(index: Int)
     case onTapFinish

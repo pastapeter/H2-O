@@ -285,7 +285,7 @@ extension CatalogTextType {
     case .TextKRMedium16:
       return 18
     case .TextKRMedium14:
-      return 18
+      return 22
     case .TextKRMedium12:
       return 18
 
@@ -306,21 +306,18 @@ extension CatalogTextType {
 struct CatalogFont: ViewModifier {
   let font: UIFont
   let lineHeight: CGFloat
-  let letterSpacing: CGFloat
 
   func body(content: Content) -> some View {
     content
       .font(Font(font))
       .lineSpacing(lineHeight - font.lineHeight)
       .padding(.vertical, (lineHeight - font.lineHeight) / 2)
-      .tracking(letterSpacing)
   }
 }
 
 extension Text {
   func catalogFont(type: CatalogTextType) -> some View {
-    ModifiedContent(content: self, modifier: CatalogFont(font: type.font,
-                                                         lineHeight: type.lineHeight,
-                                                         letterSpacing: type.letterSpacing))
+    ModifiedContent(content: self.tracking(type.letterSpacing),
+                    modifier: CatalogFont(font: type.font, lineHeight: type.lineHeight))
   }
 }
