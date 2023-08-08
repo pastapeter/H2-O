@@ -35,6 +35,10 @@
 		B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C11F2A7A78A700F540CB /* CLNavigationView.swift */; };
 		B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D112A8256B700C7B07D /* RequestProtocol.swift */; };
 		B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D132A8256DA00C7B07D /* RequestType.swift */; };
+		B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D172A82577A00C7B07D /* MockURLProtocol.swift */; };
+		B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */; };
+		B1604D1D2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */; };
+		B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -102,6 +106,10 @@
 		B155C11F2A7A78A700F540CB /* CLNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationView.swift; sourceTree = "<group>"; };
 		B1604D112A8256B700C7B07D /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		B1604D132A8256DA00C7B07D /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		B1604D172A82577A00C7B07D /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimSelectionRequestProtocol.swift; sourceTree = "<group>"; };
+		B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimAPIConstant.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -273,6 +281,8 @@
 		B1604D0F2A8255E000C7B07D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B1604D1C2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift */,
+				B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -282,6 +292,8 @@
 			children = (
 				B1604D112A8256B700C7B07D /* RequestProtocol.swift */,
 				B1604D132A8256DA00C7B07D /* RequestType.swift */,
+				B1604D172A82577A00C7B07D /* MockURLProtocol.swift */,
+				B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */,
 			);
 			path = NetworkProtocol;
 			sourceTree = "<group>";
@@ -491,14 +503,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
+				B1604D1D2A825D1600C7B07D /* TrimSelectionRequestProtocol.swift in Sources */,
 				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
 				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
+				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
 				B194363D2A80AC8200C2FD69 /* CLOptionQuitAlertContentView.swift in Sources */,
+				B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */,
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
