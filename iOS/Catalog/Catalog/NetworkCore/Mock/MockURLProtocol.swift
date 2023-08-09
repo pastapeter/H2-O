@@ -20,20 +20,21 @@ class MockURLProtocol: URLProtocol {
   }
 
   override func startLoading() {
+
     if let url = request.url {
 
       if let (error, data, response) = Self.mockURLs[url] {
 
-        if let responseStrong = response {
-          self.client?.urlProtocol(self, didReceive: responseStrong, cacheStoragePolicy: .allowed)
+        if let res = response {
+          self.client?.urlProtocol(self, didReceive: res, cacheStoragePolicy: .allowed)
         }
 
-        if let dataStrong = data {
-          self.client?.urlProtocol(self, didLoad: dataStrong)
+        if let data = data {
+          self.client?.urlProtocol(self, didLoad: data)
         }
 
-        if let errorStrong = error {
-          self.client?.urlProtocol(self, didFailWithError: errorStrong)
+        if let error = error {
+          self.client?.urlProtocol(self, didFailWithError: error)
         }
       }
     }
