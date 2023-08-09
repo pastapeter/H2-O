@@ -25,7 +25,7 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'no-var': 'warn',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'no-console': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',

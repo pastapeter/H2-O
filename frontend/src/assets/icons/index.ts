@@ -1,5 +1,6 @@
 export { ReactComponent as ArrowBack } from './arrow-back.svg';
 export { ReactComponent as ArrowDown } from './arrow-down.svg';
+export { ReactComponent as ArrowLeft } from './arrow-left.svg';
 export { ReactComponent as ArrowRight } from './arrow-right.svg';
 export { ReactComponent as Cancel } from './cancel.svg';
 export { ReactComponent as CarbonSearch } from './carbon-search.svg';

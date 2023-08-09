@@ -8,6 +8,7 @@ const Card = styled.div<Props>`
   border: 1px solid ${({ isSelected, theme }) => (isSelected ? theme.colors.activeBlue : theme.colors.gray200)};
   background-color: ${({ isSelected, theme }) => (isSelected ? theme.colors.cardBg : 'white')};
   color: ${({ isSelected, theme }) => (isSelected ? theme.colors.gray900 : theme.colors.gray500)};
+  cursor: pointer;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.activeBlue};

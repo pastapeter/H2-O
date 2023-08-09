@@ -24,7 +24,6 @@ function TrimCard({ description, title, price, ...restProps }: Props) {
     <Card
       css={css`
         flex: 1;
-        cursor: pointer;
       `}
       {...restProps}
     >

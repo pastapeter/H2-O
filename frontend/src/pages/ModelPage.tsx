@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, memo, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Banner, Footer, PriceStaticBar } from '@/components/common';
@@ -175,7 +175,8 @@ const modelType: Record<Model, string> = {
   driveTrains: '구동방식',
 };
 
-export default ModelPage;
+const _ModelPage = memo(ModelPage);
+export default _ModelPage;
 
 const Image = styled.img`
   display: block;

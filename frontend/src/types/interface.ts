@@ -38,3 +38,12 @@ export interface DriveTrain {
   description: string;
   image: string;
 }
+
+export interface InteriorColorResponse {
+  id: number;
+  name: string;
+  choiceRatio: number;
+  price: number;
+  fabricImage: string;
+  bannerImage: string;
+}

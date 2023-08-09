@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Card, Icon, Typography } from '@/components/common';
-import { toSeparatedNumberFormat } from '@/utils/number';
+import { toPriceFormatString } from '@/utils/string';
 
 export interface Props extends ComponentProps<typeof Card> {
   choiceRatio: number;
@@ -25,7 +25,7 @@ function ModelTypeCard({ choiceRatio, name, price, isSelected, ...restProps }: P
         {name}
       </Typography>
       <Typography font='TextKRMedium14' color={isSelected ? 'gray900' : 'gray600'}>
-        {toSeparatedNumberFormat(price)} 원
+        {toPriceFormatString(price)}
       </Typography>
       <Icon
         iconType='Check'

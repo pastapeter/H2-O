@@ -163,6 +163,7 @@ const resetCSS = css`
 
   * {
     box-sizing: border-box;
+    user-select: none;
   }
 `;
 
