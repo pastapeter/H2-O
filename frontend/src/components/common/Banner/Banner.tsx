@@ -5,11 +5,19 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   title: string;
   subTitle: string;
   isTitleColorWhite?: boolean;
+  backgroundColor: string;
 }
 
-function Banner({ children, title, subTitle, isTitleColorWhite = false, ...restProps }: PropsWithChildren<Props>) {
+function Banner({
+  children,
+  title,
+  subTitle,
+  isTitleColorWhite = false,
+  backgroundColor,
+  ...restProps
+}: PropsWithChildren<Props>) {
   return (
-    <BannerContainer {...restProps}>
+    <BannerContainer backgroundColor={backgroundColor} {...restProps}>
       <div>
         <TitleContainer isTitleColorWhite={isTitleColorWhite}>
           <p>{subTitle}</p>
@@ -23,11 +31,11 @@ function Banner({ children, title, subTitle, isTitleColorWhite = false, ...restP
 
 export default Banner;
 
-const BannerContainer = styled.div`
+const BannerContainer = styled.div<Pick<Props, 'backgroundColor'>>`
   position: relative;
   width: 100%;
   height: 360px;
-  background: linear-gradient(180deg, rgba(162, 199, 231, 0.2) 24.92%, rgba(255, 255, 255, 0) 61.36%), #fff;
+  background: ${({ backgroundColor }) => backgroundColor};
   box-shadow: 0px 0px 8px 0px rgba(131, 133, 136, 0.2);
 
   & > div {
@@ -40,6 +48,7 @@ const BannerContainer = styled.div`
 
 const TitleContainer = styled.div<Pick<Props, 'isTitleColorWhite'>>`
   position: fixed;
+  width: 234px;
   top: 72px;
   display: flex;
   flex-direction: column;

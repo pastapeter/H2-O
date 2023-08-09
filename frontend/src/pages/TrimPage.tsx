@@ -37,10 +37,12 @@ const mockTrims = [
   },
 ];
 
+const BANNER_COLOR = 'linear-gradient(180deg, rgba(162, 199, 231, 0.2) 24.92%, rgba(255, 255, 255, 0) 61.36%), #fff';
+
 function TrimPage() {
   return (
     <>
-      <Banner title='Le Blanc' subTitle='기본에 충실한 팰리세이드'>
+      <Banner title='Le Blanc' subTitle='기본에 충실한 팰리세이드' backgroundColor={BANNER_COLOR}>
         <PracticalInfo options={mockOptions} />
         <TrimImageList imageSrcList={mockImages} />
       </Banner>
