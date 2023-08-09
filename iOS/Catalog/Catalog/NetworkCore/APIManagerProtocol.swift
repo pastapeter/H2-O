@@ -38,17 +38,51 @@ class APIManager: APIManagerProtocol {
     let (data, response) = try await urlSession.makeData(from: requestObject)
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
       // TODO: retryRequest 불러야함 -> 재귀써야함
+      var result = try await retryRequest(requestObject, dueTo: .invalidServerResponse)
+      while result.retryRequired {
+        result = try await retryRequest(requestObject, dueTo: .invalidServerResponse)
+      }
       throw CLNetworkError.invalidServerResponse
     }
-
     return data
   }
-
+  
 }
 
 // MARK: - Extension
 
 extension APIManager {
+  
+  private func perform(_ request: Request) async throws -> Data {
+    let (data, response) = try await urlSession.makeData(from: request)
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+      throw CLNetworkError.invalidServerResponse
+    }
+
+    return data
+  }
+  
+  private func retryRequest(_ request: Request) async throws -> Data {
+    let retry: () async throws -> Data = {
+      request.prepareForRetry()
+      return try await self.perform(request)
+    }
+    return try await retry()
+  }
+  
+  private func retryRequest(_ request: Request, dueTo error: CLNetworkError) async throws -> CLRetryResult {
+    
+    guard let retrier = self.retrier else {
+      return .doNotRetry
+    }
+    
+    request.prepareForRetry()
+    let result = try await retrier.retry(request, for: urlSession, dueTo: error)
+    guard let retryResultError = result.error else {
+      return result
+    }
+    return .doNotRetryWithError(retryResultError)
+  }
 
   private func retryRequest(_ request: Request,
                             dueTo error: CLNetworkError,
