@@ -14,6 +14,8 @@ enum CLRetryResult {
   case doNotRetry
 
   case doNotRetryWithError(Error)
+  
+  case success(Data)
 
 }
 
