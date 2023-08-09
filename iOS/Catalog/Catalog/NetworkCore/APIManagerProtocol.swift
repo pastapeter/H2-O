@@ -50,7 +50,9 @@ class APIManager: APIManagerProtocol {
 
 extension APIManager {
 
-  private func retryRequest(_ request: Request, dueTo error: CLNetworkError, completion: @escaping (CLRetryResult) -> Void) {
+  private func retryRequest(_ request: Request,
+                            dueTo error: CLNetworkError,
+                            completion: @escaping (CLRetryResult) -> Void) {
 
     guard let retrier = self.retrier else { return }
 

@@ -11,7 +11,10 @@ class CLAPIRetrier: CLRequestRetrier {
 
   let retryLimit = 3
 
-  override func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error, completion: @escaping (CLRetryResult) -> Void) {
+  override func retry(_ request: Request,
+                      for session: URLSessionProtocol,
+                      dueTo error: Error,
+                      completion: @escaping (CLRetryResult) -> Void) {
 
     Task {
       guard let response = try await session.makeData(for: request.urlRequest).response as? HTTPURLResponse else {

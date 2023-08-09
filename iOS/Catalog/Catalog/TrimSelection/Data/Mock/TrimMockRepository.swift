@@ -13,7 +13,9 @@ final class TrimMockRepository: TrimSelectionRepositoryProtocol {
     let manager = RequestManager(apiManager: MockAPIManager())
     guard let data = JSONLoader.load(with: "Trim") else { return [] }
     let url = URL(string: "https://api.catalog.com/vehicle/\(vehicleId)")!
-    MockURLProtocol.mockURLs = [ url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))]
+    MockURLProtocol.mockURLs = [
+      url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))
+    ]
     let dto: TrimResponseDTO = try await manager.perform(TrimSelectionRequest.fetchTrimList(vehicleId: vehicleId))
     print(dto)
     return dto.toDomain()

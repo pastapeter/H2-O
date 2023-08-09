@@ -39,7 +39,10 @@ extension CLRetryResult {
 
 protocol RequestRetrier {
 
-  func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error, completion: @escaping (CLRetryResult) -> Void)
+  func retry(_ request: Request,
+             for session: URLSessionProtocol,
+             dueTo error: Error,
+             completion: @escaping (CLRetryResult) -> Void)
 
   func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error) async throws -> CLRetryResult
 
@@ -47,7 +50,10 @@ protocol RequestRetrier {
 
 extension RequestRetrier {
 
-  func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error, completion: @escaping (CLRetryResult) -> Void) {
+  func retry(_ request: Request,
+             for session: URLSessionProtocol,
+             dueTo error: Error,
+             completion: @escaping (CLRetryResult) -> Void) {
     completion(.doNotRetry)
   }
 
@@ -87,11 +93,19 @@ class CLRequestRetrier: RequestRetrier {
     self.retriers = retriers
   }
 
-  func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error, completion: @escaping (CLRetryResult) -> Void) {
-    retry(request, for: session, dueTo: error, using: retriers, completion: completion)
+  func retry(_ request: Request,
+             for session: URLSessionProtocol,
+             dueTo error: Error,
+             completion: @escaping (CLRetryResult) -> Void) {
+    retry(request, for: session, dueTo: error,
+          using: retriers, completion: completion)
   }
 
-  private func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error, using retriers: [RequestRetrier], completion: @escaping (CLRetryResult) -> Void) {
+  private func retry(_ request: Request,
+                     for session: URLSessionProtocol,
+                     dueTo error: Error,
+                     using retriers: [RequestRetrier],
+                     completion: @escaping (CLRetryResult) -> Void) {
 
     var pendingRetriers = retriers
 
