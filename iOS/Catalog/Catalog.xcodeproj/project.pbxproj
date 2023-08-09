@@ -43,12 +43,20 @@
 		B1604D252A8261B400C7B07D /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D242A8261B400C7B07D /* ContentType.swift */; };
 		B1604D272A8265B500C7B07D /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D262A8265B500C7B07D /* RequestManager.swift */; };
 		B1604D292A82660700C7B07D /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D282A82660700C7B07D /* APIManagerProtocol.swift */; };
-		B1604D2B2A82A78600C7B07D /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D2A2A82A78600C7B07D /* RequestInterceptor.swift */; };
+		B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D2A2A82A78600C7B07D /* RequestRetrier.swift */; };
 		B1604D2D2A82A7C100C7B07D /* CachedResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */; };
 		B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */; };
 		B1604D322A836DBE00C7B07D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D312A836DBE00C7B07D /* Request.swift */; };
-		B1604D342A83701900C7B07D /* CLApiRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D332A83701900C7B07D /* CLApiRetrier.swift */; };
+		B1604D342A83701900C7B07D /* CLAPIRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D332A83701900C7B07D /* CLAPIRetrier.swift */; };
 		B1604D362A83776200C7B07D /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D352A83776200C7B07D /* DataParser.swift */; };
+		B1604D382A8381BD00C7B07D /* TrimRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D372A8381BD00C7B07D /* TrimRequestDTO.swift */; };
+		B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D392A8381E900C7B07D /* TrimResponseDTO.swift */; };
+		B1604D402A83923200C7B07D /* Trim.json in Resources */ = {isa = PBXBuildFile; fileRef = B1604D3F2A83923200C7B07D /* Trim.json */; };
+		B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D412A83935400C7B07D /* JSONLoader.swift */; };
+		B1604D442A83943000C7B07D /* TrimSelectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D432A83943000C7B07D /* TrimSelectionRepository.swift */; };
+		B1604D462A83AE4100C7B07D /* TrimAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D452A83AE4100C7B07D /* TrimAPIManager.swift */; };
+		B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D472A83BE8000C7B07D /* TrimMockRepository.swift */; };
+		B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D492A83BECC00C7B07D /* MockAPIManager.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -124,12 +132,20 @@
 		B1604D242A8261B400C7B07D /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		B1604D262A8265B500C7B07D /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		B1604D282A82660700C7B07D /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
-		B1604D2A2A82A78600C7B07D /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
+		B1604D2A2A82A78600C7B07D /* RequestRetrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRetrier.swift; sourceTree = "<group>"; };
 		B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedResponseHandler.swift; sourceTree = "<group>"; };
 		B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimSelectionRequest.swift; sourceTree = "<group>"; };
 		B1604D312A836DBE00C7B07D /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		B1604D332A83701900C7B07D /* CLApiRetrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLApiRetrier.swift; sourceTree = "<group>"; };
+		B1604D332A83701900C7B07D /* CLAPIRetrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAPIRetrier.swift; sourceTree = "<group>"; };
 		B1604D352A83776200C7B07D /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
+		B1604D372A8381BD00C7B07D /* TrimRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimRequestDTO.swift; sourceTree = "<group>"; };
+		B1604D392A8381E900C7B07D /* TrimResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimResponseDTO.swift; sourceTree = "<group>"; };
+		B1604D3F2A83923200C7B07D /* Trim.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Trim.json; sourceTree = "<group>"; };
+		B1604D412A83935400C7B07D /* JSONLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
+		B1604D432A83943000C7B07D /* TrimSelectionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimSelectionRepository.swift; sourceTree = "<group>"; };
+		B1604D452A83AE4100C7B07D /* TrimAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimAPIManager.swift; sourceTree = "<group>"; };
+		B1604D472A83BE8000C7B07D /* TrimMockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimMockRepository.swift; sourceTree = "<group>"; };
+		B1604D492A83BECC00C7B07D /* MockAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIManager.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -300,8 +316,13 @@
 		B1604D0F2A8255E000C7B07D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B1604D3E2A8391CF00C7B07D /* Mock */,
 				B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */,
 				B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */,
+				B1604D372A8381BD00C7B07D /* TrimRequestDTO.swift */,
+				B1604D392A8381E900C7B07D /* TrimResponseDTO.swift */,
+				B1604D432A83943000C7B07D /* TrimSelectionRepository.swift */,
+				B1604D452A83AE4100C7B07D /* TrimAPIManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -309,22 +330,57 @@
 		B1604D102A82569800C7B07D /* NetworkCore */ = {
 			isa = PBXGroup;
 			children = (
-				B1604D112A8256B700C7B07D /* RequestProtocol.swift */,
-				B1604D132A8256DA00C7B07D /* RequestType.swift */,
-				B1604D172A82577A00C7B07D /* MockURLProtocol.swift */,
+				B1604D4B2A83BED100C7B07D /* Mock */,
+				B1604D4E2A83E87600C7B07D /* Request */,
 				B1604D192A82588F00C7B07D /* URLSessionProtocol.swift */,
-				B1604D202A825FBA00C7B07D /* SecureType.swift */,
 				B1604D222A82609600C7B07D /* CLNetworkError.swift */,
-				B1604D242A8261B400C7B07D /* ContentType.swift */,
 				B1604D262A8265B500C7B07D /* RequestManager.swift */,
 				B1604D282A82660700C7B07D /* APIManagerProtocol.swift */,
-				B1604D2A2A82A78600C7B07D /* RequestInterceptor.swift */,
+				B1604D4D2A83E86000C7B07D /* Retrier */,
 				B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */,
-				B1604D312A836DBE00C7B07D /* Request.swift */,
-				B1604D332A83701900C7B07D /* CLApiRetrier.swift */,
 				B1604D352A83776200C7B07D /* DataParser.swift */,
 			);
 			path = NetworkCore;
+			sourceTree = "<group>";
+		};
+		B1604D3E2A8391CF00C7B07D /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D3F2A83923200C7B07D /* Trim.json */,
+				B1604D472A83BE8000C7B07D /* TrimMockRepository.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		B1604D4B2A83BED100C7B07D /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D412A83935400C7B07D /* JSONLoader.swift */,
+				B1604D172A82577A00C7B07D /* MockURLProtocol.swift */,
+				B1604D492A83BECC00C7B07D /* MockAPIManager.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		B1604D4D2A83E86000C7B07D /* Retrier */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D332A83701900C7B07D /* CLAPIRetrier.swift */,
+				B1604D2A2A82A78600C7B07D /* RequestRetrier.swift */,
+			);
+			path = Retrier;
+			sourceTree = "<group>";
+		};
+		B1604D4E2A83E87600C7B07D /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D312A836DBE00C7B07D /* Request.swift */,
+				B1604D112A8256B700C7B07D /* RequestProtocol.swift */,
+				B1604D132A8256DA00C7B07D /* RequestType.swift */,
+				B1604D202A825FBA00C7B07D /* SecureType.swift */,
+				B1604D242A8261B400C7B07D /* ContentType.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		B19436312A7E8C1500C2FD69 /* Alert */ = {
@@ -477,6 +533,7 @@
 				B155C1122A7A52CE00F540CB /* HyundaiSansText-Bold.otf in Resources */,
 				B155C1152A7A530700F540CB /* HyundaiSansText-Regular.otf in Resources */,
 				B155C0B72A7920A900F540CB /* Preview Assets.xcassets in Resources */,
+				B1604D402A83923200C7B07D /* Trim.json in Resources */,
 				B155C1162A7A530A00F540CB /* HyundaiSansTextKROTFBold.otf in Resources */,
 				B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */,
 			);
@@ -528,10 +585,13 @@
 				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
+				B1604D382A8381BD00C7B07D /* TrimRequestDTO.swift in Sources */,
+				B1604D442A83943000C7B07D /* TrimSelectionRepository.swift in Sources */,
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
 				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
+				B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */,
 				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
 				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
@@ -543,20 +603,24 @@
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
+				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
-				B1604D2B2A82A78600C7B07D /* RequestInterceptor.swift in Sources */,
+				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
+				B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */,
+				B1604D462A83AE4100C7B07D /* TrimAPIManager.swift in Sources */,
 				B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
-				B1604D342A83701900C7B07D /* CLApiRetrier.swift in Sources */,
+				B1604D342A83701900C7B07D /* CLAPIRetrier.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
+				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
 				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
