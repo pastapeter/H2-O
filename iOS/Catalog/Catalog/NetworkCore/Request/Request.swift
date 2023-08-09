@@ -8,6 +8,7 @@
 import Foundation
 
 class Request {
+  
   var urlRequest: URLRequest
   var retryCount: Int
 
@@ -15,4 +16,9 @@ class Request {
     self.urlRequest = urlRequest
     self.retryCount = 0
   }
+  
+  func prepareForRetry() {
+    retryCount += 1
+  }
+  
 }
