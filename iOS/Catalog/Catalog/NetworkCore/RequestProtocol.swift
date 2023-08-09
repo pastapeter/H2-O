@@ -31,7 +31,11 @@ protocol RequestProtocol {
 
 extension RequestProtocol {
 
-  func createRequest() throws -> URLRequest {
+  var contentType: ContentType {
+    .JSON
+  }
+
+  func createRequest() throws -> Request {
 
     var components = URLComponents()
     components.scheme = SecureType.https.description
@@ -62,7 +66,7 @@ extension RequestProtocol {
       urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
     }
 
-    return urlRequest
+    return Request(urlRequest: urlRequest)
   }
 
 }
