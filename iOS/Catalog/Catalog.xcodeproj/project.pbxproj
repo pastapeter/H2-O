@@ -46,8 +46,17 @@
 		B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */; };
 		B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */; };
 		B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */; };
-		ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0B72A7A84C50063A6B4 /* CLButton.swift */; };
-		ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */; };
+		ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410882A7FC4FF0033AEBC /* CLButton.swift */; };
+		ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64108A2A7FC4FF0033AEBC /* CLDualChoiceButton.swift */; };
+		ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */; };
+		ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */; };
+		ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */; };
+		ED64109E2A7FE3F60033AEBC /* CLPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64109D2A7FE3F60033AEBC /* CLPrice.swift */; };
+		EDA3CDD32A811CA80001BB9C /* CLSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */; };
+		EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */; };
+		EDA3CDD72A8281B10001BB9C /* CLSimilarQuotationSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */; };
+		EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA5D562A808A8A0050BC35 /* CLPopUp.swift */; };
+		EDBA5D592A808A8A0050BC35 /* DimmedZStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA5D572A808A8A0050BC35 /* DimmedZStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,8 +120,20 @@
 		B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationMenuView.swift; sourceTree = "<group>"; };
 		B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationModel.swift; sourceTree = "<group>"; };
 		B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationIntent.swift; sourceTree = "<group>"; };
+		ED6410822A7FC4FF0033AEBC /* DimmedZStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedZStack.swift; sourceTree = "<group>"; };
+		ED6410882A7FC4FF0033AEBC /* CLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
+		ED64108A2A7FC4FF0033AEBC /* CLDualChoiceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLDualChoiceButton.swift; sourceTree = "<group>"; };
+		ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeView.swift; sourceTree = "<group>"; };
+		ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeModel.swift; sourceTree = "<group>"; };
+		ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeIntent.swift; sourceTree = "<group>"; };
+		ED64109D2A7FE3F60033AEBC /* CLPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLPrice.swift; sourceTree = "<group>"; };
 		ED91A0B72A7A84C50063A6B4 /* CLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
 		ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDualChoiceButton.swift; sourceTree = "<group>"; };
+		EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSliderView.swift; sourceTree = "<group>"; };
+		EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSimilarQuotationButton.swift; sourceTree = "<group>"; };
+		EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSimilarQuotationSlideView.swift; sourceTree = "<group>"; };
+		EDBA5D562A808A8A0050BC35 /* CLPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPopUp.swift; sourceTree = "<group>"; };
+		EDBA5D572A808A8A0050BC35 /* DimmedZStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedZStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +168,7 @@
 				B155C0BF2A7920A900F540CB /* CatalogTests */,
 				B155C0C92A7920A900F540CB /* CatalogUITests */,
 				B155C0AD2A7920A800F540CB /* Products */,
+				EDBA5D542A808A680050BC35 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,10 +185,10 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				ED6410962A7FD88E0033AEBC /* CLBudgetSetting */,
 				B155C11E2A7A789400F540CB /* CLNavigation */,
 				B155C0F82A7931B500F540CB /* Info.plist */,
-				ED779C3F2A7A799E007F67B7 /* Component */,
-				ED779C3E2A7A799A007F67B7 /* View */,
+				ED779C3E2A7A799A007F67B7 /* Component */,
 				B155C0EA2A792F6800F540CB /* Font */,
 				B155C0E72A792BA300F540CB /* Colors */,
 				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
@@ -216,8 +238,8 @@
 		B155C0E72A792BA300F540CB /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				B155C0E52A79269D00F540CB /* Colors.xcassets */,
 				B155C0E82A792BB100F540CB /* Color+.swift */,
+				B155C0E52A79269D00F540CB /* Colors.xcassets */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -270,29 +292,56 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
-		ED779C3E2A7A799A007F67B7 /* View */ = {
+		ED6410832A7FC4FF0033AEBC /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				ED6410882A7FC4FF0033AEBC /* CLButton.swift */,
+				ED64108A2A7FC4FF0033AEBC /* CLDualChoiceButton.swift */,
 			);
-			path = View;
+			path = Button;
 			sourceTree = "<group>";
 		};
-		ED779C3F2A7A799E007F67B7 /* Component */ = {
+		ED6410962A7FD88E0033AEBC /* CLBudgetSetting */ = {
 			isa = PBXGroup;
 			children = (
+				ED64109D2A7FE3F60033AEBC /* CLPrice.swift */,
+				ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */,
+				ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */,
+				ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */,
+				EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */,
+				EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */,
+				EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */,
+			);
+			path = CLBudgetSetting;
+			sourceTree = "<group>";
+		};
+		ED779C3E2A7A799A007F67B7 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				EDBA5D552A808A8A0050BC35 /* pop-up */,
+				ED6410832A7FC4FF0033AEBC /* Button */,
 				B19436312A7E8C1500C2FD69 /* Alert */,
-				ED779C402A7A79E2007F67B7 /* BottomButton */,
 			);
 			path = Component;
 			sourceTree = "<group>";
 		};
-		ED779C402A7A79E2007F67B7 /* BottomButton */ = {
+		EDBA5D542A808A680050BC35 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
+				ED6410822A7FC4FF0033AEBC /* DimmedZStack.swift */,
 				ED91A0B72A7A84C50063A6B4 /* CLButton.swift */,
 				ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */,
 			);
-			path = BottomButton;
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		EDBA5D552A808A8A0050BC35 /* pop-up */ = {
+			isa = PBXGroup;
+			children = (
+				EDBA5D572A808A8A0050BC35 /* DimmedZStack.swift */,
+				EDBA5D562A808A8A0050BC35 /* CLPopUp.swift */,
+			);
+			path = "pop-up";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,10 +512,11 @@
 			files = (
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
+				EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */,
+				EDBA5D592A808A8A0050BC35 /* DimmedZStack.swift in Sources */,
+				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
-				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
-				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
 				B194363D2A80AC8200C2FD69 /* CLOptionQuitAlertContentView.swift in Sources */,
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
@@ -474,7 +524,14 @@
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
+				EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */,
+				ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
+				EDA3CDD72A8281B10001BB9C /* CLSimilarQuotationSlideView.swift in Sources */,
+				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
+				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
+				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
+				EDA3CDD32A811CA80001BB9C /* CLSliderView.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
 				B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
@@ -482,7 +539,12 @@
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
 				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
+				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,
+				ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */,
+				ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */,
+				ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */,
+				ED64109E2A7FE3F60033AEBC /* CLPrice.swift in Sources */,
 				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
