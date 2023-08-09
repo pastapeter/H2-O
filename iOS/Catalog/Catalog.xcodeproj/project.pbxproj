@@ -45,6 +45,8 @@
 		B1604D292A82660700C7B07D /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D282A82660700C7B07D /* APIManagerProtocol.swift */; };
 		B1604D2B2A82A78600C7B07D /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D2A2A82A78600C7B07D /* RequestInterceptor.swift */; };
 		B1604D2D2A82A7C100C7B07D /* CachedResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */; };
+		B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */; };
+		B1604D322A836DBE00C7B07D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D312A836DBE00C7B07D /* Request.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -122,6 +124,8 @@
 		B1604D282A82660700C7B07D /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 		B1604D2A2A82A78600C7B07D /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
 		B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedResponseHandler.swift; sourceTree = "<group>"; };
+		B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimSelectionRequest.swift; sourceTree = "<group>"; };
+		B1604D312A836DBE00C7B07D /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -187,12 +191,11 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				B1604D102A82569800C7B07D /* NetworkProtocol */,
+				B1604D102A82569800C7B07D /* NetworkCore */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
 				B155C11E2A7A789400F540CB /* CLNavigation */,
 				B155C0F82A7931B500F540CB /* Info.plist */,
 				ED779C3F2A7A799E007F67B7 /* Component */,
-				ED779C3E2A7A799A007F67B7 /* View */,
 				B155C0EA2A792F6800F540CB /* Font */,
 				B155C0E72A792BA300F540CB /* Colors */,
 				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
@@ -294,11 +297,12 @@
 			isa = PBXGroup;
 			children = (
 				B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */,
+				B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		B1604D102A82569800C7B07D /* NetworkProtocol */ = {
+		B1604D102A82569800C7B07D /* NetworkCore */ = {
 			isa = PBXGroup;
 			children = (
 				B1604D112A8256B700C7B07D /* RequestProtocol.swift */,
@@ -312,8 +316,9 @@
 				B1604D282A82660700C7B07D /* APIManagerProtocol.swift */,
 				B1604D2A2A82A78600C7B07D /* RequestInterceptor.swift */,
 				B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */,
+				B1604D312A836DBE00C7B07D /* Request.swift */,
 			);
-			path = NetworkProtocol;
+			path = NetworkCore;
 			sourceTree = "<group>";
 		};
 		B19436312A7E8C1500C2FD69 /* Alert */ = {
@@ -328,13 +333,6 @@
 				B19436442A80E5FD00C2FD69 /* AlertViewComponent.swift */,
 			);
 			path = Alert;
-			sourceTree = "<group>";
-		};
-		ED779C3E2A7A799A007F67B7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		ED779C3F2A7A799E007F67B7 /* Component */ = {
@@ -529,6 +527,7 @@
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
 				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
 				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
+				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
 				B1604D272A8265B500C7B07D /* RequestManager.swift in Sources */,
@@ -543,6 +542,7 @@
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestInterceptor.swift in Sources */,
+				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
