@@ -40,4 +40,26 @@ class CLAPIRetrier: RequestRetrier {
     }
 
   }
+  
+  func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error) async throws -> CLRetryResult {
+    let (data, response) = try await session.makeData(from: request)
+    guard let response = response as? HTTPURLResponse else { return .doNotRetryWithError(error) }
+    
+    
+    switch response.statusCode {
+    case 13:
+      if request.retryCount < retryLimit {
+        return .retry
+      } else {
+        return .doNotRetry
+      }
+    default:
+      return .doNotRetry
+    }
+    
+  }
+  
+  
+  
+  
 }
