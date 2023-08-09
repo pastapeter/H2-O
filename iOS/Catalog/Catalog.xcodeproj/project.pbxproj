@@ -57,6 +57,7 @@
 		B1604D462A83AE4100C7B07D /* TrimAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D452A83AE4100C7B07D /* TrimAPIManager.swift */; };
 		B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D472A83BE8000C7B07D /* TrimMockRepository.swift */; };
 		B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D492A83BECC00C7B07D /* MockAPIManager.swift */; };
+		B1604D512A83EB7700C7B07D /* CLRetryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D502A83EB7700C7B07D /* CLRetryResult.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -146,6 +147,7 @@
 		B1604D452A83AE4100C7B07D /* TrimAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimAPIManager.swift; sourceTree = "<group>"; };
 		B1604D472A83BE8000C7B07D /* TrimMockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimMockRepository.swift; sourceTree = "<group>"; };
 		B1604D492A83BECC00C7B07D /* MockAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIManager.swift; sourceTree = "<group>"; };
+		B1604D502A83EB7700C7B07D /* CLRetryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLRetryResult.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -317,10 +319,10 @@
 			isa = PBXGroup;
 			children = (
 				B1604D3E2A8391CF00C7B07D /* Mock */,
-				B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */,
-				B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */,
 				B1604D372A8381BD00C7B07D /* TrimRequestDTO.swift */,
 				B1604D392A8381E900C7B07D /* TrimResponseDTO.swift */,
+				B1604D1E2A825D4900C7B07D /* TrimAPIConstant.swift */,
+				B1604D2E2A8335CA00C7B07D /* TrimSelectionRequest.swift */,
 				B1604D432A83943000C7B07D /* TrimSelectionRepository.swift */,
 				B1604D452A83AE4100C7B07D /* TrimAPIManager.swift */,
 			);
@@ -365,8 +367,9 @@
 		B1604D4D2A83E86000C7B07D /* Retrier */ = {
 			isa = PBXGroup;
 			children = (
-				B1604D332A83701900C7B07D /* CLAPIRetrier.swift */,
 				B1604D2A2A82A78600C7B07D /* RequestRetrier.swift */,
+				B1604D332A83701900C7B07D /* CLAPIRetrier.swift */,
+				B1604D502A83EB7700C7B07D /* CLRetryResult.swift */,
 			);
 			path = Retrier;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
+				B1604D512A83EB7700C7B07D /* CLRetryResult.swift in Sources */,
 				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,
 				B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */,
