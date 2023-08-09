@@ -9,3 +9,4 @@ export { Popup, SummaryPopup } from './Popup';
 export { Banner } from './Banner';
 export { Card } from './Card';
 export { Toggle } from './Toggle';
+export { MainSelector } from './MainSelector';
