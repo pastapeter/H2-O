@@ -12,11 +12,11 @@ protocol RequestManagerProtocol {
 }
 
 final class RequestManager: RequestManagerProtocol {
-  
+
   let apiManager: APIManagerProtocol
   let parser: DataParserProtocol
-  
-  init(apiManager: APIManagerProtocol, parser: DataParserProtocol) {
+
+  init(apiManager: APIManagerProtocol, parser: DataParserProtocol = DataParser()) {
     self.apiManager = apiManager
     self.parser = parser
   }
