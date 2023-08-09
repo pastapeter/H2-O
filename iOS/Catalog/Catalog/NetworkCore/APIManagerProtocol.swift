@@ -35,64 +35,36 @@ class APIManager: APIManagerProtocol {
   func perform(_ request: RequestProtocol) async throws -> Data {
 
     let requestObject = try request.createRequest()
+    let (data, response) = try await urlSession.makeData(from: requestObject)
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+      // TODO: retryRequest 불러야함 -> 재귀써야함
+      throw CLNetworkError.invalidServerResponse
+    }
 
-    do {
-      let (data, response) = try await urlSession.makeData(from: requestObject)
-      guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-        throw CLNetworkError.invalidServerResponse
-      }
-      return data
-    } catch let e {
-      retryRequest(requestObject, dueTo: e as! CLNetworkError) { <#CLRetryResult#> in
-        <#code#>
-      }
-      
-    }
-  }
-  
-  private func retryRequest(_ request: Request, dueTo error: CLNetworkError, completion: @escaping (CLRetryResult) -> Void) {
-    
-    guard let retrier = self.retrier else { return }
-    
-    retrier.retry(request, for: urlSession, dueTo: error) { retryResult in
-      
-      guard let retryResultError = retryResult.error else {
-        completion(retryResult)
-        return
-      }
-      
-      let retryError = CLNetworkError.retryFailed
-      completion(.doNotRetryWithError(retryError))
-      
-    }
+    return data
   }
 
 }
 
-class CLRetrier: CLRequestRetrier {
+// MARK: - Extension
 
-  let retryLimit = 3
+extension APIManager {
 
-  override func retry(_ request: Request, for session: URLSessionProtocol, dueTo error: Error, completion: @escaping (CLRetryResult) -> Void) {
+  private func retryRequest(_ request: Request, dueTo error: CLNetworkError, completion: @escaping (CLRetryResult) -> Void) {
 
-    Task {
-      guard let response = try await session.makeData(for: request.urlRequest).response as? HTTPURLResponse else {
-        completion(.doNotRetryWithError(error))
+    guard let retrier = self.retrier else { return }
+
+    retrier.retry(request, for: urlSession, dueTo: error) { retryResult in
+
+      guard let retryResultError = retryResult.error else {
+        completion(retryResult)
         return
       }
 
-      switch response.statusCode {
-      case 13: // timeout
-        if request.retryCount < retryLimit {
-          completion(.retry)
-        } else {
-          // TODO: 타임아웃끝나면 어떻게 설정해줄거임?
-        }
-      default:
-        completion(.doNotRetry)
-      }
+      let retryError = CLNetworkError.retryFailed
+      completion(.doNotRetryWithError(retryError))
 
     }
-
   }
+
 }
