@@ -8,5 +8,5 @@
 import Foundation
 
 enum TrimAPIConstant {
-  static let host = ""
+  static let host = "api.catalog.com"
 }
