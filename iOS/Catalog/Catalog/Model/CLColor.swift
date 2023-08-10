@@ -10,6 +10,6 @@ import Foundation
 struct CLColor {
     private var name: String
     private var price: CLPrice
-    private var fabricImage: CLImage
-    private var image: CLImage
+    private var fabricImage: URL
+    private var image: URL
 }
