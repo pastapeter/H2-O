@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   subTitle: string;
   description?: string;
   isTitleColorWhite?: boolean;
-  backgroundColor: string;
+  backgroundColor?: string;
 }
 
 function Banner({

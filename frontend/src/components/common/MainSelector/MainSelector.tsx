@@ -24,6 +24,7 @@ const MainSelectorContainer = styled.div`
   min-height: calc(100vh - 420px);
   padding-top: 16px;
   background-color: ${({ theme }) => theme.colors.white};
+  filter: drop-shadow(0px 0px 8px rgba(131, 133, 136, 0.2));
 
   & > div {
     max-width: 1024px;

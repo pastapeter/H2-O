@@ -1,5 +1,6 @@
-import { memo, useState } from 'react';
-import { Banner } from '@/components/common';
+import { Fragment, memo, useState } from 'react';
+import { css } from '@emotion/react';
+import { Banner, Footer, PriceStaticBar } from '@/components/common';
 import { ExteriorCarImg, ExteriorSelector } from '@/components/exterior';
 
 const numList = Array.from({ length: 60 }, (_, i) => i + 1);
@@ -18,12 +19,23 @@ function ExteriorPage() {
   const [selectedIdx, setSelectedIdx] = useState(0);
 
   return (
-    <>
-      <Banner title={mockExterior[selectedIdx].name} subTitle='외장색상' backgroundColor='transparent'>
+    <Fragment>
+      <Banner title={mockExterior[selectedIdx].name} subTitle='외장색상'>
         <ExteriorCarImg imgUrlList={mockExterior[selectedIdx].images} />
       </Banner>
       <ExteriorSelector exteriorList={mockExterior} selectedIdx={selectedIdx} setSelectedIdx={setSelectedIdx} />
-    </>
+      <Footer />
+      <PriceStaticBar
+        isComplete={false}
+        nowPrice={4100}
+        css={css`
+          position: fixed;
+          top: 16px;
+          left: 50%;
+          transform: translateX(-50%);
+        `}
+      />
+    </Fragment>
   );
 }
 

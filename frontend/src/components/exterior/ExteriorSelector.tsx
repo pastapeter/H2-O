@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import styled from '@emotion/styled';
 import type { ExteriorResponse } from '@/types/interface';
 import { Icon, MainSelector } from '@/components/common';
 import { ExteriorCard } from '@/components/exterior';
-import { theme } from '@/styles/theme';
+import { usePagination } from '@/hooks';
 
 interface Props {
   exteriorList: ExteriorResponse[];
@@ -12,31 +12,34 @@ interface Props {
 }
 
 function ExteriorSelector({ exteriorList, selectedIdx, setSelectedIdx }: Props) {
-  const [page, setPage] = useState(0);
-  const MAX_PAGE = Math.ceil(exteriorList.length / 4) - 1;
-  const FIRST_PAGE = 0;
+  const { currentSlice, hasPaigination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
+    usePagination({
+      data: exteriorList,
+    });
+
+  if (!hasPaigination) return;
 
   return (
     <MainSelector title='외장 색상을 선택해주세요'>
       <ExteriorList>
-        {exteriorList.slice(page * 4, (page + 1) * 4).map((item, idx) => (
+        {currentSlice.map(({ name, hexCode, choiceRatio, price }, idx) => (
           <ExteriorCard
             key={idx}
-            colorName={item.name}
-            colorHexCode={item.hexCode}
-            choiceRatio={item.choiceRatio}
-            price={item.price}
-            isClicked={selectedIdx === page * 4 + idx}
-            onClick={() => setSelectedIdx(page * 4 + idx)}
+            colorName={name}
+            colorHexCode={hexCode}
+            choiceRatio={choiceRatio}
+            price={price}
+            isClicked={selectedIdx === currentPage * 4 + idx}
+            onClick={() => setSelectedIdx(currentPage * 4 + idx)}
           />
         ))}
       </ExteriorList>
-      <ButtonContainer page={page} maxPage={MAX_PAGE} firstPage={FIRST_PAGE}>
-        <Icon className='left-arrow' iconType='ArrowRight' size={24} onClick={() => setPage((p) => p - 1)} />
+      <ButtonContainer isEndPage={isEndPage} isStartPage={isStartPage}>
+        <Icon className='left-arrow' iconType='ArrowRight' size={24} onClick={prevPage} />
         <span>
-          {page + 1} / {MAX_PAGE + 1}
+          {currentPage + 1} / {totalPage}
         </span>
-        <Icon className='right-arrow' iconType='ArrowRight' size={24} onClick={() => setPage((p) => p + 1)} />
+        <Icon className='right-arrow' iconType='ArrowRight' size={24} onClick={nextPage} />
       </ButtonContainer>
     </MainSelector>
   );
@@ -50,7 +53,7 @@ const ExteriorList = styled.ul`
   width: 100%;
 `;
 
-const ButtonContainer = styled.div<{ page: number; maxPage: number; firstPage: number }>`
+const ButtonContainer = styled.div<{ isStartPage: boolean; isEndPage: boolean }>`
   ${({ theme }) => theme.flex.flexEndRow}
   align-items: center;
   position: absolute;
@@ -67,14 +70,14 @@ const ButtonContainer = styled.div<{ page: number; maxPage: number; firstPage: n
 
   .left-arrow {
     transform: rotate(180deg);
-    fill: ${({ page, firstPage }) => (page === firstPage ? theme.colors.gray200 : theme.colors.gray600)};
-    pointer-events: ${({ page, firstPage }) => page === firstPage && 'none'};
+    fill: ${({ theme, isStartPage }) => (isStartPage ? theme.colors.gray200 : theme.colors.gray600)};
+    pointer-events: ${({ isStartPage }) => isStartPage && 'none'};
     cursor: pointer;
   }
 
   .right-arrow {
-    fill: ${({ page, maxPage }) => (page === maxPage ? theme.colors.gray200 : theme.colors.gray600)};
-    pointer-events: ${({ page, maxPage }) => page === maxPage && 'none'};
+    fill: ${({ theme, isEndPage }) => (isEndPage ? theme.colors.gray200 : theme.colors.gray600)};
+    pointer-events: ${({ isEndPage }) => isEndPage && 'none'};
     cursor: pointer;
   }
 `;

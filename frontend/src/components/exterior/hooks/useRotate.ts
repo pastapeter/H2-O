@@ -42,9 +42,7 @@ function useRotate() {
 
   const handleMouseUp: MouseEventHandler<HTMLDivElement> = () => dispatch({ type: 'MOUSE_UP' });
 
-  const preventEventDefault: MouseEventHandler<HTMLDivElement> = (e) => e.preventDefault();
-
-  return { state, handleMouseDown, handleMouseMove, handleMouseUp, preventEventDefault } as const;
+  return { state, handleMouseDown, handleMouseMove, handleMouseUp } as const;
 }
 
 export default useRotate;
