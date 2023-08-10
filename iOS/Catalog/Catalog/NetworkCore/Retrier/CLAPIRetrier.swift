@@ -19,15 +19,19 @@ class CLAPIRetrier: RequestRetrier {
     let (data, response) = try await session.makeData(from: request)
     guard let response = response as? HTTPURLResponse else { return .doNotRetryWithError(error) }
     
+    if response.statusCode >= 200 && response.statusCode < 300 {
+      return .doNotRetryWithData(data)
+    }
+    
     switch response.statusCode {
     case 13:
       if request.retryCount < retryLimit {
         return .retry
       } else {
-        return .doNotRetry
+        return .doNotRetryWithError(CLNetworkError.retryFailed(reason: .timeOut))
       }
     default:
-      return .doNotRetry
+      return .doNotRetryWithError(CLNetworkError.invalidServerResponse)
     }
     
   }
