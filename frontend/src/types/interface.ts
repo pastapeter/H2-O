@@ -1,4 +1,3 @@
-
 export interface MaxOutput {
   output: number;
   minRpm: number;
@@ -41,21 +40,10 @@ export interface DriveTrain {
 }
 
 export interface InteriorColorResponse {
-   id: number;
-  name: string;
-  choiceRatio: number;
-  price: number;
-    fabricImage: string;
-  bannerImage: string;
-}
-
-export interface ExteriorResponse {
-
   id: number;
   name: string;
   choiceRatio: number;
   price: number;
-  hexCode: string;
-  images: string[];
-
+  fabricImage: string;
+  bannerImage: string;
 }

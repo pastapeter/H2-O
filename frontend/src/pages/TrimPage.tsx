@@ -42,7 +42,6 @@ const mockTrims = [
 ];
 
 const DISABLE_GUIDE_VIEW = 'disable-guide-view';
-const BANNER_COLOR = 'linear-gradient(180deg, rgba(162, 199, 231, 0.2) 24.92%, rgba(255, 255, 255, 0) 61.36%), #fff';
 
 function TrimPage() {
   const isGuideViewDisabled = !hasLocalStorageItem(DISABLE_GUIDE_VIEW);
@@ -64,7 +63,7 @@ function TrimPage() {
 
   return (
     <>
-      <Banner title='Le Blanc' subTitle='기본에 충실한 팰리세이드' backgroundColor={BANNER_COLOR}>
+      <Banner title='Le Blanc' subTitle='기본에 충실한 팰리세이드'>
         <PracticalInfo options={mockOptions} ref={targetRef} />
         <GuidePopup isOpen={isOpenPopup} onClose={closePopup} offsets={offsets}>
           <PracticalInfo

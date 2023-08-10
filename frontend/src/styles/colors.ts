@@ -30,7 +30,6 @@ export const COLORS = {
   activeBlue2: '#00C3F0',
   skyBlue: '#A2C7E7',
   skyBlue2: '#e3eef8',
-  hoverBg: '#A2C7E70D',
   skyBlueCardBg: '#A2C7E74D',
   cardBg: '#00AAD21A',
   blueBg: '#F4F5F7',

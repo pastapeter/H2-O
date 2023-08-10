@@ -13,4 +13,3 @@ export { Typography } from './Typography';
 export { Footer } from './Footer';
 export { Divider } from './Divider';
 export { Toggle } from './Toggle';
-export { MainSelector } from './MainSelector';
