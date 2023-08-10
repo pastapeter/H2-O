@@ -12,7 +12,7 @@ final class MockAPIManager: APIManager {
   init() {
     let configuration = URLSessionConfiguration.default
     configuration.protocolClasses = [MockURLProtocol.self]
-    super.init(urlSession: URLSession(configuration: configuration))
+    super.init(urlSession: URLSession(configuration: configuration), retrier: CLAPIRetrier(retryLimit: 3))
   }
 
 }

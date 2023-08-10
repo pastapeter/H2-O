@@ -56,7 +56,6 @@ class APIManager: APIManagerProtocol {
 
     // 재귀함수의 탈출 지점
     // 3. Result에서 RetryRequired가 false인 경우
-    //  3.1 retry가 내려오지 않는 이상
     if result.retryRequired == false {
       // 4. Result에 만약에 Data가 있다면, Retry를 중단하고 data를 내려보낸다.
       if let data = result.data {
