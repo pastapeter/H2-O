@@ -75,7 +75,6 @@
 		ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */; };
 		ED1A709B2A83654C00F7920F /* Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709A2A83654C00F7920F /* Trim.swift */; };
 		ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709E2A836D0D00F7920F /* CLColor.swift */; };
-		ED1A70A12A836D8000F7920F /* CLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A02A836D8000F7920F /* CLImage.swift */; };
 		ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A22A836F3700F7920F /* CarQuotation.swift */; };
 		ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A42A836FB900F7920F /* ModelType.swift */; };
 		ED1A70A72A8371CA00F7920F /* CLOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A62A8371CA00F7920F /* CLOption.swift */; };
@@ -189,7 +188,6 @@
 		ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationSummarySheet.swift; sourceTree = "<group>"; };
 		ED1A709A2A83654C00F7920F /* Trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trim.swift; sourceTree = "<group>"; };
 		ED1A709E2A836D0D00F7920F /* CLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLColor.swift; sourceTree = "<group>"; };
-		ED1A70A02A836D8000F7920F /* CLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLImage.swift; sourceTree = "<group>"; };
 		ED1A70A22A836F3700F7920F /* CarQuotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarQuotation.swift; sourceTree = "<group>"; };
 		ED1A70A42A836FB900F7920F /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		ED1A70A62A8371CA00F7920F /* CLOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOption.swift; sourceTree = "<group>"; };
@@ -267,9 +265,6 @@
 			children = (
 				B1604D102A82569800C7B07D /* NetworkCore */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
-				B155C11E2A7A789400F540CB /* CLNavigation */,
-				B155C0F82A7931B500F540CB /* Info.plist */,
-				ED779C3F2A7A799E007F67B7 /* Component */,
 				ED1A70992A8364DE00F7920F /* Model */,
 				ED6410962A7FD88E0033AEBC /* CLBudgetSetting */,
 				B155C11E2A7A789400F540CB /* CLNavigation */,
@@ -478,8 +473,6 @@
 				ED1A70AA2A83728C00F7920F /* CLHashTag.swift */,
 				ED1A709E2A836D0D00F7920F /* CLColor.swift */,
 				ED1A70A82A83723F00F7920F /* CLCategory.swift */,
-				ED1A70A02A836D8000F7920F /* CLImage.swift */,
-				ED64109D2A7FE3F60033AEBC /* CLPrice.swift */,
 				ED1A70A42A836FB900F7920F /* ModelType.swift */,
 			);
 			path = Model;
@@ -504,6 +497,7 @@
 				ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */,
 				EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */,
 				EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */,
+				ED64109D2A7FE3F60033AEBC /* CLPrice.swift */,
 				EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */,
 			);
 			path = CLBudgetSetting;
@@ -718,9 +712,7 @@
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
-				ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */,
 				B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */,
-				ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */,
 				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
@@ -738,7 +730,6 @@
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
-				ED1A70A12A836D8000F7920F /* CLImage.swift in Sources */,
 				ED1A70AB2A83728C00F7920F /* CLHashTag.swift in Sources */,
 				ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */,
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,

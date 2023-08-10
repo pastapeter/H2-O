@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct Trim {
-
-}
-
 protocol TrimSelectionRepositoryProtocol {
 
   func fetchTrims(in vehicleId: Int) async throws -> [Trim]
