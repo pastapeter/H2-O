@@ -12,6 +12,7 @@ spring:
     init:
       mode: always
       schema-locations: classpath*:db/schema-ddl.sql
+      data-locations: classpath:db/trims-data.sql
 
 mybatis:
   type-aliases-package: com.h2o.h2oServer.domain

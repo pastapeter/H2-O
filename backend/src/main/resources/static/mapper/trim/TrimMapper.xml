@@ -8,10 +8,27 @@
         where id = #{id}
     </select>
 
+    <!--쿼리 최적화 필요-->
+    <select id="findOptionStatistics" resultType="OptionStatisticsEntity">
+        select id, name, use_count
+        from options
+            join trims_options
+            on options.id = trims_options.option_id
+        where trim_id = #{id}
+        order by use_count desc
+        limit 3
+    </select>
+
     <select id="findByCarId" resultType="TrimEntity">
         select id, name, description, price
         from trims
         where car_id = #{id}
+    </select>
+
+    <select id="findImages" resultType="ImageEntity">
+        select id, image
+        from trims_image
+        where trim_id = #{id}
     </select>
 
     <select id="showTables" resultType="string">

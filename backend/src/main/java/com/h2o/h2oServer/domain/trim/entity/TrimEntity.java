@@ -1,4 +1,4 @@
-package com.h2o.h2oServer.domain.trim;
+package com.h2o.h2oServer.domain.trim.entity;
 
 import lombok.*;
 

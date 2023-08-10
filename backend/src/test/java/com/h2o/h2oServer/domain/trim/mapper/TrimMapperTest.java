@@ -1,6 +1,6 @@
 package com.h2o.h2oServer.domain.trim.mapper;
 
-import com.h2o.h2oServer.domain.trim.TrimEntity;
+import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -15,6 +15,8 @@ import static org.assertj.core.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Sql("classpath:db/trims-data.sql")
 class TrimMapperTest {
+
+    //todo : 예외 처리 테스트 추가
 
     @Autowired
     private TrimMapper trimMapper;
