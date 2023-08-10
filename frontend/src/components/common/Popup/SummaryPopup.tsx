@@ -1,16 +1,14 @@
-import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { CTAButton, Dimmed, Icon, Portal } from '..';
-import { Toggle } from '../Toggle';
+import { CTAButton, Icon, Popup, Toggle } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
+import { toPriceFormatString } from '@/utils/string';
 import { SlideContext } from '@/providers/SlideProvider';
-import ExTeriorIMG from '@/assets/car-images/exterior.png';
-import InTeriorIMG from '@/assets/car-images/interior.png';
 
 interface Props {
-  setIsOpenPopup: Dispatch<SetStateAction<boolean>>;
+  handleClickCloseButton: MouseEventHandler<HTMLElement | SVGSVGElement>;
 }
 
 interface Option {
@@ -29,80 +27,64 @@ const MOCK_DATA_TRIM: Option[] = [
   { type: '외장색상', name: '어비스 블랙펄', price: 150000 },
   { type: '내장색상', name: '어비스 블랙펄', price: 0 },
 ];
-const MOCK_DATA_OPTION: Option[] = [
-  { type: '옵션', name: '팰리세이드', price: 3880000 },
-  { type: '옵션', name: '팰리세이드', price: 3880000 },
-  { type: '옵션', name: '팰리세이드', price: 3880000 },
-  { type: '옵션', name: '팰리세이드', price: 3880000 },
-  { type: '옵션', name: '팰리세이드', price: 3880000 },
-  { type: '옵션', name: '팰리세이드', price: 3880000 },
-];
+const MOCK_DATA_OPTION: Option[] = [{ type: '옵션', name: '팰리세이드', price: 3880000 }];
 const NOW_PRICE = 38560000;
+const exteriorIMG = '/images/exterior2.png';
+const interiorIMG = '/images/interior.png';
 
 /**
  *
  * @example
  * ```tsx
- *  <SummaryPopup setIsOpenPopup={setIsOpenPopup} />
+ *  <SummaryPopup handleClickCloseButton={() => setIsOpen(false)} />
  * ```
  */
-function SummaryPopup({ setIsOpenPopup }: Props) {
+function SummaryPopup({ handleClickCloseButton }: Props) {
   const { setCurrentSlide } = useSafeContext(SlideContext);
   const [isExterior, setIsExterior] = useState(true);
 
-  const closePopup: MouseEventHandler<HTMLDivElement | HTMLButtonElement | SVGSVGElement> = () => {
-    setIsOpenPopup(false);
-  };
-
-  const handleClickButton: MouseEventHandler<HTMLButtonElement> = (e) => {
-    closePopup(e);
+  const handleCompleteButton: MouseEventHandler<HTMLButtonElement> = (e) => {
+    handleClickCloseButton(e);
     setCurrentSlide(COMPLETE_TAB_IDX);
   };
 
   return (
-    <Portal>
-      <Dimmed onClick={closePopup} />
+    <Popup size='large' handleClickDimmed={handleClickCloseButton}>
       <SummaryPopupContainer>
         <HeaderContainer>
           견적요약
-          <Icon iconType='Cancel' css={IconStyle} onClick={closePopup} />
+          <Icon iconType='Cancel' css={IconStyle} onClick={handleClickCloseButton} />
         </HeaderContainer>
         <MainContainer>
           <LeftContainer>
-            {isExterior ? <StyleImg src={ExTeriorIMG} /> : <StyleImg src={InTeriorIMG} />}
+            {isExterior ? <StyleImg src={exteriorIMG} /> : <StyleImg src={interiorIMG} />}
             <Toggle isChecked={isExterior} size='small' setIsChecked={setIsExterior} />
           </LeftContainer>
           <RightContainer>
-            {MOCK_DATA_TRIM.map((opt, idx) => (
+            {MOCK_DATA_TRIM.map(({ type, name, price }, idx) => (
               <div key={idx}>
                 <Option>
-                  <OptionType>{opt.type}</OptionType>
-                  <OptionName>{opt.name}</OptionName>
-                  <OptionPrice>
-                    {opt.price >= 0 && '+'}
-                    {toSeparatedNumberFormat(opt.price)}원
-                  </OptionPrice>
+                  <span className='type'>{type}</span>
+                  <span className='name'>{name}</span>
+                  <span className='price'>{toPriceFormatString(price)}</span>
                 </Option>
                 {[1, 4, 6].includes(idx) && <Divider />}
               </div>
             ))}
             {MOCK_DATA_OPTION.length ? (
-              MOCK_DATA_OPTION.map((opt, idx) => (
+              MOCK_DATA_OPTION.map(({ type, name, price }, idx) => (
                 <Option key={idx}>
-                  <OptionType>{opt.type}</OptionType>
-                  <OptionName>{opt.name}</OptionName>
-                  <OptionPrice>
-                    {opt.price >= 0 && '+'}
-                    {toSeparatedNumberFormat(opt.price)}원
-                  </OptionPrice>
+                  <span className='type'>{type}</span>
+                  <span className='name'>{name}</span>
+                  <span className='price'>{toPriceFormatString(price)}</span>
                 </Option>
               ))
             ) : (
               <>
                 <Option>
-                  <OptionType>옵션</OptionType>
-                  <OptionName>-</OptionName>
-                  <OptionPrice>+0원</OptionPrice>
+                  <span className='type'>옵션</span>
+                  <span className='name'>-</span>
+                  <span className='price'>{toPriceFormatString(0)}</span>
                 </Option>
               </>
             )}
@@ -110,30 +92,22 @@ function SummaryPopup({ setIsOpenPopup }: Props) {
         </MainContainer>
         <PriceContainer>
           <span>현재 총 가격</span>
-          <Price>{toSeparatedNumberFormat(NOW_PRICE)}원</Price>
+          <Price>{toSeparatedNumberFormat(NOW_PRICE)} 원</Price>
         </PriceContainer>
-        <CTAButton size='large' onClick={handleClickButton}>
+        <CTAButton size='large' onClick={handleCompleteButton}>
           견적 완료하기
         </CTAButton>
       </SummaryPopupContainer>
-    </Portal>
+    </Popup>
   );
 }
 
 export default SummaryPopup;
 
 const SummaryPopupContainer = styled.div`
-  ${({ theme }) => theme.flex.flexBetweenCol}
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 8px;
-  width: 850px;
-  height: 520px;
-  overflow: hidden;
-  z-index: 20;
+  ${({ theme }) => theme.flex.flexBetweenCol};
+  width: 100%;
+  height: 100%;
 `;
 
 const HeaderContainer = styled.div`
@@ -205,23 +179,23 @@ const Option = styled.div`
   width: 100%;
   height: 22px;
   gap: 8px;
-`;
 
-const OptionType = styled.div`
-  ${({ theme }) => theme.typography.TextKRRegular12};
-  color: ${({ theme }) => theme.colors.gray500};
-  width: 56px;
-`;
+  .type {
+    ${({ theme }) => theme.typography.TextKRRegular12};
+    color: ${({ theme }) => theme.colors.gray500};
+    width: 56px;
+  }
 
-const OptionName = styled.div`
-  ${({ theme }) => theme.typography.TextKRMedium12};
-  color: ${({ theme }) => theme.colors.gray900};
-  width: 160px;
-`;
+  .name {
+    ${({ theme }) => theme.typography.TextKRMedium12};
+    color: ${({ theme }) => theme.colors.gray900};
+    width: 160px;
+  }
 
-const OptionPrice = styled.div`
-  ${({ theme }) => theme.typography.TextKRRegular14};
-  color: ${({ theme }) => theme.colors.gray900};
-  width: 92px;
-  text-align: end;
+  .price {
+    ${({ theme }) => theme.typography.TextKRRegular14};
+    color: ${({ theme }) => theme.colors.gray900};
+    width: 92px;
+    text-align: end;
+  }
 `;

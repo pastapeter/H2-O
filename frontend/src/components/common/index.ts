@@ -5,7 +5,7 @@ export { HMGTag } from './HMGTag';
 export { CTAButton, CTACTypeButton, OptionTagButton, ImageButton, PriceSummaryButton } from './Button';
 export { Portal } from './Portal';
 export { Dimmed } from './Dimmed';
-export { Popup, SummaryPopup } from './Popup';
+export { Popup, SummaryPopup, ConfirmPopup } from './Popup';
 export { Banner } from './Banner';
 export { Card } from './Card';
 export { Flex } from './Flex';
