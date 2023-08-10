@@ -71,8 +71,32 @@
 		B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */; };
 		B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */; };
 		B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */; };
-		ED91A0B82A7A84C50063A6B4 /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0B72A7A84C50063A6B4 /* CLButton.swift */; };
-		ED91A0C02A7ACE8C0063A6B4 /* CLDualChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */; };
+		ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */; };
+		ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */; };
+		ED1A709B2A83654C00F7920F /* Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709A2A83654C00F7920F /* Trim.swift */; };
+		ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709E2A836D0D00F7920F /* CLColor.swift */; };
+		ED1A70A12A836D8000F7920F /* CLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A02A836D8000F7920F /* CLImage.swift */; };
+		ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A22A836F3700F7920F /* CarQuotation.swift */; };
+		ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A42A836FB900F7920F /* ModelType.swift */; };
+		ED1A70A72A8371CA00F7920F /* CLOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A62A8371CA00F7920F /* CLOption.swift */; };
+		ED1A70A92A83723F00F7920F /* CLCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A82A83723F00F7920F /* CLCategory.swift */; };
+		ED1A70AB2A83728C00F7920F /* CLHashTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70AA2A83728C00F7920F /* CLHashTag.swift */; };
+		ED1A70AD2A83B0A100F7920F /* CLLinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70AC2A83B0A100F7920F /* CLLinearGradient.swift */; };
+		ED1A70AF2A83B4CF00F7920F /* CLToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70AE2A83B4CF00F7920F /* CLToggle.swift */; };
+		ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410882A7FC4FF0033AEBC /* CLButton.swift */; };
+		ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64108A2A7FC4FF0033AEBC /* CLDualChoiceButton.swift */; };
+		ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */; };
+		ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */; };
+		ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */; };
+		ED64109E2A7FE3F60033AEBC /* CLPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64109D2A7FE3F60033AEBC /* CLPrice.swift */; };
+		EDA3CDD32A811CA80001BB9C /* CLSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */; };
+		EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */; };
+		EDA3CDD72A8281B10001BB9C /* CLSimilarQuotationSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */; };
+		EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA3E3A2A83E48400BDB00F /* CLCancelButton.swift */; };
+		EDBA3E3D2A83E98D00BDB00F /* CLListText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA3E3C2A83E98D00BDB00F /* CLListText.swift */; };
+		EDBA3E3F2A84869000BDB00F /* CLInactableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA3E3E2A84869000BDB00F /* CLInactableButton.swift */; };
+		EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA5D562A808A8A0050BC35 /* CLPopUp.swift */; };
+		EDBA5D592A808A8A0050BC35 /* DimmedZStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA5D572A808A8A0050BC35 /* DimmedZStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,8 +185,35 @@
 		B1F2BC632A7B5BA3005385E0 /* CLNavigationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationMenuView.swift; sourceTree = "<group>"; };
 		B1F2BC672A7B613B005385E0 /* CLNavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationModel.swift; sourceTree = "<group>"; };
 		B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationIntent.swift; sourceTree = "<group>"; };
+		ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationPriceBar.swift; sourceTree = "<group>"; };
+		ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationSummarySheet.swift; sourceTree = "<group>"; };
+		ED1A709A2A83654C00F7920F /* Trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trim.swift; sourceTree = "<group>"; };
+		ED1A709E2A836D0D00F7920F /* CLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLColor.swift; sourceTree = "<group>"; };
+		ED1A70A02A836D8000F7920F /* CLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLImage.swift; sourceTree = "<group>"; };
+		ED1A70A22A836F3700F7920F /* CarQuotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarQuotation.swift; sourceTree = "<group>"; };
+		ED1A70A42A836FB900F7920F /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
+		ED1A70A62A8371CA00F7920F /* CLOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOption.swift; sourceTree = "<group>"; };
+		ED1A70A82A83723F00F7920F /* CLCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLCategory.swift; sourceTree = "<group>"; };
+		ED1A70AA2A83728C00F7920F /* CLHashTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLHashTag.swift; sourceTree = "<group>"; };
+		ED1A70AC2A83B0A100F7920F /* CLLinearGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLinearGradient.swift; sourceTree = "<group>"; };
+		ED1A70AE2A83B4CF00F7920F /* CLToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLToggle.swift; sourceTree = "<group>"; };
+		ED6410822A7FC4FF0033AEBC /* DimmedZStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedZStack.swift; sourceTree = "<group>"; };
+		ED6410882A7FC4FF0033AEBC /* CLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
+		ED64108A2A7FC4FF0033AEBC /* CLDualChoiceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLDualChoiceButton.swift; sourceTree = "<group>"; };
+		ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeView.swift; sourceTree = "<group>"; };
+		ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeModel.swift; sourceTree = "<group>"; };
+		ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeIntent.swift; sourceTree = "<group>"; };
+		ED64109D2A7FE3F60033AEBC /* CLPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLPrice.swift; sourceTree = "<group>"; };
 		ED91A0B72A7A84C50063A6B4 /* CLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
 		ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDualChoiceButton.swift; sourceTree = "<group>"; };
+		EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSliderView.swift; sourceTree = "<group>"; };
+		EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSimilarQuotationButton.swift; sourceTree = "<group>"; };
+		EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSimilarQuotationSlideView.swift; sourceTree = "<group>"; };
+		EDBA3E3A2A83E48400BDB00F /* CLCancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLCancelButton.swift; sourceTree = "<group>"; };
+		EDBA3E3C2A83E98D00BDB00F /* CLListText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLListText.swift; sourceTree = "<group>"; };
+		EDBA3E3E2A84869000BDB00F /* CLInactableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLInactableButton.swift; sourceTree = "<group>"; };
+		EDBA5D562A808A8A0050BC35 /* CLPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPopUp.swift; sourceTree = "<group>"; };
+		EDBA5D572A808A8A0050BC35 /* DimmedZStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedZStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +248,7 @@
 				B155C0BF2A7920A900F540CB /* CatalogTests */,
 				B155C0C92A7920A900F540CB /* CatalogUITests */,
 				B155C0AD2A7920A800F540CB /* Products */,
+				EDBA5D542A808A680050BC35 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +270,11 @@
 				B155C11E2A7A789400F540CB /* CLNavigation */,
 				B155C0F82A7931B500F540CB /* Info.plist */,
 				ED779C3F2A7A799E007F67B7 /* Component */,
+				ED1A70992A8364DE00F7920F /* Model */,
+				ED6410962A7FD88E0033AEBC /* CLBudgetSetting */,
+				B155C11E2A7A789400F540CB /* CLNavigation */,
+				B155C0F82A7931B500F540CB /* Info.plist */,
+				ED779C3E2A7A799A007F67B7 /* Component */,
 				B155C0EA2A792F6800F540CB /* Font */,
 				B155C0E72A792BA300F540CB /* Colors */,
 				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
@@ -267,8 +324,8 @@
 		B155C0E72A792BA300F540CB /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				B155C0E52A79269D00F540CB /* Colors.xcassets */,
 				B155C0E82A792BB100F540CB /* Color+.swift */,
+				B155C0E52A79269D00F540CB /* Colors.xcassets */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -400,22 +457,86 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
-		ED779C3F2A7A799E007F67B7 /* Component */ = {
+		ED1A70942A8357FD00F7920F /* QuotationSummary */ = {
 			isa = PBXGroup;
 			children = (
+				ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */,
+				ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */,
+				EDBA3E3C2A83E98D00BDB00F /* CLListText.swift */,
+				ED1A70AC2A83B0A100F7920F /* CLLinearGradient.swift */,
+				ED1A70AE2A83B4CF00F7920F /* CLToggle.swift */,
+			);
+			path = QuotationSummary;
+			sourceTree = "<group>";
+		};
+		ED1A70992A8364DE00F7920F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED1A709A2A83654C00F7920F /* Trim.swift */,
+				ED1A70A22A836F3700F7920F /* CarQuotation.swift */,
+				ED1A70A62A8371CA00F7920F /* CLOption.swift */,
+				ED1A70AA2A83728C00F7920F /* CLHashTag.swift */,
+				ED1A709E2A836D0D00F7920F /* CLColor.swift */,
+				ED1A70A82A83723F00F7920F /* CLCategory.swift */,
+				ED1A70A02A836D8000F7920F /* CLImage.swift */,
+				ED64109D2A7FE3F60033AEBC /* CLPrice.swift */,
+				ED1A70A42A836FB900F7920F /* ModelType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ED6410832A7FC4FF0033AEBC /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				EDBA3E3A2A83E48400BDB00F /* CLCancelButton.swift */,
+				ED6410882A7FC4FF0033AEBC /* CLButton.swift */,
+				EDBA3E3E2A84869000BDB00F /* CLInactableButton.swift */,
+				ED64108A2A7FC4FF0033AEBC /* CLDualChoiceButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		ED6410962A7FD88E0033AEBC /* CLBudgetSetting */ = {
+			isa = PBXGroup;
+			children = (
+				ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */,
+				ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */,
+				ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */,
+				EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */,
+				EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */,
+				EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */,
+			);
+			path = CLBudgetSetting;
+			sourceTree = "<group>";
+		};
+		ED779C3E2A7A799A007F67B7 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				ED1A70942A8357FD00F7920F /* QuotationSummary */,
+				EDBA5D552A808A8A0050BC35 /* pop-up */,
+				ED6410832A7FC4FF0033AEBC /* Button */,
 				B19436312A7E8C1500C2FD69 /* Alert */,
-				ED779C402A7A79E2007F67B7 /* BottomButton */,
 			);
 			path = Component;
 			sourceTree = "<group>";
 		};
-		ED779C402A7A79E2007F67B7 /* BottomButton */ = {
+		EDBA5D542A808A680050BC35 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
+				ED6410822A7FC4FF0033AEBC /* DimmedZStack.swift */,
 				ED91A0B72A7A84C50063A6B4 /* CLButton.swift */,
 				ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */,
 			);
-			path = BottomButton;
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		EDBA5D552A808A8A0050BC35 /* pop-up */ = {
+			isa = PBXGroup;
+			children = (
+				EDBA5D572A808A8A0050BC35 /* DimmedZStack.swift */,
+				EDBA5D562A808A8A0050BC35 /* CLPopUp.swift */,
+			);
+			path = "pop-up";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,9 +708,13 @@
 			files = (
 				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
+				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
+				ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
 				B1604D382A8381BD00C7B07D /* TrimRequestDTO.swift in Sources */,
 				B1604D442A83943000C7B07D /* TrimSelectionRepository.swift in Sources */,
+				EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */,
+				EDBA5D592A808A8A0050BC35 /* DimmedZStack.swift in Sources */,
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
@@ -605,21 +730,39 @@
 				B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */,
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
+				ED1A70AF2A83B4CF00F7920F /* CLToggle.swift in Sources */,
+				ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */,
+				ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
+				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
+				ED1A70A12A836D8000F7920F /* CLImage.swift in Sources */,
+				ED1A70AB2A83728C00F7920F /* CLHashTag.swift in Sources */,
+				ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */,
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
+				EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */,
+				ED1A70A92A83723F00F7920F /* CLCategory.swift in Sources */,
+				ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
+				EDA3CDD72A8281B10001BB9C /* CLSimilarQuotationSlideView.swift in Sources */,
+				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
+				ED1A709B2A83654C00F7920F /* Trim.swift in Sources */,
+				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
+				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
+				EDA3CDD32A811CA80001BB9C /* CLSliderView.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
 				B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */,
 				B1604D462A83AE4100C7B07D /* TrimAPIManager.swift in Sources */,
 				B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */,
+				EDBA3E3F2A84869000BDB00F /* CLInactableButton.swift in Sources */,
+				EDBA3E3D2A83E98D00BDB00F /* CLListText.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
 				B1604D342A83701900C7B07D /* CLAPIRetrier.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
@@ -628,8 +771,15 @@
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
 				B1604D512A83EB7700C7B07D /* CLRetryResult.swift in Sources */,
 				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
+				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
+				ED1A70A72A8371CA00F7920F /* CLOption.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,
 				B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */,
+				ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */,
+				ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */,
+				ED1A70AD2A83B0A100F7920F /* CLLinearGradient.swift in Sources */,
+				ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */,
+				ED64109E2A7FE3F60033AEBC /* CLPrice.swift in Sources */,
 				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 				B1604D2D2A82A7C100C7B07D /* CachedResponseHandler.swift in Sources */,
 			);

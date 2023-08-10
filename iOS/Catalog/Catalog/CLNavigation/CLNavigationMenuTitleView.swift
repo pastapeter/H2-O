@@ -19,7 +19,7 @@ struct CLNavigationMenuTitleView: View {
       case .completed:
         return Color.primary200
       case .active:
-        return Color.primary
+        return Color.primary0
       case .inactive:
         return Color.gray200
       }

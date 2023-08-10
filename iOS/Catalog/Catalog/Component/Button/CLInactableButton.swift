@@ -1,13 +1,13 @@
 //
-//  TrimSelectButton.swift
+//  CLInactableButton.swift
 //  Catalog
 //
-//  Created by 이수민 on 2023/08/02.
+//  Created by 이수민 on 2023/08/10.
 //
 
 import SwiftUI
 
-struct CLButton: View {
+struct CLInActiveButton: View {
 
     enum CLButtonState {
         case `default`
@@ -45,16 +45,5 @@ struct CLButton: View {
         }
         .disabled(buttonState == .inActive)
         .buttonStyle(.plain)
-    }
-}
-
-struct CLButton_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var buttonState: CLButton.CLButtonState = .inActive
-        CLButton(buttonState: $buttonState,
-                 mainText: "Le Blanc 선택하기",
-                 inActiveText: "옵션을 선택해 추가해보세요.",
-                 height: 52,
-                 buttonAction: { print("clicked") })
     }
 }

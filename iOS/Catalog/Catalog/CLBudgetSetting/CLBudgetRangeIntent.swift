@@ -1,0 +1,54 @@
+//
+//  CLBudgetRangeIntent.swift
+//  Catalog
+//
+//  Created by 이수민 on 2023/08/06.
+//
+
+import Foundation
+import Combine
+
+protocol CLBudgetRangeIntentType {
+    var state: CLBudgetRangeModel.State { get }
+    func send(action: CLBudgetRangeModel.ViewAction)
+    func send(action: CLBudgetRangeModel.ViewAction, viewEffect: (() -> Void)?)
+}
+
+final class CLBudgetRangeIntent: ObservableObject {
+
+    // MARK: - LifeCycle
+
+    init(initialState: State) {
+        state = initialState
+    }
+
+    // MARK: - Internal
+    typealias State = CLBudgetRangeModel.State
+    typealias ViewAction = CLBudgetRangeModel.ViewAction
+
+    @Published var state: State = State(currentQuotationPrice: CLPrice(30000000), budgetPrice: CLPrice(40000000))
+    var cancellable: Set<AnyCancellable> = []
+}
+
+extension CLBudgetRangeIntent: CLBudgetRangeIntentType, IntentType {
+    func mutate(action: CLBudgetRangeModel.ViewAction, viewEffect: (() -> Void)?) {
+        switch action {
+            case .isChangedBudget(let newBudgetPrice):
+                state.budgetPrice = newBudgetPrice
+                send(action: .isChangedBudgetGap)
+                send(action: .isChangedExceedBudget)
+
+            case .isChangedQuotationPrice(let newQuotationPrice):
+                state.currentQuotationPrice = newQuotationPrice
+                send(action: .isChangedBudgetGap)
+                send(action: .isChangedExceedBudget)
+
+            case .isChangedExceedBudget:
+                state.isExceedBudget = state.budgetPrice < state.currentQuotationPrice
+
+            case .isChangedBudgetGap:
+                state.budgetGap = CLPrice(abs(state.budgetPrice.price - state.currentQuotationPrice.price))
+            default: return
+        }
+    }
+}
