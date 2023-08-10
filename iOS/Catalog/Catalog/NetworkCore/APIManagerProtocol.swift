@@ -37,55 +37,55 @@ class APIManager: APIManagerProtocol {
     let requestObject = try request.createRequest()
     let (data, response) = try await urlSession.makeData(from: requestObject)
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-      
+
       do {
         return try await retryRequest(requestObject, dueTo: .invalidServerResponse)
-      } catch(let e) {
+      } catch let e {
         throw e
       }
     }
     return data
   }
-  
+
   func retryRequest(_ request: Request, dueTo error: CLNetworkError) async throws -> Data {
 
     // Result - retry 함수
-    //1. 만약에 200이 아니라면 Retrier에게 맡긴다.
-    //2. Retrier는 Status Code를 보고 어떠한 Result를 줄 수 있다.
+    // 1. 만약에 200이 아니라면 Retrier에게 맡긴다.
+    // 2. Retrier는 Status Code를 보고 어떠한 Result를 줄 수 있다.
     let result: CLRetryResult = try await retryRequest(request, dueTo: error)
-  
+
     // 재귀함수의 탈출 지점
-    //3. Result에서 RetryRequired가 false인 경우
+    // 3. Result에서 RetryRequired가 false인 경우
     //  3.1 retry가 내려오지 않는 이상
     if result.retryRequired == false {
-      //4. Result에 만약에 Data가 있다면, Retry를 중단하고 data를 내려보낸다.
+      // 4. Result에 만약에 Data가 있다면, Retry를 중단하고 data를 내려보낸다.
       if let data = result.data {
         return data
       }
-      //5. retryError가 있다면, retryError를 방출한다.
+      // 5. retryError가 있다면, retryError를 방출한다.
       if let retryError = result.error {
         throw retryError
       }
-      //6. Result에 만약 Data가 아니라 retryRequired가 false가 된다면, 애러를 내려보낸다
+      // 6. Result에 만약 Data가 아니라 retryRequired가 false가 된다면, 애러를 내려보낸다
       throw error
     }
-    
+
     return try await retryRequest(request, dueTo: error)
-    
+
   }
-  
+
 }
 
 // MARK: - Extension
 
 extension APIManager {
-  
+
   private func retryRequest(_ request: Request, dueTo error: CLNetworkError) async throws -> CLRetryResult {
-    
+
     guard let retrier = self.retrier else {
       return .doNotRetry
     }
-    
+
     request.prepareForRetry()
     let retryResult = try await retrier.retry(request, for: urlSession, dueTo: error)
     guard let retryResultError = retryResult.error else {
@@ -93,5 +93,5 @@ extension APIManager {
     }
     return .doNotRetryWithError(retryResultError)
   }
-  
+
 }
