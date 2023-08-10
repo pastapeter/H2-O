@@ -9,21 +9,18 @@ import SwiftUI
 
 struct DimmedZStack<Content>: View where Content: View {
 
-    let padding: [CGFloat]
+    let padding: EdgeInsets
     let content: () -> Content
-    init(padding: [CGFloat] = [0, 0, 0, 0], @ViewBuilder content: @escaping() -> Content) {
+    init(padding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0), @ViewBuilder content: @escaping() -> Content) {
         self.padding = padding
         self.content = content
     }
 
     var body: some View {
         ZStack {
-            Color("DimmedBackground").ignoresSafeArea()
+            Color.gray900.ignoresSafeArea().background(.thickMaterial).opacity(0.7)
             content()
-                .padding(.leading, padding[0])
-                .padding(.trailing, padding[1])
-                .padding(.top, padding[2])
-                .padding(.bottom, padding[3])
+                .padding(padding)
         }
     }
 }

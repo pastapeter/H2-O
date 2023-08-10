@@ -41,4 +41,8 @@ extension CLPrice: CustomStringConvertible {
     var sliderDescription: String {
         return String(price).dropLast(4) + "만원"
     }
+
+    var signedDescription: String {
+        return (price >= 0 ? "+" : "-") + self.description
+    }
 }

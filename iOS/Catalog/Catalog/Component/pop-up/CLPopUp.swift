@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CLPopUp: View {
     @Binding var showPopUp: Bool
-    let padding: [CGFloat]
+    let padding: EdgeInsets // 서동북남
     let rectangleImage: String
     let width: CGFloat
     let height: CGFloat
@@ -25,13 +25,8 @@ struct CLPopUp: View {
                             .catalogFont(type: .HeadKRMedium14)
                         Spacer()
                     }
-                    HStack {
-                        Spacer()
-                        Button {
-                            showPopUp = false
-                        } label: {
-                            Image("cancel")
-                        }
+                    CLCancelButton {
+                        showPopUp = false
                     }
                 }
                 .padding(.bottom, 5)
@@ -69,7 +64,7 @@ struct CLPopUp_Previews: PreviewProvider {
     static var previews: some View {
         @State var showPopUp: Bool = true
         CLPopUp(   showPopUp: $showPopUp,
-                        padding: [33, 86, 244, 332],
+                   padding: EdgeInsets(top: 244, leading: 33, bottom: 332, trailing: 86),
                         rectangleImage: "guide_popup_rectangle",
                         width: 214,
                         height: 236,
