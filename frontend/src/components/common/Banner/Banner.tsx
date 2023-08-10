@@ -7,6 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   subTitle: string;
   description?: string;
   isTitleColorWhite?: boolean;
+  backgroundColor: string;
 }
 
 function Banner({
@@ -15,10 +16,11 @@ function Banner({
   subTitle,
   description,
   isTitleColorWhite = false,
+  backgroundColor,
   ...restProps
 }: PropsWithChildren<Props>) {
   return (
-    <BannerContainer {...restProps}>
+    <BannerContainer backgroundColor={backgroundColor} {...restProps}>
       <div>
         <TitleContainer isTitleColorWhite={isTitleColorWhite}>
           <h3>{subTitle}</h3>
@@ -33,11 +35,11 @@ function Banner({
 
 export default Banner;
 
-const BannerContainer = styled.div`
+const BannerContainer = styled.div<Pick<Props, 'backgroundColor'>>`
   position: relative;
   width: 100%;
   height: 360px;
-  background: linear-gradient(180deg, rgba(162, 199, 231, 0.2) 24.92%, rgba(255, 255, 255, 0) 61.36%), #fff;
+  background: ${({ backgroundColor }) => backgroundColor};
   box-shadow: 0px 0px 8px 0px rgba(131, 133, 136, 0.2);
 
   & > div {
