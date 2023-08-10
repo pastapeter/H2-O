@@ -39,7 +39,7 @@ class APIManager: APIManagerProtocol {
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
 
       do {
-        return try await retryRequest(requestObject, dueTo: .invalidServerResponse)
+        return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse)
       } catch let e {
         throw e
       }
@@ -47,7 +47,7 @@ class APIManager: APIManagerProtocol {
     return data
   }
 
-  func retryRequest(_ request: Request, dueTo error: CLNetworkError) async throws -> Data {
+  func retryRequestRecursively(_ request: Request, dueTo error: CLNetworkError) async throws -> Data {
 
     // Result - retry 함수
     // 1. 만약에 200이 아니라면 Retrier에게 맡긴다.
@@ -70,7 +70,7 @@ class APIManager: APIManagerProtocol {
       throw error
     }
 
-    return try await retryRequest(request, dueTo: error)
+    return try await retryRequestRecursively(request, dueTo: error)
 
   }
 
