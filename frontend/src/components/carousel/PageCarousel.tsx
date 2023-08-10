@@ -1,4 +1,5 @@
-import { PropsWithChildren, memo } from 'react';
+import type { PropsWithChildren, RefObject } from 'react';
+import { createContext, memo, useRef } from 'react';
 import styled from '@emotion/styled';
 
 interface CarouselProps {
@@ -12,22 +13,35 @@ function Carousel({ children, currentSlide }: PropsWithChildren<CarouselProps>) 
   );
 }
 
+type PageContextType = RefObject<HTMLLIElement>;
+
+export const PageContext = createContext<PageContextType | null>(null);
+
 function Slide({ children }: PropsWithChildren) {
-  return <CarouselSlide>{children}</CarouselSlide>;
+  const pageRef = useRef<HTMLLIElement | null>(null);
+
+  return (
+    <PageContext.Provider value={pageRef}>
+      <CarouselSlide ref={pageRef}>{children}</CarouselSlide>
+    </PageContext.Provider>
+  );
 }
+
+Slide.displayName = 'Slide';
 
 Carousel.Slide = memo(Slide);
 export default Carousel;
 
 const CarouselContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.blueBg};
-  overflow-x: hidden;
   width: 100%;
+  overflow-x: hidden;
 `;
 
 const CarouselSlideList = styled.ul<Pick<CarouselProps, 'currentSlide'>>`
   display: flex;
   gap: 12px;
+  height: calc(100vh - 60px);
   transition: transform 1s ease-in-out;
   transform: translateX(calc(-${({ currentSlide }) => currentSlide} * (100% + 12px)));
 `;
@@ -38,4 +52,5 @@ const CarouselSlide = styled.li`
   min-height: calc(100vh - 60px);
   flex-shrink: 0;
   transform: translateX(0);
+  overflow-y: scroll;
 `;

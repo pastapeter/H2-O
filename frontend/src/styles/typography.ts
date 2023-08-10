@@ -278,6 +278,14 @@ export const TYPOGRAPHY = {
     lineHeight: '16px',
     letterSpacing: '-0.03em',
   },
+
+  DisplayText: {
+    fontFamily: 'Hyundai Sans Head KR',
+    fontSize: '146px',
+    fontWeight: 700,
+    lineHeight: '1.25',
+    letterSpacing: '-0.03em',
+  },
 } as const;
 
 export type TypographyType = typeof TYPOGRAPHY;

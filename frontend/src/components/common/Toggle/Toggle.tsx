@@ -1,19 +1,20 @@
-import { ChangeEventHandler, Dispatch, SetStateAction } from 'react';
+import { ChangeEventHandler, Dispatch, HTMLAttributes, SetStateAction } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   isChecked: boolean;
   size: 'small' | 'large';
   setIsChecked: Dispatch<SetStateAction<boolean>>;
 }
-function Toggle({ isChecked, size, setIsChecked }: Props) {
+
+function Toggle({ isChecked, size, setIsChecked, ...restProps }: Props) {
   const handleOnChange: ChangeEventHandler<HTMLInputElement> = () => {
     setIsChecked((prev) => !prev);
   };
 
   return (
-    <ToggleContainer size={size}>
+    <ToggleContainer size={size} {...restProps}>
       <input
         type='checkbox'
         id='toggleButton'

@@ -1,6 +1,7 @@
 import ExteriorPage from './ExteriorPage';
 import InteriorPage from './InteriorPage';
 import ModelPage from './ModelPage';
+import ResultPage from './ResultPage';
 import TrimPage from './TrimPage';
 import { PageCarousel as Carousel } from '@/components/carousel';
 import { useSafeContext } from '@/hooks';
@@ -29,7 +30,9 @@ function Pages() {
       </Carousel.Slide>
       <Carousel.Slide>4</Carousel.Slide>
       <Carousel.Slide>5</Carousel.Slide>
-      <Carousel.Slide>6</Carousel.Slide>
+      <Carousel.Slide>
+        <ResultPage />
+      </Carousel.Slide>
     </Carousel>
   );
 }

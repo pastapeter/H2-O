@@ -24,6 +24,7 @@ const StyledButton = styled.button<Pick<Props, 'size' | 'isFull'>>`
   ${({ theme }) => theme.typography.TextKRMedium16}
   background-color: ${({ theme }) => theme.colors.primary700};
   color: ${({ theme }) => theme.colors.white};
+  border-radius: 4px;
 
   ${({ theme, size }) => {
     switch (size) {
