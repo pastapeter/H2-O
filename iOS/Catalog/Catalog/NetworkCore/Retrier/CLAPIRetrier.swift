@@ -20,7 +20,7 @@ class CLAPIRetrier: RequestRetrier {
     guard let response = response as? HTTPURLResponse else { return .doNotRetryWithError(error) }
 
     if response.statusCode >= 200 && response.statusCode < 300 {
-      return .doNotRetryWithData(data)
+      return .doNotRetryWithSuccess(data)
     }
 
     switch response.statusCode {
