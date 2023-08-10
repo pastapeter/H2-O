@@ -37,6 +37,7 @@ class APIManager: APIManagerProtocol {
     let requestObject = try request.createRequest()
     let (data, response) = try await urlSession.makeData(from: requestObject)
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+      
       do {
         return try await retryRequest(requestObject, dueTo: .invalidServerResponse)
       } catch(let e) {
