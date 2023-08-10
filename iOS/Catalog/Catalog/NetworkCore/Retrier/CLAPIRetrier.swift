@@ -45,7 +45,6 @@ class CLAPIRetrier: RequestRetrier {
     let (data, response) = try await session.makeData(from: request)
     guard let response = response as? HTTPURLResponse else { return .doNotRetryWithError(error) }
     
-    
     switch response.statusCode {
     case 13:
       if request.retryCount < retryLimit {

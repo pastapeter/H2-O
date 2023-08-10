@@ -15,7 +15,7 @@ enum CLRetryResult {
 
   case doNotRetryWithError(Error)
   
-  case success(Data)
+  case doNotRetryWithData(Data)
 
 }
 
@@ -35,6 +35,13 @@ extension CLRetryResult {
       return nil
     }
     return error
+  }
+  
+  var data: Data? {
+    guard case let .doNotRetryWithData(data) = self else {
+      return nil
+    }
+    return data
   }
 
 }
