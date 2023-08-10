@@ -1,18 +1,9 @@
 spring:
-  h2:
-    console:
-      enabled: true
-
   datasource:
-    url: jdbc:h2:mem:test
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath*:db/schema-ddl.sql
-      data-locations: classpath:db/trims-data.sql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/h2o-schema #?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 
 
 mybatis:
   type-aliases-package: com.h2o.h2oServer.domain
