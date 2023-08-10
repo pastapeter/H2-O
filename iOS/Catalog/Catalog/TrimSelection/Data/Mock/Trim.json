@@ -1,0 +1,54 @@
+{
+  "trims": [
+    {
+      "id" : 1234,
+      "name" : "Exclusive",
+      "description" : "기본기를 갖춘 베이직한 팰리세이드",
+      "price" : 40440000,
+      "images" : [
+        "url1",
+        "url2",
+        "url3"
+      ],
+      "options" : [
+        {
+          "dataLabel" : "안전 하차 보조",
+          "frequency" :  50
+        },
+        {
+          "dataLabel" : "후측방 충돌 경고",
+          "frequency" : 40
+        },
+        {
+          "dataLabel" : "후방 교차 충돌방지 보조",
+          "frequency" : 30
+        },
+      ]
+    },
+    {
+      "id" : 5678,
+      "name" : "Le Blanc",
+      "description" : "실용적인 사양의 경제적인 팰리세이드",
+      "price" : 43460000,
+      "images" : [
+        "url1",
+        "url2",
+        "url3"
+      ],
+      "options" : [
+        {
+          "dataLabel" : "XX 보조",
+          "frequency" : 60
+        },
+        {
+          "dataLabel" : "XX 경고",
+          "frequency" : 30
+        },
+        {
+          "dataLabel" : "YY 보조",
+          "frequency" : 20
+        },
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ struct CLOption {
     private var name: String
     private var price: CLPrice
     private var category: CLCategory
-    private var image: CLImage
+    private var image: URL
     private var description: String
     private var useCount: Int
 }

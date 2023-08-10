@@ -12,6 +12,6 @@ struct Trim {
     private var description: String
     private var price: CLPrice // 시작 가격
 
-    private var externalImage: [CLImage] // 360도 회전 고민중
-    private var internalImage: CLImage
+    private var externalImage: [URL] // 360도 회전 고민중
+    private var internalImage: URL
 }
