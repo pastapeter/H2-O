@@ -64,4 +64,3 @@ extension TrimOptionDTO {
     return HMGDatum(optionTitle: dataLabel ?? "", optionFrequency: frequency ?? 0)
   }
 }
-
