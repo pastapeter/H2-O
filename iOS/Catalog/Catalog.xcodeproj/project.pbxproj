@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0AF2A7920A800F540CB /* CatalogApp.swift */; };
-		B155C0B22A7920A800F540CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0B12A7920A800F540CB /* ContentView.swift */; };
+		B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0B12A7920A800F540CB /* EntryPointView.swift */; };
 		B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0B32A7920A900F540CB /* Assets.xcassets */; };
 		B155C0B72A7920A900F540CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0B62A7920A900F540CB /* Preview Assets.xcassets */; };
 		B155C0C12A7920A900F540CB /* CatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0C02A7920A900F540CB /* CatalogTests.swift */; };
@@ -58,6 +58,11 @@
 		B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D472A83BE8000C7B07D /* TrimMockRepository.swift */; };
 		B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D492A83BECC00C7B07D /* MockAPIManager.swift */; };
 		B1604D512A83EB7700C7B07D /* CLRetryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D502A83EB7700C7B07D /* CLRetryResult.swift */; };
+		B1604D632A85402400C7B07D /* ModelTypeSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D622A85402400C7B07D /* ModelTypeSelectionContainerView.swift */; };
+		B1604D652A8544C300C7B07D /* ModelTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D642A8544C300C7B07D /* ModelTypeView.swift */; };
+		B1604D672A8545DD00C7B07D /* ModelTypeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D662A8545DD00C7B07D /* ModelTypeButtonView.swift */; };
+		B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D6A2A854D3A00C7B07D /* HMGButtonArrowStyle.swift */; };
+		B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -118,7 +123,7 @@
 /* Begin PBXFileReference section */
 		B155C0AC2A7920A800F540CB /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B155C0AF2A7920A800F540CB /* CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogApp.swift; sourceTree = "<group>"; };
-		B155C0B12A7920A800F540CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B155C0B12A7920A800F540CB /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
 		B155C0B32A7920A900F540CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B155C0B62A7920A900F540CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B155C0BC2A7920A900F540CB /* CatalogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +176,11 @@
 		B1604D472A83BE8000C7B07D /* TrimMockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimMockRepository.swift; sourceTree = "<group>"; };
 		B1604D492A83BECC00C7B07D /* MockAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIManager.swift; sourceTree = "<group>"; };
 		B1604D502A83EB7700C7B07D /* CLRetryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLRetryResult.swift; sourceTree = "<group>"; };
+		B1604D622A85402400C7B07D /* ModelTypeSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerView.swift; sourceTree = "<group>"; };
+		B1604D642A8544C300C7B07D /* ModelTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeView.swift; sourceTree = "<group>"; };
+		B1604D662A8545DD00C7B07D /* ModelTypeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonView.swift; sourceTree = "<group>"; };
+		B1604D6A2A854D3A00C7B07D /* HMGButtonArrowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGButtonArrowStyle.swift; sourceTree = "<group>"; };
+		B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonStyle.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -263,6 +273,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				B1604D5E2A853FA200C7B07D /* ModelTypeSelection */,
 				B1604D102A82569800C7B07D /* NetworkCore */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
 				ED1A70992A8364DE00F7920F /* Model */,
@@ -274,7 +285,7 @@
 				B155C0E72A792BA300F540CB /* Colors */,
 				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
 				B155C0AF2A7920A800F540CB /* CatalogApp.swift */,
-				B155C0B12A7920A800F540CB /* ContentView.swift */,
+				B155C0B12A7920A800F540CB /* EntryPointView.swift */,
 				B155C0B32A7920A900F540CB /* Assets.xcassets */,
 				B155C0B52A7920A900F540CB /* Preview Content */,
 			);
@@ -438,6 +449,41 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		B1604D5E2A853FA200C7B07D /* ModelTypeSelection */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D602A85400300C7B07D /* ModelTypeView */,
+				B1604D5F2A853FAB00C7B07D /* ModelTypeSelectionContainerView */,
+			);
+			path = ModelTypeSelection;
+			sourceTree = "<group>";
+		};
+		B1604D5F2A853FAB00C7B07D /* ModelTypeSelectionContainerView */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D622A85402400C7B07D /* ModelTypeSelectionContainerView.swift */,
+			);
+			path = ModelTypeSelectionContainerView;
+			sourceTree = "<group>";
+		};
+		B1604D602A85400300C7B07D /* ModelTypeView */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D642A8544C300C7B07D /* ModelTypeView.swift */,
+				B1604D662A8545DD00C7B07D /* ModelTypeButtonView.swift */,
+			);
+			path = ModelTypeView;
+			sourceTree = "<group>";
+		};
+		B1604D682A854D1600C7B07D /* ShowDetailButton */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D6A2A854D3A00C7B07D /* HMGButtonArrowStyle.swift */,
+				B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */,
+			);
+			path = ShowDetailButton;
+			sourceTree = "<group>";
+		};
 		B19436312A7E8C1500C2FD69 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +552,7 @@
 		ED779C3E2A7A799A007F67B7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B1604D682A854D1600C7B07D /* ShowDetailButton */,
 				ED1A70942A8357FD00F7920F /* QuotationSummary */,
 				EDBA5D552A808A8A0050BC35 /* pop-up */,
 				ED6410832A7FC4FF0033AEBC /* Button */,
@@ -703,8 +750,10 @@
 				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
+				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
 				ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
+				B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */,
 				B1604D382A8381BD00C7B07D /* TrimRequestDTO.swift in Sources */,
 				B1604D442A83943000C7B07D /* TrimSelectionRepository.swift in Sources */,
 				EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */,
@@ -734,6 +783,7 @@
 				ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */,
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
+				B1604D672A8545DD00C7B07D /* ModelTypeButtonView.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
@@ -747,10 +797,12 @@
 				ED1A709B2A83654C00F7920F /* Trim.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
+				B1604D652A8544C300C7B07D /* ModelTypeView.swift in Sources */,
 				EDA3CDD32A811CA80001BB9C /* CLSliderView.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
 				B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */,
 				B1604D462A83AE4100C7B07D /* TrimAPIManager.swift in Sources */,
+				B1604D632A85402400C7B07D /* ModelTypeSelectionContainerView.swift in Sources */,
 				B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */,
 				EDBA3E3F2A84869000BDB00F /* CLInactableButton.swift in Sources */,
 				EDBA3E3D2A83E98D00BDB00F /* CLListText.swift in Sources */,
@@ -761,7 +813,7 @@
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
 				B1604D512A83EB7700C7B07D /* CLRetryResult.swift in Sources */,
-				B155C0B22A7920A800F540CB /* ContentView.swift in Sources */,
+				B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */,
 				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
 				ED1A70A72A8371CA00F7920F /* CLOption.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,

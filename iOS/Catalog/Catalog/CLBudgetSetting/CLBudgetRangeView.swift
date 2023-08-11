@@ -13,7 +13,7 @@ struct CLBudgetRangeView: IntentBindingType {
     var intent: CLBudgetRangeIntentType { container.intent }
     var state: CLBudgetRangeModel.State { intent.state }
 
-    @SwiftUI.State var status: CLBudgetRangeView.Status = .complete {
+    @SwiftUI.State var status: CLBudgetRangeView.Status = .default {
         didSet {
             isFloatingExpanded = false
         }

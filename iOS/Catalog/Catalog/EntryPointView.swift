@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EntryPointView: View {
     @State var showPopUp: Bool = true
     @State var showQuotationSummarySheet: Bool = false
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 1)))
+                CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0)))
                 CLQuotationPriceBar(showQuotationSummarySheet:
                                         $showQuotationSummarySheet,
                                     currentQuotationPrice: .constant(CLPrice(43560000)), buttonText: "견적 요약")
@@ -41,8 +41,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TrimSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+      EntryPointView()
     }
 }
