@@ -20,17 +20,30 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
 
     var body: some View {
       VStack {
-        VStack {
-            titleView("파워트레인")
-              .padding(.horizontal, 16)
-            content()
-            CLButton(subText: "+280,000원", mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
-              .frame(height: 56)
+        if animateView {
+          VStack {
+              titleView("파워트레인")
+                .padding(.horizontal, 16)
+              content()
+              CLButton(subText: "+280,000원", mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
+                .frame(height: 56)
+          }
+          .matchedGeometryEffect(id: uuid.uuidString, in: animationID)
+          .frame(width: 200, height: 200)
         }
-        .matchedGeometryEffect(id: uuid, in: animationID)
-        .frame(width: 200, height: 200)
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .background(content: {
+        Color.white
+          .ignoresSafeArea()
+          .opacity(animateContent ? 1 : 0)
+      })
+      .onAppear {
+        withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.8)) {
+          animateView = true
+          animateContent = true
+        }
+      }
 
     }
 
@@ -43,7 +56,11 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
       HStack {
         Spacer()
         Button {
-          dismiss()
+          withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.8)) {
+            dismiss()
+            animateView = false
+            animateContent = false
+          }
         } label: {
           Image("cancel")
         }

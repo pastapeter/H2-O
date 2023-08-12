@@ -80,7 +80,7 @@ class CustomHostingView<Content: View>: UIHostingController<Content> {
     super.init(rootView: rootView)
   }
 
-  @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+  required dynamic init?(coder aDecoder: NSCoder) {
     fatalError("Not Using Storyboard")
   }
 
