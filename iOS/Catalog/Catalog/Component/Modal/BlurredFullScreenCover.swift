@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-  
+
   func blurredSheet<Content: View>(_ style: AnyShapeStyle, show: Binding<Bool>, onDismiss: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content) -> some View {
     self
       .sheet(isPresented: show, onDismiss: onDismiss) {
