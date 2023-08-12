@@ -17,8 +17,8 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
         titleView("파워트레인")
           .padding(.horizontal, 16)
         content()
-
         CLButton(subText: "+280,000원", mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
+          .frame(height: 56)
       }
     }
 
