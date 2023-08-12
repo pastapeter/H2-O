@@ -7,10 +7,32 @@
 
 import SwiftUI
 
+class ModalPopUpContent: Equatable {
+
+  let value: String
+
+  init(value: String) {
+      self.value = value
+  }
+
+  static func == (lhs: ModalPopUpContent, rhs: ModalPopUpContent) -> Bool {
+      lhs.value == rhs.value
+  }
+
+}
+
+struct ModalPopUpState {
+  var middle: ModalPopUpContent?
+}
+
 struct ModelTypeModal: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+  @State var PopupDetails = ModalPopUpState()
+}
+
+extension ModelTypeModal {
+  var body: some View {
+      Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  }
 }
 
 struct ModelTypeModal_Previews: PreviewProvider {
