@@ -7,9 +7,34 @@
 
 import SwiftUI
 
-struct HMGButtonArrowStyle: ButtonStyle {
+protocol HMGStyle: ButtonStyle {
 
-  private let color: Color = .activeBlue2
+  var color: Color { get }
+
+  @ViewBuilder func makeBody(configuration: Self.Configuration) -> Self.Body
+
+}
+
+extension HMGStyle {
+
+  var color: Color {
+    return .activeBlue2
+  }
+
+  func makeBody(configuration: Configuration) -> some View {
+    HStack {
+      configuration.label
+    }
+    .padding(EdgeInsets(top: 4.5, leading: 10, bottom: 4.5, trailing: 10))
+    .background(color)
+    .foregroundColor(.white)
+  }
+
+}
+
+struct HMGButtonStyle: HMGStyle { }
+
+struct HMGButtonArrowStyle: HMGStyle {
 
   func makeBody(configuration: Configuration) -> some View {
 
