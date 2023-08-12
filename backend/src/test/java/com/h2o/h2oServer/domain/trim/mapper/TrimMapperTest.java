@@ -1,5 +1,6 @@
 package com.h2o.h2oServer.domain.trim.mapper;
 
+import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
@@ -118,5 +119,38 @@ class TrimMapperTest {
 
         //then
         assertThat(actualTrimEntities).as("db에 존재하는 row의 개수와 길이가 같은지 확인").hasSize(Math.toIntExact(expectedLength));
+    }
+
+    @Test
+    @DisplayName("유효한 trim에 대해서, externalColorEntity를 반환한다.")
+    @Sql("classpath:db/external-color-data.sql")
+    void findExternalColor() {
+        //given
+        Long trimId = 1L;
+        ExternalColorEntity expectedExternalColorEntity1 = ExternalColorEntity.builder()
+                .colorCode("#FF0000")
+                .choiceRatio(0.3f)
+                .id(1L)
+                .name("Red")
+                .price(2000)
+                .build();
+        ExternalColorEntity expectedExternalColorEntity2 = ExternalColorEntity.builder()
+                .colorCode("#0000FF")
+                .choiceRatio(0.5f)
+                .id(2L)
+                .name("Blue")
+                .price(1800)
+                .build();
+
+        //when
+        List<ExternalColorEntity> actualExternalColorEntities = trimMapper.findExternalColor(trimId);
+
+        //then
+        assertThat(actualExternalColorEntities).as("유효한 데이터가 매핑된다.").isNotEmpty();
+        assertThat(actualExternalColorEntities).as("유효한 데이터가 매핑된다.").hasSize(2);
+        softly.assertThat(actualExternalColorEntities).as("trimId에 해당하는 externalColorEntity 객체가 모두 매핑되었는지 확인")
+                .contains(expectedExternalColorEntity1)
+                .contains(expectedExternalColorEntity2);
+        softly.assertAll();
     }
 }

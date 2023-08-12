@@ -1,5 +1,6 @@
 package com.h2o.h2oServer.domain.trim.mapper;
 
+import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
 import com.h2o.h2oServer.domain.trim.entity.OptionStatisticsEntity;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
@@ -20,4 +21,6 @@ public interface TrimMapper {
     List<ImageEntity> findImages(Long id);
 
     List<OptionStatisticsEntity> findOptionStatistics(Long id);
+
+    List<ExternalColorEntity> findExternalColor(Long id);
 }

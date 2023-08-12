@@ -1,35 +1,52 @@
 package com.h2o.h2oServer.domain.trim.application;
 
+import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.TrimDto;
+import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
+import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
+import com.h2o.h2oServer.domain.trim.entity.OptionStatisticsEntity;
+import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
+import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
+import com.h2o.h2oServer.domain.trim.mapper.TrimMapper;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Sql("classpath:db/trims-data.sql")
 class TrimServiceTest {
 
-    @Autowired
-    private TrimService trimService;
-    private SoftAssertions softly;
+    private static TrimMapper trimMapper;
+    private static ExternalColorMapper externalColorMapper;
+    private static TrimService trimService;
+    private static SoftAssertions softly;
+
+    @BeforeAll
+    static void beforeAll() {
+        trimMapper = Mockito.mock(TrimMapper.class);
+        externalColorMapper = Mockito.mock(ExternalColorMapper.class);
+        trimService = new TrimService(trimMapper, externalColorMapper);
+        softly = new SoftAssertions();
+    }
 
     @BeforeEach
     void setUp() {
-        softly = new SoftAssertions();
     }
-    
+
     @Test
     @DisplayName("존재하는 vehicle에 대한 요청인 경우 Dto로 formatting해서 반환한다.")
     void findTrimInformation() {
         //given
         Long vehicleId = 1L;
+        when(trimMapper.findByCarId(vehicleId)).thenReturn(generateTrimEntityList());
+        when(trimMapper.findOptionStatistics(1L)).thenReturn(generateOptionStatisticsList());
+        when(trimMapper.findOptionStatistics(2L)).thenReturn(generateOptionStatisticsList());
+        when(trimMapper.findImages(1L)).thenReturn(generateImageEntityList());
+        when(trimMapper.findImages(2L)).thenReturn(generateImageEntityList());
 
         //when
         List<TrimDto> actualTrimDtos = trimService.findTrimInformation(vehicleId);
@@ -39,6 +56,7 @@ class TrimServiceTest {
         softly.assertThat(actualTrimDtos).as("TrimDto를 포함한다.").isNotEmpty();
         softly.assertThat(actualTrimDtos.get(0).getImages()).as("Images를 포함한다.").isNotNull();
         softly.assertThat(actualTrimDtos.get(0).getOptions()).as("Options를 포함한다.").isNotNull();
+        softly.assertAll();
     }
 
     @Test
@@ -46,12 +64,113 @@ class TrimServiceTest {
     void findTrimInformationNotExist() {
         //given
         Long vehicleId = Long.MAX_VALUE;
+        when(trimMapper.findByCarId(vehicleId)).thenReturn(List.of());
 
         //when
         List<TrimDto> actualTrimDtos = trimService.findTrimInformation(vehicleId);
 
         //then
         softly.assertThat(actualTrimDtos).as("null이 아니다.").isNotNull();
-        softly.assertThat(actualTrimDtos).as("TrimDto를 포함하지 않는다.").isEmpty();
+        softly.assertThat(actualTrimDtos).as("TrimDto를 포함한다.").isEmpty();
+        softly.assertAll();
+    }
+
+    @Test
+    @DisplayName("존재하는 externalColor에 대한 요청인 경우, Dto로 포매팅해서 반환한다.")
+    void findExternalColorInformation() {
+        //given
+        Long trimId = 1L;
+        when(trimMapper.findExternalColor(trimId)).thenReturn(generateExternalColorEntityList());
+        when(externalColorMapper.findImages(1L)).thenReturn(generateImageEntityList());
+        when(externalColorMapper.findImages(2L)).thenReturn(generateImageEntityList());
+
+        //when
+        List<ExternalColorDto> actualExternalColorDtos = trimService.findExternalColorInformation(trimId);
+
+        //then
+        softly.assertThat(actualExternalColorDtos).as("null이 아니다.").isNotNull();
+        softly.assertThat(actualExternalColorDtos).as("ExternalColorDtos를 두 개 포함한다.").hasSize(2);
+        softly.assertThat(actualExternalColorDtos.get(0).getImages()).as("Images를 포함한다.").isNotNull();
+        softly.assertThat(actualExternalColorDtos.get(0).getName()).as("name 필드를 포함한다.").isNotNull();
+        softly.assertAll();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 externalColor에 대한 요청인 경우, 빈 리스트를 반환한다.")
+    void findExternalColorInformationNotExist() {
+        //given
+        Long trimId = 1L;
+        when(trimMapper.findExternalColor(trimId)).thenReturn(List.of());
+
+        //when
+        List<ExternalColorDto> actualExternalColorDtos = trimService.findExternalColorInformation(trimId);
+
+        //then
+        softly.assertThat(actualExternalColorDtos).as("null이 아니다.").isNotNull();
+        softly.assertThat(actualExternalColorDtos).as("ExternalColorDto를 포함하지 않는다.").isEmpty();
+        softly.assertAll();
+    }
+
+    private static List<ExternalColorEntity> generateExternalColorEntityList() {
+        return List.of(
+                ExternalColorEntity.builder()
+                        .id(1L)
+                        .name("Red")
+                        .colorCode("#FF0000")
+                        .choiceRatio(0.5F)
+                        .price(100)
+                        .build(),
+                ExternalColorEntity.builder()
+                        .id(2L)
+                        .name("Black")
+                        .colorCode("#FF0001")
+                        .choiceRatio(0.2F)
+                        .price(240)
+                        .build());
+    }
+
+    private static List<ImageEntity> generateImageEntityList() {
+        return List.of(
+                ImageEntity.builder()
+                        .image("url1")
+                        .id(1L)
+                        .build(),
+                ImageEntity.builder()
+                        .image("url2")
+                        .id(2L)
+                        .build()
+        );
+    }
+
+    private List<OptionStatisticsEntity> generateOptionStatisticsList() {
+        return List.of(
+                OptionStatisticsEntity.builder()
+                        .id(1L)
+                        .name("Option A")
+                        .useCount(0.75F)
+                        .build(),
+                OptionStatisticsEntity.builder()
+                        .id(2L)
+                        .name("Option B")
+                        .useCount(0.5F)
+                        .build()
+        );
+    }
+
+    private List<TrimEntity> generateTrimEntityList() {
+        return List.of(
+                TrimEntity.builder()
+                        .id(1L)
+                        .name("Trim A")
+                        .description("Description of Trim A")
+                        .price(50000)
+                        .build(),
+                TrimEntity.builder()
+                        .id(2L)
+                        .name("Trim B")
+                        .description("Description of Trim b")
+                        .price(70000)
+                        .build()
+        );
     }
 }
