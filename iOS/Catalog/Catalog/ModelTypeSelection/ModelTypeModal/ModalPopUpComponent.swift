@@ -12,7 +12,6 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
   @Binding var uuid: UUID
   var submitAction: () -> Void
   var animationID: Namespace.ID
-
   @Environment(\.dismiss) private var dismiss
   @State private var animateView: Bool = false
   @State private var animateContent: Bool = false
@@ -28,15 +27,18 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
               CLButton(subText: "+280,000원", mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
                 .frame(height: 56)
           }
+          .background(.white)
+          .cornerRadius(4)
           .matchedGeometryEffect(id: uuid.uuidString, in: animationID)
-          .frame(width: 200, height: 200)
+          .frame(height: UIScreen.main.bounds.height * 0.67)
+          .padding(.horizontal, 30)
         }
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .background(content: {
-        Color.white
-          .ignoresSafeArea()
-          .opacity(animateContent ? 1 : 0)
+        DimmedZStack { }
+          .edgesIgnoringSafeArea(.all)
+          .opacity(animateContent ? 0.8 : 0)
       })
       .onAppear {
         withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.8)) {
@@ -44,7 +46,6 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
           animateContent = true
         }
       }
-
     }
 
   @ViewBuilder

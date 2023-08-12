@@ -40,7 +40,7 @@ extension ModelContentView {
         VStack {
           Image("gasoline3")
             .resizable()
-            .frame(height: 180)
+            .frame(height: UIScreen.main.bounds.height * (180 / 812))
           VStack {
             HStack {
               Text(state.title)
@@ -61,6 +61,7 @@ extension ModelContentView {
           Spacer()
           HMGDataWithHorizontalGraphView(state: .mock())
         }
+        .background(.white)
       }
     }
   }
