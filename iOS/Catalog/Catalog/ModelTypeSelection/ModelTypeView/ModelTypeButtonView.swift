@@ -8,30 +8,56 @@
 import SwiftUI
 
 struct ModelTypeButtonView: View {
+
+  @Binding var isSelected: Bool
+
     var body: some View {
       VStack(alignment: .leading) {
-        Text("38%의 선택")
+        Text("\(Text("38%").foregroundColor(isSelected ? .activeBlue2 : .gray600))의 선택")
           .foregroundColor(.gray500)
           .catalogFont(type: .HeadKRMedium14)
         Text("디젤 2.2")
-          .foregroundColor(.gray600)
-          .catalogFont(type: .TextKRMedium16)
+          .catalogFont(type: .HeadKRMedium16)
+          .foregroundColor(isSelected ? .gray900 : .gray600)
         HStack {
           Text("+0 원")
-            .foregroundColor(.gray600)
+            .foregroundColor(isSelected ? .gray900 : .gray600)
             .catalogFont(type: .TextKRMedium16)
           Spacer()
-          Image("check").renderingMode(.template).foregroundColor(.gray200)
+          Image("check").renderingMode(.template).foregroundColor(isSelected ? .activeBlue2 : .gray200)
         }
       }
       .padding(EdgeInsets(top: 8, leading: 13, bottom: 7, trailing: 8))
-      .background(.white)
       .cornerRadius(4)
+      .asButtonSelected(isselected: $isSelected)
     }
 }
 
 struct ModelTypeButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ModelTypeButtonView()
+      ModelTypeButtonView(isSelected: .constant(true))
     }
+}
+
+fileprivate extension View {
+
+  @ViewBuilder
+  func asButtonSelected(isselected: Binding<Bool>) -> some View {
+    if isselected.wrappedValue {
+      modifier(AsModelButtonSelectedBackground())
+    } else {
+      modifier(AsModelButtonUnSelectedBackground())
+    }
+
+  }
+
+}
+
+fileprivate extension Text {
+
+  @ViewBuilder
+  func asButtonSelectedText(isselected: Binding<Bool>) -> some View {
+
+  }
+
 }

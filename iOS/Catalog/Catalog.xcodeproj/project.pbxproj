@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1084BE52A87A52000AE1758 /* ModelTypeButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BE42A87A52000AE1758 /* ModelTypeButtonModifiers.swift */; };
+		B1084BE72A87ACDD00AE1758 /* ModelTypeButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */; };
 		B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0AF2A7920A800F540CB /* CatalogApp.swift */; };
 		B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0B12A7920A800F540CB /* EntryPointView.swift */; };
 		B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0B32A7920A900F540CB /* Assets.xcassets */; };
@@ -34,7 +36,6 @@
 		B155C11D2A7A531A00F540CB /* HyundaiSansHeadKROTFRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1072A7A410C00F540CB /* HyundaiSansHeadKROTFRegular.otf */; };
 		B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C11F2A7A78A700F540CB /* CLNavigationView.swift */; };
 		B15646352A8652A100FAD379 /* ModelTypeModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15646342A8652A100FAD379 /* ModelTypeModal.swift */; };
-		B15646372A8652FB00FAD379 /* ModalPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15646362A8652FB00FAD379 /* ModalPopUpView.swift */; };
 		B156463B2A8653D000FAD379 /* ModalPopUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */; };
 		B156463D2A865B3F00FAD379 /* ModelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463C2A865B3F00FAD379 /* ModelContentView.swift */; };
 		B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D112A8256B700C7B07D /* RequestProtocol.swift */; };
@@ -127,6 +128,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1084BE42A87A52000AE1758 /* ModelTypeButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonModifiers.swift; sourceTree = "<group>"; };
+		B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonContainer.swift; sourceTree = "<group>"; };
 		B155C0AC2A7920A800F540CB /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B155C0AF2A7920A800F540CB /* CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogApp.swift; sourceTree = "<group>"; };
 		B155C0B12A7920A800F540CB /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
@@ -158,7 +161,6 @@
 		B155C1112A7A415700F540CB /* HyundaiSansText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Medium.otf"; sourceTree = "<group>"; };
 		B155C11F2A7A78A700F540CB /* CLNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationView.swift; sourceTree = "<group>"; };
 		B15646342A8652A100FAD379 /* ModelTypeModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeModal.swift; sourceTree = "<group>"; };
-		B15646362A8652FB00FAD379 /* ModalPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPopUpView.swift; sourceTree = "<group>"; };
 		B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPopUpComponent.swift; sourceTree = "<group>"; };
 		B156463C2A865B3F00FAD379 /* ModelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContentView.swift; sourceTree = "<group>"; };
 		B1604D112A8256B700C7B07D /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
@@ -386,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				B15646342A8652A100FAD379 /* ModelTypeModal.swift */,
-				B15646362A8652FB00FAD379 /* ModalPopUpView.swift */,
 				B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */,
 				B156463C2A865B3F00FAD379 /* ModelContentView.swift */,
 			);
@@ -495,6 +496,8 @@
 			children = (
 				B1604D642A8544C300C7B07D /* ModelTypeView.swift */,
 				B1604D662A8545DD00C7B07D /* ModelTypeButtonView.swift */,
+				B1084BE42A87A52000AE1758 /* ModelTypeButtonModifiers.swift */,
+				B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */,
 			);
 			path = ModelTypeView;
 			sourceTree = "<group>";
@@ -821,13 +824,13 @@
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
 				B1604D672A8545DD00C7B07D /* ModelTypeButtonView.swift in Sources */,
-				B15646372A8652FB00FAD379 /* ModalPopUpView.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
 				EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */,
 				ED1A70A92A83723F00F7920F /* CLCategory.swift in Sources */,
+				B1084BE72A87ACDD00AE1758 /* ModelTypeButtonContainer.swift in Sources */,
 				ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
 				B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */,
@@ -836,6 +839,7 @@
 				B156463B2A8653D000FAD379 /* ModalPopUpComponent.swift in Sources */,
 				ED1A709B2A83654C00F7920F /* Trim.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
+				B1084BE52A87A52000AE1758 /* ModelTypeButtonModifiers.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				B1604D652A8544C300C7B07D /* ModelTypeView.swift in Sources */,
 				EDA3CDD32A811CA80001BB9C /* CLSliderView.swift in Sources */,
