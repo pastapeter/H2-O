@@ -74,6 +74,8 @@
 		B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436402A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift */; };
 		B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436422A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift */; };
 		B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436442A80E5FD00C2FD69 /* AlertViewComponent.swift */; };
+		B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */; };
+		B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */; };
 		B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */; };
 		B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC5F2A7B5B63005385E0 /* MockView.swift */; };
 		B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC612A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift */; };
@@ -196,6 +198,8 @@
 		B19436402A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSingleLineAlertContentView.swift; sourceTree = "<group>"; };
 		B19436422A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOptionSelectAlertContentView.swift; sourceTree = "<group>"; };
 		B19436442A80E5FD00C2FD69 /* AlertViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewComponent.swift; sourceTree = "<group>"; };
+		B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataWithHorizontalGraphView.swift; sourceTree = "<group>"; };
+		B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalView.swift; sourceTree = "<group>"; };
 		B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTopNaviBar.swift; sourceTree = "<group>"; };
 		B1F2BC5F2A7B5B63005385E0 /* MockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockView.swift; sourceTree = "<group>"; };
 		B1F2BC612A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationMenuTitleView.swift; sourceTree = "<group>"; };
@@ -518,6 +522,15 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		B1EEBA872A869E8E008FC6A4 /* HMGData */ = {
+			isa = PBXGroup;
+			children = (
+				B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */,
+				B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */,
+			);
+			path = HMGData;
+			sourceTree = "<group>";
+		};
 		ED1A70942A8357FD00F7920F /* QuotationSummary */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +585,7 @@
 		ED779C3E2A7A799A007F67B7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B1EEBA872A869E8E008FC6A4 /* HMGData */,
 				B1604D682A854D1600C7B07D /* ShowDetailButton */,
 				ED1A70942A8357FD00F7920F /* QuotationSummary */,
 				EDBA5D552A808A8A0050BC35 /* pop-up */,
@@ -767,6 +781,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */,
 				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
@@ -815,6 +830,7 @@
 				ED1A70A92A83723F00F7920F /* CLCategory.swift in Sources */,
 				ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
+				B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */,
 				EDA3CDD72A8281B10001BB9C /* CLSimilarQuotationSlideView.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
 				B156463B2A8653D000FAD379 /* ModalPopUpComponent.swift in Sources */,
