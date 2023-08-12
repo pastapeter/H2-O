@@ -9,18 +9,29 @@ import SwiftUI
 
 struct ModalPopUpComponent<ModalPopUpContent: View>: View {
 
+  @Binding var uuid: UUID
   var submitAction: () -> Void
+  var animationID: Namespace.ID
+
+  @Environment(\.dismiss) private var dismiss
+  @State private var animateView: Bool = false
+  @State private var animateContent: Bool = false
   @ViewBuilder var content: () -> ModalPopUpContent
 
     var body: some View {
-      VStack(spacing: 0) {
-        titleView("파워트레인")
-          .padding(.horizontal, 16)
-        content()
-        CLButton(subText: "+280,000원", mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
-          .frame(height: 56)
+      VStack {
+        VStack {
+            titleView("파워트레인")
+              .padding(.horizontal, 16)
+            content()
+            CLButton(subText: "+280,000원", mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
+              .frame(height: 56)
+        }
+        .matchedGeometryEffect(id: uuid, in: animationID)
+        .frame(width: 200, height: 200)
       }
-      .background(.white)
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+
     }
 
   @ViewBuilder
@@ -31,7 +42,11 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
         .foregroundColor(.gray900)
       HStack {
         Spacer()
-        Image("cancel")
+        Button {
+          dismiss()
+        } label: {
+          Image("cancel")
+        }
       }
     }
     .padding(.top, 20)
@@ -41,7 +56,8 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
 
 struct ModalPopUpComponent_Previews: PreviewProvider {
     static var previews: some View {
-      ModalPopUpComponent(submitAction: { }) {
+      @Namespace var animation
+      ModalPopUpComponent(uuid: .constant(UUID()), submitAction: { }, animationID: animation) {
         ModelContentView(state: .mock())
       }
     }

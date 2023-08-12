@@ -11,6 +11,8 @@ struct ModelTypeSelectionContainerView: View {
 
   @State var isPresented = false
   @State var isModalPresented = false
+  @State var uuid = UUID()
+  @Namespace private var animation
 
     var body: some View {
       ScrollView {
@@ -24,22 +26,24 @@ struct ModelTypeSelectionContainerView: View {
             ModelTypeView()
           }
           .padding(.horizontal, 16)
-          if isPresented {
-            DimmedZStack { }
-              .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                  self.isModalPresented = true
-                }
-              }
+        }
+        .CLDialogFullScreenCover(show: $isModalPresented) {
+
+          ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
+            ModelContentView(state: .mock())
           }
+          .cornerRadius(4)
         }
-        .blurredFullScreenCover(.init(.clear), show: $isModalPresented, onDismiss: { }) {
-          ModelPopUp()
-            .padding(EdgeInsets(top: 135, leading: 27, bottom: 135, trailing: 27))
-        }
+//        .blurredFullScreenCover(.init(.clear), show: $isModalPresented, onDismiss: { }) {
+//          Rectangle()
+//              ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
+//                ModelContentView(state: .mock())
+//              }
+//              .cornerRadius(4)
+//        }
         .task {
           DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.isPresented = true
+            self.isModalPresented = true
           }
         }
       }
