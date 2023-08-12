@@ -9,11 +9,6 @@ import SwiftUI
 
 struct ModelTypeSelectionContainerView: View {
 
-  @State var isPresented = false
-  @State var isModalPresented = false
-  @State var uuid = UUID()
-  @Namespace private var animation
-
     var body: some View {
       ScrollView {
         ZStack {
@@ -26,25 +21,6 @@ struct ModelTypeSelectionContainerView: View {
             ModelTypeView()
           }
           .padding(.horizontal, 16)
-        }
-        .CLDialogFullScreenCover(show: $isModalPresented) {
-
-          ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
-            ModelContentView(state: .mock())
-          }
-          .cornerRadius(4)
-        }
-//        .blurredFullScreenCover(.init(.clear), show: $isModalPresented, onDismiss: { }) {
-//          Rectangle()
-//              ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
-//                ModelContentView(state: .mock())
-//              }
-//              .cornerRadius(4)
-//        }
-        .task {
-          DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.isModalPresented = true
-          }
         }
       }
       .frame(maxWidth: .infinity)
