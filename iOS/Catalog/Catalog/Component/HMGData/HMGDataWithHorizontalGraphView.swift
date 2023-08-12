@@ -69,6 +69,8 @@ extension HMGDataWithHorizontalGraphView {
       BarHorizontalView(percent: $percent)
         .frame(height: 4)
     }
+    .padding(20)
+    .background(Color.gray50)
   }
 
 }

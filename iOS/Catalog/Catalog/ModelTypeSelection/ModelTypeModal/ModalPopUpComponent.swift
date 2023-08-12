@@ -20,6 +20,7 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
         CLButton(subText: "+280,000원", mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
           .frame(height: 56)
       }
+      .background(.white)
     }
 
   @ViewBuilder

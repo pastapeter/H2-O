@@ -36,26 +36,32 @@ extension ModelContentView {
 
   var body: some View {
     VStack(alignment: .leading) {
-      Image("gasoline3")
-        .resizable()
-      VStack {
-        HStack {
-          Text(state.title)
-            .catalogFont(type: .HeadKRMedium18)
-            .foregroundColor(.gray900)
+      GeometryReader { _ in
+        VStack {
+          Image("gasoline3")
+            .resizable()
+            .frame(height: 180)
+          VStack {
+            HStack {
+              Text(state.title)
+                .catalogFont(type: .HeadKRMedium18)
+                .foregroundColor(.gray900)
+              Spacer()
+              Text("\(Text("\(state.frequency)%").foregroundColor(.activeBlue))의 선택")
+                .catalogFont(type: .TextKRMedium12)
+            }
+
+            Text(state.description)
+              .catalogFont(type: .TextKRRegular12)
+              .foregroundColor(.gray800)
+              .multilineTextAlignment(.leading)
+          }
+          .padding(.top, 12)
+          .padding(.horizontal, 20)
           Spacer()
-          Text("\(Text("\(state.frequency)%").foregroundColor(.activeBlue))의 선택")
-            .catalogFont(type: .TextKRMedium12)
+          HMGDataWithHorizontalGraphView(state: .mock())
         }
-
-        Text(state.description)
-          .catalogFont(type: .TextKRRegular12)
-          .foregroundColor(.gray800)
-          .multilineTextAlignment(.leading)
-        HMGDataWithHorizontalGraphView(state: .mock())
       }
-      .padding(20)
-
     }
   }
 
