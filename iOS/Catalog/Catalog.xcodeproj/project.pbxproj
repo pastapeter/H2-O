@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B1084BE52A87A52000AE1758 /* ModelTypeButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BE42A87A52000AE1758 /* ModelTypeButtonModifiers.swift */; };
 		B1084BE72A87ACDD00AE1758 /* ModelTypeButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */; };
-		B1084BE92A87C82000AE1758 /* ModelPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BE82A87C82000AE1758 /* ModelPopUp.swift */; };
 		B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BEA2A87DF2B00AE1758 /* BlurredFullScreenCover.swift */; };
 		B1084BEE2A87E5A800AE1758 /* CLDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BED2A87E5A800AE1758 /* CLDialog.swift */; };
 		B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0AF2A7920A800F540CB /* CatalogApp.swift */; };
@@ -132,7 +131,6 @@
 /* Begin PBXFileReference section */
 		B1084BE42A87A52000AE1758 /* ModelTypeButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonModifiers.swift; sourceTree = "<group>"; };
 		B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonContainer.swift; sourceTree = "<group>"; };
-		B1084BE82A87C82000AE1758 /* ModelPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPopUp.swift; sourceTree = "<group>"; };
 		B1084BEA2A87DF2B00AE1758 /* BlurredFullScreenCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredFullScreenCover.swift; sourceTree = "<group>"; };
 		B1084BED2A87E5A800AE1758 /* CLDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDialog.swift; sourceTree = "<group>"; };
 		B155C0AC2A7920A800F540CB /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -402,7 +400,6 @@
 			children = (
 				B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */,
 				B156463C2A865B3F00FAD379 /* ModelContentView.swift */,
-				B1084BE82A87C82000AE1758 /* ModelPopUp.swift */,
 			);
 			path = ModelTypeModal;
 			sourceTree = "<group>";
@@ -814,7 +811,6 @@
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
 				B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */,
-				B1084BE92A87C82000AE1758 /* ModelPopUp.swift in Sources */,
 				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
