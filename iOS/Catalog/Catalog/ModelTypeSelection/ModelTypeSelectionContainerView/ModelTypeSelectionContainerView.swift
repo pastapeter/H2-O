@@ -47,7 +47,8 @@ extension ModelTypeSelectionContainerView: View {
 extension ModelTypeSelectionContainerView {
   @ViewBuilder
   static func build(intent: ModelTypeSelectionContainerIntent) -> some View {
-    ModelTypeSelectionContainerView(container: .init(intent: intent, state: intent.state, modelChangePublisher: intent.objectWillChange))
+    ModelTypeSelectionContainerView(container:
+        .init(intent: intent, state: intent.state, modelChangePublisher: intent.objectWillChange))
   }
 }
 

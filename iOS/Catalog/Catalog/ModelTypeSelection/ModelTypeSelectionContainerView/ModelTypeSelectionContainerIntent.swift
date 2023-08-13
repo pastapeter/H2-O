@@ -9,9 +9,13 @@ import Foundation
 import Combine
 
 protocol ModelTypeSelectionContainerIntentType {
+
   var state: ModelTypeSelectionContainerModel.State { get }
+
   func send(action: ModelTypeSelectionContainerModel.ViewAction)
+
   func send(action: ModelTypeSelectionContainerModel.ViewAction, viewEffect: (() -> Void)?)
+
 }
 
 final class ModelTypeSelectionContainerIntent: ObservableObject {
@@ -21,8 +25,11 @@ final class ModelTypeSelectionContainerIntent: ObservableObject {
   }
 
   typealias State = ModelTypeSelectionContainerModel.State
+
   typealias ViewAction = ModelTypeSelectionContainerModel.ViewAction
+
   @Published var state: State = .mock()
+
   var cancellable: Set<AnyCancellable> = []
 }
 

@@ -73,7 +73,9 @@ extension ModelTypeView: View {
 extension ModelTypeView {
   @ViewBuilder
   static func build(intent: ModelTypeIntent) -> some View {
-    ModelTypeView(container: .init(intent: intent as ModelTypeIntent, state: intent.state, modelChangePublisher: intent.objectWillChange))
+    ModelTypeView(container: .init(intent: intent as ModelTypeIntent,
+                                   state: intent.state,
+                                   modelChangePublisher: intent.objectWillChange))
   }
 }
 
