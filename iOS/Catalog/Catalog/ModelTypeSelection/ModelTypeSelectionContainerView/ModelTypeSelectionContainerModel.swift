@@ -13,7 +13,8 @@ enum ModelTypeSelectionContainerModel {
 
     static func mock() -> Self {
       return .init(
-        modelTypeIntents: [
+        selectedTrimId: 1,
+        modelTypeStateArray: [
           .init(modelTypeDetailState: [.init(content: .mock(), hmgData: .mock()),
                                        .init(content: .mock(), hmgData: .mock())]),
           .init(title: "바디타입", imageURL: nil,
@@ -49,12 +50,14 @@ enum ModelTypeSelectionContainerModel {
         ], fuelEfficiencyAverageState: .mock())
     }
 
-    var modelTypeIntents: [ModelTypeModel.State]
+    var selectedTrimId: Int = 1
+    var modelTypeStateArray: [ModelTypeModel.State]
     var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerState
   }
 
-  enum ViewAction: Equatable {
+  enum ViewAction {
     case onAppear
+    case modelTypeOptions(options: [ModelTypeOption])
     case calculateFuelEfficiency
   }
 

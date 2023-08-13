@@ -29,7 +29,7 @@ extension ModelTypeSelectionContainerView: View {
           Text("모델타입을 선택해주세요")
             .catalogFont(type: .HeadKRMedium18)
             .padding(.horizontal, 16)
-          ForEach(state.modelTypeIntents, id: \.self) { state in
+          ForEach(state.modelTypeStateArray, id: \.self) { state in
             ModelTypeView.build(intent: .init(initialState: state))
           }
           Spacer().frame(height: 38)
@@ -54,6 +54,6 @@ extension ModelTypeSelectionContainerView {
 
 struct ModelTypeSelectionContainerView_Previews: PreviewProvider {
   static var previews: some View {
-    return ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock()))
+    return ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: ModelTypeRepository()))
   }
 }
