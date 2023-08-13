@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModelTypeContent {
+struct ModelTypeContent: Equatable {
 
   static func mock() -> Self {
     return ModelTypeContent(title: "디젤 2.2",

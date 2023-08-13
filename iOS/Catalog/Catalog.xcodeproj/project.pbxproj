@@ -80,6 +80,8 @@
 		B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436442A80E5FD00C2FD69 /* AlertViewComponent.swift */; };
 		B1A76B802A88CD92009C84EF /* ModeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */; };
 		B1A76B822A88D263009C84EF /* ModelTypeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */; };
+		B1A76B842A892C86009C84EF /* ModelTypeSelectionContainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */; };
+		B1A76B862A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B852A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift */; };
 		B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */; };
 		B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */; };
 		B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */; };
@@ -220,6 +222,8 @@
 		B19436442A80E5FD00C2FD69 /* AlertViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewComponent.swift; sourceTree = "<group>"; };
 		B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeTypeModel.swift; sourceTree = "<group>"; };
 		B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeIntent.swift; sourceTree = "<group>"; };
+		B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerModel.swift; sourceTree = "<group>"; };
+		B1A76B852A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerIntent.swift; sourceTree = "<group>"; };
 		B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataWithHorizontalGraphView.swift; sourceTree = "<group>"; };
 		B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalView.swift; sourceTree = "<group>"; };
 		B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTopNaviBar.swift; sourceTree = "<group>"; };
@@ -539,6 +543,8 @@
 			isa = PBXGroup;
 			children = (
 				B1604D622A85402400C7B07D /* ModelTypeSelectionContainerView.swift */,
+				B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */,
+				B1A76B852A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift */,
 			);
 			path = ModelTypeSelectionContainerView;
 			sourceTree = "<group>";
@@ -908,6 +914,7 @@
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				ED1C70602A89C3810049D275 /* CLSimilarQuotationSlideView.swift in Sources */,
+				B1A76B842A892C86009C84EF /* ModelTypeSelectionContainerModel.swift in Sources */,
 				ED1A70AB2A83728C00F7920F /* CLHashTag.swift in Sources */,
 				B156463D2A865B3F00FAD379 /* ModelContentView.swift in Sources */,
 				ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */,
@@ -958,6 +965,7 @@
 				ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */,
 				ED1A70AD2A83B0A100F7920F /* CLLinearGradient.swift in Sources */,
 				ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */,
+				B1A76B862A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift in Sources */,
 				ED64109E2A7FE3F60033AEBC /* CLNumber.swift in Sources */,
 				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 				B1604D2D2A82A7C100C7B07D /* CachedResponseHandler.swift in Sources */,
