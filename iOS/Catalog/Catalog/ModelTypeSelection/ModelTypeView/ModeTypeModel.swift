@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ModelTypeModel {
+enum ModelTypeModel: Equatable {
 
   struct State: Equatable {
 
@@ -31,7 +31,8 @@ enum ModelTypeModel {
 }
 
 struct ModelTypeDetailState: Equatable {
-
+  var content: ModelTypeContent
+  var hmgData: HMGDataState?
 }
 
 struct OptionState: Equatable, Identifiable, Hashable {

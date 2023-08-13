@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct RpmData {
+struct RpmData: Equatable {
   var maxOutput: Int
   var output: Int
   var maxRpm: Int
   var minRpm: Int
 }
 
-struct HMGDataState {
+struct HMGDataState: Equatable {
   static func mock() -> Self {
     return HMGDataState(
       EngineOutput: RpmData(maxOutput: 202, output: 202, maxRpm: 3800, minRpm: 3800),
