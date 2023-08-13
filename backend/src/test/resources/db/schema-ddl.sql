@@ -53,7 +53,8 @@ CREATE TABLE `options`
     `name`        VARCHAR(255) NOT NULL,
     `image`       TEXT         NOT NULL,
     `description` TEXT         NULL,
-    `use_count`   FLOAT        NULL
+    `use_count`   FLOAT        NULL,
+    `category`	  VARCHAR(20)  NOT NULL
 );
 
 CREATE TABLE `powertrain`
@@ -72,9 +73,10 @@ CREATE TABLE `hashtag`
 
 CREATE TABLE `package`
 (
-    `id`    BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `name`  VARCHAR(255) NOT NULL,
-    `image` TEXT         NOT NULL
+    `id`       BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `name`     VARCHAR(255) NOT NULL,
+    `image`    TEXT         NOT NULL,
+    `category` VARCHAR(20)  NOT NULL
 );
 
 CREATE TABLE `quotation`
@@ -89,20 +91,20 @@ CREATE TABLE `quotation`
     `url`               TEXT     NULL
 );
 
-CREATE TABLE `category`
-(
-    `id`   BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `name` VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE `powertrain_spec`
+CREATE TABLE `powertrain_output`
 (
     `powertrain_id`  BIGINT NOT NULL,
-    `output_ps`      FLOAT  NULL,
-    `output_rpm`     INT    NULL,
-    `torque_kgfm`    FLOAT  NULL,
-    `torque_min_rpm` INT    NULL,
-    `torque_max_rpm` INT    NULL
+    `output`         FLOAT  NULL,
+    `min_rpm`        INT    NULL,
+    `max_rpm`        INT    NULL
+);
+
+CREATE TABLE `powertrain_torque`
+(
+    `powertrain_id`  BIGINT NOT NULL,
+    `torque`         FLOAT  NULL,
+    `min_rpm`        INT    NULL,
+    `max_rpm`        INT    NULL
 );
 
 CREATE TABLE `car_powertrain`
@@ -196,12 +198,6 @@ CREATE TABLE `options_quotation`
     `quotation_id` BIGINT NOT NULL
 );
 
-CREATE TABLE `options_category`
-(
-    `option_id`   BIGINT NOT NULL,
-    `category_id` BIGINT NOT NULL
-);
-
 CREATE TABLE `package_options`
 (
     `package_id` BIGINT NOT NULL,
@@ -218,10 +214,4 @@ CREATE TABLE `package_quotation`
 (
     `package_id`   BIGINT NOT NULL,
     `quotation_id` BIGINT NOT NULL
-);
-
-CREATE TABLE `package_category`
-(
-    `package_id`  BIGINT NOT NULL,
-    `category_id` BIGINT NOT NULL
 );
