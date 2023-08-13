@@ -8,15 +8,9 @@
 import Foundation
 
 protocol ModelTypeRepositoryProtocol {
-  
-  func fetch(vehicleId: Int) async throws -> [ModelTypeOption]
-  
-}
 
-final class ModelTypeRepository: ModelTypeRepositoryProtocol {
-  
-  func fetch(vehicleId: Int) async throws -> [ModelTypeOption] {
-    <#code#>
-  }
-  
+  func fetch(vehicleId: Int) async throws -> [ModelTypeOption]
+
+  func calculateFuelAndDisplacement(with powerTrainId: Int, andwith driverTrainId: Int) async throws -> ResultOfCalculationOfFuelAndDisplacement
+
 }

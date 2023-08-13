@@ -20,9 +20,12 @@ protocol ModelTypeSelectionContainerIntentType {
 
 final class ModelTypeSelectionContainerIntent: ObservableObject {
 
-  init(initialState: State) {
+  init(initialState: State, repository: ModelTypeRepositoryProtocol) {
     state = initialState
+    self.repository = repository
   }
+
+  private var repository: ModelTypeRepositoryProtocol
 
   typealias State = ModelTypeSelectionContainerModel.State
 
@@ -38,8 +41,13 @@ extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentTy
   func mutate(action: ModelTypeSelectionContainerModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onAppear:
-      return
+      Task {
+        let options = try await repository.fetch(vehicleId: state.selectedTrimId)
+        send(action: .modelTypeOptions(options: options))
+      }
     case .calculateFuelEfficiency:
+      return
+    case .modelTypeOptions(let options):
       return
     }
   }
