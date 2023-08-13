@@ -34,7 +34,7 @@ struct TrimDTO: Decodable {
 struct TrimPage {
   var name: String
   var description: String
-  var price: CLPrice
+  var price: CLNumber
   var imageURL: URL?
   var hmgData: [HMGDatum]
 }
@@ -48,7 +48,7 @@ extension TrimDTO {
   func toDomain() throws -> TrimPage {
     return TrimPage(name: name ?? "르블랑",
                     description: description ?? "",
-                    price: CLPrice(Int32(price ?? 0)),
+                    price: CLNumber(Int32(price ?? 0)),
                     imageURL: URL(string: images?[0] ?? ""),
                     hmgData: options?.map { $0.toDomain() } ?? [])
   }

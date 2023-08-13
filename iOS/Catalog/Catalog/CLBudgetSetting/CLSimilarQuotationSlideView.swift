@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CLSimilarQuotationSlideView: View {
 
-    let minimumBudget: CLPrice
-    let maximumBudget: CLPrice
+    let minimumBudget: CLNumber
+    let maximumBudget: CLNumber
 
-    @State var currentQuotationPrice: CLPrice
-    @State var similarQuotationPrice: CLPrice
+    @State var currentQuotationPrice: CLNumber
+    @State var similarQuotationPrice: CLNumber
 
     var body: some View {
         VStack {
@@ -21,9 +21,9 @@ struct CLSimilarQuotationSlideView: View {
             GeometryReader { gr in
                 let maxCoordinate: CGFloat = gr.size.width
                 let minCoordinate: CGFloat = 0
-                let scaleFactor = (maxCoordinate - minCoordinate) / CGFloat(maximumBudget.price - minimumBudget.price)
+                let scaleFactor = (maxCoordinate - minCoordinate) / CGFloat(maximumBudget.value - minimumBudget.value)
                 var currentCoordinate: CGFloat {
-                    return scaleFactor * CGFloat(currentQuotationPrice.price - minimumBudget.price)
+                    return scaleFactor * CGFloat(currentQuotationPrice.value - minimumBudget.value)
                 }
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 4)
@@ -31,25 +31,25 @@ struct CLSimilarQuotationSlideView: View {
                         .foregroundColor(Color.primary400)
                     HStack {
                         Image("blue_pincette")
-                            .offset(x: CGFloat(currentQuotationPrice.price - minimumBudget.price) * scaleFactor, y: -5)
+                            .offset(x: CGFloat(currentQuotationPrice.value - minimumBudget.value) * scaleFactor, y: -5)
                     }
                     HStack {
                         Image("white_pincette")
-                            .offset(x: CGFloat(similarQuotationPrice.price - minimumBudget.price) * scaleFactor, y: -5)
+                            .offset(x: CGFloat(similarQuotationPrice.value - minimumBudget.value) * scaleFactor, y: -5)
                     }
                 }
             }
             // MARK: - 최소 최대 가격 나타내기
             ZStack {
                 HStack {
-                    Text(minimumBudget.sliderDescription)
+                    Text(minimumBudget.conversionWonToTenThousandWon)
                         .catalogFont(type: .TextKRMedium10)
                         .foregroundColor(Color.primary200)
                     Spacer()
                 }
                 HStack {
                     Spacer()
-                    Text(maximumBudget.sliderDescription)
+                    Text(maximumBudget.conversionWonToTenThousandWon)
                         .catalogFont(type: .TextKRMedium10)
                         .foregroundColor(Color.primary200)
                 }

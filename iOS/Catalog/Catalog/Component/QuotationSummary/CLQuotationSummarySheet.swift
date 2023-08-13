@@ -98,7 +98,7 @@ struct CLQuotationSummarySheet: View {
             }
             CLQuotationPriceBar(showQuotationSummarySheet:
                                     $showQuotationSummarySheet,
-                                currentQuotationPrice: .constant(CLPrice(43560000)),
+                                currentQuotationPrice: .constant(CLNumber(43560000)),
                                 buttonText: "요약 닫기")
             CLButton(mainText: "견적 완료하기", height: 52, backgroundColor: Color.primary700) {
                 showQuotationSummarySheet = false

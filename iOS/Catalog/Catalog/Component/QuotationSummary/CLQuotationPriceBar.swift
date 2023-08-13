@@ -10,7 +10,7 @@ import SwiftUI
 struct CLQuotationPriceBar: View {
 
     @Binding var showQuotationSummarySheet: Bool
-    @Binding var currentQuotationPrice: CLPrice
+    @Binding var currentQuotationPrice: CLNumber
 
     var buttonText: String
     var body: some View {
@@ -39,7 +39,7 @@ struct CLQuotationPriceBar: View {
                         Text("현재 견적 가격")
                             .catalogFont(type: .TextKRRegular12)
                             .foregroundColor(Color.gray700)
-                        Text(currentQuotationPrice.spacingDescription)
+                        Text(currentQuotationPrice.wonWithSpacing)
                             .catalogFont(type: .HeadKRMedium20)
                             .foregroundColor(Color.primary0)
                     }
@@ -55,7 +55,7 @@ struct CLQuotationPriceBar: View {
 struct CLQuotationPriceBar_Previews: PreviewProvider {
     static var previews: some View {
         CLQuotationPriceBar(showQuotationSummarySheet: .constant(false),
-                            currentQuotationPrice: .constant(CLPrice(43560000)),
+                            currentQuotationPrice: .constant(CLNumber(43560000)),
                             buttonText: "견적 요약")
     }
 }

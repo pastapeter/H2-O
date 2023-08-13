@@ -21,12 +21,12 @@ struct CLBudgetRangeView: IntentBindingType {
 
     @SwiftUI.State var isFloatingExpanded: Bool = false
 
-    let minimunBudget: CLPrice
-    let maximumBudget: CLPrice
+    let minimunBudget: CLNumber
+    let maximumBudget: CLNumber
 }
 
 extension CLBudgetRangeView {
-    var budgetPriceBinding: Binding<CLPrice> {
+    var budgetPriceBinding: Binding<CLNumber> {
         .init(get: { state.budgetPrice },
               set: { intent.send(action: .isChangedBudget(newBudgetPrice: $0)) })
     }
@@ -78,17 +78,17 @@ extension CLBudgetRangeView: View {
                     switch status {
                         case .`default`, .complete:
                             CLSliderView(intent: intent,
-                                         minimumBudget: CLPrice(38500000),
-                                         maximumBudget: CLPrice(43000000),
+                                         minimumBudget: CLNumber(38500000),
+                                         maximumBudget: CLNumber(43000000),
                                          currentQuotationPrice: state.currentQuotationPrice,
                                          status: status,
                                          budgetPriceBinding: budgetPriceBinding,
                                          isExceedBudget: isExceedBudgetBinding)
                         case .similarQuotation:
-                            CLSimilarQuotationSlideView(minimumBudget: CLPrice(38500000),
-                                                        maximumBudget: CLPrice(43000000),
-                                                        currentQuotationPrice: CLPrice(39000000),
-                                                        similarQuotationPrice: CLPrice(41000000))
+                            CLSimilarQuotationSlideView(minimumBudget: CLNumber(38500000),
+                                                        maximumBudget: CLNumber(43000000),
+                                                        currentQuotationPrice: CLNumber(39000000),
+                                                        similarQuotationPrice: CLNumber(41000000))
                     }
                     // MARK: - 확인 버튼
                     if status == .complete {
@@ -118,8 +118,8 @@ extension CLBudgetRangeView {
             intent: intent as CLBudgetRangeIntentType,
             state: intent.state,
             modelChangePublisher: intent.objectWillChange),
-                          minimunBudget: CLPrice(38500000),
-                          maximumBudget: CLPrice(43000000))
+                          minimunBudget: CLNumber(38500000),
+                          maximumBudget: CLNumber(43000000))
     }
 }
 
@@ -127,7 +127,7 @@ extension CLBudgetRangeView {
     @available(iOS 15, *)
     var attributedString: AttributedString {
         let headString = ((status == .similarQuotation) ? "내 견적 " : "설정한 예산") + ((!state.isExceedBudget && (status == .default)) ? "까지 " : "보다 ")
-        let budgetString = state.budgetGap.description
+        let budgetString = state.budgetGap.won
         let tailString = (state.isExceedBudget ? "더 들었어요" : (status == .default) ? "남았어요" : (status == .complete) ? "아꼈어요" : "비싸요")
         var text = AttributedString(headString + budgetString + " " + tailString + ".")
         guard let range = text.range(of: budgetString ) else { return "" }
@@ -141,7 +141,7 @@ extension CLBudgetRangeView {
 struct CLBudgetRangeView_Previews: PreviewProvider {
     static var previews: some View {
         CLBudgetRangeView.build(
-            intent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: CLPrice(40000000), budgetPrice: CLPrice(40750000)))
+            intent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: CLNumber(40000000), budgetPrice: CLNumber(40750000)))
         )
     }
 }
