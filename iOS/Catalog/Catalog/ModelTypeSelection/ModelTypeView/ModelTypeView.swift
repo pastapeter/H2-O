@@ -38,6 +38,7 @@ struct ModelTypeView: View {
           ModelContentView(state: .mock())
         }
       }
+      .padding(.horizontal, 16)
     }
 
   @ViewBuilder

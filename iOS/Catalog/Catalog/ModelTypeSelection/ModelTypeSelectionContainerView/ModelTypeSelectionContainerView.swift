@@ -15,12 +15,16 @@ struct ModelTypeSelectionContainerView: View {
           LazyVStack(alignment: .leading) {
             Text("모델타입을 선택해주세요")
               .catalogFont(type: .HeadKRMedium18)
+              .padding(.horizontal, 16)
             ModelTypeView()
             ModelTypeView()
             ModelTypeView()
             ModelTypeView()
+            Spacer().frame(height: 38)
+            HMGDataBannerComponent {
+              FuelEfficiencyAverageBannerView()
+            }
           }
-          .padding(.horizontal, 16)
         }
       }
       .frame(maxWidth: .infinity)
