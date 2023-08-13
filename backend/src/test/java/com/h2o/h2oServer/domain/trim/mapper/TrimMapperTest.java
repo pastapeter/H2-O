@@ -1,6 +1,7 @@
 package com.h2o.h2oServer.domain.trim.mapper;
 
 import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
+import com.h2o.h2oServer.domain.trim.entity.InternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
@@ -151,6 +152,41 @@ class TrimMapperTest {
         softly.assertThat(actualExternalColorEntities).as("trimId에 해당하는 externalColorEntity 객체가 모두 매핑되었는지 확인")
                 .contains(expectedExternalColorEntity1)
                 .contains(expectedExternalColorEntity2);
+        softly.assertAll();
+    }
+
+    @Test
+    @DisplayName("존재하는 trimId에 대한 내부 색상 요청에 대해서 InternalColorEntity List를 반환한다. ")
+    @Sql("classpath:db/internal-color-data.sql")
+    void findInternalColor() {
+        //given
+        Long trimId = 1L;
+        InternalColorEntity expectEntity1 = InternalColorEntity.builder()
+                .id(1L)
+                .choiceRatio(0.3f)
+                .price(2000)
+                .fabricImage("fabric_image_url_1")
+                .internalImage("internal_image_url_1")
+                .name("Red")
+                .build();
+        InternalColorEntity expectEntity2 = InternalColorEntity.builder()
+                .id(2L)
+                .choiceRatio(0.2f)
+                .price(1500)
+                .fabricImage("fabric_image_url_2")
+                .internalImage("internal_image_url_2")
+                .name("Blue")
+                .build();
+
+        //when
+        List<InternalColorEntity> actualEntities = trimMapper.findInternalColor(trimId);
+
+        //then
+        softly.assertThat(actualEntities).as("유효한 데이터가 매핑되었는지 확인").isNotEmpty();
+        softly.assertThat(actualEntities).as("유효한 데이터만 매핑되었는지 확인").hasSize(2);
+        softly.assertThat(actualEntities).as("trimId에 해당하는 InternalColorEntity 객체가 모두 매핑되었는지 확인")
+                .contains(expectEntity1)
+                .contains(expectEntity2);
         softly.assertAll();
     }
 }

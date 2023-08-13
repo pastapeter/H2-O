@@ -48,4 +48,12 @@
         where trim_id = #{id}
         order by choice_ratio desc
     </select>
+
+    <select id="findInternalColor" resultType="InternalColorEntity">
+        select id, name, fabric_image, internal_image, price, choice_ratio
+        from internal_color
+                 join trims_internal_color on internal_color.id = trims_internal_color.internal_color_id
+        where trim_id = #{id}
+            order by choice_ratio desc, name desc
+    </select>
 </mapper>

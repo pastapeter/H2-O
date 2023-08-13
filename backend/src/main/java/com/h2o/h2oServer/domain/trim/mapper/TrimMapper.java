@@ -1,9 +1,6 @@
 package com.h2o.h2oServer.domain.trim.mapper;
 
-import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
-import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
-import com.h2o.h2oServer.domain.trim.entity.OptionStatisticsEntity;
-import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
+import com.h2o.h2oServer.domain.trim.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,6 +18,8 @@ public interface TrimMapper {
     List<ImageEntity> findImages(Long id);
 
     List<OptionStatisticsEntity> findOptionStatistics(Long id);
+
+    List<InternalColorEntity> findInternalColor(Long id);
 
     List<ExternalColorEntity> findExternalColor(Long id);
 }

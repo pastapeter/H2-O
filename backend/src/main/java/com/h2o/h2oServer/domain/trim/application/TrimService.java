@@ -1,9 +1,11 @@
 package com.h2o.h2oServer.domain.trim.application;
 
+import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.TrimDto;
 import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
+import com.h2o.h2oServer.domain.trim.entity.InternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.OptionStatisticsEntity;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
 import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
@@ -53,5 +55,13 @@ public class TrimService {
         List<ImageEntity> imageEntities = externalColorMapper.findImages(externalColorEntityId);
 
         return ExternalColorDto.of(externalColorEntity, imageEntities);
+    }
+
+    public List<InternalColorDto> findInternalColorInformation(Long trimId) {
+        List<InternalColorEntity> internalColorEntities = trimMapper.findInternalColor(trimId);
+
+        return internalColorEntities.stream()
+                .map(InternalColorDto::of)
+                .collect(Collectors.toList());
     }
 }

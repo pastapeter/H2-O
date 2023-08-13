@@ -1,6 +1,7 @@
 package com.h2o.h2oServer.domain.trim.application;
 
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
+import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.TrimDto;
 import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
@@ -8,6 +9,7 @@ import com.h2o.h2oServer.domain.trim.entity.OptionStatisticsEntity;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
 import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
 import com.h2o.h2oServer.domain.trim.mapper.TrimMapper;
+import com.h2o.h2oServer.domain.trim.entity.InternalColorEntity;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
@@ -69,7 +71,7 @@ class TrimServiceTest {
         //when
         List<TrimDto> actualTrimDtos = trimService.findTrimInformation(vehicleId);
 
-        //then
+        //thenㅊ
         softly.assertThat(actualTrimDtos).as("null이 아니다.").isNotNull();
         softly.assertThat(actualTrimDtos).as("TrimDto를 포함한다.").isEmpty();
         softly.assertAll();
@@ -170,6 +172,48 @@ class TrimServiceTest {
                         .name("Trim B")
                         .description("Description of Trim b")
                         .price(70000)
+                        .build()
+        );
+    }
+
+    @Test
+    @DisplayName("trimId에 해당하는 internalColor를 Dto로 포매팅해서 반환한다.")
+    void findInternalColorInformation() {
+        //given
+        Long trimId = 1L;
+        when(trimMapper.findInternalColor(trimId)).thenReturn(generateInernalColorEntityList());
+
+        //when
+        List<InternalColorDto> actualInternalColorDtos = trimService.findInternalColorInformation(trimId);
+
+        //then
+        softly.assertThat(actualInternalColorDtos).as("null이 아니다.")
+                .isNotNull();
+        softly.assertThat(actualInternalColorDtos).as("입력받은 entity의 개수만큼 dto를 담고 있다.")
+                .hasSize(2);
+        softly.assertThat(actualInternalColorDtos.get(0).getName()).as("입력받은 entity의 정보를 가지고 있다.")
+                .isEqualTo("Red");
+        softly.assertThat(actualInternalColorDtos.get(1).getName()).as("입력받은 entity의 정보를 가지고 있다.")
+                .isEqualTo("Blue");
+    }
+
+    private List<InternalColorEntity> generateInernalColorEntityList() {
+        return List.of(
+                InternalColorEntity.builder()
+                        .id(1L)
+                        .choiceRatio(0.3f)
+                        .price(2000)
+                        .fabricImage("fabric_image_url_1")
+                        .internalImage("internal_image_url_1")
+                        .name("Red")
+                        .build(),
+                InternalColorEntity.builder()
+                        .id(2L)
+                        .choiceRatio(0.2f)
+                        .price(1500)
+                        .fabricImage("fabric_image_url_2")
+                        .internalImage("internal_image_url_2")
+                        .name("Blue")
                         .build()
         );
     }
