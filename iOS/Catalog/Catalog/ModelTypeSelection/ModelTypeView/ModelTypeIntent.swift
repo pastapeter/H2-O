@@ -9,9 +9,13 @@ import Foundation
 import Combine
 
 protocol ModelTypeIntentType {
+
   var state: ModelTypeModel.State { get }
+
   func send(action: ModelTypeModel.ViewAction, viewEffect: (() -> Void)?)
+
   func send(action: ModelTypeModel.ViewAction)
+
 }
 
 final class ModelTypeIntent: ObservableObject {
@@ -21,9 +25,13 @@ final class ModelTypeIntent: ObservableObject {
   }
 
   typealias State = ModelTypeModel.State
+
   typealias ViewAction = ModelTypeModel.ViewAction
+
   @Published var state: State = .init()
+
   var cancellable: Set<AnyCancellable> = []
+
 }
 
 extension ModelTypeIntent: ModelTypeIntentType, IntentType {

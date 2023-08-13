@@ -17,7 +17,8 @@ struct ModelTypeView: IntentBindingType {
 extension ModelTypeView {
 
   private var isModalPresenting: Binding<Bool> {
-    .init(get: { state.isModalPresenting && !state.modelTypeDetailState.isEmpty }, set: { intent.send(action: .onTapDetailButton(isPresenting: $0))})
+    .init(get: { state.isModalPresenting && !state.modelTypeDetailState.isEmpty },
+          set: { intent.send(action: .onTapDetailButton(isPresenting: $0)) })
   }
 
 }
@@ -45,9 +46,11 @@ extension ModelTypeView: View {
     }
     .CLDialogFullScreenCover(show: isModalPresenting) {
 
-      ModalPopUpComponent(state: state.modelTypeDetailState[0].content, submitAction: { }) {
+      ModalPopUpComponent(state: state.modelTypeDetailState[0].content, submitAction: {
+        // TODO 가격 추가하기
+      }, content: {
         ModelContentView(state: state.modelTypeDetailState[0])
-      }
+      })
     }
     .padding(.horizontal, 16)
   }

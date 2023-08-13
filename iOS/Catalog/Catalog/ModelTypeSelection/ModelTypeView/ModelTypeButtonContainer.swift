@@ -28,6 +28,6 @@ extension ModelTypeButtonContainer {
 
 struct ModelTypeButtonContainer_Previews: PreviewProvider {
     static var previews: some View {
-      ModelTypeButtonContainer(intent: ModelTypeIntent.init(initialState: .init()), options: [])
+      ModelTypeButtonContainer(intent: ModelTypeIntent(initialState: ModelTypeIntent.State()), options: [])
     }
 }
