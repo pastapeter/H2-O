@@ -39,6 +39,7 @@ enum ModelTypeSelectionContainerModel {
                       price: .init(0)
                      ),
                 .init(id: .init(),
+                      isSelected: false,
                       frequency: .random(in: 0..<100),
                       title: "4WD",
                       price: .init(237000)

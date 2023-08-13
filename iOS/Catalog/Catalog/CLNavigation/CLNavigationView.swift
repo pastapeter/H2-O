@@ -36,7 +36,7 @@ extension CLNavigationView: View {
       ZStack {
         TabView(selection: currentPageBinding) {
           MockView(image: mockImageName[0]).tag(0)
-          ModelTypeSelectionContainerView().tag(1)
+          ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock())).tag(1)
           MockView(image: mockImageName[2]).tag(2)
           MockView(image: mockImageName[3]).tag(3)
           MockView(image: mockImageName[4]).tag(4)
