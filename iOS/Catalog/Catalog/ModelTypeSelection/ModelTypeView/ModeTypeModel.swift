@@ -9,7 +9,11 @@ import Foundation
 
 enum ModelTypeModel: Equatable {
 
-  struct State: Equatable {
+  struct State: Equatable, Hashable {
+
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(title)
+    }
 
     var title: String = "파워트레인"
     var imageURL: URL?

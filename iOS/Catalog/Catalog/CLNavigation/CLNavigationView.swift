@@ -41,7 +41,8 @@ extension CLNavigationView: View {
             selectedTrim: nil,
             vehicleId: 123),
             repository: TrimMockRepository()))
-          ModelTypeSelectionContainerView().tag(1)
+          ModelTypeSelectionContainerView().tag(0)
+          ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock())).tag(1)
           MockView(image: mockImageName[2]).tag(2)
           MockView(image: mockImageName[3]).tag(3)
           MockView(image: mockImageName[4]).tag(4)
