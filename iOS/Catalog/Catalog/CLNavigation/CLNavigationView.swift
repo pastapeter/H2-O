@@ -44,7 +44,7 @@ extension CLNavigationView: View {
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         CLBudgetRangeView.build(
-              intent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: CLPrice(40000000), budgetPrice: CLPrice(40750000))))
+              intent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: CLNumber(40000000), budgetPrice: CLNumber(40750000))))
       }
 
     }
