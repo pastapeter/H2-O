@@ -7,45 +7,57 @@
 
 import SwiftUI
 
-struct ModelTypeView: View {
+struct ModelTypeView: IntentBindingType {
 
-  var title: String = "파워트레인"
-  @State var isModalPresented = false
+  @StateObject var container: Container<ModelTypeIntentType, ModelTypeModel.State>
+  var intent: ModelTypeIntentType { container.intent }
+  var state: ModelTypeModel.State { intent.state }
   @State var uuid = UUID()
   @Namespace private var animation
+}
 
-    var body: some View {
-      VStack(alignment: .leading) {
-        Text(title)
-          .catalogFont(type: .HeadKRMedium18)
-        Spacer().frame(height: 8)
-        ZStack(alignment: .topTrailing) {
-          makeDetailButton()
-          VStack {
-            Spacer().frame(height: 12)
-            Image("powertrain")
-            Spacer().frame(height: 8)
-            ModelTypeButtonContainer()
-            .padding(.horizontal, 4)
-            .padding(.bottom, 4)
-          }
+extension ModelTypeView {
+
+  private var isModalPresenting: Binding<Bool> {
+    .init(get: { state.isModalPresenting }, set: { intent.send(action: .onTapDetailButton(isPresenting: $0))})
+  }
+
+}
+
+extension ModelTypeView: View {
+
+  var body: some View {
+    VStack(alignment: .leading) {
+      Text(state.title)
+        .catalogFont(type: .HeadKRMedium18)
+      Spacer().frame(height: 8)
+      ZStack(alignment: .topTrailing) {
+        makeDetailButton()
+        VStack {
+          Spacer().frame(height: 12)
+          Image("powertrain")
+          Spacer().frame(height: 8)
+          ModelTypeButtonContainer(intent: intent, options: state.optionStates)
+          .padding(.horizontal, 4)
+          .padding(.bottom, 4)
         }
-        .background(Color.gray50)
-        .cornerRadius(8)
       }
-      .CLDialogFullScreenCover(show: $isModalPresented) {
-        ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
-          ModelContentView(state: .mock())
-        }
-      }
-      .padding(.horizontal, 16)
+      .background(Color.gray50)
+      .cornerRadius(8)
     }
+    .CLDialogFullScreenCover(show: isModalPresenting) {
+      ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
+        ModelContentView(state: .mock())
+      }
+    }
+    .padding(.horizontal, 16)
+  }
 
   @ViewBuilder
   func makeDetailButton() -> some View {
     ZStack {
       Button {
-        isModalPresented.toggle()
+        intent.send(action: .onTapDetailButton(isPresenting: !state.isModalPresenting))
       } label: {
         Text("HMG Data")
           .catalogFont(type: .HeadENBold10)
@@ -53,10 +65,18 @@ struct ModelTypeView: View {
       .buttonStyle(HMGButtonArrowStyle())
     }
   }
+
+}
+
+extension ModelTypeView {
+  @ViewBuilder
+  static func build(intent: ModelTypeIntent) -> some View {
+    ModelTypeView(container: .init(intent: intent as ModelTypeIntent, state: intent.state, modelChangePublisher: intent.objectWillChange))
+  }
 }
 
 struct ModelTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        ModelTypeView()
+      return ModelTypeView.build(intent: .init(initialState: .init()))
     }
 }

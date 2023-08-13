@@ -8,23 +8,26 @@
 import SwiftUI
 
 struct ModelTypeButtonContainer: View {
-
-  @State var isLeftChoice = true
-  @State var isRightChoice = false
-
+  var intent: ModelTypeIntentType
+  var options: [OptionState]
 }
 
 extension ModelTypeButtonContainer {
   var body: some View {
     HStack {
-      ModelTypeButtonView(isSelected: $isLeftChoice)
-      ModelTypeButtonView(isSelected: $isRightChoice)
+      ForEach(options, id: \.self) { option in
+        ModelTypeButtonView(state: option, action: { id in
+          if let index = options.firstIndex(where: { $0.id == id }) {
+            intent.send(action: .onTapOptions(index: index))
+          }
+        })
+      }
     }
   }
 }
 
 struct ModelTypeButtonContainer_Previews: PreviewProvider {
     static var previews: some View {
-        ModelTypeButtonContainer()
+      ModelTypeButtonContainer(intent: ModelTypeIntent.init(initialState: .init()), options: [])
     }
 }
