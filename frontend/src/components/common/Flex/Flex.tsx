@@ -2,8 +2,9 @@ import type { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 import type { BoxStyle, BoxStyleProperties } from '@/types/boxStyle';
 import type { FlexStyle, FlexStyleProperties } from '@/types/flexStyle';
+import type { PositionStyle, PositionStyleProperties } from '@/types/positionStyle';
 
-type Props = FlexStyle & BoxStyle & HTMLAttributes<HTMLDivElement>;
+type Props = FlexStyle & BoxStyle & PositionStyle & HTMLAttributes<HTMLDivElement>;
 
 const componentStyle = ({
   flexDirection,
@@ -13,6 +14,11 @@ const componentStyle = ({
   flexWrap,
   gap,
   position,
+  top,
+  bottom,
+  left,
+  right,
+  backgroundColor,
   width,
   height,
   marginBottom,
@@ -23,7 +29,7 @@ const componentStyle = ({
   paddingLeft,
   paddingRight,
   paddingTop,
-}: Pick<Props, FlexStyleProperties | BoxStyleProperties>) => {
+}: Pick<Props, FlexStyleProperties | BoxStyleProperties | PositionStyleProperties>) => {
   return {
     display: 'flex',
     flexDirection,
@@ -33,6 +39,11 @@ const componentStyle = ({
     flexWrap,
     gap,
     position,
+    top,
+    bottom,
+    left,
+    right,
+    backgroundColor,
     width,
     height,
     marginBottom,

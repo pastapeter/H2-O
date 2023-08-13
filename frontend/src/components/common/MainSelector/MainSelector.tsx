@@ -2,14 +2,14 @@ import type { HTMLAttributes, PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  title: string;
+  title?: string;
 }
 
 function MainSelector({ children, title }: PropsWithChildren<Props>) {
   return (
     <MainSelectorContainer>
       <div>
-        <h2>{title}</h2>
+        {title && <h2 className='title'>{title}</h2>}
         {children}
       </div>
     </MainSelectorContainer>
@@ -32,9 +32,9 @@ const MainSelectorContainer = styled.div`
     margin: 0 auto;
   }
 
-  h2 {
+  .title {
     ${({ theme }) => theme.typography.HeadKRMedium16}
     color: ${({ theme }) => theme.colors.gray900};
-    margin-bottom: 12px;
+    padding-bottom: 12px;
   }
 `;

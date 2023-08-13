@@ -7,6 +7,7 @@ export interface FlexStyle {
   flexWrap?: CSSProperties['flexWrap'];
   alignContent?: CSSProperties['alignContent'];
   gap?: CSSProperties['gap'];
+  flex?: CSSProperties['flex'];
 }
 
 export type FlexStyleProperties = keyof FlexStyle;

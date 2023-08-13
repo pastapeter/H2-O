@@ -1,18 +1,14 @@
-import { ChangeEventHandler, Dispatch, HTMLAttributes, SetStateAction, useId } from 'react';
+import { ChangeEventHandler, HTMLAttributes, useId } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   isChecked: boolean;
   size: 'small' | 'large';
-  setIsChecked: Dispatch<SetStateAction<boolean>>;
+  handleChangeToggle: ChangeEventHandler<HTMLInputElement>;
 }
 
-function Toggle({ isChecked, size, setIsChecked, ...restProps }: Props) {
-  const handleOnChange: ChangeEventHandler<HTMLInputElement> = () => {
-    setIsChecked((prev) => !prev);
-  };
-
+function Toggle({ isChecked, size, handleChangeToggle, ...restProps }: Props) {
   const id = useId();
 
   return (
@@ -20,7 +16,7 @@ function Toggle({ isChecked, size, setIsChecked, ...restProps }: Props) {
       <input
         type='checkbox'
         id={id}
-        onChange={handleOnChange}
+        onChange={handleChangeToggle}
         css={css`
           display: none;
         `}

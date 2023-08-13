@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react';
+import { ChangeEventHandler, MouseEventHandler, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { CTAButton, Flex, Icon, Popup, Toggle, Typography } from '@/components/common';
@@ -37,6 +37,9 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
     handleClickCloseButton(e);
     setCurrentSlide(COMPLETE_TAB_IDX);
   };
+  const handleChangeToggle: ChangeEventHandler<HTMLInputElement> = () => {
+    setIsExterior((prev) => !prev);
+  };
 
   const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor } = selectionInfo;
 
@@ -51,8 +54,8 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
         </HeaderContainer>
         <MainContainer>
           <LeftContainer>
-            {isExterior ? <StyleImg src={exteriorColor.image} /> : <StyleImg src={interiorColor.image} />}
-            <Toggle isChecked={isExterior} size='small' setIsChecked={setIsExterior} />
+            {isExterior ? <StyleImg src={exteriorColor.image} />  :  <StyleImg src={interiorColor.image} />}
+            <Toggle isChecked={isExterior} size='small' handleChangeToggle={handleChangeToggle} />
           </LeftContainer>
           <RightContainer>
             <OptionSummary type='모델' name='팰리세이드' price={0} />

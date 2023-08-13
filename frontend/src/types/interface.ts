@@ -57,11 +57,13 @@ export interface DriveTrain {
   image: string;
 }
 
+
 export interface ModelTypeResponse {
   powerTrains: PowerTrain[];
   bodyTypes: BodyType[];
   driveTrains: DriveTrain[];
 }
+
 export interface ExteriorColorResponse {
   id: number;
   name: string;
@@ -70,6 +72,7 @@ export interface ExteriorColorResponse {
   hexCode: string;
   images: string[];
 }
+
 export interface InteriorColorResponse {
   id: number;
   name: string;
@@ -77,4 +80,40 @@ export interface InteriorColorResponse {
   price: number;
   fabricImage: string;
   bannerImage: string;
+}
+
+export interface DefaultOptionResponse {
+  id: number;
+  category: string;
+  name: string;
+  image: string;
+  hashTags: string[];
+  containsHmgData: boolean;
+}
+
+export interface ExtraOptionResponse extends DefaultOptionResponse {
+  isPackage: boolean;
+  choiceRatio: number;
+  price: number;
+}
+
+export interface DetailedOptionResponse {
+  name: string;
+  category: string;
+  image: string;
+  hashTags?: string[];
+  description: string;
+  hmgData: {
+    overHalf: boolean;
+    choiceCount: number;
+    useCount: number;
+  };
+  price?: number;
+}
+
+export interface DetailedPackageOptionResponse {
+  name: string;
+  category: string;
+  hashTags: string[];
+  components: DetailedOptionResponse[];
 }

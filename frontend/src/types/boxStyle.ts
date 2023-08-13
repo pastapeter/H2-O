@@ -12,10 +12,10 @@ export interface SpaceStyle {
 }
 
 export interface BoxStyle extends SpaceStyle {
-  position?: CSSProperties['position'];
   display?: CSSProperties['display'];
   width?: CSSProperties['width'];
   height?: CSSProperties['height'];
+  backgroundColor?: CSSProperties['backgroundColor'];
 }
 
 export type SpaceStyleProperties = keyof SpaceStyle;

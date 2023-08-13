@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 import styled from '@emotion/styled';
 import { CTAButton, Flex, PriceSummaryButton, SummaryPopup, Typography } from '@/components/common';
 import { useSafeContext, useToggle } from '@/hooks';
@@ -6,17 +6,36 @@ import { toSeparatedNumberFormat } from '@/utils/number';
 import { SelectionContext } from '@/providers/SelectionProvider';
 import { SlideContext } from '@/providers/SlideProvider';
 
-function Footer({ children }: PropsWithChildren) {
+
+interface Props {
+  isSticky?: boolean;
+}
+function Footer({ children, isSticky = false }: PropsWithChildren<Props>) {
   const { totalPrice } = useSafeContext(SelectionContext);
   const { setCurrentSlide } = useSafeContext(SlideContext);
   const { status: isPopupOpen, setOff: handleClosePopup, setOn: handleOpenPopup } = useToggle(false);
+
 
   const handleClickNext = () => {
     setCurrentSlide((prev) => prev + 1);
   };
 
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+  const closePopup = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <FooterContainer as='footer' justifyContent='flex-end' height={120} width='100%'>
+    <FooterContainer
+      as='footer'
+      justifyContent='flex-end'
+      height={120}
+      width='100%'
+      paddingTop={20}
+      isSticky={isSticky}
+    >
       <ContentContainer justifyContent={children ? 'space-between' : 'flex-end'}>
         {children}
         <Flex flexDirection='column' alignItems='flex-end' width='fit-content'>
@@ -41,9 +60,10 @@ function Footer({ children }: PropsWithChildren) {
 
 export default Footer;
 
-const FooterContainer = styled(Flex)`
-  position: fixed;
+const FooterContainer = styled(Flex)<Pick<Props, 'isSticky'>>`
+  position: ${({ isSticky }) => (isSticky ? 'sticky' : 'fixed')};
   bottom: 0;
+  background-color: ${({ theme }) => theme.colors.footerBg};
 `;
 
 const ContentContainer = styled(Flex)`

@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { replaceToRealNewLine } from '@/utils/string';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  title: string;
-  subTitle: string;
+  title?: string;
+  subTitle?: string;
   description?: string;
   isTitleColorWhite?: boolean;
   backgroundColor?: string;
@@ -22,11 +22,13 @@ function Banner({
   return (
     <BannerContainer backgroundColor={backgroundColor} {...restProps}>
       <div>
-        <TitleContainer isTitleColorWhite={isTitleColorWhite}>
-          <h3>{subTitle}</h3>
-          <h2>{title}</h2>
-          {description && <Description>{replaceToRealNewLine(description)}</Description>}
-        </TitleContainer>
+        {title && (
+          <TitleContainer isTitleColorWhite={isTitleColorWhite}>
+            <h3>{subTitle}</h3>
+            <h2>{title}</h2>
+            {description && <Description>{replaceToRealNewLine(description)}</Description>}
+          </TitleContainer>
+        )}
         {children}
       </div>
     </BannerContainer>

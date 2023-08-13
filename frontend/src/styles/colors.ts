@@ -38,6 +38,8 @@ export const COLORS = {
   sand2: '#E4DCD3',
   lightSand: '#F6F3F2',
   priceSummaryHead: '#343434',
+  hashTagBg: '#75757580',
+  footerBg: '#FFFFFFE5',
 
   // dimmed background
   dimmed: '#1F1F1FB3',

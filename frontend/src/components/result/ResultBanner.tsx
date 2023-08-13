@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import styled from '@emotion/styled';
 import { Flex, Typography, PriceStaticBar as _PriceStaticBar, Toggle as _Toggle } from '@/components/common';
 
@@ -10,6 +10,9 @@ interface Props {
 
 function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
   const [isExterior, setIsExterior] = useState(true);
+  const handleChangeToggle: ChangeEventHandler<HTMLInputElement> = () => {
+    setIsExterior((prev) => !prev);
+  };
 
   const carImage = isExterior ? exteriorImage : interiorImage;
   const carImageAlt = isExterior ? '차 외장 이미지' : '차 내장 이미지';
@@ -22,7 +25,7 @@ function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
       {/* TODO: 생각보다 못생겨서 보류, 민주랑 얘기해봐야함 */}
       <CarImage src={carImage} alt={carImageAlt} />
       <PriceStaticBar isComplete={true} nowPrice={4100} />
-      <Toggle size='large' isChecked={isExterior} setIsChecked={setIsExterior} />
+      <Toggle size='large' isChecked={isExterior} handleChangeToggle={handleChangeToggle} />
     </Container>
   );
 }

@@ -1,6 +1,7 @@
 import ExteriorPage from './ExteriorPage';
 import InteriorPage from './InteriorPage';
 import ModelPage from './ModelPage';
+import OptionPage from './OptionPage';
 import ResultPage from './ResultPage';
 import TrimPage from './TrimPage';
 import { PageCarousel as Carousel } from '@/components/carousel';
@@ -24,7 +25,9 @@ function Pages() {
       <Carousel.Slide>
         <InteriorPage />
       </Carousel.Slide>
-      <Carousel.Slide>5</Carousel.Slide>
+      <Carousel.Slide>
+        <OptionPage />
+      </Carousel.Slide>
       <Carousel.Slide>
         <ResultPage />
       </Carousel.Slide>
