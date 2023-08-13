@@ -16,7 +16,7 @@ struct EntryPointView: View {
                 CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0)))
                 CLQuotationPriceBar(showQuotationSummarySheet:
                                         $showQuotationSummarySheet,
-                                    currentQuotationPrice: .constant(CLPrice(43560000)), buttonText: "견적 요약")
+                                    currentQuotationPrice: .constant(CLNumber(43560000)), buttonText: "견적 요약")
                 CLDualChoiceButton(leftText: "이전", rightText: "다음", height: 52, leftAction: { print("이전 버튼 클릭") }, rightAction: { print("다음 버튼 클릭") })
             }
             .sheet(isPresented: $showQuotationSummarySheet) {

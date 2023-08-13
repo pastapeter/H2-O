@@ -5,6 +5,13 @@
 //  Created by Jung peter on 8/1/23.
 //
 
+/*
+ Family: Hyundai Sans Head Font names: ["HyundaiSansHead", "HyundaiSansHeadMedium", "HyundaiSansHead-Bold"]
+ Family: Hyundai Sans Head KR OTF Font names: ["HyundaiSansHeadKROTFRegular", "HyundaiSansHeadKROTFMedium", "HyundaiSansHeadKROTFBold"]
+ Family: Hyundai Sans Text Font names: ["HyundaiSansText", "HyundaiSansText-Medium", "HyundaiSansText-Bold"]
+ Family: Hyundai Sans Text KR OTF Font names: ["HyundaiSansTextKROTFRegular", "HyundaiSansTextKROTFMedium", "HyundaiSansTextKROTFBold"]
+ */
+
 import SwiftUI
 
 enum CatalogTextType {
@@ -15,6 +22,8 @@ enum CatalogTextType {
   case HeadENMedium20
   case HeadENMedium10
   case HeadENBold10
+
+  case HeadENRegular28
 
   case TextENMedium18
   case TextENMedium16
@@ -139,6 +148,8 @@ extension CatalogTextType {
       return -0.3
     case .HeadENMedium10:
       return -0.1
+    case .HeadENRegular28:
+      return -0.1
     }
   }
 }
@@ -225,7 +236,9 @@ extension CatalogTextType {
     case .TextKRRegular10:
       return UIFont(name: "HyundaiSansTextKROTFRegular", size: 10)!
     case .HeadENMedium10:
-      return UIFont(name: "HyundaiSansHead-Medium", size: 10)!
+      return UIFont(name: "HyundaiSansHeadMedium", size: 10)!
+    case .HeadENRegular28:
+      return UIFont(name: "HyundaiSansHead", size: 28)!
     }
   }
 }
@@ -313,6 +326,8 @@ extension CatalogTextType {
       return 18
     case .TextKRRegular10:
       return 18
+    case .HeadENRegular28:
+      return 35
     }
   }
 }

@@ -10,22 +10,22 @@ import Foundation
 enum CLBudgetRangeModel {
 
     struct State: Equatable {
-        var currentQuotationPrice: CLPrice
-        var budgetPrice: CLPrice
+        var currentQuotationPrice: CLNumber
+        var budgetPrice: CLNumber
         var isExceedBudget: Bool
-        var budgetGap: CLPrice
+        var budgetGap: CLNumber
 
-        init(currentQuotationPrice: CLPrice, budgetPrice: CLPrice) {
+        init(currentQuotationPrice: CLNumber, budgetPrice: CLNumber) {
             self.currentQuotationPrice = currentQuotationPrice
             self.budgetPrice = budgetPrice
             self.isExceedBudget = (currentQuotationPrice > budgetPrice)
-            self.budgetGap = CLPrice(abs(currentQuotationPrice.price - budgetPrice.price))
+            self.budgetGap = CLNumber(abs(currentQuotationPrice.value - budgetPrice.value))
         }
     }
 
     enum ViewAction: Equatable {
-        case isChangedBudget(newBudgetPrice: CLPrice)
-        case isChangedQuotationPrice(newQuotationPrice: CLPrice)
+        case isChangedBudget(newBudgetPrice: CLNumber)
+        case isChangedQuotationPrice(newQuotationPrice: CLNumber)
         case isChangedExceedBudget
         case isChangedBudgetGap
     }

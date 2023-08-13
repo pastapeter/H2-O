@@ -11,6 +11,8 @@
 		B1084BE72A87ACDD00AE1758 /* ModelTypeButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */; };
 		B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BEA2A87DF2B00AE1758 /* BlurredFullScreenCover.swift */; };
 		B1084BEE2A87E5A800AE1758 /* CLDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BED2A87E5A800AE1758 /* CLDialog.swift */; };
+		B1084BF12A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */; };
+		B1084BF32A88792200AE1758 /* HMGDataBannerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */; };
 		B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0AF2A7920A800F540CB /* CatalogApp.swift */; };
 		B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0B12A7920A800F540CB /* EntryPointView.swift */; };
 		B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0B32A7920A900F540CB /* Assets.xcassets */; };
@@ -100,7 +102,7 @@
 		ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */; };
 		ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */; };
 		ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */; };
-		ED64109E2A7FE3F60033AEBC /* CLPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64109D2A7FE3F60033AEBC /* CLPrice.swift */; };
+		ED64109E2A7FE3F60033AEBC /* CLNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64109D2A7FE3F60033AEBC /* CLNumber.swift */; };
 		EDA3CDD32A811CA80001BB9C /* CLSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */; };
 		EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */; };
 		EDA3CDD72A8281B10001BB9C /* CLSimilarQuotationSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */; };
@@ -133,6 +135,8 @@
 		B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonContainer.swift; sourceTree = "<group>"; };
 		B1084BEA2A87DF2B00AE1758 /* BlurredFullScreenCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredFullScreenCover.swift; sourceTree = "<group>"; };
 		B1084BED2A87E5A800AE1758 /* CLDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDialog.swift; sourceTree = "<group>"; };
+		B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyAverageBannerView.swift; sourceTree = "<group>"; };
+		B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataBannerComponent.swift; sourceTree = "<group>"; };
 		B155C0AC2A7920A800F540CB /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B155C0AF2A7920A800F540CB /* CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogApp.swift; sourceTree = "<group>"; };
 		B155C0B12A7920A800F540CB /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
@@ -227,7 +231,7 @@
 		ED6410972A7FDE740033AEBC /* CLBudgetRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeView.swift; sourceTree = "<group>"; };
 		ED6410992A7FE1730033AEBC /* CLBudgetRangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeModel.swift; sourceTree = "<group>"; };
 		ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLBudgetRangeIntent.swift; sourceTree = "<group>"; };
-		ED64109D2A7FE3F60033AEBC /* CLPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLPrice.swift; sourceTree = "<group>"; };
+		ED64109D2A7FE3F60033AEBC /* CLNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNumber.swift; sourceTree = "<group>"; };
 		ED91A0B72A7A84C50063A6B4 /* CLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
 		ED91A0BF2A7ACE8C0063A6B4 /* CLDualChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDualChoiceButton.swift; sourceTree = "<group>"; };
 		EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSliderView.swift; sourceTree = "<group>"; };
@@ -272,6 +276,14 @@
 				B1084BED2A87E5A800AE1758 /* CLDialog.swift */,
 			);
 			path = Modal;
+			sourceTree = "<group>";
+		};
+		B1084BEF2A8878A400AE1758 /* AverageBanner */ = {
+			isa = PBXGroup;
+			children = (
+				B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */,
+			);
+			path = AverageBanner;
 			sourceTree = "<group>";
 		};
 		B155C0A32A7920A800F540CB = {
@@ -486,6 +498,7 @@
 		B1604D5E2A853FA200C7B07D /* ModelTypeSelection */ = {
 			isa = PBXGroup;
 			children = (
+				B1084BEF2A8878A400AE1758 /* AverageBanner */,
 				B15646332A86526A00FAD379 /* ModelTypeModal */,
 				B1604D602A85400300C7B07D /* ModelTypeView */,
 				B1604D5F2A853FAB00C7B07D /* ModelTypeSelectionContainerView */,
@@ -540,6 +553,7 @@
 			children = (
 				B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */,
 				B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */,
+				B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */,
 			);
 			path = HMGData;
 			sourceTree = "<group>";
@@ -589,7 +603,7 @@
 				ED64109B2A7FE1870033AEBC /* CLBudgetRangeIntent.swift */,
 				EDA3CDD22A811CA80001BB9C /* CLSliderView.swift */,
 				EDA3CDD62A8281B10001BB9C /* CLSimilarQuotationSlideView.swift */,
-				ED64109D2A7FE3F60033AEBC /* CLPrice.swift */,
+				ED64109D2A7FE3F60033AEBC /* CLNumber.swift */,
 				EDA3CDD42A8243CC0001BB9C /* CLSimilarQuotationButton.swift */,
 			);
 			path = CLBudgetSetting;
@@ -817,6 +831,7 @@
 				B1604D272A8265B500C7B07D /* RequestManager.swift in Sources */,
 				B1604D292A82660700C7B07D /* APIManagerProtocol.swift in Sources */,
 				B194363D2A80AC8200C2FD69 /* CLOptionQuitAlertContentView.swift in Sources */,
+				B1084BF32A88792200AE1758 /* HMGDataBannerComponent.swift in Sources */,
 				B1604D1F2A825D4900C7B07D /* TrimAPIConstant.swift in Sources */,
 				B1084BEE2A87E5A800AE1758 /* CLDialog.swift in Sources */,
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
@@ -835,6 +850,7 @@
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
 				B1604D672A8545DD00C7B07D /* ModelTypeButtonView.swift in Sources */,
+				B1084BF12A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */,
@@ -878,7 +894,7 @@
 				ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */,
 				ED1A70AD2A83B0A100F7920F /* CLLinearGradient.swift in Sources */,
 				ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */,
-				ED64109E2A7FE3F60033AEBC /* CLPrice.swift in Sources */,
+				ED64109E2A7FE3F60033AEBC /* CLNumber.swift in Sources */,
 				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 				B1604D2D2A82A7C100C7B07D /* CachedResponseHandler.swift in Sources */,
 			);

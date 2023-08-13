@@ -11,7 +11,7 @@ struct CLListText: View {
 
     var title: String
     var name: String
-    var price: CLPrice
+    var price: CLNumber
     var body: some View {
         ZStack {
             HStack(spacing: 8) {
@@ -33,7 +33,7 @@ struct CLListText: View {
             }
             HStack {
                 Spacer()
-                Text(price.signedDescription)
+                Text(price.signedWon)
                     .catalogFont(type: .TextKRRegular14)
                     .foregroundColor(Color.gray900)
             }
