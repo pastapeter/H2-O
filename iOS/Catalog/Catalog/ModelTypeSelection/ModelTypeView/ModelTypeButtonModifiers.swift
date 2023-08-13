@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AsModelButtonSelectedBackground: ViewModifier {
+struct ModelButtonSelectedBackground: ViewModifier {
 
   func body(content: Content) -> some View {
 
@@ -21,7 +21,7 @@ struct AsModelButtonSelectedBackground: ViewModifier {
 
 }
 
-struct AsModelButtonUnSelectedBackground: ViewModifier {
+struct ModelButtonUnSelectedBackground: ViewModifier {
 
   func body(content: Content) -> some View {
 

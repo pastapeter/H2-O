@@ -10,6 +10,9 @@ import SwiftUI
 struct ModelTypeView: View {
 
   var title: String = "파워트레인"
+  @State var isModalPresented = false
+  @State var uuid = UUID()
+  @Namespace private var animation
 
     var body: some View {
       VStack(alignment: .leading) {
@@ -30,13 +33,18 @@ struct ModelTypeView: View {
         .background(Color.gray50)
         .cornerRadius(8)
       }
+      .CLDialogFullScreenCover(show: $isModalPresented) {
+        ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
+          ModelContentView(state: .mock())
+        }
+      }
     }
 
   @ViewBuilder
   func makeDetailButton() -> some View {
     ZStack {
       Button {
-        print("ButtonClick")
+        isModalPresented.toggle()
       } label: {
         Text("HMG Data")
           .catalogFont(type: .HeadENBold10)

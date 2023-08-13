@@ -37,10 +37,7 @@ extension HMGDataWithHorizontalGraphView {
 
   var body: some View {
     VStack(alignment: .leading) {
-
-      Button {
-        print("ButtonClick")
-      } label: {
+      Button { } label: {
         Text("HMG Data")
           .catalogFont(type: .HeadENBold10)
       }
@@ -69,6 +66,9 @@ extension HMGDataWithHorizontalGraphView {
       BarHorizontalView(percent: $percent)
         .frame(height: 4)
     }
+    .padding(.horizontal, 20)
+    .padding(.bottom, 25)
+    .background(Color.gray50)
   }
 
 }

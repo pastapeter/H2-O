@@ -29,7 +29,7 @@ struct ModelTypeButtonView: View {
       }
       .padding(EdgeInsets(top: 8, leading: 13, bottom: 7, trailing: 8))
       .cornerRadius(4)
-      .asButtonSelected(isselected: $isSelected)
+      .buttonSelected(isselected: $isSelected)
     }
 }
 
@@ -42,21 +42,12 @@ struct ModelTypeButtonView_Previews: PreviewProvider {
 fileprivate extension View {
 
   @ViewBuilder
-  func asButtonSelected(isselected: Binding<Bool>) -> some View {
+  func buttonSelected(isselected: Binding<Bool>) -> some View {
     if isselected.wrappedValue {
-      modifier(AsModelButtonSelectedBackground())
+      modifier(ModelButtonSelectedBackground())
     } else {
-      modifier(AsModelButtonUnSelectedBackground())
+      modifier(ModelButtonUnSelectedBackground())
     }
-
-  }
-
-}
-
-fileprivate extension Text {
-
-  @ViewBuilder
-  func asButtonSelectedText(isselected: Binding<Bool>) -> some View {
 
   }
 
