@@ -13,7 +13,7 @@ enum ModelTypeSelectionContainerModel {
 
     static func mock() -> Self {
       return .init(modelTypeIntents: [
-        .init(),
+        .init(modelTypeDetailState: [.init(content: .mock(), hmgData: .mock()), .init(content: .mock(), hmgData: .mock())]),
         .init(title: "바디타입",
              imageURL: nil,
              optionStates: [
@@ -29,7 +29,7 @@ enum ModelTypeSelectionContainerModel {
                     price: .init(280000)
                    )
              ],
-              modelTypeDetailState: .init(content: .mock(), hmgData: .mock())
+              modelTypeDetailState: [.init(content: .mock(), hmgData: .mock()), .init(content: .mock(), hmgData: .mock())]
              ),
         .init(title: "구동방식",
              imageURL: nil,
@@ -47,7 +47,7 @@ enum ModelTypeSelectionContainerModel {
                       price: .init(237000)
                      )
               ],
-              modelTypeDetailState: .init(content: .mock(), hmgData: nil)
+              modelTypeDetailState: [.init(content: .mock(), hmgData: nil)]
              )
       ], fuelEfficiencyAverageState: .mock())
     }

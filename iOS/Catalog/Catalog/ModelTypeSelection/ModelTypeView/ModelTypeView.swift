@@ -17,7 +17,7 @@ struct ModelTypeView: IntentBindingType {
 extension ModelTypeView {
 
   private var isModalPresenting: Binding<Bool> {
-    .init(get: { state.isModalPresenting && state.modelTypeDetailState != nil }, set: { intent.send(action: .onTapDetailButton(isPresenting: $0))})
+    .init(get: { state.isModalPresenting && !state.modelTypeDetailState.isEmpty }, set: { intent.send(action: .onTapDetailButton(isPresenting: $0))})
   }
 
 }
@@ -45,10 +45,8 @@ extension ModelTypeView: View {
     }
     .CLDialogFullScreenCover(show: isModalPresenting) {
 
-      if let detailState = state.modelTypeDetailState {
-        ModalPopUpComponent(state: detailState.content, submitAction: { }) {
-          ModelContentView(state: detailState)
-        }
+      ModalPopUpComponent(state: state.modelTypeDetailState[0].content, submitAction: { }) {
+        ModelContentView(state: state.modelTypeDetailState[0])
       }
     }
     .padding(.horizontal, 16)

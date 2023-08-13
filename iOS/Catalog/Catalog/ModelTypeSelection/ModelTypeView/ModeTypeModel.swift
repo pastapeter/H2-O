@@ -22,7 +22,7 @@ enum ModelTypeModel: Equatable {
       OptionState(id: .init(), isSelected: false, frequency: 38, title: "가솔린3.8", price: CLNumber(280000))
     ]
     var selectedIndex: Int = 0
-    var modelTypeDetailState: ModelTypeDetailState?
+    var modelTypeDetailState: [ModelTypeDetailState] = []
     var isModalPresenting = false
 
   }
