@@ -7,16 +7,36 @@
 
 import SwiftUI
 
+struct FuelEfficiencyAverageBannerState: Equatable {
+
+  static func mock() -> Self {
+    .init(engine: "디젤2.2", wheelType: "2WD", displacement: 2199, fuelEfficiency: 12)
+  }
+
+  var engine: String
+  var wheelType: String
+  var displacement: Int
+  var fuelEfficiency: Int
+
+}
+
 struct FuelEfficiencyAverageBannerView: View {
+
+  var state: FuelEfficiencyAverageBannerState
+
+}
+
+extension FuelEfficiencyAverageBannerView {
+
     var body: some View {
       VStack(alignment: .leading) {
-        Text("\(Text("디젤2.2").foregroundColor(.activeBlue2))와 \(Text("2WD").foregroundColor(.activeBlue2))의 배기량과 평균연비입니다.")
+        Text("\(Text(state.engine).foregroundColor(.activeBlue2))와 \(Text(state.wheelType).foregroundColor(.activeBlue2))의 배기량과 평균연비입니다.")
         HStack(alignment: .center) {
-          verticalBanner(title: "배기량", dataStr: "2,199cc")
+          verticalBanner(title: "배기량", dataStr: "\(state.displacement)cc")
           Spacer()
           Divider()
           Spacer()
-          verticalBanner(title: "평균연비", dataStr: "12km/s")
+          verticalBanner(title: "평균연비", dataStr: "\(state.fuelEfficiency)km/L")
         }
         .padding(.horizontal, 56)
         .padding(.top, 16)
@@ -43,6 +63,6 @@ struct FuelEfficiencyAverageBannerView: View {
 
 struct FuelEfficiencyAverageBannerView_Previews: PreviewProvider {
     static var previews: some View {
-      FuelEfficiencyAverageBannerView()
+      FuelEfficiencyAverageBannerView(state: .mock())
     }
 }

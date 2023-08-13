@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ModelTypeSelectionContainerView: View {
 
+  @State var fuelState: FuelEfficiencyAverageBannerState = .mock()
+
     var body: some View {
       ScrollView {
         ZStack {
@@ -22,7 +24,7 @@ struct ModelTypeSelectionContainerView: View {
             ModelTypeView()
             Spacer().frame(height: 38)
             HMGDataBannerComponent {
-              FuelEfficiencyAverageBannerView()
+              FuelEfficiencyAverageBannerView(state: fuelState)
             }
           }
         }
