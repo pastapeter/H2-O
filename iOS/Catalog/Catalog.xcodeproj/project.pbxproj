@@ -11,7 +11,7 @@
 		B1084BE72A87ACDD00AE1758 /* ModelTypeButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */; };
 		B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BEA2A87DF2B00AE1758 /* BlurredFullScreenCover.swift */; };
 		B1084BEE2A87E5A800AE1758 /* CLDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BED2A87E5A800AE1758 /* CLDialog.swift */; };
-		B1084BF12A8878BB00AE1758 /* AverageBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BF02A8878BB00AE1758 /* AverageBanner.swift */; };
+		B1084BF12A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */; };
 		B1084BF32A88792200AE1758 /* HMGDataBannerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */; };
 		B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0AF2A7920A800F540CB /* CatalogApp.swift */; };
 		B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0B12A7920A800F540CB /* EntryPointView.swift */; };
@@ -135,7 +135,7 @@
 		B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonContainer.swift; sourceTree = "<group>"; };
 		B1084BEA2A87DF2B00AE1758 /* BlurredFullScreenCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredFullScreenCover.swift; sourceTree = "<group>"; };
 		B1084BED2A87E5A800AE1758 /* CLDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDialog.swift; sourceTree = "<group>"; };
-		B1084BF02A8878BB00AE1758 /* AverageBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageBanner.swift; sourceTree = "<group>"; };
+		B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyAverageBannerView.swift; sourceTree = "<group>"; };
 		B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataBannerComponent.swift; sourceTree = "<group>"; };
 		B155C0AC2A7920A800F540CB /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B155C0AF2A7920A800F540CB /* CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogApp.swift; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 		B1084BEF2A8878A400AE1758 /* AverageBanner */ = {
 			isa = PBXGroup;
 			children = (
-				B1084BF02A8878BB00AE1758 /* AverageBanner.swift */,
+				B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */,
 			);
 			path = AverageBanner;
 			sourceTree = "<group>";
@@ -850,7 +850,7 @@
 				B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */,
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
 				B1604D672A8545DD00C7B07D /* ModelTypeButtonView.swift in Sources */,
-				B1084BF12A8878BB00AE1758 /* AverageBanner.swift in Sources */,
+				B1084BF12A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */,
