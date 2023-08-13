@@ -78,6 +78,8 @@
 		B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436402A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift */; };
 		B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436422A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift */; };
 		B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436442A80E5FD00C2FD69 /* AlertViewComponent.swift */; };
+		B1A76B802A88CD92009C84EF /* ModeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */; };
+		B1A76B822A88D263009C84EF /* ModelTypeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */; };
 		B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */; };
 		B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */; };
 		B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */; };
@@ -206,6 +208,8 @@
 		B19436402A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSingleLineAlertContentView.swift; sourceTree = "<group>"; };
 		B19436422A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOptionSelectAlertContentView.swift; sourceTree = "<group>"; };
 		B19436442A80E5FD00C2FD69 /* AlertViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewComponent.swift; sourceTree = "<group>"; };
+		B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeTypeModel.swift; sourceTree = "<group>"; };
+		B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeIntent.swift; sourceTree = "<group>"; };
 		B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataWithHorizontalGraphView.swift; sourceTree = "<group>"; };
 		B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalView.swift; sourceTree = "<group>"; };
 		B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTopNaviBar.swift; sourceTree = "<group>"; };
@@ -521,6 +525,8 @@
 				B1604D662A8545DD00C7B07D /* ModelTypeButtonView.swift */,
 				B1084BE42A87A52000AE1758 /* ModelTypeButtonModifiers.swift */,
 				B1084BE62A87ACDD00AE1758 /* ModelTypeButtonContainer.swift */,
+				B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */,
+				B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */,
 			);
 			path = ModelTypeView;
 			sourceTree = "<group>";
@@ -824,6 +830,7 @@
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
+				B1A76B822A88D263009C84EF /* ModelTypeIntent.swift in Sources */,
 				B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */,
 				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
@@ -853,6 +860,7 @@
 				B1084BF12A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
+				B1A76B802A88CD92009C84EF /* ModeTypeModel.swift in Sources */,
 				B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */,
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,

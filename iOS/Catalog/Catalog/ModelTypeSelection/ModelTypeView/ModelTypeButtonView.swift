@@ -9,41 +9,47 @@ import SwiftUI
 
 struct ModelTypeButtonView: View {
 
-  @Binding var isSelected: Bool
+  var state: OptionState
+  var action: (UUID) -> Void
 
     var body: some View {
-      VStack(alignment: .leading) {
-        Text("\(Text("38%").foregroundColor(isSelected ? .activeBlue2 : .gray600))의 선택")
-          .foregroundColor(.gray500)
-          .catalogFont(type: .HeadKRMedium14)
-        Text("디젤 2.2")
-          .catalogFont(type: .HeadKRMedium16)
-          .foregroundColor(isSelected ? .gray900 : .gray600)
-        HStack {
-          Text("+0 원")
-            .foregroundColor(isSelected ? .gray900 : .gray600)
-            .catalogFont(type: .TextKRMedium16)
-          Spacer()
-          Image("check").renderingMode(.template).foregroundColor(isSelected ? .activeBlue2 : .gray200)
+      Button {
+        action(state.id)
+      } label: {
+        VStack(alignment: .leading) {
+          Text("\(Text("\(state.frequency)%").foregroundColor(state.isSelected ? .activeBlue2 : .gray600))의 선택")
+            .foregroundColor(.gray500)
+            .catalogFont(type: .HeadKRMedium14)
+          Text(state.title)
+            .catalogFont(type: .HeadKRMedium16)
+            .foregroundColor(state.isSelected ? .gray900 : .gray600)
+          HStack {
+            Text(state.price.signedWon)
+              .foregroundColor(state.isSelected ? .gray900 : .gray600)
+              .catalogFont(type: .TextKRMedium16)
+            Spacer()
+            Image("check").renderingMode(.template).foregroundColor(state.isSelected ? .activeBlue2 : .gray200)
+          }
         }
+        .padding(EdgeInsets(top: 8, leading: 13, bottom: 7, trailing: 8))
+        .cornerRadius(4)
+        .asButtonSelected(isselected: state.isSelected)
       }
-      .padding(EdgeInsets(top: 8, leading: 13, bottom: 7, trailing: 8))
-      .cornerRadius(4)
-      .asButtonSelected(isselected: $isSelected)
+      .buttonStyle(.plain)
     }
 }
 
 struct ModelTypeButtonView_Previews: PreviewProvider {
     static var previews: some View {
-      ModelTypeButtonView(isSelected: .constant(true))
+      ModelTypeButtonView(state: .init(id: .init()), action: { _ in print("Hello") })
     }
 }
 
 fileprivate extension View {
 
   @ViewBuilder
-  func asButtonSelected(isselected: Binding<Bool>) -> some View {
-    if isselected.wrappedValue {
+  func asButtonSelected(isselected: Bool) -> some View {
+    if isselected {
       modifier(AsModelButtonSelectedBackground())
     } else {
       modifier(AsModelButtonUnSelectedBackground())
