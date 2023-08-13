@@ -28,7 +28,9 @@ enum ModelTypeSelectionContainerModel {
                     title: "8인승",
                     price: .init(280000)
                    )
-             ]),
+             ],
+              modelTypeDetailState: .init(content: .mock(), hmgData: .mock())
+             ),
         .init(title: "구동방식",
              imageURL: nil,
               optionStates: [
@@ -44,7 +46,8 @@ enum ModelTypeSelectionContainerModel {
                       title: "4WD",
                       price: .init(237000)
                      )
-              ]
+              ],
+              modelTypeDetailState: .init(content: .mock(), hmgData: nil)
              )
       ], fuelEfficiencyAverageState: .mock())
     }

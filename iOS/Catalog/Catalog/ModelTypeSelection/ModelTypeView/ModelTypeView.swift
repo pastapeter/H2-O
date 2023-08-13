@@ -12,14 +12,12 @@ struct ModelTypeView: IntentBindingType {
   @StateObject var container: Container<ModelTypeIntentType, ModelTypeModel.State>
   var intent: ModelTypeIntentType { container.intent }
   var state: ModelTypeModel.State { intent.state }
-  @State var uuid = UUID()
-  @Namespace private var animation
 }
 
 extension ModelTypeView {
 
   private var isModalPresenting: Binding<Bool> {
-    .init(get: { state.isModalPresenting }, set: { intent.send(action: .onTapDetailButton(isPresenting: $0))})
+    .init(get: { state.isModalPresenting && state.modelTypeDetailState != nil }, set: { intent.send(action: .onTapDetailButton(isPresenting: $0))})
   }
 
 }
@@ -46,8 +44,11 @@ extension ModelTypeView: View {
       .cornerRadius(8)
     }
     .CLDialogFullScreenCover(show: isModalPresenting) {
-      ModalPopUpComponent(uuid: $uuid, submitAction: { }, animationID: animation) {
-        ModelContentView(state: .mock())
+
+      if let detailState = state.modelTypeDetailState {
+        ModalPopUpComponent(state: detailState.content, submitAction: { }) {
+          ModelContentView(state: detailState)
+        }
       }
     }
     .padding(.horizontal, 16)
