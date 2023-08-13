@@ -12,5 +12,3 @@ struct ModelTypeOption {
   var options: [String: Option]
   var optionsInDetail: [String: OptionInDetail]
 }
-
-
