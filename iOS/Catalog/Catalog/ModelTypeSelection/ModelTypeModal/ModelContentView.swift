@@ -7,26 +7,14 @@
 
 import SwiftUI
 
-struct ModelTypeContent: Equatable {
-
-  static func mock() -> Self {
-    return ModelTypeContent(title: "디젤 2.2",
-                            description: "높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비 효율이 우수합니다.",
-                            frequency: 38,
-                            imageURL: nil)
-  }
-
-  var title: String
-  var description: String
-  var frequency: Int
-  var imageURL: URL?
-}
-
 struct ModelContentView: View {
 
-  private var state: ModelTypeContent
+  private var state: ModelTypeDetailState
+  private var content: ModelTypeContent {
+    state.content
+  }
 
-  init(state: ModelTypeContent) {
+  init(state: ModelTypeDetailState) {
     self.state = state
   }
 
@@ -43,14 +31,14 @@ extension ModelContentView {
             .frame(height: UIScreen.main.bounds.height * (180 / 812))
           VStack(alignment: .leading) {
             HStack {
-              Text(state.title)
+              Text(content.title)
                 .catalogFont(type: .HeadKRMedium18)
                 .foregroundColor(.gray900)
               Spacer()
-              Text("\(Text("\(state.frequency)%").foregroundColor(.activeBlue))의 선택")
+              Text("\(Text("\(content.frequency)%").foregroundColor(.activeBlue))의 선택")
                 .catalogFont(type: .TextKRMedium12)
             }
-            Text(state.description)
+            Text(content.description)
               .catalogFont(type: .TextKRRegular12)
               .foregroundColor(.gray800)
               .multilineTextAlignment(.leading)
@@ -58,8 +46,10 @@ extension ModelContentView {
           .padding(.top, 12)
           .padding(.horizontal, 20)
           Spacer()
-          HMGDataBannerComponent {
-            HMGDataWithHorizontalGraphView(state: .mock())
+          if let hmgDataState = state.hmgData {
+            HMGDataBannerComponent {
+              HMGDataWithHorizontalGraphView(state: hmgDataState)
+            }
           }
         }
         .background(.white)
@@ -71,6 +61,6 @@ extension ModelContentView {
 
 struct ModelContentView_Previews: PreviewProvider {
     static var previews: some View {
-      ModelContentView(state: ModelTypeContent.mock())
+      ModelContentView(state: .init(content: .mock(), hmgData: .mock()))
     }
 }

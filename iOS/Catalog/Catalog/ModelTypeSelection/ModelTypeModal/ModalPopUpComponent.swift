@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ModalPopUpComponent<ModalPopUpContent: View>: View {
 
-  @Binding var uuid: UUID
+  var state: ModelTypeContent
   var submitAction: () -> Void
-  var animationID: Namespace.ID
   @Environment(\.dismiss) private var dismiss
   @State private var animateView: Bool = false
   @State private var animateContent: Bool = false
@@ -21,15 +20,14 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
       VStack {
         if animateView {
           VStack {
-              titleView("파워트레인")
+            titleView(state.title)
                 .padding(.horizontal, 16)
               content()
-            CLButton(mainText: "선택하기", subText: "+280,000원", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
+            CLButton(subText: state.price.signedWon, mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
                 .frame(height: 56)
           }
           .background(.white)
           .cornerRadius(4)
-          .matchedGeometryEffect(id: uuid.uuidString, in: animationID)
           .frame(height: UIScreen.main.bounds.height * 0.67)
           .padding(.horizontal, 30)
         }
@@ -74,9 +72,8 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
 
 struct ModalPopUpComponent_Previews: PreviewProvider {
     static var previews: some View {
-      @Namespace var animation
-      ModalPopUpComponent(uuid: .constant(UUID()), submitAction: { }, animationID: animation) {
-        ModelContentView(state: .mock())
+      ModalPopUpComponent(state: .mock(), submitAction: { }) {
+        ModelContentView(state: .init(content: .mock(), hmgData: .mock()))
       }
     }
 }
