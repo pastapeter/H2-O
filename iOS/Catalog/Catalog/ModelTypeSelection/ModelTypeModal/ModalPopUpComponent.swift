@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct ModalPopUpComponent<ModalPopUpContent: View>: View {
-  
+
   var state: ModelTypeContent
-  
+
   var submitAction: () -> Void
-  
+
   @Environment(\.dismiss) private var dismiss
-  
+
   @State private var animateView: Bool = false
-  
+
   @State private var animateContent: Bool = false
-  
+
   @ViewBuilder var content: () -> ModalPopUpContent
-  
+
 }
 
 extension ModalPopUpComponent {
-  
+
   var body: some View {
     VStack {
       if animateView {
@@ -32,7 +32,11 @@ extension ModalPopUpComponent {
           titleView(state.title)
             .padding(.horizontal, 16)
           content()
-          CLButton(subText: state.price.signedWon, mainText: "선택하기", height: 87, backgroundColor: .activeBlue, buttonAction: submitAction)
+          CLButton(subText: state.price.signedWon,
+                   mainText: "선택하기",
+                   height: 87,
+                   backgroundColor: .activeBlue,
+                   buttonAction: submitAction)
             .frame(height: 56)
         }
         .background(.white)
@@ -54,7 +58,7 @@ extension ModalPopUpComponent {
       }
     }
   }
-  
+
 }
 
 extension ModalPopUpComponent {
