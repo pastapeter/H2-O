@@ -2,7 +2,9 @@ import { Fragment, memo } from 'react';
 import styled from '@emotion/styled';
 import { Flex, Typography } from '@/components/common';
 import { DetailEstimate, ResultBanner, ResultFooter } from '@/components/result';
+import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
+import { SelectionContext } from '@/providers/SelectionProvider';
 
 interface InfoProps {
   label: string;
@@ -10,9 +12,16 @@ interface InfoProps {
 }
 
 function ResultPage() {
+  const { selectionInfo } = useSafeContext(SelectionContext);
+
+  const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor } = selectionInfo;
+
+  // 일단 대충 로딩 처리
+  if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor) return <div>로딩중...</div>;
+
   return (
     <Fragment>
-      <ResultBanner />
+      <ResultBanner trimName={trim.name} exteriorImage={exteriorColor.image} interiorImage={interiorColor.image} />
       <SummaryContainer>
         <ContentsWrapper justifyContent='space-between' alignItems='center' height='100%'>
           <Typography font='TextKRMedium14' color='gray900'>
@@ -29,7 +38,13 @@ function ResultPage() {
       </SummaryContainer>
       <MainContainer>
         <ContentsWrapper flexDirection='column'>
-          <DetailEstimate />
+          <DetailEstimate
+            powerTrain={powerTrain}
+            bodyType={bodyType}
+            driveTrain={driveTrain}
+            exteriorColor={exteriorColor}
+            interiorColor={interiorColor}
+          />
           <ResultFooter />
         </ContentsWrapper>
       </MainContainer>

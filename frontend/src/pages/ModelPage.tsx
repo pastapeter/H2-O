@@ -1,10 +1,13 @@
-import { Fragment, memo, useState } from 'react';
+import { Fragment, memo, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import type { BodyType, DriveTrain, ModelTypeResponse, PowerTrain } from '@/types/interface';
 import { Banner, Footer, PriceStaticBar } from '@/components/common';
 import { BottomHMGData, ModelOptionDetail, ModelTypeSelector } from '@/components/model';
+import { useSafeContext } from '@/hooks';
+import { SelectionContext } from '@/providers/SelectionProvider';
 
-const mocks = {
+const mocks: ModelTypeResponse = {
   powerTrains: [
     {
       id: 1,
@@ -22,7 +25,7 @@ const mocks = {
         minRpm: 1750,
         maxRpm: 2750,
       },
-      image: '대충 URL',
+      image: '/images/disel.png',
     },
     {
       id: 2,
@@ -40,7 +43,7 @@ const mocks = {
         minRpm: 1750,
         maxRpm: 2750,
       },
-      image: '대충 URL',
+      image: '/images/disel.png',
     },
   ],
   bodyTypes: [
@@ -50,7 +53,7 @@ const mocks = {
       price: 0,
       choiceRatio: 38,
       description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '대충 URL',
+      image: '/images/disel.png',
     },
     {
       id: 2,
@@ -58,7 +61,7 @@ const mocks = {
       price: 0,
       choiceRatio: 38,
       description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '대충 URL',
+      image: '/images/disel.png',
     },
   ],
   driveTrains: [
@@ -68,7 +71,7 @@ const mocks = {
       price: 0,
       choiceRatio: 38,
       description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '대충 URL',
+      image: '/images/disel.png',
     },
     {
       id: 2,
@@ -76,84 +79,63 @@ const mocks = {
       price: 237000,
       choiceRatio: 38,
       description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '대충 URL',
+      image: '/images/disel.png',
     },
   ],
 };
 
-type Model = 'powerTrains' | 'bodyTypes' | 'driveTrains';
-
-interface CurrentModel {
-  type: Model;
-  idx: number;
-}
+export type CurrentModel =
+  | {
+      sort: '파워트레인';
+      type: PowerTrain;
+    }
+  | {
+      sort: '바디타입';
+      type: BodyType;
+    }
+  | {
+      sort: '구동방식';
+      type: DriveTrain;
+    };
 
 function ModelPage() {
-  const [currentModel, setCurrentModel] = useState<CurrentModel>({
-    type: 'powerTrains',
-    idx: 0,
-  });
-  const [selectedPowerTrain, setSelectedPowerTrain] = useState(0);
-  const [selectedBodyType, setSelectedBodyType] = useState(0);
-  const [selectedDriveTrain, setSelectedDriveTrain] = useState(0);
+  const { dispatch } = useSafeContext(SelectionContext);
+  const [currentModel, setCurrentModel] = useState<CurrentModel>({ sort: '파워트레인', type: mocks.powerTrains[0] });
 
-  const currentModelData = mocks[currentModel.type][currentModel.idx];
+  const { sort, type } = currentModel;
+  const { name, description, image } = type;
+  const isPowerTrainSort = sort === '파워트레인';
 
-  const handleClickPowerTrain = (idx: number) => {
-    setSelectedPowerTrain(idx);
-    setCurrentModel({
-      type: 'powerTrains',
-      idx,
-    });
-  };
+  useEffect(() => {
+    dispatch({ type: 'SET_POWER_TRAIN', payload: mocks.powerTrains[0] });
+    dispatch({ type: 'SET_BODY_TYPE', payload: mocks.bodyTypes[0] });
+    dispatch({ type: 'SET_DRIVE_TRAIN', payload: mocks.driveTrains[0] });
+  }, []);
 
-  const handleClickBodyType = (idx: number) => {
-    setSelectedBodyType(idx);
-    setCurrentModel({
-      type: 'bodyTypes',
-      idx,
-    });
-  };
+  useEffect(() => {
+    // TODO: 배기량, 연비정보 데이터 fetching 연결
+  }, []);
 
-  const handleClickDriveTrain = (idx: number) => {
-    setSelectedDriveTrain(idx);
-    setCurrentModel({
-      type: 'driveTrains',
-      idx,
-    });
+  const handleSelectModel = (model: CurrentModel) => {
+    setCurrentModel(model);
   };
 
   return (
     <Fragment>
-      <Banner
-        title={currentModelData.name}
-        subTitle={modelType[currentModel.type]}
-        description={currentModelData.description}
-      >
-        {currentModel.type === 'powerTrains' && (
-          <ModelOptionDetail
-            maxOutput={mocks.powerTrains[selectedPowerTrain].maxOutput}
-            maxTorque={mocks.powerTrains[selectedPowerTrain].maxTorque}
-          />
+      <Banner title={name} subTitle={sort} description={description}>
+        {isPowerTrainSort && (
+          <ModelOptionDetail maxOutput={currentModel.type.maxOutput} maxTorque={currentModel.type.maxTorque} />
         )}
-        <Image src='/images/disel.png' alt='디젤 2.2' />
+        <Image src={image} alt={name} />
       </Banner>
       <ModelTypeSelector
         powerTrains={mocks.powerTrains}
         bodyTypes={mocks.bodyTypes}
         driveTrains={mocks.driveTrains}
-        selectedPowerTrain={selectedPowerTrain}
-        selectedBodyType={selectedBodyType}
-        selectedDriveTrain={selectedDriveTrain}
-        handleClickPowerTrain={handleClickPowerTrain}
-        handleClickBodyType={handleClickBodyType}
-        handleClickDriveTrain={handleClickDriveTrain}
+        onSelectModel={handleSelectModel}
       />
       <Footer>
-        <BottomHMGData
-          powerTrainType={mocks.powerTrains[selectedPowerTrain].name}
-          driveTrainType={mocks.driveTrains[selectedDriveTrain].name}
-        />
+        <BottomHMGData powerTrainType={mocks.powerTrains[0].name} driveTrainType={mocks.driveTrains[0].name} />
       </Footer>
       <PriceStaticBar
         isComplete={false}
@@ -168,12 +150,6 @@ function ModelPage() {
     </Fragment>
   );
 }
-
-const modelType: Record<Model, string> = {
-  powerTrains: '파워트레인',
-  bodyTypes: '바디타입',
-  driveTrains: '구동방식',
-};
 
 const _ModelPage = memo(ModelPage);
 export default _ModelPage;

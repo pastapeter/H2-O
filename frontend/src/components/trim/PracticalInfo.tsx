@@ -1,17 +1,13 @@
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
+import type { TrimOption } from '@/types/interface';
 import { HMGTag } from '@/components/common';
 import { toSeparatedNumberFormat } from '@/utils/number';
 
 const UNIT_NUMBER = 15000;
 
-export type OptionData = {
-  name: string;
-  count: number;
-};
-
 interface Props {
-  options?: OptionData[];
+  options?: TrimOption[];
 }
 
 const PracticalInfo = forwardRef<HTMLDivElement, Props>(({ options = [], ...restProps }, ref) => {
@@ -22,11 +18,11 @@ const PracticalInfo = forwardRef<HTMLDivElement, Props>(({ options = [], ...rest
         해당 트림 포함된 옵션들의 <span>실활용 데이터</span>에요.
       </p>
       <OptionContainer>
-        {options.map(({ name, count }) => (
-          <Option key={name}>
-            <OptionName>{name}</OptionName>
+        {options.map(({ dataLabel, frequency }) => (
+          <Option key={dataLabel}>
+            <OptionName>{dataLabel}</OptionName>
             <Divider />
-            <Count>{`${count}회`}</Count>
+            <Count>{`${frequency}회`}</Count>
             <UnitOfCount>{`${toSeparatedNumberFormat(UNIT_NUMBER)}km 당`}</UnitOfCount>
           </Option>
         ))}

@@ -4,6 +4,7 @@ import { Theme } from '@emotion/react/macro';
 import styled from '@emotion/styled';
 import { Circle } from './shape';
 import { Card, Icon } from '@/components/common';
+import { toPriceFormatString } from '@/utils/string';
 
 interface Props extends ComponentProps<typeof Card> {
   colorName: string;
@@ -29,7 +30,7 @@ function ExteriorCard({ colorName, colorHexCode, choiceRatio, price, isClicked, 
           </p>
           <p className='name'>{colorName}</p>
         </div>
-        <p className='price'>+{price}원</p>
+        <p className='price'>{toPriceFormatString(price)} 원</p>
       </TextContainer>
       <Icon
         iconType='Check'

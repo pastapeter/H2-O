@@ -1,42 +1,33 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
 import { MainSelector } from '../common/MainSelector';
 import TrimCard from './TrimCard';
-
-type Trim = {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-};
+import { Trim } from '@/types/interface';
 
 interface Props {
   trimList: Trim[];
+  selectedTrimId: number;
+  onSelectTrim: (trim: Trim) => void;
 }
 
-function TrimSelector({ trimList }: Props) {
-  const [selectedTrim, setSelectedTrim] = useState('Le Blanc');
-
-  const handleClickCard = (title: string) => {
-    setSelectedTrim(title);
-  };
-
+function TrimSelector({ trimList, selectedTrimId, onSelectTrim }: Props) {
   return (
-
     <MainSelector title='트림을 선택해주세요'>
       <TrimList>
-        {trimList.map(({ id, title, ...rest }) => (
-          <TrimCard
-            key={id}
-            title={title}
-            isSelected={title === selectedTrim}
-            onClick={() => handleClickCard(title)}
-            {...rest}
-          />
-        ))}
+        {trimList.map((trim) => {
+          const { id, name, ...rest } = trim;
+          return (
+            <TrimCard
+              key={id}
+              id={id}
+              title={name}
+              isSelected={id === selectedTrimId}
+              onClick={() => onSelectTrim(trim)}
+              {...rest}
+            />
+          );
+        })}
       </TrimList>
     </MainSelector>
-
   );
 }
 

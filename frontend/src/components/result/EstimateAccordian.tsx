@@ -2,7 +2,7 @@ import { type HTMLAttributes, type MouseEventHandler, useCallback, useEffect, us
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Flex, Icon, Typography } from '@/components/common';
-import { toSeparatedNumberFormat } from '@/utils/number';
+import { toPriceFormatString } from '@/utils/string';
 
 interface EstimateAccordianProps extends HTMLAttributes<HTMLDivElement> {
   label: string;
@@ -12,8 +12,9 @@ interface EstimateAccordianProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 interface DetailProps {
-  thumbnail: string;
   type?: string;
+  colorCode?: string;
+  thumbnail?: string;
   name: string;
   price: number;
 }
@@ -51,7 +52,7 @@ function EstimateAccordian({
     if (!expandableRef.current || !detailRef.current) return;
 
     expandableRef.current.style.height = `${detailRef.current.clientHeight}px`;
-  }, []);
+  }, [detailRef.current]);
 
   return (
     <Flex flexDirection='column' width='607px'>
@@ -66,9 +67,7 @@ function EstimateAccordian({
             </Typography>
           )}
           {isValidNumber && (
-            <Typography font='HeadKRMedium14' color='primary500'>{`+${toSeparatedNumberFormat(
-              totalPrice,
-            )}`}</Typography>
+            <Typography font='HeadKRMedium14' color='primary500'>{`${toPriceFormatString(totalPrice)}원`}</Typography>
           )}
           <Icon
             css={css`
@@ -91,11 +90,13 @@ function EstimateAccordian({
   );
 }
 
-function Detail({ thumbnail, type, name, price }: DetailProps) {
+function Detail({ thumbnail, colorCode, type, name, price }: DetailProps) {
   return (
     <DetailContainer>
       <Flex width='100%' height='55px' gap={16}>
-        <Thumbnail src={thumbnail} alt='외장 이미지' />
+        <ImageContainer colorCode={colorCode}>
+          {thumbnail && <Thumbnail src={thumbnail} alt='외장 이미지' />}
+        </ImageContainer>
         <Flex justifyContent='space-between' alignItems='center' width='100%'>
           <Flex flexDirection='column' gap={10}>
             {type && (
@@ -111,7 +112,7 @@ function Detail({ thumbnail, type, name, price }: DetailProps) {
             <Typography font='HeadKRMedium14' color='primary500'>
               수정하기
             </Typography>
-            <Typography font='TextKRRegular14' color='gray900'>{`+${toSeparatedNumberFormat(price)}`}</Typography>
+            <Typography font='TextKRRegular14' color='gray900'>{`${toPriceFormatString(price)}원`}</Typography>
           </Flex>
         </Flex>
       </Flex>
@@ -144,8 +145,17 @@ const DetailContainer = styled.div`
   }
 `;
 
-const Thumbnail = styled.img`
+const ImageContainer = styled.div<Pick<DetailProps, 'colorCode'>>`
   width: 77px;
+  height: 100%;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: ${({ colorCode }) => colorCode};
+  flex-shrink: 0;
+`;
+
+const Thumbnail = styled.img`
+  width: 100%;
   height: 100%;
   object-fit: cover;
 `;

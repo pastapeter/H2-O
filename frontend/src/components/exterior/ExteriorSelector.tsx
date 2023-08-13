@@ -1,46 +1,49 @@
-import { Dispatch, SetStateAction } from 'react';
 import styled from '@emotion/styled';
-import type { ExteriorResponse } from '@/types/interface';
+import type { ExteriorColorResponse } from '@/types/interface';
 import { Icon, MainSelector } from '@/components/common';
 import { ExteriorCard } from '@/components/exterior';
 import { usePagination } from '@/hooks';
 
 interface Props {
-  exteriorList: ExteriorResponse[];
-  selectedIdx: number;
-  setSelectedIdx: Dispatch<SetStateAction<number>>;
+  exteriorList: ExteriorColorResponse[];
+  selectedColor: ExteriorColorResponse;
+  onSelectColor: (color: ExteriorColorResponse) => void;
 }
 
-function ExteriorSelector({ exteriorList, selectedIdx, setSelectedIdx }: Props) {
+function ExteriorSelector({ exteriorList, selectedColor, onSelectColor }: Props) {
   const { currentSlice, hasPaigination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
     usePagination({
       data: exteriorList,
     });
 
-  if (!hasPaigination) return;
-
   return (
     <MainSelector title='외장 색상을 선택해주세요'>
       <ExteriorList>
-        {currentSlice.map(({ name, hexCode, choiceRatio, price }, idx) => (
-          <ExteriorCard
-            key={idx}
-            colorName={name}
-            colorHexCode={hexCode}
-            choiceRatio={choiceRatio}
-            price={price}
-            isClicked={selectedIdx === currentPage * 4 + idx}
-            onClick={() => setSelectedIdx(currentPage * 4 + idx)}
-          />
-        ))}
+        {currentSlice.map((color) => {
+          const { id, name, hexCode, choiceRatio, price } = color;
+
+          return (
+            <ExteriorCard
+              key={id}
+              colorName={name}
+              colorHexCode={hexCode}
+              choiceRatio={choiceRatio}
+              price={price}
+              isClicked={id === selectedColor.id}
+              onClick={() => onSelectColor(color)}
+            />
+          );
+        })}
       </ExteriorList>
-      <ButtonContainer isEndPage={isEndPage} isStartPage={isStartPage}>
-        <Icon className='left-arrow' iconType='ArrowRight' size={24} onClick={prevPage} />
-        <span>
-          {currentPage + 1} / {totalPage}
-        </span>
-        <Icon className='right-arrow' iconType='ArrowRight' size={24} onClick={nextPage} />
-      </ButtonContainer>
+      {hasPaigination && (
+        <ButtonContainer isEndPage={isEndPage} isStartPage={isStartPage}>
+          <Icon className='left-arrow' iconType='ArrowRight' size={24} onClick={prevPage} />
+          <span>
+            {currentPage + 1}/{totalPage}
+          </span>
+          <Icon className='right-arrow' iconType='ArrowRight' size={24} onClick={nextPage} />
+        </ButtonContainer>
+      )}
     </MainSelector>
   );
 }

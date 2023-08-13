@@ -28,7 +28,7 @@ function InteriorCard({ isSelected, choiceRatio, name, price, image, ...restProp
           {name}
         </Typography>
         <Typography font='TextKRMedium14' color={isSelected ? 'gray900' : 'gray600'} marginTop={24}>
-          {toPriceFormatString(price)}
+          {toPriceFormatString(price)} 원
         </Typography>
         <Icon
           iconType='Check'

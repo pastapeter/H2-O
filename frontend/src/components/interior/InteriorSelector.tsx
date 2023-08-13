@@ -7,11 +7,11 @@ import { usePagination } from '@/hooks';
 
 interface Props {
   optionList: InteriorColorResponse[];
-  selectedId: number;
-  onClickOption: (idx: number) => void;
+  selectedColor: InteriorColorResponse;
+  onSelectColor: (color: InteriorColorResponse) => void;
 }
 
-function InteriorSelector({ optionList, selectedId, onClickOption }: Props) {
+function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
   const { currentSlice, hasPaigination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
     usePagination({
       data: optionList,
@@ -47,15 +47,19 @@ function InteriorSelector({ optionList, selectedId, onClickOption }: Props) {
           )}
         </Flex>
         <Flex gap={16} width='100%'>
-          {currentSlice.map(({ id, fabricImage, ...props }) => (
-            <InteriorCard
-              key={id}
-              image={fabricImage}
-              isSelected={id === selectedId}
-              onClick={() => onClickOption(id)}
-              {...props}
-            />
-          ))}
+          {currentSlice.map((color) => {
+            const { id, fabricImage, ...props } = color;
+
+            return (
+              <InteriorCard
+                key={id}
+                image={fabricImage}
+                isSelected={id === selectedColor.id}
+                onClick={() => onSelectColor(color)}
+                {...props}
+              />
+            );
+          })}
         </Flex>
       </div>
     </Container>

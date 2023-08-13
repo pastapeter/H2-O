@@ -5,5 +5,5 @@ export const replaceToRealNewLine = (str: string) => {
 };
 
 export const toPriceFormatString = (price: number) => {
-  return `${price >= 0 ? '+' : ''}${toSeparatedNumberFormat(price)} 원`;
+  return `${price >= 0 ? '+' : ''}${toSeparatedNumberFormat(price)}`;
 };

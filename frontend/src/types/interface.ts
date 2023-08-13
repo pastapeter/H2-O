@@ -1,3 +1,20 @@
+export interface TrimOption {
+  dataLabel: string;
+  frequency: number;
+}
+
+export interface Trim {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  images: string[];
+  options: TrimOption[];
+}
+
+export interface TrimResponse {
+  trims: Trim[];
+}
 
 export interface MaxOutput {
   output: number;
@@ -40,22 +57,24 @@ export interface DriveTrain {
   image: string;
 }
 
-export interface InteriorColorResponse {
-   id: number;
-  name: string;
-  choiceRatio: number;
-  price: number;
-    fabricImage: string;
-  bannerImage: string;
+export interface ModelTypeResponse {
+  powerTrains: PowerTrain[];
+  bodyTypes: BodyType[];
+  driveTrains: DriveTrain[];
 }
-
-export interface ExteriorResponse {
-
+export interface ExteriorColorResponse {
   id: number;
   name: string;
   choiceRatio: number;
   price: number;
   hexCode: string;
   images: string[];
-
+}
+export interface InteriorColorResponse {
+  id: number;
+  name: string;
+  choiceRatio: number;
+  price: number;
+  fabricImage: string;
+  bannerImage: string;
 }

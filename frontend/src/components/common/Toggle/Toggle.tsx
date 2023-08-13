@@ -1,4 +1,4 @@
-import { ChangeEventHandler, Dispatch, HTMLAttributes, SetStateAction } from 'react';
+import { ChangeEventHandler, Dispatch, HTMLAttributes, SetStateAction, useId } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -13,17 +13,19 @@ function Toggle({ isChecked, size, setIsChecked, ...restProps }: Props) {
     setIsChecked((prev) => !prev);
   };
 
+  const id = useId();
+
   return (
     <ToggleContainer size={size} {...restProps}>
       <input
         type='checkbox'
-        id='toggleButton'
+        id={id}
         onChange={handleOnChange}
         css={css`
           display: none;
         `}
       />
-      <ToggleLabel htmlFor='toggleButton' isChecked={isChecked} size={size}>
+      <ToggleLabel htmlFor={id} isChecked={isChecked} size={size}>
         <ToggleSwitch isChecked={isChecked} size={size}></ToggleSwitch>
         <ToggleItem isChecked={isChecked} size={size}>
           외장

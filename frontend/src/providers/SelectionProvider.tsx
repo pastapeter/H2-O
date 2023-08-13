@@ -1,0 +1,170 @@
+import { Dispatch, PropsWithChildren, createContext, useMemo, useReducer } from 'react';
+
+export interface SelectionInfo {
+  id: number;
+  name: string;
+  price: number;
+}
+
+export interface SelectionInfoWithImage extends SelectionInfo {
+  image: string;
+}
+
+export interface ExteriorColorInfo extends SelectionInfoWithImage {
+  colorCode: string;
+}
+
+export interface InteriorColorInfo extends SelectionInfoWithImage {
+  fabricImage: string;
+}
+
+type State = {
+  model?: SelectionInfo;
+  trim?: SelectionInfo;
+  powerTrain?: SelectionInfoWithImage;
+  bodyType?: SelectionInfoWithImage;
+  driveTrain?: SelectionInfoWithImage;
+  exteriorColor?: ExteriorColorInfo;
+  interiorColor?: InteriorColorInfo;
+  displacement?: number;
+  fuelEfficiency?: number;
+};
+
+type Action =
+  | { type: 'SET_TRIM'; payload: SelectionInfo }
+  | { type: 'SET_POWER_TRAIN'; payload: SelectionInfoWithImage }
+  | { type: 'SET_BODY_TYPE'; payload: SelectionInfoWithImage }
+  | { type: 'SET_DRIVE_TRAIN'; payload: SelectionInfoWithImage }
+  | { type: 'SET_EXTERIOR_COLOR'; payload: ExteriorColorInfo }
+  | { type: 'SET_INTERIOR_COLOR'; payload: InteriorColorInfo }
+  | { type: 'SET_DISPLACEMENT'; payload: number }
+  | { type: 'SET_FUEL_EFFICIENCY'; payload: number };
+
+const initialState: State = {
+  model: undefined,
+  trim: undefined,
+  powerTrain: undefined,
+  bodyType: undefined,
+  driveTrain: undefined,
+  exteriorColor: undefined,
+  interiorColor: undefined,
+  displacement: undefined,
+  fuelEfficiency: undefined,
+  // TODO: 옵션 state 추가
+};
+
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case 'SET_TRIM':
+      return {
+        ...state,
+        trim: {
+          ...state.trim,
+          id: action.payload.id,
+          name: action.payload.name,
+          price: action.payload.price,
+        },
+      };
+    case 'SET_POWER_TRAIN':
+      return {
+        ...state,
+        powerTrain: {
+          ...state.powerTrain,
+          id: action.payload.id,
+          name: action.payload.name,
+          price: action.payload.price,
+          image: action.payload.image,
+        },
+      };
+    case 'SET_BODY_TYPE':
+      return {
+        ...state,
+        bodyType: {
+          ...state.bodyType,
+          id: action.payload.id,
+          name: action.payload.name,
+          price: action.payload.price,
+          image: action.payload.image,
+        },
+      };
+    case 'SET_DRIVE_TRAIN':
+      return {
+        ...state,
+        driveTrain: {
+          ...state.driveTrain,
+          id: action.payload.id,
+          name: action.payload.name,
+          price: action.payload.price,
+          image: action.payload.image,
+        },
+      };
+    case 'SET_EXTERIOR_COLOR':
+      return {
+        ...state,
+        exteriorColor: {
+          ...state.exteriorColor,
+          id: action.payload.id,
+          name: action.payload.name,
+          price: action.payload.price,
+          image: action.payload.image,
+          colorCode: action.payload.colorCode,
+        },
+      };
+    case 'SET_INTERIOR_COLOR':
+      return {
+        ...state,
+        interiorColor: {
+          ...state.interiorColor,
+          id: action.payload.id,
+          name: action.payload.name,
+          price: action.payload.price,
+          image: action.payload.image,
+          fabricImage: action.payload.fabricImage,
+        },
+      };
+    case 'SET_DISPLACEMENT':
+      return {
+        ...state,
+        displacement: action.payload,
+      };
+    case 'SET_FUEL_EFFICIENCY':
+      return {
+        ...state,
+        fuelEfficiency: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+interface SelectionContextType {
+  selectionInfo: State;
+  totalPrice: number;
+  dispatch: Dispatch<Action>;
+}
+
+export const SelectionContext = createContext<SelectionContextType | null>(null);
+
+function SelectionProvider({ children }: PropsWithChildren) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const totalPrice = useMemo(() => {
+    const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor } = state;
+    const options = [trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor];
+
+    return options.reduce((acc, curr) => acc + (curr?.price || 0), 0);
+  }, [state]);
+
+  const contextValue = useMemo(
+    () => ({
+      selectionInfo: state,
+      totalPrice,
+      dispatch,
+    }),
+    [state, totalPrice],
+  );
+
+  return <SelectionContext.Provider value={contextValue}>{children}</SelectionContext.Provider>;
+}
+
+export default SelectionProvider;

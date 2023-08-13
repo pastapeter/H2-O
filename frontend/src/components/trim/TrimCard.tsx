@@ -4,20 +4,26 @@ import styled from '@emotion/styled';
 import { CTAButton, Card } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
+import { SelectionContext } from '@/providers/SelectionProvider';
 import { SlideContext } from '@/providers/SlideProvider';
 
-interface Props extends ComponentProps<typeof Card> {
+interface Props extends Omit<ComponentProps<typeof Card>, 'id'> {
+  id: number;
   description: string;
   title: string;
   price: number;
 }
 
-function TrimCard({ description, title, price, ...restProps }: Props) {
+const LE_BLANC = 'Le Blanc';
+
+function TrimCard({ id, description, title, price, ...restProps }: Props) {
   const { currentSlide, setCurrentSlide } = useSafeContext(SlideContext);
+  const { dispatch } = useSafeContext(SelectionContext);
   const theme = useTheme();
 
   const handleClickButton: MouseEventHandler<HTMLButtonElement> = () => {
     setCurrentSlide(currentSlide + 1);
+    dispatch({ type: 'SET_TRIM', payload: { id, name: title, price } });
   };
 
   return (
@@ -36,6 +42,7 @@ function TrimCard({ description, title, price, ...restProps }: Props) {
         <CTAButton
           size='small'
           isFull
+          disabled={title !== LE_BLANC}
           css={css`
             ${theme.typography.TextKRMedium12}
           `}

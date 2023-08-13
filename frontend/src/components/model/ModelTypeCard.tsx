@@ -25,7 +25,7 @@ function ModelTypeCard({ choiceRatio, name, price, isSelected, ...restProps }: P
         {name}
       </Typography>
       <Typography font='TextKRMedium14' color={isSelected ? 'gray900' : 'gray600'}>
-        {toPriceFormatString(price)}
+        {toPriceFormatString(price)} 원
       </Typography>
       <Icon
         iconType='Check'

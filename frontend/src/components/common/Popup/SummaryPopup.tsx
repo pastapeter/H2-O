@@ -1,36 +1,25 @@
 import { MouseEventHandler, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { CTAButton, Icon, Popup, Toggle } from '@/components/common';
+import { CTAButton, Flex, Icon, Popup, Toggle, Typography } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
 import { toPriceFormatString } from '@/utils/string';
+import { SelectionContext } from '@/providers/SelectionProvider';
 import { SlideContext } from '@/providers/SlideProvider';
 
-interface Props {
+interface SummaryPopupProps {
   handleClickCloseButton: MouseEventHandler<HTMLElement | SVGSVGElement>;
 }
 
-interface Option {
+interface OptionSummaryProps {
   type: string;
   name: string;
   price: number;
 }
 
 const COMPLETE_TAB_IDX = 5;
-const MOCK_DATA_TRIM: Option[] = [
-  { type: '모델', name: '팰리세이드', price: 3880000 },
-  { type: '트림', name: '팰리세이드', price: 3880000 },
-  { type: '파워트레인', name: '디젤2.2', price: -280000 },
-  { type: '바디타입', name: '7인승', price: 0 },
-  { type: '구동방식', name: '2WD', price: 0 },
-  { type: '외장색상', name: '어비스 블랙펄', price: 150000 },
-  { type: '내장색상', name: '어비스 블랙펄', price: 0 },
-];
-const MOCK_DATA_OPTION: Option[] = [{ type: '옵션', name: '팰리세이드', price: 3880000 }];
-const NOW_PRICE = 38560000;
-const exteriorIMG = '/images/exterior2.png';
-const interiorIMG = '/images/interior.png';
+const MOCK_DATA_OPTION: OptionSummaryProps[] = [{ type: '옵션', name: '팰리세이드', price: 3880000 }];
 
 /**
  *
@@ -39,7 +28,8 @@ const interiorIMG = '/images/interior.png';
  *  <SummaryPopup handleClickCloseButton={() => setIsOpen(false)} />
  * ```
  */
-function SummaryPopup({ handleClickCloseButton }: Props) {
+function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
+  const { selectionInfo, totalPrice } = useSafeContext(SelectionContext);
   const { setCurrentSlide } = useSafeContext(SlideContext);
   const [isExterior, setIsExterior] = useState(true);
 
@@ -48,57 +38,75 @@ function SummaryPopup({ handleClickCloseButton }: Props) {
     setCurrentSlide(COMPLETE_TAB_IDX);
   };
 
+  const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor } = selectionInfo;
+
+  if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor) return null;
+
   return (
     <Popup size='large' handleClickDimmed={handleClickCloseButton}>
       <SummaryPopupContainer>
         <HeaderContainer>
           견적요약
-          <Icon iconType='Cancel' css={IconStyle} onClick={handleClickCloseButton} />
+          <CancelIcon iconType='Cancel' onClick={handleClickCloseButton} />
         </HeaderContainer>
         <MainContainer>
           <LeftContainer>
-            {isExterior ? <StyleImg src={exteriorIMG} /> : <StyleImg src={interiorIMG} />}
+            {isExterior ? <StyleImg src={exteriorColor.image} /> : <StyleImg src={interiorColor.image} />}
             <Toggle isChecked={isExterior} size='small' setIsChecked={setIsExterior} />
           </LeftContainer>
           <RightContainer>
-            {MOCK_DATA_TRIM.map(({ type, name, price }, idx) => (
-              <div key={idx}>
-                <Option>
-                  <span className='type'>{type}</span>
-                  <span className='name'>{name}</span>
-                  <span className='price'>{toPriceFormatString(price)}</span>
-                </Option>
-                {[1, 4, 6].includes(idx) && <Divider />}
-              </div>
-            ))}
+            <OptionSummary type='모델' name='팰리세이드' price={0} />
+            {trim && <OptionSummary type='트림' name={trim.name} price={trim.price} />}
+            <Divider />
+            {powerTrain && <OptionSummary type='파워트레인' name={powerTrain.name} price={powerTrain.price} />}
+            {bodyType && <OptionSummary type='바디타입' name={bodyType.name} price={bodyType.price} />}
+            {driveTrain && <OptionSummary type='구동방식' name={driveTrain.name} price={driveTrain.price} />}
+            <Divider />
+            {interiorColor && <OptionSummary type='외장색상' name={interiorColor.name} price={interiorColor.price} />}
+            {exteriorColor && <OptionSummary type='내장색상' name={exteriorColor.name} price={exteriorColor.price} />}
+            <Divider />
             {MOCK_DATA_OPTION.length ? (
-              MOCK_DATA_OPTION.map(({ type, name, price }, idx) => (
-                <Option key={idx}>
-                  <span className='type'>{type}</span>
-                  <span className='name'>{name}</span>
-                  <span className='price'>{toPriceFormatString(price)}</span>
-                </Option>
-              ))
+              MOCK_DATA_OPTION.map(({ name, ...props }) => <OptionSummary key={name} name={name} {...props} />)
             ) : (
-              <>
-                <Option>
-                  <span className='type'>옵션</span>
-                  <span className='name'>-</span>
-                  <span className='price'>{toPriceFormatString(0)}</span>
-                </Option>
-              </>
+              <OptionSummary type='옵션' name={'-'} price={0} />
             )}
           </RightContainer>
         </MainContainer>
         <PriceContainer>
           <span>현재 총 가격</span>
-          <Price>{toSeparatedNumberFormat(NOW_PRICE)} 원</Price>
+          <Price>{toSeparatedNumberFormat(totalPrice)} 원</Price>
         </PriceContainer>
         <CTAButton size='large' onClick={handleCompleteButton}>
           견적 완료하기
         </CTAButton>
       </SummaryPopupContainer>
     </Popup>
+  );
+}
+
+function OptionSummary({ type, name, price }: OptionSummaryProps) {
+  return (
+    <Flex alignItems='center' width='100%' height='22px' gap={8}>
+      <Typography
+        css={css`
+          width: 56px;
+          flex-shrink: 0;
+        `}
+        as='span'
+        font='TextKRRegular12'
+        color='gray500'
+      >
+        {type}
+      </Typography>
+      <Flex justifyContent='space-between' alignItems='center' width='100%' height='100%'>
+        <Typography as='span' font='TextKRMedium12' color='gray900'>
+          {name}
+        </Typography>
+        <Typography as='span' font='TextKRRegular14' color='gray900'>
+          {toPriceFormatString(price)}원
+        </Typography>
+      </Flex>
+    </Flex>
   );
 }
 
@@ -156,46 +164,26 @@ const Price = styled.div`
   color: ${({ theme }) => theme.colors.primary500};
 `;
 
-const IconStyle = css`
+const CancelIcon = styled(Icon)`
   position: absolute;
   right: 20px;
   top: 21px;
+  cursor: pointer;
 `;
 
 const StyleImg = styled.img`
   width: 418px;
   height: 212px;
+  object-fit: cover;
 `;
 
-const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.blueBg};
-  margin: 16px 0px 16px 0px;
-  width: 100%;
-  height: 1px;
-`;
-
-const Option = styled.div`
-  ${({ theme }) => theme.flex.flexCenterRow};
-  width: 100%;
-  height: 22px;
-  gap: 8px;
-
-  .type {
-    ${({ theme }) => theme.typography.TextKRRegular12};
-    color: ${({ theme }) => theme.colors.gray500};
-    width: 56px;
-  }
-
-  .name {
-    ${({ theme }) => theme.typography.TextKRMedium12};
-    color: ${({ theme }) => theme.colors.gray900};
-    width: 160px;
-  }
-
-  .price {
-    ${({ theme }) => theme.typography.TextKRRegular14};
-    color: ${({ theme }) => theme.colors.gray900};
-    width: 92px;
-    text-align: end;
-  }
-`;
+const Divider = styled.div(
+  {
+    width: '100%',
+    height: '1px',
+    margin: '16px 0px',
+  },
+  ({ theme }) => ({
+    backgroundColor: theme.colors.blueBg,
+  }),
+);

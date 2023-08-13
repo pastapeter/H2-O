@@ -2,9 +2,19 @@ import { Fragment } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import Accordian from './EstimateAccordian';
+import { getPriceSum } from './utils';
 import { Divider, Flex, HMGTag, Typography } from '@/components/common';
+import type { ExteriorColorInfo, InteriorColorInfo, SelectionInfoWithImage } from '@/providers/SelectionProvider';
 
-function DetailEstimate() {
+interface Props {
+  powerTrain: SelectionInfoWithImage;
+  bodyType: SelectionInfoWithImage;
+  driveTrain: SelectionInfoWithImage;
+  exteriorColor: ExteriorColorInfo;
+  interiorColor: InteriorColorInfo;
+}
+
+function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, interiorColor }: Props) {
   const { colors } = useTheme();
 
   return (
@@ -14,17 +24,56 @@ function DetailEstimate() {
       </Typography>
       <Flex justifyContent='space-between' gap={70}>
         <Flex flexDirection='column'>
-          <Accordian label='모델타입' totalPrice={43460000} isExpanded>
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
+          <Accordian label='모델타입' totalPrice={getPriceSum(powerTrain, bodyType, driveTrain)} isExpanded>
+            {powerTrain && (
+              <Accordian.Detail
+                type='파워트레인'
+                thumbnail={powerTrain.image}
+                name={powerTrain.name}
+                price={powerTrain.price}
+              />
+            )}
+            {bodyType && (
+              <Accordian.Detail
+                type='바디타입'
+                thumbnail={bodyType.image}
+                name={bodyType.name}
+                price={bodyType.price}
+              />
+            )}
+            {driveTrain && (
+              <Accordian.Detail
+                type='구동방식'
+                thumbnail={driveTrain.image}
+                name={driveTrain.name}
+                price={driveTrain.price}
+              />
+            )}
           </Accordian>
-          <Accordian label='모델타입' totalPrice={43460000} isExpanded>
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
+          <Accordian
+            label='색상'
+            totalPrice={getPriceSum<SelectionInfoWithImage>(exteriorColor, interiorColor)}
+            isExpanded
+          >
+            {exteriorColor && (
+              <Accordian.Detail
+                type='외장색상'
+                colorCode={exteriorColor.colorCode}
+                name={exteriorColor.name}
+                price={exteriorColor.price}
+              />
+            )}
+            {interiorColor && (
+              <Accordian.Detail
+                type='내장색상'
+                thumbnail={interiorColor.fabricImage}
+                name={interiorColor.name}
+                price={interiorColor.price}
+              />
+            )}
           </Accordian>
-          <Accordian label='모델타입' totalPrice={43460000} isExpanded>
+          {/* TODO: 추가옵션 페이지 붙으면 적용하기 */}
+          <Accordian label='추가옵션' totalPrice={43460000} isExpanded>
             <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
             <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
             <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />

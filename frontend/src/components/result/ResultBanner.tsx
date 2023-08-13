@@ -2,15 +2,25 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import { Flex, Typography, PriceStaticBar as _PriceStaticBar, Toggle as _Toggle } from '@/components/common';
 
-function ResultBanner() {
+interface Props {
+  trimName: string;
+  exteriorImage: string;
+  interiorImage: string;
+}
+
+function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
   const [isExterior, setIsExterior] = useState(true);
+
+  const carImage = isExterior ? exteriorImage : interiorImage;
+  const carImageAlt = isExterior ? '차 외장 이미지' : '차 내장 이미지';
 
   return (
     <Container flexDirection='column' justifyContent='center' alignItems='center'>
       <DisplayText font='DisplayText' color='white'>
-        Le Blanc
+        {trimName}
       </DisplayText>
-      <CarImage src='/images/result-external.png' alt='차 외장 이미지' />
+      {/* TODO: 생각보다 못생겨서 보류, 민주랑 얘기해봐야함 */}
+      <CarImage src={carImage} alt={carImageAlt} />
       <PriceStaticBar isComplete={true} nowPrice={4100} />
       <Toggle size='large' isChecked={isExterior} setIsChecked={setIsExterior} />
     </Container>
@@ -59,5 +69,6 @@ const CarImage = styled.img`
   left: 50%;
   width: 764px;
   height: 360px;
+  object-fit: contain;
   transform: translateX(-50%);
 `;

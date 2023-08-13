@@ -24,11 +24,6 @@ function Pages() {
       <Carousel.Slide>
         <InteriorPage />
       </Carousel.Slide>
-      <Carousel.Slide>2</Carousel.Slide>
-      <Carousel.Slide>
-        <ExteriorPage />
-      </Carousel.Slide>
-      <Carousel.Slide>4</Carousel.Slide>
       <Carousel.Slide>5</Carousel.Slide>
       <Carousel.Slide>
         <ResultPage />

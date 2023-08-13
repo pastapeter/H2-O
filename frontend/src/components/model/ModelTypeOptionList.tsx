@@ -1,31 +1,37 @@
 import styled from '@emotion/styled';
-import ModelTypeCard, { Props as Option } from './ModelTypeCard';
+import ModelTypeCard from './ModelTypeCard';
+import type { BodyType, DriveTrain, PowerTrain } from '@/types/interface';
 import { Flex, Typography } from '@/components/common';
 
-interface Props {
+type ModelType = PowerTrain | BodyType | DriveTrain;
+interface Props<T extends ModelType> {
   name: string;
-  selectedIdx: number;
-  options?: Option[];
-  onSelect: (idx: number) => void;
+  selectedId: number;
+  options?: T[];
+  onSelect: (data: T) => void;
 }
 
-function ModelTypeOptionList({ name, selectedIdx, options = [], onSelect }: Props) {
+function ModelTypeOptionList<T extends ModelType>({ name, selectedId, options = [], onSelect }: Props<T>) {
   return (
     <Flex flexDirection='column'>
       <Typography font='HeadKRMedium14' color='gray600' marginBottom={4}>
         {name}
       </Typography>
       <OptionContainer as='ul' gap={5}>
-        {options.map(({ name, ...props }, idx) => (
-          <ModelTypeCard
-            as='li'
-            key={name}
-            isSelected={selectedIdx === idx}
-            name={name}
-            onClick={() => onSelect(idx)}
-            {...props}
-          />
-        ))}
+        {options.map((option) => {
+          const { id, name, ...props } = option;
+
+          return (
+            <ModelTypeCard
+              as='li'
+              key={name}
+              isSelected={selectedId === id}
+              name={name}
+              onClick={() => onSelect(option)}
+              {...props}
+            />
+          );
+        })}
       </OptionContainer>
     </Flex>
   );

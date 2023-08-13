@@ -1,9 +1,12 @@
-import { Fragment, memo, useState } from 'react';
+import { Fragment, memo, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
+import type { InteriorColorResponse } from '@/types/interface';
 import { Banner, Footer } from '@/components/common';
-import InteriorSelector from '@/components/interior/InteriorSelector';
+import { InteriorSelector } from '@/components/interior';
+import { useSafeContext } from '@/hooks';
+import { SelectionContext } from '@/providers/SelectionProvider';
 
-const mocks = Array.from({ length: 12 }, (_, i) => ({
+const mocks: InteriorColorResponse[] = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
   name: '퀼팅천연(블랙)',
   choiceRatio: 38,
@@ -13,13 +16,20 @@ const mocks = Array.from({ length: 12 }, (_, i) => ({
 }));
 
 function InteriorPage() {
-  const [selectedId, setSelectedId] = useState(1);
+  const [selectedColor, setSelectedColor] = useState<InteriorColorResponse>(mocks[0]);
+  const { dispatch } = useSafeContext(SelectionContext);
+  const { id, name, price, bannerImage, fabricImage } = selectedColor;
 
-  const handleClickOption = (id: number) => {
-    setSelectedId(id);
+  useEffect(() => {
+    dispatch({ type: 'SET_INTERIOR_COLOR', payload: { id, name, price, image: bannerImage, fabricImage } });
+  }, []);
+
+  const handleSelectColor = (color: InteriorColorResponse) => {
+    const { id, name, price, bannerImage, fabricImage } = color;
+
+    setSelectedColor(color);
+    dispatch({ type: 'SET_INTERIOR_COLOR', payload: { id, name, price, image: bannerImage, fabricImage } });
   };
-
-  const { name, bannerImage } = mocks[selectedId - 1];
 
   return (
     <Fragment>
@@ -32,7 +42,7 @@ function InteriorPage() {
           background-size: cover;
         `}
       />
-      <InteriorSelector optionList={mocks} selectedId={selectedId} onClickOption={handleClickOption} />
+      <InteriorSelector optionList={mocks} selectedColor={selectedColor} onSelectColor={handleSelectColor} />
       <Footer />
     </Fragment>
   );
