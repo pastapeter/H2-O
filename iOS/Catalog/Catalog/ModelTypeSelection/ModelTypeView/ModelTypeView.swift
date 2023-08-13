@@ -22,10 +22,7 @@ struct ModelTypeView: View {
             Spacer().frame(height: 12)
             Image("powertrain")
             Spacer().frame(height: 8)
-            HStack {
-              ModelTypeButtonView()
-              ModelTypeButtonView()
-            }
+            ModelTypeButtonContainer()
             .padding(.horizontal, 4)
             .padding(.bottom, 4)
           }
