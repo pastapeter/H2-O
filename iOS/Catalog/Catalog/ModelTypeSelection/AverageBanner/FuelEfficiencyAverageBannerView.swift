@@ -40,7 +40,7 @@ extension FuelEfficiencyAverageBannerView {
         }
         .padding(.horizontal, 56)
         .padding(.top, 16)
-        .padding(.bottom, 30)
+        .padding(.bottom, 20)
       }
       .padding(.top, 12)
       .frame(maxWidth: .infinity)
