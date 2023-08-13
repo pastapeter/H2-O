@@ -58,7 +58,9 @@ extension ModelContentView {
           .padding(.top, 12)
           .padding(.horizontal, 20)
           Spacer()
-          HMGDataWithHorizontalGraphView(state: .mock())
+          HMGDataBannerComponent {
+            HMGDataWithHorizontalGraphView(state: .mock())
+          }
         }
         .background(.white)
       }
