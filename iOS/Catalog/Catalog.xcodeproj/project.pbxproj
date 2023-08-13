@@ -72,11 +72,13 @@
 		B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D6A2A854D3A00C7B07D /* HMGButtonArrowStyle.swift */; };
 		B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */; };
 		B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF332A89533300642730 /* ModelTypeOption.swift */; };
-		B16DFF362A89548300642730 /* ModelTypeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF352A89548300642730 /* ModelTypeRepository.swift */; };
+		B16DFF362A89548300642730 /* ModelTypeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF352A89548300642730 /* ModelTypeRepositoryProtocol.swift */; };
 		B16DFF382A8958B700642730 /* OptionInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF372A8958B700642730 /* OptionInDetail.swift */; };
 		B16DFF3A2A8958CF00642730 /* MaxOutputFromEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF392A8958CF00642730 /* MaxOutputFromEngine.swift */; };
 		B16DFF3C2A8958DB00642730 /* MaxTorqueFromEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF3B2A8958DB00642730 /* MaxTorqueFromEngine.swift */; };
 		B16DFF3F2A89590000642730 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF3E2A89590000642730 /* Option.swift */; };
+		B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF402A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift */; };
+		B16DFF432A895BE000642730 /* ModelTypeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF422A895BE000642730 /* ModelTypeRepository.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -221,11 +223,13 @@
 		B1604D6A2A854D3A00C7B07D /* HMGButtonArrowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGButtonArrowStyle.swift; sourceTree = "<group>"; };
 		B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonStyle.swift; sourceTree = "<group>"; };
 		B16DFF332A89533300642730 /* ModelTypeOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeOption.swift; sourceTree = "<group>"; };
-		B16DFF352A89548300642730 /* ModelTypeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRepository.swift; sourceTree = "<group>"; };
+		B16DFF352A89548300642730 /* ModelTypeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B16DFF372A8958B700642730 /* OptionInDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionInDetail.swift; sourceTree = "<group>"; };
 		B16DFF392A8958CF00642730 /* MaxOutputFromEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxOutputFromEngine.swift; sourceTree = "<group>"; };
 		B16DFF3B2A8958DB00642730 /* MaxTorqueFromEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxTorqueFromEngine.swift; sourceTree = "<group>"; };
 		B16DFF3E2A89590000642730 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		B16DFF402A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultOfCalculationOfFuelAndDisplacement.swift; sourceTree = "<group>"; };
+		B16DFF422A895BE000642730 /* ModelTypeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRepository.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -591,6 +595,7 @@
 		B16DFF312A8952BC00642730 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B16DFF422A895BE000642730 /* ModelTypeRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -598,7 +603,7 @@
 		B16DFF322A89530800642730 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				B16DFF352A89548300642730 /* ModelTypeRepository.swift */,
+				B16DFF352A89548300642730 /* ModelTypeRepositoryProtocol.swift */,
 				B16DFF3D2A8958EC00642730 /* Entity */,
 			);
 			path = Domain;
@@ -612,6 +617,7 @@
 				B16DFF3B2A8958DB00642730 /* MaxTorqueFromEngine.swift */,
 				B16DFF332A89533300642730 /* ModelTypeOption.swift */,
 				B16DFF3E2A89590000642730 /* Option.swift */,
+				B16DFF402A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -941,7 +947,7 @@
 				B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */,
 				EDC1862F2A893577009EB498 /* CLInactiveButtonStyle.swift in Sources */,
 				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
-				B16DFF362A89548300642730 /* ModelTypeRepository.swift in Sources */,
+				B16DFF362A89548300642730 /* ModelTypeRepositoryProtocol.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
 				B1604D272A8265B500C7B07D /* RequestManager.swift in Sources */,
@@ -979,6 +985,7 @@
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
 				EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */,
+				B16DFF432A895BE000642730 /* ModelTypeRepository.swift in Sources */,
 				ED1A70A92A83723F00F7920F /* CLCategory.swift in Sources */,
 				B1084BE72A87ACDD00AE1758 /* ModelTypeButtonContainer.swift in Sources */,
 				ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */,
@@ -1003,6 +1010,7 @@
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
 				B1604D342A83701900C7B07D /* CLAPIRetrier.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
+				B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */,
 				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				ED1C70632A89C3C50049D275 /* Trim.swift in Sources */,

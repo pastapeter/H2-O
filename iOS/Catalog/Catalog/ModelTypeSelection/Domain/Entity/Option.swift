@@ -8,6 +8,7 @@
 import Foundation
 
 struct Option {
+  var id: Int
   var title: String
   var choiceRatio: Int
   var price: CLNumber
