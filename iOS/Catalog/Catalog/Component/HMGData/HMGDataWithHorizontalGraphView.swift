@@ -37,12 +37,6 @@ extension HMGDataWithHorizontalGraphView {
 
   var body: some View {
     VStack(alignment: .leading) {
-      Button { } label: {
-        Text("HMG Data")
-          .catalogFont(type: .HeadENBold10)
-      }
-      .buttonStyle(HMGButtonStyle())
-
       HStack(alignment: .bottom) {
         Text("최고출력(PS/rpm)")
           .catalogFont(type: .TextKRMedium10)
@@ -66,9 +60,6 @@ extension HMGDataWithHorizontalGraphView {
       BarHorizontalView(percent: $percent)
         .frame(height: 4)
     }
-    .padding(.horizontal, 20)
-    .padding(.bottom, 25)
-    .background(Color.gray50)
   }
 
 }
