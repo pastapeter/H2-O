@@ -41,7 +41,7 @@ extension ModelContentView {
           Image("gasoline3")
             .resizable()
             .frame(height: UIScreen.main.bounds.height * (180 / 812))
-          VStack {
+          VStack(alignment: .leading) {
             HStack {
               Text(state.title)
                 .catalogFont(type: .HeadKRMedium18)
@@ -50,7 +50,6 @@ extension ModelContentView {
               Text("\(Text("\(state.frequency)%").foregroundColor(.activeBlue))의 선택")
                 .catalogFont(type: .TextKRMedium12)
             }
-
             Text(state.description)
               .catalogFont(type: .TextKRRegular12)
               .foregroundColor(.gray800)
