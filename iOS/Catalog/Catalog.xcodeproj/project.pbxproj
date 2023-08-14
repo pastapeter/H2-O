@@ -650,9 +650,7 @@
 			children = (
 				B1F988D72A8A80FE00C7B65F /* Domain */,
 				B1F988D62A8A80F900C7B65F /* Data */,
-				B16DFF492A8A3E4800642730 /* ExternalSelectionContainerView.swift */,
-				B16DFF4B2A8A3E9000642730 /* ExternalColorSelectionHorizontalList.swift */,
-				B16DFF4D2A8A3EA500642730 /* ColorSelectionView.swift */,
+				B1F988DE2A8AA95500C7B65F /* View */,
 			);
 			path = ExternalColorSelection;
 			sourceTree = "<group>";
@@ -698,6 +696,16 @@
 				B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		B1F988DE2A8AA95500C7B65F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B16DFF492A8A3E4800642730 /* ExternalSelectionContainerView.swift */,
+				B16DFF4B2A8A3E9000642730 /* ExternalColorSelectionHorizontalList.swift */,
+				B16DFF4D2A8A3EA500642730 /* ColorSelectionView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		ED1A70942A8357FD00F7920F /* QuotationSummary */ = {
