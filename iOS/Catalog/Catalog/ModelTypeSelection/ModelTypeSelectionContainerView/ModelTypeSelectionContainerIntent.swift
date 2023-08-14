@@ -42,7 +42,7 @@ extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentTy
     switch action {
     case .onAppear:
       Task {
-        let options = try await repository.fetch(vehicleId: state.selectedTrimId)
+        let options = try await repository.fetch(carId: state.selectedTrimId)
         send(action: .modelTypeOptions(options: options))
       }
     case .calculateFuelEfficiency:

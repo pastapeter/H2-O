@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 // Powertrain
 struct PowertrainDTO: Codable {
     let id: Int?
@@ -58,7 +56,5 @@ struct ModelTypeResponseDTO: Codable {
     let powertrains: [PowertrainDTO]?
     let bodytypes: [BodyTypeDTO]?
     let drivetrains: [DrivetrainDTO]?
-  
+
 }
-
-

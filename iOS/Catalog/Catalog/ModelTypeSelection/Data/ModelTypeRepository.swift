@@ -35,7 +35,7 @@ final class MockModelTypeRepository: ModelTypeRepositoryProtocol {
     MockURLProtocol.mockURLs = [
       url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))
     ]
-    
+
     return [
       ModelTypeOption(title: "파워트레인", options: [
         OptionState(id: .init(), isSelected: true, frequency: Int.random(in: 0...90), title: "디젤2.2", price: CLNumber(0)),
