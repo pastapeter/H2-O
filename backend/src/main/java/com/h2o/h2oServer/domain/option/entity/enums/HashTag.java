@@ -8,9 +8,9 @@ public enum HashTag {
     STYLE("스타일"),
     SMART("스마트"),
     COMFORTABLE("쾌적"),
-    LONG_DISTANCE_DRIVING("장거리 운전"),
-    SHORT_DISTANCE_DRIVING("단거리 운전"),
-    CHILD_COMMUTE("자녀 통학"),
+    LONG_DISTANCE_DRIVING("장거리운전"),
+    SHORT_DISTANCE_DRIVING("단거리운전"),
+    CHILD_COMMUTE("자녀통학"),
     COMMUTE("출퇴근"),
     BUSINESS_TRIP("출장"),
     SAFETY("안전"),
@@ -29,7 +29,8 @@ public enum HashTag {
     RURAL("시외"),
     FEMALE("여성"),
     MALE("남성"),
-    PET("반려동물");
+    PET("반려동물"),
+    TRAVEL("국내여행");
 
     private final String label;
 
