@@ -18,6 +18,11 @@ export interface InteriorColorInfo extends SelectionInfoWithImage {
   fabricImage: string;
 }
 
+export interface ExtraOptionsInfo {
+  price: number;
+  optionList: SelectionInfoWithImage[];
+}
+
 type State = {
   model?: SelectionInfo;
   trim?: SelectionInfo;
@@ -28,6 +33,7 @@ type State = {
   interiorColor?: InteriorColorInfo;
   displacement?: number;
   fuelEfficiency?: number;
+  extraOptions?: ExtraOptionsInfo;
 };
 
 type Action =
@@ -38,7 +44,8 @@ type Action =
   | { type: 'SET_EXTERIOR_COLOR'; payload: ExteriorColorInfo }
   | { type: 'SET_INTERIOR_COLOR'; payload: InteriorColorInfo }
   | { type: 'SET_DISPLACEMENT'; payload: number }
-  | { type: 'SET_FUEL_EFFICIENCY'; payload: number };
+  | { type: 'SET_FUEL_EFFICIENCY'; payload: number }
+  | { type: 'SET_EXTRA_OPTIONS'; payload: SelectionInfoWithImage[] };
 
 const initialState: State = {
   model: undefined,
@@ -50,7 +57,7 @@ const initialState: State = {
   interiorColor: undefined,
   displacement: undefined,
   fuelEfficiency: undefined,
-  // TODO: 옵션 state 추가
+  extraOptions: undefined,
 };
 
 const reducer = (state: State, action: Action): State => {
@@ -132,6 +139,14 @@ const reducer = (state: State, action: Action): State => {
         ...state,
         fuelEfficiency: action.payload,
       };
+    case 'SET_EXTRA_OPTIONS':
+      return {
+        ...state,
+        extraOptions: {
+          price: action.payload.reduce((acc, curr) => acc + (curr?.price || 0), 0),
+          optionList: action.payload,
+        },
+      };
     default:
       return state;
   }
@@ -149,8 +164,8 @@ function SelectionProvider({ children }: PropsWithChildren) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const totalPrice = useMemo(() => {
-    const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor } = state;
-    const options = [trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor];
+    const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions } = state;
+    const options = [trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions];
 
     return options.reduce((acc, curr) => acc + (curr?.price || 0), 0);
   }, [state]);

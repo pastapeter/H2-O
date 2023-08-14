@@ -1,8 +1,7 @@
 import { Fragment, memo, useEffect, useState } from 'react';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { BodyType, DriveTrain, ModelTypeResponse, PowerTrain } from '@/types/interface';
-import { Banner, Footer, PriceStaticBar } from '@/components/common';
+import { Banner, Footer, PriceStaticBar as _PriceStaticBar } from '@/components/common';
 import { BottomHMGData, ModelOptionDetail, ModelTypeSelector } from '@/components/model';
 import { useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
@@ -137,16 +136,7 @@ function ModelPage() {
       <Footer>
         <BottomHMGData powerTrainType={mocks.powerTrains[0].name} driveTrainType={mocks.driveTrains[0].name} />
       </Footer>
-      <PriceStaticBar
-        isComplete={false}
-        nowPrice={4100}
-        css={css`
-          position: fixed;
-          top: 16px;
-          left: 50%;
-          transform: translateX(-50%);
-        `}
-      />
+      <PriceStaticBar />
     </Fragment>
   );
 }
@@ -160,4 +150,11 @@ const Image = styled.img`
   right: 0;
   width: 632px;
   height: 100%;
+`;
+
+const PriceStaticBar = styled(_PriceStaticBar)`
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
 `;

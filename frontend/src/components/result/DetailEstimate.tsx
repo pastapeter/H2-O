@@ -4,7 +4,12 @@ import styled from '@emotion/styled';
 import Accordian from './EstimateAccordian';
 import { getPriceSum } from './utils';
 import { Divider, Flex, HMGTag, Typography } from '@/components/common';
-import type { ExteriorColorInfo, InteriorColorInfo, SelectionInfoWithImage } from '@/providers/SelectionProvider';
+import type {
+  ExteriorColorInfo,
+  ExtraOptionsInfo,
+  InteriorColorInfo,
+  SelectionInfoWithImage,
+} from '@/providers/SelectionProvider';
 
 interface Props {
   powerTrain: SelectionInfoWithImage;
@@ -12,9 +17,10 @@ interface Props {
   driveTrain: SelectionInfoWithImage;
   exteriorColor: ExteriorColorInfo;
   interiorColor: InteriorColorInfo;
+  extraOptions: ExtraOptionsInfo;
 }
 
-function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, interiorColor }: Props) {
+function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions }: Props) {
   const { colors } = useTheme();
 
   return (
@@ -72,11 +78,10 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
               />
             )}
           </Accordian>
-          {/* TODO: 추가옵션 페이지 붙으면 적용하기 */}
-          <Accordian label='추가옵션' totalPrice={43460000} isExpanded>
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
-            <Accordian.Detail thumbnail='/images/result-external.png' type='외장' name='르블랑' price={43460000} />
+          <Accordian label='추가옵션' totalPrice={extraOptions.price} isExpanded>
+            {extraOptions.optionList.map((opt) => (
+              <Accordian.Detail key={opt.id} thumbnail={opt.image} name={opt.name} price={opt.price} />
+            ))}
           </Accordian>
           <Accordian label='탁송' totalPrice={0} />
           <Accordian label='할인 및 포인트' totalPrice={0} />

@@ -1,11 +1,10 @@
-import { type PropsWithChildren, useState } from 'react';
+import { type PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
 import { CTAButton, Flex, PriceSummaryButton, SummaryPopup, Typography } from '@/components/common';
 import { useSafeContext, useToggle } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
 import { SelectionContext } from '@/providers/SelectionProvider';
 import { SlideContext } from '@/providers/SlideProvider';
-
 
 interface Props {
   isSticky?: boolean;
@@ -15,16 +14,8 @@ function Footer({ children, isSticky = false }: PropsWithChildren<Props>) {
   const { setCurrentSlide } = useSafeContext(SlideContext);
   const { status: isPopupOpen, setOff: handleClosePopup, setOn: handleOpenPopup } = useToggle(false);
 
-
   const handleClickNext = () => {
     setCurrentSlide((prev) => prev + 1);
-  };
-
-  const openPopup = () => {
-    setIsOpen(true);
-  };
-  const closePopup = () => {
-    setIsOpen(false);
   };
 
   return (

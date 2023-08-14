@@ -1,24 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interface';
+import type { ExtraOptionResponse } from '@/types/interface';
 import { Flex, Typography } from '@/components/common';
 import { OptionCard } from '@/components/option/utils';
+import { useSafeContext } from '@/hooks';
+import { SelectionContext } from '@/providers/SelectionProvider';
 
 interface Props {
-  isExtraOption: boolean;
-  dataList: ExtraOptionResponse[] | DefaultOptionResponse[];
+  dataList: ExtraOptionResponse[];
   handleClickOptionCard: (idx: number, hasHMGData: boolean) => () => void;
 }
 
-function OptionSelector({ isExtraOption, dataList, handleClickOptionCard }: Props) {
+function ExtraOptionSelector({ dataList, handleClickOptionCard }: Props) {
   const [checkOptionList, setCheckOptionList] = useState<number[]>([]);
+  const { dispatch } = useSafeContext(SelectionContext);
 
   const addToOptionList = (idx: number) => {
     setCheckOptionList((prevList) => [...prevList, idx]);
   };
+
   const removeFromOptionList = (idx: number) => {
     setCheckOptionList((prevList) => prevList.filter((num) => num !== idx));
   };
+
+  useEffect(() => {
+    dispatch({
+      type: 'SET_EXTRA_OPTIONS',
+      payload: checkOptionList.map((idx) => ({
+        id: dataList[idx].id,
+        name: dataList[idx].name,
+        price: dataList[idx].price,
+        image: dataList[idx].image,
+      })),
+    });
+  }, [checkOptionList]);
 
   if (!dataList.length)
     return (
@@ -29,30 +44,15 @@ function OptionSelector({ isExtraOption, dataList, handleClickOptionCard }: Prop
       </Flex>
     );
 
-  if (isExtraOption)
-    return (
-      <OptionContainer>
-        {dataList.map((opt) => (
-          <OptionCard
-            key={opt.id}
-            type='extra'
-            info={opt}
-            isChecked={checkOptionList.includes(opt.id)}
-            addOption={addToOptionList}
-            removeOption={removeFromOptionList}
-            onClick={handleClickOptionCard(opt.id, opt.containsHmgData)}
-          />
-        ))}
-      </OptionContainer>
-    );
-
   return (
     <OptionContainer>
       {dataList.map((opt) => (
         <OptionCard
           key={opt.id}
-          type='default'
           info={opt}
+          isChecked={checkOptionList.includes(opt.id)}
+          addOption={addToOptionList}
+          removeOption={removeFromOptionList}
           onClick={handleClickOptionCard(opt.id, opt.containsHmgData)}
         />
       ))}
@@ -60,7 +60,7 @@ function OptionSelector({ isExtraOption, dataList, handleClickOptionCard }: Prop
   );
 }
 
-export default OptionSelector;
+export default ExtraOptionSelector;
 
 const OptionContainer = styled.div`
   display: grid;

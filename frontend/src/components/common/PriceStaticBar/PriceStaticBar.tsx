@@ -1,30 +1,35 @@
-import { MouseEventHandler, useState } from 'react';
+import { HTMLAttributes, MouseEventHandler, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import Slider from './Slider';
 import { Icon } from '@/components/common';
-import { toSeparatedNumberFormat } from '@/utils/number';
+import { useSafeContext } from '@/hooks';
+import { setPriceFormat, toSeparatedNumberFormat } from '@/utils/number';
+import { SelectionContext } from '@/providers/SelectionProvider';
 
-const MAX_PRICE: number = 4300;
-const MIN_PRICE: number = 3850;
+// TODO: API 연결해서 가져오기
+const MAX_PRICE = 53460000;
+const MIN_PRICE = 38460000;
 
 interface SliderInfo {
   value: number;
   isOverPrice: boolean;
 }
 
-interface PriceStaticBarProps {
-  isComplete: boolean;
-  nowPrice: number;
+interface PriceStaticBarProps extends HTMLAttributes<HTMLDivElement> {
+  isComplete?: boolean;
 }
 
 // 사용법: <PriceStaticBar isComplete={true} nowPrice={4100} />
 
-function PriceStaticBar({ isComplete, nowPrice, ...restProps }: PriceStaticBarProps) {
+function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProps) {
   const theme = useTheme();
+
+  const { totalPrice } = useSafeContext(SelectionContext);
+
   const [isActive, setIsActive] = useState(false);
   const [sliderInfo, setSliderInfo] = useState<SliderInfo>({
-    isOverPrice: nowPrice > (MIN_PRICE + MAX_PRICE) / 2,
+    isOverPrice: totalPrice > (MIN_PRICE + MAX_PRICE) / 2,
     value: (MIN_PRICE + MAX_PRICE) / 2,
   });
 
@@ -39,7 +44,7 @@ function PriceStaticBar({ isComplete, nowPrice, ...restProps }: PriceStaticBarPr
         <Summary>
           설정한 예산까지 &nbsp;
           <Price isOverPrice={sliderInfo.isOverPrice}>
-            {toSeparatedNumberFormat(Math.round(Math.abs((sliderInfo.value - nowPrice) * 10000)))}원
+            {toSeparatedNumberFormat(Math.abs(sliderInfo.value - totalPrice))}원
           </Price>
           &nbsp;{sliderInfo.isOverPrice ? '더 들었어요.' : '남았어요.'}
         </Summary>
@@ -59,13 +64,13 @@ function PriceStaticBar({ isComplete, nowPrice, ...restProps }: PriceStaticBarPr
             sliderInfo={sliderInfo}
             minPrice={MIN_PRICE}
             maxPrice={MAX_PRICE}
-            nowPrice={nowPrice}
+            totalPrice={totalPrice}
             isComplete={isComplete}
             setSliderInfo={setSliderInfo}
           />
           <PriceRange>
-            <span>{MIN_PRICE}만원</span>
-            <span>{MAX_PRICE}만원</span>
+            <span>{setPriceFormat(MIN_PRICE)}만원</span>
+            <span>{setPriceFormat(MAX_PRICE)}만원</span>
           </PriceRange>
         </StyledActive>
       )}
@@ -81,6 +86,7 @@ const PriceStaticBarContainer = styled.div<{ isActive: boolean }>`
   padding: ${({ isActive }) => (isActive ? `8.5px 16px 14px 16px` : `8.5px 16px 7.5px 16px`)};
   width: 343px;
   height: ${({ isActive }) => (isActive ? 97 : 40)}px;
+  overflow: hidden;
 `;
 
 const PriceInfo = styled.div`

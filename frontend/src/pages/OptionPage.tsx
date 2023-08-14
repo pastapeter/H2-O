@@ -3,7 +3,7 @@ import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { DetailedOptionResponse, DetailedPackageOptionResponse } from '@/types/interface';
 import { CategoryButton, Flex, Footer, Icon, MainSelector } from '@/components/common';
-import { OptionBanner, OptionSelector } from '@/components/option';
+import { DefaultOptionSelector, ExtraOptionSelector, OptionBanner } from '@/components/option';
 import { useFilter } from '@/components/option/hooks';
 import {
   DETAILED_OPTION_LIST,
@@ -85,11 +85,11 @@ function OptionPage() {
                 ))}
           </Flex>
         </ButtonContainer>
-        <OptionSelector
-          isExtraOption={isExtraOption}
-          dataList={isExtraOption ? extraOptionList : defaultOptionList}
-          handleClickOptionCard={handleClickOptionCard}
-        />
+        {isExtraOption ? (
+          <ExtraOptionSelector dataList={extraOptionList} handleClickOptionCard={handleClickOptionCard} />
+        ) : (
+          <DefaultOptionSelector dataList={defaultOptionList} handleClickOptionCard={handleClickOptionCard} />
+        )}
       </MainSelector>
       <Footer isSticky={true} />
     </Fragment>

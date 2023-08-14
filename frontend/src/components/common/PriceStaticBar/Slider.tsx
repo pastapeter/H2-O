@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Marker from './Marker';
 
 const SLIDER_WIDTH = 311;
-const STEP_SIZE = 10;
+const STEP_SIZE = 100000;
 
 interface SliderInfo {
   value: number;
@@ -15,18 +15,18 @@ interface Props {
   sliderInfo: SliderInfo;
   minPrice: number;
   maxPrice: number;
-  nowPrice: number;
+  totalPrice: number;
   isComplete: boolean;
   setSliderInfo: Dispatch<SetStateAction<SliderInfo>>;
 }
 
-function Slider({ sliderInfo, minPrice, maxPrice, nowPrice, isComplete, setSliderInfo }: Props) {
+function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, setSliderInfo }: Props) {
   const RANGE = maxPrice - minPrice;
   const theme = useTheme();
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const targetValue = Number(e.target.value);
-    setSliderInfo({ isOverPrice: nowPrice > targetValue, value: targetValue });
+    setSliderInfo({ isOverPrice: totalPrice > targetValue, value: targetValue });
   };
 
   const preventEventDefault: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -53,7 +53,7 @@ function Slider({ sliderInfo, minPrice, maxPrice, nowPrice, isComplete, setSlide
           position: absolute;
           top: 50%;
           transform: translateY(-60%);
-          left: ${((nowPrice - minPrice) / RANGE) * SLIDER_WIDTH}px;
+          left: ${((totalPrice - minPrice) / RANGE) * SLIDER_WIDTH}px;
           z-index: 1;
           pointer-events: none;
         `}

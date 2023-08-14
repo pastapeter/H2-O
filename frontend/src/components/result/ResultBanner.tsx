@@ -24,7 +24,7 @@ function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
       </DisplayText>
       {/* TODO: 생각보다 못생겨서 보류, 민주랑 얘기해봐야함 */}
       <CarImage src={carImage} alt={carImageAlt} />
-      <PriceStaticBar isComplete={true} nowPrice={4100} />
+      <PriceStaticBar isComplete={true} />
       <Toggle size='large' isChecked={isExterior} handleChangeToggle={handleChangeToggle} />
     </Container>
   );

@@ -1,5 +1,4 @@
 import { Fragment, memo, useEffect, useState } from 'react';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ExteriorColorResponse } from '@/types/interface';
 import { Banner, Footer, PriceStaticBar as _PriceStaticBar } from '@/components/common';
@@ -43,16 +42,7 @@ function ExteriorPage() {
       </Banner>
       <ExteriorSelector exteriorList={mocks} selectedColor={selectedColor} onSelectColor={handleSelectColor} />
       <Footer />
-      <PriceStaticBar
-        isComplete={false}
-        nowPrice={4100}
-        css={css`
-          position: fixed;
-          top: 16px;
-          left: 50%;
-          transform: translateX(-50%);
-        `}
-      />
+      <PriceStaticBar />
     </Fragment>
   );
 }

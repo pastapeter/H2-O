@@ -7,7 +7,6 @@ import { CheckIcon } from '@/components/option/utils';
 import { toPriceFormatString } from '@/utils/string';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  type: 'extra' | 'default';
   info: DefaultOptionResponse | ExtraOptionResponse;
   isChecked?: boolean;
   addOption?: (idx: number) => void;

@@ -52,7 +52,7 @@ function EstimateAccordian({
     if (!expandableRef.current || !detailRef.current) return;
 
     expandableRef.current.style.height = `${detailRef.current.clientHeight}px`;
-  }, [detailRef.current]);
+  }, [detailRef.current, children]);
 
   return (
     <Flex flexDirection='column' width='607px'>
@@ -98,7 +98,7 @@ function Detail({ thumbnail, colorCode, type, name, price }: DetailProps) {
           {thumbnail && <Thumbnail src={thumbnail} alt='외장 이미지' />}
         </ImageContainer>
         <Flex justifyContent='space-between' alignItems='center' width='100%'>
-          <Flex flexDirection='column' gap={10}>
+          <Flex flexDirection='column' height='100%' gap={10}>
             {type && (
               <Typography font='TextKRRegular14' color='gray500'>
                 {type}
