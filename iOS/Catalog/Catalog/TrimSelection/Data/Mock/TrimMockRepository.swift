@@ -12,7 +12,7 @@ final class TrimMockRepository: TrimSelectionRepositoryProtocol {
   func fetchTrims(in vehicleId: Int) async throws -> [Trim] {
     let manager = RequestManager(apiManager: MockAPIManager())
     guard let data = JSONLoader.load(with: "Trim") else { return [] }
-    let url = URL(string: "https://api.catalog.com/vehicle/\(vehicleId)")!
+    let url = URL(string: "https://api.cartalog.com/vehicle/\(vehicleId)")!
     MockURLProtocol.mockURLs = [
       url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))
     ]
