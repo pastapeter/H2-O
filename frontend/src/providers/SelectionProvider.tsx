@@ -44,7 +44,7 @@ type Action =
   | { type: 'SET_DRIVE_TRAIN'; payload: SelectionInfoWithImage }
   | { type: 'SET_EXTERIOR_COLOR'; payload: ExteriorColorInfo }
   | { type: 'SET_INTERIOR_COLOR'; payload: InteriorColorInfo }
-  | { type: 'SET_DISPLACEMENT_AND_FUEL_EFFICIENCY'; payload: TechnicalSpecResponse };
+  | { type: 'SET_DISPLACEMENT_AND_FUEL_EFFICIENCY'; payload: TechnicalSpecResponse }
   | { type: 'SET_EXTRA_OPTIONS'; payload: SelectionInfoWithImage[] };
 
 const initialState: State = {

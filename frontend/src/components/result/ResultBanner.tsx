@@ -32,7 +32,7 @@ function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
         {trimName}
       </Typography>
       {isExterior && <CarImage src={carImage} alt={carImageAlt} />}
-      <PriceStaticBar isComplete={true} nowPrice={4100} />
+      <PriceStaticBar />
       <Toggle size='large' isChecked={isExterior} handleChangeToggle={handleChangeToggle} />
     </Container>
   );

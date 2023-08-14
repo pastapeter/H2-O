@@ -14,8 +14,17 @@ interface InfoProps {
 function ResultPage() {
   const { selectionInfo } = useSafeContext(SelectionContext);
 
-  const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, displacement, fuelEfficiency } =
-    selectionInfo;
+  const {
+    trim,
+    powerTrain,
+    bodyType,
+    driveTrain,
+    exteriorColor,
+    interiorColor,
+    extraOptions,
+    displacement,
+    fuelEfficiency,
+  } = selectionInfo;
 
   // 일단 대충 로딩 처리
   if (
@@ -26,8 +35,10 @@ function ResultPage() {
     !exteriorColor ||
     !interiorColor ||
     !displacement ||
-    !fuelEfficiency
-  ) return <div>로딩중...</div>;
+    !fuelEfficiency ||
+    !extraOptions
+  )
+    return <div>로딩중...</div>;
 
   return (
     <Fragment>
