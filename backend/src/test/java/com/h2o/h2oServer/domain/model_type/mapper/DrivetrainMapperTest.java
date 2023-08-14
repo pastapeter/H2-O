@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 @MybatisTest
-@Sql("classpath:db/drivetrain-data.sql")
+@Sql("classpath:db/modelType/drivetrain-data.sql")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DrivetrainMapperTest {
 

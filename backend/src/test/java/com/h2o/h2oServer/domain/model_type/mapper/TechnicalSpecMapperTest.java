@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 @MybatisTest
-@Sql("classpath:db/technical-spec-data.sql")
+@Sql("classpath:db/modelType/technical-spec-data.sql")
 class TechnicalSpecMapperTest {
 
     @Autowired

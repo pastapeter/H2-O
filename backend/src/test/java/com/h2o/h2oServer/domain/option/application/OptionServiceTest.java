@@ -3,7 +3,7 @@ package com.h2o.h2oServer.domain.option.application;
 import com.h2o.h2oServer.domain.option.dto.OptionDetailsDto;
 import com.h2o.h2oServer.domain.option.dto.OptionStatisticsDto;
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
-import com.h2o.h2oServer.domain.option.entity.OptionEntity;
+import com.h2o.h2oServer.domain.option.entity.OptionDetailsEntity;
 import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
 import com.h2o.h2oServer.domain.option.entity.enums.OptionCategory;
 import com.h2o.h2oServer.domain.option.mapper.OptionMapper;
@@ -35,7 +35,7 @@ class OptionServiceTest {
         //given
         long optionId = 1L;
         long trimId = 1L;
-        when(optionMapper.findOption(optionId, trimId)).thenReturn(generateOptionEntity());
+        when(optionMapper.findOptionDetails(optionId, trimId)).thenReturn(generateOptionEntity());
         when(optionMapper.findHashTag(optionId)).thenReturn(generateHashTagEntities());
 
         //when
@@ -64,8 +64,8 @@ class OptionServiceTest {
         );
     }
 
-    private static OptionEntity generateOptionEntity() {
-        return OptionEntity.builder()
+    private static OptionDetailsEntity generateOptionEntity() {
+        return OptionDetailsEntity.builder()
                 .name("Option 1")
                 .image("image_url_1")
                 .description("Description for Option 1")

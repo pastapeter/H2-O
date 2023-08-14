@@ -29,7 +29,7 @@ public enum HashTag {
     RURAL("시외"),
     FEMALE("여성"),
     MALE("남성"),
-    PET("반려견/묘");
+    PET("반려동물");
 
     private final String label;
 

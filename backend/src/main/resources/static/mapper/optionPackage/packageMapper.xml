@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2o.h2oServer.domain.optionPackage.mapper.PackageMapper">
+    <select id="findPackage" resultType="PackageEntity">
+        select name, category, price, choice_ratio
+        from package
+            join trims_package on trims_package.package_id = package.id
+        where trims_package.trim_id = #{trimId} and trims_package.package_id = #{packageId}
+    </select>
+
+    <select id="findHashTag" resultType="HashTagEntity">
+        select hashtag.name
+        from package
+                 join package_hashtag on package.id = package_hashtag.package_id
+                 join hashtag on hashtag.id = package_hashtag.hashtag_id
+        where package.id = #{packageId}
+    </select>
+
+    <select id="findOptionComponent" resultType="long">
+        select option_id
+        from package_options
+        where package_id = #{packageId}
+    </select>
+</mapper>

@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 public class OptionStatisticsDto {
-    private static final int SELL_NUMBER = 3509;
+    public static final int SELL_NUMBER = 3509;
     private boolean isOverHalf;
     private Integer choiceCount;
     private Float useCount;

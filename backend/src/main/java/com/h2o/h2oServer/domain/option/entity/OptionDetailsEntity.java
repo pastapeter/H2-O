@@ -6,10 +6,13 @@ import lombok.Data;
 
 @Data
 @Builder
-public class OptionEntity {
+public class OptionDetailsEntity {
     private String name;
     private String image;
     private String description;
     private OptionCategory category;
     private Float useCount;
+    private Float choiceRatio;
+    private Integer price;
+    private String optionType;
 }

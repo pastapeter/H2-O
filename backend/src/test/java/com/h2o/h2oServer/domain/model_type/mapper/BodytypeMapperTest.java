@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 @MybatisTest
-@Sql("classpath:db/bodytype-data.sql")
+@Sql("classpath:db/modelType/bodytype-data.sql")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BodytypeMapperTest {
 
