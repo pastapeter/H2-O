@@ -26,6 +26,6 @@ struct BarHorizontalView: View {
 
 struct BarHorizontalView_Previews: PreviewProvider {
   static var previews: some View {
-    BarHorizontalView(percent: .constant(202/3800))
+    BarHorizontalView(percent: .constant(202 / 3800))
   }
 }
