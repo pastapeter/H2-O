@@ -10,15 +10,14 @@ import Foundation
 enum CLNavigationModel {
 
   struct State: Equatable {
+
     var currentPage: Int
 
   }
-
   enum ViewAction: Equatable {
     case onTapNavTab(index: Int)
     case onTapFinish
     case onTapLogo
     case onTapSwitchVehicleModel
   }
-
 }

@@ -13,7 +13,9 @@ struct CLLinearGradient: View {
     var startPoint: UnitPoint
     var endPoint: UnitPoint
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [Color.white, Color("Transparent")]), startPoint: startPoint, endPoint: endPoint)
+        LinearGradient(gradient: Gradient(colors: [Color.white, Color("Transparent")]),
+                       startPoint: startPoint,
+                       endPoint: endPoint)
             .frame(height: height)
     }
 }

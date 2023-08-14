@@ -17,7 +17,6 @@ protocol CLBudgetRangeIntentType {
 final class CLBudgetRangeIntent: ObservableObject {
 
     // MARK: - LifeCycle
-
     init(initialState: State) {
         state = initialState
     }

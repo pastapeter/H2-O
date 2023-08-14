@@ -76,7 +76,7 @@ extension CLBudgetRangeView: View {
                 if isFloatingExpanded {
                     // MARK: - 슬라이더
                     switch status {
-                        case .`default`, .complete:
+                      case .`default`, .complete:
                             CLSliderView(intent: intent,
                                          minimumBudget: CLNumber(38500000),
                                          maximumBudget: CLNumber(43000000),
@@ -84,7 +84,7 @@ extension CLBudgetRangeView: View {
                                          status: status,
                                          budgetPriceBinding: budgetPriceBinding,
                                          isExceedBudget: isExceedBudgetBinding)
-                        case .similarQuotation:
+                      case .similarQuotation:
                             CLSimilarQuotationSlideView(minimumBudget: CLNumber(38500000),
                                                         maximumBudget: CLNumber(43000000),
                                                         currentQuotationPrice: CLNumber(39000000),
@@ -124,11 +124,12 @@ extension CLBudgetRangeView {
 }
 
 extension CLBudgetRangeView {
-    @available(iOS 15, *)
     var attributedString: AttributedString {
-        let headString = ((status == .similarQuotation) ? "내 견적 " : "설정한 예산") + ((!state.isExceedBudget && (status == .default)) ? "까지 " : "보다 ")
+        let headString = ((status == .similarQuotation) ? "내 견적 " : "설정한 예산") +
+      ((!state.isExceedBudget && (status == .default)) ? "까지 " : "보다 ")
         let budgetString = state.budgetGap.won
-        let tailString = (state.isExceedBudget ? "더 들었어요" : (status == .default) ? "남았어요" : (status == .complete) ? "아꼈어요" : "비싸요")
+        let tailString = (state.isExceedBudget ?
+                          "더 들었어요" : (status == .default) ? "남았어요" : (status == .complete) ? "아꼈어요" : "비싸요")
         var text = AttributedString(headString + budgetString + " " + tailString + ".")
         guard let range = text.range(of: budgetString ) else { return "" }
         text.foregroundColor = Color.gray50
@@ -141,7 +142,10 @@ extension CLBudgetRangeView {
 struct CLBudgetRangeView_Previews: PreviewProvider {
     static var previews: some View {
         CLBudgetRangeView.build(
-            intent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: CLNumber(40000000), budgetPrice: CLNumber(40750000)))
+            intent: CLBudgetRangeIntent(initialState: .init(
+              currentQuotationPrice: CLNumber(40000000),
+              budgetPrice: CLNumber(40750000))
+            )
         )
     }
 }

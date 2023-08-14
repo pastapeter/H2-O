@@ -18,6 +18,7 @@ struct CLNavigationView: IntentBindingType {
                                                                        .inactive,
                                                                        .inactive,
                                                                        .inactive]
+  @SwiftUI.State var showQuotationSummarySheet: Bool = false
 }
 
 extension CLNavigationView {
@@ -25,17 +26,21 @@ extension CLNavigationView {
     .init(get: { state.currentPage },
           set: { intent.send(action: .onTapNavTab(index: $0)) })
   }
+
 }
 
 extension CLNavigationView: View {
-
   var body: some View {
     VStack {
       CLTopNaviBar(intent: intent)
       CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: $menuStatus)
       ZStack {
         TabView(selection: currentPageBinding) {
-          MockView(image: mockImageName[0]).tag(0)
+          TrimSelectionView.build(intent: TrimSelectionIntent(
+            initialState: .init(
+            selectedTrim: nil,
+            vehicleId: 123),
+            repository: TrimMockRepository()))
           ModelTypeSelectionContainerView().tag(1)
           MockView(image: mockImageName[2]).tag(2)
           MockView(image: mockImageName[3]).tag(3)
@@ -43,10 +48,17 @@ extension CLNavigationView: View {
           MockView(image: mockImageName[5]).tag(5)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        CLBudgetRangeView.build(
-              intent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: CLNumber(40000000), budgetPrice: CLNumber(40750000))))
+        if state.currentPage != 0 {
+          CLBudgetRangeView.build(
+              intent: CLBudgetRangeIntent(initialState:
+                  .init(currentQuotationPrice: CLNumber(40000000),
+                        budgetPrice: CLNumber(40750000)))
+              )
+        }
       }
-
+      if state.currentPage != 0 {
+        BottomArea(showQuotationSummarySheet: $showQuotationSummarySheet)
+      }
     }
   }
 }

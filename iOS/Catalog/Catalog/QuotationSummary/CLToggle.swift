@@ -24,7 +24,7 @@ struct CLToggle: View {
                         Capsule(style: .continuous)
                             .fill(Color.primary0)
                             .frame(width: 72, height: 36)
-                            .animation(.linear)
+                            .animation(.linear, value: isLeft)
                         if isLeft {
                             Spacer().frame(width: 78)
                         }
