@@ -32,10 +32,10 @@ extension ExternalSelectionContainerView: View {
         Text("외장 색상을 선택해주세요")
           .catalogFont(type: .HeadKRMedium18)
         Spacer().frame(height: 8)
-        ExternalColorSelectionHorizontalList(height: UIScreen.main.bounds.height * 177 / 812)
+        ExternalColorSelectionHorizontalList(state: state.colors, height: UIScreen.main.bounds.height * 177 / 812)
         Spacer()
       }
-      .padding(.horizontal, 20)
+      .padding(.leading, 20)
     }
     .onAppear {
       intent.send(action: .onAppear)

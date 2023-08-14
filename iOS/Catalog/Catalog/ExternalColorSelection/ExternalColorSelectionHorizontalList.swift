@@ -22,15 +22,15 @@ struct CardModifier: ViewModifier {
 
 struct ExternalColorSelectionHorizontalList: View {
 
-  var state = ["어비스 블랙펄", "어비스 블랙펄2", "어비스 블랙펄3"]
+  var state: [ColorState]
   var height: CGFloat = 400
 
     var body: some View {
       VStack(alignment: .leading) {
         ScrollView(.horizontal, showsIndicators: false) {
           LazyHStack {
-            ForEach(state, id: \.self) { _ in
-              ColorSelectionView(title: "어비스 블랙펄")
+            ForEach(state.indices, id: \.self) { i in
+              ColorSelectionView(state: state[i])
             }
           }
         }
@@ -41,6 +41,6 @@ struct ExternalColorSelectionHorizontalList: View {
 
 struct ExternalColorSelectionHorizontalList_Previews: PreviewProvider {
     static var previews: some View {
-        ExternalColorSelectionHorizontalList()
+      ExternalColorSelectionHorizontalList(state: [])
     }
 }

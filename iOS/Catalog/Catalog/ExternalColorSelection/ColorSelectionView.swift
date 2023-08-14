@@ -9,48 +9,47 @@ import SwiftUI
 
 struct ColorSelectionView: View {
 
-  @State var isSelected: Bool = true
-  var title: String
+  var state: ColorState
 
     var body: some View {
       VStack {
         Spacer().frame(height: 12)
         ZStack {
           Circle()
-            .strokeBorder(Color.activeBlue, lineWidth: 4)
+            .strokeBorder(state.isSelected ? Color.activeBlue : .gray100, lineWidth: 4)
           Circle()
-            .fill(Color.black)
+            .fill(Color(hex: state.color.hexCode))
             .padding(.all, 6)
         }
         VStack(alignment: .leading, spacing: 0) {
-          Text("\(Text("38%").foregroundColor(isSelected ? .activeBlue2 : .gray600))의 선택했어요")
+          Text("\(Text(state.color.choiceRatio.description).foregroundColor(state.isSelected ? .activeBlue2 : .gray600))%가 선택했어요")
             .foregroundColor(.gray500)
             .catalogFont(type: .HeadKRMedium14)
-          Text(title)
+          Text(state.color.name)
             .catalogFont(type: .HeadKRMedium16)
-            .foregroundColor(isSelected ? .gray900 : .gray600)
+            .foregroundColor(state.isSelected ? .gray900 : .gray600)
             .frame(height: 39, alignment: .topLeading)
           Spacer().frame(height: 6)
           HStack {
-            Text("+0원")
-              .foregroundColor(isSelected ? .gray900 : .gray600)
+            Text(state.color.price.signedWon)
+              .foregroundColor(state.isSelected ? .gray900 : .gray600)
               .catalogFont(type: .TextKRMedium16)
             Spacer()
-            Image("check").renderingMode(.template).foregroundColor(isSelected ? .activeBlue2 : .gray200)
+            Image("check").renderingMode(.template).foregroundColor(state.isSelected ? .activeBlue2 : .gray200)
           }
           Spacer()
         }
         .padding(.horizontal, 12)
         .padding(.bottom, 12)
       }
-      .externalColorSelectionCardStyle(isselected: isSelected)
-      .buttonSelected(isselected: isSelected)
+      .externalColorSelectionCardStyle(isselected: state.isSelected)
+      .buttonSelected(isselected: state.isSelected)
     }
 }
 
 struct ColorSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-      ColorSelectionView(title: "어비스 블랙펄")
+      ColorSelectionView(state: .init(isSelected: true, color: .init(id: 123, name: "어비스 블랙펄", choiceRatio: CLNumber.init(38), price: .init(0), hexCode: "ffffff")))
     }
 }
 
