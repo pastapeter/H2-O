@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct ExternalSelectionContainerView: IntentBindingType {
-  
+
   @StateObject var container: Container<ExternalSelectionIntentType, ExternalSelectionModel.State>
-  
+
   var intent: ExternalSelectionIntentType {
     container.intent
   }
-  
+
   var state: ExternalSelectionModel.State {
     intent.state
   }
-    
+
 }
 
 extension ExternalSelectionContainerView: View {
-  
+
   var body: some View {
     VStack {
       Rectangle()
@@ -41,16 +41,16 @@ extension ExternalSelectionContainerView: View {
       intent.send(action: .onAppear)
     }
   }
-  
+
 }
 
 extension ExternalSelectionContainerView {
-  
+
   @ViewBuilder
   static func build(intent: ExternalSelectionIntent) -> some View {
     ExternalSelectionContainerView(container: .init(intent: intent, state: intent.state, modelChangePublisher: intent.objectWillChange))
   }
-  
+
 }
 
 struct ExternalSelectionContainerView_Previews: PreviewProvider {

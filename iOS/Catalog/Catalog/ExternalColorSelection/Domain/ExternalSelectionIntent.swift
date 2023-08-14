@@ -46,8 +46,8 @@ extension ExternalSelectionIntent: ExternalSelectionIntentType, IntentType {
         do {
           let externalColors = try await repository.fetch(with: state.selectedTrimId)
           send(action: .fetchColors(colors: externalColors))
-        } catch(let error) {
-          //TODO: Error Handling
+        } catch let error {
+          // TODO: Error Handling
         }
       }
     case .fetchColors(let colors):
