@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2o.h2oServer.domain.option.mapper.OptionMapper">
+    <select id="findOption" resultType="OptionEntity">
+        select name, image, description, category, use_count, choice_ratio, price, option_type <!--선택 비율을 선택 개수로 어떻게 바꿀 것인가...-->
+        from options
+            join trims_options on trims_options.option_id = options.id
+        where trims_options.trim_id = #{trimId} and options.id = #{optionId}
+    </select>
+
+    <select id="findHashTag" resultType="HashTagEntity">
+        select hashtag.name
+        from options
+                 join options_hashtag on options.id = options_hashtag.option_id
+                 join hashtag on hashtag.id = options_hashtag.hashtag_id
+        where options.id = #{optionId}
+    </select>
+</mapper>

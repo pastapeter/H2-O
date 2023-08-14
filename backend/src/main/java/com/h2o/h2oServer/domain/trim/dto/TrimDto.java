@@ -17,7 +17,7 @@ public class TrimDto {
     private String description;
     private Integer price;
     private List<String> images;
-    private List<OptionStatisticsDto> options;
+    private List<TrimStatisticsDto> options;
 
     public static TrimDto of(TrimEntity trimEntity,
                      List<ImageEntity> imageEntities,
@@ -30,7 +30,7 @@ public class TrimDto {
                 .images(imageEntities.stream()
                         .map(ImageEntity::getImage)
                         .collect(Collectors.toList()))
-                .options(OptionStatisticsDto.ListOf(optionStatisticsEntities))
+                .options(TrimStatisticsDto.ListOf(optionStatisticsEntities))
                 .build();
     }
 }

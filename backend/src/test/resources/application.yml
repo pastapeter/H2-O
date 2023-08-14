@@ -14,3 +14,5 @@ mybatis:
   mapper-locations: static/mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
+  type-handlers-package: com.h2o.h2oServer.global.typeHandler
+

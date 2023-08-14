@@ -9,20 +9,20 @@ import java.util.stream.Collectors;
 
 @Builder
 @Getter
-public class OptionStatisticsDto {
+public class TrimStatisticsDto {
     private String dataLabel;
     private Float frequency;
 
-    public static OptionStatisticsDto of(OptionStatisticsEntity entity) {
-        return OptionStatisticsDto.builder()
+    public static TrimStatisticsDto of(OptionStatisticsEntity entity) {
+        return TrimStatisticsDto.builder()
                 .dataLabel(entity.getName())
                 .frequency(entity.getUseCount())
                 .build();
     }
 
-    public static List<OptionStatisticsDto> ListOf(List<OptionStatisticsEntity> entities) {
+    public static List<TrimStatisticsDto> ListOf(List<OptionStatisticsEntity> entities) {
         return entities.stream()
-                .map(OptionStatisticsDto::of)
+                .map(TrimStatisticsDto::of)
                 .collect(Collectors.toList());
     }
 }
