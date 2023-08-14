@@ -31,7 +31,7 @@ final class MockModelTypeRepository: ModelTypeRepositoryProtocol {
     guard let data = JSONLoader.load(with: "ModelType") else {
         return []
     }
-    let url = URL(string: "https://api.catalog.com/car/\(carId)/model-type")!
+    let url = URL(string: "https://api.cartalog.com/car/\(carId)/model-type")!
     MockURLProtocol.mockURLs = [
       url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))
     ]
