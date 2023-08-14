@@ -45,7 +45,6 @@ const BannerContainer = styled.div<Pick<Props, 'backgroundColor'>>`
   box-shadow: 0px 0px 8px 0px rgba(131, 133, 136, 0.2);
 
   & > div {
-    position: relative;
     ${({ theme }) => theme.flex.flexBetweenRow}
     max-width: 1024px;
     width: 100%;
@@ -56,7 +55,7 @@ const BannerContainer = styled.div<Pick<Props, 'backgroundColor'>>`
 
 const TitleContainer = styled.div<Pick<Props, 'isTitleColorWhite'>>`
   position: fixed;
-  width: 234px;
+  width: 400px;
   top: 72px;
   display: flex;
   flex-direction: column;
@@ -75,7 +74,7 @@ const TitleContainer = styled.div<Pick<Props, 'isTitleColorWhite'>>`
 
 const Description = styled.p`
   ${({ theme }) => theme.typography.TextKRRegular12}
-  width: 207px;
+  width: 100%;
   white-space: pre-line;
   word-break: keep-all;
   margin-bottom: 24px;

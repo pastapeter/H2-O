@@ -1,6 +1,7 @@
 import { ChangeEventHandler, useState } from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Flex, Typography, PriceStaticBar as _PriceStaticBar, Toggle as _Toggle } from '@/components/common';
+import { Flex, Toggle, Typography, PriceStaticBar as _PriceStaticBar } from '@/components/common';
 
 interface Props {
   trimName: string;
@@ -10,6 +11,7 @@ interface Props {
 
 function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
   const [isExterior, setIsExterior] = useState(true);
+
   const handleChangeToggle: ChangeEventHandler<HTMLInputElement> = () => {
     setIsExterior((prev) => !prev);
   };
@@ -17,14 +19,20 @@ function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
   const carImage = isExterior ? exteriorImage : interiorImage;
   const carImageAlt = isExterior ? '차 외장 이미지' : '차 내장 이미지';
 
+  const interiorImageStyle =
+    !isExterior &&
+    css`
+      background-image: url(${carImage});
+      background-size: cover;
+    `;
+
   return (
-    <Container flexDirection='column' justifyContent='center' alignItems='center'>
-      <DisplayText font='DisplayText' color='white'>
+    <Container css={interiorImageStyle} flexDirection='column' justifyContent='space-between' alignItems='center'>
+      <Typography font='DisplayText' color='white'>
         {trimName}
-      </DisplayText>
-      {/* TODO: 생각보다 못생겨서 보류, 민주랑 얘기해봐야함 */}
-      <CarImage src={carImage} alt={carImageAlt} />
-      <PriceStaticBar isComplete={true} />
+      </Typography>
+      {isExterior && <CarImage src={carImage} alt={carImageAlt} />}
+      <PriceStaticBar isComplete={true} nowPrice={4100} />
       <Toggle size='large' isChecked={isExterior} handleChangeToggle={handleChangeToggle} />
     </Container>
   );
@@ -36,6 +44,8 @@ const Container = styled(Flex)`
   position: relative;
   width: 100%;
   height: 640px;
+  padding-top: 72px;
+  padding-bottom: 20px;
   background: linear-gradient(
     180deg,
     rgba(156, 202, 255, 0.9) 0%,
@@ -48,20 +58,6 @@ const Container = styled(Flex)`
 const PriceStaticBar = styled(_PriceStaticBar)`
   position: fixed;
   top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
-const Toggle = styled(_Toggle)`
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
-const DisplayText = styled(Typography)`
-  position: absolute;
-  top: 72px;
   left: 50%;
   transform: translateX(-50%);
 `;

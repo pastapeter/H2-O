@@ -1,5 +1,5 @@
 async function request<TResponse>(url: string, options: RequestInit = {}): Promise<TResponse> {
-  const baseUrl = url;
+  const baseUrl = `/api${url}`;
 
   const res = await fetch(baseUrl, options);
   if (res.status !== 200) {

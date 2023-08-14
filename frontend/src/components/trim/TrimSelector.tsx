@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { MainSelector } from '../common/MainSelector';
 import TrimCard from './TrimCard';
-import { Trim } from '@/types/interface';
+import { TrimResponse } from '@/types/interface';
 
 interface Props {
-  trimList: Trim[];
+  trimList: TrimResponse[];
   selectedTrimId: number;
-  onSelectTrim: (trim: Trim) => void;
+  onSelectTrim: (trim: TrimResponse) => void;
 }
 
 function TrimSelector({ trimList, selectedTrimId, onSelectTrim }: Props) {

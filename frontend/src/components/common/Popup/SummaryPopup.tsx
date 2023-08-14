@@ -43,7 +43,7 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
 
   const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor } = selectionInfo;
 
-  if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor) return null;
+  if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor) return <div>로딩중...</div>;
 
   return (
     <Popup size='large' handleClickDimmed={handleClickCloseButton}>
@@ -54,7 +54,7 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
         </HeaderContainer>
         <MainContainer>
           <LeftContainer>
-            {isExterior ? <StyleImg src={exteriorColor.image} />  :  <StyleImg src={interiorColor.image} />}
+            {isExterior ? <StyleImg src={exteriorColor.image} /> : <StyleImg src={interiorColor.image} />}
             <Toggle isChecked={isExterior} size='small' handleChangeToggle={handleChangeToggle} />
           </LeftContainer>
           <RightContainer>
@@ -65,8 +65,8 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
             {bodyType && <OptionSummary type='바디타입' name={bodyType.name} price={bodyType.price} />}
             {driveTrain && <OptionSummary type='구동방식' name={driveTrain.name} price={driveTrain.price} />}
             <Divider />
-            {interiorColor && <OptionSummary type='외장색상' name={interiorColor.name} price={interiorColor.price} />}
-            {exteriorColor && <OptionSummary type='내장색상' name={exteriorColor.name} price={exteriorColor.price} />}
+            {interiorColor && <OptionSummary type='외장색상' name={exteriorColor.name} price={exteriorColor.price} />}
+            {exteriorColor && <OptionSummary type='내장색상' name={interiorColor.name} price={interiorColor.price} />}
             <Divider />
             {MOCK_DATA_OPTION.length ? (
               MOCK_DATA_OPTION.map(({ name, ...props }) => <OptionSummary key={name} name={name} {...props} />)

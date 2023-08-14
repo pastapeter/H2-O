@@ -14,11 +14,20 @@ interface InfoProps {
 function ResultPage() {
   const { selectionInfo } = useSafeContext(SelectionContext);
 
-  const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions } = selectionInfo;
+  const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, displacement, fuelEfficiency } =
+    selectionInfo;
 
   // 일단 대충 로딩 처리
-  if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor || !extraOptions)
-    return <div>로딩중...</div>;
+  if (
+    !trim ||
+    !powerTrain ||
+    !bodyType ||
+    !driveTrain ||
+    !exteriorColor ||
+    !interiorColor ||
+    !displacement ||
+    !fuelEfficiency
+  ) return <div>로딩중...</div>;
 
   return (
     <Fragment>
@@ -32,8 +41,8 @@ function ResultPage() {
           </Typography>
           <Flex gap={50}>
             <Summary label='모델' value='Le Blanc (르블랑)' />
-            <Summary label='평균연비' value={`${toSeparatedNumberFormat(2199)}cc`} />
-            <Summary label='배기량' value={`${toSeparatedNumberFormat(12)}km/l`} />
+            <Summary label='배기량' value={`${toSeparatedNumberFormat(displacement)}cc`} />
+            <Summary label='평균연비' value={`${toSeparatedNumberFormat(fuelEfficiency)}km/L`} />
           </Flex>
         </ContentsWrapper>
       </SummaryContainer>

@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { calculateRatios, getFractionString } from './utils';
-import { MaxOutput, MaxTorque } from '@/types/interface';
+import { MaxOutput, MaxTorque, PowerTrain } from '@/types/interface';
 import { Flex, HMGTag, Typography } from '@/components/common';
 
 interface ModelOptionDetailProps {
+  powertrains: PowerTrain[];
   maxOutput: MaxOutput;
   maxTorque: MaxTorque;
 }
@@ -14,8 +15,8 @@ interface ModelDetailProps {
   ratio: number;
 }
 
-function ModelOptionDetail({ maxOutput, maxTorque }: ModelOptionDetailProps) {
-  const { outputRatio, torqueRatio } = calculateRatios(maxOutput, maxTorque);
+function ModelOptionDetail({ powertrains, maxOutput, maxTorque }: ModelOptionDetailProps) {
+  const { outputRatio, torqueRatio } = calculateRatios(powertrains, maxOutput, maxTorque);
 
   return (
     <Flex flexDirection='column' gap={16} marginTop={202}>
@@ -81,5 +82,6 @@ const PercentBar = styled.div<{ ratio: number }>`
     top: 0;
     height: 100%;
     width: ${({ ratio }) => ratio * 100}%;
+    transition: width 0.5s ease;
   }
 `;

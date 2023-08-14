@@ -1,8 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 
 interface Props<TData> {
   fetchFn: () => Promise<TData>;
+  dependency?: unknown[];
+  enabled?: boolean;
+  deferTime?: number;
+  onSuccess?: (data: TData) => void;
+  onError?: (error: Error) => void;
 }
+
+interface State<TData> {
+  isLoading: boolean;
+  data: TData | null;
+  error: Error | null;
+}
+
+type Action<TData> =
+  | {
+      type: 'LOADING';
+    }
+  | {
+      type: 'SUCCESS';
+      payload: TData;
+    }
+  | {
+      type: 'ERROR';
+      payload: Error;
+    };
 
 /**
  *
@@ -12,28 +36,60 @@ interface Props<TData> {
  * const { isLoading, data, error} = useFetcher({fetchFn: () => fetch('request url')});
  * ```
  */
-function useFetcher<TData = unknown>({ fetchFn }: Props<TData>) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<TData | null>(null);
-  const [error, setError] = useState<Error | null>(null);
+function useFetcher<TData = unknown>({
+  fetchFn,
+  dependency = [],
+  enabled = true,
+  deferTime = 0,
+  onSuccess,
+  onError,
+}: Props<TData>) {
+  const initialState: State<TData> = {
+    isLoading: false,
+    data: null,
+    error: null,
+  };
+
+  const reducer = (state: State<TData>, action: Action<TData>): State<TData> => {
+    switch (action.type) {
+      case 'LOADING':
+        return { ...state, isLoading: true };
+      case 'SUCCESS':
+        return { ...state, isLoading: false, data: action.payload };
+      case 'ERROR':
+        return { ...state, isLoading: false, error: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
+    if (!enabled) return;
+
     (async function () {
       try {
-        setIsLoading(true);
+        dispatch({ type: 'LOADING' });
         const response = await fetchFn();
-        setData(response);
+        if (deferTime > 0) await sleep(deferTime);
+        dispatch({ type: 'SUCCESS', payload: response });
+        if (onSuccess) onSuccess(response);
       } catch (err) {
         if (err instanceof Error) {
-          setError(err);
+          dispatch({ type: 'ERROR', payload: err });
+          if (onError) onError(err);
         }
-      } finally {
-        setIsLoading(false);
       }
     })();
-  }, [fetchFn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabled, ...dependency]);
 
-  return { isLoading, data, error } as const;
+  return { ...state } as const;
 }
+
+const sleep = (time: number) => {
+  return new Promise((resolve) => setTimeout(resolve, time));
+};
 
 export default useFetcher;

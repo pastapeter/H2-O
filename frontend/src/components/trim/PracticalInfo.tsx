@@ -22,7 +22,7 @@ const PracticalInfo = forwardRef<HTMLDivElement, Props>(({ options = [], ...rest
           <Option key={dataLabel}>
             <OptionName>{dataLabel}</OptionName>
             <Divider />
-            <Count>{`${frequency}회`}</Count>
+            <Count>{`${Math.round(frequency)}회`}</Count>
             <UnitOfCount>{`${toSeparatedNumberFormat(UNIT_NUMBER)}km 당`}</UnitOfCount>
           </Option>
         ))}
@@ -64,7 +64,7 @@ const OptionContainer = styled.div`
 const Option = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60px;
+  width: 65px;
 `;
 
 const OptionName = styled.p`

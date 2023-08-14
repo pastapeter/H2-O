@@ -52,5 +52,6 @@ const CarouselSlide = styled.li`
   min-height: calc(100vh - 60px);
   flex-shrink: 0;
   transform: translateX(0);
+  overflow-x: hidden;
   overflow-y: scroll;
 `;

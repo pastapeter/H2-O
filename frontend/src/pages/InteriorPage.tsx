@@ -1,28 +1,32 @@
-import { Fragment, memo, useEffect, useState } from 'react';
+import { Fragment, memo, useState } from 'react';
 import { css } from '@emotion/react';
 import type { InteriorColorResponse } from '@/types/interface';
+import { getInteriorColors } from '@/apis/interior';
 import { Banner, Footer } from '@/components/common';
 import { InteriorSelector } from '@/components/interior';
-import { useSafeContext } from '@/hooks';
+import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
 
-const mocks: InteriorColorResponse[] = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  name: '퀼팅천연(블랙)',
-  choiceRatio: 38,
-  price: 0,
-  fabricImage: '/images/interior-option.png',
-  bannerImage: '/images/interior-black.png',
-}));
-
 function InteriorPage() {
-  const [selectedColor, setSelectedColor] = useState<InteriorColorResponse>(mocks[0]);
-  const { dispatch } = useSafeContext(SelectionContext);
-  const { id, name, price, bannerImage, fabricImage } = selectedColor;
+  const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
+  const [selectedColor, setSelectedColor] = useState<InteriorColorResponse | null>(null);
+  const trimId = selectionInfo.trim?.id;
 
-  useEffect(() => {
-    dispatch({ type: 'SET_INTERIOR_COLOR', payload: { id, name, price, image: bannerImage, fabricImage } });
-  }, []);
+  const {
+    isLoading,
+    data: interiorColorList,
+    error,
+  } = useFetcher({
+    fetchFn: () => getInteriorColors(trimId as number),
+    enabled: !!selectionInfo.trim,
+    onSuccess: (data) => {
+      const selected = data[0];
+      setSelectedColor(selected);
+
+      const { id, name, price, bannerImage, fabricImage } = selected;
+      dispatch({ type: 'SET_INTERIOR_COLOR', payload: { id, name, price, image: bannerImage, fabricImage } });
+    },
+  });
 
   const handleSelectColor = (color: InteriorColorResponse) => {
     const { id, name, price, bannerImage, fabricImage } = color;
@@ -30,6 +34,11 @@ function InteriorPage() {
     setSelectedColor(color);
     dispatch({ type: 'SET_INTERIOR_COLOR', payload: { id, name, price, image: bannerImage, fabricImage } });
   };
+
+  if (isLoading || !selectedColor) return <div>로딩 ㅋ</div>;
+  if (error) return <div>에러 ㅋ</div>;
+
+  const { name, bannerImage } = selectedColor;
 
   return (
     <Fragment>
@@ -42,7 +51,13 @@ function InteriorPage() {
           background-size: cover;
         `}
       />
-      <InteriorSelector optionList={mocks} selectedColor={selectedColor} onSelectColor={handleSelectColor} />
+      {interiorColorList && (
+        <InteriorSelector
+          optionList={interiorColorList}
+          selectedColor={selectedColor}
+          onSelectColor={handleSelectColor}
+        />
+      )}
       <Footer />
     </Fragment>
   );

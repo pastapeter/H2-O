@@ -1,11 +1,16 @@
-import { css } from '@emotion/react';
+import { Fragment } from 'react';
 import styled from '@emotion/styled';
-import { Divider, Flex, HMGTag, Typography } from '@/components/common';
+import type { TechnicalSpecResponse } from '@/types/interface';
+import { getTechnicalSpec } from '@/apis/exterior';
+import { Divider, Flex, Typography, HMGTag as _HMGTag, Loading as _Loading } from '@/components/common';
+import { useFetcher } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
+import type { SelectionInfoWithImage } from '@/providers/SelectionProvider';
 
 interface BottomHMGDataProps {
-  powerTrainType: string;
-  driveTrainType: string;
+  powerTrain?: SelectionInfoWithImage;
+  driveTrain?: SelectionInfoWithImage;
+  setTechnicalSpec: (data: TechnicalSpecResponse) => void;
 }
 
 interface DataProps {
@@ -13,31 +18,46 @@ interface DataProps {
   value: string;
 }
 
-function BottomHMGData({ powerTrainType, driveTrainType }: BottomHMGDataProps) {
-  //TODO: API 연동 후 배기량, 평균연비 받아와서 렌더링
+function BottomHMGData({ powerTrain, driveTrain, setTechnicalSpec }: BottomHMGDataProps) {
+  const powerTrainId = powerTrain?.id;
+  const driveTrainId = driveTrain?.id;
+
+  const { isLoading, data, error } = useFetcher({
+    fetchFn: () => getTechnicalSpec(powerTrainId as number, driveTrainId as number),
+    enabled: !!powerTrain && !!driveTrain,
+    dependency: [powerTrainId, driveTrainId],
+    deferTime: 500,
+    onSuccess: (data) => {
+      setTechnicalSpec(data);
+    },
+  });
+
+  if (error) return <div>에러 ㅋ</div>;
+
   return (
     <Container justifyContent='space-between'>
-      <HMGTag
-        variant='small'
-        css={css`
-          position: absolute;
-          top: 0;
-          left: 46px;
-        `}
-      />
-      <div>
-        <Typography font='TextKRRegular14' color='gray900'>
-          <Highlight>{powerTrainType}</Highlight>와 <Highlight>{driveTrainType}</Highlight>의
-        </Typography>
-        <Typography font='TextKRRegular14' color='gray900'>
-          배기량과 평균연비입니다.
-        </Typography>
-      </div>
-      <Flex alignItems='center' gap={32} height='fit-content'>
-        <Data title='배기량' value={`${toSeparatedNumberFormat(2199)}cc`} />
-        <Divider length={41} vertical />
-        <Data title='평균연비' value={`${toSeparatedNumberFormat(12)}km/s`} />
-      </Flex>
+      <HMGTag variant='small' />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        data && (
+          <Fragment>
+            <div>
+              <Typography font='TextKRRegular14' color='gray900'>
+                <Highlight>{powerTrain?.name}</Highlight>와 <Highlight>{driveTrain?.name}</Highlight>의
+              </Typography>
+              <Typography font='TextKRRegular14' color='gray900'>
+                배기량과 평균연비입니다.
+              </Typography>
+            </div>
+            <Flex alignItems='center' gap={32} height='fit-content'>
+              <Data title='배기량' value={`${toSeparatedNumberFormat(data.displacement)}cc`} />
+              <Divider length={41} vertical />
+              <Data title='평균연비' value={`${toSeparatedNumberFormat(data.fuelEfficiency)}km/L`} />
+            </Flex>
+          </Fragment>
+        )
+      )}
     </Container>
   );
 }
@@ -68,4 +88,17 @@ const Container = styled(Flex)`
 const Highlight = styled.span`
   ${({ theme }) => theme.typography.TextKRMedium16}
   color: ${({ theme }) => theme.colors.activeBlue};
+`;
+
+const HMGTag = styled(_HMGTag)`
+  position: absolute;
+  top: 0;
+  left: 46px;
+`;
+
+const Loading = styled(_Loading)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

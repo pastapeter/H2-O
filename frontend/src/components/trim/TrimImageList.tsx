@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 interface Props {
@@ -16,9 +17,11 @@ function TrimImageList({ imageSrcList }: Props) {
     setActiveIdx(idx);
   };
 
+  const images = imageSrcList.slice(0, 3);
+
   return (
     <TrimImageListContainer>
-      {imageSrcList.map((src, idx) => (
+      {images.map((src, idx) => (
         <Image key={src} isActive={idx === activeIdx} onClick={() => handleImageClick(idx)}>
           <img src={src} alt={src} />
         </Image>
@@ -39,7 +42,6 @@ const TrimImageListContainer = styled.div`
 const Image = styled.div<ImageProps>`
   position: relative;
   height: 360px;
-  cursor: pointer;
 
   & > img {
     width: ${({ isActive }) => (isActive ? '504px' : '71px')};
@@ -65,8 +67,14 @@ const Image = styled.div<ImageProps>`
     transition: background-color 0.5s ease-in-out;
   }
 
-  &:hover:after {
-    content: 'click';
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+  ${({ isActive }) =>
+    !isActive &&
+    css`
+      cursor: pointer;
+
+      &:hover:after {
+        content: 'click';
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    `}
 `;

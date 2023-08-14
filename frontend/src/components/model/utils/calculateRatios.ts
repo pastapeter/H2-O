@@ -1,18 +1,18 @@
-import { MaxOutput, MaxTorque } from '@/types/interface';
+import { MaxOutput, MaxTorque, PowerTrain } from '@/types/interface';
 
-export const calculateRatios = (maxOutput: MaxOutput, maxTorque: MaxTorque) => {
-  const maxOutputPerRpm = maxOutput.output / ((maxOutput.minRpm + maxOutput.maxRpm) / 2);
-  const maxTorquePerRpm = maxTorque.torque / ((maxTorque.minRpm + maxTorque.maxRpm) / 2);
+export const calculateRatios = (powertrains: PowerTrain[], maxOutput: MaxOutput, maxTorque: MaxTorque) => {
+  const maxOutputRatio = Math.max(
+    ...powertrains.map(({ maxOutput }) => maxOutput.output / ((maxOutput.minRpm + maxOutput.maxRpm) / 2)),
+  );
+  const maxTorqueRatio = Math.max(
+    ...powertrains.map(({ maxTorque }) => maxTorque.torque / ((maxTorque.minRpm + maxTorque.maxRpm) / 2)),
+  );
 
-  let outputRatio;
-  let torqueRatio;
-  if (maxOutputPerRpm > maxTorquePerRpm) {
-    outputRatio = 1;
-    torqueRatio = maxTorquePerRpm / maxOutputPerRpm;
-  } else {
-    torqueRatio = 1;
-    outputRatio = maxOutputPerRpm / maxTorquePerRpm;
-  }
+  const outputPerRpm = maxOutput.output / ((maxOutput.minRpm + maxOutput.maxRpm) / 2);
+  const torquePerRpm = maxTorque.torque / ((maxTorque.minRpm + maxTorque.maxRpm) / 2);
+
+  const outputRatio = outputPerRpm / maxOutputRatio;
+  const torqueRatio = torquePerRpm / maxTorqueRatio;
 
   return { outputRatio, torqueRatio };
 };

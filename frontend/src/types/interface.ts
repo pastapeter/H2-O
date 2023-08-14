@@ -3,7 +3,7 @@ export interface TrimOption {
   frequency: number;
 }
 
-export interface Trim {
+export interface TrimResponse {
   id: number;
   name: string;
   description: string;
@@ -11,11 +11,6 @@ export interface Trim {
   images: string[];
   options: TrimOption[];
 }
-
-export interface TrimResponse {
-  trims: Trim[];
-}
-
 export interface MaxOutput {
   output: number;
   minRpm: number;
@@ -57,11 +52,15 @@ export interface DriveTrain {
   image: string;
 }
 
-
 export interface ModelTypeResponse {
-  powerTrains: PowerTrain[];
-  bodyTypes: BodyType[];
-  driveTrains: DriveTrain[];
+  powertrains: PowerTrain[];
+  bodytypes: BodyType[];
+  drivetrains: DriveTrain[];
+}
+
+export interface TechnicalSpecResponse {
+  displacement: number;
+  fuelEfficiency: number;
 }
 
 export interface ExteriorColorResponse {

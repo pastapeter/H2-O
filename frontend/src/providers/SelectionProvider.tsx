@@ -1,4 +1,5 @@
 import { Dispatch, PropsWithChildren, createContext, useMemo, useReducer } from 'react';
+import { TechnicalSpecResponse } from '@/types/interface';
 
 export interface SelectionInfo {
   id: number;
@@ -24,7 +25,7 @@ export interface ExtraOptionsInfo {
 }
 
 type State = {
-  model?: SelectionInfo;
+  model: SelectionInfo;
   trim?: SelectionInfo;
   powerTrain?: SelectionInfoWithImage;
   bodyType?: SelectionInfoWithImage;
@@ -43,12 +44,15 @@ type Action =
   | { type: 'SET_DRIVE_TRAIN'; payload: SelectionInfoWithImage }
   | { type: 'SET_EXTERIOR_COLOR'; payload: ExteriorColorInfo }
   | { type: 'SET_INTERIOR_COLOR'; payload: InteriorColorInfo }
-  | { type: 'SET_DISPLACEMENT'; payload: number }
-  | { type: 'SET_FUEL_EFFICIENCY'; payload: number }
+  | { type: 'SET_DISPLACEMENT_AND_FUEL_EFFICIENCY'; payload: TechnicalSpecResponse };
   | { type: 'SET_EXTRA_OPTIONS'; payload: SelectionInfoWithImage[] };
 
 const initialState: State = {
-  model: undefined,
+  model: {
+    id: 1,
+    name: '팰리세이드',
+    price: 0,
+  },
   trim: undefined,
   powerTrain: undefined,
   bodyType: undefined,
@@ -129,15 +133,11 @@ const reducer = (state: State, action: Action): State => {
           fabricImage: action.payload.fabricImage,
         },
       };
-    case 'SET_DISPLACEMENT':
+    case 'SET_DISPLACEMENT_AND_FUEL_EFFICIENCY':
       return {
         ...state,
-        displacement: action.payload,
-      };
-    case 'SET_FUEL_EFFICIENCY':
-      return {
-        ...state,
-        fuelEfficiency: action.payload,
+        displacement: action.payload.displacement,
+        fuelEfficiency: action.payload.fuelEfficiency,
       };
     case 'SET_EXTRA_OPTIONS':
       return {

@@ -1,32 +1,32 @@
-import { Fragment, memo, useEffect, useState } from 'react';
+import { Fragment, memo, useState } from 'react';
 import styled from '@emotion/styled';
 import type { ExteriorColorResponse } from '@/types/interface';
+import { getExteriorColors } from '@/apis/exterior';
 import { Banner, Footer, PriceStaticBar as _PriceStaticBar } from '@/components/common';
 import { ExteriorCarImg, ExteriorSelector } from '@/components/exterior';
-import { useSafeContext } from '@/hooks';
+import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
 
-const numList = Array.from({ length: 60 }, (_, i) => i + 1);
-const mockImages = numList.map((idx) => `/images/car3d/image_${idx.toString().padStart(3, '0')}.png`);
-
-const mocks: ExteriorColorResponse[] = Array.from({ length: 11 }, (_, i) => ({
-  id: i + 1,
-  name: `어비스 블랙펄 ${i + 1}`,
-  choiceRatio: 38,
-  price: 0,
-  hexCode: '#1c2d3e',
-  images: mockImages,
-}));
-
 function ExteriorPage() {
-  const { dispatch } = useSafeContext(SelectionContext);
-  const [selectedColor, setSelectedColor] = useState(mocks[0]);
+  const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
+  const [selectedColor, setSelectedColor] = useState<ExteriorColorResponse | null>(null);
+  const trimId = selectionInfo.trim?.id;
 
-  const { id, name, price, images, hexCode } = selectedColor;
+  const {
+    isLoading,
+    data: exteriorColorList,
+    error,
+  } = useFetcher({
+    fetchFn: () => getExteriorColors(trimId as number),
+    enabled: !!selectionInfo.trim,
+    onSuccess: (data) => {
+      const selected = data[0];
+      setSelectedColor(selected);
 
-  useEffect(() => {
-    dispatch({ type: 'SET_EXTERIOR_COLOR', payload: { id, name, price, image: images[0], colorCode: hexCode } });
-  }, []);
+      const { id, name, price, images, hexCode } = selected;
+      dispatch({ type: 'SET_EXTERIOR_COLOR', payload: { id, name, price, image: images[0], colorCode: hexCode } });
+    },
+  });
 
   const handleSelectColor = (color: ExteriorColorResponse) => {
     const { id, name, price, images, hexCode } = color;
@@ -35,12 +35,23 @@ function ExteriorPage() {
     dispatch({ type: 'SET_EXTERIOR_COLOR', payload: { id, name, price, image: images[0], colorCode: hexCode } });
   };
 
+  if (isLoading || !selectedColor) return <div>로딩 ㅋ</div>;
+  if (error) return <div>에러 ㅋ</div>;
+
+  const { name, images } = selectedColor;
+
   return (
     <Fragment>
       <Banner title={name} subTitle='외장색상'>
         <ExteriorCarImg imgUrlList={images} />
       </Banner>
-      <ExteriorSelector exteriorList={mocks} selectedColor={selectedColor} onSelectColor={handleSelectColor} />
+      {exteriorColorList && (
+        <ExteriorSelector
+          exteriorList={exteriorColorList}
+          selectedColor={selectedColor}
+          onSelectColor={handleSelectColor}
+        />
+      )}
       <Footer />
       <PriceStaticBar />
     </Fragment>

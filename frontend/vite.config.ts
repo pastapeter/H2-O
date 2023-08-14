@@ -10,4 +10,13 @@ export default defineConfig({
     svgr(),
     tsconfigPaths(),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://43.201.209.67:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 });

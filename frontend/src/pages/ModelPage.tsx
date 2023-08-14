@@ -1,87 +1,11 @@
-import { Fragment, memo, useEffect, useState } from 'react';
+import { Fragment, memo, useState } from 'react';
 import styled from '@emotion/styled';
-import type { BodyType, DriveTrain, ModelTypeResponse, PowerTrain } from '@/types/interface';
+import type { BodyType, DriveTrain, PowerTrain, TechnicalSpecResponse } from '@/types/interface';
+import { getModelTypes } from '@/apis/model';
 import { Banner, Footer, PriceStaticBar as _PriceStaticBar } from '@/components/common';
 import { BottomHMGData, ModelOptionDetail, ModelTypeSelector } from '@/components/model';
-import { useSafeContext } from '@/hooks';
+import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
-
-const mocks: ModelTypeResponse = {
-  powerTrains: [
-    {
-      id: 1,
-      name: '디젤 2.2',
-      price: 0,
-      choiceRatio: 38,
-      description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      maxOutput: {
-        output: 202,
-        minRpm: 3800,
-        maxRpm: 3800,
-      },
-      maxTorque: {
-        torque: 45,
-        minRpm: 1750,
-        maxRpm: 2750,
-      },
-      image: '/images/disel.png',
-    },
-    {
-      id: 2,
-      name: '가솔린 3.8',
-      price: -2800000,
-      choiceRatio: 38,
-      description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      maxOutput: {
-        output: 202,
-        minRpm: 3800,
-        maxRpm: 3800,
-      },
-      maxTorque: {
-        torque: 45,
-        minRpm: 1750,
-        maxRpm: 2750,
-      },
-      image: '/images/disel.png',
-    },
-  ],
-  bodyTypes: [
-    {
-      id: 1,
-      name: '7인승',
-      price: 0,
-      choiceRatio: 38,
-      description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '/images/disel.png',
-    },
-    {
-      id: 2,
-      name: '8인승',
-      price: 0,
-      choiceRatio: 38,
-      description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '/images/disel.png',
-    },
-  ],
-  driveTrains: [
-    {
-      id: 1,
-      name: '2WD',
-      price: 0,
-      choiceRatio: 38,
-      description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '/images/disel.png',
-    },
-    {
-      id: 2,
-      name: '4WD',
-      price: 237000,
-      choiceRatio: 38,
-      description: '높은 토크로 파워풀한 드라이빙이 가능하며, 차급대비 연비효율이 우수합니다.',
-      image: '/images/disel.png',
-    },
-  ],
-};
 
 export type CurrentModel =
   | {
@@ -98,43 +22,66 @@ export type CurrentModel =
     };
 
 function ModelPage() {
-  const { dispatch } = useSafeContext(SelectionContext);
-  const [currentModel, setCurrentModel] = useState<CurrentModel>({ sort: '파워트레인', type: mocks.powerTrains[0] });
+  const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
+  const [currentModel, setCurrentModel] = useState<CurrentModel | null>(null);
 
-  const { sort, type } = currentModel;
-  const { name, description, image } = type;
-  const isPowerTrainSort = sort === '파워트레인';
+  const {
+    isLoading,
+    data: modelTypeData,
+    error,
+  } = useFetcher({
+    fetchFn: () => getModelTypes(selectionInfo.model.id),
+    onSuccess: (data) => {
+      const { powertrains, bodytypes, drivetrains } = data;
+      setCurrentModel({ sort: '파워트레인', type: powertrains[0] });
 
-  useEffect(() => {
-    dispatch({ type: 'SET_POWER_TRAIN', payload: mocks.powerTrains[0] });
-    dispatch({ type: 'SET_BODY_TYPE', payload: mocks.bodyTypes[0] });
-    dispatch({ type: 'SET_DRIVE_TRAIN', payload: mocks.driveTrains[0] });
-  }, []);
-
-  useEffect(() => {
-    // TODO: 배기량, 연비정보 데이터 fetching 연결
-  }, []);
+      dispatch({ type: 'SET_POWER_TRAIN', payload: powertrains[0] });
+      dispatch({ type: 'SET_BODY_TYPE', payload: bodytypes[0] });
+      dispatch({ type: 'SET_DRIVE_TRAIN', payload: drivetrains[0] });
+    },
+  });
 
   const handleSelectModel = (model: CurrentModel) => {
     setCurrentModel(model);
   };
 
+  const setTechnicalSpec = ({ displacement, fuelEfficiency }: TechnicalSpecResponse) => {
+    dispatch({ type: 'SET_DISPLACEMENT_AND_FUEL_EFFICIENCY', payload: { displacement, fuelEfficiency } });
+  };
+
+  if (isLoading || !currentModel) return <div>로딩 ㅋ</div>;
+  if (error) return <div>에러 ㅋ</div>;
+
+  const { sort, type } = currentModel;
+  const { name, description, image } = type;
+  const isPowerTrainSort = sort === '파워트레인';
+
   return (
     <Fragment>
       <Banner title={name} subTitle={sort} description={description}>
-        {isPowerTrainSort && (
-          <ModelOptionDetail maxOutput={currentModel.type.maxOutput} maxTorque={currentModel.type.maxTorque} />
+        {isPowerTrainSort && modelTypeData && (
+          <ModelOptionDetail
+            powertrains={modelTypeData.powertrains}
+            maxOutput={currentModel.type.maxOutput}
+            maxTorque={currentModel.type.maxTorque}
+          />
         )}
         <Image src={image} alt={name} />
       </Banner>
-      <ModelTypeSelector
-        powerTrains={mocks.powerTrains}
-        bodyTypes={mocks.bodyTypes}
-        driveTrains={mocks.driveTrains}
-        onSelectModel={handleSelectModel}
-      />
+      {modelTypeData && (
+        <ModelTypeSelector
+          powerTrains={modelTypeData.powertrains}
+          bodyTypes={modelTypeData.bodytypes}
+          driveTrains={modelTypeData.drivetrains}
+          onSelectModel={handleSelectModel}
+        />
+      )}
       <Footer>
-        <BottomHMGData powerTrainType={mocks.powerTrains[0].name} driveTrainType={mocks.driveTrains[0].name} />
+        <BottomHMGData
+          powerTrain={selectionInfo.powerTrain}
+          driveTrain={selectionInfo.driveTrain}
+          setTechnicalSpec={setTechnicalSpec}
+        />
       </Footer>
       <PriceStaticBar />
     </Fragment>
