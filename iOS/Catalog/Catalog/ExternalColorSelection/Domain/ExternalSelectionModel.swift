@@ -12,11 +12,16 @@ enum ExternalSelectionModel {
   struct State: Equatable {
     var selectedTrimId: Int
     var selectedColorId: Int = 1
-    var colors: [ExternalColor] = []
+    var colors: [ColorState] = []
   }
 
   enum ViewAction {
     case onAppear
     case fetchColors(colors: [ExternalColor])
   }
+}
+
+struct ColorState: Equatable, Hashable {
+  var isSelected: Bool
+  var color: ExternalColor
 }
