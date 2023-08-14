@@ -31,7 +31,7 @@ final class ModelTypeSelectionContainerIntent: ObservableObject {
 
   typealias ViewAction = ModelTypeSelectionContainerModel.ViewAction
 
-  @Published var state: State = .mock()
+  @Published var state: State
 
   var cancellable: Set<AnyCancellable> = []
 }
