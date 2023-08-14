@@ -40,6 +40,9 @@ extension ModelTypeSelectionContainerView: View {
       }
     }
     .frame(maxWidth: .infinity)
+    .onAppear {
+      intent.send(action: .onAppear)
+    }
   }
 
 }
