@@ -30,7 +30,9 @@ struct ExternalColorSelectionHorizontalList: View {
         ScrollView(.horizontal, showsIndicators: false) {
           LazyHStack {
             ForEach(state.indices, id: \.self) { i in
-              ColorSelectionView(state: state[i])
+              ColorSelectionView(state: state[i]) {
+                print(i)
+              }
             }
           }
         }
