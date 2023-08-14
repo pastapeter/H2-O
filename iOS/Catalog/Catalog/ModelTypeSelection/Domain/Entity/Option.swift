@@ -7,6 +7,7 @@
 
 import Foundation
 
+// usecase 만들어야할까..??
 struct Option {
   var id: Int
   var title: String
@@ -14,5 +15,4 @@ struct Option {
   var price: CLNumber
   var thumbnailImageURL: URL?
   var imageURL: URL?
-
 }
