@@ -9,6 +9,6 @@ import Foundation
 
 struct ModelTypeOption {
   var title: String
-  var options: [String: Option]
-  var optionsInDetail: [String: OptionInDetail]
+  var options: [OptionState]
+  var optionsInDetail: [OptionInDetail]
 }
