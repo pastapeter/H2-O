@@ -5,6 +5,7 @@ import com.h2o.h2oServer.domain.model_type.dto.*;
 import com.h2o.h2oServer.domain.model_type.mapper.BodytypeMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.DrivetrainMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.PowertrainMapper;
+import com.h2o.h2oServer.domain.model_type.mapper.TechnicalSpecMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class ModelTypeService {
     private final PowertrainMapper powerTrainMapper;
     private final BodytypeMapper bodyTypeMapper;
     private final DrivetrainMapper driveTrainMapper;
+    private final TechnicalSpecMapper technicalSpecMapper;
 
     public ModelTypeDto findModelTypes(Long carId) {
         return ModelTypeDto.of(findPowertrains(carId), findBodytypes(carId), findDrivetrains(carId));
@@ -48,5 +50,11 @@ public class ModelTypeService {
     public List<CarDrivetrainDto> findDrivetrains(Long carId) {
         List<CarDrivetrainEntity> drivetrains = driveTrainMapper.findDrivetrainsByCarId(carId);
         return CarDrivetrainDto.listOf(drivetrains);
+    }
+
+    public TechnicalSpecDto findTechnicalSpec(Long powertrainId, Long drivetrainId) {
+        TechnicalSpecEntity technicalSpecEntity = technicalSpecMapper.findSpec(powertrainId, drivetrainId);
+        // TODO: null 체크 후 Exception 발생
+        return TechnicalSpecDto.of(technicalSpecEntity);
     }
 }
