@@ -416,7 +416,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				B1F988DF2A8B1C3700C7B65F /* InternalColorSelection */,
+				B1F988DF2A8B1C3700C7B65F /* InteriorColorSelection */,
 				B16DFF482A8A3E2C00642730 /* ExternalColorSelection */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
 				B1604D5E2A853FA200C7B07D /* ModelTypeSelection */,
@@ -705,6 +705,17 @@
 			path = ColorSelectionComponent;
 			sourceTree = "<group>";
 		};
+		B191DD3A2A8B8587008196CD /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */,
+				B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */,
+				B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */,
+				B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
 		B19436312A7E8C1500C2FD69 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,17 +769,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B1F988DF2A8B1C3700C7B65F /* InternalColorSelection */ = {
+		B1F988DF2A8B1C3700C7B65F /* InteriorColorSelection */ = {
 			isa = PBXGroup;
 			children = (
 				B1F988E82A8B3E4400C7B65F /* Domain */,
-				B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */,
-				B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */,
-				B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */,
-				B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */,
+				B191DD3A2A8B8587008196CD /* VIew */,
 				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
 			);
-			path = InternalColorSelection;
+			path = InteriorColorSelection;
 			sourceTree = "<group>";
 		};
 		B1F988E82A8B3E4400C7B65F /* Domain */ = {
