@@ -9,7 +9,7 @@ import Foundation
 
 enum CarColorType: Equatable {
 
-  case interior(fabricImageURL: URL?)
+  case interior(fabricImageURL: URL?, bannerImageURL: URL?)
 
   case exterior(hexColor: String)
 
