@@ -52,17 +52,22 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
       }
     case .trimColors(let colors):
       var colorStates = colors.map { InteriorColorState(isSelected: false, color: $0)}
-
-      if !colorStates.isEmpty {
-        colorStates[0].isSelected = true
-      }
-
       self.state.trimColors = colorStates
+      if !colorStates.isEmpty {
+        send(action: .onTapColor(id: colorStates[0].color.id))
+      }
     case .changeSelectedInteriorImageURL(let url):
-      return
+      print("새롭게 받은 URL")
     case .onTapColor(let id):
       state.selectedTrimID = id
-//      send(action: .changeSelectedInteriorImageURL(url: ))
+      for i in state.trimColors.indices {
+        if state.trimColors[i].color.id == id {
+          state.trimColors[i].isSelected = true
+          send(action: .changeSelectedInteriorImageURL(url: state.trimColors[i].color.bannerImageURL))
+        } else {
+          state.trimColors[i].isSelected = false
+        }
+      }
     }
   }
 
