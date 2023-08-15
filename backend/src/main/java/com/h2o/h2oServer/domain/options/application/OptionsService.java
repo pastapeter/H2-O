@@ -1,9 +1,10 @@
 package com.h2o.h2oServer.domain.options.application;
 
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
-import com.h2o.h2oServer.domain.options.dto.TrimOptionDto;
-import com.h2o.h2oServer.domain.options.entity.TrimOptionEntity;
-import com.h2o.h2oServer.domain.options.entity.enums.OptionType;
+import com.h2o.h2oServer.domain.options.dto.TrimDefaultOptionDto;
+import com.h2o.h2oServer.domain.options.dto.TrimExtraOptionDto;
+import com.h2o.h2oServer.domain.options.entity.TrimDefaultOptionEntity;
+import com.h2o.h2oServer.domain.options.entity.TrimExtraOptionEntity;
 import com.h2o.h2oServer.domain.options.mapper.OptionsMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,42 +19,61 @@ public class OptionsService {
 
     private final OptionsMapper optionsMapper;
 
-    public List<TrimOptionDto> findTrimPackages(Long trimId) {
-        List<TrimOptionDto> trimOptionDtos = new ArrayList<>();
+    public List<TrimExtraOptionDto> findTrimPackages(Long trimId) {
+        List<TrimExtraOptionDto> trimExtraOptionDtos = new ArrayList<>();
 
-        List<TrimOptionEntity> trimPackageEntities = optionsMapper.findTrimPackages(trimId);
+        List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimPackages(trimId);
 
-        for (TrimOptionEntity trimOptionEntity : trimPackageEntities) {
-            Long packageId = trimOptionEntity.getId();
+        for (TrimExtraOptionEntity extraOptionEntity : extraOptionEntities) {
+            Long packageId = extraOptionEntity.getId();
             List<HashTagEntity> packageHashTags = optionsMapper.findPackageHashTags(packageId);
 
-            TrimOptionDto trimOptionDto = TrimOptionDto.of(true, trimOptionEntity, packageHashTags);
+            TrimExtraOptionDto trimExtraOptionDto = TrimExtraOptionDto.of(true, extraOptionEntity, packageHashTags);
 
-            Collections.sort(trimOptionDto.getHashTags());
+            Collections.sort(trimExtraOptionDto.getHashTags());
 
-            trimOptionDtos.add(trimOptionDto);
+            trimExtraOptionDtos.add(trimExtraOptionDto);
         }
 
-        return trimOptionDtos;
+        return trimExtraOptionDtos;
     }
 
-    public List<TrimOptionDto> findTrimOptions(Long trimId, OptionType optionType) {
-        List<TrimOptionDto> trimOptionDtos = new ArrayList<>();
+    public List<TrimExtraOptionDto> findTrimExtraOptions(Long trimId) {
+        List<TrimExtraOptionDto> trimExtraOptionDtos = new ArrayList<>();
 
-        List<TrimOptionEntity> extraOptionsEntities = optionsMapper.findTrimOptions(trimId, optionType);
+        List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimExtraOptions(trimId);
 
-        for (TrimOptionEntity extraOptionsEntity : extraOptionsEntities) {
-            Long optionId = extraOptionsEntity.getId();
+        for (TrimExtraOptionEntity extraOptionEntity : extraOptionEntities) {
+            Long optionId = extraOptionEntity.getId();
             List<HashTagEntity> optionHashTags = optionsMapper.findOptionHashTag(optionId);
 
-            TrimOptionDto trimOptionDto = TrimOptionDto.of(false, extraOptionsEntity, optionHashTags);
+            TrimExtraOptionDto trimExtraOptionDto = TrimExtraOptionDto.of(false, extraOptionEntity, optionHashTags);
 
-            Collections.sort(trimOptionDto.getHashTags());
+            Collections.sort(trimExtraOptionDto.getHashTags());
 
-            trimOptionDtos.add(trimOptionDto);
+            trimExtraOptionDtos.add(trimExtraOptionDto);
         }
 
-        return trimOptionDtos;
+        return trimExtraOptionDtos;
+    }
+
+    public List<TrimDefaultOptionDto> findTrimDefaultOptions(Long trimId) {
+        List<TrimDefaultOptionDto> trimDefaultOptionDtos = new ArrayList<>();
+
+        List<TrimDefaultOptionEntity> defaultOptionEntities = optionsMapper.findTrimDefaultOptions(trimId);
+
+        for (TrimDefaultOptionEntity defaultOptionEntity : defaultOptionEntities) {
+            Long optionId = defaultOptionEntity.getId();
+            List<HashTagEntity> optionHashTags = optionsMapper.findOptionHashTag(optionId);
+
+            TrimDefaultOptionDto trimDefaultOptionDto = TrimDefaultOptionDto.of(defaultOptionEntity, optionHashTags);
+
+            Collections.sort(trimDefaultOptionDto.getHashTags());
+
+            trimDefaultOptionDtos.add(trimDefaultOptionDto);
+        }
+
+        return trimDefaultOptionDtos;
     }
 
 }

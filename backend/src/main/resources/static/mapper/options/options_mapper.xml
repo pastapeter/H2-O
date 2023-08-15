@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.h2o.h2oServer.domain.options.mapper.OptionsMapper">
-    <select id="findTrimPackages" resultType="TrimOptionEntity">
+    <select id="findTrimPackages" resultType="TrimExtraOptionEntity">
         select id, name, image, category, choice_ratio, price
         from trims_package
                 join package
@@ -12,13 +12,21 @@
         order by package_id;
     </select>
 
-    <select id="findTrimOptions" resultType="TrimOptionEntity">
+    <select id="findTrimExtraOptions" resultType="TrimExtraOptionEntity">
         select id, name, image, category, choice_ratio, price
         from trims_options
                 join options
                 on trims_options.option_id = options.id
-        <bind name="optionTypeLabel" value="optionType.getLabel()"/>
-        where trim_id = #{trimId} and option_type = #{optionTypeLabel}
+        where trim_id = #{trimId} and option_type = 'extra'
+        order by option_id;
+    </select>
+
+    <select id="findTrimDefaultOptions" resultType="TrimDefaultOptionEntity">
+        select id, name, image, category, choice_ratio, use_count
+        from trims_options
+        join options
+        on trims_options.option_id = options.id
+        where trim_id = #{trimId} and option_type = 'default'
         order by option_id;
     </select>
 

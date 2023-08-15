@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @EqualsAndHashCode
-public class TrimOptionEntity {
+public class TrimExtraOptionEntity {
     private Long id;
     private String name;
     private String image;
