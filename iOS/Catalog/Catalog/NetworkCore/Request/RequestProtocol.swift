@@ -35,6 +35,10 @@ extension RequestProtocol {
     .JSON
   }
 
+  var timeOutInterval: TimeInterval {
+    2
+  }
+
   func createRequest() throws -> Request {
 
     var components = URLComponents()
