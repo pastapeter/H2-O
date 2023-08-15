@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InternalColorSelectionView: View {
 
-  var state: InternalColorState
+  var state: InteriorColorState
   var action: () -> Void
 
   var body: some View {
@@ -49,6 +49,6 @@ struct InternalColorSelectionView: View {
       .externalColorSelectionCardStyle(isselected: state.isSelected)
       .buttonSelected(isselected: state.isSelected)
     }
-    .buttonStyle(EmptyButtonStyle())
+//    .buttonStyle(EmptyButtonStyle())
   }
 }

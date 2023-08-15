@@ -83,7 +83,12 @@
 		B16DFF472A8A161700642730 /* ModelTypeResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF462A8A161700642730 /* ModelTypeResponseDTO.swift */; };
 		B16DFF4A2A8A3E4800642730 /* ExternalSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF492A8A3E4800642730 /* ExternalSelectionContainerView.swift */; };
 		B16DFF4C2A8A3E9000642730 /* ExternalColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF4B2A8A3E9000642730 /* ExternalColorSelectionHorizontalList.swift */; };
-		B16DFF4E2A8A3EA500642730 /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF4D2A8A3EA500642730 /* ColorSelectionView.swift */; };
+		B191DD2C2A8B4CD6008196CD /* ExternalColorDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD2B2A8B4CD6008196CD /* ExternalColorDisplayView.swift */; };
+		B191DD2E2A8B4D86008196CD /* ColorSelectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD2D2A8B4D86008196CD /* ColorSelectionComponent.swift */; };
+		B191DD302A8B4E53008196CD /* CarColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD2F2A8B4E53008196CD /* CarColorType.swift */; };
+		B191DD322A8B4E7E008196CD /* ColorContentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD312A8B4E7E008196CD /* ColorContentable.swift */; };
+		B191DD342A8B4ED8008196CD /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */; };
+		B191DD362A8B5B52008196CD /* ColorInfoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD352A8B5B52008196CD /* ColorInfoState.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -112,6 +117,9 @@
 		B1F988E12A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */; };
 		B1F988E32A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */; };
 		B1F988E52A8B37F600C7B65F /* InternalColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */; };
+		B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */; };
+		B1F988EA2A8B3E5300C7B65F /* InteriorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */; };
+		B1F988EE2A8B4AB800C7B65F /* InternalColorDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988ED2A8B4AB800C7B65F /* InternalColorDisplayView.swift */; };
 		ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */; };
 		ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */; };
 		ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709E2A836D0D00F7920F /* CLColor.swift */; };
@@ -252,7 +260,12 @@
 		B16DFF462A8A161700642730 /* ModelTypeResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeResponseDTO.swift; sourceTree = "<group>"; };
 		B16DFF492A8A3E4800642730 /* ExternalSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSelectionContainerView.swift; sourceTree = "<group>"; };
 		B16DFF4B2A8A3E9000642730 /* ExternalColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
-		B16DFF4D2A8A3EA500642730 /* ColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionView.swift; sourceTree = "<group>"; };
+		B191DD2B2A8B4CD6008196CD /* ExternalColorDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColorDisplayView.swift; sourceTree = "<group>"; };
+		B191DD2D2A8B4D86008196CD /* ColorSelectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionComponent.swift; sourceTree = "<group>"; };
+		B191DD2F2A8B4E53008196CD /* CarColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarColorType.swift; sourceTree = "<group>"; };
+		B191DD312A8B4E7E008196CD /* ColorContentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorContentable.swift; sourceTree = "<group>"; };
+		B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionView.swift; sourceTree = "<group>"; };
+		B191DD352A8B5B52008196CD /* ColorInfoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInfoState.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -281,6 +294,9 @@
 		B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionContainerView.swift; sourceTree = "<group>"; };
 		B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
 		B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionView.swift; sourceTree = "<group>"; };
+		B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorState.swift; sourceTree = "<group>"; };
+		B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColor.swift; sourceTree = "<group>"; };
+		B1F988ED2A8B4AB800C7B65F /* InternalColorDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorDisplayView.swift; sourceTree = "<group>"; };
 		ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationPriceBar.swift; sourceTree = "<group>"; };
 		ED1A709E2A836D0D00F7920F /* CLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLColor.swift; sourceTree = "<group>"; };
 		ED1A70A22A836F3700F7920F /* CarQuotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarQuotation.swift; sourceTree = "<group>"; };
@@ -725,7 +741,7 @@
 			children = (
 				B16DFF492A8A3E4800642730 /* ExternalSelectionContainerView.swift */,
 				B16DFF4B2A8A3E9000642730 /* ExternalColorSelectionHorizontalList.swift */,
-				B16DFF4D2A8A3EA500642730 /* ColorSelectionView.swift */,
+				B191DD2B2A8B4CD6008196CD /* ExternalColorDisplayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -733,11 +749,27 @@
 		B1F988DF2A8B1C3700C7B65F /* InternalColorSelection */ = {
 			isa = PBXGroup;
 			children = (
+				B1F988E82A8B3E4400C7B65F /* Domain */,
 				B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */,
 				B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */,
 				B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */,
+				B1F988ED2A8B4AB800C7B65F /* InternalColorDisplayView.swift */,
+				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
+				B191DD2D2A8B4D86008196CD /* ColorSelectionComponent.swift */,
+				B191DD312A8B4E7E008196CD /* ColorContentable.swift */,
+				B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */,
 			);
 			path = InternalColorSelection;
+			sourceTree = "<group>";
+		};
+		B1F988E82A8B3E4400C7B65F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */,
+				B191DD2F2A8B4E53008196CD /* CarColorType.swift */,
+				B191DD352A8B5B52008196CD /* ColorInfoState.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		ED1A70942A8357FD00F7920F /* Quotation */ = {
@@ -1077,10 +1109,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED1C70682A89C4EC0049D275 /* TrimCardView.swift in Sources */,
+<<<<<<< HEAD
 				EDCF32C22A8A91D500C46A4B /* CLLinearGradient.swift in Sources */,
+=======
+				B191DD342A8B4ED8008196CD /* ColorSelectionView.swift in Sources */,
+>>>>>>> 50e3d97 (feat: interiorColor 추가 및 이름 변경)
 				ED1C70672A89C4C00049D275 /* SnapCarousel.swift in Sources */,
 				ED1C70662A89C45F0049D275 /* TrimSelectionView.swift in Sources */,
 				ED1C70642A89C43E0049D275 /* TrimSelectionModel.swift in Sources */,
+				B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */,
 				ED1C70652A89C43F0049D275 /* TrimSelectionIntent.swift in Sources */,
 				B16DFF3A2A8958CF00642730 /* MaxOutputFromEngine.swift in Sources */,
 				B1A76B882A893447009C84EF /* ModelTypeContent.swift in Sources */,
@@ -1091,6 +1128,11 @@
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
 				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
+<<<<<<< HEAD
+=======
+				ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */,
+				B191DD2C2A8B4CD6008196CD /* ExternalColorDisplayView.swift in Sources */,
+>>>>>>> 50e3d97 (feat: interiorColor 추가 및 이름 변경)
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
 				B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */,
 				B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */,
@@ -1107,6 +1149,7 @@
 				B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */,
 				EDC1862F2A893577009EB498 /* CLInactiveButtonStyle.swift in Sources */,
 				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
+				B1F988EA2A8B3E5300C7B65F /* InteriorColor.swift in Sources */,
 				B16DFF362A89548300642730 /* ModelTypeRepositoryProtocol.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
@@ -1121,6 +1164,13 @@
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				ED1C70612A89C3A50049D275 /* EntryGuide.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
+<<<<<<< HEAD
+=======
+				B1F988EE2A8B4AB800C7B65F /* InternalColorDisplayView.swift in Sources */,
+				EDC1862D2A88CA56009EB498 /* BottomArea.swift in Sources */,
+				ED1A70AF2A83B4CF00F7920F /* CLToggle.swift in Sources */,
+				ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */,
+>>>>>>> 50e3d97 (feat: interiorColor 추가 및 이름 변경)
 				B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */,
 				ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
@@ -1130,8 +1180,10 @@
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				ED1C70602A89C3810049D275 /* CLSimilarQuotationSlideView.swift in Sources */,
+				B191DD302A8B4E53008196CD /* CarColorType.swift in Sources */,
 				B1A76B842A892C86009C84EF /* ModelTypeSelectionContainerModel.swift in Sources */,
 				ED1A70AB2A83728C00F7920F /* CLHashTag.swift in Sources */,
+				B191DD362A8B5B52008196CD /* ColorInfoState.swift in Sources */,
 				B156463D2A865B3F00FAD379 /* ModelContentView.swift in Sources */,
 				EDCF32C32A8A91D500C46A4B /* CLListText.swift in Sources */,
 				ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */,
@@ -1151,8 +1203,10 @@
 				B16DFF432A895BE000642730 /* ModelTypeRepository.swift in Sources */,
 				ED1A70A92A83723F00F7920F /* CLCategory.swift in Sources */,
 				B1084BE72A87ACDD00AE1758 /* ModelTypeButtonContainer.swift in Sources */,
+				B191DD322A8B4E7E008196CD /* ColorContentable.swift in Sources */,
 				B1F988DD2A8A8E3700C7B65F /* MockExternalColorRepository.swift in Sources */,
 				ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */,
+				B191DD2E2A8B4D86008196CD /* ColorSelectionComponent.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
 				B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */,
 				B16DFF3C2A8958DB00642730 /* MaxTorqueFromEngine.swift in Sources */,
@@ -1176,7 +1230,6 @@
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
 				B1604D342A83701900C7B07D /* CLAPIRetrier.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
-				B16DFF4E2A8A3EA500642730 /* ColorSelectionView.swift in Sources */,
 				B16DFF472A8A161700642730 /* ModelTypeResponseDTO.swift in Sources */,
 				B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */,
 				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
