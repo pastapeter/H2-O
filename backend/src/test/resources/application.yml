@@ -8,6 +8,9 @@ spring:
     init:
       schema-locations: classpath:db/schema-ddl.sql
       mode: always
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 mybatis:
   type-aliases-package: com.h2o.h2oServer.domain

@@ -1,9 +1,11 @@
 package com.h2o.h2oServer.domain.model_type.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.util.List;
 
+@ApiModel(value = "차량 모델 타입 정보 조회 응답")
 @Data
 public class ModelTypeDto {
     private List<CarPowertrainDto> powertrains;

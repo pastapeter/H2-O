@@ -1,11 +1,13 @@
 package com.h2o.h2oServer.domain.model_type.dto;
 
 import com.h2o.h2oServer.domain.model_type.Entity.CarBodytypeEntity;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ApiModel(value = "차량 모델 타입 정보 조회 응답 - 바디 타입 정보")
 @Data
 public class CarBodytypeDto {
     private Long id;

@@ -3,12 +3,14 @@ package com.h2o.h2oServer.domain.option.dto;
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionEntity;
 import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
+import io.swagger.annotations.ApiModel;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ApiModel(value = "패키지 정보 조회 응답 - 옵션 정보")
 @Builder
 @Data
 public class OptionDto {

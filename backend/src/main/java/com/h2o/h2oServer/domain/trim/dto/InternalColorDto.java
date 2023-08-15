@@ -2,9 +2,11 @@ package com.h2o.h2oServer.domain.trim.dto;
 
 
 import com.h2o.h2oServer.domain.trim.entity.InternalColorEntity;
+import io.swagger.annotations.ApiModel;
 import lombok.Builder;
 import lombok.Getter;
 
+@ApiModel(value = "트림 내부 색상 정보 조회 응답")
 @Builder
 @Getter
 public class InternalColorDto {

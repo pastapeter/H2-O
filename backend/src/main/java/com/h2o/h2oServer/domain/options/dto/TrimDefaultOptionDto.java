@@ -2,11 +2,13 @@ package com.h2o.h2oServer.domain.options.dto;
 
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.options.entity.TrimDefaultOptionEntity;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ApiModel(value = "트림 기본 옵션 정보 조회 응답")
 @Data
 public class TrimDefaultOptionDto {
     private Long id;

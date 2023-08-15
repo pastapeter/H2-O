@@ -1,9 +1,11 @@
 package com.h2o.h2oServer.domain.option.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+@ApiModel(value = "옵션 세부 정보 조회 응답 - hmg Data 정보")
 @Builder
 @Getter
 @EqualsAndHashCode
