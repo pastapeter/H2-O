@@ -41,6 +41,7 @@ class TrimMapperTest {
                 .name("Trim 1")
                 .description("Basic Trim")
                 .price(1500)
+                .carId(1L)
                 .build();
 
         //when
@@ -76,12 +77,14 @@ class TrimMapperTest {
                 .name("Trim 1")
                 .description("Basic Trim")
                 .price(1500)
+                .carId(1L)
                 .build();
         TrimEntity expectedTrimEntity2 = TrimEntity.builder()
                 .id(12L)
                 .name("Trim 2")
                 .description("Advanced Trim")
                 .price(2500)
+                .carId(1L)
                 .build();
 
         //when

@@ -6,15 +6,24 @@
     <select id="findById" resultType="BodytypeEntity">
         select id, name, description, image
         from bodytype
-        where id = #{id};
+        where id = #{id}
     </select>
 
     <select id="findBodytypesByCarId" resultType="CarBodytypeEntity">
+        <include refid="findBodytypeByCarId"/>
+    </select>
+
+    <select id="findDefaultBodytypeByCarId" resultType="CarBodytypeEntity">
+        <include refid="findBodytypeByCarId"/>
+        limit 1
+    </select>
+
+    <sql id="findBodytypeByCarId">
         select car_id, bodytype_id, name, description, image, price, choice_ratio
         from car_bodytype
-            join bodytype
-            on car_bodytype.bodytype_id = bodytype.id
+                 join bodytype
+                      on car_bodytype.bodytype_id = bodytype.id
         where car_id = ${carId}
-        order by bodytype_id;
-    </select>
+        order by bodytype_id
+    </sql>
 </mapper>

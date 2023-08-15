@@ -14,4 +14,5 @@ public interface PowertrainMapper {
     PowertrainOutputEntity findOutput(Long id);
     PowertrainTorqueEntity findTorque(Long id);
     List<CarPowerTrainEntity> findPowertrainsByCarId(Long carId);
+    CarPowerTrainEntity findDefaultPowertrainByCarId(Long carId);
 }

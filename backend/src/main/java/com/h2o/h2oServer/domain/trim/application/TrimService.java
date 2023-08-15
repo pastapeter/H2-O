@@ -1,5 +1,7 @@
 package com.h2o.h2oServer.domain.trim.application;
 
+import com.h2o.h2oServer.domain.model_type.application.ModelTypeService;
+import com.h2o.h2oServer.domain.trim.dto.DefaultTrimCompositionDto;
 import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.TrimDto;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 public class TrimService {
     private final TrimMapper trimMapper;
     private final ExternalColorMapper externalColorMapper;
+    private final ModelTypeService modelTypeService;
 
     public List<TrimDto> findTrimInformation(Long vehicleId) {
         List<TrimEntity> trimEntities = trimMapper.findByCarId(vehicleId);
@@ -63,5 +66,19 @@ public class TrimService {
         return internalColorEntities.stream()
                 .map(InternalColorDto::of)
                 .collect(Collectors.toList());
+    }
+
+    public DefaultTrimCompositionDto findDefaultComposition(Long trimId) {
+        Long carId = trimMapper.findById(trimId).getCarId();
+        DefaultTrimCompositionDto defaultTrimCompositionDto = modelTypeService.findDefaultModelType(carId);
+
+        ExternalColorEntity defaultExternalColor = trimMapper.findDefaultExternalColor(trimId);
+        InternalColorEntity defaultInternalColor = trimMapper.findDefaultInternalColor(trimId);
+        List<ImageEntity> imageEntities = externalColorMapper.findImages(defaultExternalColor.getId());
+
+        defaultTrimCompositionDto.setInternalColor(InternalColorDto.of(defaultInternalColor));
+        defaultTrimCompositionDto.setExternalColor(ExternalColorDto.of(defaultExternalColor, imageEntities));
+
+        return defaultTrimCompositionDto;
     }
 }

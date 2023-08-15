@@ -6,27 +6,37 @@
     <select id="findById" resultType="PowertrainEntity">
         select id, name, description, image
         from powertrain
-        where id = ${id};
+        where id = ${id}
     </select>
 
     <select id="findOutput" resultType="PowertrainOutputEntity">
         select powertrain_id, output, min_rpm, max_rpm
         from powertrain_output
-        where powertrain_id = ${id};
+        where powertrain_id = ${id}
     </select>
 
     <select id="findTorque" resultType="PowertrainTorqueEntity">
         select powertrain_id, torque, min_rpm, max_rpm
         from powertrain_torque
-        where powertrain_id = ${id};
+        where powertrain_id = ${id}
     </select>
 
     <select id="findPowertrainsByCarId" resultType="CarPowerTrainEntity">
+        <include refid="findPowertrainsByCarId"/>
+    </select>
+    <select id="findDefaultPowertrainByCarId" resultType="CarPowerTrainEntity">
+        <include refid="findPowertrainsByCarId"/>
+        limit 1
+    </select>
+
+
+
+    <sql id="findPowertrainsByCarId">
         select car_id, powertrain_id, name, description, image, price, choice_ratio
         from car_powertrain
                  join powertrain
                       on car_powertrain.powertrain_id = powertrain.id
         where car_id = ${carId}
-        order by powertrain_id;
-    </select>
+        order by powertrain_id
+    </sql>
 </mapper>

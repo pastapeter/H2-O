@@ -10,4 +10,5 @@ public class TrimEntity {
     private String name;
     private String description;
     private Integer price;
+    private Long carId;
 }

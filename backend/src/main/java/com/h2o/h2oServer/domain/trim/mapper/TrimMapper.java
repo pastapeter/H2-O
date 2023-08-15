@@ -22,4 +22,8 @@ public interface TrimMapper {
     List<InternalColorEntity> findInternalColor(Long id);
 
     List<ExternalColorEntity> findExternalColor(Long id);
+
+    InternalColorEntity findDefaultInternalColor(Long id);
+
+    ExternalColorEntity findDefaultExternalColor(Long id);
 }

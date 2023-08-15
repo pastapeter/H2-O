@@ -6,15 +6,24 @@
     <select id="findById" resultType="DrivetrainEntity">
         select id, name, description, image
         from drivetrain
-        where id = #{id};
+        where id = #{id}
     </select>
 
     <select id="findDrivetrainsByCarId" resultType="CarDrivetrainEntity">
+        <include refid="findDrivetrainsByCarId"/>
+    </select>
+
+    <select id="findDefaultDrivetrainByCarId" resultType="CarDrivetrainEntity">
+        <include refid="findDrivetrainsByCarId"/>
+        limit 1
+    </select>
+
+    <sql id="findDrivetrainsByCarId">
         select car_id, drivetrain_id, name, description, image, price, choice_ratio
         from car_drivetrain
-            join drivetrain
-            on car_drivetrain.drivetrain_id = drivetrain.id
+                 join drivetrain
+                      on car_drivetrain.drivetrain_id = drivetrain.id
         where car_id = ${carId}
-        order by drivetrain_id;
-    </select>
+        order by drivetrain_id
+    </sql>
 </mapper>
