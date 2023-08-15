@@ -51,12 +51,12 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
         }
       }
     case .trimColors(let colors):
-      var colorStates = colors.map { InteriorColorState(isSelected: false, color: $0)}
+      let colorStates = colors.map { InteriorColorState(isSelected: false, color: $0) }
       self.state.trimColors = colorStates
       if !colorStates.isEmpty {
         send(action: .onTapColor(id: colorStates[0].color.id))
       }
-    case .changeSelectedInteriorImageURL(let url):
+    case .changeSelectedInteriorImageURL:
       print("새롭게 받은 URL")
     case .onTapColor(let id):
       state.selectedColorId = id

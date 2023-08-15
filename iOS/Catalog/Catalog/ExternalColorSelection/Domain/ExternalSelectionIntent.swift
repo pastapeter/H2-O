@@ -51,12 +51,12 @@ extension ExternalSelectionIntent: ExternalSelectionIntentType, IntentType {
         }
       }
     case .fetchColors(let colors):
-      var colorStates = colors.map { ExteriorColorState(isSelected: false, color: $0) }
+      let colorStates = colors.map { ExteriorColorState(isSelected: false, color: $0) }
       state.colors = colorStates
       if !colorStates.isEmpty {
         send(action: .onTapColor(id: colorStates[0].color.id))
       }
-    case .changeSelectedExternalImageURL(let url):
+    case .changeSelectedExternalImageURL:
       print("External Image Urls")
     case .onTapColor(id: let id):
       state.selectedColorId = id
