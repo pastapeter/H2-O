@@ -51,7 +51,7 @@ extension ExternalSelectionIntent: ExternalSelectionIntentType, IntentType {
         }
       }
     case .fetchColors(let colors):
-      var colorStates = colors.map { ColorState(isSelected: false, color: $0) }
+      var colorStates = colors.map { ExteriorColorState(isSelected: false, color: $0) }
       colorStates[0].isSelected = true
       state.colors = colorStates
     }

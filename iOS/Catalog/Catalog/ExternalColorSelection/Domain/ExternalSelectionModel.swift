@@ -12,7 +12,7 @@ enum ExternalSelectionModel {
   struct State: Equatable {
     var selectedTrimId: Int
     var selectedColorId: Int = 1
-    var colors: [ColorState] = []
+    var colors: [ExteriorColorState] = []
   }
 
   enum ViewAction {
@@ -21,7 +21,7 @@ enum ExternalSelectionModel {
   }
 }
 
-struct ColorState: Equatable, Hashable {
+struct ExteriorColorState: Equatable, Hashable {
   var isSelected: Bool
   var color: ExternalColor
 }
