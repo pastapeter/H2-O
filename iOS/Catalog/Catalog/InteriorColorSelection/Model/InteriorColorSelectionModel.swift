@@ -21,7 +21,7 @@ enum InteriorColorSelectionModel {
   enum ViewAction {
     case onAppear
     case trimColors(colors: [InteriorColor])
-    case changeSelectedInteriorImageURL(url: URL)
+    case changeSelectedInteriorImageURL(url: URL?)
     case onTapColor(id: Int)
   }
 
