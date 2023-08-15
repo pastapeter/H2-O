@@ -27,6 +27,8 @@ protocol RequestProtocol {
 
   var contentType: ContentType { get }
 
+  var secureType: SecureType { get }
+
 }
 
 extension RequestProtocol {
@@ -42,9 +44,10 @@ extension RequestProtocol {
   func createRequest() throws -> Request {
 
     var components = URLComponents()
-    components.scheme = SecureType.https.description
+    components.scheme = self.secureType.description
     components.host = host
     components.path = path
+    print(components.host)
 
     if !urlParams.isEmpty {
       components.queryItems = urlParams.map { URLQueryItem(name: $0, value: $1) }
