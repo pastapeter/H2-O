@@ -115,12 +115,12 @@
 		B1F988D92A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */; };
 		B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */; };
 		B1F988DD2A8A8E3700C7B65F /* MockExternalColorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */; };
-		B1F988E12A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */; };
-		B1F988E32A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */; };
-		B1F988E52A8B37F600C7B65F /* InternalColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */; };
+		B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */; };
+		B1F988E32A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */; };
+		B1F988E52A8B37F600C7B65F /* InteriorColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */; };
 		B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */; };
 		B1F988EA2A8B3E5300C7B65F /* InteriorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */; };
-		B1F988EE2A8B4AB800C7B65F /* InternalColorDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988ED2A8B4AB800C7B65F /* InternalColorDisplayView.swift */; };
+		B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */; };
 		ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */; };
 		ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */; };
 		ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709E2A836D0D00F7920F /* CLColor.swift */; };
@@ -293,12 +293,12 @@
 		B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColorRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColor.swift; sourceTree = "<group>"; };
 		B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExternalColorRepository.swift; sourceTree = "<group>"; };
-		B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionContainerView.swift; sourceTree = "<group>"; };
-		B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
-		B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionView.swift; sourceTree = "<group>"; };
+		B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionContainerView.swift; sourceTree = "<group>"; };
+		B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
+		B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionView.swift; sourceTree = "<group>"; };
 		B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorState.swift; sourceTree = "<group>"; };
 		B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColor.swift; sourceTree = "<group>"; };
-		B1F988ED2A8B4AB800C7B65F /* InternalColorDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorDisplayView.swift; sourceTree = "<group>"; };
+		B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorDisplayView.swift; sourceTree = "<group>"; };
 		ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationPriceBar.swift; sourceTree = "<group>"; };
 		ED1A709E2A836D0D00F7920F /* CLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLColor.swift; sourceTree = "<group>"; };
 		ED1A70A22A836F3700F7920F /* CarQuotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarQuotation.swift; sourceTree = "<group>"; };
@@ -752,10 +752,10 @@
 			isa = PBXGroup;
 			children = (
 				B1F988E82A8B3E4400C7B65F /* Domain */,
-				B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */,
-				B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */,
-				B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */,
-				B1F988ED2A8B4AB800C7B65F /* InternalColorDisplayView.swift */,
+				B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */,
+				B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */,
+				B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */,
+				B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */,
 				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
 				B191DD2D2A8B4D86008196CD /* ColorSelectionComponent.swift */,
 				B191DD312A8B4E7E008196CD /* ColorContentable.swift */,
@@ -1135,7 +1135,7 @@
 				B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */,
 				B1604D382A8381BD00C7B07D /* TrimRequestDTO.swift in Sources */,
 				EDD303FD2A8A09E600400DF9 /* HMGTag.swift in Sources */,
-				B1F988E32A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift in Sources */,
+				B1F988E32A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift in Sources */,
 				B1604D442A83943000C7B07D /* TrimSelectionRepository.swift in Sources */,
 				EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */,
 				EDBA5D592A808A8A0050BC35 /* DimmedZStack.swift in Sources */,
@@ -1161,7 +1161,7 @@
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				ED1C70612A89C3A50049D275 /* EntryGuide.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
-				B1F988EE2A8B4AB800C7B65F /* InternalColorDisplayView.swift in Sources */,
+				B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */,
 				EDC1862D2A88CA56009EB498 /* BottomArea.swift in Sources */,
 				ED1A70AF2A83B4CF00F7920F /* CLToggle.swift in Sources */,
 				ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */,
@@ -1170,7 +1170,7 @@
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
-				B1F988E52A8B37F600C7B65F /* InternalColorSelectionView.swift in Sources */,
+				B1F988E52A8B37F600C7B65F /* InteriorColorSelectionView.swift in Sources */,
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				ED1C70602A89C3810049D275 /* CLSimilarQuotationSlideView.swift in Sources */,

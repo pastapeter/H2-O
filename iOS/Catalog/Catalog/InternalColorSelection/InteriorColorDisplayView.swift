@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InternalColorDisplayView: ColorContentable {
+struct InteriorColorDisplayView: ColorContentable {
 
   var isSelected: Bool
   var color: CarColorType
@@ -25,6 +25,6 @@ struct InternalColorDisplayView: ColorContentable {
 
 struct InternalColorDisplayView_Previews: PreviewProvider {
   static var previews: some View {
-    InternalColorDisplayView(isSelected: true, color: .interior(fabricImageURL: nil))
+    InteriorColorDisplayView(isSelected: true, color: .interior(fabricImageURL: nil))
   }
 }

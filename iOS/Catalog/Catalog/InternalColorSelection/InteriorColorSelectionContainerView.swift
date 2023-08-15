@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InternalColorSelectionContainerView: View {
+struct InteriorColorSelectionContainerView: View {
 
   var colors: [InteriorColorState] = [
     .init(isSelected: true, color: .init(id: 123, name: "퀄팅천연(블랙)", choiceRatio: .init(28), price: .init(0))),
@@ -23,7 +23,7 @@ struct InternalColorSelectionContainerView: View {
         Text("내장 색상을 선택해주세요")
           .catalogFont(type: .HeadKRMedium18)
         Spacer().frame(height: 8)
-        InternalColorSelectionHorizontalList(state: colors, height: UIScreen.main.bounds.height * 177 / 812)
+        InteriorColorSelectionHorizontalList(state: colors, height: UIScreen.main.bounds.height * 177 / 812)
         Spacer()
       }
       .padding(.leading, 20)

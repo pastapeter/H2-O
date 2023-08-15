@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InternalColorSelectionView: View {
+struct InteriorColorSelectionView: View {
 
   var state: InteriorColorState
   var action: () -> Void
@@ -49,6 +49,6 @@ struct InternalColorSelectionView: View {
       .externalColorSelectionCardStyle(isselected: state.isSelected)
       .buttonSelected(isselected: state.isSelected)
     }
-//    .buttonStyle(EmptyButtonStyle())
+    .buttonStyle(EmptyButtonStyle())
   }
 }

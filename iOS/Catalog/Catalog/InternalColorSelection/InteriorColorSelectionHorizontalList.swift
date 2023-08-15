@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InternalColorSelectionHorizontalList: View {
+struct InteriorColorSelectionHorizontalList: View {
 
   var state: [InteriorColorState]
   var height: CGFloat = 400
@@ -15,7 +15,7 @@ struct InternalColorSelectionHorizontalList: View {
   var body: some View {
     HorizontalScroller(height: height) {
       ForEach(state.indices, id: \.self) { i in
-        ColorSelectionView<InternalColorDisplayView>.build(action: { print("HI \(i)") }, colorState: state[i].toColorInfoState())
+        ColorSelectionView<InteriorColorDisplayView>.build(action: { print("HI \(i)") }, colorState: state[i].toColorInfoState())
       }
     }
   }
