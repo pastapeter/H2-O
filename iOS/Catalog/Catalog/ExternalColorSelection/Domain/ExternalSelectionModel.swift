@@ -18,6 +18,8 @@ enum ExternalSelectionModel {
   enum ViewAction {
     case onAppear
     case fetchColors(colors: [ExternalColor])
+    case changeSelectedExternalImageURL(url: [URL])
+    case onTapColor(id: Int)
   }
 }
 
