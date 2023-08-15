@@ -109,6 +109,11 @@
 		B1F988D92A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */; };
 		B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */; };
 		B1F988DD2A8A8E3700C7B65F /* MockExternalColorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */; };
+		B1F988E12A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */; };
+		B1F988E32A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */; };
+		B1F988E52A8B37F600C7B65F /* InternalColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */; };
+		ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */; };
+		ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */; };
 		ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709E2A836D0D00F7920F /* CLColor.swift */; };
 		ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A22A836F3700F7920F /* CarQuotation.swift */; };
 		ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A42A836FB900F7920F /* ModelType.swift */; };
@@ -273,6 +278,9 @@
 		B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColorRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColor.swift; sourceTree = "<group>"; };
 		B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExternalColorRepository.swift; sourceTree = "<group>"; };
+		B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionContainerView.swift; sourceTree = "<group>"; };
+		B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
+		B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorSelectionView.swift; sourceTree = "<group>"; };
 		ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationPriceBar.swift; sourceTree = "<group>"; };
 		ED1A709E2A836D0D00F7920F /* CLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLColor.swift; sourceTree = "<group>"; };
 		ED1A70A22A836F3700F7920F /* CarQuotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarQuotation.swift; sourceTree = "<group>"; };
@@ -391,6 +399,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				B1F988DF2A8B1C3700C7B65F /* InternalColorSelection */,
 				B16DFF482A8A3E2C00642730 /* ExternalColorSelection */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
 				B1604D5E2A853FA200C7B07D /* ModelTypeSelection */,
@@ -719,6 +728,16 @@
 				B16DFF4D2A8A3EA500642730 /* ColorSelectionView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B1F988DF2A8B1C3700C7B65F /* InternalColorSelection */ = {
+			isa = PBXGroup;
+			children = (
+				B1F988E02A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift */,
+				B1F988E22A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift */,
+				B1F988E42A8B37F600C7B65F /* InternalColorSelectionView.swift */,
+			);
+			path = InternalColorSelection;
 			sourceTree = "<group>";
 		};
 		ED1A70942A8357FD00F7920F /* Quotation */ = {
@@ -1077,6 +1096,7 @@
 				B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */,
 				B1604D382A8381BD00C7B07D /* TrimRequestDTO.swift in Sources */,
 				EDD303FD2A8A09E600400DF9 /* HMGTag.swift in Sources */,
+				B1F988E32A8B1D5A00C7B65F /* InternalColorSelectionHorizontalList.swift in Sources */,
 				B1604D442A83943000C7B07D /* TrimSelectionRepository.swift in Sources */,
 				EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */,
 				EDBA5D592A808A8A0050BC35 /* DimmedZStack.swift in Sources */,
@@ -1106,6 +1126,7 @@
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
+				B1F988E52A8B37F600C7B65F /* InternalColorSelectionView.swift in Sources */,
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				ED1C70602A89C3810049D275 /* CLSimilarQuotationSlideView.swift in Sources */,
@@ -1170,6 +1191,7 @@
 				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
 				ED1A70A72A8371CA00F7920F /* CLOption.swift in Sources */,
 				EDCF32BF2A8A91D500C46A4B /* CLToggle.swift in Sources */,
+				B1F988E12A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,
 				B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */,
 				ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */,
