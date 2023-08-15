@@ -7,12 +7,21 @@
 
 import SwiftUI
 
-struct InteriorColorSelectionContainerView: View {
+struct InteriorColorSelectionContainerView: IntentBindingType {
 
-  var colors: [InteriorColorState] = [
-    .init(isSelected: true, color: .init(id: 123, name: "퀄팅천연(블랙)", choiceRatio: .init(28), price: .init(0))),
-    .init(isSelected: true, color: .init(id: 456, name: "쿨그레이", choiceRatio: .init(28), price: .init(0)))
-  ]
+  @StateObject var container: Container<InteriorColorSelectionIntentType, InteriorColorSelectionModel.State>
+
+  var intent: InteriorColorSelectionIntentType {
+    container.intent
+  }
+
+  var state: InteriorColorSelectionModel.State {
+    intent.state
+  }
+
+}
+
+extension InteriorColorSelectionContainerView: View {
 
   var body: some View {
     VStack {
@@ -23,13 +32,25 @@ struct InteriorColorSelectionContainerView: View {
         Text("내장 색상을 선택해주세요")
           .catalogFont(type: .HeadKRMedium18)
         Spacer().frame(height: 8)
-        InteriorColorSelectionHorizontalList(state: colors, height: UIScreen.main.bounds.height * 177 / 812)
+        InteriorColorSelectionHorizontalList(state: state.trimColors, height: UIScreen.main.bounds.height * 177 / 812)
         Spacer()
       }
       .padding(.leading, 20)
     }
     .onAppear {
-//      intent.send(action: .onAppear)
+      intent.send(action: .onAppear)
     }
   }
+
+}
+
+extension InteriorColorSelectionContainerView {
+
+  @ViewBuilder
+  static func build(intent: InteriorColorSelectionIntent) -> some View {
+    InteriorColorSelectionContainerView(container: .init(intent: intent,
+                                                         state: intent.state,
+                                                         modelChangePublisher: intent.objectWillChange))
+  }
+
 }

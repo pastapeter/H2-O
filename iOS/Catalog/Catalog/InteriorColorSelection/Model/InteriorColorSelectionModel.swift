@@ -8,21 +8,21 @@
 import Foundation
 
 enum InteriorColorSelectionModel {
-  
+
   struct State: Equatable {
-    
+
     var selectedTrimID: Int
-    var selectedColor: InteriorColor
+    var selectedColorId: Int
     var trimColors: [InteriorColorState]
     var selectedInteriorImageURL: URL?
-    
+
   }
-  
+
   enum ViewAction {
     case onAppear
     case trimColors(colors: [InteriorColor])
     case changeSelectedInteriorImageURL(url: URL)
     case onTapColor(id: Int)
   }
-  
+
 }
