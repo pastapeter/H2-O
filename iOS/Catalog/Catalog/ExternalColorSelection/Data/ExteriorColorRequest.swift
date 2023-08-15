@@ -14,13 +14,13 @@ enum ExteriorColorRequest {
 extension ExteriorColorRequest: RequestProtocol {
 
   var host: String {
-    return API.host + "/trim"
+    return API.host
   }
 
   var path: String {
     switch self {
     case .fetch(let trimId):
-      return "\(trimId)/external-color"
+      return "/trim/\(trimId)/external-color"
     }
   }
 
@@ -45,6 +45,10 @@ extension ExteriorColorRequest: RequestProtocol {
     case .fetch:
       return .reloadRevalidatingCacheData
     }
+  }
+
+  var secureType: SecureType {
+    return .http
   }
 
 }
