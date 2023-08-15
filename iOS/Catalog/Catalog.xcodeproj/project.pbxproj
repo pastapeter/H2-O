@@ -1109,11 +1109,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED1C70682A89C4EC0049D275 /* TrimCardView.swift in Sources */,
-<<<<<<< HEAD
 				EDCF32C22A8A91D500C46A4B /* CLLinearGradient.swift in Sources */,
-=======
 				B191DD342A8B4ED8008196CD /* ColorSelectionView.swift in Sources */,
->>>>>>> 50e3d97 (feat: interiorColor 추가 및 이름 변경)
 				ED1C70672A89C4C00049D275 /* SnapCarousel.swift in Sources */,
 				ED1C70662A89C45F0049D275 /* TrimSelectionView.swift in Sources */,
 				ED1C70642A89C43E0049D275 /* TrimSelectionModel.swift in Sources */,
@@ -1128,11 +1125,8 @@
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
 				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
-<<<<<<< HEAD
-=======
 				ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */,
 				B191DD2C2A8B4CD6008196CD /* ExternalColorDisplayView.swift in Sources */,
->>>>>>> 50e3d97 (feat: interiorColor 추가 및 이름 변경)
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
 				B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */,
 				B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */,
@@ -1164,13 +1158,10 @@
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				ED1C70612A89C3A50049D275 /* EntryGuide.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
-<<<<<<< HEAD
-=======
 				B1F988EE2A8B4AB800C7B65F /* InternalColorDisplayView.swift in Sources */,
 				EDC1862D2A88CA56009EB498 /* BottomArea.swift in Sources */,
 				ED1A70AF2A83B4CF00F7920F /* CLToggle.swift in Sources */,
 				ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */,
->>>>>>> 50e3d97 (feat: interiorColor 추가 및 이름 변경)
 				B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */,
 				ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
