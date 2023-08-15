@@ -22,9 +22,3 @@ struct InteriorColorDisplayView: ColorContentable {
   }
 
 }
-
-struct InternalColorDisplayView_Previews: PreviewProvider {
-  static var previews: some View {
-    InteriorColorDisplayView(isSelected: true, color: .interior(fabricImageURL: nil))
-  }
-}
