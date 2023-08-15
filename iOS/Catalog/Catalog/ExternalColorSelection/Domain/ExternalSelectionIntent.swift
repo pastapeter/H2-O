@@ -20,12 +20,12 @@ protocol ExternalSelectionIntentType {
 
 final class ExternalSelectionIntent: ObservableObject {
 
-  init(initialState: State, repository: ExternalColorRepositoryProtocol) {
+  init(initialState: State, repository: ExteriorColorRepositoryProtocol) {
     state = initialState
     self.repository = repository
   }
 
-  private var repository: ExternalColorRepositoryProtocol
+  private var repository: ExteriorColorRepositoryProtocol
 
   typealias State = ExternalSelectionModel.State
 
