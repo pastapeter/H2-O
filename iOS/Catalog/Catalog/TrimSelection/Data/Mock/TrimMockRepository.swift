@@ -17,7 +17,6 @@ final class TrimMockRepository: TrimSelectionRepositoryProtocol {
       url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))
     ]
     let dto: TrimResponseDTO = try await manager.perform(TrimSelectionRequest.fetchTrimList(vehicleId: vehicleId))
-    print(dto)
     return dto.toDomain()
   }
 
