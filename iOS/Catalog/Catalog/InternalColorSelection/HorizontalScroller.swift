@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HorizontalScroller<Content: View>: View {
-  
+
   var height: CGFloat = 400
   @ViewBuilder var content: () -> Content
-  
+
   var body: some View {
     VStack(alignment: .leading) {
       ScrollView(.horizontal, showsIndicators: false) {
@@ -22,5 +22,5 @@ struct HorizontalScroller<Content: View>: View {
       .frame(maxHeight: height)
     }
   }
-  
+
 }
