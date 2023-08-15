@@ -807,7 +807,6 @@
 				B191DD3D2A8B85CF008196CD /* Intent */,
 				B1F988E82A8B3E4400C7B65F /* Domain */,
 				B191DD3A2A8B8587008196CD /* VIew */,
-				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
 			);
 			path = InteriorColorSelection;
 			sourceTree = "<group>";
@@ -815,6 +814,7 @@
 		B1F988E82A8B3E4400C7B65F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
 				B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */,
 				B191DD2F2A8B4E53008196CD /* CarColorType.swift */,
 				B191DD352A8B5B52008196CD /* ColorInfoState.swift */,
