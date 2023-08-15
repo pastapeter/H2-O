@@ -23,12 +23,15 @@ struct CardModifier: ViewModifier {
 struct ExternalColorSelectionHorizontalList: View {
 
   var state: [ExteriorColorState]
+  var intent: ExternalSelectionIntentType
   var height: CGFloat = 400
 
   var body: some View {
     HorizontalScroller(height: height) {
       ForEach(state.indices, id: \.self) { i in
-        ColorSelectionView<ExternalColorDisplayView>.build(action: { print("HI \(i)") }, colorState: state[i].toColorInfoState())
+        ColorSelectionView<ExternalColorDisplayView>.build(action: {
+          intent.send(action: .onTapColor(id: state[i].color.id))
+        }, colorState: state[i].toColorInfoState())
       }
     }
   }

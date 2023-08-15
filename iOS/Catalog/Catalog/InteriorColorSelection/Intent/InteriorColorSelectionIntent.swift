@@ -59,7 +59,7 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
     case .changeSelectedInteriorImageURL(let url):
       print("새롭게 받은 URL")
     case .onTapColor(let id):
-      state.selectedTrimID = id
+      state.selectedColorId = id
       for i in state.trimColors.indices {
         if state.trimColors[i].color.id == id {
           state.trimColors[i].isSelected = true
