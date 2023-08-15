@@ -8,5 +8,5 @@
 import Foundation
 
 enum API {
-  static let host = "h2cartalog.site" // 43.201.209.67
+  static let host = "h2-cartalog.site" // 43.201.209.67
 }
