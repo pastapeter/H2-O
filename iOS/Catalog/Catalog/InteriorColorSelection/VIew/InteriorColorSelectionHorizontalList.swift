@@ -10,12 +10,15 @@ import SwiftUI
 struct InteriorColorSelectionHorizontalList: View {
 
   var state: [InteriorColorState]
+  var intent: InteriorColorSelectionIntentType
   var height: CGFloat = 400
 
   var body: some View {
     HorizontalScroller(height: height) {
       ForEach(state.indices, id: \.self) { i in
-        ColorSelectionView<InteriorColorDisplayView>.build(action: { print("HI \(i)") }, colorState: state[i].toColorInfoState())
+        ColorSelectionView<InteriorColorDisplayView>.build(action: {
+          intent.send(action: .onTapColor(id: state[i].color.id))
+        }, colorState: state[i].toColorInfoState())
       }
     }
   }

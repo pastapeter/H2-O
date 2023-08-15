@@ -32,7 +32,9 @@ extension InteriorColorSelectionContainerView: View {
         Text("내장 색상을 선택해주세요")
           .catalogFont(type: .HeadKRMedium18)
         Spacer().frame(height: 8)
-        InteriorColorSelectionHorizontalList(state: state.trimColors, height: UIScreen.main.bounds.height * 177 / 812)
+        InteriorColorSelectionHorizontalList(state: state.trimColors,
+                                             intent: self.intent,
+                                             height: UIScreen.main.bounds.height * 177 / 812)
         Spacer()
       }
       .padding(.leading, 20)
