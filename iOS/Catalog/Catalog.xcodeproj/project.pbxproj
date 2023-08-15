@@ -109,8 +109,6 @@
 		B1F988D92A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */; };
 		B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */; };
 		B1F988DD2A8A8E3700C7B65F /* MockExternalColorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */; };
-		ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */; };
-		ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */; };
 		ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709E2A836D0D00F7920F /* CLColor.swift */; };
 		ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A22A836F3700F7920F /* CarQuotation.swift */; };
 		ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A42A836FB900F7920F /* ModelType.swift */; };
@@ -276,7 +274,6 @@
 		B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColor.swift; sourceTree = "<group>"; };
 		B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExternalColorRepository.swift; sourceTree = "<group>"; };
 		ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationPriceBar.swift; sourceTree = "<group>"; };
-		ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuotationSummarySheet.swift; sourceTree = "<group>"; };
 		ED1A709E2A836D0D00F7920F /* CLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLColor.swift; sourceTree = "<group>"; };
 		ED1A70A22A836F3700F7920F /* CarQuotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarQuotation.swift; sourceTree = "<group>"; };
 		ED1A70A42A836FB900F7920F /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
@@ -847,6 +844,7 @@
 				EDD304322A8A64D600400DF9 /* OptionInDetail.swift */,
 				EDD304372A8A64D600400DF9 /* ModelTypeRepository.swift */,
 				EDD304352A8A64D600400DF9 /* ModelType.json */,
+				ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1103,9 +1101,6 @@
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
 				ED1C70612A89C3A50049D275 /* EntryGuide.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
-				EDC1862D2A88CA56009EB498 /* BottomArea.swift in Sources */,
-				ED1A70AF2A83B4CF00F7920F /* CLToggle.swift in Sources */,
-				ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */,
 				B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */,
 				ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
