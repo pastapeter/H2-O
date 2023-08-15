@@ -9,7 +9,14 @@ import Foundation
 
 final class ModelTypeRepository: ModelTypeRepositoryProtocol {
 
+  private let modelTypeRequestManager: RequestManagerProtocol
+
+  init(modelTypeRequestManager: RequestManagerProtocol) {
+    self.modelTypeRequestManager = modelTypeRequestManager
+  }
+
   func fetch(carId: Int) async throws -> [ModelTypeOption] {
+    let dto: ModelTypeResponseDTO = try await modelTypeRequestManager.perform(ModelTypeRequest.fetchOptions(carId: carId))
     return []
   }
 

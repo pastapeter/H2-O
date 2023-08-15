@@ -36,23 +36,20 @@ extension TrimSelectionView: View {
             .frame(width: size.width, height: size.height)
         }
       }
-                   .onChange(of: currentIndexBinding) { _ in
-                     print(currentIndexBinding)
-                     intent.send(action: .trimSelected(index: currentIndexBinding))
-                   }
+     .onChange(of: currentIndexBinding) { _ in
+       intent.send(action: .trimSelected(index: currentIndexBinding))
+     }
 
       Spacer().frame(height: 15)
 
       // Indicator
       HStack(spacing: 10) {
         ForEach(state.trims.indices, id: \.self) { index in
-
           Capsule()
             .fill(currentIndexBinding == index ? Color.primary0 : Color.gray200)
             .frame(width: (currentIndexBinding == index ? 24 : 8), height: 8)
             .scaleEffect((currentIndexBinding == index) ? 1.4 : 1)
             .animation(.spring(), value: currentIndexBinding == index)
-
         }
       }
       .padding(.bottom, 20)
@@ -64,7 +61,6 @@ extension TrimSelectionView: View {
       Spacer().frame(height: 0.1)
     }
     .onAppear(perform: { intent.send(action: .enteredTrimPage) })
-
   }
 }
 

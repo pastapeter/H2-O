@@ -45,7 +45,6 @@ struct ModelTypeButtonView_Previews: PreviewProvider {
 }
 
 fileprivate extension View {
-
   @ViewBuilder
   func buttonSelected(isselected: Bool) -> some View {
     if isselected {
@@ -53,7 +52,5 @@ fileprivate extension View {
     } else {
       modifier(ModelButtonUnSelectedBackground())
     }
-
   }
-
 }

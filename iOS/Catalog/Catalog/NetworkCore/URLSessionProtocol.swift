@@ -9,6 +9,7 @@ import Foundation
 
 protocol URLSessionProtocol: AnyObject {
 
+  // URLSession 자체 모킹 - 테스트 코드 작성 시 사용
   func makeData(for urlRequest: URLRequest) async throws -> (data: Data, response: URLResponse)
 
   func makeData(from url: URL) async throws -> (data: Data, response: URLResponse)

@@ -12,14 +12,10 @@ struct TrimResponseDTO: Decodable {
 }
 
 extension TrimResponseDTO {
-
   func toDomain() -> [Trim] {
-
     guard let trims = trims else { return [] }
     return trims.compactMap { try? $0.toDomain() }
-
   }
-
 }
 
 struct TrimDTO: Decodable {
