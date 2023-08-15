@@ -67,7 +67,7 @@ struct EmptyButtonStyle: ButtonStyle {
   }
 }
 
-fileprivate extension View {
+extension View {
 
   @ViewBuilder
   func buttonSelected(isselected: Bool) -> some View {
