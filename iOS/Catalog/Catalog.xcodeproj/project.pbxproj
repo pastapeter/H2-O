@@ -121,8 +121,7 @@
 		B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */; };
 		B1F988EA2A8B3E5300C7B65F /* InteriorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */; };
 		B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */; };
-		ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70952A83581300F7920F /* CLQuotationPriceBar.swift */; };
-		ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70972A83646E00F7920F /* CLQuotationSummarySheet.swift */; };
+		ED1A70982A83646E00F7920F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		ED1A709F2A836D0D00F7920F /* CLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A709E2A836D0D00F7920F /* CLColor.swift */; };
 		ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A22A836F3700F7920F /* CarQuotation.swift */; };
 		ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1A70A42A836FB900F7920F /* ModelType.swift */; };
@@ -1136,7 +1135,7 @@
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
 				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
-				ED1A70982A83646E00F7920F /* CLQuotationSummarySheet.swift in Sources */,
+				ED1A70982A83646E00F7920F /* (null) in Sources */,
 				B191DD2C2A8B4CD6008196CD /* ExternalColorDisplayView.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
 				B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */,
@@ -1170,9 +1169,6 @@
 				ED1C70612A89C3A50049D275 /* EntryGuide.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
 				B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */,
-				EDC1862D2A88CA56009EB498 /* BottomArea.swift in Sources */,
-				ED1A70AF2A83B4CF00F7920F /* CLToggle.swift in Sources */,
-				ED1A70962A83581300F7920F /* CLQuotationPriceBar.swift in Sources */,
 				B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */,
 				ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
@@ -1247,7 +1243,7 @@
 				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
 				ED1A70A72A8371CA00F7920F /* CLOption.swift in Sources */,
 				EDCF32BF2A8A91D500C46A4B /* CLToggle.swift in Sources */,
-				B1F988E12A8B1C7300C7B65F /* InternalColorSelectionContainerView.swift in Sources */,
+				B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,
 				B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */,
 				ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */,
