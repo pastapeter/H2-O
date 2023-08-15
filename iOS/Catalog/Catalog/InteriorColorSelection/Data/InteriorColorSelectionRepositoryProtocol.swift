@@ -11,18 +11,6 @@ protocol InteriorColorSelectionRepositoryProtocol {
   func fetch(with trimId: Int) async throws -> [InteriorColor]
 }
 
-final class InteriorColorSelectionRepository: InteriorColorSelectionRepositoryProtocol {
-
-  init() {
-
-  }
-
-  func fetch(with trimId: Int) async throws -> [InteriorColor] {
-    return []
-  }
-
-}
-
 final class MockInteriorColorSelectionRepository: InteriorColorSelectionRepositoryProtocol {
 
   init() {
