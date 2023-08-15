@@ -22,27 +22,28 @@ struct CardModifier: ViewModifier {
 
 struct ExternalColorSelectionHorizontalList: View {
 
-  var state: [ColorState]
+  var state: [ExteriorColorState]
   var height: CGFloat = 400
 
-    var body: some View {
-      VStack(alignment: .leading) {
-        ScrollView(.horizontal, showsIndicators: false) {
-          LazyHStack {
-            ForEach(state.indices, id: \.self) { i in
-              ColorSelectionView(state: state[i]) {
-                print(i)
-              }
-            }
-          }
-        }
-        .frame(maxHeight: height)
+  var body: some View {
+    HorizontalScroller(height: height) {
+      ForEach(state.indices, id: \.self) { i in
+        ColorSelectionView<ExternalColorDisplayView>.build(action: { print("HI \(i)") }, colorState: state[i].toColorInfoState())
       }
     }
+  }
 }
 
-struct ExternalColorSelectionHorizontalList_Previews: PreviewProvider {
-    static var previews: some View {
-      ExternalColorSelectionHorizontalList(state: [])
-    }
+fileprivate extension ExteriorColorState {
+
+  func toColorInfoState() -> ColorInfoState {
+
+    return ColorInfoState(isSelected: self.isSelected,
+                          id: self.color.id,
+                          name: self.color.name,
+                          choiceRatio: self.color.choiceRatio,
+                          price: self.color.price,
+                          colorType: .exterior(hexColor: self.color.hexCode))
+  }
+
 }

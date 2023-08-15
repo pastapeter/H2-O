@@ -89,6 +89,7 @@
 		B191DD322A8B4E7E008196CD /* ColorContentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD312A8B4E7E008196CD /* ColorContentable.swift */; };
 		B191DD342A8B4ED8008196CD /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */; };
 		B191DD362A8B5B52008196CD /* ColorInfoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD352A8B5B52008196CD /* ColorInfoState.swift */; };
+		B191DD382A8B6282008196CD /* HorizontalScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD372A8B6282008196CD /* HorizontalScroller.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -266,6 +267,7 @@
 		B191DD312A8B4E7E008196CD /* ColorContentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorContentable.swift; sourceTree = "<group>"; };
 		B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionView.swift; sourceTree = "<group>"; };
 		B191DD352A8B5B52008196CD /* ColorInfoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInfoState.swift; sourceTree = "<group>"; };
+		B191DD372A8B6282008196CD /* HorizontalScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScroller.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -758,6 +760,7 @@
 				B191DD2D2A8B4D86008196CD /* ColorSelectionComponent.swift */,
 				B191DD312A8B4E7E008196CD /* ColorContentable.swift */,
 				B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */,
+				B191DD372A8B6282008196CD /* HorizontalScroller.swift */,
 			);
 			path = InternalColorSelection;
 			sourceTree = "<group>";
@@ -1230,6 +1233,7 @@
 				B1604D512A83EB7700C7B07D /* CLRetryResult.swift in Sources */,
 				B1F988D32A8A7F6400C7B65F /* ExternalSelectionModel.swift in Sources */,
 				EDF882592A8A71260077558F /* ModelTypeRequest.swift in Sources */,
+				B191DD382A8B6282008196CD /* HorizontalScroller.swift in Sources */,
 				B16DFF382A8958B700642730 /* OptionInDetail.swift in Sources */,
 				B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */,
 				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
