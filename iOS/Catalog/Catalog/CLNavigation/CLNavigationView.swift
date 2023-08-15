@@ -42,7 +42,9 @@ extension CLNavigationView: View {
             vehicleId: 123),
             repository: TrimMockRepository())).tag(0)
           ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository())).tag(1)
-          ExternalSelectionContainerView.build(intent: .init(initialState: .init(selectedTrimId: 123), repository: MockExternalRepository())).tag(2)
+          ExternalSelectionContainerView.build(
+            intent: .init(initialState: .init(selectedTrimId: 1),
+                          repository: ExteriorColorRepository(requestManager: RequestManager(apiManager: ExteriorColorAPIManager())))).tag(2)
           InteriorColorSelectionContainerView.build(
             intent: .init(initialState: .init(selectedTrimID: 123, selectedColorId: 1, trimColors: []),
             repository: MockInteriorColorSelectionRepository())).tag(3)
