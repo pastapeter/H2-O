@@ -11,7 +11,8 @@ protocol HMGStyle: ButtonStyle {
 
   var color: Color { get }
 
-  @ViewBuilder func makeBody(configuration: Self.Configuration) -> Self.Body
+  @ViewBuilder
+  func makeBody(configuration: Self.Configuration) -> Self.Body
 
 }
 

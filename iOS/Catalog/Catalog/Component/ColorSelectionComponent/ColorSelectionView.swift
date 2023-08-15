@@ -9,25 +9,25 @@ import SwiftUI
 
 protocol ColorSelectionCell: View {
 
-  associatedtype ColorDisplayingContent: ColorContentable
+  associatedtype ColorDisplayContent: ColorContentable
 
   var action: () -> Void { get }
 
   var colorState: ColorInfoState { get }
 
-  var body: ColorSelectionComponent<ColorDisplayingContent> { get }
+  var body: ColorSelectionComponent<ColorDisplayContent> { get }
 
 }
 
-struct ColorSelectionView<ColorDisplayingContent: ColorContentable>: ColorSelectionCell {
+struct ColorSelectionView<ColorDisplayContent: ColorContentable>: ColorSelectionCell {
 
   private(set) var action: () -> Void
 
   private(set) var colorState: ColorInfoState
 
-  var body: ColorSelectionComponent<ColorDisplayingContent> {
+  var body: ColorSelectionComponent<ColorDisplayContent> {
     ColorSelectionComponent(action: action, state: colorState) {
-      ColorDisplayingContent(isSelected: colorState.isSelected, color: colorState.colorType)
+      ColorDisplayContent(isSelected: colorState.isSelected, color: colorState.colorType)
     }
   }
 

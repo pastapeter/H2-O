@@ -10,7 +10,9 @@ import SwiftUI
 extension View {
 
   @ViewBuilder
-  func CLDialogFullScreenCover<Content: View>(show: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View {
+  func CLDialogFullScreenCover<Content: View>(
+    show: Binding<Bool>,
+    @ViewBuilder content: @escaping () -> Content) -> some View {
     self
       .modifier(CLDialogView(show: show, overlay: content()))
   }

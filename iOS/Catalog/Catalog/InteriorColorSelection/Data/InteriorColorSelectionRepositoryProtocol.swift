@@ -32,8 +32,18 @@ final class MockInteriorColorSelectionRepository: InteriorColorSelectionReposito
   func fetch(with trimId: Int) async throws -> [InteriorColor] {
 
     return [
-      .init(id: 123, name: "퀄팅천연(블랙)", choiceRatio: .init(38), price: .init(0), fabricImageURL: nil, bannerImageURL: nil),
-      .init(id: 456, name: "쿨그레이", choiceRatio: .init(22), price: .init(0), fabricImageURL: nil, bannerImageURL: nil)
+      .init(id: 123,
+            name: "퀄팅천연(블랙)",
+            choiceRatio: .init(38),
+            price: .init(0),
+            fabricImageURL: nil,
+            bannerImageURL: nil),
+      .init(id: 456,
+            name: "쿨그레이",
+            choiceRatio: .init(22),
+            price: .init(0),
+            fabricImageURL: nil,
+            bannerImageURL: nil)
     ]
 
   }
