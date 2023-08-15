@@ -695,6 +695,17 @@
 			path = ExternalColorSelection;
 			sourceTree = "<group>";
 		};
+		B191DD392A8B673D008196CD /* ColorSelectionComponent */ = {
+			isa = PBXGroup;
+			children = (
+				B191DD2D2A8B4D86008196CD /* ColorSelectionComponent.swift */,
+				B191DD312A8B4E7E008196CD /* ColorContentable.swift */,
+				B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */,
+				B191DD372A8B6282008196CD /* HorizontalScroller.swift */,
+			);
+			path = ColorSelectionComponent;
+			sourceTree = "<group>";
+		};
 		B19436312A7E8C1500C2FD69 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,10 +768,6 @@
 				B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */,
 				B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */,
 				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
-				B191DD2D2A8B4D86008196CD /* ColorSelectionComponent.swift */,
-				B191DD312A8B4E7E008196CD /* ColorContentable.swift */,
-				B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */,
-				B191DD372A8B6282008196CD /* HorizontalScroller.swift */,
 			);
 			path = InternalColorSelection;
 			sourceTree = "<group>";
@@ -852,6 +859,7 @@
 		ED779C3E2A7A799A007F67B7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B191DD392A8B673D008196CD /* ColorSelectionComponent */,
 				B1084BEC2A87E39300AE1758 /* Modal */,
 				B1EEBA872A869E8E008FC6A4 /* HMGData */,
 				B1604D682A854D1600C7B07D /* ShowDetailButton */,
