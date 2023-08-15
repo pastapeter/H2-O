@@ -1,9 +1,11 @@
 package com.h2o.h2oServer.domain.trim.application;
 
+import com.h2o.h2oServer.domain.car.mapper.CarMapper;
 import com.h2o.h2oServer.domain.model_type.application.ModelTypeService;
 import com.h2o.h2oServer.domain.trim.dto.DefaultTrimCompositionDto;
 import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
+import com.h2o.h2oServer.domain.trim.dto.PriceRangeDto;
 import com.h2o.h2oServer.domain.trim.dto.TrimDto;
 import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
@@ -23,26 +25,23 @@ import java.util.stream.Collectors;
 public class TrimService {
     private final TrimMapper trimMapper;
     private final ExternalColorMapper externalColorMapper;
+    private final CarMapper carMapper;
     private final ModelTypeService modelTypeService;
 
     public List<TrimDto> findTrimInformation(Long vehicleId) {
         List<TrimEntity> trimEntities = trimMapper.findByCarId(vehicleId);
 
-        List<TrimDto> trimDtos = trimEntities.stream()
+        return trimEntities.stream()
                 .map(this::manipulateTrimEntity)
                 .collect(Collectors.toList());
-
-        return trimDtos;
     }
 
     public List<ExternalColorDto> findExternalColorInformation(Long trimId) {
         List<ExternalColorEntity> externalColorEntities = trimMapper.findExternalColor(trimId);
 
-        List<ExternalColorDto> externalColorDtos = externalColorEntities.stream()
+        return externalColorEntities.stream()
                 .map(this::manipulateExternalColorEntity)
                 .collect(Collectors.toList());
-
-        return externalColorDtos;
     }
 
     private TrimDto manipulateTrimEntity(TrimEntity trimEntity) {
@@ -68,6 +67,19 @@ public class TrimService {
                 .collect(Collectors.toList());
     }
 
+    public PriceRangeDto findPriceRange(Long trimId) {
+        TrimEntity trimEntity = trimMapper.findById(trimId);
+        Long carId = trimEntity.getCarId();
+        Integer trimPrice = trimEntity.getPrice();
+        Integer componentPrice = trimMapper.findMaximumComponentPrice(trimId);
+
+        Integer minimumModelTypePrice = carMapper.findMinimumModelTypePrice(carId);
+        Integer maximumModelTypePrice = carMapper.findMaximumModelTypePrice(carId);
+
+        return PriceRangeDto.of(trimPrice + maximumModelTypePrice + componentPrice,
+                trimPrice + minimumModelTypePrice);
+    }
+
     public DefaultTrimCompositionDto findDefaultComposition(Long trimId) {
         Long carId = trimMapper.findById(trimId).getCarId();
         DefaultTrimCompositionDto defaultTrimCompositionDto = modelTypeService.findDefaultModelType(carId);
@@ -80,5 +92,5 @@ public class TrimService {
         defaultTrimCompositionDto.setExternalColor(ExternalColorDto.of(defaultExternalColor, imageEntities));
 
         return defaultTrimCompositionDto;
-    }
+   }
 }

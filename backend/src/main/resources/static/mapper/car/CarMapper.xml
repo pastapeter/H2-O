@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2o.h2oServer.domain.car.mapper.CarMapper">
+    <select id="findMaximumModelTypePrice" resultType="integer">
+        select bodytype_max + powertrain_max + drivetrain_max
+        from (select car.id, max(car_bodytype.price) as bodytype_max
+            from car join car_bodytype on car_bodytype.car_id = car.id where car.id = #{id} group by car.id) as bodytype
+                natural join (select car.id, max(car_powertrain.price) as powertrain_max
+                    from car join car_powertrain on car_powertrain.car_id = car.id where car.id = #{id} group by car.id) as powertrain
+                natural join (select car.id, max(car_drivetrain.price) as drivetrain_max
+                    from car join car_drivetrain on car_drivetrain.car_id = car.id where car.id = #{id} group by car.id) as drivetrain
+    </select>
+
+    <select id="findMinimumModelTypePrice" resultType="integer">
+        select bodytype_min + powertrain_min + drivetrain_min
+        from (select car.id, min(car_bodytype.price) as bodytype_min
+            from car join car_bodytype on car_bodytype.car_id = car.id where car.id = #{id} group by car.id) as bodytype
+                natural join (select car.id, min(car_powertrain.price) as powertrain_min
+                    from car join car_powertrain on car_powertrain.car_id = car.id where car.id = #{id} group by car.id) as powertrain
+                natural join (select car.id, min(car_drivetrain.price) as drivetrain_min
+                    from car join car_drivetrain on car_drivetrain.car_id = car.id where car.id = #{id} group by car.id) as drivetrain;
+    </select>
+</mapper>

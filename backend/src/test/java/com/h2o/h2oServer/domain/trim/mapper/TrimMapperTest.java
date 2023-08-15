@@ -14,11 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 @MybatisTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Sql("classpath:db/trims-data.sql")
 class TrimMapperTest {
-
-    //todo : 예외 처리 테스트 추가
 
     @Autowired
     private TrimMapper trimMapper;
@@ -32,7 +28,7 @@ class TrimMapperTest {
 
     @Test
     @DisplayName("존재하는 회원에 대해서, 해당하는 row를 Trim 객체에 담아 반환한다.")
-    @Order(1)
+    @Sql("classpath:db/trim/trims-data.sql")
     void findById() {
         //given
         Long targetId = 1L;
@@ -55,6 +51,7 @@ class TrimMapperTest {
 
     @Test
     @DisplayName("존재하지 않는 회원에 대해서는 null을 반환한다.")
+    @Sql("classpath:db/trim/trims-data.sql")
     void findByIdWithoutResult() {
         //given
         Long targetId = Long.MAX_VALUE;
@@ -68,19 +65,19 @@ class TrimMapperTest {
 
     @Test
     @DisplayName("존재하는 회원에 대해서, 해당하는 row를 Trim 객체에 담아 반환한다.")
-    @Order(2)
+    @Sql("classpath:db/trim/trims-data.sql")
     void findByCarId() {
         //given
         Long targetCarId = 1L;
         TrimEntity expectedTrimEntity1 = TrimEntity.builder()
-                .id(11L)
+                .id(1L)
                 .name("Trim 1")
                 .description("Basic Trim")
                 .price(1500)
                 .carId(1L)
                 .build();
         TrimEntity expectedTrimEntity2 = TrimEntity.builder()
-                .id(12L)
+                .id(2L)
                 .name("Trim 2")
                 .description("Advanced Trim")
                 .price(2500)
@@ -101,6 +98,7 @@ class TrimMapperTest {
 
     @Test
     @DisplayName("존재하지 않는 회원에 대해서는 null을 반환한다.")
+    @Sql("classpath:db/trim/trims-data.sql")
     void findByCarIdWithoutResult() {
         //given
         Long targetCarId = Long.MAX_VALUE;
@@ -114,6 +112,7 @@ class TrimMapperTest {
 
     @Test
     @DisplayName("데이터베이스 상의 모든 row를 가져온다.")
+    @Sql("classpath:db/trim/trims-data.sql")
     void findAll() {
         //given
         Long expectedLength = 10L;
@@ -127,7 +126,7 @@ class TrimMapperTest {
 
     @Test
     @DisplayName("유효한 trim에 대해서, externalColorEntity를 반환한다.")
-    @Sql("classpath:db/external-color-data.sql")
+    @Sql("classpath:db/trim/external-color-data.sql")
     void findExternalColor() {
         //given
         Long trimId = 1L;
@@ -160,7 +159,7 @@ class TrimMapperTest {
 
     @Test
     @DisplayName("존재하는 trimId에 대한 내부 색상 요청에 대해서 InternalColorEntity List를 반환한다. ")
-    @Sql("classpath:db/internal-color-data.sql")
+    @Sql("classpath:db/trim/internal-color-data.sql")
     void findInternalColor() {
         //given
         Long trimId = 1L;
@@ -191,5 +190,20 @@ class TrimMapperTest {
                 .contains(expectEntity1)
                 .contains(expectEntity2);
         softly.assertAll();
+    }
+
+    @Test
+    @DisplayName("트림이 가질 수 있는 패키지/추가 옵션 가격의 합을 반환한다.")
+    @Sql("classpath:db/trim/trims-option-data.sql")
+    void findMaximumComponentPrice() {
+        //given
+        Long trimId = 1L;
+        Integer expectedPrice = 4890;
+
+        //when
+        Integer actualPrice = trimMapper.findMaximumComponentPrice(trimId);
+
+        //then
+        assertThat(actualPrice).isEqualTo(expectedPrice);
     }
 }

@@ -1,8 +1,10 @@
 package com.h2o.h2oServer.domain.trim.application;
 
+import com.h2o.h2oServer.domain.car.mapper.CarMapper;
 import com.h2o.h2oServer.domain.model_type.application.ModelTypeService;
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
+import com.h2o.h2oServer.domain.trim.dto.PriceRangeDto;
 import com.h2o.h2oServer.domain.trim.dto.TrimDto;
 import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
@@ -18,12 +20,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class TrimServiceTest {
 
     private static TrimMapper trimMapper;
+    private static CarMapper carMapper;
     private static ExternalColorMapper externalColorMapper;
     private static ModelTypeService modelTypeService;
     private static TrimService trimService;
@@ -33,8 +37,9 @@ class TrimServiceTest {
     static void beforeAll() {
         trimMapper = Mockito.mock(TrimMapper.class);
         externalColorMapper = Mockito.mock(ExternalColorMapper.class);
+        carMapper = Mockito.mock(CarMapper.class);
         modelTypeService = Mockito.mock(ModelTypeService.class);
-        trimService = new TrimService(trimMapper, externalColorMapper, modelTypeService);
+        trimService = new TrimService(trimMapper, externalColorMapper, carMapper, modelTypeService);
         softly = new SoftAssertions();
     }
 
@@ -74,7 +79,7 @@ class TrimServiceTest {
         //when
         List<TrimDto> actualTrimDtos = trimService.findTrimInformation(vehicleId);
 
-        //thenㅊ
+        //then
         softly.assertThat(actualTrimDtos).as("null이 아니다.").isNotNull();
         softly.assertThat(actualTrimDtos).as("TrimDto를 포함한다.").isEmpty();
         softly.assertAll();
@@ -219,5 +224,30 @@ class TrimServiceTest {
                         .name("Blue")
                         .build()
         );
+    }
+
+    @Test
+    @DisplayName("트림의 가격 범위를 반환한다.")
+    void findPriceRange() {
+        //given
+        Long trimId = 1L;
+        long carId = 1L;
+        when(trimMapper.findById(trimId)).thenReturn(TrimEntity.builder()
+                .id(1L)
+                .name("Trim A")
+                .description("Description of Trim A")
+                .price(50000)
+                .carId(carId)
+                .build());
+        when(trimMapper.findMaximumComponentPrice(trimId)).thenReturn(20000);
+        when(carMapper.findMaximumModelTypePrice(carId)).thenReturn(10000);
+        when(carMapper.findMinimumModelTypePrice(carId)).thenReturn(0);
+        PriceRangeDto expectedPriceRange = PriceRangeDto.of(20000 + 50000 + 10000, 50000);
+
+        //when
+        PriceRangeDto actualPriceRange = trimService.findPriceRange(trimId);
+
+        //then
+        assertThat(actualPriceRange).isEqualTo(expectedPriceRange);
     }
 }
