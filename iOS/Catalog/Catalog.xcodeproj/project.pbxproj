@@ -121,6 +121,7 @@
 		B1A76B862A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B852A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift */; };
 		B1A76B882A893447009C84EF /* ModelTypeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B872A893447009C84EF /* ModelTypeContent.swift */; };
 		B1E5122A2A8CF2DC005B195D /* OptionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512292A8CF2DC005B195D /* OptionFilter.swift */; };
+		B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */; };
 		B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */; };
 		B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */; };
 		B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */; };
@@ -316,6 +317,7 @@
 		B1A76B852A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerIntent.swift; sourceTree = "<group>"; };
 		B1A76B872A893447009C84EF /* ModelTypeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeContent.swift; sourceTree = "<group>"; };
 		B1E512292A8CF2DC005B195D /* OptionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionFilter.swift; sourceTree = "<group>"; };
+		B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionView.swift; sourceTree = "<group>"; };
 		B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataWithHorizontalGraphView.swift; sourceTree = "<group>"; };
 		B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalView.swift; sourceTree = "<group>"; };
 		B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTopNaviBar.swift; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 				B16722202A8C9E36002B45A6 /* OptionCardView.swift */,
 				B149BD242A8CEE17009A3C6B /* FilterButtonBar.swift */,
 				B1E512292A8CF2DC005B195D /* OptionFilter.swift */,
+				B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */,
 			);
 			path = OptionCard;
 			sourceTree = "<group>";
@@ -1363,6 +1366,7 @@
 				B191DD512A8BF157008196CD /* InteriorAPIManager.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
 				B16DFF472A8A161700642730 /* ModelTypeResponseDTO.swift in Sources */,
+				B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */,
 				B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */,
 				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
 				B149BD1E2A8CC8BD009A3C6B /* HMGButton.swift in Sources */,
