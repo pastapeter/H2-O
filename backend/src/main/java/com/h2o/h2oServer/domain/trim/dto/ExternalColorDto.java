@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ExternalColorDto {
     Long id;
     String name;
-    Float choiceRatio;
+    Integer choiceRatio;
     Integer price;
     String hexCode;
     List<String> images;
@@ -25,7 +25,7 @@ public class ExternalColorDto {
         return ExternalColorDto.builder()
                 .id(externalColorEntity.getId())
                 .name(externalColorEntity.getName())
-                .choiceRatio(externalColorEntity.getChoiceRatio())
+                .choiceRatio(Math.round(externalColorEntity.getChoiceRatio() * 100))
                 .hexCode(externalColorEntity.getColorCode())
                 .price(externalColorEntity.getPrice())
                 .images(imageEntities.stream()
