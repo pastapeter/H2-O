@@ -17,6 +17,8 @@ protocol RequestProtocol {
 
   var params: [String: Any] { get }
 
+  var port: Int { get }
+
   var urlParams: [String: String?] { get }
 
   var requestType: RequestType { get }
@@ -41,13 +43,17 @@ extension RequestProtocol {
     2
   }
 
+  var port: Int {
+    8080
+  }
+
   func createRequest() throws -> Request {
 
     var components = URLComponents()
     components.scheme = self.secureType.description
     components.host = host
+    components.port = port
     components.path = path
-    print(components.host)
 
     if !urlParams.isEmpty {
       components.queryItems = urlParams.map { URLQueryItem(name: $0, value: $1) }
