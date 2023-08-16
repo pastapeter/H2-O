@@ -86,9 +86,9 @@ function OptionPage() {
           </Flex>
         </ButtonContainer>
         {isExtraOption ? (
-          <ExtraOptionSelector dataList={extraOptionList} handleClickOptionCard={handleClickOptionCard} />
+          <ExtraOptionSelector optionList={extraOptionList} handleClickOptionCard={handleClickOptionCard} />
         ) : (
-          <DefaultOptionSelector dataList={defaultOptionList} handleClickOptionCard={handleClickOptionCard} />
+          <DefaultOptionSelector optionList={defaultOptionList} handleClickOptionCard={handleClickOptionCard} />
         )}
       </MainSelector>
       <Footer isSticky={true} />

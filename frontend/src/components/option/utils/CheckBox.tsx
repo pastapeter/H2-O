@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
   isActive: boolean;
 }
 
-function CheckIcon({ isActive, ...restProps }: Props) {
+function CheckBox({ isActive, ...restProps }: Props) {
   const theme = useTheme();
   return (
     <StyleIcon isActive={isActive} {...restProps}>
@@ -16,7 +16,7 @@ function CheckIcon({ isActive, ...restProps }: Props) {
   );
 }
 
-export default CheckIcon;
+export default CheckBox;
 
 const StyleIcon = styled.button<Pick<Props, 'isActive'>>`
   ${({ theme }) => theme.flex.flexCenterCol}

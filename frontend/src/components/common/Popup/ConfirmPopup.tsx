@@ -4,7 +4,7 @@ import { CTACTypeButton, Popup } from '@/components/common';
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   hasCancelButton: boolean;
-  cancelButtonLabel: string;
+  cancelButtonLabel?: string;
   confirmButtonLabel: string;
   handleClickCancelButton: MouseEventHandler<HTMLElement>;
   handleClickConfirmButton: MouseEventHandler<HTMLButtonElement>;

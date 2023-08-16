@@ -1,41 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled from '@emotion/styled';
 import type { ExtraOptionResponse } from '@/types/interface';
 import { Flex, Typography } from '@/components/common';
 import { OptionCard } from '@/components/option/utils';
 import { useSafeContext } from '@/hooks';
-import { SelectionContext } from '@/providers/SelectionProvider';
+import useSetList from '@/hooks/useSetList';
+import { SelectionContext, SelectionInfoWithImage } from '@/providers/SelectionProvider';
 
 interface Props {
-  dataList: ExtraOptionResponse[];
+  optionList: ExtraOptionResponse[];
   handleClickOptionCard: (idx: number, hasHMGData: boolean) => () => void;
 }
 
-function ExtraOptionSelector({ dataList, handleClickOptionCard }: Props) {
-  const [checkOptionList, setCheckOptionList] = useState<number[]>([]);
-  const { dispatch } = useSafeContext(SelectionContext);
+function ExtraOptionSelector({ optionList, handleClickOptionCard }: Props) {
+  const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
 
-  const addToOptionList = (idx: number) => {
-    setCheckOptionList((prevList) => [...prevList, idx]);
-  };
-
-  const removeFromOptionList = (idx: number) => {
-    setCheckOptionList((prevList) => prevList.filter((num) => num !== idx));
-  };
+  const { dataList, addData, removeData, hasData } = useSetList<SelectionInfoWithImage>({
+    initDataList: selectionInfo.extraOptions?.optionList,
+  });
 
   useEffect(() => {
-    dispatch({
-      type: 'SET_EXTRA_OPTIONS',
-      payload: checkOptionList.map((idx) => ({
-        id: dataList[idx].id,
-        name: dataList[idx].name,
-        price: dataList[idx].price,
-        image: dataList[idx].image,
-      })),
-    });
-  }, [checkOptionList]);
+    dispatch({ type: 'SET_EXTRA_OPTIONS', payload: dataList });
+  }, [dataList]);
 
-  if (!dataList.length)
+  // global state 변화화면 강제 리렌더링
+  useEffect(() => {
+    selectionInfo.extraOptions?.optionList.forEach((item) => !hasData(item) && addData(item));
+  }, [selectionInfo.extraOptions?.optionList]);
+
+  if (!optionList.length)
     return (
       <Flex alignItems='center' justifyContent='center' height={200}>
         <Typography font='HeadKRBold18' color='gray900'>
@@ -46,13 +39,13 @@ function ExtraOptionSelector({ dataList, handleClickOptionCard }: Props) {
 
   return (
     <OptionContainer>
-      {dataList.map((opt) => (
+      {optionList.map((opt) => (
         <OptionCard
           key={opt.id}
           info={opt}
-          isChecked={checkOptionList.includes(opt.id)}
-          addOption={addToOptionList}
-          removeOption={removeFromOptionList}
+          isChecked={hasData({ id: opt.id, name: opt.name, price: opt.price, image: opt.image })}
+          addOption={addData}
+          removeOption={removeData}
           onClick={handleClickOptionCard(opt.id, opt.containsHmgData)}
         />
       ))}

@@ -10,7 +10,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 function Popup({ children, size, handleClickDimmed, ...restProps }: PropsWithChildren<Props>) {
   return (
     <Portal>
-      <Dimmed onClick={handleClickDimmed} />
+      <Dimmed onClick={handleClickDimmed} {...restProps} />
       <PopupContainer size={size} {...restProps}>
         {children}
       </PopupContainer>

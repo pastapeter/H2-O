@@ -1,9 +1,11 @@
 import { Fragment } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import { SimilarEstimationPopup } from '../similarEstimation';
 import Accordian from './EstimateAccordian';
 import { getPriceSum } from './utils';
 import { Divider, Flex, HMGTag, Typography } from '@/components/common';
+import { useToggle } from '@/hooks';
 import type {
   ExteriorColorInfo,
   ExtraOptionsInfo,
@@ -22,7 +24,7 @@ interface Props {
 
 function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions }: Props) {
   const { colors } = useTheme();
-
+  const { status, setOff, setOn } = useToggle(false);
   return (
     <Fragment>
       <Typography as='h3' font='HeadKRMedium18' color='gray900' marginTop={20} marginBottom={12}>
@@ -121,6 +123,12 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
               `}
               length='100%'
             />
+            <StyledButton onClick={setOn}>
+              <Typography font='HeadKRMedium14' color='primary500'>
+                유사 출고 견적 확인하기
+              </Typography>
+            </StyledButton>
+            {status && <SimilarEstimationPopup closeEstimationPopup={setOff} />}
           </GraphContainer>
         </Flex>
       </Flex>
@@ -146,4 +154,11 @@ const StyledHMGTag = styled(HMGTag)`
 
 const Highlight = styled.span`
   color: ${({ theme }) => theme.colors.activeBlue};
+`;
+
+const StyledButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.skyBlueCardBg};
+  border-radius: 2px;
+  width: 311px;
+  height: 47px;
 `;

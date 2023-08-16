@@ -1,16 +1,26 @@
 import styled from '@emotion/styled';
 import type { DefaultOptionResponse } from '@/types/interface';
+import { Flex, Typography } from '@/components/common';
 import { OptionCard } from '@/components/option/utils';
 
 interface Props {
-  dataList: DefaultOptionResponse[];
+  optionList: DefaultOptionResponse[];
   handleClickOptionCard: (idx: number, hasHMGData: boolean) => () => void;
 }
 
-function DefaultOptionSelector({ dataList, handleClickOptionCard }: Props) {
+function DefaultOptionSelector({ optionList, handleClickOptionCard }: Props) {
+  if (!optionList.length)
+    return (
+      <Flex alignItems='center' justifyContent='center' height={200}>
+        <Typography font='HeadKRBold18' color='gray900'>
+          검색결과가 없습니다.
+        </Typography>
+      </Flex>
+    );
+
   return (
     <OptionContainer>
-      {dataList.map((opt) => (
+      {optionList.map((opt) => (
         <OptionCard key={opt.id} info={opt} onClick={handleClickOptionCard(opt.id, opt.containsHmgData)} />
       ))}
     </OptionContainer>

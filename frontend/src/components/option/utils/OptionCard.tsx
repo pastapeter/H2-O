@@ -1,16 +1,17 @@
-import { HTMLAttributes, MouseEventHandler, useState } from 'react';
+import { HTMLAttributes, MouseEventHandler, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interface';
+import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interface';
 import { Card, Flex, HMGTag, HashTag, Typography } from '@/components/common';
-import { CheckIcon } from '@/components/option/utils';
+import { CheckBox } from '@/components/option/utils';
 import { toPriceFormatString } from '@/utils/string';
+import { SelectionInfoWithImage } from '@/providers/SelectionProvider';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   info: DefaultOptionResponse | ExtraOptionResponse;
   isChecked?: boolean;
-  addOption?: (idx: number) => void;
-  removeOption?: (idx: number) => void;
+  addOption?: (idx: SelectionInfoWithImage) => void;
+  removeOption?: (idx: SelectionInfoWithImage) => void;
 }
 
 const isExtraOption = (info: DefaultOptionResponse | ExtraOptionResponse): info is ExtraOptionResponse => {
@@ -21,9 +22,17 @@ function OptionCard({ info, isChecked, addOption, removeOption, ...restProps }: 
   const [isActive, setIsActive] = useState(isChecked);
 
   const handleClickIcon: MouseEventHandler<HTMLButtonElement> = () => {
+    if (!isExtraOption(info)) return;
     setIsActive((prev) => !prev);
-    isActive ? removeOption && removeOption(info.id) : addOption && addOption(info.id);
+    const { id, name, price, image } = info;
+    isActive
+      ? removeOption && removeOption({ id: id, name: name, price: price, image: image })
+      : addOption && addOption({ id: id, name: name, price: price, image: image });
   };
+
+  useEffect(() => {
+    setIsActive(isChecked);
+  }, [isChecked]);
 
   return (
     <OptionCardContainer {...restProps}>
@@ -48,7 +57,7 @@ function OptionCard({ info, isChecked, addOption, removeOption, ...restProps }: 
           <Typography color='gray900' font='HeadKRMedium16'>
             {toPriceFormatString(info.price)}
           </Typography>
-          <CheckIcon isActive={isActive ?? false} css={IconPosition} onClick={handleClickIcon} />
+          <CheckBox isActive={isActive ?? false} css={IconPosition} onClick={handleClickIcon} />
         </MainContainer>
       ) : (
         <MainContainer>

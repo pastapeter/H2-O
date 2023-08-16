@@ -2,8 +2,7 @@ import { ComponentProps } from 'react';
 import { css, useTheme } from '@emotion/react';
 import { Theme } from '@emotion/react/macro';
 import styled from '@emotion/styled';
-import { Circle } from './shape';
-import { Card, Icon } from '@/components/common';
+import { Card, Circle, Icon } from '@/components/common';
 import { toPriceFormatString } from '@/utils/string';
 
 interface Props extends ComponentProps<typeof Card> {

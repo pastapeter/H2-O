@@ -1,6 +1,6 @@
 export { Icon } from './Icon';
 export { Header } from './Header';
-export { PriceStaticBar } from './PriceStaticBar';
+export { PriceStaticBar, Marker } from './PriceStaticBar';
 export { HMGTag } from './HMGTag';
 export { CTAButton, CTACTypeButton, CategoryButton, ImageButton, PriceSummaryButton } from './Button';
 export { Portal } from './Portal';
@@ -15,4 +15,5 @@ export { Divider } from './Divider';
 export { Toggle } from './Toggle';
 export { MainSelector } from './MainSelector';
 export { HashTag } from './HashTag';
+export { Circle } from './Shape';
 export { Loading } from './Loading';
