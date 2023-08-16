@@ -47,7 +47,7 @@ struct ColorSelectionComponent<ColorContent: View>: View {
         .padding(.horizontal, 12)
         .padding(.bottom, 12)
       }
-      .externalColorSelectionCardStyle(isselected: state.isSelected)
+      .selectedCardStyle(isSelected: state.isSelected)
       .buttonSelected(isselected: state.isSelected)
     }
     .buttonStyle(EmptyButtonStyle())
@@ -74,8 +74,8 @@ extension View {
   }
 
   @ViewBuilder
-  func externalColorSelectionCardStyle(isselected: Bool) -> some View {
-    modifier(CardModifier(isSelected: isselected))
+  func selectedCardStyle(isSelected: Bool) -> some View {
+    modifier(CardModifier(isSelected: isSelected))
   }
 
 }
