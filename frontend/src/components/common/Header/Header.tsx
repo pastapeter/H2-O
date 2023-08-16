@@ -1,13 +1,16 @@
 import styled from '@emotion/styled';
+import CloseMyCarPopup from './CloseMyCarPopup';
 import NavBar from './NavBar';
 import { Icon } from '@/components/common';
+import { useToggle } from '@/hooks';
 import { ReactComponent as Logo } from '@/assets/logo/logo.svg';
 
 function Header() {
+  const { status, setOff, setOn } = useToggle(false);
   return (
     <HeaderContainer>
       <h1>
-        <Logo />
+        <Logo onClick={setOn} />
       </h1>
       <div>
         <HeaderLeft>
@@ -19,10 +22,11 @@ function Header() {
         </HeaderLeft>
         <NavBar />
       </div>
-      <CloseButton>
+      <CloseButton onClick={setOn}>
         <span>종료</span>
         <Icon iconType='Cancel' size={12} />
       </CloseButton>
+      {status && <CloseMyCarPopup handleClickCancelButton={setOff} />}
     </HeaderContainer>
   );
 }
