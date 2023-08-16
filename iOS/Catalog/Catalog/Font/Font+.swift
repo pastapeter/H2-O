@@ -32,6 +32,7 @@ enum CatalogTextType {
   case HeadKRBold20
   case HeadKRBold18
   case TextKRBold12
+  case TextKRBold18
 
   case HeadKRMedium26
   case HeadKRMedium24
@@ -146,6 +147,8 @@ extension CatalogTextType {
       return -0.3
     case .HeadENRegular28:
       return -0.1
+    case .TextKRBold18:
+      return -0.3
     }
   }
 }
@@ -237,6 +240,8 @@ extension CatalogTextType {
       return UIFont(name: "HyundaiSansHeadMedium", size: 10)!
     case .HeadENRegular28:
       return UIFont(name: "HyundaiSansHead", size: 28)!
+    case .TextKRBold18:
+      return UIFont(name: "HyundaiSansTextKROTFBold", size: 18)!
     }
   }
 }
@@ -328,6 +333,8 @@ extension CatalogTextType {
       return 18
     case .HeadENRegular28:
       return 35
+    case .TextKRBold18:
+      return 28
     }
   }
 }
