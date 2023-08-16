@@ -17,8 +17,14 @@ final class InteriorColorSelectionRepository: InteriorColorSelectionRepositoryPr
 
   func fetch(with trimId: Int) async throws -> [InteriorColor] {
     let dto: [InteriorColorResponseDTO] = try await requestManager.perform(InteriorColorRequest.fetch(trimId: trimId))
-    print(dto)
-    return []
+    return dto.compactMap { dto in
+      do {
+        return try dto.toDomain()
+      } catch(let e) {
+        print("🚨", e.localizedDescription)
+       return nil
+      }
+    }
   }
 
 }
