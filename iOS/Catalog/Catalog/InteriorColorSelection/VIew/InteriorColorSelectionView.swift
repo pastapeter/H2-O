@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InteriorColorSelectionContainerView: IntentBindingType {
+struct InteriorColorSelectionView: IntentBindingType {
 
   @StateObject var container: Container<InteriorColorSelectionIntentType, InteriorColorSelectionModel.State>
 
@@ -21,7 +21,7 @@ struct InteriorColorSelectionContainerView: IntentBindingType {
 
 }
 
-extension InteriorColorSelectionContainerView: View {
+extension InteriorColorSelectionView: View {
 
   var body: some View {
     VStack {
@@ -46,11 +46,11 @@ extension InteriorColorSelectionContainerView: View {
 
 }
 
-extension InteriorColorSelectionContainerView {
+extension InteriorColorSelectionView {
 
   @ViewBuilder
   static func build(intent: InteriorColorSelectionIntent) -> some View {
-    InteriorColorSelectionContainerView(container: .init(intent: intent,
+    InteriorColorSelectionView(container: .init(intent: intent,
                                                          state: intent.state,
                                                          modelChangePublisher: intent.objectWillChange))
   }

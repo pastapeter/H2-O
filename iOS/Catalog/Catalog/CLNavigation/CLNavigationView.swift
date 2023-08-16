@@ -45,7 +45,7 @@ extension CLNavigationView: View {
           ExternalSelectionContainerView.build(
             intent: .init(initialState: .init(selectedTrimId: 2),
                           repository: ExteriorColorRepository(requestManager: RequestManager(apiManager: ExteriorColorAPIManager())))).tag(2)
-          InteriorColorSelectionContainerView.build(
+          InteriorColorSelectionView.build(
             intent: .init(initialState: .init(selectedTrimID: 123, selectedColorId: 2, trimColors: []),
                           repository: InteriorColorSelectionRepository(requestManager: RequestManager(apiManager: InteriorAPIManager())))).tag(3)
           MockView(image: mockImageName[4]).tag(4)
