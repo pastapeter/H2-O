@@ -43,11 +43,11 @@ extension CLNavigationView: View {
             repository: TrimMockRepository())).tag(0)
           ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository())).tag(1)
           ExternalSelectionContainerView.build(
-            intent: .init(initialState: .init(selectedTrimId: 1),
+            intent: .init(initialState: .init(selectedTrimId: 2),
                           repository: ExteriorColorRepository(requestManager: RequestManager(apiManager: ExteriorColorAPIManager())))).tag(2)
           InteriorColorSelectionContainerView.build(
-            intent: .init(initialState: .init(selectedTrimID: 123, selectedColorId: 1, trimColors: []),
-            repository: MockInteriorColorSelectionRepository())).tag(3)
+            intent: .init(initialState: .init(selectedTrimID: 123, selectedColorId: 2, trimColors: []),
+                          repository: InteriorColorSelectionRepository(requestManager: RequestManager(apiManager: InteriorAPIManager())))).tag(3)
           MockView(image: mockImageName[4]).tag(4)
           MockView(image: mockImageName[5]).tag(5)
         }
