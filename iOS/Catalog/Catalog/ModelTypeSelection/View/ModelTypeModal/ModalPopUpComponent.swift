@@ -13,7 +13,8 @@ struct ModalPopUpComponent<ModalPopUpContent: View>: View {
 
   var submitAction: () -> Void
 
-  @Environment(\.dismiss) private var dismiss
+  @Environment (\.dismiss)
+  private var dismiss
 
   @State private var animateView: Bool = false
 

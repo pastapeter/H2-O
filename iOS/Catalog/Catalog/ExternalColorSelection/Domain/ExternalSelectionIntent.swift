@@ -20,12 +20,12 @@ protocol ExternalSelectionIntentType {
 
 final class ExternalSelectionIntent: ObservableObject {
 
-  init(initialState: State, repository: ExternalColorRepositoryProtocol) {
+  init(initialState: State, repository: ExteriorColorRepositoryProtocol) {
     state = initialState
     self.repository = repository
   }
 
-  private var repository: ExternalColorRepositoryProtocol
+  private var repository: ExteriorColorRepositoryProtocol
 
   typealias State = ExternalSelectionModel.State
 
@@ -51,9 +51,23 @@ extension ExternalSelectionIntent: ExternalSelectionIntentType, IntentType {
         }
       }
     case .fetchColors(let colors):
-      var colorStates = colors.map { ExteriorColorState(isSelected: false, color: $0) }
-      colorStates[0].isSelected = true
+      let colorStates = colors.map { ExteriorColorState(isSelected: false, color: $0) }
       state.colors = colorStates
+      if !colorStates.isEmpty {
+        send(action: .onTapColor(id: colorStates[0].color.id))
+      }
+    case .changeSelectedExternalImageURL:
+      print("External Image Urls")
+    case .onTapColor(id: let id):
+      state.selectedColorId = id
+      for i in state.colors.indices {
+        if state.colors[i].color.id == id {
+          state.colors[i].isSelected = true
+          send(action: .changeSelectedExternalImageURL(url: []))
+        } else {
+          state.colors[i].isSelected = false
+        }
+      }
     }
   }
 

@@ -90,6 +90,17 @@
 		B191DD342A8B4ED8008196CD /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */; };
 		B191DD362A8B5B52008196CD /* ColorInfoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD352A8B5B52008196CD /* ColorInfoState.swift */; };
 		B191DD382A8B6282008196CD /* HorizontalScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD372A8B6282008196CD /* HorizontalScroller.swift */; };
+		B191DD3F2A8B85E4008196CD /* InteriorColorSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD3E2A8B85E4008196CD /* InteriorColorSelectionIntent.swift */; };
+		B191DD422A8B8607008196CD /* InteriorColorSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD412A8B8607008196CD /* InteriorColorSelectionModel.swift */; };
+		B191DD452A8B8F67008196CD /* InteriorColorSelectionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD442A8B8F67008196CD /* InteriorColorSelectionRepositoryProtocol.swift */; };
+		B191DD472A8BDF67008196CD /* ExteriorColorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD462A8BDF67008196CD /* ExteriorColorRequest.swift */; };
+		B191DD492A8BE0F4008196CD /* ExteriorColorAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD482A8BE0F4008196CD /* ExteriorColorAPIManager.swift */; };
+		B191DD4D2A8BE21F008196CD /* ExteriorColorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD4C2A8BE21F008196CD /* ExteriorColorRepository.swift */; };
+		B191DD4F2A8BEFAD008196CD /* InteriorColorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD4E2A8BEFAD008196CD /* InteriorColorRequest.swift */; };
+		B191DD512A8BF157008196CD /* InteriorAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD502A8BF157008196CD /* InteriorAPIManager.swift */; };
+		B191DD532A8BF18C008196CD /* InteriorColorSelectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD522A8BF18C008196CD /* InteriorColorSelectionRepository.swift */; };
+		B191DD552A8BF235008196CD /* InteriorColorResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD542A8BF235008196CD /* InteriorColorResponseDTO.swift */; };
+		B191DD572A8BF2E0008196CD /* ExteriorColorResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191DD562A8BF2E0008196CD /* ExteriorColorResponseDTO.swift */; };
 		B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436322A7E8C2300C2FD69 /* CLAlertView.swift */; };
 		B19436392A80954600C2FD69 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19436382A80954600C2FD69 /* AlertView.swift */; };
 		B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */; };
@@ -112,12 +123,11 @@
 		B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */; };
 		B1F988D32A8A7F6400C7B65F /* ExternalSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D22A8A7F6400C7B65F /* ExternalSelectionModel.swift */; };
 		B1F988D52A8A7F8600C7B65F /* ExternalSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D42A8A7F8600C7B65F /* ExternalSelectionIntent.swift */; };
-		B1F988D92A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */; };
-		B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */; };
+		B1F988D92A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D82A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift */; };
+		B1F988DB2A8A8D1900C7B65F /* ExteriorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DA2A8A8D1900C7B65F /* ExteriorColor.swift */; };
 		B1F988DD2A8A8E3700C7B65F /* MockExternalColorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */; };
-		B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */; };
+		B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionView.swift */; };
 		B1F988E32A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */; };
-		B1F988E52A8B37F600C7B65F /* InteriorColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */; };
 		B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */; };
 		B1F988EA2A8B3E5300C7B65F /* InteriorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */; };
 		B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */; };
@@ -267,6 +277,17 @@
 		B191DD332A8B4ED8008196CD /* ColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionView.swift; sourceTree = "<group>"; };
 		B191DD352A8B5B52008196CD /* ColorInfoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInfoState.swift; sourceTree = "<group>"; };
 		B191DD372A8B6282008196CD /* HorizontalScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScroller.swift; sourceTree = "<group>"; };
+		B191DD3E2A8B85E4008196CD /* InteriorColorSelectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionIntent.swift; sourceTree = "<group>"; };
+		B191DD412A8B8607008196CD /* InteriorColorSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionModel.swift; sourceTree = "<group>"; };
+		B191DD442A8B8F67008196CD /* InteriorColorSelectionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionRepositoryProtocol.swift; sourceTree = "<group>"; };
+		B191DD462A8BDF67008196CD /* ExteriorColorRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColorRequest.swift; sourceTree = "<group>"; };
+		B191DD482A8BE0F4008196CD /* ExteriorColorAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColorAPIManager.swift; sourceTree = "<group>"; };
+		B191DD4C2A8BE21F008196CD /* ExteriorColorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColorRepository.swift; sourceTree = "<group>"; };
+		B191DD4E2A8BEFAD008196CD /* InteriorColorRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorRequest.swift; sourceTree = "<group>"; };
+		B191DD502A8BF157008196CD /* InteriorAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorAPIManager.swift; sourceTree = "<group>"; };
+		B191DD522A8BF18C008196CD /* InteriorColorSelectionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionRepository.swift; sourceTree = "<group>"; };
+		B191DD542A8BF235008196CD /* InteriorColorResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorResponseDTO.swift; sourceTree = "<group>"; };
+		B191DD562A8BF2E0008196CD /* ExteriorColorResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColorResponseDTO.swift; sourceTree = "<group>"; };
 		B19436322A7E8C2300C2FD69 /* CLAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertView.swift; sourceTree = "<group>"; };
 		B19436382A80954600C2FD69 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B194363A2A8095B800C2FD69 /* CLQuitAlertContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLQuitAlertContentView.swift; sourceTree = "<group>"; };
@@ -289,12 +310,11 @@
 		B1F2BC692A7B62E7005385E0 /* CLNavigationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationIntent.swift; sourceTree = "<group>"; };
 		B1F988D22A8A7F6400C7B65F /* ExternalSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSelectionModel.swift; sourceTree = "<group>"; };
 		B1F988D42A8A7F8600C7B65F /* ExternalSelectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSelectionIntent.swift; sourceTree = "<group>"; };
-		B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColorRepositoryProtocol.swift; sourceTree = "<group>"; };
-		B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColor.swift; sourceTree = "<group>"; };
+		B1F988D82A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColorRepositoryProtocol.swift; sourceTree = "<group>"; };
+		B1F988DA2A8A8D1900C7B65F /* ExteriorColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColor.swift; sourceTree = "<group>"; };
 		B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExternalColorRepository.swift; sourceTree = "<group>"; };
-		B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionContainerView.swift; sourceTree = "<group>"; };
+		B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionView.swift; sourceTree = "<group>"; };
 		B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
-		B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionView.swift; sourceTree = "<group>"; };
 		B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorState.swift; sourceTree = "<group>"; };
 		B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColor.swift; sourceTree = "<group>"; };
 		B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorDisplayView.swift; sourceTree = "<group>"; };
@@ -416,7 +436,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				B1F988DF2A8B1C3700C7B65F /* InternalColorSelection */,
+				B1F988DF2A8B1C3700C7B65F /* InteriorColorSelection */,
 				B16DFF482A8A3E2C00642730 /* ExternalColorSelection */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
 				B1604D5E2A853FA200C7B07D /* ModelTypeSelection */,
@@ -705,6 +725,44 @@
 			path = ColorSelectionComponent;
 			sourceTree = "<group>";
 		};
+		B191DD3A2A8B8587008196CD /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionView.swift */,
+				B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */,
+				B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
+		B191DD3D2A8B85CF008196CD /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				B191DD3E2A8B85E4008196CD /* InteriorColorSelectionIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		B191DD402A8B85F3008196CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B191DD412A8B8607008196CD /* InteriorColorSelectionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B191DD432A8B8F45008196CD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B191DD442A8B8F67008196CD /* InteriorColorSelectionRepositoryProtocol.swift */,
+				B191DD4E2A8BEFAD008196CD /* InteriorColorRequest.swift */,
+				B191DD502A8BF157008196CD /* InteriorAPIManager.swift */,
+				B191DD522A8BF18C008196CD /* InteriorColorSelectionRepository.swift */,
+				B191DD542A8BF235008196CD /* InteriorColorResponseDTO.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		B19436312A7E8C1500C2FD69 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,6 +791,10 @@
 			isa = PBXGroup;
 			children = (
 				B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */,
+				B191DD462A8BDF67008196CD /* ExteriorColorRequest.swift */,
+				B191DD482A8BE0F4008196CD /* ExteriorColorAPIManager.swift */,
+				B191DD4C2A8BE21F008196CD /* ExteriorColorRepository.swift */,
+				B191DD562A8BF2E0008196CD /* ExteriorColorResponseDTO.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -742,8 +804,8 @@
 			children = (
 				B1F988D22A8A7F6400C7B65F /* ExternalSelectionModel.swift */,
 				B1F988D42A8A7F8600C7B65F /* ExternalSelectionIntent.swift */,
-				B1F988D82A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift */,
-				B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */,
+				B1F988D82A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift */,
+				B1F988DA2A8A8D1900C7B65F /* ExteriorColor.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -758,22 +820,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B1F988DF2A8B1C3700C7B65F /* InternalColorSelection */ = {
+		B1F988DF2A8B1C3700C7B65F /* InteriorColorSelection */ = {
 			isa = PBXGroup;
 			children = (
+				B191DD432A8B8F45008196CD /* Data */,
+				B191DD402A8B85F3008196CD /* Model */,
+				B191DD3D2A8B85CF008196CD /* Intent */,
 				B1F988E82A8B3E4400C7B65F /* Domain */,
-				B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */,
-				B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */,
-				B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */,
-				B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */,
-				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
+				B191DD3A2A8B8587008196CD /* VIew */,
 			);
-			path = InternalColorSelection;
+			path = InteriorColorSelection;
 			sourceTree = "<group>";
 		};
 		B1F988E82A8B3E4400C7B65F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */,
 				B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */,
 				B191DD2F2A8B4E53008196CD /* CarColorType.swift */,
 				B191DD352A8B5B52008196CD /* ColorInfoState.swift */,
@@ -1121,6 +1183,7 @@
 				ED1C70682A89C4EC0049D275 /* TrimCardView.swift in Sources */,
 				EDCF32C22A8A91D500C46A4B /* CLLinearGradient.swift in Sources */,
 				B191DD342A8B4ED8008196CD /* ColorSelectionView.swift in Sources */,
+				B191DD532A8BF18C008196CD /* InteriorColorSelectionRepository.swift in Sources */,
 				ED1C70672A89C4C00049D275 /* SnapCarousel.swift in Sources */,
 				ED1C70662A89C45F0049D275 /* TrimSelectionView.swift in Sources */,
 				ED1C70642A89C43E0049D275 /* TrimSelectionModel.swift in Sources */,
@@ -1136,6 +1199,8 @@
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
 				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
 				ED1A70982A83646E00F7920F /* (null) in Sources */,
+				B191DD492A8BE0F4008196CD /* ExteriorColorAPIManager.swift in Sources */,
+				B191DD422A8B8607008196CD /* InteriorColorSelectionModel.swift in Sources */,
 				B191DD2C2A8B4CD6008196CD /* ExternalColorDisplayView.swift in Sources */,
 				B1F2BC682A7B613B005385E0 /* CLNavigationModel.swift in Sources */,
 				B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */,
@@ -1166,15 +1231,15 @@
 				B1084BEE2A87E5A800AE1758 /* CLDialog.swift in Sources */,
 				B16DFF4C2A8A3E9000642730 /* ExternalColorSelectionHorizontalList.swift in Sources */,
 				B19436452A80E5FD00C2FD69 /* AlertViewComponent.swift in Sources */,
+				B191DD4F2A8BEFAD008196CD /* InteriorColorRequest.swift in Sources */,
 				ED1C70612A89C3A50049D275 /* EntryGuide.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
 				B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */,
-				B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */,
+				B1F988DB2A8A8D1900C7B65F /* ExteriorColor.swift in Sources */,
 				ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
-				B1F988E52A8B37F600C7B65F /* InteriorColorSelectionView.swift in Sources */,
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				ED1C70602A89C3810049D275 /* CLSimilarQuotationSlideView.swift in Sources */,
@@ -1193,6 +1258,7 @@
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1A76B802A88CD92009C84EF /* ModeTypeModel.swift in Sources */,
 				B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */,
+				B191DD4D2A8BE21F008196CD /* ExteriorColorRepository.swift in Sources */,
 				EDCF32C42A8A91D500C46A4B /* CLQuotationSummarySheet.swift in Sources */,
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
 				EDF882572A8A708A0077558F /* ModelTypeRequestDTO.swift in Sources */,
@@ -1206,7 +1272,10 @@
 				ED6410982A7FDE740033AEBC /* CLBudgetRangeView.swift in Sources */,
 				B191DD2E2A8B4D86008196CD /* ColorSelectionComponent.swift in Sources */,
 				B155C0DE2A7923AA00F540CB /* IntentBindingType.swift in Sources */,
+				B191DD3F2A8B85E4008196CD /* InteriorColorSelectionIntent.swift in Sources */,
+				B191DD452A8B8F67008196CD /* InteriorColorSelectionRepositoryProtocol.swift in Sources */,
 				B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */,
+				B191DD552A8BF235008196CD /* InteriorColorResponseDTO.swift in Sources */,
 				B16DFF3C2A8958DB00642730 /* MaxTorqueFromEngine.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
 				ED3DC0282A865B9C009EE04C /* HMGDataCard.swift in Sources */,
@@ -1222,11 +1291,14 @@
 				B1604D462A83AE4100C7B07D /* TrimAPIManager.swift in Sources */,
 				B1604D632A85402400C7B07D /* ModelTypeSelectionContainerView.swift in Sources */,
 				B1F988D52A8A7F8600C7B65F /* ExternalSelectionIntent.swift in Sources */,
+				B191DD472A8BDF67008196CD /* ExteriorColorRequest.swift in Sources */,
 				B16DFF4A2A8A3E4800642730 /* ExternalSelectionContainerView.swift in Sources */,
 				B19436332A7E8C2300C2FD69 /* CLAlertView.swift in Sources */,
 				EDBA3E3F2A84869000BDB00F /* CLInactableButton.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
 				B1604D342A83701900C7B07D /* CLAPIRetrier.swift in Sources */,
+				B191DD572A8BF2E0008196CD /* ExteriorColorResponseDTO.swift in Sources */,
+				B191DD512A8BF157008196CD /* InteriorAPIManager.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
 				B16DFF472A8A161700642730 /* ModelTypeResponseDTO.swift in Sources */,
 				B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */,
@@ -1243,14 +1315,14 @@
 				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
 				ED1A70A72A8371CA00F7920F /* CLOption.swift in Sources */,
 				EDCF32BF2A8A91D500C46A4B /* CLToggle.swift in Sources */,
-				B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift in Sources */,
+				B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionView.swift in Sources */,
 				B1F2BC602A7B5B63005385E0 /* MockView.swift in Sources */,
 				B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */,
 				ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */,
 				ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */,
 				ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */,
 				B1A76B862A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift in Sources */,
-				B1F988D92A8A812600C7B65F /* ExternalColorRepositoryProtocol.swift in Sources */,
+				B1F988D92A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift in Sources */,
 				ED64109E2A7FE3F60033AEBC /* CLNumber.swift in Sources */,
 				B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */,
 				B1604D2D2A82A7C100C7B07D /* CachedResponseHandler.swift in Sources */,

@@ -32,7 +32,9 @@ extension ExternalSelectionContainerView: View {
         Text("외장 색상을 선택해주세요")
           .catalogFont(type: .HeadKRMedium18)
         Spacer().frame(height: 8)
-        ExternalColorSelectionHorizontalList(state: state.colors, height: UIScreen.main.bounds.height * 177 / 812)
+        ExternalColorSelectionHorizontalList(state: state.colors,
+                                             intent: intent,
+                                             height: UIScreen.main.bounds.height * 177 / 812)
         Spacer()
       }
       .padding(.leading, 20)
@@ -48,13 +50,16 @@ extension ExternalSelectionContainerView {
 
   @ViewBuilder
   static func build(intent: ExternalSelectionIntent) -> some View {
-    ExternalSelectionContainerView(container: .init(intent: intent, state: intent.state, modelChangePublisher: intent.objectWillChange))
+    ExternalSelectionContainerView(container: .init(intent: intent,
+                                                    state: intent.state,
+                                                    modelChangePublisher: intent.objectWillChange))
   }
 
 }
 
 struct ExternalSelectionContainerView_Previews: PreviewProvider {
     static var previews: some View {
-      ExternalSelectionContainerView.build(intent: .init(initialState: .init(selectedTrimId: 123), repository: MockExternalRepository()))
+      ExternalSelectionContainerView.build(intent: .init(initialState: .init(selectedTrimId: 123),
+                                                         repository: MockExternalRepository()))
     }
 }

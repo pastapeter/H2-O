@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol ExternalColorRepositoryProtocol {
+protocol ExteriorColorRepositoryProtocol {
 
-  func fetch(with trimId: Int) async throws -> [ExternalColor]
+  func fetch(with trimId: Int) async throws -> [ExteriorColor]
 
 }

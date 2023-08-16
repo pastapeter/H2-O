@@ -11,7 +11,7 @@ struct ColorInfoState: Equatable {
   var isSelected: Bool
   var id: Int
   var name: String
-  var choiceRatio: CLNumber
+  var choiceRatio: CLNumber?
   var price: CLNumber
   var colorType: CarColorType
 }

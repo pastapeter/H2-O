@@ -17,6 +17,8 @@ protocol RequestProtocol {
 
   var params: [String: Any] { get }
 
+  var port: Int { get }
+
   var urlParams: [String: String?] { get }
 
   var requestType: RequestType { get }
@@ -27,6 +29,8 @@ protocol RequestProtocol {
 
   var contentType: ContentType { get }
 
+  var secureType: SecureType { get }
+
 }
 
 extension RequestProtocol {
@@ -35,11 +39,20 @@ extension RequestProtocol {
     .JSON
   }
 
+  var timeOutInterval: TimeInterval {
+    2
+  }
+
+  var port: Int {
+    8080
+  }
+
   func createRequest() throws -> Request {
 
     var components = URLComponents()
-    components.scheme = SecureType.https.description
+    components.scheme = self.secureType.description
     components.host = host
+    components.port = port
     components.path = path
 
     if !urlParams.isEmpty {

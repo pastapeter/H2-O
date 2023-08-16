@@ -17,11 +17,13 @@ enum ExternalSelectionModel {
 
   enum ViewAction {
     case onAppear
-    case fetchColors(colors: [ExternalColor])
+    case fetchColors(colors: [ExteriorColor])
+    case changeSelectedExternalImageURL(url: [URL])
+    case onTapColor(id: Int)
   }
 }
 
 struct ExteriorColorState: Equatable, Hashable {
   var isSelected: Bool
-  var color: ExternalColor
+  var color: ExteriorColor
 }

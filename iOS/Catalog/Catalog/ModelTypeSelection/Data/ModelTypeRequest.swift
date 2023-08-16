@@ -52,5 +52,8 @@ extension ModelTypeRequest: RequestProtocol {
   var urlParams: [String: String?] {
     return [:]
   }
+  var secureType: SecureType {
+    return .https
+  }
 
 }
