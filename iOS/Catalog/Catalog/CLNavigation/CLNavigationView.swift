@@ -48,7 +48,7 @@ extension CLNavigationView: View {
           InteriorColorSelectionView.build(
             intent: .init(initialState: .init(selectedTrimID: 2, selectedColorId: 1, trimColors: []),
                           repository: InteriorColorSelectionRepository(requestManager: RequestManager(apiManager: InteriorAPIManager())))).tag(3)
-          MockView(image: mockImageName[4]).tag(4)
+          OptionSelectionView().tag(4)
           MockView(image: mockImageName[5]).tag(5)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
