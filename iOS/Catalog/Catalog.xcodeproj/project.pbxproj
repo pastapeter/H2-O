@@ -128,7 +128,6 @@
 		B1F988DD2A8A8E3700C7B65F /* MockExternalColorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */; };
 		B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */; };
 		B1F988E32A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */; };
-		B1F988E52A8B37F600C7B65F /* InteriorColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */; };
 		B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */; };
 		B1F988EA2A8B3E5300C7B65F /* InteriorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */; };
 		B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */; };
@@ -316,7 +315,6 @@
 		B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExternalColorRepository.swift; sourceTree = "<group>"; };
 		B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionContainerView.swift; sourceTree = "<group>"; };
 		B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
-		B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionView.swift; sourceTree = "<group>"; };
 		B1F988E62A8B3E2E00C7B65F /* InteriorColorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorState.swift; sourceTree = "<group>"; };
 		B1F988E92A8B3E5300C7B65F /* InteriorColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColor.swift; sourceTree = "<group>"; };
 		B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorDisplayView.swift; sourceTree = "<group>"; };
@@ -732,7 +730,6 @@
 			children = (
 				B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */,
 				B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */,
-				B1F988E42A8B37F600C7B65F /* InteriorColorSelectionView.swift */,
 				B1F988ED2A8B4AB800C7B65F /* InteriorColorDisplayView.swift */,
 			);
 			path = VIew;
@@ -1243,7 +1240,6 @@
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
-				B1F988E52A8B37F600C7B65F /* InteriorColorSelectionView.swift in Sources */,
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				ED1C70602A89C3810049D275 /* CLSimilarQuotationSlideView.swift in Sources */,
