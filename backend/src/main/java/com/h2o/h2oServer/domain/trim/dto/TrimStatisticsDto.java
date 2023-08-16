@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 @Getter
 public class TrimStatisticsDto {
     private String dataLabel;
-    private Float frequency;
+    private Integer frequency;
 
     public static TrimStatisticsDto of(OptionStatisticsEntity entity) {
         return TrimStatisticsDto.builder()
                 .dataLabel(entity.getName())
-                .frequency(entity.getUseCount())
+                .frequency(Math.round(entity.getUseCount()))
                 .build();
     }
 
