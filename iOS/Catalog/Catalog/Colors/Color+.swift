@@ -42,6 +42,8 @@ extension Color {
   static let sand = Color("Sand")
   static let sand2 = Color("Sand2")
   static let lightSand = Color("LightSand")
+
+  static let background2 = Color("background2")
 }
 
 extension Color {
