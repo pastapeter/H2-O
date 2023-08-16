@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.h2o.h2oServer.domain.quotation.mapper.QuotationMapper">
+    <insert id="saveQuotation" parameterType="QuotationDto" useGeneratedKeys="true" keyProperty="id">
+        insert into quotation(car_id, trim_id, powertrain_id, bodytype_id, drivetrain_id, internal_color_id, external_color_id)
+        values (#{carId}, #{trimId}, #{powertrainId}, #{bodytypeId}, #{drivetrainId}, #{internalColorId}, #{externalColorId});
+    </insert>
+    
+    <insert id="saveOptionQuotation" parameterType="OptionQuotationEntity">
+        insert into options_quotation(quotation_id, option_id)
+        values
+        <foreach collection="optionIds" item="optionId" separator=",">
+            (#{quotationId}, #{optionId})
+        </foreach>
+    </insert>
+
+    <insert id="savePackageQuotation" parameterType="PackageQuotationEntity">
+        insert into package_quotation(quotation_id, package_id)
+        values
+        <foreach collection="packageIds" item="packageId" separator=",">
+            (#{quotationId}, #{packageId})
+        </foreach>
+    </insert>
+
+    <select id="countQuotation" resultType="long">
+        select count(*) from quotation;
+    </select>
+
+    <select id="countOptionQuotation" resultType="long">
+        select count(*) from options_quotation;
+    </select>
+
+    <select id="countPackageQuotation" resultType="long">
+        select count(*) from package_quotation;
+    </select>
+</mapper>

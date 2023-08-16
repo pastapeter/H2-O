@@ -81,10 +81,12 @@ CREATE TABLE `package`
 
 CREATE TABLE `quotation`
 (
-    `id`                BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `id`                BIGINT   PRIMARY KEY AUTO_INCREMENT,
+    `car_id`            BIGINT   NOT NULL,
     `trim_id`           BIGINT   NOT NULL,
     `powertrain_id`     BIGINT   NOT NULL,
-    `body_type_id`      BIGINT   NOT NULL,
+    `bodytype_id`       BIGINT   NOT NULL,
+    `drivetrain_id`     BIGINT   NOT NULL,
     `internal_color_id` BIGINT   NOT NULL,
     `external_color_id` BIGINT   NOT NULL,
     `created_at`        DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -194,8 +196,8 @@ CREATE TABLE `options_hashtag`
 
 CREATE TABLE `options_quotation`
 (
-    `option_id`    BIGINT NOT NULL,
-    `quotation_id` BIGINT NOT NULL
+    `quotation_id` BIGINT NOT NULL,
+    `option_id`    BIGINT NOT NULL
 );
 
 CREATE TABLE `package_options`
@@ -212,6 +214,6 @@ CREATE TABLE `package_hashtag`
 
 CREATE TABLE `package_quotation`
 (
-    `package_id`   BIGINT NOT NULL,
-    `quotation_id` BIGINT NOT NULL
+    `quotation_id` BIGINT NOT NULL,
+    `package_id`   BIGINT NOT NULL
 );
