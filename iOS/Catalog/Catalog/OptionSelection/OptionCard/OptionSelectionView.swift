@@ -7,41 +7,48 @@
 
 import SwiftUI
 
-enum OptionSelectionModel {
+struct OptionSelectionView: IntentBindingType {
   
-  struct State: Equatable {
-    var currentPage: Int
-//    var OptionStates: [OptionState]
+  @StateObject var container: Container<OptionSelectionIntentType, OptionSelectionModel.State>
+  var intent: OptionSelectionIntentType { container.intent }
+  var state: OptionSelectionModel.State { intent.state }
+  
+  var currentPage: Binding<Int> {
+    .init(get: { state.currentPage },
+          set: { intent.send(action: .onTapTab(index: $0)) })
   }
+}
+
+extension OptionSelectionView: View {
   
-  enum ViewAction {
+  var body: some View {
+    VStack {
+      Spacer().frame(height: 50)
+      CLNavigationMenuView(currentPage: currentPage, navigationMenuTitles: state.optionMenuTitle, titleFont: .TextKRBold18, horizontalSpacing: 24, verticalSpacing: 2)
+      Spacer().frame(height: 16)
+      TabView(selection: currentPage) {
+        OptionCardScollView().tag(0)
+        OptionCardScollView().tag(1)
+      }
+      .tabViewStyle(.page(indexDisplayMode: .never))
+    }
     
   }
   
 }
 
-
-
-struct OptionSelectionView: View {
+extension OptionSelectionView {
   
-  @State var currentPage: Int = 0
+  @ViewBuilder
+  static func build(intent: OptionSelectionIntent) -> some View {
+    
+    OptionSelectionView(container: .init(intent: intent as OptionSelectionIntent, state: intent.state, modelChangePublisher: intent.objectWillChange))
+  }
   
-    var body: some View {
-      VStack {
-        CLTopNaviBar(intent: <#T##CLNavigationIntentType#>)
-        CLNavigationMenuView(currentPage: <#T##Binding<Int>#>, menuStatus: <#T##Binding<[CLNavigationMenuTitleView.Status]>#>)
-        TabView(selection: $currentPage) {
-          OptionCardScollView()
-          OptionCardScollView()
-        }
-        .tabViewStyle(.page(indexDisplayMode: .never))
-      }
-      
-    }
 }
 
 struct OptionSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        OptionSelectionView()
+      OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0)))
     }
 }
