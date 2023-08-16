@@ -13,6 +13,7 @@
 		B1084BEE2A87E5A800AE1758 /* CLDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BED2A87E5A800AE1758 /* CLDialog.swift */; };
 		B1084BF12A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */; };
 		B1084BF32A88792200AE1758 /* HMGDataBannerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */; };
+		B149BD1E2A8CC8BD009A3C6B /* HMGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149BD1D2A8CC8BD009A3C6B /* HMGButton.swift */; };
 		B155C0B02A7920A800F540CB /* CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0AF2A7920A800F540CB /* CatalogApp.swift */; };
 		B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C0B12A7920A800F540CB /* EntryPointView.swift */; };
 		B155C0B42A7920A900F540CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B155C0B32A7920A900F540CB /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */; };
 		B16722212A8C9E36002B45A6 /* OptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16722202A8C9E36002B45A6 /* OptionCardView.swift */; };
 		B16722232A8CA67E002B45A6 /* OptionCardScollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */; };
+		B16722272A8CBB19002B45A6 /* ImageTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16722262A8CBB19002B45A6 /* ImageTagView.swift */; };
 		B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF332A89533300642730 /* ModelTypeOption.swift */; };
 		B16DFF362A89548300642730 /* ModelTypeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF352A89548300642730 /* ModelTypeRepositoryProtocol.swift */; };
 		B16DFF382A8958B700642730 /* OptionInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF372A8958B700642730 /* OptionInDetail.swift */; };
@@ -198,6 +200,7 @@
 		B1084BED2A87E5A800AE1758 /* CLDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDialog.swift; sourceTree = "<group>"; };
 		B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyAverageBannerView.swift; sourceTree = "<group>"; };
 		B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataBannerComponent.swift; sourceTree = "<group>"; };
+		B149BD1D2A8CC8BD009A3C6B /* HMGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGButton.swift; sourceTree = "<group>"; };
 		B155C0AC2A7920A800F540CB /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B155C0AF2A7920A800F540CB /* CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogApp.swift; sourceTree = "<group>"; };
 		B155C0B12A7920A800F540CB /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
@@ -262,6 +265,7 @@
 		B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonStyle.swift; sourceTree = "<group>"; };
 		B16722202A8C9E36002B45A6 /* OptionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardView.swift; sourceTree = "<group>"; };
 		B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardScollView.swift; sourceTree = "<group>"; };
+		B16722262A8CBB19002B45A6 /* ImageTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTagView.swift; sourceTree = "<group>"; };
 		B16DFF332A89533300642730 /* ModelTypeOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeOption.swift; sourceTree = "<group>"; };
 		B16DFF352A89548300642730 /* ModelTypeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B16DFF372A8958B700642730 /* OptionInDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionInDetail.swift; sourceTree = "<group>"; };
@@ -692,6 +696,14 @@
 			path = OptionCard;
 			sourceTree = "<group>";
 		};
+		B16722252A8CBB01002B45A6 /* ImageTag */ = {
+			isa = PBXGroup;
+			children = (
+				B16722262A8CBB19002B45A6 /* ImageTagView.swift */,
+			);
+			path = ImageTag;
+			sourceTree = "<group>";
+		};
 		B16DFF312A8952BC00642730 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,6 +817,7 @@
 				B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */,
 				B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */,
 				B1084BF22A88792200AE1758 /* HMGDataBannerComponent.swift */,
+				B149BD1D2A8CC8BD009A3C6B /* HMGButton.swift */,
 			);
 			path = HMGData;
 			sourceTree = "<group>";
@@ -942,6 +955,7 @@
 		ED779C3E2A7A799A007F67B7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B16722252A8CBB01002B45A6 /* ImageTag */,
 				B191DD392A8B673D008196CD /* ColorSelectionComponent */,
 				B1084BEC2A87E39300AE1758 /* Modal */,
 				B1EEBA872A869E8E008FC6A4 /* HMGData */,
@@ -1277,6 +1291,7 @@
 				B1604D212A825FBA00C7B07D /* SecureType.swift in Sources */,
 				B1604D672A8545DD00C7B07D /* ModelTypeButtonView.swift in Sources */,
 				B1084BF12A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift in Sources */,
+				B16722272A8CBB19002B45A6 /* ImageTagView.swift in Sources */,
 				B1604D2B2A82A78600C7B07D /* RequestRetrier.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				B1A76B802A88CD92009C84EF /* ModeTypeModel.swift in Sources */,
@@ -1327,6 +1342,7 @@
 				B16DFF472A8A161700642730 /* ModelTypeResponseDTO.swift in Sources */,
 				B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */,
 				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
+				B149BD1E2A8CC8BD009A3C6B /* HMGButton.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				ED1C70632A89C3C50049D275 /* Trim.swift in Sources */,
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
