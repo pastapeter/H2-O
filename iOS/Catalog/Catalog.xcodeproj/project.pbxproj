@@ -71,6 +71,8 @@
 		B1604D672A8545DD00C7B07D /* ModelTypeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D662A8545DD00C7B07D /* ModelTypeButtonView.swift */; };
 		B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D6A2A854D3A00C7B07D /* HMGButtonArrowStyle.swift */; };
 		B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */; };
+		B16722212A8C9E36002B45A6 /* OptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16722202A8C9E36002B45A6 /* OptionCardView.swift */; };
+		B16722232A8CA67E002B45A6 /* OptionCardScollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */; };
 		B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF332A89533300642730 /* ModelTypeOption.swift */; };
 		B16DFF362A89548300642730 /* ModelTypeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF352A89548300642730 /* ModelTypeRepositoryProtocol.swift */; };
 		B16DFF382A8958B700642730 /* OptionInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16DFF372A8958B700642730 /* OptionInDetail.swift */; };
@@ -258,6 +260,8 @@
 		B1604D662A8545DD00C7B07D /* ModelTypeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeButtonView.swift; sourceTree = "<group>"; };
 		B1604D6A2A854D3A00C7B07D /* HMGButtonArrowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGButtonArrowStyle.swift; sourceTree = "<group>"; };
 		B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonStyle.swift; sourceTree = "<group>"; };
+		B16722202A8C9E36002B45A6 /* OptionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardView.swift; sourceTree = "<group>"; };
+		B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardScollView.swift; sourceTree = "<group>"; };
 		B16DFF332A89533300642730 /* ModelTypeOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeOption.swift; sourceTree = "<group>"; };
 		B16DFF352A89548300642730 /* ModelTypeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B16DFF372A8958B700642730 /* OptionInDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionInDetail.swift; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				B167221E2A8C9E1C002B45A6 /* OptionSelection */,
 				B1F988DF2A8B1C3700C7B65F /* InteriorColorSelection */,
 				B16DFF482A8A3E2C00642730 /* ExternalColorSelection */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
@@ -668,6 +673,23 @@
 				B1604D6C2A85569400C7B07D /* DetailButtonStyle.swift */,
 			);
 			path = ShowDetailButton;
+			sourceTree = "<group>";
+		};
+		B167221E2A8C9E1C002B45A6 /* OptionSelection */ = {
+			isa = PBXGroup;
+			children = (
+				B167221F2A8C9E28002B45A6 /* OptionCard */,
+			);
+			path = OptionSelection;
+			sourceTree = "<group>";
+		};
+		B167221F2A8C9E28002B45A6 /* OptionCard */ = {
+			isa = PBXGroup;
+			children = (
+				B16722202A8C9E36002B45A6 /* OptionCardView.swift */,
+				B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */,
+			);
+			path = OptionCard;
 			sourceTree = "<group>";
 		};
 		B16DFF312A8952BC00642730 /* Data */ = {
@@ -1198,6 +1220,7 @@
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
 				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
+				B16722212A8C9E36002B45A6 /* OptionCardView.swift in Sources */,
 				ED1A70982A83646E00F7920F /* (null) in Sources */,
 				B191DD492A8BE0F4008196CD /* ExteriorColorAPIManager.swift in Sources */,
 				B191DD422A8B8607008196CD /* InteriorColorSelectionModel.swift in Sources */,
@@ -1286,6 +1309,7 @@
 				B1604D652A8544C300C7B07D /* ModelTypeView.swift in Sources */,
 				EDCF32C12A8A91D500C46A4B /* CLQuotationPriceBar.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
+				B16722232A8CA67E002B45A6 /* OptionCardScollView.swift in Sources */,
 				B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */,
 				EDD304462A8A6AD300400DF9 /* API.swift in Sources */,
 				B1604D462A83AE4100C7B07D /* TrimAPIManager.swift in Sources */,
