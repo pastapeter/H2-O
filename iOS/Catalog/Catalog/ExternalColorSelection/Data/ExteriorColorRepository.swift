@@ -15,7 +15,7 @@ final class ExteriorColorRepository: ExteriorColorRepositoryProtocol {
     self.requestManager = requestManager
   }
 
-  func fetch(with trimId: Int) async throws -> [ExternalColor] {
+  func fetch(with trimId: Int) async throws -> [ExteriorColor] {
     let dto: [ExteriorColorResponseDTO] = try await requestManager.perform(ExteriorColorRequest.fetch(trimId: trimId))
     print(dto)
     return []

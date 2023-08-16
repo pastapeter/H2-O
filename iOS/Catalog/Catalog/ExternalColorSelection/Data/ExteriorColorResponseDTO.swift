@@ -15,3 +15,9 @@ struct ExteriorColorResponseDTO: Decodable {
   let hexCode: String?
   let images: [String]?
 }
+
+extension ExteriorColorResponseDTO {
+  
+  func toDomain() throws -> ExteriorColor
+  
+}
