@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExternalColor: Equatable, Hashable {
+struct ExteriorColor: Equatable, Hashable {
   var id: Int
   var name: String
   var choiceRatio: CLNumber

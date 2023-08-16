@@ -124,7 +124,7 @@
 		B1F988D32A8A7F6400C7B65F /* ExternalSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D22A8A7F6400C7B65F /* ExternalSelectionModel.swift */; };
 		B1F988D52A8A7F8600C7B65F /* ExternalSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D42A8A7F8600C7B65F /* ExternalSelectionIntent.swift */; };
 		B1F988D92A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988D82A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift */; };
-		B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */; };
+		B1F988DB2A8A8D1900C7B65F /* ExteriorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DA2A8A8D1900C7B65F /* ExteriorColor.swift */; };
 		B1F988DD2A8A8E3700C7B65F /* MockExternalColorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */; };
 		B1F988E12A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */; };
 		B1F988E32A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */; };
@@ -312,7 +312,7 @@
 		B1F988D22A8A7F6400C7B65F /* ExternalSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSelectionModel.swift; sourceTree = "<group>"; };
 		B1F988D42A8A7F8600C7B65F /* ExternalSelectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSelectionIntent.swift; sourceTree = "<group>"; };
 		B1F988D82A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColorRepositoryProtocol.swift; sourceTree = "<group>"; };
-		B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColor.swift; sourceTree = "<group>"; };
+		B1F988DA2A8A8D1900C7B65F /* ExteriorColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExteriorColor.swift; sourceTree = "<group>"; };
 		B1F988DC2A8A8E3700C7B65F /* MockExternalColorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExternalColorRepository.swift; sourceTree = "<group>"; };
 		B1F988E02A8B1C7300C7B65F /* InteriorColorSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionContainerView.swift; sourceTree = "<group>"; };
 		B1F988E22A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorColorSelectionHorizontalList.swift; sourceTree = "<group>"; };
@@ -808,7 +808,7 @@
 				B1F988D22A8A7F6400C7B65F /* ExternalSelectionModel.swift */,
 				B1F988D42A8A7F8600C7B65F /* ExternalSelectionIntent.swift */,
 				B1F988D82A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift */,
-				B1F988DA2A8A8D1900C7B65F /* ExternalColor.swift */,
+				B1F988DA2A8A8D1900C7B65F /* ExteriorColor.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1238,7 +1238,7 @@
 				ED1C70612A89C3A50049D275 /* EntryGuide.swift in Sources */,
 				B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */,
 				B1F988EE2A8B4AB800C7B65F /* InteriorColorDisplayView.swift in Sources */,
-				B1F988DB2A8A8D1900C7B65F /* ExternalColor.swift in Sources */,
+				B1F988DB2A8A8D1900C7B65F /* ExteriorColor.swift in Sources */,
 				ED1A70A52A836FB900F7920F /* ModelType.swift in Sources */,
 				B155C0FA2A79327A00F540CB /* Font+.swift in Sources */,
 				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
