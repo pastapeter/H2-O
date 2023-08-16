@@ -20,9 +20,14 @@ struct ColorSelectionComponent<ColorContent: View>: View {
       VStack {
         content()
         VStack(alignment: .leading, spacing: 0) {
-          Text("\(Text(state.choiceRatio.description).foregroundColor(state.isSelected ? .activeBlue2 : .gray600))%가 선택했어요")
-            .foregroundColor(.gray500)
-            .catalogFont(type: .HeadKRMedium14)
+          if let choiceRatioDesc = state.choiceRatio?.description {
+            Text("\(Text(choiceRatioDesc).foregroundColor(state.isSelected ? .activeBlue2 : .gray600))%가 선택했어요")
+              .foregroundColor(.gray500)
+              .catalogFont(type: .HeadKRMedium14)
+          } else {
+            Text("")
+              .catalogFont(type: .HeadKRMedium14)
+          }
           Text(state.name)
             .catalogFont(type: .HeadKRMedium16)
             .multilineTextAlignment(.leading)

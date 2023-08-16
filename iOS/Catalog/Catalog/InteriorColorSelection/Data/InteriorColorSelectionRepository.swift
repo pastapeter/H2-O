@@ -20,7 +20,7 @@ final class InteriorColorSelectionRepository: InteriorColorSelectionRepositoryPr
     return dto.compactMap { dto in
       do {
         return try dto.toDomain()
-      } catch(let e) {
+      } catch let e {
         print("🚨", e.localizedDescription)
        return nil
       }
