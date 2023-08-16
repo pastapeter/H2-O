@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum InteriorColorToDomainError: Error {
+enum InteriorColorToDomainError: LocalizedError {
   case noIdInResponse
   case noNameInResponse
   case noChoiceRatioInResponse
