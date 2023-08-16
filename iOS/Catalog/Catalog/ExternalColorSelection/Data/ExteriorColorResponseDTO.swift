@@ -37,12 +37,11 @@ extension ExteriorColorResponseDTO {
     if let choiceRatio = choiceRatio {
       domainChoiceRatio = CLNumber(Int32(choiceRatio ))
     }
-    
+
     var exteriorImages: [URL] = []
     if let images = images {
       exteriorImages = images.compactMap { URL(string: $0) }
     }
-    
 
     return ExteriorColor(id: id,
                          name: name,
