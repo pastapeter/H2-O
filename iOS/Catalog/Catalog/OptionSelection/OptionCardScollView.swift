@@ -10,7 +10,6 @@ import SwiftUI
 struct OptionCardScollView: View {
   var body: some View {
     VStack {
-      Spacer().frame(height: 50)
       FilterButtonBar()
       ScrollView {
         VStack(spacing: 16) {

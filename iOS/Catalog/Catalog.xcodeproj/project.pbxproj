@@ -124,6 +124,8 @@
 		B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */; };
 		B1E512322A8D2E31005B195D /* OptionSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */; };
 		B1E512342A8D2F16005B195D /* OptionSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */; };
+		B1E512362A8D48F4005B195D /* OptionCardScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512352A8D48F4005B195D /* OptionCardScrollModel.swift */; };
+		B1E512382A8D490B005B195D /* OptionCardScrollIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512372A8D490B005B195D /* OptionCardScrollIntent.swift */; };
 		B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */; };
 		B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */; };
 		B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */; };
@@ -322,6 +324,8 @@
 		B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionView.swift; sourceTree = "<group>"; };
 		B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionModel.swift; sourceTree = "<group>"; };
 		B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionIntent.swift; sourceTree = "<group>"; };
+		B1E512352A8D48F4005B195D /* OptionCardScrollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardScrollModel.swift; sourceTree = "<group>"; };
+		B1E512372A8D490B005B195D /* OptionCardScrollIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardScrollIntent.swift; sourceTree = "<group>"; };
 		B1EEBA882A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataWithHorizontalGraphView.swift; sourceTree = "<group>"; };
 		B1EEBA8A2A86A3AE008FC6A4 /* BarHorizontalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalView.swift; sourceTree = "<group>"; };
 		B1F2BC5D2A7B5B50005385E0 /* CLTopNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTopNaviBar.swift; sourceTree = "<group>"; };
@@ -704,6 +708,8 @@
 		B167221E2A8C9E1C002B45A6 /* OptionSelection */ = {
 			isa = PBXGroup;
 			children = (
+				B1E512372A8D490B005B195D /* OptionCardScrollIntent.swift */,
+				B1E512352A8D48F4005B195D /* OptionCardScrollModel.swift */,
 				B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */,
 				B167221F2A8C9E28002B45A6 /* OptionCard */,
 				B149BD1F2A8CE50A009A3C6B /* FilterButtonView.swift */,
@@ -1352,6 +1358,7 @@
 				B156463B2A8653D000FAD379 /* ModalPopUpComponent.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
 				B1084BE52A87A52000AE1758 /* ModelTypeButtonModifiers.swift in Sources */,
+				B1E512362A8D48F4005B195D /* OptionCardScrollModel.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				B1604D652A8544C300C7B07D /* ModelTypeView.swift in Sources */,
 				B149BD202A8CE50A009A3C6B /* FilterButtonView.swift in Sources */,
@@ -1396,6 +1403,7 @@
 				ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */,
 				ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */,
 				ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */,
+				B1E512382A8D490B005B195D /* OptionCardScrollIntent.swift in Sources */,
 				B149BD252A8CEE17009A3C6B /* FilterButtonBar.swift in Sources */,
 				B1A76B862A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift in Sources */,
 				B1F988D92A8A812600C7B65F /* ExteriorColorRepositoryProtocol.swift in Sources */,
