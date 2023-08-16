@@ -10,7 +10,7 @@ import Foundation
 struct InteriorColor: Equatable, Hashable {
   var id: Int
   var name: String
-  var choiceRatio: CLNumber
+  var choiceRatio: CLNumber?
   var price: CLNumber
   var fabricImageURL: URL?
   var bannerImageURL: URL?
