@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct OptionCardScollView: View {
-    var body: some View {
+  var body: some View {
+    VStack {
+      Spacer().frame(height: 50)
+      FilterButtonBar()
       ScrollView {
         VStack(spacing: 16) {
-          OptionCardView()
+          OptionCardView(isSelected: true)
           OptionCardView()
           OptionCardView()
           OptionCardView()
@@ -22,14 +25,14 @@ struct OptionCardScollView: View {
           OptionCardView()
         }
         .padding(.horizontal, 16)
-
       }
-
     }
+    
+  }
 }
 
 struct OptionCardScollView_Previews: PreviewProvider {
-    static var previews: some View {
-        OptionCardScollView()
-    }
+  static var previews: some View {
+    OptionCardScollView()
+  }
 }
