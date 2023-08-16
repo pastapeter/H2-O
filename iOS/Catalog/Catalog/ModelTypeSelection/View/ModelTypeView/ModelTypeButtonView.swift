@@ -43,14 +43,3 @@ struct ModelTypeButtonView_Previews: PreviewProvider {
       ModelTypeButtonView(state: .init(id: .init()), action: { _ in print("Hello") })
     }
 }
-
-fileprivate extension View {
-  @ViewBuilder
-  func buttonSelected(isselected: Bool) -> some View {
-    if isselected {
-      modifier(ModelButtonSelectedBackground())
-    } else {
-      modifier(ModelButtonUnSelectedBackground())
-    }
-  }
-}
