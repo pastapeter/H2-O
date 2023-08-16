@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum InteriorColorToDomainError: Error {
+  case noIdInResponse
+  case noNameInResponse
+  case noChoiceRatioInResponse
+  case noPriceInResponse
+}
+
 struct InteriorColorResponseDTO: Decodable {
   let id: Int?
   let name: String?
@@ -14,4 +21,35 @@ struct InteriorColorResponseDTO: Decodable {
   let price: Int?
   let fabricImage: String?
   let bannerImage: String?
+}
+
+extension InteriorColorResponseDTO {
+  
+  func toDomain() throws -> InteriorColor {
+    
+    guard let id = id else { throw InteriorColorToDomainError.noIdInResponse }
+    guard let name = name else { throw InteriorColorToDomainError.noNameInResponse }
+    guard let choiceRatio = choiceRatio else { throw InteriorColorToDomainError.noChoiceRatioInResponse }
+    guard let price = price else { throw InteriorColorToDomainError.noPriceInResponse }
+    
+    var fabricImageURL: URL?
+    var bannerImageURL: URL?
+    
+    if let fabricImageURLStr = fabricImage {
+      fabricImageURL = URL(string: fabricImageURLStr)
+    }
+    
+    if let bannerImageURLStr = bannerImage {
+      bannerImageURL = URL(string: bannerImageURLStr)
+    }
+    
+    return InteriorColor(id: id,
+                         name: name,
+                         choiceRatio: CLNumber(Int32(choiceRatio)),
+                         price: CLNumber(Int32(price)),
+                         fabricImageURL: fabricImageURL,
+                         bannerImageURL: bannerImageURL)
+    
+  }
+  
 }
