@@ -1,8 +1,6 @@
 package com.h2o.h2oServer.domain.optionPackage.dto;
 
-import com.h2o.h2oServer.domain.option.dto.OptionDetailsDto;
 import com.h2o.h2oServer.domain.option.dto.OptionDto;
-import com.h2o.h2oServer.domain.option.dto.OptionStatisticsDto;
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
 import com.h2o.h2oServer.domain.optionPackage.entity.PackageEntity;
@@ -24,7 +22,7 @@ public class PackageDetailsDto {
     private Integer price;
     private Integer choiceRatio;
     private Integer choiceCount;
-    private Boolean isOverHarf;
+    private Boolean isOverHalf;
     private List<String> hashTags;
     private List<OptionDto> components;
 
@@ -38,7 +36,7 @@ public class PackageDetailsDto {
                 .price(packageEntity.getPrice())
                 .choiceRatio(Math.round(packageEntity.getChoiceRatio() * 100))
                 .choiceCount(choiceCount)
-                .isOverHarf(choiceCount > SELL_NUMBER / 2)
+                .isOverHalf(choiceCount > SELL_NUMBER / 2)
                 .hashTags(hashTagEntities.stream()
                         .map(HashTagEntity::getName)
                         .map(HashTag::getLabel)

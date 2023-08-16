@@ -29,7 +29,7 @@ public class OptionDto {
             optionDtoBuilder.useCount(Math.round(optionEntity.getUseCount()));
         }
 
-        return OptionDto.builder()
+        return optionDtoBuilder
                 .name(optionEntity.getName())
                 .category(optionEntity.getCategory().getLabel())
                 .hashTags(hashTagEntities.stream()
