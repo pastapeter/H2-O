@@ -66,7 +66,7 @@ struct OptionCardView: View {
                 .overlay(
                   RoundedRectangle(cornerRadius: 2)
                     .inset(by: 0.5)
-                    .stroke(isSelected ? .activeBlue: Color.gray100, lineWidth: 1))
+                    .stroke(isSelected ? .activeBlue : Color.gray100, lineWidth: 1))
               Image("check").renderingMode(.template).foregroundColor(isSelected ? .white : .gray200)
             }
           }
