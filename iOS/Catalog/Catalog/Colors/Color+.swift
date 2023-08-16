@@ -44,6 +44,7 @@ extension Color {
   static let lightSand = Color("LightSand")
 
   static let background2 = Color("background2")
+  static let imageTagBackground = Color("ImageTagBackground")
 }
 
 extension Color {
