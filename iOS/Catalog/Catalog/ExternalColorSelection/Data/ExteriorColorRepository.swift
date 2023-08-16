@@ -17,7 +17,7 @@ final class ExteriorColorRepository: ExteriorColorRepositoryProtocol {
 
   func fetch(with trimId: Int) async throws -> [ExteriorColor] {
     let dto: [ExteriorColorResponseDTO] = try await requestManager.perform(ExteriorColorRequest.fetch(trimId: trimId))
-    
+
     return dto.compactMap {
       do {
         return try $0.toDomain()
@@ -26,7 +26,7 @@ final class ExteriorColorRepository: ExteriorColorRepositoryProtocol {
         return nil
       }
     }
-    
+
   }
 
 }
