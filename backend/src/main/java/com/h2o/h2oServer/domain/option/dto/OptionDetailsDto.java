@@ -21,9 +21,17 @@ public class OptionDetailsDto {
     private OptionStatisticsDto hmgData;
     private Integer price;
     private boolean containsHmgData;
+    private boolean containsUseCount;
 
     public static OptionDetailsDto of(OptionDetailsEntity optionDetailsEntity, List<HashTagEntity> hashTagEntities) {
-        return OptionDetailsDto.builder()
+        OptionDetailsDtoBuilder builder = OptionDetailsDto.builder();
+
+        if (containsHmgData(optionDetailsEntity)) {
+            builder.hmgData(OptionStatisticsDto.of(optionDetailsEntity.getChoiceRatio(),
+                    optionDetailsEntity.getUseCount()));
+        }
+
+        return builder
                 .name(optionDetailsEntity.getName())
                 .category(optionDetailsEntity.getCategory().getLabel())
                 .hashTags(hashTagEntities.stream()
@@ -31,11 +39,14 @@ public class OptionDetailsDto {
                         .collect(Collectors.toList()))
                 .image(optionDetailsEntity.getImage())
                 .description(optionDetailsEntity.getDescription())
-                .hmgData(OptionStatisticsDto.of(optionDetailsEntity.getChoiceRatio(),
-                        optionDetailsEntity.getUseCount()))
                 .price(optionDetailsEntity.getPrice())
                 .containsHmgData(containsHmgData(optionDetailsEntity))
+                .containsUseCount(containsUseCount(optionDetailsEntity))
                 .build();
+    }
+
+    private static boolean containsUseCount(OptionDetailsEntity optionDetailsEntity) {
+        return optionDetailsEntity.getUseCount() != null;
     }
 
     private static boolean containsHmgData(OptionDetailsEntity optionDetailsEntity) {
