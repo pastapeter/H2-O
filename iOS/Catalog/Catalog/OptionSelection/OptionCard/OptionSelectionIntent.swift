@@ -27,7 +27,7 @@ final class OptionSelectionIntent: ObservableObject {
   typealias State = OptionSelectionModel.State
   typealias ViewAction = OptionSelectionModel.ViewAction
   
-  @Published var state: State = State(currentPage: 0)
+  @Published var state: State
   
   var cancellable: Set<AnyCancellable> = []
   

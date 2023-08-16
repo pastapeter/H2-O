@@ -49,6 +49,6 @@ extension OptionSelectionView {
 
 struct OptionSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-      OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0)))
+      OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0, additionalOptionState: .init(cardStates: [], selectedFilterId: 0), defaultOptionState: .init(cardStates: [], selectedFilterId: 1))))
     }
 }
