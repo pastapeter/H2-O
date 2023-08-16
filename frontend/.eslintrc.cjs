@@ -20,6 +20,8 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:testing-library/react',
+    'plugin:jest-dom/recommended',
     'eslint-config-prettier',
   ],
   plugins: ['react-refresh'],

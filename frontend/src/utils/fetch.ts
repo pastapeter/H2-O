@@ -1,5 +1,5 @@
 async function request<TResponse>(url: string, options: RequestInit = {}): Promise<TResponse> {
-  const baseUrl = `/api${url}`;
+  const baseUrl = `http://localhost:5173/api${url}`;
 
   const res = await fetch(baseUrl, options);
   if (res.status !== 200) {

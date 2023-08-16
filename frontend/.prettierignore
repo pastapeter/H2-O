@@ -2,6 +2,7 @@
 .github
 .cache
 .gitignore
+coverage
 public
 node_modules
 build

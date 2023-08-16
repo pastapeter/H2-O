@@ -3,7 +3,7 @@ import InteriorPage from './InteriorPage';
 import ModelPage from './ModelPage';
 import OptionPage from './OptionPage';
 import ResultPage from './ResultPage';
-import TrimPage from './TrimPage';
+import { TrimPage } from './TrimPage';
 import { PageCarousel as Carousel } from '@/components/carousel';
 import { useSafeContext } from '@/hooks';
 import { SlideContext } from '@/providers/SlideProvider';
