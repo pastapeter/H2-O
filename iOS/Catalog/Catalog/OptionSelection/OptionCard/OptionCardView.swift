@@ -10,7 +10,9 @@ import SwiftUI
 struct OptionCardView: View {
 
   var choiceRatioExist: Bool = true
-  var isSelected: Bool = true
+  var isSelected: Bool = false
+  @State var isModalPresenting = false
+  var detailState: ModelTypeDetailState = .init(content: .mock(), hmgData: .mock())
   var name: String = "컴포트2"
   var price = CLNumber(1090000)
 
@@ -22,7 +24,9 @@ struct OptionCardView: View {
           VStack(spacing: 0) {
             HStack {
               Spacer()
-              HMGButton(action: { })
+              HMGButton(action: {
+                isModalPresenting.toggle()
+              })
             }
             Spacer()
             HStack {
@@ -45,7 +49,6 @@ struct OptionCardView: View {
             Text("")
               .catalogFont(type: .TextKRMedium12)
           }
-          Spacer().frame(height: -1)
 
           HStack(alignment: .lastTextBaseline) {
             VStack(alignment: .leading, spacing: 0) {
@@ -77,6 +80,13 @@ struct OptionCardView: View {
       .frame(height: UIScreen.main.bounds.height * 212 / 812)
       .optionCardBackground(isSelected: isSelected)
       .cornerRadius(2)
+      .CLDialogFullScreenCover(show: $isModalPresenting) {
+        ModalPopUpComponent(state: detailState.content, submitAction: {
+          // TODO 가격 추가하기
+        }, content: {
+          ModelContentView(state: detailState)
+        })
+      }
     }
 
 }
@@ -94,7 +104,7 @@ fileprivate extension View {
     if isSelected {
       modifier(ModelButtonSelectedBackground())
     } else {
-      modifier(ModelButtonUnSelectedBackground())
+      modifier(OptionCardUnSelectedBackground())
     }
   }
 
