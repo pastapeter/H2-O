@@ -17,7 +17,7 @@ enum InteriorColorToDomainError: LocalizedError {
 struct InteriorColorResponseDTO: Decodable {
   let id: Int?
   let name: String?
-  let choiceRatio: Double?
+  let choiceRatio: Int?
   let price: Int?
   let fabricImage: String?
   let bannerImage: String?
@@ -44,7 +44,7 @@ extension InteriorColorResponseDTO {
     }
 
     if let choiceRatio = choiceRatio {
-      domainChoiceRatio = CLNumber(Int32(choiceRatio * 100))
+      domainChoiceRatio = CLNumber(Int32(choiceRatio))
     }
 
     return InteriorColor(id: id,

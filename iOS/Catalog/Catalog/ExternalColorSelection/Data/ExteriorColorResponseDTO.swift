@@ -18,7 +18,7 @@ enum ExteriorColorToDomainError: LocalizedError {
 struct ExteriorColorResponseDTO: Decodable {
   let id: Int?
   let name: String?
-  let choiceRatio: Double?
+  let choiceRatio: Int?
   let price: Int?
   let hexCode: String?
   let images: [String]?
@@ -35,13 +35,14 @@ extension ExteriorColorResponseDTO {
 
     var domainChoiceRatio: CLNumber?
     if let choiceRatio = choiceRatio {
-      domainChoiceRatio = CLNumber(Int32(choiceRatio * 100))
+      domainChoiceRatio = CLNumber(Int32(choiceRatio ))
     }
-
+    
     var exteriorImages: [URL] = []
     if let images = images {
       exteriorImages = images.compactMap { URL(string: $0) }
     }
+    
 
     return ExteriorColor(id: id,
                          name: name,
