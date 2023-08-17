@@ -41,7 +41,7 @@ struct ModelTypeDetailState: Equatable {
 
 struct OptionState: Equatable, Identifiable, Hashable {
 
-  var id: UUID
+  var id: Int
   var isSelected: Bool = true
   var frequency: Int = 0
   var title: String = "디젤"

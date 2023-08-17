@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MaxTorqueFromEngine {
+struct MaxTorqueFromEngine: Codable {
   var torque: Double
   var minRPM: Int
   var maxRPM: Int

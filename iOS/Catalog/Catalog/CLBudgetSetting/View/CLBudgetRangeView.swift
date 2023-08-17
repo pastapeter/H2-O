@@ -20,9 +20,6 @@ struct CLBudgetRangeView: IntentBindingType {
     }
 
     @SwiftUI.State var isFloatingExpanded: Bool = false
-
-    let minimunBudget: CLNumber
-    let maximumBudget: CLNumber
 }
 
 extension CLBudgetRangeView {
@@ -78,16 +75,16 @@ extension CLBudgetRangeView: View {
                     switch status {
                       case .`default`, .complete:
                             CLSliderView(intent: intent,
-                                         minimumBudget: CLNumber(38500000),
-                                         maximumBudget: CLNumber(43000000),
+                                         minimumBudget: state.minimumPrice,
+                                         maximumBudget: state.maximumPrice,
                                          currentQuotationPrice: state.currentQuotationPrice,
                                          status: status,
                                          budgetPriceBinding: budgetPriceBinding,
                                          isExceedBudget: isExceedBudgetBinding)
                       case .similarQuotation:
-                            CLSimilarQuotationSlideView(minimumBudget: CLNumber(38500000),
-                                                        maximumBudget: CLNumber(43000000),
-                                                        currentQuotationPrice: CLNumber(39000000),
+                        CLSimilarQuotationSlideView(minimumBudget: state.minimumPrice,
+                                                    maximumBudget: state.maximumPrice,
+                                                    currentQuotationPrice: state.currentQuotationPrice,
                                                         similarQuotationPrice: CLNumber(41000000))
                     }
                     // MARK: - 확인 버튼
@@ -104,6 +101,7 @@ extension CLBudgetRangeView: View {
         .padding(.horizontal, 12)
         .padding(.bottom, 20)
         .onAppear {
+          intent.send(action: .onAppear)
             if status == .similarQuotation {
                 isFloatingExpanded = true
             }
@@ -117,9 +115,7 @@ extension CLBudgetRangeView {
         CLBudgetRangeView(container: .init(
             intent: intent as CLBudgetRangeIntentType,
             state: intent.state,
-            modelChangePublisher: intent.objectWillChange),
-                          minimunBudget: CLNumber(38500000),
-                          maximumBudget: CLNumber(43000000))
+            modelChangePublisher: intent.objectWillChange))
     }
 }
 

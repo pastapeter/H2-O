@@ -8,16 +8,6 @@
 import Foundation
 import Combine
 
-protocol CLNavigationIntentType {
-
-  var state: CLNavigationModel.State { get }
-
-  func send(action: CLNavigationModel.ViewAction)
-
-  func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
-
-}
-
 final class CLNavigationIntent: ObservableObject {
 
   // MARK: - LifeCycle
@@ -27,14 +17,15 @@ final class CLNavigationIntent: ObservableObject {
   }
 
   // MARK: - Internal
-  typealias State = CLNavigationModel.State
-  typealias ViewAction = CLNavigationModel.ViewAction
 
   @Published var state: State = State(currentPage: 0)
   var cancellable: Set<AnyCancellable> = []
 }
 
 extension CLNavigationIntent: CLNavigationIntentType, IntentType {
+  typealias ViewAction = CLNavigationModel.ViewAction
+
+  typealias State = CLNavigationModel.State
 
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
@@ -48,4 +39,14 @@ extension CLNavigationIntent: CLNavigationIntentType, IntentType {
       print("didTapSwitchVehicleModel")
     }
   }
+}
+
+protocol CLNavigationIntentType {
+
+  var state: CLNavigationModel.State { get }
+
+  func send(action: CLNavigationModel.ViewAction)
+
+  func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
+
 }

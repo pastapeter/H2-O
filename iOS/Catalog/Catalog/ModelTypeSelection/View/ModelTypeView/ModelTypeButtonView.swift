@@ -10,7 +10,7 @@ import SwiftUI
 struct ModelTypeButtonView: View {
 
   var state: OptionState
-  var action: (UUID) -> Void
+  var action: (Int) -> Void
 
     var body: some View {
       Button {

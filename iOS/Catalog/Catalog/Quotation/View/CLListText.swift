@@ -10,8 +10,7 @@ import SwiftUI
 struct CLListText: View {
 
     var title: String
-    var name: String
-    var price: CLNumber
+    var info: SummaryQuotationInfo
     var body: some View {
         ZStack {
             HStack(spacing: 8) {
@@ -23,7 +22,7 @@ struct CLListText: View {
                 }
                 .frame(width: 68)
                 HStack {
-                    Text(name)
+                  Text(info.name)
                         .catalogFont(type: .TextKRMedium14)
                         .foregroundColor(Color.gray900)
                     Spacer()
@@ -33,7 +32,7 @@ struct CLListText: View {
             }
             HStack {
                 Spacer()
-                Text(price.signedWon)
+              Text(info.price.signedWon)
                     .catalogFont(type: .TextKRRegular14)
                     .foregroundColor(Color.gray900)
             }

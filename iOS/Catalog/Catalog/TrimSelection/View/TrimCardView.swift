@@ -45,7 +45,7 @@ struct TrimCardView: View {
 
 struct TrimCardView_Previews: PreviewProvider {
     static var previews: some View {
-      TrimCardView(trim: Trim(id: UUID(),
+      TrimCardView(trim: Trim(id: 1234,
                               name: "Le Blanc",
                               description: "실용적인 사양의 경제적인 펠리세이드",
                               price: CLNumber(40440000),

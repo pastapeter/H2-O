@@ -8,7 +8,7 @@
 import Foundation
 
 // Powertrain
-struct PowertrainDTO: Codable {
+struct PowerTrainDTO: Codable {
     let id: Int?
     let name: String?
     let price: Int?
@@ -18,15 +18,17 @@ struct PowertrainDTO: Codable {
     let maxOutput: MaxOutputDTO?
     let maxTorque: MaxTorqueDTO?
 }
-extension PowertrainDTO {
-  func toOptionInDetail() throws -> OptionInDetail {
-    return OptionInDetail(title: name ?? "",
-                   choiceRatio: choiceRatio ?? 0,
-                   price: CLNumber(Int32(price ?? 0)),
-                   description: description ?? "",
-                   imageURL: URL(string: image ?? ""),
-                   maxOuputFromEngine: try maxOutput?.toDomain(),
-                   maxTorqueFromEngine: try maxTorque?.toDomain())
+extension PowerTrainDTO {
+  func toDomain() throws -> PowerTrainModel {
+    return PowerTrainModel(
+      id: id ?? 0,
+                          name: name ?? "",
+                           price: CLNumber(Int32(price ?? 0)),
+                           choiceRaatio: choiceRatio ?? 0,
+                           description: description ?? "",
+                           image: URL(string: image ?? ""),
+                           maxOutput: try (maxOutput ?? MaxOutputDTO(output: 0, minRpm: 0, maxRpm: 0)).toDomain(),
+                           maxTorque: try (maxTorque ?? MaxTorqueDTO(torque: 0, minRpm: 0, maxRpm: 0)).toDomain())
   }
 }
 
@@ -66,17 +68,18 @@ struct BodyTypeDTO: Codable {
     let image: String?
 }
 extension BodyTypeDTO {
-  func toDomain() throws -> Option {
-    return Option(id: id ?? 0,
-                  title: name ?? "",
-                  choiceRatio: choiceRatio ?? 0,
-                  price: CLNumber(Int32(price ?? 0)),
-                  imageURL: URL(string: image ?? ""))
+  func toDomain() throws -> BodyTypeModel {
+    return BodyTypeModel(
+      id: id ?? 0,
+name: name ?? "",
+                           price: CLNumber(Int32(price ?? 0)),
+                           choiceRaatio: choiceRatio ?? 0,
+                           description: description ?? "",
+                           image: URL(string: image ?? ""))
   }
 }
-
 // Drivetrain
-struct DrivetrainDTO: Codable {
+struct DriveTrainDTO: Codable {
     let id: Int?
     let name: String?
     let price: Int?
@@ -84,19 +87,20 @@ struct DrivetrainDTO: Codable {
     let description: String?
     let image: String?
 }
-extension DrivetrainDTO {
-  func toDomain() throws -> Option {
-    return Option(id: id ?? 0,
-                  title: name ?? "",
-                  choiceRatio: choiceRatio ?? 0,
-                  price: CLNumber(Int32(price ?? 0)),
-                  imageURL: URL(string: image ?? ""))
+extension DriveTrainDTO {
+  func toDomain() throws -> DriveTrainModel {
+    return DriveTrainModel(
+      id: id ?? 0,
+name: name ?? "",
+                           price: CLNumber(Int32(price ?? 0)),
+                           choiceRaatio: choiceRatio ?? 0,
+                           description: description ?? "",
+                           image: URL(string: image ?? ""))
   }
 }
-
 // Root
 struct ModelTypeResponseDTO: Codable {
-    let powertrains: [PowertrainDTO]?
+    let powertrains: [PowerTrainDTO]?
     let bodytypes: [BodyTypeDTO]?
-    let drivetrains: [DrivetrainDTO]?
+    let drivetrains: [DriveTrainDTO]?
 }
