@@ -8,7 +8,7 @@
 import Foundation
 
 enum OptionFilter: CustomStringConvertible {
-  
+
   case total
   case detail
   case accessory
@@ -21,7 +21,7 @@ enum OptionFilter: CustomStringConvertible {
   case seat
   case comfort
   case multimedia
-  
+
   var description: String {
     switch self {
     case .total:
@@ -50,11 +50,11 @@ enum OptionFilter: CustomStringConvertible {
       return "멀티미디어"
     }
   }
-  
+
   static var additionalOptionFilter: [OptionFilter] {
     return [.total, .detail, .accessory, .wheel]
   }
-  
+
   static var defaultOptionFiletr: [OptionFilter] {
     return [.total, .powerTrain, .AISafeguardTech, .safe, .exterior, .interior, .seat, .comfort, .multimedia]
   }
