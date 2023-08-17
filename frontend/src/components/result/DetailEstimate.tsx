@@ -3,6 +3,7 @@ import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { SimilarEstimationPopup } from '../similarEstimation';
 import Accordian from './EstimateAccordian';
+import PriceGraph from './PriceGraph';
 import { getPriceSum } from './utils';
 import { Divider, Flex, HMGTag, Typography } from '@/components/common';
 import { useToggle } from '@/hooks';
@@ -105,6 +106,7 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
               `}
               length='100%'
             />
+            <PriceGraph />
           </GraphContainer>
           <GraphContainer>
             <StyledHMGTag variant='small' />

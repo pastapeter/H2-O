@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 interface Props<T> {
   data: T[];
@@ -14,7 +14,11 @@ function usePaigination<T>({ data, initialPage = 0, pageSize = 4 }: Props<T>) {
   const isStartPage = currentPage === 0;
   const isEndPage = currentPage === totalPage - 1;
   const startIdx = pageSize * currentPage;
-  const currentSlice = data.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+
+  const currentSlice = useMemo(
+    () => data.slice(currentPage * pageSize, (currentPage + 1) * pageSize),
+    [data, currentPage, pageSize],
+  );
 
   const nextPage = useCallback(() => {
     setCurrentPage((prev) => {

@@ -22,8 +22,8 @@ function TrimImageList({ imageSrcList }: Props) {
   return (
     <TrimImageListContainer>
       {images.map((src, idx) => (
-        <Image key={src} isActive={idx === activeIdx} onClick={() => handleImageClick(idx)}>
-          <img src={src} alt={src} />
+        <Image key={idx} isActive={idx === activeIdx} onClick={() => handleImageClick(idx)}>
+          <img src={src} alt={`이미지 ${idx + 1}`} />
         </Image>
       ))}
     </TrimImageListContainer>

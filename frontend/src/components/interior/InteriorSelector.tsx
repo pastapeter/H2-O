@@ -1,9 +1,11 @@
+import { useRef } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import InteriorCard from './InteriorCard';
 import type { InteriorColorResponse } from '@/types/interface';
 import { Flex, Icon, Typography } from '@/components/common';
 import { usePagination } from '@/hooks';
+import { getImagePreloader } from '@/utils/image';
 
 interface Props {
   optionList: InteriorColorResponse[];
@@ -12,6 +14,7 @@ interface Props {
 }
 
 function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
+  const imageLoaderRef = useRef(getImagePreloader());
   const { currentSlice, hasPaigination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
     usePagination({
       data: optionList,
@@ -22,6 +25,10 @@ function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
     fill: ${isLast ? colors.gray200 : colors.gray600};
     cursor: ${isLast ? 'not-allowed' : 'pointer'};
   `;
+
+  const handleMouseOver = (image: string) => {
+    imageLoaderRef.current([image]);
+  };
 
   return (
     <Container>
@@ -48,7 +55,7 @@ function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
         </Flex>
         <Flex gap={16} width='100%'>
           {currentSlice.map((color) => {
-            const { id, fabricImage, ...props } = color;
+            const { id, fabricImage, bannerImage, ...props } = color;
 
             return (
               <InteriorCard
@@ -56,6 +63,7 @@ function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
                 image={fabricImage}
                 isSelected={id === selectedColor.id}
                 onClick={() => onSelectColor(color)}
+                onMouseOver={() => handleMouseOver(bannerImage)}
                 {...props}
               />
             );

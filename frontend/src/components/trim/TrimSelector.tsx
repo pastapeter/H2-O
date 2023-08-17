@@ -1,7 +1,9 @@
+import { useRef } from 'react';
 import styled from '@emotion/styled';
 import { MainSelector } from '../common/MainSelector';
 import TrimCard from './TrimCard';
 import { TrimResponse } from '@/types/interface';
+import { getImagePreloader } from '@/utils/image';
 
 interface Props {
   trimList: TrimResponse[];
@@ -10,11 +12,17 @@ interface Props {
 }
 
 function TrimSelector({ trimList, selectedTrimId, onSelectTrim }: Props) {
+  const imageLoaderRef = useRef(getImagePreloader());
+
+  const handleMouseOver = (images: string[]) => {
+    imageLoaderRef.current(images);
+  };
+
   return (
     <MainSelector title='트림을 선택해주세요'>
       <TrimList>
         {trimList.map((trim) => {
-          const { id, name, ...rest } = trim;
+          const { id, name, images, ...rest } = trim;
           return (
             <TrimCard
               key={id}
@@ -22,6 +30,7 @@ function TrimSelector({ trimList, selectedTrimId, onSelectTrim }: Props) {
               title={name}
               isSelected={id === selectedTrimId}
               onClick={() => onSelectTrim(trim)}
+              onMouseOver={() => handleMouseOver(images)}
               {...rest}
             />
           );

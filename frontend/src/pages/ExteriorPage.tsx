@@ -43,7 +43,7 @@ function ExteriorPage() {
   return (
     <Fragment>
       <Banner title={name} subTitle='외장색상'>
-        <ExteriorCarImg imgUrlList={images} />
+        <ExteriorCarImg name={name} imgUrlList={images} />
       </Banner>
       {exteriorColorList && (
         <ExteriorSelector
