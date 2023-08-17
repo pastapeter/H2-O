@@ -23,3 +23,15 @@ enum OptionCardScrollModel {
     case fetchCardState(cardStates: [OptionCardModel.State])
   }
 }
+
+extension OptionCardScrollModel.State {
+  
+  static func mock1() -> Self {
+    return .init(filterState: .init(filters: OptionFilter.additionalOptionFilter, selectedFilterId: 0), cardStates: [.init(hashTag: ["캠핑", "캠핑"], info: .init(title: "컴포트2", description: "", frequency: 38, price: CLNumber(38000)))], selectedOptionId: 0)
+  }
+  
+  static func mock2() -> Self {
+    return .init(filterState: .init(filters: OptionFilter.defaultOptionFiletr, selectedFilterId: 0), cardStates: [.init(hashTag: ["캠핑", "캠핑"], info: .init(title: "컴포트2", description: "", frequency: 38, price: CLNumber(38000)))], selectedOptionId: 0)
+  }
+  
+}
