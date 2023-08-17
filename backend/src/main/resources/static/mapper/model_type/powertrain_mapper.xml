@@ -29,7 +29,11 @@
         limit 1
     </select>
 
-
+    <select id="checkIfPowertrainExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM powertrain
+        WHERE id = #{id}
+    </select>
 
     <sql id="findPowertrainsByCarId">
         select car_id, powertrain_id, name, description, image, price, choice_ratio

@@ -10,9 +10,10 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @MybatisTest
 @Sql("classpath:db/modelType/drivetrain-data.sql")
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DrivetrainMapperTest {
 
     @Autowired
@@ -27,7 +28,6 @@ class DrivetrainMapperTest {
 
     @Test
     @DisplayName("존재하는 구동방식을 조회하면 해당 데이터를 DrivetrainEntity로 반환한다.")
-    @Order(2)
     void findById() {
         //given
         Long drivetrainId = 1L;
@@ -44,11 +44,11 @@ class DrivetrainMapperTest {
         //then
         softly.assertThat(foundDrivetrain).as("유효한 데이터가 매핑되었는지 확인")
                 .isEqualTo(drivetrain);
+        softly.assertAll();
     }
 
     @Test
     @DisplayName("특정 차량의 구동방식을 조회하면 해당 차량에 적용 가능한 한 모든 구동방식을 CarDrivetrainEntity의 리스트로 반환한다.")
-    @Order(1)
     void findDrivetrainsByCarId() {
         //given
         Long carId = 1L;
@@ -87,4 +87,29 @@ class DrivetrainMapperTest {
         softly.assertAll();
     }
 
+    @Test
+    @DisplayName("존재하는 구동방식인 경우 true를 반환한다.")
+    void checkIfOptionExists() {
+        //given
+        Long drivetrainId = 1L;
+
+        //when
+        Boolean isExists = drivetrainMapper.checkIfDrivetrainExists(drivetrainId);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 구동방식인 경우 false를 반환한다.")
+    void checkIfOptionExistsFalse() {
+        //given
+        Long drivetrainId = 5L;
+
+        //when
+        Boolean isExists = drivetrainMapper.checkIfDrivetrainExists(drivetrainId);
+
+        //then
+        assertThat(isExists).isFalse();
+    }
 }

@@ -9,6 +9,12 @@
         where id = #{id}
     </select>
 
+    <select id="checkIfBodytypeExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM bodytype
+        WHERE id = #{id}
+    </select>
+
     <select id="findBodytypesByCarId" resultType="CarBodytypeEntity">
         <include refid="findBodytypeByCarId"/>
     </select>

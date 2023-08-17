@@ -10,9 +10,10 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @MybatisTest
 @Sql("classpath:db/modelType/bodytype-data.sql")
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BodytypeMapperTest {
 
     @Autowired
@@ -26,7 +27,6 @@ class BodytypeMapperTest {
     }
 
     @Test
-    @Order(2)
     @DisplayName("존재하는 바디타입을 조회하면 해당 데이터를 BodytypeEntity로 반환한다.")
     void findById() {
         //given
@@ -44,10 +44,10 @@ class BodytypeMapperTest {
         //then
         softly.assertThat(foundBodytype).as("유효한 데이터가 매핑되었는지 확인")
                 .isEqualTo(bodytype);
+        softly.assertAll();
     }
 
     @Test
-    @Order(1)
     @DisplayName("특정 차량의 바디타입을 조회하면 해당 차량에 적용 가능한 한 모든 바디타입을 CarBodytypeEntity의 리스트로 반환한다.")
     void findBodytypeByCarId() {
         //given
@@ -83,7 +83,32 @@ class BodytypeMapperTest {
         softly.assertThat(foundEntities).as("carId에 해당하는 Entity가 모두 매핑되었는지 확인")
                 .contains(entity1)
                 .contains(entity2);
-
         softly.assertAll();
+    }
+
+    @Test
+    @DisplayName("존재하는 바디타입인 경우 true를 반환한다.")
+    void checkIfBodytypeExists() {
+        //given
+        Long id = 1L;
+
+        //when
+        Boolean isExists = bodytypeMapper.checkIfBodytypeExists(id);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 바디타입인 경우 false를 반환한다.")
+    void checkIfBodytypeExistsFalse() {
+        //given
+        Long id = 5L;
+
+        //when
+        Boolean isExists = bodytypeMapper.checkIfBodytypeExists(id);
+
+        //then
+        assertThat(isExists).isFalse();
     }
 }

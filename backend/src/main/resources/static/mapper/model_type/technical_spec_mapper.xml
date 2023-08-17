@@ -8,4 +8,10 @@
         from technical_spec
         where powertrain_id = ${powertrainId} and drivetrain_id = ${drivetrainId};
     </select>
+
+    <select id="checkIfTechnicalSpecExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM technical_spec
+        WHERE powertrain_id = #{powertrainId} and drivetrain_id = #{drivetrainId}
+    </select>
 </mapper>

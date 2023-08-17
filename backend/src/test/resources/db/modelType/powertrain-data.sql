@@ -1,8 +1,8 @@
-INSERT INTO powertrain(name, description, image) VALUES
-                                                     ('powertrain1', 'description1', 'img_url1'),
-                                                     ('powertrain2', 'description2', 'img_url2'),
-                                                     ('powertrain3', 'description3', 'img_url3'),
-                                                     ('powertrain4', 'description4', 'img_url4');
+INSERT INTO powertrain(id, name, description, image) VALUES
+                                                     (1, 'powertrain1', 'description1', 'img_url1'),
+                                                     (2, 'powertrain2', 'description2', 'img_url2'),
+                                                     (3, 'powertrain3', 'description3', 'img_url3'),
+                                                     (4, 'powertrain4', 'description4', 'img_url4');
 
 INSERT INTO powertrain_output(powertrain_id, output, min_rpm, max_rpm) VALUES
                                                                            (1, 202.2, 1000, 1000),

@@ -22,4 +22,10 @@
         from package_options
         where package_id = #{packageId}
     </select>
+
+    <select id="checkIfPackageExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM package
+        WHERE id = #{id}
+    </select>
 </mapper>

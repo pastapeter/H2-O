@@ -6,7 +6,7 @@
         select name, image, description, category, use_count, choice_ratio, price, option_type
         from options
         join trims_options on trims_options.option_id = options.id
-        where trims_options.trim_id = #{trimId} and options.id = #{optionId}
+        where trims_options.trim_id = #{trimId} and options.id = #{id}
     </select>
 
     <select id="findOption" resultType="OptionEntity">
@@ -22,4 +22,11 @@
                  join hashtag on hashtag.id = options_hashtag.hashtag_id
         where options.id = #{optionId}
     </select>
+
+    <select id="checkIfOptionExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM options
+        WHERE id = #{id}
+    </select>
+
 </mapper>

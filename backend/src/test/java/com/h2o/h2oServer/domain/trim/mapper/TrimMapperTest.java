@@ -206,4 +206,32 @@ class TrimMapperTest {
         //then
         assertThat(actualPrice).isEqualTo(expectedPrice);
     }
+
+    @Test
+    @DisplayName("존재하는 트림인 경우 true를 반환한다.")
+    @Sql("classpath:db/trim/trims-data.sql")
+    void checkIfTrimExists() {
+        //given
+        Long id = 1L;
+
+        //when
+        Boolean isExists = trimMapper.checkIfTrimExists(id);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 트림인 경우 false를 반환한다.")
+    @Sql("classpath:db/trim/trims-data.sql")
+    void checkIfTrimExistsFalse() {
+        //given
+        Long id = 11L;
+
+        //when
+        Boolean isExists = trimMapper.checkIfTrimExists(id);
+
+        //then
+        assertThat(isExists).isFalse();
+    }
 }

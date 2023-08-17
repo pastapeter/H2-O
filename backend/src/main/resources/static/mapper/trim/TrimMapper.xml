@@ -71,6 +71,12 @@
                   from trims join trims_external_color on trims.id = trims_external_color.trim_id where trims.id = #{id} group by trims.id) as external_color;
     </select>
 
+    <select id="checkIfTrimExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM trims
+        WHERE id = #{id}
+    </select>
+
     <sql id="findInternalColor">
         select id, name, fabric_image, internal_image, price, choice_ratio
         from internal_color

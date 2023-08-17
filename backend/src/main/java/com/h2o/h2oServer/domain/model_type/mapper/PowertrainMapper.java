@@ -11,8 +11,14 @@ import java.util.List;
 @Mapper
 public interface PowertrainMapper {
     PowertrainEntity findById(Long id);
+
     PowertrainOutputEntity findOutput(Long id);
+
     PowertrainTorqueEntity findTorque(Long id);
+
     List<CarPowerTrainEntity> findPowertrainsByCarId(Long carId);
+
     CarPowerTrainEntity findDefaultPowertrainByCarId(Long carId);
+
+    Boolean checkIfPowertrainExists(Long id);
 }

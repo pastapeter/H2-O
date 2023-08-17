@@ -18,6 +18,12 @@
         limit 1
     </select>
 
+    <select id="checkIfDrivetrainExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM drivetrain
+        WHERE id = #{id}
+    </select>
+
     <sql id="findDrivetrainsByCarId">
         select car_id, drivetrain_id, name, description, image, price, choice_ratio
         from car_drivetrain

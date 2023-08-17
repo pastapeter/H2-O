@@ -6,6 +6,7 @@ import com.h2o.h2oServer.domain.options.dto.TrimExtraOptionDto;
 import com.h2o.h2oServer.domain.options.entity.TrimDefaultOptionEntity;
 import com.h2o.h2oServer.domain.options.entity.TrimExtraOptionEntity;
 import com.h2o.h2oServer.domain.options.mapper.OptionsMapper;
+import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class OptionsService {
         List<TrimExtraOptionDto> trimExtraOptionDtos = new ArrayList<>();
 
         List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimPackages(trimId);
+
+        validateExistenceOfOptions(extraOptionEntities);
 
         for (TrimExtraOptionEntity extraOptionEntity : extraOptionEntities) {
             Long packageId = extraOptionEntity.getId();
@@ -43,6 +46,8 @@ public class OptionsService {
 
         List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimExtraOptions(trimId);
 
+        validateExistenceOfOptions(extraOptionEntities);
+
         for (TrimExtraOptionEntity extraOptionEntity : extraOptionEntities) {
             Long optionId = extraOptionEntity.getId();
             List<HashTagEntity> optionHashTags = optionsMapper.findOptionHashTag(optionId);
@@ -62,6 +67,8 @@ public class OptionsService {
 
         List<TrimDefaultOptionEntity> defaultOptionEntities = optionsMapper.findTrimDefaultOptions(trimId);
 
+        validateExistenceOfOptions(defaultOptionEntities);
+
         for (TrimDefaultOptionEntity defaultOptionEntity : defaultOptionEntities) {
             Long optionId = defaultOptionEntity.getId();
             List<HashTagEntity> optionHashTags = optionsMapper.findOptionHashTag(optionId);
@@ -76,4 +83,9 @@ public class OptionsService {
         return trimDefaultOptionDtos;
     }
 
+    private static void validateExistenceOfOptions(List entities) {
+        if (entities == null || entities.isEmpty()) {
+            throw new NoSuchTrimException();
+        }
+    }
 }

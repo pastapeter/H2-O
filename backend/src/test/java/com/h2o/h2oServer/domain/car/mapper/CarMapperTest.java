@@ -43,4 +43,32 @@ class CarMapperTest {
         //then
         assertThat(actualPrice).isEqualTo(expectedPrice);
     }
+
+    @Test
+    @DisplayName("존재하는 차량인 경우 true를 반환한다.")
+    @Sql("classpath:db/car/car-data.sql")
+    void checkIfCarExists() {
+        //given
+        Long carId = 1L;
+
+        //when
+        Boolean isExists = carMapper.checkIfCarExists(carId);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 차량인 경우 false를 반환한다.")
+    @Sql("classpath:db/car/car-data.sql")
+    void checkIfCarExistsFalse() {
+        //given
+        Long carId = 4L;
+
+        //when
+        Boolean isExists = carMapper.checkIfCarExists(carId);
+
+        //then
+        assertThat(isExists).isFalse();
+    }
 }

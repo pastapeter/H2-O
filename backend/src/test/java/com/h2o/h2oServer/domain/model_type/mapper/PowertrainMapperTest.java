@@ -12,9 +12,10 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @MybatisTest
 @Sql("classpath:db/modelType/powertrain-data.sql")
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PowertrainMapperTest {
 
     @Autowired
@@ -28,7 +29,6 @@ class PowertrainMapperTest {
     }
 
     @Test
-    @Order(4)
     @DisplayName("존재하는 파워트레인을 조회하면 해당 데이터를 PowertrainEntity로 반환한다.")
     void findById() {
         //given
@@ -49,7 +49,6 @@ class PowertrainMapperTest {
     }
 
     @Test
-    @Order(3)
     @DisplayName("특정 파워트레인의 최대출력을 조회하면 해당 데이터를 PowertrainOutputEntity로 반환한다.")
     void findOutput() {
         //given
@@ -70,7 +69,6 @@ class PowertrainMapperTest {
     }
 
     @Test
-    @Order(2)
     @DisplayName("특정 파워트레인의 최대토크를 조회하면 해당 데이터를 PowertrainTorqueEntity로 반환한다.")
     void findTorque() {
         //given
@@ -91,7 +89,6 @@ class PowertrainMapperTest {
     }
 
     @Test
-    @Order(1)
     @DisplayName("특정 차량의 파워트레인을 조회하면 해당 차량에 적용 가능한 모든 파워트레인을 CarPowertrainEntity의 리스트로 반환한다.")
     void findPowertrainsByCarId() {
         //given
@@ -131,4 +128,29 @@ class PowertrainMapperTest {
         softly.assertAll();
     }
 
+    @Test
+    @DisplayName("존재하는 파워트레인인 경우 true를 반환한다.")
+    void checkIfOptionExists() {
+        //given
+        Long id = 1L;
+
+        //when
+        Boolean isExists = powertrainMapper.checkIfPowertrainExists(id);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 바디타입인 경우 false를 반환한다.")
+    void checkIfOptionExistsFalse() {
+        //given
+        Long id = 5L;
+
+        //when
+        Boolean isExists = powertrainMapper.checkIfPowertrainExists(id);
+
+        //then
+        assertThat(isExists).isFalse();
+    }
 }

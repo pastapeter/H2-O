@@ -21,4 +21,10 @@
                 natural join (select car.id, min(car_drivetrain.price) as drivetrain_min
                     from car join car_drivetrain on car_drivetrain.car_id = car.id where car.id = #{id} group by car.id) as drivetrain;
     </select>
+
+    <select id="checkIfCarExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM car
+        WHERE id = #{id}
+    </select>
 </mapper>

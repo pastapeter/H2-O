@@ -13,6 +13,8 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @MybatisTest
 class PackageMapperTest {
 
@@ -70,5 +72,33 @@ class PackageMapperTest {
                 .contains(expectedHashTagEntities.get(1))
                 .contains(expectedHashTagEntities.get(2));
         softly.assertAll();
+    }
+
+    @Test
+    @DisplayName("존재하는 패키지인 경우 true를 반환한다.")
+    @Sql("classpath:db/optionPackage/package-data.sql")
+    void checkIfPackageExists() {
+        //given
+        Long id = 1L;
+
+        //when
+        Boolean isExists = packageMapper.checkIfPackageExists(id);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 패키지인 경우 false를 반환한다.")
+    @Sql("classpath:db/optionPackage/package-data.sql")
+    void checkIfPackageExistsFalse() {
+        //given
+        Long id = 5L;
+
+        //when
+        Boolean isExists = packageMapper.checkIfPackageExists(id);
+
+        //then
+        assertThat(isExists).isFalse();
     }
 }

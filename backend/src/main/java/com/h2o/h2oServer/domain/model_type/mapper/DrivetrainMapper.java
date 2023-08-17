@@ -10,6 +10,10 @@ import java.util.List;
 @Mapper
 public interface DrivetrainMapper {
     DrivetrainEntity findById(Long id);
+
     List<CarDrivetrainEntity> findDrivetrainsByCarId(Long carId);
+
     CarDrivetrainEntity findDefaultDrivetrainByCarId(Long carId);
+
+    Boolean checkIfDrivetrainExists(Long id);
 }

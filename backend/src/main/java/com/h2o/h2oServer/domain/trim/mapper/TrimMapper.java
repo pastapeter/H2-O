@@ -28,4 +28,6 @@ public interface TrimMapper {
     InternalColorEntity findDefaultInternalColor(Long id);
 
     ExternalColorEntity findDefaultExternalColor(Long id);
+
+    Boolean checkIfTrimExists(Long id);
 }

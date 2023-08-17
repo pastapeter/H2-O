@@ -9,7 +9,11 @@ import java.util.List;
 
 @Mapper
 public interface OptionMapper {
-    OptionDetailsEntity findOptionDetails(Long optionId, Long trimId);
-    OptionEntity findOption(Long optionId);
-    List<HashTagEntity> findHashTag(Long optionId);
+    OptionDetailsEntity findOptionDetails(Long id, Long trimId);
+
+    OptionEntity findOption(Long id);
+
+    List<HashTagEntity> findHashTag(Long id);
+
+    Boolean checkIfOptionExists(Long id);
 }

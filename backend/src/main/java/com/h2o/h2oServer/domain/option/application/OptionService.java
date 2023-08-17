@@ -5,6 +5,7 @@ import com.h2o.h2oServer.domain.option.dto.OptionDto;
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionDetailsEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionEntity;
+import com.h2o.h2oServer.domain.option.exception.NoSuchOptionException;
 import com.h2o.h2oServer.domain.option.mapper.OptionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class OptionService {
 
     public OptionDetailsDto findOptionInformation(Long optionId, Long trimId) {
         OptionDetailsEntity optionDetailsEntity = optionMapper.findOptionDetails(optionId, trimId);
+
+        validateExistenceOfOption(optionDetailsEntity);
+
         List<HashTagEntity> hashTagEntities = optionMapper.findHashTag(optionId);
 
         return OptionDetailsDto.of(optionDetailsEntity, hashTagEntities);
@@ -26,9 +30,17 @@ public class OptionService {
 
     public OptionDto findOptionInformation(Long optionId) {
         OptionEntity optionEntity = optionMapper.findOption(optionId);
+
+        validateExistenceOfOption(optionEntity);
+
         List<HashTagEntity> hashTagEntities = optionMapper.findHashTag(optionId);
 
         return OptionDto.of(optionEntity, hashTagEntities);
     }
 
+    private static void validateExistenceOfOption(Object optionDetailsEntity) {
+        if (optionDetailsEntity == null) {
+            throw new NoSuchOptionException();
+        }
+    }
 }

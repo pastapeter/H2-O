@@ -7,4 +7,6 @@ public interface CarMapper {
     Integer findMaximumModelTypePrice(Long id);
 
     Integer findMinimumModelTypePrice(Long id);
+
+    Boolean checkIfCarExists(Long id);
 }

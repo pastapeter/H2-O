@@ -2,6 +2,7 @@ package com.h2o.h2oServer.domain.trim.application;
 
 import com.h2o.h2oServer.domain.car.mapper.CarMapper;
 import com.h2o.h2oServer.domain.model_type.application.ModelTypeService;
+import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.PriceRangeDto;
@@ -21,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -70,19 +72,16 @@ class TrimServiceTest {
     }
 
     @Test
-    @DisplayName("존재하지 않는 vehicle에 대한 요청인 경우 빈 Dto를 반한환다.")
+    @DisplayName("존재하지 않는 차량에 대한 요청인 경우 NoSuchTrimException을 발생시킨다.")
     void findTrimInformationNotExist() {
         //given
-        Long vehicleId = Long.MAX_VALUE;
-        when(trimMapper.findByCarId(vehicleId)).thenReturn(List.of());
+        Long carId = Long.MAX_VALUE;
+        when(trimMapper.findByCarId(carId)).thenReturn(List.of());
 
         //when
-        List<TrimDto> actualTrimDtos = trimService.findTrimInformation(vehicleId);
-
         //then
-        softly.assertThat(actualTrimDtos).as("null이 아니다.").isNotNull();
-        softly.assertThat(actualTrimDtos).as("TrimDto를 포함한다.").isEmpty();
-        softly.assertAll();
+        assertThatThrownBy(() -> trimService.findTrimInformation(carId))
+                .isInstanceOf(NoSuchTrimException.class);
     }
 
     @Test
@@ -106,19 +105,16 @@ class TrimServiceTest {
     }
 
     @Test
-    @DisplayName("존재하지 않는 externalColor에 대한 요청인 경우, 빈 리스트를 반환한다.")
+    @DisplayName("존재하지 않는 externalColor에 대한 요청인 경우, NoSuchTrimException을 발생시킨다.")
     void findExternalColorInformationNotExist() {
         //given
         Long trimId = 1L;
         when(trimMapper.findExternalColor(trimId)).thenReturn(List.of());
 
         //when
-        List<ExternalColorDto> actualExternalColorDtos = trimService.findExternalColorInformation(trimId);
-
         //then
-        softly.assertThat(actualExternalColorDtos).as("null이 아니다.").isNotNull();
-        softly.assertThat(actualExternalColorDtos).as("ExternalColorDto를 포함하지 않는다.").isEmpty();
-        softly.assertAll();
+        assertThatThrownBy(() -> trimService.findExternalColorInformation(trimId))
+                .isInstanceOf(NoSuchTrimException.class);
     }
 
     private static List<ExternalColorEntity> generateExternalColorEntityList() {

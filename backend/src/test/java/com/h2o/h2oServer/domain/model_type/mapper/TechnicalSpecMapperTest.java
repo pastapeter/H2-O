@@ -9,6 +9,8 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @MybatisTest
 @Sql("classpath:db/modelType/technical-spec-data.sql")
 class TechnicalSpecMapperTest {
@@ -64,5 +66,32 @@ class TechnicalSpecMapperTest {
         //then
         softly.assertThat(actualEntity).as("null이 반환된다.")
                 .isNull();
+    }
+
+    @Test
+    @DisplayName("존재하는 성능 정보인 경우 true를 반환한다.")
+    void checkIfOptionExists() {
+        //given
+        Long powertrainId = 1L;
+        Long drivetrainId = 1L;
+
+        //when
+        Boolean isExists = technicalSpecMapper.checkIfTechnicalSpecExists(powertrainId, drivetrainId);
+
+        //then
+        assertThat(isExists).isTrue();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 성능 정보인 경우 false를 반환한다.")
+    void checkIfOptionExistsFalse() {
+        //given
+        Long powertrainId = 110L;
+        Long drivetrainId = 10L;
+        //when
+        Boolean isExists = technicalSpecMapper.checkIfTechnicalSpecExists(powertrainId, drivetrainId);
+
+        //then
+        assertThat(isExists).isFalse();
     }
 }
