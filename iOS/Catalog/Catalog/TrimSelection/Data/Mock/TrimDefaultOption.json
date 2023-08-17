@@ -1,0 +1,52 @@
+{
+  "powertrain" : {
+      "id" : 1,
+      "name" : "디젤 2.2",
+      "price" : 0,
+      "choiceRatio" : 38,
+      "description" : "설명",
+      "image" : "대충 URL",
+      "maxOutput" : {
+        "output" : 202.0,
+        "minRpm" : 3800,
+        "maxRpm" : 3800
+      },
+      "maxTorque" : {
+        "torque" : 45.0,
+        "minRpm" : 1750,
+        "maxRpm" : 2750
+      }
+  },
+  "bodytype" : {
+      "id" : 1,
+      "name" : "7인승",
+      "price" : 0,
+      "choiceRatio" : 38,
+      "description" : "설명",
+      "image" : "대충 URL"
+  },
+  "drivetrain" : {
+      "id" : 1,
+      "name" : "2WD",
+      "price" : 0,
+      "choiceRatio" : 38,
+      "description" : "설명",
+      "image" : "대충 URL"
+  },
+  "internalColor" : {
+    "id" : 1,
+    "name" : "퀼팅천연(블랙)",
+    "choiceRatio" : 38,
+    "price" : 0,
+    "fabricImage" : "url",
+    "bannerImage" : "url"
+  },
+  "externalColor" : {
+      "id" : 123,
+      "name" : "어비스 블랙펄",
+      "choiceRatio" : 38,
+      "price" : 0,
+      "hexCode" : "#1c2d3e",
+      "images": ["URL1", "URL2", "URL60"]
+    }
+}

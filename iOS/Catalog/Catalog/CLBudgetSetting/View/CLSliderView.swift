@@ -11,8 +11,8 @@ struct CLSliderView: View {
 
   var intent: CLBudgetRangeIntentType
 
-  let minimumBudget: CLNumber
-  let maximumBudget: CLNumber
+  @State var minimumBudget: CLNumber
+  @State var maximumBudget: CLNumber
 
   @State var currentQuotationPrice: CLNumber
   @State var status: CLBudgetRangeView.Status = .default

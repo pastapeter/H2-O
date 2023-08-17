@@ -10,6 +10,9 @@ import Foundation
 enum CLNavigationModel {
 
   struct State: Equatable {
+    static func == (lhs: CLNavigationModel.State, rhs: CLNavigationModel.State) -> Bool {
+      lhs.currentPage == rhs.currentPage
+    }
 
     var currentPage: Int
 

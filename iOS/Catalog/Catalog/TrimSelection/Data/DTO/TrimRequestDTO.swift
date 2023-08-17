@@ -8,5 +8,9 @@
 import Foundation
 
 struct TrimRequestDTO: Encodable {
-  var vehicleId: Int
+  var carId: Int
+}
+
+struct TrimDefaultOptionRequestDTO: Encodable {
+  var trimId: Int
 }

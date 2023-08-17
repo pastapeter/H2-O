@@ -9,6 +9,8 @@
 
 enum TrimSelectionError: LocalizedError, Equatable {
   case TrimArrayIsEmpty
+  case NoDefaultOption
+  case NoSelectedTrim
 }
 
 extension TrimSelectionError {
@@ -16,6 +18,10 @@ extension TrimSelectionError {
     switch self {
       case .TrimArrayIsEmpty:
         return "알아서하되 같이정해봐야할듯"
+      case .NoDefaultOption:
+        return "default option 없음"
+      case .NoSelectedTrim:
+        return "trim이 선택되지 않음"
     }
   }
 }
@@ -23,11 +29,16 @@ extension TrimSelectionError {
  enum TrimSelectionModel {
 
    struct State: Equatable {
+     static func == (lhs: TrimSelectionModel.State, rhs: TrimSelectionModel.State) -> Bool {
+       lhs.selectedTrim == rhs.selectedTrim
+     }
 
      var trims: [Trim] = []
      var selectedTrim: Trim?
      var error: TrimSelectionError?
-     var vehicleId: Int
+     var carId: Int
+     var quoation = Quotation.shared
+     var isTrimSelected: Bool = false
   }
 
   enum ViewAction: Equatable {

@@ -57,7 +57,7 @@ extension TrimSelectionView: View {
       CLButton(mainText: "\(state.selectedTrim?.name ?? "") 선택하기",
                height: 60,
                backgroundColor: Color.primary700,
-               buttonAction: { print("\(state.selectedTrim?.name ?? "") 선택하기") })
+               buttonAction: { intent.send(action: .onTapTrimSelectButton) })
       Spacer().frame(height: 0.1)
     }
     .onAppear(perform: { intent.send(action: .enteredTrimPage) })

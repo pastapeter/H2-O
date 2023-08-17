@@ -12,6 +12,7 @@ struct CLNavigationView: IntentBindingType {
   var intent: CLNavigationIntentType { container.intent }
   var state: CLNavigationModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
+  var quotation = Quotation.shared
   @SwiftUI.State var menuStatus: [CLNavigationMenuTitleView.Status] = [.inactive,
                                                                        .inactive,
                                                                        .inactive,
@@ -26,7 +27,6 @@ extension CLNavigationView {
     .init(get: { state.currentPage },
           set: { intent.send(action: .onTapNavTab(index: $0)) })
   }
-
 }
 
 extension CLNavigationView: View {
@@ -39,10 +39,8 @@ extension CLNavigationView: View {
           
           TrimSelectionView.build(intent: TrimSelectionIntent(
             initialState: .init(
-            selectedTrim: nil,
-            vehicleId: 123),
-            repository: TrimMockRepository())).tag(0)
-          
+              carId: 1),
+            repository: TrimSelectionRepository(), quotation: Quotation.shared, navigationIntent: intent)).tag(0)
           ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository())).tag(1)
           
           ExternalSelectionContainerView.build(
@@ -58,16 +56,29 @@ extension CLNavigationView: View {
         .tabViewStyle(.page(indexDisplayMode: .never))
         if state.currentPage != 0 {
           CLBudgetRangeView.build(
-              intent: CLBudgetRangeIntent(initialState:
-                  .init(currentQuotationPrice: CLNumber(40000000),
-                        budgetPrice: CLNumber(40750000)))
-              )
+            intent: CLBudgetRangeIntent(initialState:
+                .init(currentQuotationPrice: quotation.state.totalPrice,
+                      budgetPrice: (quotation.state.maxPrice + quotation.state.minPrice) / CLNumber(2)))
+          )
         }
       }
       if state.currentPage != 0 {
-        BottomArea(showQuotationSummarySheet: $showQuotationSummarySheet)
+        BottomArea(showQuotationSummarySheet: $showQuotationSummarySheet, intent: intent)
       }
     }
+    .sheet(isPresented: $showQuotationSummarySheet) {
+      CLQuotationSummarySheet(currentQuotationPrice: quotation.state.totalPrice, summaryQuotation: quotation.state.quotation?.toSummary() ?? SummaryCarQuotation(
+        model: SummaryQuotationInfo(name: "xx", price: CLNumber(0)),
+        trim: SummaryQuotationInfo(name: "xx", price: CLNumber(0)),
+        powertrain: SummaryQuotationInfo(name: "xx", price: CLNumber(0)),
+        bodytype: SummaryQuotationInfo(name: "xx", price: CLNumber(0)),
+        drivetrain: SummaryQuotationInfo(name: "xx", price: CLNumber(0)),
+        externalColor: SummaryQuotationInfo(name: "xx", price: CLNumber(0)),
+        internalColor: SummaryQuotationInfo(name: "xx", price: CLNumber(0)),
+        options: []),
+                                showQuotationSummarySheet: $showQuotationSummarySheet)
+    }
+
   }
 }
 
