@@ -14,7 +14,7 @@ struct FilterButtonView: View {
   var action: () -> Void
 
     var body: some View {
-      Button(action: {}) {
+      Button(action: action) {
         Text(title)
           .catalogFont(type: .TextKRMedium14)
       }
