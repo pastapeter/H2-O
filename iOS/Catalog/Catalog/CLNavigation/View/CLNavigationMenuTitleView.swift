@@ -38,14 +38,13 @@ struct CLNavigationMenuTitleView: View {
     Button {
       currentPage = page
     } label: {
-      VStack(spacing: 0) {
+      VStack(spacing: spacing) {
+        Spacer()
         if currentPage == page {
           Text(navigationMenuTitle)
             .catalogFont(type: font)
             .foregroundColor(Status.active.color)
-            .frame(height: 22)
-            .padding(.bottom, 6)
-          Color.primary0
+          Color.black
             .frame(width: 18, height: 2)
             .cornerRadius(1)
             .matchedGeometryEffect(id: "underline", in: namespace, properties: .frame)
@@ -53,8 +52,6 @@ struct CLNavigationMenuTitleView: View {
           Text(navigationMenuTitle)
             .catalogFont(type: font)
             .foregroundColor(status?.color ?? Status.inactive.color)
-            .frame(height: 22)
-            .padding(.bottom, spacing)
           Color.clear.frame(height: 2)
         }
       }
