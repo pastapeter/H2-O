@@ -9,14 +9,20 @@ import Foundation
 
 enum OptionCardModel {
 
-  struct State: Equatable {
+  struct State: Equatable, Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
+    }
+    
+    var id: Int
     var hashTag: [String]
     var info: ModelTypeContent
-    var isModalPresenting = false
   }
 
   enum ViewAction {
-    case onTapDetail(isPresenting: Bool)
+    case onTapDetail
+    case onTap(id: Int)
   }
 
 }

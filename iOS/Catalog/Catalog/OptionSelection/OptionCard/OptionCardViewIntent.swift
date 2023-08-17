@@ -20,8 +20,9 @@ protocol OptionCardViewIntentType {
 
 final class OptionCardViewIntent: ObservableObject {
   
-  init(initialState: State) {
+  init(initialState: State, parent: OptionCardScrollIntentType) {
     state = initialState
+    self.parent = parent
   }
   
   typealias State = OptionCardModel.State
@@ -30,6 +31,7 @@ final class OptionCardViewIntent: ObservableObject {
   @Published var state: State
   
   var cancellable: Set<AnyCancellable> = []
+  weak var parent: OptionCardScrollIntentType?
   
 }
 
@@ -37,8 +39,11 @@ extension OptionCardViewIntent: OptionCardViewIntentType, IntentType {
   
   func mutate(action: OptionCardModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
-    case .onTapDetail(let isPresenting):
-      state.isModalPresenting = isPresenting
+    case .onTapDetail:
+      viewEffect?()
+    case .onTap(let id):
+      parent?.send(action: .onTapOption(id: id))
+      viewEffect?()
     }
   }
   

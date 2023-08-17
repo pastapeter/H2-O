@@ -27,9 +27,9 @@ extension OptionCardScollView: View {
     VStack(alignment: .leading, spacing: 12) {
       FilterButtonBar(state: state.filterState, intent: intent)
       ScrollView {
-        VStack(spacing: 16) {
-          ForEach(state.cardStates.indices, id: \.self) { i in
-            OptionCardView.build(intent: .init(initialState: state.cardStates[i]))
+        LazyVStack(spacing: 16) {
+          ForEach(state.cardStates, id: \.self) { cardState in
+            OptionCardView.build(intent: .init(initialState: cardState, parent: intent))
           }
         }
       }

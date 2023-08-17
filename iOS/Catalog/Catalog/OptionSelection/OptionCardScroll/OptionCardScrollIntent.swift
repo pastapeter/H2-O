@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol OptionCardScrollIntentType {
+protocol OptionCardScrollIntentType: AnyObject {
 
   var state: OptionCardScrollModel.State { get }
 
@@ -43,6 +43,8 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
       state.filterState.selectedFilterId = index
     case .fetchCardState(let cardStates):
       return
+    case .onTapOption(let id):
+      state.selectedOptionId = id
     }
   }
 
