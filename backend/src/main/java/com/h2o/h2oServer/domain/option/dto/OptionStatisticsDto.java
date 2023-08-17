@@ -11,11 +11,11 @@ import lombok.Getter;
 @EqualsAndHashCode
 public class OptionStatisticsDto {
     public static final int SELL_NUMBER = 3509;
-    private boolean isOverHalf;
+    private Boolean isOverHalf;
     private Integer choiceCount;
-    private Float useCount;
+    private Integer useCount;
 
-    public static OptionStatisticsDto of(Float choiceRatio, Float useCount) {
+    public static OptionStatisticsDto of(Float choiceRatio, Integer useCount) {
         return OptionStatisticsDto.builder()
                 .isOverHalf(choiceRatio > 0.5)
                 .useCount(useCount)

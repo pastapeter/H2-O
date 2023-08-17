@@ -1,5 +1,6 @@
 package com.h2o.h2oServer.domain.option.dto;
 
+import com.h2o.h2oServer.domain.option.dto.OptionStatisticsDto.OptionStatisticsDtoBuilder;
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionDetailsEntity;
 import io.swagger.annotations.ApiModel;
@@ -8,6 +9,8 @@ import lombok.Data;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.h2o.h2oServer.domain.option.dto.OptionStatisticsDto.SELL_NUMBER;
 
 @ApiModel(value = "옵션 세부 사항 정보 조회 응답")
 @Builder
@@ -20,15 +23,20 @@ public class OptionDetailsDto {
     private String description;
     private OptionStatisticsDto hmgData;
     private Integer price;
-    private boolean containsHmgData;
+    private boolean containsChoiceCount;
     private boolean containsUseCount;
 
     public static OptionDetailsDto of(OptionDetailsEntity optionDetailsEntity, List<HashTagEntity> hashTagEntities) {
         OptionDetailsDtoBuilder builder = OptionDetailsDto.builder();
+        OptionStatisticsDtoBuilder optionStatisticsDtoBuilder = OptionStatisticsDto.builder();
 
-        if (containsHmgData(optionDetailsEntity)) {
-            builder.hmgData(OptionStatisticsDto.of(optionDetailsEntity.getChoiceRatio(),
-                    optionDetailsEntity.getUseCount()));
+        if (containsChoiceRatio(optionDetailsEntity)) {
+            optionStatisticsDtoBuilder.choiceCount(Math.round(optionDetailsEntity.getChoiceRatio() * SELL_NUMBER));
+            optionStatisticsDtoBuilder.isOverHalf(optionDetailsEntity.getChoiceRatio() > 0.5);
+        }
+
+        if (containsUseCount(optionDetailsEntity)) {
+            optionStatisticsDtoBuilder.useCount(Math.round(optionDetailsEntity.getUseCount()));
         }
 
         return builder
@@ -40,8 +48,9 @@ public class OptionDetailsDto {
                 .image(optionDetailsEntity.getImage())
                 .description(optionDetailsEntity.getDescription())
                 .price(optionDetailsEntity.getPrice())
-                .containsHmgData(containsHmgData(optionDetailsEntity))
+                .containsChoiceCount(containsChoiceRatio(optionDetailsEntity))
                 .containsUseCount(containsUseCount(optionDetailsEntity))
+                .hmgData(optionStatisticsDtoBuilder.build())
                 .build();
     }
 
@@ -49,7 +58,7 @@ public class OptionDetailsDto {
         return optionDetailsEntity.getUseCount() != null;
     }
 
-    private static boolean containsHmgData(OptionDetailsEntity optionDetailsEntity) {
+    private static boolean containsChoiceRatio(OptionDetailsEntity optionDetailsEntity) {
         return optionDetailsEntity.getChoiceRatio() != null;
     }
 }

@@ -46,7 +46,7 @@ class OptionServiceTest {
         softly.assertThat(actualOptionDetailsDto.getHashTags()).as("세 개의 hashtag 정보를 포함한다.").hasSize(3);
         softly.assertThat(actualOptionDetailsDto.getName()).as("name = Option 1이다.").isEqualTo("Option 1");
         softly.assertThat(actualOptionDetailsDto.getCategory()).as("category = 성능/파워트레인").isEqualTo(OptionCategory.POWERTRAIN_PERFORMANCE.getLabel());
-        softly.assertThat(actualOptionDetailsDto.getHmgData()).as("유효한 hmgData를 포함한다.").isEqualTo(OptionStatisticsDto.of(0.3f, 12.5f));
+        softly.assertThat(actualOptionDetailsDto.getHmgData()).as("유효한 hmgData를 포함한다.").isEqualTo(OptionStatisticsDto.of(0.3f, 13));
         softly.assertAll();
     }
 
