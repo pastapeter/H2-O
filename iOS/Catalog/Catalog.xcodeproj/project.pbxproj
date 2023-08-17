@@ -45,6 +45,8 @@
 		B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C11F2A7A78A700F540CB /* CLNavigationView.swift */; };
 		B156463B2A8653D000FAD379 /* ModalPopUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */; };
 		B156463D2A865B3F00FAD379 /* ModelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463C2A865B3F00FAD379 /* ModelContentView.swift */; };
+		B15B4F402A8E81E800101DCB /* OptionCardViewIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */; };
+		B15B4F422A8E821100101DCB /* OptionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F412A8E821100101DCB /* OptionCardModel.swift */; };
 		B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D112A8256B700C7B07D /* RequestProtocol.swift */; };
 		B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D132A8256DA00C7B07D /* RequestType.swift */; };
 		B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D172A82577A00C7B07D /* MockURLProtocol.swift */; };
@@ -269,6 +271,8 @@
 		B155C11F2A7A78A700F540CB /* CLNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationView.swift; sourceTree = "<group>"; };
 		B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPopUpComponent.swift; sourceTree = "<group>"; };
 		B156463C2A865B3F00FAD379 /* ModelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContentView.swift; sourceTree = "<group>"; };
+		B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardViewIntent.swift; sourceTree = "<group>"; };
+		B15B4F412A8E821100101DCB /* OptionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardModel.swift; sourceTree = "<group>"; };
 		B1604D112A8256B700C7B07D /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		B1604D132A8256DA00C7B07D /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		B1604D172A82577A00C7B07D /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
@@ -630,6 +634,33 @@
 			path = ModelTypeModal;
 			sourceTree = "<group>";
 		};
+		B15B4F3E2A8E81B000101DCB /* FilterButton */ = {
+			isa = PBXGroup;
+			children = (
+				B149BD1F2A8CE50A009A3C6B /* FilterButtonView.swift */,
+				B149BD242A8CEE17009A3C6B /* FilterButtonBar.swift */,
+			);
+			path = FilterButton;
+			sourceTree = "<group>";
+		};
+		B15B4F442A8E822E00101DCB /* OptionCardScroll */ = {
+			isa = PBXGroup;
+			children = (
+				B1E512372A8D490B005B195D /* OptionCardScrollIntent.swift */,
+				B1E512352A8D48F4005B195D /* OptionCardScrollModel.swift */,
+				B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */,
+			);
+			path = OptionCardScroll;
+			sourceTree = "<group>";
+		};
+		B15B4F452A8E823A00101DCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B1E512292A8CF2DC005B195D /* OptionFilter.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B1604D0E2A8255D200C7B07D /* TrimSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,11 +789,13 @@
 		B167221E2A8C9E1C002B45A6 /* OptionSelection */ = {
 			isa = PBXGroup;
 			children = (
-				B1E512372A8D490B005B195D /* OptionCardScrollIntent.swift */,
-				B1E512352A8D48F4005B195D /* OptionCardScrollModel.swift */,
-				B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */,
+				B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */,
+				B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */,
+				B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */,
+				B15B4F452A8E823A00101DCB /* Model */,
+				B15B4F3E2A8E81B000101DCB /* FilterButton */,
+				B15B4F442A8E822E00101DCB /* OptionCardScroll */,
 				B167221F2A8C9E28002B45A6 /* OptionCard */,
-				B149BD1F2A8CE50A009A3C6B /* FilterButtonView.swift */,
 			);
 			path = OptionSelection;
 			sourceTree = "<group>";
@@ -771,11 +804,8 @@
 			isa = PBXGroup;
 			children = (
 				B16722202A8C9E36002B45A6 /* OptionCardView.swift */,
-				B149BD242A8CEE17009A3C6B /* FilterButtonBar.swift */,
-				B1E512292A8CF2DC005B195D /* OptionFilter.swift */,
-				B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */,
-				B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */,
-				B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */,
+				B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */,
+				B15B4F412A8E821100101DCB /* OptionCardModel.swift */,
 			);
 			path = OptionCard;
 			sourceTree = "<group>";
@@ -1568,6 +1598,7 @@
 				B16722232A8CA67E002B45A6 /* OptionCardScollView.swift in Sources */,
 				ED1BDA762A8BB18F00E39270 /* ImageManager.swift in Sources */,
 				B1604D482A83BE8000C7B07D /* TrimMockRepository.swift in Sources */,
+				B15B4F402A8E81E800101DCB /* OptionCardViewIntent.swift in Sources */,
 				EDD304462A8A6AD300400DF9 /* API.swift in Sources */,
 				EDD054002A8C02A900FBD23F /* QuotationModel.swift in Sources */,
 				B1604D632A85402400C7B07D /* ModelTypeSelectionContainerView.swift in Sources */,
@@ -1598,6 +1629,7 @@
 				B1F988D32A8A7F6400C7B65F /* ExternalSelectionModel.swift in Sources */,
 				EDF882592A8A71260077558F /* ModelTypeRequest.swift in Sources */,
 				B191DD382A8B6282008196CD /* HorizontalScroller.swift in Sources */,
+				B15B4F422A8E821100101DCB /* OptionCardModel.swift in Sources */,
 				B16DFF382A8958B700642730 /* OptionInDetail.swift in Sources */,
 				B155C0B22A7920A800F540CB /* EntryPointView.swift in Sources */,
 				ED64109A2A7FE1730033AEBC /* CLBudgetRangeModel.swift in Sources */,
