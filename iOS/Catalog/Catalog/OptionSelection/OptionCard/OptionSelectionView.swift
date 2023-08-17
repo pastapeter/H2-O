@@ -22,13 +22,14 @@ struct OptionSelectionView: IntentBindingType {
 extension OptionSelectionView: View {
 
   var body: some View {
-    VStack {
+    VStack(alignment: .leading) {
       Spacer().frame(height: 50)
       CLNavigationMenuView(currentPage: currentPage, navigationMenuTitles: state.optionMenuTitle, titleFont: .TextKRBold18, horizontalSpacing: 24, verticalSpacing: 2)
+        .padding(.leading, 20)
       Spacer().frame(height: 16)
       TabView(selection: currentPage) {
-        OptionCardScollView.build(intent: .init(initialState: .init(cardStates: [.init(), .init(), .init(), .init(), .init()]))).tag(0)
-        OptionCardScollView.build(intent: .init(initialState: .init(cardStates: [.init(), .init(), .init(), .init(), .init()]))).tag(1)
+        OptionCardScollView.build(intent: .init(initialState: .mock1())).tag(0)
+                                  OptionCardScollView.build(intent: .init(initialState: .mock2())).tag(1)
       }
       .tabViewStyle(.page(indexDisplayMode: .never))
     }

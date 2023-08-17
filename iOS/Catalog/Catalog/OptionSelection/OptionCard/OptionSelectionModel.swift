@@ -28,14 +28,4 @@ struct OptionListState: Equatable {
   var selectedFilterId: Int
 }
 
-enum OptionCardModel {
 
-  struct State: Equatable {
-
-  }
-
-  enum ViewAction {
-
-  }
-
-}

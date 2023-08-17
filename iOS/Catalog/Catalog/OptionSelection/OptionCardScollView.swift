@@ -24,20 +24,13 @@ struct OptionCardScollView: IntentBindingType {
 extension OptionCardScollView: View {
   
   var body: some View {
-    VStack {
+    VStack(alignment: .leading, spacing: 12) {
       FilterButtonBar(state: state.filterState, intent: intent)
       ScrollView {
         VStack(spacing: 16) {
-          
-          OptionCardView(isSelected: true)
-          OptionCardView()
-          OptionCardView()
-          OptionCardView()
-          OptionCardView()
-          OptionCardView()
-          OptionCardView()
-          OptionCardView()
-          OptionCardView()
+          ForEach(state.cardStates.indices, id: \.self) { i in
+            OptionCardView.build(intent: .init(initialState: state.cardStates[i]))
+          }
         }
       }
     }
@@ -59,8 +52,3 @@ extension OptionCardScollView {
   
 }
 
-struct OptionCardScollView_Previews: PreviewProvider {
-  static var previews: some View {
-    OptionCardScollView.build(intent: .init(initialState: .init(cardStates: [])))
-  }
-}
