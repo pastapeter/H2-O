@@ -16,12 +16,12 @@ struct CLNavigationMenuTitleView: View {
 
     var color: Color {
       switch self {
-      case .completed:
-        return Color.primary200
-      case .active:
-        return Color.primary0
-      case .inactive:
-        return Color.gray200
+        case .completed:
+          return Color.primary200
+        case .active:
+          return Color.primary0
+        case .inactive:
+          return Color.gray200
       }
     }
   }
@@ -36,12 +36,13 @@ struct CLNavigationMenuTitleView: View {
     Button {
       currentPage = page
     } label: {
-      VStack {
-        Spacer()
+      VStack(spacing: 0) {
         if currentPage == page {
           Text(navigationMenuTitle)
             .catalogFont(type: .HeadKRMedium14)
             .foregroundColor(Status.active.color)
+            .frame(height: 22)
+            .padding(.bottom, 6)
           Color.black
             .frame(height: 2)
             .matchedGeometryEffect(id: "underline", in: namespace, properties: .frame)
@@ -49,6 +50,8 @@ struct CLNavigationMenuTitleView: View {
           Text(navigationMenuTitle)
             .catalogFont(type: .HeadKRMedium14)
             .foregroundColor(status.color)
+            .frame(height: 22)
+            .padding(.bottom, 6)
           Color.clear.frame(height: 2)
         }
       }

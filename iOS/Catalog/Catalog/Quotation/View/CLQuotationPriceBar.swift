@@ -45,9 +45,8 @@ struct CLQuotationPriceBar: View {
                     }
                 }
                 .padding(.trailing, 20)
-                .padding(.vertical, 8)
             }
-            .frame(height: 58)
+            .frame(height: 52)
         }
     }
 }

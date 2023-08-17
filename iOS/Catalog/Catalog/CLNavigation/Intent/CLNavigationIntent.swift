@@ -19,6 +19,7 @@ final class CLNavigationIntent: ObservableObject {
   // MARK: - Internal
 
   @Published var state: State = State(currentPage: 0)
+  var quotation = Quotation.shared
   var cancellable: Set<AnyCancellable> = []
 }
 
@@ -30,6 +31,9 @@ extension CLNavigationIntent: CLNavigationIntentType, IntentType {
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onTapNavTab(let index):
+        if index != 0 && quotation.state.quotation == nil {
+          print("페이지 이동 불가")
+        }
       state.currentPage = index
     case .onTapFinish:
       print("didTapFinish")

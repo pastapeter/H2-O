@@ -31,7 +31,7 @@ extension CLNavigationView {
 
 extension CLNavigationView: View {
   var body: some View {
-    VStack {
+    VStack(spacing: 0) {
       CLTopNaviBar(intent: intent)
       CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: $menuStatus)
       ZStack {
@@ -39,24 +39,41 @@ extension CLNavigationView: View {
           TrimSelectionView.build(intent: TrimSelectionIntent(
             initialState: .init(
               carId: 1),
-            repository: TrimSelectionRepository(), quotation: Quotation.shared, navigationIntent: intent)).tag(0)
-          ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository())).tag(1)
+            repository: TrimSelectionRepository(), quotation: Quotation.shared, navigationIntent: intent))
+          .tag(0)
+          ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository()))
+            .tag(1)
+
           ExternalSelectionContainerView.build(
             intent: .init(initialState: .init(selectedTrimId: 2),
-                          repository: ExteriorColorRepository(requestManager: RequestManager(apiManager: ExteriorColorAPIManager())))).tag(2)
+                          repository: ExteriorColorRepository(requestManager: RequestManager(apiManager: ExteriorColorAPIManager()))))
+          .tag(2)
+
           InteriorColorSelectionView.build(
             intent: .init(initialState: .init(selectedTrimID: 2, selectedColorId: 1, trimColors: []),
-                          repository: InteriorColorSelectionRepository(requestManager: RequestManager(apiManager: InteriorAPIManager())))).tag(3)
-          MockView(image: mockImageName[4]).tag(4)
-          MockView(image: mockImageName[5]).tag(5)
+                          repository: InteriorColorSelectionRepository(requestManager: RequestManager(apiManager: InteriorAPIManager()))))
+          .tag(3)
+
+          MockView(image: mockImageName[4])
+            .tag(4)
+
+          QuotationCompleteView()
+            .tag(5)
+
         }
+        .onAppear { UIScrollView.appearance().isScrollEnabled = false }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        if state.currentPage != 0 {
+        if state.currentPage != 0 && state.currentPage != 5 {
           CLBudgetRangeView.build(
             intent: CLBudgetRangeIntent(initialState:
                 .init(currentQuotationPrice: quotation.state.totalPrice,
-                      budgetPrice: (quotation.state.maxPrice + quotation.state.minPrice) / CLNumber(2)))
+                      budgetPrice: (quotation.state.maxPrice + quotation.state.minPrice) / CLNumber(2), status: .default))
           )
+        } else if state.currentPage == 5 {
+          CLBudgetRangeView.build(
+            intent: CLBudgetRangeIntent(initialState:
+                .init(currentQuotationPrice: quotation.state.totalPrice,
+                      budgetPrice: (quotation.state.maxPrice + quotation.state.minPrice) / CLNumber(2), status: .complete)))
         }
       }
       if state.currentPage != 0 {
@@ -92,5 +109,15 @@ extension CLNavigationView {
 struct CLNavigationView_Previews: PreviewProvider {
   static var previews: some View {
     return CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0)))
+  }
+}
+
+extension ShapeStyle where Self == Color {
+  static var random: Color {
+    Color(
+      red: .random(in: 0...1),
+      green: .random(in: 0...1),
+      blue: .random(in: 0...1)
+    )
   }
 }

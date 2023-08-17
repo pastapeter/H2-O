@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct MaxOutputFromEngine: Codable {
-  var output: Double
-  var minRPM: Int
-  var maxRPM: Int
+struct MaxOutputFromEngine {
+  var output: Double?
+  var minRPM: Int?
+  var maxRPM: Int?
 }

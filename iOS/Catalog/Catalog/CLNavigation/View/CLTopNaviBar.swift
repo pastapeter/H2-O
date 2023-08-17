@@ -39,5 +39,6 @@ struct CLTopNaviBar: View {
         Image("logo")
       }
     }
+    .padding(.bottom, 10)
   }
 }

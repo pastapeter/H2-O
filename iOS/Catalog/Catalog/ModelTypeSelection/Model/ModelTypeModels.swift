@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct PowerTrainModel: Codable {
+struct PowerTrainModel {
   var id: Int
   var name: String
   var price: CLNumber
   var choiceRaatio: Int
   var description: String
   var image: URL?
-  var maxOutput: MaxOutputFromEngine
-  var maxTorque: MaxTorqueFromEngine
+  var maxOutput: MaxOutputFromEngine?
+  var maxTorque: MaxTorqueFromEngine?
 }
 
-struct BodyTypeModel: Codable {
+struct BodyTypeModel {
   var id: Int
   var name: String
   var price: CLNumber
@@ -27,7 +27,7 @@ struct BodyTypeModel: Codable {
   var image: URL?
 }
 
-struct DriveTrainModel: Codable {
+struct DriveTrainModel {
   var id: Int
   var name: String
   var price: CLNumber

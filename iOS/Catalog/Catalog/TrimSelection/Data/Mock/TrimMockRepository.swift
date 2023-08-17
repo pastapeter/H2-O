@@ -9,7 +9,7 @@ import Foundation
 
 final class TrimMockRepository: TrimSelectionRepositoryProtocol {
 
-  func fetchTrims(in carId: Int) async throws -> [Trim] {
+  func fetchTrims(of carId: Int) async throws -> [Trim] {
     let manager = RequestManager(apiManager: MockAPIManager())
     guard let data = JSONLoader.load(with: "Trim") else { return [] }
     let url = URL(string: "https://\(API.host):8080/carId/\(carId)")!
@@ -20,7 +20,7 @@ final class TrimMockRepository: TrimSelectionRepositoryProtocol {
       return dto.toDomain()
     }
 
-  func fetchDefaultOptionsByTrim(in trim: Trim) async throws -> CarQuotation {
+  func fetchDefaultOptionsByTrim(of trim: Trim) async throws -> CarQuotation {
     let manager = RequestManager(apiManager: MockAPIManager())
     guard let data = JSONLoader.load(with: "TrimDefaultOption") else { throw MockError.JSONError }
     let url = URL(string: "https://\(API.host):8080/trim/\(trim.id)/default-options")!
@@ -34,7 +34,7 @@ final class TrimMockRepository: TrimSelectionRepositoryProtocol {
     return try dto.toDomain(trim: trim)
   }
 
-  func fetchMinMaxPriceByTrim(in trimId: Int) async throws -> (CLNumber, CLNumber) {
+  func fetchMinMaxPriceByTrim(of trimId: Int) async throws -> (CLNumber, CLNumber) {
     let manager = RequestManager(apiManager: MockAPIManager())
     guard let data = JSONLoader.load(with: "TrimMaxMinPrice") else { throw MockError.JSONError }
     let url = URL(string: "https://\(API.host):8080/trim/\(trimId)/price-range")!

@@ -149,6 +149,7 @@
 		ED2B8CE52A8CFDF900F561FA /* TrimDefaultOptionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B8CE42A8CFDF900F561FA /* TrimDefaultOptionDTO.swift */; };
 		ED2B8CE72A8CFE0C00F561FA /* MaxMinPriceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B8CE62A8CFE0C00F561FA /* MaxMinPriceDTO.swift */; };
 		ED2B8CE92A8CFEFA00F561FA /* TrimAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B8CE82A8CFEFA00F561FA /* TrimAPIManager.swift */; };
+		ED2B8CEC2A8D282F00F561FA /* QuotationCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B8CEB2A8D282F00F561FA /* QuotationCompleteView.swift */; };
 		ED3DC0282A865B9C009EE04C /* HMGDataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DC0272A865B9C009EE04C /* HMGDataCard.swift */; };
 		ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6410882A7FC4FF0033AEBC /* CLButton.swift */; };
 		ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED64108A2A7FC4FF0033AEBC /* CLDualChoiceButton.swift */; };
@@ -179,6 +180,14 @@
 		EDD054002A8C02A900FBD23F /* QuotationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD053FF2A8C02A900FBD23F /* QuotationModel.swift */; };
 		EDD303FD2A8A09E600400DF9 /* HMGTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD303FC2A8A09E600400DF9 /* HMGTag.swift */; };
 		EDD304462A8A6AD300400DF9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD304452A8A6AD300400DF9 /* API.swift */; };
+		EDD3F0AD2A8DCC94006CE38A /* QuotationCompleteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD3F0AC2A8DCC94006CE38A /* QuotationCompleteSheet.swift */; };
+		EDD3F0AF2A8DE3BC006CE38A /* CLSheetCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD3F0AE2A8DE3BC006CE38A /* CLSheetCapsule.swift */; };
+		EDD3F0B32A8DF148006CE38A /* DetailQuotationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD3F0B22A8DF148006CE38A /* DetailQuotationList.swift */; };
+		EDD3F0B52A8DF161006CE38A /* DetailQuotationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD3F0B42A8DF161006CE38A /* DetailQuotationTitle.swift */; };
+		EDD3F0B72A8DFE8D006CE38A /* LeadingTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD3F0B62A8DFE8D006CE38A /* LeadingTitle.swift */; };
+		EDDCA98D2A8D51F1003DFD43 /* QuotationSheetTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDCA98C2A8D51F1003DFD43 /* QuotationSheetTop.swift */; };
+		EDDCA98F2A8D553E003DFD43 /* QuotationExteriorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDCA98E2A8D553E003DFD43 /* QuotationExteriorView.swift */; };
+		EDDCA9912A8D5607003DFD43 /* QuotationInteriorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDCA9902A8D5607003DFD43 /* QuotationInteriorView.swift */; };
 		EDE434F12A8BFE75007BD0DE /* QuotationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE434F02A8BFE75007BD0DE /* QuotationIntent.swift */; };
 		EDF071A32A8CC588002AD0DB /* TrimDefaultOption.json in Resources */ = {isa = PBXBuildFile; fileRef = EDF071A22A8CC588002AD0DB /* TrimDefaultOption.json */; };
 		EDF071A52A8CC629002AD0DB /* TrimMaxMinPrice.json in Resources */ = {isa = PBXBuildFile; fileRef = EDF071A42A8CC629002AD0DB /* TrimMaxMinPrice.json */; };
@@ -345,6 +354,7 @@
 		ED2B8CE42A8CFDF900F561FA /* TrimDefaultOptionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimDefaultOptionDTO.swift; sourceTree = "<group>"; };
 		ED2B8CE62A8CFE0C00F561FA /* MaxMinPriceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxMinPriceDTO.swift; sourceTree = "<group>"; };
 		ED2B8CE82A8CFEFA00F561FA /* TrimAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimAPIManager.swift; sourceTree = "<group>"; };
+		ED2B8CEB2A8D282F00F561FA /* QuotationCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotationCompleteView.swift; sourceTree = "<group>"; };
 		ED3DC0272A865B9C009EE04C /* HMGDataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGDataCard.swift; sourceTree = "<group>"; };
 		ED6410822A7FC4FF0033AEBC /* DimmedZStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedZStack.swift; sourceTree = "<group>"; };
 		ED6410882A7FC4FF0033AEBC /* CLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLButton.swift; sourceTree = "<group>"; };
@@ -392,6 +402,14 @@
 		EDD304372A8A64D600400DF9 /* ModelTypeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTypeRepository.swift; sourceTree = "<group>"; };
 		EDD304422A8A668B00400DF9 /* ModelTypeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRequest.swift; sourceTree = "<group>"; };
 		EDD304452A8A6AD300400DF9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		EDD3F0AC2A8DCC94006CE38A /* QuotationCompleteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotationCompleteSheet.swift; sourceTree = "<group>"; };
+		EDD3F0AE2A8DE3BC006CE38A /* CLSheetCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSheetCapsule.swift; sourceTree = "<group>"; };
+		EDD3F0B22A8DF148006CE38A /* DetailQuotationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailQuotationList.swift; sourceTree = "<group>"; };
+		EDD3F0B42A8DF161006CE38A /* DetailQuotationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailQuotationTitle.swift; sourceTree = "<group>"; };
+		EDD3F0B62A8DFE8D006CE38A /* LeadingTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingTitle.swift; sourceTree = "<group>"; };
+		EDDCA98C2A8D51F1003DFD43 /* QuotationSheetTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotationSheetTop.swift; sourceTree = "<group>"; };
+		EDDCA98E2A8D553E003DFD43 /* QuotationExteriorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotationExteriorView.swift; sourceTree = "<group>"; };
+		EDDCA9902A8D5607003DFD43 /* QuotationInteriorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotationInteriorView.swift; sourceTree = "<group>"; };
 		EDE434F02A8BFE75007BD0DE /* QuotationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotationIntent.swift; sourceTree = "<group>"; };
 		EDF071A22A8CC588002AD0DB /* TrimDefaultOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TrimDefaultOption.json; sourceTree = "<group>"; };
 		EDF071A42A8CC629002AD0DB /* TrimMaxMinPrice.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TrimMaxMinPrice.json; sourceTree = "<group>"; };
@@ -430,6 +448,7 @@
 			children = (
 				B1084BEA2A87DF2B00AE1758 /* BlurredFullScreenCover.swift */,
 				B1084BED2A87E5A800AE1758 /* CLDialog.swift */,
+				EDD3F0AE2A8DE3BC006CE38A /* CLSheetCapsule.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -466,6 +485,7 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				ED2B8CEA2A8D27C700F561FA /* QuotationComplete */,
 				B1F988DF2A8B1C3700C7B65F /* InteriorColorSelection */,
 				B16DFF482A8A3E2C00642730 /* ExternalColorSelection */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
@@ -909,6 +929,20 @@
 			path = DTO;
 			sourceTree = "<group>";
 		};
+		ED2B8CEA2A8D27C700F561FA /* QuotationComplete */ = {
+			isa = PBXGroup;
+			children = (
+				ED2B8CEB2A8D282F00F561FA /* QuotationCompleteView.swift */,
+				EDD3F0AC2A8DCC94006CE38A /* QuotationCompleteSheet.swift */,
+				EDD3F0B22A8DF148006CE38A /* DetailQuotationList.swift */,
+				EDD3F0B42A8DF161006CE38A /* DetailQuotationTitle.swift */,
+				EDDCA9902A8D5607003DFD43 /* QuotationInteriorView.swift */,
+				EDDCA98E2A8D553E003DFD43 /* QuotationExteriorView.swift */,
+				EDDCA98C2A8D51F1003DFD43 /* QuotationSheetTop.swift */,
+			);
+			path = QuotationComplete;
+			sourceTree = "<group>";
+		};
 		ED6410832A7FC4FF0033AEBC /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -973,6 +1007,7 @@
 				EDBA5D552A808A8A0050BC35 /* pop-up */,
 				ED6410832A7FC4FF0033AEBC /* Button */,
 				B19436312A7E8C1500C2FD69 /* Alert */,
+				EDD3F0B62A8DFE8D006CE38A /* LeadingTitle.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1352,6 +1387,8 @@
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
 				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
 				ED1A70982A83646E00F7920F /* (null) in Sources */,
+				EDD3F0B32A8DF148006CE38A /* DetailQuotationList.swift in Sources */,
+				EDD3F0B52A8DF161006CE38A /* DetailQuotationTitle.swift in Sources */,
 				B191DD492A8BE0F4008196CD /* ExteriorColorAPIManager.swift in Sources */,
 				B191DD422A8B8607008196CD /* InteriorColorSelectionModel.swift in Sources */,
 				B191DD2C2A8B4CD6008196CD /* ExternalColorDisplayView.swift in Sources */,
@@ -1359,6 +1396,7 @@
 				B1604D6D2A85569400C7B07D /* DetailButtonStyle.swift in Sources */,
 				B16DFF342A89533300642730 /* ModelTypeOption.swift in Sources */,
 				B1604D382A8381BD00C7B07D /* TrimRequestDTO.swift in Sources */,
+				EDDCA98F2A8D553E003DFD43 /* QuotationExteriorView.swift in Sources */,
 				EDD303FD2A8A09E600400DF9 /* HMGTag.swift in Sources */,
 				B1F988E32A8B1D5A00C7B65F /* InteriorColorSelectionHorizontalList.swift in Sources */,
 				B1604D442A83943000C7B07D /* TrimSelectionRepository.swift in Sources */,
@@ -1371,12 +1409,14 @@
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
 				B1A76B822A88D263009C84EF /* ModelTypeIntent.swift in Sources */,
 				B1604D3A2A8381E900C7B07D /* TrimResponseDTO.swift in Sources */,
+				EDD3F0B72A8DFE8D006CE38A /* LeadingTitle.swift in Sources */,
 				EDC1862F2A893577009EB498 /* CLInactiveButtonStyle.swift in Sources */,
 				B1604D2F2A8335CA00C7B07D /* TrimSelectionRequest.swift in Sources */,
 				B1F988EA2A8B3E5300C7B65F /* InteriorColor.swift in Sources */,
 				EDE434F12A8BFE75007BD0DE /* QuotationIntent.swift in Sources */,
 				B16DFF362A89548300642730 /* ModelTypeRepositoryProtocol.swift in Sources */,
 				B1604D252A8261B400C7B07D /* ContentType.swift in Sources */,
+				ED2B8CEC2A8D282F00F561FA /* QuotationCompleteView.swift in Sources */,
 				B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */,
 				B1604D272A8265B500C7B07D /* RequestManager.swift in Sources */,
 				B1604D292A82660700C7B07D /* APIManagerProtocol.swift in Sources */,
@@ -1394,6 +1434,7 @@
 				B1604D422A83935400C7B07D /* JSONLoader.swift in Sources */,
 				B1F2BC622A7B5B7A005385E0 /* CLNavigationMenuTitleView.swift in Sources */,
 				ED1A70A32A836F3700F7920F /* CarQuotation.swift in Sources */,
+				EDDCA98D2A8D51F1003DFD43 /* QuotationSheetTop.swift in Sources */,
 				B19436432A80AE2000C2FD69 /* CLOptionSelectAlertContentView.swift in Sources */,
 				ED1C70602A89C3810049D275 /* CLSimilarQuotationSlideView.swift in Sources */,
 				B191DD302A8B4E53008196CD /* CarColorType.swift in Sources */,
@@ -1417,6 +1458,8 @@
 				EDCF32C42A8A91D500C46A4B /* CLQuotationSummarySheet.swift in Sources */,
 				EDCF32F82A8B90D700C46A4B /* ExternalColorModel.swift in Sources */,
 				B1604D322A836DBE00C7B07D /* Request.swift in Sources */,
+				EDD3F0AD2A8DCC94006CE38A /* QuotationCompleteSheet.swift in Sources */,
+				EDDCA9912A8D5607003DFD43 /* QuotationInteriorView.swift in Sources */,
 				EDF882572A8A708A0077558F /* ModelTypeRequestDTO.swift in Sources */,
 				B155C0DC2A7923A100F540CB /* IntentType.swift in Sources */,
 				EDA3CDD52A8243CC0001BB9C /* CLSimilarQuotationButton.swift in Sources */,
@@ -1462,6 +1505,7 @@
 				B191DD512A8BF157008196CD /* InteriorAPIManager.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
 				B16DFF472A8A161700642730 /* ModelTypeResponseDTO.swift in Sources */,
+				EDD3F0AF2A8DE3BC006CE38A /* CLSheetCapsule.swift in Sources */,
 				B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */,
 				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,

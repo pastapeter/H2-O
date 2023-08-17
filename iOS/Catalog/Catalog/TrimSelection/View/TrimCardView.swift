@@ -32,7 +32,7 @@ struct TrimCardView: View {
           Spacer()
           Image("trim_select_image")
             .resizable()
-            .frame(width: 263, height: 197)
+            .frame(width: 263)
         }
 
         HMGDataCard(options: trim.hmgData)

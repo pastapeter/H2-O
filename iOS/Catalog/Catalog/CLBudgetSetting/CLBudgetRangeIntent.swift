@@ -30,7 +30,7 @@ final class CLBudgetRangeIntent: ObservableObject {
     typealias ViewAction = CLBudgetRangeModel.ViewAction
 
     @Published var state: State = State(currentQuotationPrice: CLNumber(30000000),
-                                        budgetPrice: CLNumber(40000000))
+                                        budgetPrice: CLNumber(40000000), status: .default)
     var quotation = Quotation.shared
     var cancellable: Set<AnyCancellable> = []
 }

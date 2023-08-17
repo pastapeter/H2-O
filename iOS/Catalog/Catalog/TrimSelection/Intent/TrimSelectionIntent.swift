@@ -47,7 +47,7 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
       case .enteredTrimPage:
         Task {
           do {
-            let trims = try await repository.fetchTrims(in: state.carId)
+            let trims = try await repository.fetchTrims(of: state.carId)
             self.send(action: .fetchTrims(trims: trims))
           } catch let error {
             state.error = error as? TrimSelectionError
@@ -70,8 +70,8 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
         quotation.send(action: .isTrimChanged(trim: trim))
         Task {
           do {
-            let defaultQuotation = try await repository.fetchDefaultOptionsByTrim(in: trim)
-            let (maxPrice, minPrice) = try await repository.fetchMinMaxPriceByTrim(in: trim.id)
+            let defaultQuotation = try await repository.fetchDefaultOptionsByTrim(of: trim)
+            let (maxPrice, minPrice) = try await repository.fetchMinMaxPriceByTrim(of: trim.id)
             quotation.send(action: .isTrimSelected(defaultCarQuotation: defaultQuotation,
                                                    minPrice: minPrice,
                                                    maxPrice: maxPrice))

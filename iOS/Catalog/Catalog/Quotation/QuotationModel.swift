@@ -14,7 +14,6 @@ enum QuotationModel {
     var quotation: CarQuotation?
     var minPrice: CLNumber
     var maxPrice: CLNumber
-
   }
 
   enum ViewAction {
