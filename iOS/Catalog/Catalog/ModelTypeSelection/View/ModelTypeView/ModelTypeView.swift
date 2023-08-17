@@ -31,7 +31,9 @@ extension ModelTypeView: View {
         .catalogFont(type: .HeadKRMedium18)
       Spacer().frame(height: 8)
       ZStack(alignment: .topTrailing) {
-        makeDetailButton()
+        HMGButton {
+          intent.send(action: .onTapDetailButton(isPresenting: !state.isModalPresenting))
+        }
         VStack {
           Spacer().frame(height: 12)
           Image("powertrain")
@@ -53,19 +55,6 @@ extension ModelTypeView: View {
       })
     }
     .padding(.horizontal, 16)
-  }
-
-  @ViewBuilder
-  func makeDetailButton() -> some View {
-    ZStack {
-      Button {
-        intent.send(action: .onTapDetailButton(isPresenting: !state.isModalPresenting))
-      } label: {
-        Text("HMG Data")
-          .catalogFont(type: .HeadENBold10)
-      }
-      .buttonStyle(HMGButtonArrowStyle())
-    }
   }
 
 }
