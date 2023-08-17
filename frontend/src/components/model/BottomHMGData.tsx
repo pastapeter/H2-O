@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import styled from '@emotion/styled';
 import type { TechnicalSpecResponse } from '@/types/interface';
-import { getTechnicalSpec } from '@/apis/exterior';
+import { getTechnicalSpec } from '@/apis/model';
 import { Divider, Flex, Typography, HMGTag as _HMGTag, Loading as _Loading } from '@/components/common';
 import { useFetcher } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';

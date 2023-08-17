@@ -1,8 +1,9 @@
-import type { ComponentProps, MouseEventHandler } from 'react';
+import { type ComponentProps, type MouseEventHandler, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { CTAButton, Card } from '@/components/common';
-import { useSafeContext } from '@/hooks';
+import { getTrimPriceRange } from '@/apis/trim';
+import { CTAButton, Card, Loading } from '@/components/common';
+import { useFetcher, useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
 import { SelectionContext } from '@/providers/SelectionProvider';
 import { SlideContext } from '@/providers/SlideProvider';
@@ -21,10 +22,32 @@ function TrimCard({ id, description, title, price, ...restProps }: Props) {
   const { dispatch } = useSafeContext(SelectionContext);
   const theme = useTheme();
 
-  const handleClickButton: MouseEventHandler<HTMLButtonElement> = () => {
-    setCurrentSlide(currentSlide + 1);
-    dispatch({ type: 'SET_TRIM', payload: { id, name: title, price } });
+  const [submitted, setSubmitted] = useState(false);
+
+  const { isLoading } = useFetcher({
+    fetchFn: () => getTrimPriceRange(id),
+    onSuccess: (data) => {
+      dispatch({
+        type: 'SET_PRICE_RANGE',
+        payload: { minPrice: data.minPrice, maxPrice: data.maxPrice },
+      });
+      setCurrentSlide(currentSlide + 1);
+    },
+    enabled: submitted,
+  });
+
+  const handleClickButton: MouseEventHandler<HTMLButtonElement> = async () => {
+    setSubmitted(true);
   };
+
+  if (isLoading)
+    <Card
+      css={css`
+        flex: 1;
+      `}
+    >
+      <Loading />
+    </Card>;
 
   return (
     <Card

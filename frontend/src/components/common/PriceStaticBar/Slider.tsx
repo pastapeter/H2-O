@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, Dispatch, SetStateAction } from 'react';
+import type { ChangeEventHandler } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import Marker from './Marker';
@@ -17,16 +17,16 @@ interface Props {
   maxPrice: number;
   totalPrice: number;
   isComplete: boolean;
-  setSliderInfo: Dispatch<SetStateAction<SliderInfo>>;
+  handleChangeSliderInfo: (targetValue: number) => void;
 }
 
-function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, setSliderInfo }: Props) {
+function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, handleChangeSliderInfo }: Props) {
   const RANGE = maxPrice - minPrice;
   const theme = useTheme();
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const targetValue = Number(e.target.value);
-    setSliderInfo({ isOverPrice: totalPrice > targetValue, value: targetValue });
+    handleChangeSliderInfo(targetValue);
   };
 
   const preventEventDefault: ChangeEventHandler<HTMLInputElement> = (e) => {

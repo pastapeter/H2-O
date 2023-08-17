@@ -5,7 +5,7 @@ import { OptionCard } from '@/components/option/utils';
 
 interface Props {
   optionList: DefaultOptionResponse[];
-  handleClickOptionCard: (idx: number, hasHMGData: boolean) => () => void;
+  handleClickOptionCard: (idx: number) => () => void;
 }
 
 function DefaultOptionSelector({ optionList, handleClickOptionCard }: Props) {
@@ -21,7 +21,7 @@ function DefaultOptionSelector({ optionList, handleClickOptionCard }: Props) {
   return (
     <OptionContainer>
       {optionList.map((opt) => (
-        <OptionCard key={opt.id} info={opt} onClick={handleClickOptionCard(opt.id, opt.containsHmgData)} />
+        <OptionCard.Default key={opt.id} info={opt} onClick={handleClickOptionCard(opt.id)} />
       ))}
     </OptionContainer>
   );

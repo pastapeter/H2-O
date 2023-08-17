@@ -11,6 +11,12 @@ export interface TrimResponse {
   images: string[];
   options: TrimOption[];
 }
+
+export interface TrimPriceRangeResponse {
+  maxPrice: number;
+  minPrice: number;
+}
+
 export interface MaxOutput {
   output: number;
   minRpm: number;
@@ -96,23 +102,39 @@ export interface ExtraOptionResponse extends DefaultOptionResponse {
   price: number;
 }
 
-export interface DetailedOptionResponse {
+export interface GeneralOptionResponse {
   name: string;
   category: string;
-  image: string;
+  description?: string;
   hashTags?: string[];
-  description: string;
-  hmgData: {
-    overHalf: boolean;
-    choiceCount: number;
-    useCount: number;
-  };
+  image: string;
   price?: number;
+  containsHmgData: boolean;
+  containsUseCount: boolean;
+  hmgData?: {
+    choiceCount: number;
+    overHalf: boolean;
+    useCount?: number;
+  };
 }
 
-export interface DetailedPackageOptionResponse {
+export interface PackageOptionResponse {
   name: string;
   category: string;
-  hashTags: string[];
-  components: DetailedOptionResponse[];
+  choiceCount: number;
+  choiceRatio: number;
+  hashTags?: string[];
+  isOverHalf: boolean;
+  price?: number;
+  components?: [
+    {
+      name: string;
+      category: string;
+      containsHmgData: boolean;
+      description: string;
+      hashTags?: string[];
+      image: string;
+      useCount?: number;
+    },
+  ];
 }

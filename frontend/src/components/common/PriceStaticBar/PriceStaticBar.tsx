@@ -1,41 +1,84 @@
-import { HTMLAttributes, MouseEventHandler, useState } from 'react';
+import { HTMLAttributes, MouseEventHandler, useEffect, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import Slider from './Slider';
-import { Icon } from '@/components/common';
+import { getTrimPriceRange } from '@/apis/trim';
+import { Icon, Loading } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { setPriceFormat, toSeparatedNumberFormat } from '@/utils/number';
 import { SelectionContext } from '@/providers/SelectionProvider';
-
-// TODO: API 연결해서 가져오기
-const MAX_PRICE = 53460000;
-const MIN_PRICE = 38460000;
 
 interface SliderInfo {
   value: number;
   isOverPrice: boolean;
 }
 
+interface PriceRange {
+  minPrice: number;
+  maxPrice: number;
+}
+
 interface PriceStaticBarProps extends HTMLAttributes<HTMLDivElement> {
   isComplete?: boolean;
 }
 
-// 사용법: <PriceStaticBar isComplete={true} nowPrice={4100} />
+const DEFAULT_TRIM_IDX = 2;
 
 function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProps) {
   const theme = useTheme();
 
-  const { totalPrice } = useSafeContext(SelectionContext);
+  const { totalPrice, selectionInfo, dispatch } = useSafeContext(SelectionContext);
 
   const [isActive, setIsActive] = useState(false);
-  const [sliderInfo, setSliderInfo] = useState<SliderInfo>({
-    isOverPrice: totalPrice > (MIN_PRICE + MAX_PRICE) / 2,
-    value: (MIN_PRICE + MAX_PRICE) / 2,
-  });
+  const [sliderInfo, setSliderInfo] = useState<SliderInfo | null>(null);
+  const [priceRange, setPriceRange] = useState<PriceRange | null>(null);
 
   const handleClick: MouseEventHandler<SVGSVGElement> = () => {
     setIsActive((state) => !state);
   };
+
+  const handleChangeSliderInfo = (targetValue: number) => {
+    setSliderInfo({ isOverPrice: totalPrice > targetValue, value: targetValue });
+  };
+
+  useEffect(() => {
+    if (!selectionInfo.priceRange) {
+      (async function () {
+        const response = await getTrimPriceRange(DEFAULT_TRIM_IDX);
+        dispatch({
+          type: 'SET_PRICE_RANGE',
+          payload: { minPrice: response.minPrice, maxPrice: response.maxPrice },
+        });
+
+        const mean = (response.minPrice + response.maxPrice) / 2;
+        setSliderInfo({
+          isOverPrice: totalPrice > mean,
+          value: mean,
+        });
+
+        setPriceRange({ minPrice: response.minPrice, maxPrice: response.maxPrice });
+      })();
+
+      return;
+    }
+
+    const { minPrice, maxPrice } = selectionInfo.priceRange;
+    const mean = (minPrice + maxPrice) / 2;
+
+    setSliderInfo({
+      isOverPrice: totalPrice > mean,
+      value: mean,
+    });
+
+    setPriceRange({ minPrice: minPrice, maxPrice: maxPrice });
+  }, [selectionInfo.priceRange]);
+
+  if (!sliderInfo || !priceRange)
+    return (
+      <PriceStaticBarContainer isActive={isActive}>
+        <Loading />
+      </PriceStaticBarContainer>
+    );
 
   return (
     <PriceStaticBarContainer isActive={isActive} {...restProps}>
@@ -62,15 +105,15 @@ function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProp
         <StyledActive>
           <Slider
             sliderInfo={sliderInfo}
-            minPrice={MIN_PRICE}
-            maxPrice={MAX_PRICE}
+            minPrice={priceRange.minPrice}
+            maxPrice={priceRange.maxPrice}
             totalPrice={totalPrice}
             isComplete={isComplete}
-            setSliderInfo={setSliderInfo}
+            handleChangeSliderInfo={handleChangeSliderInfo}
           />
           <PriceRange>
-            <span>{setPriceFormat(MIN_PRICE)}만원</span>
-            <span>{setPriceFormat(MAX_PRICE)}만원</span>
+            <span>{setPriceFormat(priceRange.minPrice)}만원</span>
+            <span>{setPriceFormat(priceRange.maxPrice)}만원</span>
           </PriceRange>
         </StyledActive>
       )}

@@ -19,7 +19,6 @@ interface OptionSummaryProps {
 }
 
 const COMPLETE_TAB_IDX = 5;
-const MOCK_DATA_OPTION: OptionSummaryProps[] = [{ type: '옵션', name: '팰리세이드', price: 3880000 }];
 
 /**
  *
@@ -41,9 +40,10 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
     setIsExterior((prev) => !prev);
   };
 
-  const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor } = selectionInfo;
+  const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions } = selectionInfo;
 
-  if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor) return <div>로딩중...</div>;
+  if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor || !extraOptions)
+    return <div>로딩중...</div>;
 
   return (
     <Popup size='large' handleClickDimmed={handleClickCloseButton}>
@@ -68,8 +68,10 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
             {interiorColor && <OptionSummary type='외장색상' name={exteriorColor.name} price={exteriorColor.price} />}
             {exteriorColor && <OptionSummary type='내장색상' name={interiorColor.name} price={interiorColor.price} />}
             <Divider />
-            {MOCK_DATA_OPTION.length ? (
-              MOCK_DATA_OPTION.map(({ name, ...props }) => <OptionSummary key={name} name={name} {...props} />)
+            {extraOptions.optionList.length ? (
+              extraOptions.optionList.map((option) => (
+                <OptionSummary key={option.id} type='옵션' name={option.name} price={option.price} />
+              ))
             ) : (
               <OptionSummary type='옵션' name={'-'} price={0} />
             )}
@@ -102,7 +104,17 @@ function OptionSummary({ type, name, price }: OptionSummaryProps) {
         {type}
       </Typography>
       <Flex justifyContent='space-between' alignItems='center' width='100%' height='100%'>
-        <Typography as='span' font='TextKRMedium12' color='gray900'>
+        <Typography
+          as='span'
+          font='TextKRMedium12'
+          color='gray900'
+          css={css`
+            width: 160px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          `}
+        >
           {name}
         </Typography>
         <Typography as='span' font='TextKRRegular14' color='gray900'>

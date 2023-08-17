@@ -9,7 +9,7 @@ import { SelectionContext, SelectionInfoWithImage } from '@/providers/SelectionP
 
 interface Props {
   optionList: ExtraOptionResponse[];
-  handleClickOptionCard: (idx: number, hasHMGData: boolean) => () => void;
+  handleClickOptionCard: (idx: number, isPackage: boolean) => () => void;
 }
 
 function ExtraOptionSelector({ optionList, handleClickOptionCard }: Props) {
@@ -25,8 +25,9 @@ function ExtraOptionSelector({ optionList, handleClickOptionCard }: Props) {
 
   // global state 변화화면 강제 리렌더링
   useEffect(() => {
-    selectionInfo.extraOptions?.optionList.forEach((item) => !hasData(item) && addData(item));
-  }, [selectionInfo.extraOptions?.optionList]);
+    if (!selectionInfo.extraOptions) return;
+    selectionInfo.extraOptions.optionList.forEach((item) => !hasData(item) && addData(item));
+  }, [selectionInfo.extraOptions]);
 
   if (!optionList.length)
     return (
@@ -40,13 +41,13 @@ function ExtraOptionSelector({ optionList, handleClickOptionCard }: Props) {
   return (
     <OptionContainer>
       {optionList.map((opt) => (
-        <OptionCard
+        <OptionCard.Extra
           key={opt.id}
           info={opt}
           isChecked={hasData({ id: opt.id, name: opt.name, price: opt.price, image: opt.image })}
           addOption={addData}
           removeOption={removeData}
-          onClick={handleClickOptionCard(opt.id, opt.containsHmgData)}
+          onClick={handleClickOptionCard(opt.id, opt.isPackage)}
         />
       ))}
     </OptionContainer>

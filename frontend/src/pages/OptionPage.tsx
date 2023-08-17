@@ -1,21 +1,27 @@
-import { Fragment, memo, useState } from 'react';
+import { Fragment, memo, useEffect, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { DetailedOptionResponse, DetailedPackageOptionResponse } from '@/types/interface';
-import { CategoryButton, Flex, Footer, Icon, MainSelector } from '@/components/common';
+import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/interface';
+import { getOptionInfo, getOptionList, getPackageInfo } from '@/apis/option';
+import { CategoryButton, Flex, Footer, Icon, Loading, MainSelector } from '@/components/common';
 import { DefaultOptionSelector, ExtraOptionSelector, OptionBanner } from '@/components/option';
 import { useFilter } from '@/components/option/hooks';
-import {
-  DETAILED_OPTION_LIST,
-  defaultOptionCategoryList,
-  extraOptionCategoryList,
-} from '@/components/option/mock/mock';
+import { defaultOptionCategoryList, extraOptionCategoryList } from '@/components/option/mock/mock';
+import { useFetcher, useSafeContext } from '@/hooks';
+import { SelectionContext } from '@/providers/SelectionProvider';
+
+const checkPackageOption = (data: GeneralOptionResponse | PackageOptionResponse): data is PackageOptionResponse => {
+  return typeof data === 'object' && Object.prototype.hasOwnProperty.call(data, 'components');
+};
 
 function OptionPage() {
   const theme = useTheme();
-
+  const { selectionInfo } = useSafeContext(SelectionContext);
+  const [data, setData] = useState<GeneralOptionResponse | PackageOptionResponse>();
+  const trimId = selectionInfo.trim?.id;
   const {
     state,
+    setOptionList,
     handleClickDefaultOption,
     handleClickExtraOption,
     handleClickExtraCategory,
@@ -23,20 +29,66 @@ function OptionPage() {
     handleChangeInput,
     handleClickSearchButton,
   } = useFilter();
+
+  const { isLoading, error } = useFetcher({
+    fetchFn: () => getOptionList(trimId as number),
+    enabled: !!selectionInfo.trim,
+    onSuccess: (data) => {
+      setOptionList(data.extraOptionList, data.defaultOptionList);
+    },
+  });
+
   const { isExtraOption, extraCategoryIdx, defaultCategoryIdx, extraOptionList, defaultOptionList, input } = state;
 
-  const [data, setData] = useState<DetailedOptionResponse | DetailedPackageOptionResponse>(DETAILED_OPTION_LIST[0]);
-  const [hasHMGData, setHasHMGData] = useState(true);
-
-  const handleClickOptionCard = (idx: number, hasHMGData: boolean) => () => {
-    setHasHMGData(hasHMGData);
-    setData(DETAILED_OPTION_LIST[idx]);
+  const handleClickOptionCard = (idx: number) => async () => {
+    try {
+      const response = await getOptionInfo(trimId as number, idx);
+      setData(response);
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new Error('기본 옵션 카드 선택 오류');
+      }
+    }
   };
+
+  const handleClickExtraOptionCard = (idx: number, isPackage: boolean) => async () => {
+    try {
+      const response = await (isPackage ? getPackageInfo(trimId as number, idx) : getOptionInfo(trimId as number, idx));
+      setData(response);
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new Error('추가 옵션 카드 선택 오류');
+      }
+    }
+  };
+
+  // 옵션 카드 selector이 바뀔 경우 배너 정보 변화
+  useEffect(() => {
+    (async function () {
+      if (!extraOptionList[0] || !defaultOptionList[0]) return;
+      const response = isExtraOption
+        ? extraOptionList[0].isPackage
+          ? await getPackageInfo(trimId as number, extraOptionList[0].id)
+          : await getOptionInfo(trimId as number, extraOptionList[0].id)
+        : await getOptionInfo(trimId as number, defaultOptionList[0].id);
+
+      setData(response);
+    })();
+  }, [extraOptionList, defaultOptionList, isExtraOption]);
+
+  if (isLoading || !extraOptionList || !defaultOptionList || !data) return <Loading fullPage={true} />;
+  if (error) return <div>에러 ㅋ</div>;
 
   return (
     <Fragment>
-      <OptionBanner hasHMGData={hasHMGData} optionInfo={data} />
+      {/* 배너 */}
+      {checkPackageOption(data) ? (
+        <OptionBanner.PackageOption optionInfo={data} />
+      ) : (
+        <OptionBanner.GeneralOption optionInfo={data} />
+      )}
       <MainSelector>
+        {/* 카테고리 버튼 + 검색창 */}
         <ButtonContainer>
           <Flex justifyContent='space-between'>
             <Flex gap={24}>
@@ -67,7 +119,7 @@ function OptionPage() {
             {isExtraOption
               ? extraOptionCategoryList.map((category, idx) => (
                   <CategoryButton
-                    key={idx}
+                    key={category}
                     isClicked={idx === extraCategoryIdx}
                     onClick={handleClickExtraCategory(idx)}
                   >
@@ -76,7 +128,7 @@ function OptionPage() {
                 ))
               : defaultOptionCategoryList.map((category, idx) => (
                   <CategoryButton
-                    key={idx}
+                    key={category}
                     isClicked={idx === defaultCategoryIdx}
                     onClick={handleClickDefaultCategory(idx)}
                   >
@@ -85,8 +137,9 @@ function OptionPage() {
                 ))}
           </Flex>
         </ButtonContainer>
+        {/* 옵션 카드 리스트 */}
         {isExtraOption ? (
-          <ExtraOptionSelector optionList={extraOptionList} handleClickOptionCard={handleClickOptionCard} />
+          <ExtraOptionSelector optionList={extraOptionList} handleClickOptionCard={handleClickExtraOptionCard} />
         ) : (
           <DefaultOptionSelector optionList={defaultOptionList} handleClickOptionCard={handleClickOptionCard} />
         )}

@@ -7,6 +7,11 @@ export interface SelectionInfo {
   price: number;
 }
 
+export interface PriceRangeInfo {
+  minPrice: number;
+  maxPrice: number;
+}
+
 export interface SelectionInfoWithImage extends SelectionInfo {
   image: string;
 }
@@ -27,6 +32,7 @@ export interface ExtraOptionsInfo {
 type State = {
   model: SelectionInfo;
   trim?: SelectionInfo;
+  priceRange?: PriceRangeInfo;
   powerTrain?: SelectionInfoWithImage;
   bodyType?: SelectionInfoWithImage;
   driveTrain?: SelectionInfoWithImage;
@@ -39,6 +45,7 @@ type State = {
 
 type Action =
   | { type: 'SET_TRIM'; payload: SelectionInfo }
+  | { type: 'SET_PRICE_RANGE'; payload: PriceRangeInfo }
   | { type: 'SET_POWER_TRAIN'; payload: SelectionInfoWithImage }
   | { type: 'SET_BODY_TYPE'; payload: SelectionInfoWithImage }
   | { type: 'SET_DRIVE_TRAIN'; payload: SelectionInfoWithImage }
@@ -54,6 +61,7 @@ const initialState: State = {
     price: 0,
   },
   trim: undefined,
+  priceRange: undefined,
   powerTrain: undefined,
   bodyType: undefined,
   driveTrain: undefined,
@@ -76,6 +84,16 @@ const reducer = (state: State, action: Action): State => {
           price: action.payload.price,
         },
       };
+    case 'SET_PRICE_RANGE': {
+      return {
+        ...state,
+        priceRange: {
+          ...state.priceRange,
+          minPrice: action.payload.minPrice,
+          maxPrice: action.payload.maxPrice,
+        },
+      };
+    }
     case 'SET_POWER_TRAIN':
       return {
         ...state,
