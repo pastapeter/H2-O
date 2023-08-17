@@ -47,6 +47,9 @@
 		B156463D2A865B3F00FAD379 /* ModelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463C2A865B3F00FAD379 /* ModelContentView.swift */; };
 		B15B4F402A8E81E800101DCB /* OptionCardViewIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */; };
 		B15B4F422A8E821100101DCB /* OptionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F412A8E821100101DCB /* OptionCardModel.swift */; };
+		B15B4F492A8E9E3B00101DCB /* ExtraOptionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F482A8E9E3B00101DCB /* ExtraOptionDTO.swift */; };
+		B15B4F4B2A8E9ECC00101DCB /* OptionSelectRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F4A2A8E9ECC00101DCB /* OptionSelectRepositoryProtocol.swift */; };
+		B15B4F4D2A8EA51300101DCB /* PackageInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F4C2A8EA51300101DCB /* PackageInfoDTO.swift */; };
 		B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D112A8256B700C7B07D /* RequestProtocol.swift */; };
 		B1604D142A8256DA00C7B07D /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D132A8256DA00C7B07D /* RequestType.swift */; };
 		B1604D182A82577A00C7B07D /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1604D172A82577A00C7B07D /* MockURLProtocol.swift */; };
@@ -272,6 +275,9 @@
 		B156463C2A865B3F00FAD379 /* ModelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContentView.swift; sourceTree = "<group>"; };
 		B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardViewIntent.swift; sourceTree = "<group>"; };
 		B15B4F412A8E821100101DCB /* OptionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardModel.swift; sourceTree = "<group>"; };
+		B15B4F482A8E9E3B00101DCB /* ExtraOptionDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtraOptionDTO.swift; sourceTree = "<group>"; };
+		B15B4F4A2A8E9ECC00101DCB /* OptionSelectRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectRepositoryProtocol.swift; sourceTree = "<group>"; };
+		B15B4F4C2A8EA51300101DCB /* PackageInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageInfoDTO.swift; sourceTree = "<group>"; };
 		B1604D112A8256B700C7B07D /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		B1604D132A8256DA00C7B07D /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		B1604D172A82577A00C7B07D /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
@@ -657,6 +663,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B15B4F472A8E9E3B00101DCB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B15B4F482A8E9E3B00101DCB /* ExtraOptionDTO.swift */,
+				B15B4F4A2A8E9ECC00101DCB /* OptionSelectRepositoryProtocol.swift */,
+				B15B4F4C2A8EA51300101DCB /* PackageInfoDTO.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		B1604D0E2A8255D200C7B07D /* TrimSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,6 +801,7 @@
 		B167221E2A8C9E1C002B45A6 /* OptionSelection */ = {
 			isa = PBXGroup;
 			children = (
+				B15B4F472A8E9E3B00101DCB /* Data */,
 				B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */,
 				B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */,
 				B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */,
@@ -1446,6 +1463,7 @@
 				B1A76B882A893447009C84EF /* ModelTypeContent.swift in Sources */,
 				B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */,
 				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
+				B15B4F4B2A8E9ECC00101DCB /* OptionSelectRepositoryProtocol.swift in Sources */,
 				EDCF32E92A8AA81500C46A4B /* HashTag.swift in Sources */,
 				ED1C705F2A89C3810049D275 /* CLSliderView.swift in Sources */,
 				EDCF32C02A8A91D500C46A4B /* BottomArea.swift in Sources */,
@@ -1540,6 +1558,7 @@
 				B191DD3F2A8B85E4008196CD /* InteriorColorSelectionIntent.swift in Sources */,
 				B191DD452A8B8F67008196CD /* InteriorColorSelectionRepositoryProtocol.swift in Sources */,
 				B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */,
+				B15B4F4D2A8EA51300101DCB /* PackageInfoDTO.swift in Sources */,
 				B191DD552A8BF235008196CD /* InteriorColorResponseDTO.swift in Sources */,
 				B16DFF3C2A8958DB00642730 /* MaxTorqueFromEngine.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* CLTopNaviBar.swift in Sources */,
@@ -1578,6 +1597,7 @@
 				B191DD572A8BF2E0008196CD /* ExteriorColorResponseDTO.swift in Sources */,
 				B191DD512A8BF157008196CD /* InteriorAPIManager.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
+				B15B4F492A8E9E3B00101DCB /* ExtraOptionDTO.swift in Sources */,
 				B16DFF472A8A161700642730 /* ModelTypeResponseDTO.swift in Sources */,
 				EDD3F0AF2A8DE3BC006CE38A /* CLSheetCapsule.swift in Sources */,
 				B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */,
