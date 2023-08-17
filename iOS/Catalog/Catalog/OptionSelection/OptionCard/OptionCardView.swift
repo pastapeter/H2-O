@@ -6,15 +6,76 @@
 //
 
 import SwiftUI
+import Combine
 
-struct OptionCardView: View {
+enum OptionCardModel {
 
-  var choiceRatioExist: Bool = true
+  struct State: Equatable {
+    var hashTag: [String]
+    var info: ModelTypeContent
+    var isModalPresenting = false
+  }
+
+  enum ViewAction {
+    case onTapDetail(isPresenting: Bool)
+  }
+
+}
+
+protocol OptionCardViewIntentType {
+  
+  var state: OptionCardModel.State { get }
+
+  func send(action: OptionCardModel.ViewAction)
+
+  func send(action: OptionCardModel.ViewAction, viewEffect: (() -> Void)?)
+  
+}
+
+final class OptionCardViewIntent: ObservableObject {
+  
+  init(initialState: State) {
+    state = initialState
+  }
+  
+  typealias State = OptionCardModel.State
+  typealias ViewAction = OptionCardModel.ViewAction
+  
+  @Published var state: State
+  
+  var cancellable: Set<AnyCancellable> = []
+  
+}
+
+extension OptionCardViewIntent: OptionCardViewIntentType, IntentType {
+  
+  func mutate(action: OptionCardModel.ViewAction, viewEffect: (() -> Void)?) {
+    switch action {
+    case .onTapDetail(let isPresenting):
+      state.isModalPresenting = isPresenting
+    }
+  }
+  
+}
+
+
+
+struct OptionCardView: IntentBindingType, View {
+  
+  var container: Container<OptionCardViewIntentType, OptionCardModel.State>
+  var intent: OptionCardViewIntentType { container.intent }
+  var state: OptionCardModel.State { intent.state }
+  
+  private var isModalPresenting: Binding<Bool> {
+    .init(get: { state.isModalPresenting }, set: {
+      intent.send(action: .onTapDetail(isPresenting: $0))
+    })
+  }
+  
+  
   var isSelected: Bool = false
-  @State var isModalPresenting = false
   var detailState: ModelTypeDetailState = .init(content: .mock(), hmgData: .mock())
-  var name: String = "컴포트2"
-  var price = CLNumber(1090000)
+
 
     var body: some View {
       VStack(spacing: 0) {
@@ -25,14 +86,14 @@ struct OptionCardView: View {
             HStack {
               Spacer()
               HMGButton(action: {
-                isModalPresenting.toggle()
+                intent.send(action: .onTapDetail(isPresenting: !state.isModalPresenting))
               })
             }
             Spacer()
             HStack {
-              ImageTagView(title: "캠핑")
-              ImageTagView(title: "장거리운행")
-              ImageTagView(title: "겨울운전")
+              ForEach(state.hashTag.indices, id: \.self) { i in
+                ImageTagView(title: state.hashTag[i])
+              }
               Spacer()
             }
           }
@@ -41,22 +102,17 @@ struct OptionCardView: View {
         }
         VStack(alignment: .leading, spacing: 0) {
           Spacer().frame(height: 12)
-          if choiceRatioExist {
-            Text("\(Text("38%").foregroundColor(.activeBlue2))가 선택했어요")
-              .foregroundColor(.gray500)
-              .catalogFont(type: .TextKRMedium12)
-          } else {
-            Text("")
-              .catalogFont(type: .TextKRMedium12)
-          }
+          Text("\(Text("\(state.info.frequency)%").foregroundColor(.activeBlue2))가 선택했어요")
+            .foregroundColor(.gray500)
+            .catalogFont(type: .TextKRMedium12)
 
           HStack(alignment: .lastTextBaseline) {
             VStack(alignment: .leading, spacing: 0) {
-              Text(name)
+              Text(state.info.title)
                 .catalogFont(type: .HeadKRMedium16)
                 .multilineTextAlignment(.leading)
                 .foregroundColor(.gray900)
-              Text(price.signedWon)
+              Text(state.info.price.signedWon)
                 .foregroundColor(.gray900)
                 .catalogFont(type: .TextKRMedium14)
             }
@@ -80,7 +136,7 @@ struct OptionCardView: View {
       .frame(height: UIScreen.main.bounds.height * 212 / 812)
       .optionCardBackground(isSelected: isSelected)
       .cornerRadius(2)
-      .CLDialogFullScreenCover(show: $isModalPresenting) {
+      .CLDialogFullScreenCover(show: isModalPresenting) {
         ModalPopUpComponent(state: detailState.content, submitAction: {
           // TODO 가격 추가하기
         }, content: {
@@ -91,9 +147,20 @@ struct OptionCardView: View {
 
 }
 
+extension OptionCardView {
+  
+  @ViewBuilder
+  static func build(intent: OptionCardViewIntent) -> some View {
+    OptionCardView(container: .init(intent: intent,
+                                    state: intent.state,
+                                    modelChangePublisher: intent.objectWillChange))
+  }
+  
+}
+
 struct OptionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        OptionCardView()
+      OptionCardView.build(intent: .init(initialState: .init(hashTag: ["캠핑", "캠핑", "캠핑"], info: .mock())))
     }
 }
 
