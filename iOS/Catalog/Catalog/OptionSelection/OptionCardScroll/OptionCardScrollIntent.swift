@@ -41,7 +41,7 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
       return
     case .onTapFilterButton(let index):
       state.filterState.selectedFilterId = index
-    case .fetchCardState(let cardStates):
+    case .fetchCardState(_):
       return
     case .onTapOption(let id):
       state.selectedOptionId = id

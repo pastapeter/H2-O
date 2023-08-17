@@ -44,7 +44,7 @@ extension OptionCardScollView {
   @ViewBuilder
   static func build(intent: OptionCardScrollIntent) -> some View {
     
-    return OptionCardScollView(container: .init(intent: intent,
+    OptionCardScollView(container: .init(intent: intent,
                                                 state: intent.state,
                                                 modelChangePublisher: intent.objectWillChange)
                               )
