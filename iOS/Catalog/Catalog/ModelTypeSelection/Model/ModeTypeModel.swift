@@ -39,9 +39,9 @@ struct ModelTypeDetailState: Equatable {
   var hmgData: HMGDataState?
 }
 
-struct OptionState: Equatable, Identifiable, Hashable {
+struct OptionState: Equatable, Hashable {
 
-  var id: UUID
+  var id: Int
   var isSelected: Bool = true
   var frequency: Int = 0
   var title: String = "디젤"

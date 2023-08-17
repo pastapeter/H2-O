@@ -15,8 +15,8 @@ struct ModelTypeButtonContainer: View {
 extension ModelTypeButtonContainer {
   var body: some View {
     HStack {
-      ForEach(options, id: \.self) { option in
-        ModelTypeButtonView(state: option, action: { id in
+      ForEach(options.indices, id: \.self) { i in
+        ModelTypeButtonView(state: options[i], action: { id in
           if let index = options.firstIndex(where: { $0.id == id }) {
             intent.send(action: .onTapOptions(index: index))
           }

@@ -36,19 +36,23 @@ extension CLNavigationView: View {
       CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: menuStatus, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"])
       ZStack {
         TabView(selection: currentPageBinding) {
+          
           TrimSelectionView.build(intent: TrimSelectionIntent(
             initialState: .init(
             selectedTrim: nil,
             vehicleId: 123),
             repository: TrimMockRepository())).tag(0)
+          
           ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository())).tag(1)
+          
           ExternalSelectionContainerView.build(
             intent: .init(initialState: .init(selectedTrimId: 2),
                           repository: ExteriorColorRepository(requestManager: RequestManager(apiManager: ExteriorColorAPIManager())))).tag(2)
           InteriorColorSelectionView.build(
             intent: .init(initialState: .init(selectedTrimID: 2, selectedColorId: 1, trimColors: []),
                           repository: InteriorColorSelectionRepository(requestManager: RequestManager(apiManager: InteriorAPIManager())))).tag(3)
-          OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0))).tag(4)
+          MockView(image: mockImageName[4]).tag(4)
+//          OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0))).tag(4)
           MockView(image: mockImageName[5]).tag(5)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
