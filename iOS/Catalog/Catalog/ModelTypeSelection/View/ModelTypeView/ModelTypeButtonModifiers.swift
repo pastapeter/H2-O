@@ -15,7 +15,7 @@ struct ModelButtonSelectedBackground: ViewModifier {
       .background(Color.cardBG)
       .overlay(RoundedRectangle(cornerRadius: 4)
         .inset(by: 0.5)
-        .stroke(Color.activeBlue2)
+        .stroke(Color.activeBlue)
       )
   }
 

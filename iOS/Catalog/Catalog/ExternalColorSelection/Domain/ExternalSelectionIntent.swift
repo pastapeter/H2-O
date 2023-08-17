@@ -55,6 +55,7 @@ extension ExternalSelectionIntent: ExternalSelectionIntentType, IntentType {
       state.colors = colorStates
       if !colorStates.isEmpty {
         send(action: .onTapColor(id: colorStates[0].color.id))
+        // TODO:
       }
     case .changeSelectedExternalImageURL:
       print("External Image Urls")
