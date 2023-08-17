@@ -17,7 +17,6 @@ struct CLNavigationMenuView: View {
   var horizontalSpacing: CGFloat = 11
   var verticalSpacing: CGFloat = 6
 
-  
   var body: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: horizontalSpacing) {
