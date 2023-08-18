@@ -49,4 +49,27 @@
         order by hashtag_id
         limit 5;
     </select>
+
+    <select id="findTrimDefaultOptionsWithRange" resultType="TrimDefaultOptionEntity">
+        select id, name, image, category, choice_ratio, use_count
+        from trims_options
+                join options
+                    on trims_options.option_id = options.id and
+                        trims_options.trim_id = #{trimId} and
+                        trims_options.option_type = 'default'
+        order by option_id
+        <if test="range.from != null and range.count != null">
+            limit #{range.count}
+            offset #{range.from}
+        </if>
+    </select>
+
+    <select id="findTrimDefaultOptionOffsetRange" resultType="long">
+        select count(*)
+        from trims_options
+                 join options
+                      on trims_options.option_id = options.id and
+                         trims_options.trim_id = #{trimId} and
+                         trims_options.option_type = 'default';
+    </select>
 </mapper>

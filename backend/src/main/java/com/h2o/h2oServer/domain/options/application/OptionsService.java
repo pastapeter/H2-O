@@ -1,6 +1,9 @@
 package com.h2o.h2oServer.domain.options.application;
 
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
+import com.h2o.h2oServer.domain.option.exception.NoSuchOptionException;
+import com.h2o.h2oServer.domain.options.dto.DefaultOptionRangeDto;
+import com.h2o.h2oServer.domain.options.dto.OffsetRangeDto;
 import com.h2o.h2oServer.domain.options.dto.TrimDefaultOptionDto;
 import com.h2o.h2oServer.domain.options.dto.TrimExtraOptionDto;
 import com.h2o.h2oServer.domain.options.entity.TrimDefaultOptionEntity;
@@ -63,11 +66,19 @@ public class OptionsService {
     }
 
     public List<TrimDefaultOptionDto> findTrimDefaultOptions(Long trimId) {
-        List<TrimDefaultOptionDto> trimDefaultOptionDtos = new ArrayList<>();
-
         List<TrimDefaultOptionEntity> defaultOptionEntities = optionsMapper.findTrimDefaultOptions(trimId);
-
         validateExistenceOfOptions(defaultOptionEntities);
+        return addDefaultOptions(defaultOptionEntities);
+    }
+
+    public List<TrimDefaultOptionDto> findTrimDefaultOptions(Long trimId, DefaultOptionRangeDto defaultOptionRangeDto) {
+        List<TrimDefaultOptionEntity> defaultOptionEntities = optionsMapper.findTrimDefaultOptionsWithRange(trimId, defaultOptionRangeDto);
+        validateExistenceOfOptions(defaultOptionEntities);
+        return addDefaultOptions(defaultOptionEntities);
+    }
+
+    private List<TrimDefaultOptionDto> addDefaultOptions(List<TrimDefaultOptionEntity> defaultOptionEntities) {
+        List<TrimDefaultOptionDto> trimDefaultOptionDtos = new ArrayList<>();
 
         for (TrimDefaultOptionEntity defaultOptionEntity : defaultOptionEntities) {
             Long optionId = defaultOptionEntity.getId();
@@ -81,6 +92,16 @@ public class OptionsService {
         }
 
         return trimDefaultOptionDtos;
+    }
+
+    public OffsetRangeDto findTrimDefaultOptionOffsetRange(Long trimId) {
+        Long countRow = optionsMapper.findTrimDefaultOptionOffsetRange(trimId);
+
+        if (countRow > 0) {
+            return OffsetRangeDto.of(countRow);
+        }
+
+        throw new NoSuchOptionException("해당 트림의 기본 옵션이 존재하지 않습니다.");
     }
 
     private static void validateExistenceOfOptions(List entities) {
