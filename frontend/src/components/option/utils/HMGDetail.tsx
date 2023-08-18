@@ -13,16 +13,18 @@ function HMGDetail({ overHalf, choiceCount, useCount }: Props) {
       <HMGTag variant='small' />
       <Flex gap={80}>
         {/* 구매 선택 수 */}
-        <HMGInfoContainer>
-          {overHalf ? (
-            <span className='title'>구매자의 절반 이상이 선택했어요.</span>
-          ) : (
-            <span className='title'>이 옵션을 이만큼 선택했어요. </span>
-          )}
-          <Divider length={134} color='gray200' />
-          <span className='value'>{choiceCount}개</span>
-          <span className='unit'>최근 90일 동안</span>
-        </HMGInfoContainer>
+        {choiceCount && (
+          <HMGInfoContainer>
+            {overHalf ? (
+              <span className='title'>구매자의 절반 이상이 선택했어요.</span>
+            ) : (
+              <span className='title'>이 옵션을 이만큼 선택했어요. </span>
+            )}
+            <Divider length={134} color='gray200' />
+            <span className='value'>{choiceCount}개</span>
+            <span className='unit'>최근 90일 동안</span>
+          </HMGInfoContainer>
+        )}
 
         {/* 구매자 사용 빈도수 */}
         {useCount ? (

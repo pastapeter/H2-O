@@ -4,7 +4,12 @@ import styled from '@emotion/styled';
 import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/interface';
 import { getOptionInfo, getOptionList, getPackageInfo } from '@/apis/option';
 import { CategoryButton, Flex, Footer, Icon, Loading, MainSelector } from '@/components/common';
-import { DefaultOptionSelector, ExtraOptionSelector, OptionBanner } from '@/components/option';
+import {
+  DefaultOptionSelector,
+  ExtraOptionSelector,
+  GeneralOptionBanner,
+  PackageOptionBanner,
+} from '@/components/option';
 import { useFilter } from '@/components/option/hooks';
 import { defaultOptionCategoryList, extraOptionCategoryList } from '@/components/option/mock/mock';
 import { useFetcher, useSafeContext } from '@/hooks';
@@ -82,11 +87,7 @@ function OptionPage() {
   return (
     <Fragment>
       {/* 배너 */}
-      {checkPackageOption(data) ? (
-        <OptionBanner.PackageOption optionInfo={data} />
-      ) : (
-        <OptionBanner.GeneralOption optionInfo={data} />
-      )}
+      {checkPackageOption(data) ? <PackageOptionBanner optionInfo={data} /> : <GeneralOptionBanner optionInfo={data} />}
       <MainSelector>
         {/* 카테고리 버튼 + 검색창 */}
         <ButtonContainer>

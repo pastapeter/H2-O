@@ -109,9 +109,9 @@ export interface GeneralOptionResponse {
   hashTags?: string[];
   image: string;
   price?: number;
-  containsHmgData: boolean;
+  containsChoiceCount: boolean;
   containsUseCount: boolean;
-  hmgData?: {
+  hmgData: {
     choiceCount: number;
     overHalf: boolean;
     useCount?: number;

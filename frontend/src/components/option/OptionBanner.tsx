@@ -44,24 +44,22 @@ function OptionBanner({ children, subTitle, title, imgUrl, ...restProps }: Props
   );
 }
 
-function GeneralOption({ optionInfo }: { optionInfo: GeneralOptionResponse }) {
+function GeneralOptionBanner({ optionInfo }: { optionInfo: GeneralOptionResponse }) {
+  const { category, name, image, description, hmgData, containsChoiceCount, containsUseCount } = optionInfo;
+  const containsHGMData = containsChoiceCount || containsUseCount;
   return (
-    <OptionBanner subTitle={optionInfo.category} title={optionInfo.name} imgUrl={optionInfo.image}>
+    <OptionBanner subTitle={category} title={name} imgUrl={image}>
       <Typography font='TextKRRegular12' color='gray800' marginTop={8} className='description'>
-        {optionInfo.description}
+        {description}
       </Typography>
-      {optionInfo.hmgData && (
-        <HMGDetail
-          overHalf={optionInfo.hmgData.overHalf}
-          choiceCount={optionInfo.hmgData.choiceCount}
-          useCount={optionInfo.hmgData.useCount}
-        />
+      {containsHGMData && (
+        <HMGDetail overHalf={hmgData.overHalf} choiceCount={hmgData.choiceCount} useCount={hmgData.useCount} />
       )}
     </OptionBanner>
   );
 }
 
-function PackageOption({ optionInfo }: { optionInfo: PackageOptionResponse }) {
+function PackageOptionBanner({ optionInfo }: { optionInfo: PackageOptionResponse }) {
   const { colors } = useTheme();
   const [componentIdx, setComponentIdx] = useState(0);
 
@@ -116,9 +114,7 @@ function PackageOption({ optionInfo }: { optionInfo: PackageOptionResponse }) {
   );
 }
 
-OptionBanner.GeneralOption = GeneralOption;
-OptionBanner.PackageOption = PackageOption;
-export default OptionBanner;
+export { GeneralOptionBanner, PackageOptionBanner };
 
 const Banner = styled(_Banner)<{ isShowImg: boolean }>`
   position: sticky;
