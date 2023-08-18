@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FilterState {
-  var filters = OptionFilter.additionalOptionFilter
+  var filters = OptionCategory.additionalOptionFilter
   var selectedFilterId: Int = 0
 }
 

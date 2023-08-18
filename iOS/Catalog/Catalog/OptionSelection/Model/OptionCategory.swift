@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OptionFilter: CustomStringConvertible {
+enum OptionCategory: CustomStringConvertible {
 
   case total
   case detail
@@ -51,12 +51,39 @@ enum OptionFilter: CustomStringConvertible {
     }
   }
 
-  static var additionalOptionFilter: [OptionFilter] {
+  static var additionalOptionFilter: [OptionCategory] {
     return [.total, .detail, .accessory, .wheel]
   }
 
-  static var defaultOptionFiletr: [OptionFilter] {
+  static var defaultOptionFiletr: [OptionCategory] {
     return [.total, .powerTrain, .AISafeguardTech, .safe, .exterior, .interior, .seat, .comfort, .multimedia]
   }
+  
+}
 
+extension OptionCategory {
+  
+  init?(_ korean: String) {
+    
+      var koreaDict : [String: Self] = [
+        "파워트레인/성능" : .powerTrain,
+        "지능형 안전기술" : .AISafeguardTech,
+        "안전" : .safe,
+        "외관" : .exterior,
+        "내장" : .interior,
+        "시트" : .seat,
+        "편의" : .comfort,
+        "멀티미디어" : .multimedia,
+        "상세품목" : .detail,
+        "악세서리" : .accessory,
+        "휠" : .wheel,
+      ]
+    
+    if let category = koreaDict[korean] {
+      self = category
+    } else {
+        return nil
+    }
+
+  }
 }
