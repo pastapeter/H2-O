@@ -21,7 +21,7 @@ struct ExternalColorDisplayView: ColorContentable {
     switch color {
     case .exterior(let hexColor):
       VStack {
-        Spacer().frame(height: 12)
+        Spacer().frame(height: CGFloat(12).scaledHeight)
         ZStack {
           Circle()
             .strokeBorder(isSelected ? Color.activeBlue : .gray100, lineWidth: 4)
@@ -29,6 +29,7 @@ struct ExternalColorDisplayView: ColorContentable {
             .fill(Color(hex: hexColor))
             .padding(.all, 6)
         }
+        .frame(width: CGFloat(50).scaledWidth, height: CGFloat(50).scaledHeight)
       }
     default:
       EmptyView()
