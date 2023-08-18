@@ -23,13 +23,14 @@ extension OptionSelectionView: View {
 
   var body: some View {
     VStack(alignment: .leading) {
-      Spacer().frame(height: 50)
-      CLNavigationMenuView(currentPage: currentPage, navigationMenuTitles: state.optionMenuTitle, titleFont: .TextKRBold18, horizontalSpacing: 24, verticalSpacing: 2)
-        .padding(.leading, 20)
+      Spacer().frame(height: CGFloat(50).scaledHeight)
+      CLNavigationMenuView(currentPage: currentPage, navigationMenuTitles: state.optionMenuTitle, titleFont: .TextKRBold18, horizontalSpacing: CGFloat(24).scaledWidth, verticalSpacing: 2)
+        .padding(.leading, CGFloat(20).scaledWidth)
+      
       Spacer().frame(height: 16)
       TabView(selection: currentPage) {
-        OptionCardScollView.build(intent: .init(initialState: .mock1())).tag(0)
-                                  OptionCardScollView.build(intent: .init(initialState: .mock2())).tag(1)
+        OptionCardScollView.build(intent: .init(initialState: .init(cardStates: []), repository: intent.repository)).tag(0)
+        OptionCardScollView.build(intent: .init(initialState: .init(cardStates: []), repository: intent.repository)).tag(1)
       }
       .tabViewStyle(.page(indexDisplayMode: .never))
     }
@@ -46,12 +47,4 @@ extension OptionSelectionView {
     OptionSelectionView(container: .init(intent: intent as OptionSelectionIntent, state: intent.state, modelChangePublisher: intent.objectWillChange))
   }
 
-}
-
-struct OptionSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-      OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0,
-                                                                  additionalOptionState: .init(cardStates: [], selectedFilterId: 0),
-                                                                  defaultOptionState: .init(cardStates: [], selectedFilterId: 1))))
-    }
 }

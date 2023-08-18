@@ -15,13 +15,16 @@ protocol OptionSelectionIntentType {
   func send(action: OptionSelectionModel.ViewAction)
 
   func send(action: OptionSelectionModel.ViewAction, viewEffect: (() -> Void)?)
+  
+  var repository: OptionSelectionRepositoryProtocol { get }
 
 }
 
 final class OptionSelectionIntent: ObservableObject {
 
-  init(initialState: State) {
+  init(initialState: State, repository: OptionSelectionRepositoryProtocol) {
     state = initialState
+    self.repository = repository
   }
 
   typealias State = OptionSelectionModel.State
@@ -30,6 +33,7 @@ final class OptionSelectionIntent: ObservableObject {
   @Published var state: State
 
   var cancellable: Set<AnyCancellable> = []
+  private(set) var repository: OptionSelectionRepositoryProtocol
 
 }
 
@@ -39,6 +43,8 @@ extension OptionSelectionIntent: OptionSelectionIntentType, IntentType {
     switch action {
     case .onTapTab(let index):
       state.currentPage = index
+    case .onAppear:
+      break
     }
   }
 

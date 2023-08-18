@@ -18,12 +18,13 @@ enum OptionSelectionModel {
 
   enum ViewAction {
     case onTapTab(index: Int)
+    case onAppear
   }
 
 }
 
 struct OptionListState: Equatable {
-  var filters = OptionFilter.additionalOptionFilter
+  var filters = OptionCategory.additionalOptionFilter
   var cardStates: [OptionCardModel.State]
   var selectedFilterId: Int
 }
