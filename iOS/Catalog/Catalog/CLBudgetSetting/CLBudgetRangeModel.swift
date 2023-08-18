@@ -29,9 +29,9 @@ enum CLBudgetRangeModel {
 
   enum ViewAction: Equatable {
     case onAppear
-    case isChangedBudget(newBudgetPrice: CLNumber)
-    case isChangedQuotationPrice(newQuotationPrice: CLNumber)
-    case isChangedExceedBudget
-    case isChangedBudgetGap
+    case budgetChanged(newBudgetPrice: CLNumber)
+    case quotationPriceChanged(newQuotationPrice: CLNumber)
+    case exceedBudgetChanged
+    case budgetGapChanged
   }
 }

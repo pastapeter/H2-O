@@ -70,8 +70,8 @@ struct BodyTypeDTO: Codable {
 extension BodyTypeDTO {
   func toDomain() throws -> BodyTypeModel {
     return BodyTypeModel(
-      id: id ?? 0,
-name: name ?? "",
+                           id: id ?? 0,
+                           name: name ?? "",
                            price: CLNumber(Int32(price ?? 0)),
                            choiceRaatio: choiceRatio ?? 0,
                            description: description ?? "",
@@ -90,8 +90,8 @@ struct DriveTrainDTO: Codable {
 extension DriveTrainDTO {
   func toDomain() throws -> DriveTrainModel {
     return DriveTrainModel(
-      id: id ?? 0,
-name: name ?? "",
+                           id: id ?? 0,
+                           name: name ?? "",
                            price: CLNumber(Int32(price ?? 0)),
                            choiceRaatio: choiceRatio ?? 0,
                            description: description ?? "",

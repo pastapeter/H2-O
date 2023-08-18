@@ -62,7 +62,7 @@ struct CLSliderView: View {
                         newBudget = round(newBudget * 0.00001) * 100000
                         budgetPriceBinding = CLNumber(Int32(newBudget))
                       }
-                      intent.send(action: .isChangedBudget(newBudgetPrice: budgetPriceBinding))
+                      intent.send(action: .budgetChanged(newBudgetPrice: budgetPriceBinding))
                     }
                 )
             }

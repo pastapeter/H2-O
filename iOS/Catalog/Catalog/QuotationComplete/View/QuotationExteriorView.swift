@@ -26,11 +26,11 @@ struct QuotationExteriorView: View {
         } placeholder: {
           EmptyView()
         }
-        Spacer()
       }
       .background(
         Image("QuotationCompleteBackground")
           .resizable()
+          .scaledToFill()
       )
     }
 }

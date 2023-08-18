@@ -1,18 +1,20 @@
 //
-//  DetailQuotationTitle.swift
+//  MockDetailQuotationTitle.swift
 //  Catalog
 //
-//  Created by 이수민 on 2023/08/17.
+//  Created by 이수민 on 2023/08/18.
 //
 
+import Foundation
 import SwiftUI
 
-struct DetailQuotationTitle: View {
+struct MockDetailQuotationTitle: View {
     var title: String
     @State var isFloating: Bool = false
     var body: some View {
       ZStack {
-        LeadingTitle(title: title)
+        Text(title).catalogFont(type: .HeadKRMedium16).leadingTitle()
+
         HStack {
           Spacer()
           Button {
@@ -20,17 +22,11 @@ struct DetailQuotationTitle: View {
           } label: {
             isFloating ? Image( "black_arrow_up") : Image( "black_arrow_down")
           }
-          .padding(.trailing, 20)
           .buttonStyle(.plain)
+          .padding(.trailing, 20)
 
         }
       }
       .background(Color("background2"))
-    }
-}
-
-struct DetailQuotationTitle_Previews: PreviewProvider {
-    static var previews: some View {
-      DetailQuotationTitle(title: "모델타입")
     }
 }

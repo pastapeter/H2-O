@@ -32,6 +32,7 @@ enum ModelTypeSelectionContainerModel {
                 ],
               modelTypeDetailState: [.init(content: .mock(), hmgData: .mock()),
                                      .init(content: .mock(), hmgData: .mock())]),
+
             .init(title: "구동방식", imageURL: nil,
                   optionStates: [
                     .init(id: 2,

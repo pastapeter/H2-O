@@ -19,11 +19,11 @@ struct CLBudgetRangeView: IntentBindingType {
 extension CLBudgetRangeView {
     var budgetPriceBinding: Binding<CLNumber> {
         .init(get: { state.budgetPrice },
-              set: { intent.send(action: .isChangedBudget(newBudgetPrice: $0)) })
+              set: { intent.send(action: .budgetChanged(newBudgetPrice: $0)) })
     }
     var isExceedBudgetBinding: Binding<Bool> {
         .init(get: { state.isExceedBudget },
-              set: { _ in intent.send(action: .isChangedExceedBudget) })
+              set: { _ in intent.send(action: .exceedBudgetChanged) })
     }
 }
 
@@ -36,72 +36,72 @@ extension CLBudgetRangeView {
 }
 
 extension CLBudgetRangeView: View {
-    var body: some View {
-        VStack {
-            VStack(spacing: 0) {
-                // MARK: - 예산범위 title
-                ZStack {
-                    HStack {
-                      Text(state.status == .similarQuotation ? "유사견적 가격" : "예산 범위")
-                            .catalogFont(type: .HeadKRMedium14)
-                            .foregroundColor(Color.gray50)
-                        Spacer()
-                    }
-                    HStack(spacing: 8) {
-                        Spacer()
-                        Text(attributedString)
-                            .catalogFont(type: .TextKRRegular12)
-                      if state.status != .similarQuotation {
-                            Button {
-                                isFloatingExpanded.toggle()
-                            } label: {
-                                isFloatingExpanded ? Image("arrow_up") : Image("arrow_down")
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                }
-                .padding(.top, 9.5)
-                .padding(.bottom, isFloatingExpanded ? 15.5 : 8.5)
-
-                if isFloatingExpanded {
-                    // MARK: - 슬라이더
-                    switch state.status {
-                      case .`default`, .complete:
-                            CLSliderView(intent: intent,
-                                         minimumBudget: state.minimumPrice,
-                                         maximumBudget: state.maximumPrice,
-                                         currentQuotationPrice: state.currentQuotationPrice,
-                                         status: state.status,
-                                         budgetPriceBinding: budgetPriceBinding,
-                                         isExceedBudget: isExceedBudgetBinding)
-                      case .similarQuotation:
-                        CLSimilarQuotationSlideView(minimumBudget: state.minimumPrice,
-                                                    maximumBudget: state.maximumPrice,
-                                                    currentQuotationPrice: state.currentQuotationPrice,
-                                                        similarQuotationPrice: CLNumber(41000000))
-                    }
-                    // MARK: - 확인 버튼
-                    if state.status == .complete {
-                        CLSimilarQuotationButton(isExceedBudget: isExceedBudgetBinding)
-                    }
-                }
-            }
-            .padding(.horizontal, 16)
-            .background(state.isExceedBudget ? Color("ExceedBudgetColor") : Color.primary700)
-            .cornerRadius(10)
+  var body: some View {
+    VStack {
+      VStack(spacing: 0) {
+        // MARK: - 예산범위 title
+        ZStack {
+          HStack {
+            Text(state.status == .similarQuotation ? "유사견적 가격" : "예산 범위")
+              .catalogFont(type: .HeadKRMedium14)
+              .foregroundColor(Color.gray50)
             Spacer()
-        }
-        .padding(.horizontal, 12)
-        .padding(.bottom, 20)
-        .padding(.top, 12)
-        .onAppear {
-          intent.send(action: .onAppear)
-            if state.status == .similarQuotation {
-                isFloatingExpanded = true
+          }
+          HStack(spacing: 8) {
+            Spacer()
+            Text(attributedString)
+              .catalogFont(type: .TextKRRegular12)
+            if state.status != .similarQuotation {
+              Button {
+                isFloatingExpanded.toggle()
+              } label: {
+                isFloatingExpanded ? Image("arrow_up") : Image("arrow_down")
+              }
+              .buttonStyle(.plain)
             }
+          }
         }
+        .padding(.top, 9.5)
+        .padding(.bottom, isFloatingExpanded ? 15.5 : 8.5)
+
+        if isFloatingExpanded {
+          // MARK: - 슬라이더
+          switch state.status {
+            case .`default`, .complete:
+              CLSliderView(intent: intent,
+                           minimumBudget: state.minimumPrice,
+                           maximumBudget: state.maximumPrice,
+                           currentQuotationPrice: state.currentQuotationPrice,
+                           status: state.status,
+                           budgetPriceBinding: budgetPriceBinding,
+                           isExceedBudget: isExceedBudgetBinding)
+            case .similarQuotation:
+              CLSimilarQuotationSlideView(minimumBudget: state.minimumPrice,
+                                          maximumBudget: state.maximumPrice,
+                                          currentQuotationPrice: state.currentQuotationPrice,
+                                          similarQuotationPrice: CLNumber(41000000))
+          }
+          // MARK: - 확인 버튼
+          if state.status == .complete {
+            CLSimilarQuotationButton(isExceedBudget: isExceedBudgetBinding)
+          }
+        }
+      }
+      .padding(.horizontal, 16)
+      .background(state.isExceedBudget ? Color("ExceedBudgetColor") : Color.primary700)
+      .cornerRadius(10)
+      Spacer()
     }
+    .padding(.horizontal, 12)
+    .padding(.bottom, 20)
+    .padding(.top, 12)
+    .onAppear {
+      intent.send(action: .onAppear)
+      if state.status == .similarQuotation || state.status == .complete {
+        isFloatingExpanded = true
+      }
+    }
+  }
 }
 
 extension CLBudgetRangeView {

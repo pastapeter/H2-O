@@ -1,5 +1,5 @@
 //
-//  CLListText.swift
+//  SummarySheetListItem.swift
 //  Catalog
 //
 //  Created by 이수민 on 2023/08/10.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CLListText: View {
+struct SummarySheetListItem: View {
 
     var title: String
     var info: SummaryQuotationInfo

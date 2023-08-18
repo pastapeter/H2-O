@@ -7,7 +7,16 @@
 
 import Foundation
 
-struct PowerTrainModel {
+protocol ModelTypeProtocol: Hashable {
+  var id: Int { get set }
+  var name: String { get set }
+  var price: CLNumber { get set }
+  var choiceRaatio: Int { get set }
+  var description: String { get set }
+  var image: URL? { get set }
+}
+
+struct PowerTrainModel: ModelTypeProtocol {
   var id: Int
   var name: String
   var price: CLNumber
@@ -18,7 +27,7 @@ struct PowerTrainModel {
   var maxTorque: MaxTorqueFromEngine?
 }
 
-struct BodyTypeModel {
+struct BodyTypeModel: ModelTypeProtocol {
   var id: Int
   var name: String
   var price: CLNumber
@@ -27,7 +36,7 @@ struct BodyTypeModel {
   var image: URL?
 }
 
-struct DriveTrainModel {
+struct DriveTrainModel: ModelTypeProtocol {
   var id: Int
   var name: String
   var price: CLNumber

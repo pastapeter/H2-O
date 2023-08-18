@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MaxOutputFromEngine {
+struct MaxOutputFromEngine: Hashable {
   var output: Double?
   var minRPM: Int?
   var maxRPM: Int?

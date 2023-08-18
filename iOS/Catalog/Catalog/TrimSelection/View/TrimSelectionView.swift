@@ -18,13 +18,7 @@ struct TrimSelectionView: IntentBindingType {
 extension TrimSelectionView: View {
   var body: some View {
     VStack {
-      HStack {
-        Text("트림을 선택해주세요.")
-          .catalogFont(type: .HeadKRMedium18)
-        Spacer()
-      }
-      .padding(.leading, 20)
-      .padding(.top, 20)
+      Text("트림을 선택해주세요.").catalogFont(type: .HeadKRMedium18).leadingTitle()
 
       SnapCarousel(items: state.trims,
                    spacing: 16,
@@ -58,7 +52,6 @@ extension TrimSelectionView: View {
                height: 60,
                backgroundColor: Color.primary700,
                buttonAction: { intent.send(action: .onTapTrimSelectButton) })
-      Spacer().frame(height: 0.1)
     }
     .onAppear(perform: { intent.send(action: .enteredTrimPage) })
   }

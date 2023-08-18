@@ -12,8 +12,8 @@ struct CLToggle: View {
     @Binding var isLeft: Bool
     var body: some View {
         Capsule()
-            .fill(Color.white)
-            .foregroundColor(Color.gray100)
+            .stroke(Color.gray100)
+            .background(Capsule().foregroundColor(Color.white))
             .frame(width: 154, height: 44)
             .overlay(
                 ZStack {

@@ -7,11 +7,14 @@
 
 import Foundation
 
-struct ExteriorColor: Equatable, Hashable {
+struct ExteriorColor: Equatable, Hashable, ColorProtocol {
   var id: Int
   var name: String
   var choiceRatio: CLNumber?
   var price: CLNumber
   var hexCode: String
   var exteriorImages: [URL]
+}
+
+protocol ColorProtocol {
 }

@@ -31,6 +31,7 @@ fileprivate extension InteriorColorState {
                           name: self.color.name,
                           choiceRatio: self.color.choiceRatio,
                           price: self.color.price,
-                          colorType: .interior(fabricImageURL: self.color.fabricImageURL, bannerImageURL: self.color.bannerImageURL))
+                          colorType: .interior(fabricImageURL: self.color.fabricImageURL,
+                                               bannerImageURL: self.color.bannerImageURL))
   }
 }

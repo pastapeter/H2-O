@@ -43,22 +43,21 @@ extension CLBudgetRangeIntent: CLBudgetRangeIntentType, IntentType {
             print(quotation.state.minPrice, quotation.state.maxPrice)
             state.minimumPrice = quotation.state.minPrice
             state.maximumPrice = quotation.state.maxPrice
-            case .isChangedBudget(let newBudgetPrice):
+            case .budgetChanged(let newBudgetPrice):
                 state.budgetPrice = newBudgetPrice
-                send(action: .isChangedBudgetGap)
-                send(action: .isChangedExceedBudget)
+                send(action: .budgetGapChanged)
+                send(action: .exceedBudgetChanged)
 
-            case .isChangedQuotationPrice(let newQuotationPrice):
+            case .quotationPriceChanged(let newQuotationPrice):
                 state.currentQuotationPrice = newQuotationPrice
-                send(action: .isChangedBudgetGap)
-                send(action: .isChangedExceedBudget)
+                send(action: .budgetGapChanged)
+                send(action: .exceedBudgetChanged)
 
-            case .isChangedExceedBudget:
+            case .exceedBudgetChanged:
                 state.isExceedBudget = state.budgetPrice < state.currentQuotationPrice
 
-            case .isChangedBudgetGap:
+            case .budgetGapChanged:
                 state.budgetGap = CLNumber(abs(state.budgetPrice.value - state.currentQuotationPrice.value))
-            default: return
         }
     }
 }

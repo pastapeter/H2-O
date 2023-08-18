@@ -12,6 +12,7 @@ struct OptionDTO: Decodable {
   var isPackage: Bool?
   var category: String?
   var name: String?
+  var image: URL?
   var hashTags: [String?]
   var containsHmgData: Bool?
   var choiceRatio: Int?

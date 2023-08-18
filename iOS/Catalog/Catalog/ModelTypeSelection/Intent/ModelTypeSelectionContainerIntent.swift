@@ -49,7 +49,9 @@ extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentTy
       return
     case .modelTypeOptions(let options):
       state.modelTypeStateArray = options.map({
-        ModelTypeModel.State.init(title: $0.title, optionStates: $0.options, modelTypeDetailState: [.init(content: .mock(), hmgData: .mock()), .init(content: .mock(), hmgData: .mock())])
+        ModelTypeModel.State.init(title: $0.title,
+                                  optionStates: $0.options,
+                                  modelTypeDetailState: [.init(content: .mock(), hmgData: .mock()), .init(content: .mock(), hmgData: .mock())])
       })
     }
   }

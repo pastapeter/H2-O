@@ -5,9 +5,9 @@
 //  Created by 이수민 on 2023/08/17.
 //
 
-import SwiftUI
+ import SwiftUI
 
-struct QuotationCompleteSheet: View {
+ struct QuotationCompleteSheet: View {
     var quotation = Quotation.shared
     var body: some View {
       ScrollView {
@@ -16,7 +16,7 @@ struct QuotationCompleteSheet: View {
           CLSheetCapsule(height: 4)
 
           // 요약견적 제목
-          LeadingTitle(title: "요약견적")
+          Text("요약견적").catalogFont(type: .HeadKRMedium16).leadingTitle()
 
           // 요약 견적
           HStack(spacing: 46) {
@@ -24,7 +24,7 @@ struct QuotationCompleteSheet: View {
               Text("모델")
                 .catalogFont(type: .TextKRRegular12)
                 .foregroundColor(Color.gray600)
-              Text((quotation.state.quotation?.trim.name ?? "") + "(르블랑)" )
+              Text((quotation.state.quotation?.trim.name ?? ""))
                 .catalogFont(type: .HeadKRMedium18)
                 .foregroundColor(Color.gray900)
             }
@@ -49,16 +49,27 @@ struct QuotationCompleteSheet: View {
           .padding(.horizontal, 21)
           .background(Color.skyBlueCardBG)
 
-          LeadingTitle(title: "상세견적")
-          DetailQuotationList()
+          // 상세견적 제목
+          Text("상세견적").catalogFont(type: .HeadKRMedium16).leadingTitle()
+
+          // 상세견적
+          DetailQuotationList(quotation: quotation.state.quotation?.toSummary() ?? SummaryCarQuotation(
+            model: SummaryQuotationInfo(title: "모델", name: "xx", price: CLNumber(0)),
+            trim: SummaryQuotationInfo(title: "트림", name: "xx", price: CLNumber(0)),
+            powertrain: SummaryQuotationInfo(title: "파워트레인", name: "xx", price: CLNumber(0)),
+            bodytype: SummaryQuotationInfo(title: "바디타입", name: "xx", price: CLNumber(0)),
+            drivetrain: SummaryQuotationInfo(title: "구동방식", name: "xx", price: CLNumber(0)),
+            externalColor: SummaryQuotationInfo(title: "외장색상", name: "xx", price: CLNumber(0)),
+            internalColor: SummaryQuotationInfo(title: "내장색상", name: "xx", price: CLNumber(0)),
+            options: []))
         }
       }
 
-    }
-}
+   }
+ }
 
-struct QuotationCompleteSheet_Previews: PreviewProvider {
+ struct QuotationCompleteSheet_Previews: PreviewProvider {
     static var previews: some View {
         QuotationCompleteSheet()
     }
-}
+ }

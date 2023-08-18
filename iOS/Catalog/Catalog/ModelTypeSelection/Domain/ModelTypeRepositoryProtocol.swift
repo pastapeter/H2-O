@@ -11,6 +11,7 @@ protocol ModelTypeRepositoryProtocol {
 
   func fetch(carId: Int) async throws -> [ModelTypeOption]
 
-  func calculateFuelAndDisplacement(with powerTrainId: Int, andwith driverTrainId: Int) async throws -> ResultOfCalculationOfFuelAndDisplacement
+  func calculateFuelAndDisplacement(with powerTrainId: Int, andwith driverTrainId: Int)
+  async throws -> ResultOfCalculationOfFuelAndDisplacement
 
 }

@@ -11,21 +11,25 @@ struct TrimDefaultOptionDTO: Decodable {
   var powertrain: PowerTrainDTO?
   var bodytype: BodyTypeDTO?
   var drivetrain: DriveTrainDTO?
-  var externalColor: ExternalColorDTO?
-  var internalColor: InternalColorDTO?
+  var externalColor: ExteriorColorResponseDTO?
+  var internalColor: InteriorColorResponseDTO?
 }
 
 extension TrimDefaultOptionDTO {
   func toDomain(trim: Trim) throws -> CarQuotation {
+    guard let pt = powertrain else { throw TrimSelectionError.FailedToDomain }
+    guard let bt = bodytype else { throw TrimSelectionError.FailedToDomain }
+    guard let dt = drivetrain else { throw TrimSelectionError.FailedToDomain }
+    guard let ec = externalColor else { throw TrimSelectionError.FailedToDomain }
+    guard let ic = internalColor else { throw TrimSelectionError.FailedToDomain }
 
-    // TODO: - 에러처리
-    CarQuotation(trim: trim,
-                 powertrain: try powertrain!.toDomain(),
-                 bodytype: try bodytype!.toDomain(),
-                 drivetrain: try drivetrain!.toDomain(),
-                 externalColor: try externalColor!.toDomain(),
-                 internalColor: try internalColor!.toDomain(),
-                 options: []
+    return CarQuotation(trim: trim,
+                        powertrain: try pt.toDomain(),
+                        bodytype: try bt.toDomain(),
+                        drivetrain: try dt.toDomain(),
+                        externalColor: try ec.toDomain(),
+                        internalColor: try ic.toDomain(),
+                        options: []
     )
   }
 }

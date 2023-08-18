@@ -12,6 +12,7 @@ struct ExtraOptionModel: Encodable {
   var isPackage: Bool
   var category: Category
   var name: String
+  var image: URL?
   var hashTags: [HashTag]
   var conainsHmgData: Bool
   var choiceRatio: Int

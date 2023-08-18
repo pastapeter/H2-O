@@ -18,12 +18,18 @@ struct TrimDTO: Decodable {
 
 extension TrimDTO {
   func toDomain() throws -> Trim {
-    return Trim(    id: id ?? 1234,
-                    name: name ?? "르블랑",
+    guard let trimId = id else { throw TrimSelectionError.FailedToDomain }
+    guard let trimName = name else { throw TrimSelectionError.FailedToDomain}
+    guard let trimPrice = price else { throw TrimSelectionError.FailedToDomain}
+    guard let trimImages = images else { throw TrimSelectionError.FailedToDomain}
+    guard let trimOptions = options else { throw TrimSelectionError.FailedToDomain}
+
+    return Trim(    id: trimId,
+                    name: trimName,
                     description: description ?? "",
-                    price: CLNumber(Int32(price ?? 0)),
-                    externalImage: URL(string: images?[0] ?? ""),
-                    internalImage: URL(string: images?[1] ?? ""),
-                    hmgData: options?.map { $0.toDomain() } ?? [])
+                    price: CLNumber(Int32(trimPrice)),
+                    externalImage: URL(string: trimImages[0]),
+                    internalImage: URL(string: trimImages[1]),
+                    hmgData: trimOptions.compactMap { $0.toDomain() })
   }
 }

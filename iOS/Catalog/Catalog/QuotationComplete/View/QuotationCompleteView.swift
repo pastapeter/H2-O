@@ -9,7 +9,6 @@ import SwiftUI
 
 struct QuotationCompleteView {
   var quotation = Quotation.shared
-  let totalHeight: CGFloat = 534
   var (positionX, positionY): (CGFloat, CGFloat) = (0, 0)
   @SwiftUI.State var isExternal: Bool = true
   @State var showSheet: Bool = false
@@ -41,7 +40,7 @@ extension QuotationCompleteView: View {
           )
     }
     .sheet(isPresented: $showSheet) {
-      QuotationCompleteSheet()
+       QuotationCompleteSheet()
     }
 
   }
@@ -50,12 +49,5 @@ extension QuotationCompleteView: View {
 struct QuotationCompleteView_Previews: PreviewProvider {
   static var previews: some View {
     QuotationCompleteView()
-  }
-}
-
-struct ScrollOffsetKey: PreferenceKey {
-  static var defaultValue: CGFloat = .zero
-  static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-    value += nextValue()
   }
 }

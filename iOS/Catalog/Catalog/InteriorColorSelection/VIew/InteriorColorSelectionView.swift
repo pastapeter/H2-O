@@ -51,8 +51,8 @@ extension InteriorColorSelectionView {
   @ViewBuilder
   static func build(intent: InteriorColorSelectionIntent) -> some View {
     InteriorColorSelectionView(container: .init(intent: intent,
-                                                         state: intent.state,
-                                                         modelChangePublisher: intent.objectWillChange))
+                                                state: intent.state,
+                                                modelChangePublisher: intent.objectWillChange))
   }
 
 }
