@@ -11,18 +11,9 @@ enum ExteriorColorRequest {
   case fetch(trimId: Int)
 }
 
-extension ExteriorColorRequest: RequestProtocol {
+protocol ColorRequestProtocol: RequestProtocol { }
 
-  var host: String {
-    return API.host
-  }
-
-  var path: String {
-    switch self {
-    case .fetch(let trimId):
-      return "/trim/\(trimId)/external-color"
-    }
-  }
+extension ColorRequestProtocol {
 
   var headers: [String: String] {
     [:]
@@ -38,6 +29,20 @@ extension ExteriorColorRequest: RequestProtocol {
 
   var requestType: RequestType {
     .GET
+  }
+}
+
+extension ExteriorColorRequest: ColorRequestProtocol {
+
+  var host: String {
+    return API.host
+  }
+
+  var path: String {
+    switch self {
+    case .fetch(let trimId):
+      return "/trim/\(trimId)/external-color"
+    }
   }
 
   var cachePolicy: URLRequest.CachePolicy {

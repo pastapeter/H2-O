@@ -13,8 +13,8 @@ struct EntryPointView: View {
         ZStack {
             VStack(spacing: 0) {
               CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0)))
+              Spacer().frame(height: 1)
             }
-            .padding(.bottom, 0.1)
             if showPopUp {
               EntryGuide(showEntryGuide: $showPopUp)
             }

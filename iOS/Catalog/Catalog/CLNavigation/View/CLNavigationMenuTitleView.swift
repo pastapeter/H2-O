@@ -27,31 +27,31 @@ struct CLNavigationMenuTitleView: View {
   }
 
   @Binding var currentPage: Int
-  @Binding var status: Status
+  var status: Status?
   let namespace: Namespace.ID
   var navigationMenuTitle: String
   var page: Int
+  var font: CatalogTextType
+  var spacing: CGFloat = 6
 
   var body: some View {
     Button {
       currentPage = page
     } label: {
-      VStack(spacing: 0) {
+      VStack(spacing: spacing) {
+        Spacer()
         if currentPage == page {
           Text(navigationMenuTitle)
-            .catalogFont(type: .HeadKRMedium14)
+            .catalogFont(type: font)
             .foregroundColor(Status.active.color)
-            .frame(height: 22)
-            .padding(.bottom, 6)
           Color.black
-            .frame(height: 2)
+            .frame(width: 18, height: 2)
+            .cornerRadius(1)
             .matchedGeometryEffect(id: "underline", in: namespace, properties: .frame)
         } else {
           Text(navigationMenuTitle)
-            .catalogFont(type: .HeadKRMedium14)
-            .foregroundColor(status.color)
-            .frame(height: 22)
-            .padding(.bottom, 6)
+            .catalogFont(type: font)
+            .foregroundColor(status?.color ?? Status.inactive.color)
           Color.clear.frame(height: 2)
         }
       }

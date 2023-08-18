@@ -40,6 +40,6 @@ struct ModelTypeButtonView: View {
 
 struct ModelTypeButtonView_Previews: PreviewProvider {
     static var previews: some View {
-      ModelTypeButtonView(state: .init(id: .init()), action: { _ in print("Hello") })
+      ModelTypeButtonView(state: .init(id: 0), action: { _ in print("Hello") })
     }
 }

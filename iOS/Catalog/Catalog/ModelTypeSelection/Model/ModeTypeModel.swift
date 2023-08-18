@@ -39,7 +39,7 @@ struct ModelTypeDetailState: Equatable {
   var hmgData: HMGDataState?
 }
 
-struct OptionState: Equatable, Identifiable, Hashable {
+struct OptionState: Equatable, Hashable {
 
   var id: Int
   var isSelected: Bool = true

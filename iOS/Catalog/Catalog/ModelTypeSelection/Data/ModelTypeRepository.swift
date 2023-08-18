@@ -45,17 +45,17 @@ final class MockModelTypeRepository: ModelTypeRepositoryProtocol {
 
     return [
       ModelTypeOption(title: "파워트레인", options: [
-        OptionState(id: .init(), isSelected: true, frequency: Int.random(in: 0...90), title: "디젤2.2", price: CLNumber(0)),
-        OptionState(id: .init(), isSelected: false, frequency: 38, title: "가솔린3.8", price: CLNumber(280000))
+        OptionState(id: 0, isSelected: true, frequency: Int.random(in: 0...90), title: "디젤2.2", price: CLNumber(0)),
+        OptionState(id: 1, isSelected: false, frequency: 38, title: "가솔린3.8", price: CLNumber(280000))
       ], optionsInDetail: []),
 
       ModelTypeOption(title: "바디타입", options: [
-        .init(id: .init(),
+        .init(id: 0,
               isSelected: true,
               frequency: Int.random(in: 0..<100),
               title: "7인승",
               price: CLNumber(0)),
-        .init(id: .init(),
+        .init(id: 1,
               isSelected: false,
               frequency: .random(in: 0..<100),
               title: "10인승",
@@ -63,12 +63,12 @@ final class MockModelTypeRepository: ModelTypeRepositoryProtocol {
       ], optionsInDetail: []),
 
       ModelTypeOption(title: "구동방식", options: [
-        .init(id: .init(),
+        .init(id: 0,
               isSelected: true,
               frequency: .random(in: 0..<100),
               title: "2WD",
               price: .init(0)),
-        .init(id: .init(),
+        .init(id: 1,
               isSelected: false,
               frequency: .random(in: 0..<100),
               title: "4WD",

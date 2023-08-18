@@ -33,9 +33,10 @@ extension CLNavigationView: View {
   var body: some View {
     VStack(spacing: 0) {
       CLTopNaviBar(intent: intent)
-      CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: $menuStatus)
+      CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: menuStatus, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"])
       ZStack {
         TabView(selection: currentPageBinding) {
+
           TrimSelectionView.build(intent: TrimSelectionIntent(
             initialState: .init(
               carId: 1),
@@ -54,8 +55,9 @@ extension CLNavigationView: View {
                           repository: InteriorColorSelectionRepository(requestManager: RequestManager(apiManager: InteriorAPIManager()))))
           .tag(3)
 
-          MockView(image: mockImageName[4])
-            .tag(4)
+          OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0,
+                                                                      additionalOptionState: .init(cardStates: [], selectedFilterId: 0),
+                                                                      defaultOptionState: .init(cardStates: [], selectedFilterId: 0)))).tag(4)
 
           QuotationCompleteView()
             .tag(5)
