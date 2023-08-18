@@ -26,7 +26,7 @@ extension OptionCardScollView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 12) {
       FilterButtonBar(state: state.filterState, intent: intent)
-      ScrollView {
+      ScrollView(showsIndicators: false) {
         LazyVStack(spacing: 16) {
           ForEach(state.cardStates, id: \.self) { cardState in
             OptionCardView.build(intent: .init(initialState: cardState, parent: intent))
@@ -35,6 +35,9 @@ extension OptionCardScollView: View {
       }
     }
     .padding(.horizontal, 16)
+    .onAppear {
+      intent.send(action: .cardStates(states: OptionCardModel.State.mock()))
+    }
   }
   
 }
