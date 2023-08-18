@@ -64,7 +64,7 @@ extension CLNavigationView: View {
 
           OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0,
                                                                       additionalOptionState: .init(cardStates: [], selectedFilterId: 0),
-                                                                      defaultOptionState: .init(cardStates: [], selectedFilterId: 0)))).tag(4)
+                                                                      defaultOptionState: .init(cardStates: [], selectedFilterId: 0)), repository: OptionSelectionRepository(requestManager: RequestManager(apiManager: OptionSelectionAPIManager()), trimID: 2))).tag(4)
 
           QuotationCompleteView()
             .tag(5)
