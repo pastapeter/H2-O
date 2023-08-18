@@ -58,7 +58,13 @@
         <include refid="findInternalColor"/>
         limit 1
     </select>
-  
+
+    <select id="findQuantityBetween" resultType="integer">
+        select count(*)
+        from sold_car
+        where trim_id = #{id} and price between #{from} and #{to}
+    </select>
+
     <select id="findMaximumComponentPrice" resultType="integer">
       select package_price + option_price + internal_color_price + external_color_price
       from (select trims.id, sum(trims_package.price) as package_price

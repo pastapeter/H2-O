@@ -8,6 +8,7 @@ import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.PriceRangeDto;
 import com.h2o.h2oServer.domain.trim.dto.TrimDto;
+import com.h2o.h2oServer.domain.trim.dto.*;
 import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.ImageEntity;
 import com.h2o.h2oServer.domain.trim.entity.InternalColorEntity;
@@ -20,10 +21,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 @RequiredArgsConstructor
 public class TrimService {
+    public static final int DISTRIBUTION_SEGMENT_COUNT = 30;
     private final TrimMapper trimMapper;
     private final ExternalColorMapper externalColorMapper;
     private final CarMapper carMapper;
@@ -80,8 +83,8 @@ public class TrimService {
         validateExistence(trimEntity);
 
         Long carId = trimEntity.getCarId();
-        Integer trimPrice = trimEntity.getPrice();
-        Integer componentPrice = trimMapper.findMaximumComponentPrice(trimId);
+        int trimPrice = trimEntity.getPrice();
+        int componentPrice = trimMapper.findMaximumComponentPrice(trimId);
 
         Integer minimumModelTypePrice = carMapper.findMinimumModelTypePrice(carId);
         Integer maximumModelTypePrice = carMapper.findMaximumModelTypePrice(carId);
@@ -117,5 +120,19 @@ public class TrimService {
         if (entities == null || entities.isEmpty()) {
             throw new NoSuchTrimException();
         }
+    }
+
+
+    public PriceDistributionDto findAndScalePriceDistribution(Long trimId) {
+        PriceRangeDto priceRangeDto = findPriceRange(trimId);
+        Integer minPrice = priceRangeDto.getMinPrice();
+
+        int unit = (priceRangeDto.getMaxPrice() - minPrice) / DISTRIBUTION_SEGMENT_COUNT;
+
+        List<Integer> quantityPerUnit = IntStream.range(0, DISTRIBUTION_SEGMENT_COUNT)
+                .mapToObj(index -> trimMapper.findQuantityBetween(trimId, minPrice + unit * index, minPrice + unit * (index + 1)))
+                .collect(Collectors.toList());
+
+        return PriceDistributionDto.of(unit, quantityPerUnit);
     }
 }

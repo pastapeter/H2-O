@@ -24,10 +24,12 @@ public interface TrimMapper {
     List<ExternalColorEntity> findExternalColor(Long id);
 
     Integer findMaximumComponentPrice(Long id);
-  
+
     InternalColorEntity findDefaultInternalColor(Long id);
 
     ExternalColorEntity findDefaultExternalColor(Long id);
 
     Boolean checkIfTrimExists(Long id);
+
+    Integer findQuantityBetween(Long id, Integer from, Integer to);
 }

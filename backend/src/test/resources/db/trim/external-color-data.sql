@@ -1,7 +1,7 @@
-INSERT INTO external_color (name, color_code) VALUES
-    ('Red', '#FF0000'),
-    ('Blue', '#0000FF'),
-    ('Green', '#00FF00');
+INSERT INTO external_color (id, name, color_code) VALUES
+    (1, 'Red', '#FF0000'),
+    (2, 'Blue', '#0000FF'),
+    (3, 'Green', '#00FF00');
 
 INSERT INTO trims_external_color (trim_id, external_color_id, price, choice_ratio) VALUES
     (1, 1, 2000, 0.3),

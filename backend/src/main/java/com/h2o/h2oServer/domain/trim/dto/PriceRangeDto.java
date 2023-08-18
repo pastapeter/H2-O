@@ -1,8 +1,10 @@
 package com.h2o.h2oServer.domain.trim.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Builder;
 import lombok.Data;
 
+@ApiModel(value = "트림 가격 범위 조회 응답")
 @Data
 @Builder
 public class PriceRangeDto {

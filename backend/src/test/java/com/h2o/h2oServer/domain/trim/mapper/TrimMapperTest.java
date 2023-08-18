@@ -234,4 +234,21 @@ class TrimMapperTest {
         //then
         assertThat(isExists).isFalse();
     }
+
+    @Test
+    @DisplayName("가격 범위 내의 출고 개수만을 반환한다.")
+    @Sql("classpath:db/trim/sold-car-data.sql")
+    void findQuantityBetween() {
+        //given
+        Long trimId = 1L;
+        int from = 30000;
+        int to = 70000;
+        int expectedResult = 9;
+
+        //when
+        Integer actualResult = trimMapper.findQuantityBetween(trimId, from, to);
+
+        //then
+        assertThat(actualResult).isEqualTo(expectedResult);
+    }
 }
