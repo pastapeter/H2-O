@@ -208,10 +208,6 @@
 		EDCF32E72A8AA76A00C46A4B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32E62A8AA76A00C46A4B /* Category.swift */; };
 		EDCF32E92A8AA81500C46A4B /* HashTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32E82A8AA81500C46A4B /* HashTag.swift */; };
 		EDCF32FE2A8B915E00C46A4B /* ExtraOptionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32FD2A8B915E00C46A4B /* ExtraOptionDTO.swift */; };
-		EDCF32F02A8B6CA900C46A4B /* ExternalColorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32EF2A8B6CA900C46A4B /* ExternalColorDTO.swift */; };
-		EDCF32F32A8B6CC600C46A4B /* InternalColorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32F22A8B6CC600C46A4B /* InternalColorDTO.swift */; };
-		EDCF32F82A8B90D700C46A4B /* ExternalColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32F72A8B90D700C46A4B /* ExternalColorModel.swift */; };
-		EDCF32FA2A8B911800C46A4B /* InternalColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32F92A8B911800C46A4B /* InternalColorModel.swift */; };
 		EDCF33002A8B91EA00C46A4B /* ExtraOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCF32FF2A8B91EA00C46A4B /* ExtraOption.swift */; };
 		EDD054002A8C02A900FBD23F /* QuotationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD053FF2A8C02A900FBD23F /* QuotationModel.swift */; };
 		EDD303FD2A8A09E600400DF9 /* HMGTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD303FC2A8A09E600400DF9 /* HMGTag.swift */; };
@@ -453,10 +449,6 @@
 		EDCF32E62A8AA76A00C46A4B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		EDCF32E82A8AA81500C46A4B /* HashTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTag.swift; sourceTree = "<group>"; };
 		EDCF32FD2A8B915E00C46A4B /* ExtraOptionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraOptionDTO.swift; sourceTree = "<group>"; };
-		EDCF32EF2A8B6CA900C46A4B /* ExternalColorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColorDTO.swift; sourceTree = "<group>"; };
-		EDCF32F22A8B6CC600C46A4B /* InternalColorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorDTO.swift; sourceTree = "<group>"; };
-		EDCF32F72A8B90D700C46A4B /* ExternalColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalColorModel.swift; sourceTree = "<group>"; };
-		EDCF32F92A8B911800C46A4B /* InternalColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalColorModel.swift; sourceTree = "<group>"; };
 		EDCF32FF2A8B91EA00C46A4B /* ExtraOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraOption.swift; sourceTree = "<group>"; };
 		EDD053FF2A8C02A900FBD23F /* QuotationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotationModel.swift; sourceTree = "<group>"; };
 		EDD303FC2A8A09E600400DF9 /* HMGTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGTag.swift; sourceTree = "<group>"; };
@@ -563,8 +555,6 @@
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
 				B1604D5E2A853FA200C7B07D /* ModelTypeSelection */,
 				EDCF32F62A8B905500C46A4B /* OptionSelection */,
-				EDCF32EC2A8B6C7100C46A4B /* ExternalColorSelection */,
-				EDCF32ED2A8B6C7A00C46A4B /* InternalColorSelection */,
 				B1604D102A82569800C7B07D /* NetworkCore */,
 				ED1A70992A8364DE00F7920F /* Model */,
 				ED1A70942A8357FD00F7920F /* Quotation */,
@@ -1317,58 +1307,8 @@
 			isa = PBXGroup;
 			children = (
 				EDCF32FD2A8B915E00C46A4B /* ExtraOptionDTO.swift */,
-				);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		EDCF32EC2A8B6C7100C46A4B /* ExternalColorSelection */ = {
-			isa = PBXGroup;
-			children = (
-				EDCF32F42A8B902A00C46A4B /* Domain */,
-				EDCF32EE2A8B6C9E00C46A4B /* Data */,
-			);
-			path = ExternalColorSelection;
-			sourceTree = "<group>";
-		};
-		EDCF32ED2A8B6C7A00C46A4B /* InternalColorSelection */ = {
-			isa = PBXGroup;
-			children = (
-				EDCF32F52A8B903A00C46A4B /* Domain */,
-				EDCF32F12A8B6CBC00C46A4B /* Data */,
-			);
-			path = InternalColorSelection;
-			sourceTree = "<group>";
-		};
-		EDCF32EE2A8B6C9E00C46A4B /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				EDCF32EF2A8B6CA900C46A4B /* ExternalColorDTO.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		EDCF32F12A8B6CBC00C46A4B /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				EDCF32F22A8B6CC600C46A4B /* InternalColorDTO.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		EDCF32F42A8B902A00C46A4B /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				EDCF32F72A8B90D700C46A4B /* ExternalColorModel.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		EDCF32F52A8B903A00C46A4B /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				EDCF32F92A8B911800C46A4B /* InternalColorModel.swift */,
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 		EDD303FE2A8A59B100400DF9 /* Model */ = {
@@ -1619,7 +1559,6 @@
 				EDBA5D582A808A8A0050BC35 /* CLPopUp.swift in Sources */,
 				EDBA5D592A808A8A0050BC35 /* DimmedZStack.swift in Sources */,
 				EDCF32FE2A8B915E00C46A4B /* ExtraOptionDTO.swift in Sources */,
-				EDCF32F32A8B6CC600C46A4B /* InternalColorDTO.swift in Sources */,
 				B1F2BC6A2A7B62E8005385E0 /* CLNavigationIntent.swift in Sources */,
 				B1604D122A8256B700C7B07D /* RequestProtocol.swift in Sources */,
 				B155C0E92A792BB100F540CB /* Color+.swift in Sources */,
@@ -1745,7 +1684,6 @@
 				ED1C70632A89C3C50049D275 /* Trim.swift in Sources */,
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,
 				B1E512342A8D2F16005B195D /* OptionSelectionIntent.swift in Sources */,
-				EDCF32F02A8B6CA900C46A4B /* ExternalColorDTO.swift in Sources */,
 				B1604D512A83EB7700C7B07D /* CLRetryResult.swift in Sources */,
 				B198240F2A8FCCA000795B44 /* PackageComponent.swift in Sources */,
 				B1F988D32A8A7F6400C7B65F /* ExternalSelectionModel.swift in Sources */,
