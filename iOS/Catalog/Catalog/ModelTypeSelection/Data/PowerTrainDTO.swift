@@ -62,8 +62,8 @@ extension PowerTrainDTO {
                            description: description,
                            thumbnailImageURL: nil,
                            imageURL: imageURL,
-                           maxOuputFromEngine: try? maxOutput?.toDomain(),
-                           maxTorqueFromEngine: try? maxTorque?.toDomain())
+                           maxOuputFromEngine: maxOutput?.toDomain(),
+                           maxTorqueFromEngine: maxTorque?.toDomain())
     
     
   }
