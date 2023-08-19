@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ModelTypeButtonContainer: View {
   var intent: ModelTypeIntentType
-  var options: [OptionState]
+  var options: [ModelTypeOptionState]
 }
 
 extension ModelTypeButtonContainer {
