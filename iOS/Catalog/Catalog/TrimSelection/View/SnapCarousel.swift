@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct SnapCarousel<Content: View, T: Identifiable>: View {
+  
+  enum BorderStyle {
+    case `default`
+    case none
+  }
 
   var content: (T) -> Content
   var items: [T]
 
   var spacing: CGFloat
   var trailingSpace: CGFloat
+  var borderStyle: BorderStyle
 
   @Binding var index: Int
 
@@ -21,12 +27,14 @@ struct SnapCarousel<Content: View, T: Identifiable>: View {
        spacing: CGFloat = 16,
        trailingSpace: CGFloat,
        index: Binding<Int>,
+       borderStyle: BorderStyle = .default,
        @ViewBuilder content: @escaping (T) -> Content) {
 
     self.items = items
     self.spacing = spacing
     self.trailingSpace = trailingSpace
     self._index = index
+    self.borderStyle = borderStyle
     self.content = content
   }
 
@@ -46,9 +54,17 @@ extension SnapCarousel {
       HStack(spacing: spacing) {
 
         ForEach(items.indices, id: \.self) { itemIndex in
+          switch borderStyle {
+          
+          case .`default`:
             content(items[itemIndex])
               .frame(width: proxy.size.width - 2 * trailingSpace)
               .border(index == itemIndex ? Color.skyBlue : Color.gray200)
+          case .none:
+            content(items[itemIndex])
+              .frame(width: proxy.size.width - 2 * trailingSpace)
+          }
+            
         }
       }
       .padding(.horizontal, spacing)
