@@ -9,10 +9,7 @@ import Foundation
 
 struct ResultOfCalculationOfFuelAndDisplacement {
 
-  static func mock() -> Self {
-      return ResultOfCalculationOfFuelAndDisplacement(displacement: 2199, fuelEfficiency: 12)
-  }
-
-  var displacement: Int
-  var fuelEfficiency: Int
+  var displacement: CLNumber
+  var fuelEfficiency: Double
+  
 }
