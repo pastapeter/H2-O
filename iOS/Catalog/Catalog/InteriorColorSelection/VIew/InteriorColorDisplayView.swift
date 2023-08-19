@@ -13,11 +13,24 @@ struct InteriorColorDisplayView: ColorContentable {
   var color: CarColorType
 
   var body: some View {
-    HStack(alignment: .center, spacing: 0) {
-      Rectangle()
-        .fill(.red)
-        Rectangle()
-        .fill(.blue)
+    imageDisplayView()
+  }
+  
+  @ViewBuilder
+  private func imageDisplayView() -> some View {
+    GeometryReader { proxy in
+      switch color {
+      case .interior(let fabricImageURL, _):
+        AsyncImage(url: fabricImageURL) { image in
+        image
+          .resizable()
+          .frame(height: proxy.size.height)
+      } placeholder: {
+        ProgressView()
+        }
+      case .exterior(_):
+        EmptyView()
+      }
     }
   }
 

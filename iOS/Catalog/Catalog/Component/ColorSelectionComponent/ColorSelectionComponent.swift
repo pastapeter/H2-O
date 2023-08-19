@@ -33,7 +33,7 @@ struct ColorSelectionComponent<ColorContent: View>: View {
             .multilineTextAlignment(.leading)
             .foregroundColor(state.isSelected ? .gray900 : .gray600)
             .fixedSize(horizontal: false, vertical: true)
-            .frame(height: 39, alignment: .topLeading)
+            .frame(height: CGFloat(39).scaledHeight, alignment: .topLeading)
           Spacer().frame(height: 6)
           HStack {
             Text(state.price.signedWon)
@@ -44,8 +44,8 @@ struct ColorSelectionComponent<ColorContent: View>: View {
           }
           Spacer()
         }
-        .padding(.horizontal, 12)
-        .padding(.bottom, 12)
+        .padding(.horizontal, CGFloat(12).scaledHeight)
+        .padding(.bottom, CGFloat(12).scaledHeight)
       }
       .selectedCardStyle(isSelected: state.isSelected)
       .buttonSelected(isselected: state.isSelected)

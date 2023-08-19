@@ -25,8 +25,14 @@ extension InteriorColorSelectionView: View {
 
   var body: some View {
     VStack {
-      Rectangle()
-        .fill(.blue)
+      AsyncImage(url: state.selectedInteriorImageURL) { image in
+      image
+        .resizable()
+        .frame(width: UIScreen.main.bounds.width)
+    } placeholder: {
+      ProgressView()
+    }
+    .frame(height: CGFloat(292).scaledHeight)
       Spacer().frame(height: 20)
       VStack(alignment: .leading, spacing: 0) {
         Text("내장 색상을 선택해주세요")

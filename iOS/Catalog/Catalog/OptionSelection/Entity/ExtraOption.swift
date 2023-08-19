@@ -7,14 +7,17 @@
 
 import Foundation
 
-struct ExtraOptionModel: Encodable {
+struct ExtraOption {
+  
   var id: Int
   var isPackage: Bool
-  var category: Category
+  var category: OptionCategory
   var name: String
-  var image: URL?
-  var hashTags: [HashTag]
-  var conainsHmgData: Bool
-  var choiceRatio: Int
+  var hashTags: [String]
+  var containsHmgData: Bool
+  var choiceRatio: CLNumber?
   var price: CLNumber
+  var image: URL?
+  
 }
+

@@ -13,7 +13,7 @@ struct CardModifier: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-      .frame(width: UIScreen.main.bounds.width * (141 / 375))
+      .frame(width: CGFloat(141).scaledWidth)
       .overlay(RoundedRectangle(cornerRadius: 2)
         .stroke(isSelected ? Color.activeBlue2 : Color.gray200)
       )
@@ -24,7 +24,7 @@ struct ExternalColorSelectionHorizontalList: View {
 
   var state: [ExteriorColorState]
   var intent: ExternalSelectionIntentType
-  var height: CGFloat = 400
+  var height: CGFloat = CGFloat(177).scaledHeight
 
   var body: some View {
     HorizontalScroller(height: height) {

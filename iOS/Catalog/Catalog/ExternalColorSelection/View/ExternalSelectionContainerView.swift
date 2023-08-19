@@ -25,16 +25,15 @@ extension ExternalSelectionContainerView: View {
 
   var body: some View {
     VStack {
-      Rectangle()
-        .fill(.blue)
-      Spacer().frame(height: 20)
+    ProgressView()
+    .frame(height: CGFloat(292).scaledHeight)
+      Spacer().frame(height: CGFloat(20).scaledHeight)
       VStack(alignment: .leading, spacing: 0) {
         Text("외장 색상을 선택해주세요")
           .catalogFont(type: .HeadKRMedium18)
         Spacer().frame(height: 8)
         ExternalColorSelectionHorizontalList(state: state.colors,
-                                             intent: intent,
-                                             height: UIScreen.main.bounds.height * 177 / 812)
+                                             intent: intent)
         Spacer()
       }
       .padding(.leading, 20)

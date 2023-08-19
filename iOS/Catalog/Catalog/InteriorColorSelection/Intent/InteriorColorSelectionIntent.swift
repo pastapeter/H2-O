@@ -56,8 +56,8 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
       if !colorStates.isEmpty {
         send(action: .onTapColor(id: colorStates[0].color.id))
       }
-    case .changeSelectedInteriorImageURL:
-      print("새롭게 받은 URL")
+    case .changeSelectedInteriorImageURL(let url):
+      state.selectedInteriorImageURL = url
     case .onTapColor(let id):
       state.selectedColorId = id
       for i in state.trimColors.indices {

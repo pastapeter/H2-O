@@ -21,45 +21,57 @@ struct OptionCardView: IntentBindingType, View {
       
       Button {
         intent.send(action: .onTap(id: state.id)) {
-          isSelected.toggle()
+          if state.price != nil {
+            isSelected.toggle()
+          } else {
+            isSelected = false
+          }
         }
       } label: {
         VStack(spacing: 0) {
           optionImageView()
+            .frame(height: CGFloat(128).scaledHeight)
           VStack(alignment: .leading, spacing: 0) {
-            Spacer().frame(height: 12)
-            Text("\(Text("\(state.info.frequency)%").foregroundColor(.activeBlue2))가 선택했어요")
-              .foregroundColor(.gray500)
-              .catalogFont(type: .TextKRMedium12)
-
+            Spacer().frame(height: CGFloat(12).scaledHeight)
+            if let choiceRatio = state.choiceRatio {
+              Text("\(Text("\(choiceRatio.description)%").foregroundColor(.activeBlue2))가 선택했어요")
+                .foregroundColor(.gray500)
+                .catalogFont(type: .TextKRMedium12)
+            } else {
+              Text(" ")
+                .foregroundColor(.gray500)
+                .catalogFont(type: .TextKRMedium12)
+            }
             HStack(alignment: .lastTextBaseline) {
               VStack(alignment: .leading, spacing: 0) {
-                Text(state.info.title)
+                Text(state.name)
                   .catalogFont(type: .HeadKRMedium16)
                   .multilineTextAlignment(.leading)
                   .foregroundColor(.gray900)
-                Text(state.info.price.signedWon)
+                Text(state.price?.signedWon ?? "기본포함")
                   .foregroundColor(.gray900)
                   .catalogFont(type: .TextKRMedium14)
               }
               Spacer()
-              ZStack {
-                Rectangle()
-                  .foregroundColor(.clear)
-                  .frame(width: 40, height: 40)
-                  .background(isSelected ? .activeBlue : Color.gray50)
-                  .overlay(
-                    RoundedRectangle(cornerRadius: 2)
-                      .inset(by: 0.5)
-                      .stroke(isSelected ? .activeBlue : Color.gray100, lineWidth: 1))
-                Image("check").renderingMode(.template).foregroundColor(isSelected ? .white : .gray200)
+              if state.price != nil {
+                ZStack {
+                  Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: CGFloat(40).scaledWidth, height: CGFloat(40).scaledWidth)
+                    .background(isSelected ? .activeBlue : Color.gray50)
+                    .overlay(
+                      RoundedRectangle(cornerRadius: 2)
+                        .inset(by: 0.5)
+                        .stroke(isSelected ? .activeBlue : Color.gray100, lineWidth: 1))
+                  Image("check").renderingMode(.template).foregroundColor(isSelected ? .white : .gray200)
+                }
               }
             }
-            Spacer().frame(height: 12)
+            Spacer().frame(height: CGFloat(12).scaledHeight)
           }
-          .padding(.horizontal, 12)
+          .padding(.horizontal, CGFloat(12).scaledHeight)
         }
-        .frame(height: UIScreen.main.bounds.height * 212 / 812)
+        .frame(height: CGFloat(212).scaledHeight)
         .optionCardBackground(isSelected: isSelected)
         .cornerRadius(2)
         .CLDialogFullScreenCover(show: $isModalPresenting) {
@@ -82,19 +94,30 @@ extension OptionCardView {
     ZStack {
       Image("cooling")
         .resizable()
+        .scaledToFill()
+        .frame(height: CGFloat(128).scaledHeight)
+        .clipped()
       VStack(spacing: 0) {
         HStack {
           Spacer()
-          HMGButton(action: {
-            intent.send(action: .onTapDetail) {
-              isModalPresenting.toggle()
+          if state.containsHmgData {
+            HMGButton(action: {
+              intent.send(action: .onTapDetail) {
+                isModalPresenting.toggle()
+              }
+            })
+          } else {
+            Button(action: {}) {
+              Text("상세보기")
+                .catalogFont(type: .TextKRMedium12)
             }
-          })
+            .buttonStyle(DetailButtonStyle())
+          }
         }
         Spacer()
         HStack {
-          ForEach(state.hashTag.indices, id: \.self) { i in
-            ImageTagView(title: state.hashTag[i])
+          ForEach(state.hashTags.indices, id: \.self) { i in
+            ImageTagView(title: state.hashTags[i])
           }
           Spacer()
         }
