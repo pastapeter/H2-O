@@ -43,7 +43,7 @@
 		B155C11C2A7A531700F540CB /* HyundaiSansHeadKROTFMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1052A7A410C00F540CB /* HyundaiSansHeadKROTFMedium.otf */; };
 		B155C11D2A7A531A00F540CB /* HyundaiSansHeadKROTFRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B155C1072A7A410C00F540CB /* HyundaiSansHeadKROTFRegular.otf */; };
 		B155C1202A7A78A700F540CB /* CLNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155C11F2A7A78A700F540CB /* CLNavigationView.swift */; };
-		B156463B2A8653D000FAD379 /* ModalPopUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */; };
+		B156463B2A8653D000FAD379 /* CarouselModalPopUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463A2A8653D000FAD379 /* CarouselModalPopUpComponent.swift */; };
 		B156463D2A865B3F00FAD379 /* ModelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156463C2A865B3F00FAD379 /* ModelContentView.swift */; };
 		B15B4F402A8E81E800101DCB /* OptionCardViewIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */; };
 		B15B4F422A8E821100101DCB /* OptionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B4F412A8E821100101DCB /* OptionCardModel.swift */; };
@@ -135,6 +135,7 @@
 		B19824242A90D32400795B44 /* PowerTrainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19824232A90D32400795B44 /* PowerTrainModel.swift */; };
 		B19824262A90D33A00795B44 /* BodyTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19824252A90D33A00795B44 /* BodyTypeModel.swift */; };
 		B19824282A90D34B00795B44 /* DriveTrainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19824272A90D34B00795B44 /* DriveTrainModel.swift */; };
+		B198242A2A91343000795B44 /* ModelTypeDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19824292A91343000795B44 /* ModelTypeDetailState.swift */; };
 		B1A76B802A88CD92009C84EF /* ModeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */; };
 		B1A76B822A88D263009C84EF /* ModelTypeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */; };
 		B1A76B842A892C86009C84EF /* ModelTypeSelectionContainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */; };
@@ -288,7 +289,7 @@
 		B155C1102A7A415700F540CB /* HyundaiSansText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Regular.otf"; sourceTree = "<group>"; };
 		B155C1112A7A415700F540CB /* HyundaiSansText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HyundaiSansText-Medium.otf"; sourceTree = "<group>"; };
 		B155C11F2A7A78A700F540CB /* CLNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLNavigationView.swift; sourceTree = "<group>"; };
-		B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPopUpComponent.swift; sourceTree = "<group>"; };
+		B156463A2A8653D000FAD379 /* CarouselModalPopUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselModalPopUpComponent.swift; sourceTree = "<group>"; };
 		B156463C2A865B3F00FAD379 /* ModelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContentView.swift; sourceTree = "<group>"; };
 		B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardViewIntent.swift; sourceTree = "<group>"; };
 		B15B4F412A8E821100101DCB /* OptionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardModel.swift; sourceTree = "<group>"; };
@@ -380,6 +381,7 @@
 		B19824232A90D32400795B44 /* PowerTrainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerTrainModel.swift; sourceTree = "<group>"; };
 		B19824252A90D33A00795B44 /* BodyTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTypeModel.swift; sourceTree = "<group>"; };
 		B19824272A90D34B00795B44 /* DriveTrainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTrainModel.swift; sourceTree = "<group>"; };
+		B19824292A91343000795B44 /* ModelTypeDetailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeDetailState.swift; sourceTree = "<group>"; };
 		B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeTypeModel.swift; sourceTree = "<group>"; };
 		B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeIntent.swift; sourceTree = "<group>"; };
 		B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerModel.swift; sourceTree = "<group>"; };
@@ -664,7 +666,7 @@
 		B15646332A86526A00FAD379 /* ModelTypeModal */ = {
 			isa = PBXGroup;
 			children = (
-				B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */,
+				B156463A2A8653D000FAD379 /* CarouselModalPopUpComponent.swift */,
 				B156463C2A865B3F00FAD379 /* ModelContentView.swift */,
 			);
 			path = ModelTypeModal;
@@ -1200,6 +1202,7 @@
 				B19824232A90D32400795B44 /* PowerTrainModel.swift */,
 				B19824252A90D33A00795B44 /* BodyTypeModel.swift */,
 				B19824272A90D34B00795B44 /* DriveTrainModel.swift */,
+				B19824292A91343000795B44 /* ModelTypeDetailState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1566,6 +1569,7 @@
 				EDCF32E92A8AA81500C46A4B /* HashTag.swift in Sources */,
 				ED1C705F2A89C3810049D275 /* CLSliderView.swift in Sources */,
 				EDCF32C02A8A91D500C46A4B /* BottomArea.swift in Sources */,
+				B198242A2A91343000795B44 /* ModelTypeDetailState.swift in Sources */,
 				B19436392A80954600C2FD69 /* AlertView.swift in Sources */,
 				EDBA3E3B2A83E48400BDB00F /* CLCancelButton.swift in Sources */,
 				B1604D6B2A854D3A00C7B07D /* HMGButtonArrowStyle.swift in Sources */,
@@ -1672,7 +1676,7 @@
 				EDD3F0BC2A8E6A84006CE38A /* SummaryCarQuotation.swift in Sources */,
 				ED3DC0282A865B9C009EE04C /* HMGDataCard.swift in Sources */,
 				B19824072A8FAEE200795B44 /* DetailOptionResponseDTO.swift in Sources */,
-				B156463B2A8653D000FAD379 /* ModalPopUpComponent.swift in Sources */,
+				B156463B2A8653D000FAD379 /* CarouselModalPopUpComponent.swift in Sources */,
 				B1F2BC642A7B5BA3005385E0 /* CLNavigationMenuView.swift in Sources */,
 				B1084BE52A87A52000AE1758 /* ModelTypeButtonModifiers.swift in Sources */,
 				B1E512362A8D48F4005B195D /* OptionCardScrollModel.swift in Sources */,
