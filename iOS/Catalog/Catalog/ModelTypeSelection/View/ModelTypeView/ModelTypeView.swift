@@ -54,10 +54,10 @@ extension ModelTypeView: View {
     }
     .CLDialogFullScreenCover(show: isModalPresenting) {
 
-      ModalPopUpComponent(state: state.modelTypeDetailState[0].content, submitAction: {
+      CarouselModalPopUpComponent(modalContentItems: state.modelTypeDetailState, submitAction: {
         // TODO 가격 추가하기
-      }, content: {
-        ModelContentView(state: state.modelTypeDetailState[0])
+      }, content: { detailState in
+        ModelContentView(state: detailState)
       })
     }
     .padding(.horizontal, 16)
