@@ -12,7 +12,7 @@ struct CarouselModalPopUpComponent<ModalPopUpContent: View, Item: ModalItemable>
 
   var modalContentItems: [Item]
   var selectedId: Int
-  var submitAction: () -> Void
+  var submitAction: (Int) -> Void
 
   @Environment (\.dismiss)
   private var dismiss
@@ -92,7 +92,9 @@ extension CarouselModalPopUpComponent {
         subText: state.price.signedWon,
         inActiveText: "선택완료",
         height: CGFloat(87).scaledHeight,
-        buttonAction: submitAction
+        buttonAction: {
+          submitAction(state.id)
+        }
       )
       .frame(height: CGFloat(56).scaledHeight)
     }
