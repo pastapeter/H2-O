@@ -33,9 +33,16 @@ enum ModelTypeModel: Equatable {
 
 }
 
-struct ModelTypeDetailState: Equatable {
-  var content: ModelTypeContent
+struct ModelTypeDetailState: Equatable, Identifiable {
+  
+  var id: Int
+  var title: String
+  var description: String?
+  var choiceRatio: CLNumber?
+  var imageURL: URL?
+  var price: CLNumber
   var hmgData: HMGModelTypeState?
+  
 }
 
 struct ModelTypeOptionState: Equatable, Hashable {

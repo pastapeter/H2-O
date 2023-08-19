@@ -139,7 +139,6 @@
 		B1A76B822A88D263009C84EF /* ModelTypeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */; };
 		B1A76B842A892C86009C84EF /* ModelTypeSelectionContainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */; };
 		B1A76B862A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B852A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift */; };
-		B1A76B882A893447009C84EF /* ModelTypeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B872A893447009C84EF /* ModelTypeContent.swift */; };
 		B1BEF0FB2A8F1890009943A3 /* OptionSelectionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEF0FA2A8F1890009943A3 /* OptionSelectionAPIManager.swift */; };
 		B1E5122A2A8CF2DC005B195D /* OptionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512292A8CF2DC005B195D /* OptionCategory.swift */; };
 		B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */; };
@@ -385,7 +384,6 @@
 		B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeIntent.swift; sourceTree = "<group>"; };
 		B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerModel.swift; sourceTree = "<group>"; };
 		B1A76B852A892CA3009C84EF /* ModelTypeSelectionContainerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerIntent.swift; sourceTree = "<group>"; };
-		B1A76B872A893447009C84EF /* ModelTypeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeContent.swift; sourceTree = "<group>"; };
 		B1BEF0FA2A8F1890009943A3 /* OptionSelectionAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionAPIManager.swift; sourceTree = "<group>"; };
 		B1E512292A8CF2DC005B195D /* OptionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCategory.swift; sourceTree = "<group>"; };
 		B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionView.swift; sourceTree = "<group>"; };
@@ -668,7 +666,6 @@
 			children = (
 				B156463A2A8653D000FAD379 /* ModalPopUpComponent.swift */,
 				B156463C2A865B3F00FAD379 /* ModelContentView.swift */,
-				B1A76B872A893447009C84EF /* ModelTypeContent.swift */,
 			);
 			path = ModelTypeModal;
 			sourceTree = "<group>";
@@ -1562,7 +1559,6 @@
 				B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */,
 				ED1C70652A89C43F0049D275 /* TrimSelectionIntent.swift in Sources */,
 				B16DFF3A2A8958CF00642730 /* MaxOutputFromEngine.swift in Sources */,
-				B1A76B882A893447009C84EF /* ModelTypeContent.swift in Sources */,
 				B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */,
 				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
 				B15B4F4B2A8E9ECC00101DCB /* OptionSelectRepositoryProtocol.swift in Sources */,
