@@ -824,9 +824,7 @@
 			children = (
 				B19824052A8FABB200795B44 /* Entity */,
 				B15B4F472A8E9E3B00101DCB /* Data */,
-				B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */,
-				B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */,
-				B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */,
+				B19824152A909E8B00795B44 /* OptionSelectionContainer */,
 				B15B4F452A8E823A00101DCB /* Model */,
 				B15B4F3E2A8E81B000101DCB /* FilterButton */,
 				B15B4F442A8E822E00101DCB /* OptionCardScroll */,
@@ -1007,6 +1005,16 @@
 				B1BEF0FA2A8F1890009943A3 /* OptionSelectionAPIManager.swift */,
 			);
 			path = NetworkRequest;
+			sourceTree = "<group>";
+		};
+		B19824152A909E8B00795B44 /* OptionSelectionContainer */ = {
+			isa = PBXGroup;
+			children = (
+				B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */,
+				B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */,
+				B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */,
+			);
+			path = OptionSelectionContainer;
 			sourceTree = "<group>";
 		};
 		B1EEBA872A869E8E008FC6A4 /* HMGData */ = {
