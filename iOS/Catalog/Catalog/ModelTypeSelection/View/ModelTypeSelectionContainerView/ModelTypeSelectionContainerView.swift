@@ -56,8 +56,3 @@ extension ModelTypeSelectionContainerView {
   }
 }
 
-struct ModelTypeSelectionContainerView_Previews: PreviewProvider {
-  static var previews: some View {
-    return ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository()))
-  }
-}

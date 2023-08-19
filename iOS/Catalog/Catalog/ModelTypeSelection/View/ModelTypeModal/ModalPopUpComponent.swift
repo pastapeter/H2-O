@@ -85,11 +85,3 @@ extension ModalPopUpComponent {
     .padding(.bottom, 12)
   }
 }
-
-struct ModalPopUpComponent_Previews: PreviewProvider {
-  static var previews: some View {
-    ModalPopUpComponent(state: .mock(), submitAction: { }) {
-      ModelContentView(state: .init(content: .mock(), hmgData: .mock()))
-    }
-  }
-}
