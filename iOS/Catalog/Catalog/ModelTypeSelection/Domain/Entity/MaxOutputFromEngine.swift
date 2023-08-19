@@ -8,7 +8,7 @@
 import Foundation
 
 struct MaxOutputFromEngine: Hashable {
-  var output: Double?
-  var minRPM: Int?
-  var maxRPM: Int?
+  var output: Double
+  var minRPM: Int
+  var maxRPM: Int
 }

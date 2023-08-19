@@ -8,7 +8,7 @@
 import Foundation
 
 struct MaxTorqueFromEngine: Hashable {
-  var torque: Double?
-  var minRPM: Int?
-  var maxRPM: Int?
+  var torque: Double
+  var minRPM: Int
+  var maxRPM: Int
 }

@@ -14,7 +14,10 @@ struct MaxTorqueDTO: Codable {
 }
 
 extension MaxTorqueDTO {
-  func toDomain() throws -> MaxTorqueFromEngine {
+  func toDomain() -> MaxTorqueFromEngine? {
+    
+    guard let torque = torque, let minRpm = minRpm, let maxRpm = maxRpm else { return nil }
+    
     return MaxTorqueFromEngine(torque: torque,
                                minRPM: minRpm,
                                maxRPM: maxRpm)
