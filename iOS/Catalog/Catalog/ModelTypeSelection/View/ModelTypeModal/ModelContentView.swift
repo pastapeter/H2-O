@@ -10,9 +10,6 @@ import SwiftUI
 struct ModelContentView: View {
 
   private var state: ModelTypeDetailState
-  private var content: ModelTypeContent {
-    state.content
-  }
 
   init(state: ModelTypeDetailState) {
     self.state = state
@@ -23,23 +20,28 @@ struct ModelContentView: View {
 extension ModelContentView {
 
   var body: some View {
+    
     VStack(alignment: .leading) {
       VStack {
-        Image("gasoline3")
-          .resizable()
-          .frame(height: UIScreen.main.bounds.height * (180 / 812))
+        AsyncImage(url: state.imageURL) { image in
+          image
+            .resizable()
+            .frame(height: CGFloat(180).scaledHeight)
+        } placeholder: {
+          ProgressView()
+        }
         VStack(alignment: .leading) {
           HStack {
-            Text(content.title)
+            Text(state.title)
               .catalogFont(type: .HeadKRMedium18)
               .foregroundColor(.gray900)
             Spacer()
-            if let choiceRatio = content.choiceRatio {
+            if let choiceRatio = state.choiceRatio {
               Text("\(Text("\(choiceRatio.description)%").foregroundColor(.activeBlue))의 선택")
                 .catalogFont(type: .TextKRMedium12)
             }
           }
-          Text(content.description ?? "")
+          Text(state.description ?? "")
             .catalogFont(type: .TextKRRegular12)
             .foregroundColor(.gray800)
             .multilineTextAlignment(.leading)
