@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol ModelTypeSelectionContainerIntentType {
+protocol ModelTypeSelectionContainerIntentType: AnyObject {
 
   var state: ModelTypeSelectionContainerModel.State { get }
 
@@ -35,6 +35,9 @@ final class ModelTypeSelectionContainerIntent: ObservableObject {
 
   var cancellable: Set<AnyCancellable> = []
   
+  private var powerTrainOptionId: Int = 1
+  private var driveTrainOptionId: Int = 1
+  
 }
 
 extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentType, IntentType {
@@ -45,9 +48,12 @@ extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentTy
       Task {
         let options = try await repository.fetch(carId: state.selectedTrimId)
         send(action: .modelTypeOptions(options: options))
+        send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: self.powerTrainOptionId))
       }
-    case .calculateFuelEfficiency:
-      return
+    case .calculateFuelEfficiency(let typeID, let selectedOptionId):
+      Task {
+        await calculateFuelEfficiency(typeID:typeID, selectedOptionId: selectedOptionId)
+      }
     case .modelTypeOptions(let options):
       state.modelTypeStateArray = convertToModelTypeModelState(from: options)
     }
@@ -58,6 +64,42 @@ extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentTy
 // MARK: - Private Function
 
 extension ModelTypeSelectionContainerIntent {
+  
+  private func calculateFuelEfficiency(typeID: Int, selectedOptionId: Int) async {
+  
+      do {
+        
+        let powerTrainID = ModelTypeSelectionContainerModel.ModelTypeID.powerTrain.rawValue
+        let driveTrainID = ModelTypeSelectionContainerModel.ModelTypeID.driveTrain.rawValue
+        
+        if typeID == powerTrainID {
+          self.powerTrainOptionId = selectedOptionId
+        } else if typeID == driveTrainID {
+          self.driveTrainOptionId = selectedOptionId
+        }
+        
+        let powerTrainTitle = state.modelTypeStateArray[powerTrainID]
+          .optionStates[self.powerTrainOptionId - 1]
+          .title
+        
+        let driveTrainTitle = state.modelTypeStateArray[driveTrainID]
+          .optionStates[self.driveTrainOptionId - 1]
+          .title
+      
+        let result = try await self.repository
+          .calculateFuelAndDisplacement(with: self.powerTrainOptionId,
+                                        andwith: self.driveTrainOptionId)
+        
+        state.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
+                                                 wheelType: driveTrainTitle,
+                                                 displacement: result.displacement,
+                                                 fuelEfficiency: result.fuelEfficiency)
+        
+      } catch (let e) {
+        print(e)
+      }
+    
+  }
 
   private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeModel.State] {
     options.map {

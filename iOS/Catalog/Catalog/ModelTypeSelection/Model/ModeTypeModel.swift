@@ -20,6 +20,7 @@ enum ModelTypeModel: Equatable {
     var containsHMGData = true
     var optionStates: [ModelTypeOptionState] = []
     var selectedIndex: Int = 0
+    var selectedId: Int = 1
     var modelTypeDetailState: [ModelTypeDetailState] = []
     var isModalPresenting = false
 
@@ -27,7 +28,7 @@ enum ModelTypeModel: Equatable {
 
   enum ViewAction: Equatable {
     case onTapDetailButton(isPresenting: Bool)
-    case onTapOptions(index: Int)
+    case onTapOptions(index: Int, id: Int)
   }
 
 }
