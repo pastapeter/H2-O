@@ -28,7 +28,7 @@ enum ModelTypeModel: Equatable {
 
   enum ViewAction: Equatable {
     case onTapDetailButton(isPresenting: Bool)
-    case onTapOptions(index: Int, id: Int)
+    case onTapOptions(id: Int)
   }
 
 }

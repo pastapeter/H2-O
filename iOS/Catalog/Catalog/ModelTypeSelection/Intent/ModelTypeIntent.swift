@@ -43,11 +43,10 @@ extension ModelTypeIntent: ModelTypeIntentType, IntentType {
     switch action {
     case .onTapDetailButton(let isPresenting):
       state.isModalPresenting = isPresenting
-    case .onTapOptions(let index, let id):
+    case .onTapOptions(let id):
       
-      toggleAll(index: index)
+      toggleAll(id: id)
       state.selectedId = id
-      state.selectedIndex = index
             
       if state.title == "파워트레인" {
         parent?.send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: state.selectedId))
@@ -61,9 +60,9 @@ extension ModelTypeIntent: ModelTypeIntentType, IntentType {
 
 extension ModelTypeIntent {
   
-  private func toggleAll(index: Int) {
+  private func toggleAll(id: Int) {
     for i in 0..<state.optionStates.count {
-      if i == index {
+      if state.optionStates[i].id == id {
         state.optionStates[i].isSelected = true
       } else {
         state.optionStates[i].isSelected = false
