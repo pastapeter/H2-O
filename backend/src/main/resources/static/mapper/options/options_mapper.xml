@@ -11,6 +11,19 @@
         where trim_id = #{trimId}
         order by package_id;
     </select>
+    
+    <select id="findTrimPackagesWithRange" resultType="TrimExtraOptionEntity">
+        select id, name, image, category, choice_ratio, price
+        from trims_package
+            join package
+                on trims_package.package_id = package.id and
+                   trims_package.trim_id = #{trimId}
+        order by package_id
+        <if test="pageRange.from != null and pageRange.count != null">
+            limit #{pageRange.count}
+            offset #{pageRange.from}
+        </if>
+    </select>
 
     <select id="findTrimExtraOptions" resultType="TrimExtraOptionEntity">
         select id, name, image, category, choice_ratio, price
@@ -21,13 +34,41 @@
         order by option_id;
     </select>
 
+    <select id="findTrimExtraOptionsWithRange" resultType="TrimExtraOptionEntity">
+        select id, name, image, category, choice_ratio, price
+        from trims_options
+            join options
+                on trims_options.option_id = options.id and
+                   trims_options.trim_id = #{trimId} and
+                   trims_options.option_type = 'extra'
+        order by option_id
+        <if test="pageRange.from != null and pageRange.count != null">
+            limit #{pageRange.count}
+            offset #{pageRange.from}
+        </if>
+    </select>
+
     <select id="findTrimDefaultOptions" resultType="TrimDefaultOptionEntity">
         select id, name, image, category, choice_ratio, use_count
         from trims_options
-        join options
-        on trims_options.option_id = options.id
+            join options
+                on trims_options.option_id = options.id
         where trim_id = #{trimId} and option_type = 'default'
         order by option_id;
+    </select>
+
+    <select id="findTrimDefaultOptionsWithRange" resultType="TrimDefaultOptionEntity">
+        select id, name, image, category, choice_ratio, use_count
+        from trims_options
+            join options
+                on trims_options.option_id = options.id and
+                   trims_options.trim_id = #{trimId} and
+                   trims_options.option_type = 'default'
+        order by option_id
+        <if test="pageRange.from != null and pageRange.count != null">
+            limit #{pageRange.count}
+            offset #{pageRange.from}
+        </if>
     </select>
 
     <select id="findPackageHashTags" resultType="HashTagEntity">
@@ -50,26 +91,20 @@
         limit 5;
     </select>
 
-    <select id="findTrimDefaultOptionsWithRange" resultType="TrimDefaultOptionEntity">
-        select id, name, image, category, choice_ratio, use_count
-        from trims_options
-                join options
-                    on trims_options.option_id = options.id and
-                        trims_options.trim_id = #{trimId} and
-                        trims_options.option_type = 'default'
-        order by option_id
-        <if test="range.from != null and range.count != null">
-            limit #{range.count}
-            offset #{range.from}
-        </if>
+    <select id="findTrimPackageSize" resultType="long">
+        select count(*)
+        from trims_package
+            join package
+                on trims_package.package_id = package.id and
+                   trim_id = #{trimId};
     </select>
 
-    <select id="findTrimDefaultOptionOffsetRange" resultType="long">
+    <select id="findTrimOptionSize" resultType="long">
         select count(*)
         from trims_options
                  join options
                       on trims_options.option_id = options.id and
                          trims_options.trim_id = #{trimId} and
-                         trims_options.option_type = 'default';
+                         trims_options.option_type = #{optionType.label};
     </select>
 </mapper>

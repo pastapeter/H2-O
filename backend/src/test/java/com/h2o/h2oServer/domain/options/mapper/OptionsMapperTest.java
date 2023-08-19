@@ -1,9 +1,10 @@
 package com.h2o.h2oServer.domain.options.mapper;
 
 import com.h2o.h2oServer.domain.option.entity.enums.OptionCategory;
-import com.h2o.h2oServer.domain.options.dto.DefaultOptionRangeDto;
+import com.h2o.h2oServer.domain.options.dto.PageRangeDto;
 import com.h2o.h2oServer.domain.options.entity.TrimDefaultOptionEntity;
 import com.h2o.h2oServer.domain.options.entity.TrimExtraOptionEntity;
+import com.h2o.h2oServer.domain.options.enums.OptionType;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -123,8 +124,8 @@ class OptionsMapperTest {
         Long trimId2 = 2L;
 
         //when
-        Long countDefaultOptions1 = optionsMapper.findTrimDefaultOptionOffsetRange(trimId1);
-        Long countDefaultOptions2 = optionsMapper.findTrimDefaultOptionOffsetRange(trimId2);
+        Long countDefaultOptions1 = optionsMapper.findTrimOptionSize(trimId1, OptionType.DEFAULT);
+        Long countDefaultOptions2 = optionsMapper.findTrimOptionSize(trimId2, OptionType.DEFAULT);
 
         //then
         softly.assertThat(countDefaultOptions1).as("트림에 포함되는 기본 옵션이 있다.")
@@ -140,7 +141,7 @@ class OptionsMapperTest {
     void findTrimDefaultOptionsWithRange() {
         //given
         Long trimId = 1L;
-        DefaultOptionRangeDto defaultOptionRangeDto = DefaultOptionRangeDto.of(2L, 2L);
+        PageRangeDto optionSizeDto = PageRangeDto.of(2L, 2L);
 
         TrimDefaultOptionEntity entity1 = createTrimDefaultOptionEntity(
                 5L, "option5", "img5", OptionCategory.EXTERIOR, 20.0f
@@ -150,7 +151,7 @@ class OptionsMapperTest {
         );
 
         //when
-        List<TrimDefaultOptionEntity> options = optionsMapper.findTrimDefaultOptionsWithRange(trimId, defaultOptionRangeDto);
+        List<TrimDefaultOptionEntity> options = optionsMapper.findTrimDefaultOptionsWithRange(trimId, optionSizeDto);
 
         //then
         softly.assertThat(options).as("기본 옵션 2개를 조회한다.")
