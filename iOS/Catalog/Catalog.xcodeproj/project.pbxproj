@@ -136,6 +136,7 @@
 		B19824262A90D33A00795B44 /* BodyTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19824252A90D33A00795B44 /* BodyTypeModel.swift */; };
 		B19824282A90D34B00795B44 /* DriveTrainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19824272A90D34B00795B44 /* DriveTrainModel.swift */; };
 		B198242A2A91343000795B44 /* ModelTypeDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19824292A91343000795B44 /* ModelTypeDetailState.swift */; };
+		B198242C2A91388D00795B44 /* ModalPopUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198242B2A91388D00795B44 /* ModalPopUpComponent.swift */; };
 		B1A76B802A88CD92009C84EF /* ModeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */; };
 		B1A76B822A88D263009C84EF /* ModelTypeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */; };
 		B1A76B842A892C86009C84EF /* ModelTypeSelectionContainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */; };
@@ -382,6 +383,7 @@
 		B19824252A90D33A00795B44 /* BodyTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTypeModel.swift; sourceTree = "<group>"; };
 		B19824272A90D34B00795B44 /* DriveTrainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTrainModel.swift; sourceTree = "<group>"; };
 		B19824292A91343000795B44 /* ModelTypeDetailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeDetailState.swift; sourceTree = "<group>"; };
+		B198242B2A91388D00795B44 /* ModalPopUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPopUpComponent.swift; sourceTree = "<group>"; };
 		B1A76B7F2A88CD92009C84EF /* ModeTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeTypeModel.swift; sourceTree = "<group>"; };
 		B1A76B812A88D263009C84EF /* ModelTypeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeIntent.swift; sourceTree = "<group>"; };
 		B1A76B832A892C86009C84EF /* ModelTypeSelectionContainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeSelectionContainerModel.swift; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 			children = (
 				B156463A2A8653D000FAD379 /* CarouselModalPopUpComponent.swift */,
 				B156463C2A865B3F00FAD379 /* ModelContentView.swift */,
+				B198242B2A91388D00795B44 /* ModalPopUpComponent.swift */,
 			);
 			path = ModelTypeModal;
 			sourceTree = "<group>";
@@ -1687,6 +1690,7 @@
 				EDCF32C12A8A91D500C46A4B /* CLQuotationPriceBar.swift in Sources */,
 				ED2B8CE52A8CFDF900F561FA /* TrimDefaultOptionDTO.swift in Sources */,
 				B194363B2A8095B800C2FD69 /* CLQuitAlertContentView.swift in Sources */,
+				B198242C2A91388D00795B44 /* ModalPopUpComponent.swift in Sources */,
 				B16722232A8CA67E002B45A6 /* OptionCardScollView.swift in Sources */,
 				B19824222A90BB0000795B44 /* TechnicalSpecResponseDTO.swift in Sources */,
 				ED1BDA762A8BB18F00E39270 /* ImageManager.swift in Sources */,
