@@ -21,12 +21,11 @@ extension ModelContentView {
 
   var body: some View {
     
-    VStack(alignment: .leading) {
       VStack {
         AsyncImage(url: state.imageURL) { image in
           image
             .resizable()
-            .frame(height: CGFloat(180).scaledHeight)
+            .frame(height: CGFloat(170).scaledHeight)
         } placeholder: {
           ProgressView()
         }
@@ -45,18 +44,19 @@ extension ModelContentView {
             .catalogFont(type: .TextKRRegular12)
             .foregroundColor(.gray800)
             .multilineTextAlignment(.leading)
+          Spacer()
         }
-        .padding(.top, 12)
-        .padding(.horizontal, 20)
+        .frame(height: CGFloat(110).scaledHeight)
+        .padding(.horizontal, CGFloat(20).scaledWidth)
         Spacer()
         if let hmgDataState = state.hmgData {
           HMGDataBannerComponent {
             HMGDataWithHorizontalGraphView(state: hmgDataState)
           }
+          .frame(height: CGFloat(110).scaledHeight)
         }
+        
       }
-      .background(.white)
-    }
   }
 
 }
