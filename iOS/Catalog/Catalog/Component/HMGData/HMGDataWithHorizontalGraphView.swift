@@ -9,15 +9,16 @@ import SwiftUI
 
 struct HMGModelTypeState: Equatable {
  
-  var EngineOutput: MaxOutputFromEngine
-  var Torque: MaxTorqueFromEngine
+  var engineOutput: MaxOutputFromEngine
+  var torque: MaxTorqueFromEngine
+  var enginePercent: Double
+  var torquePercent: Double
 
 }
 
 struct HMGDataWithHorizontalGraphView: View {
 
   var state: HMGModelTypeState
-  @State var percent: Double = 0.5
 
 }
 
@@ -30,25 +31,38 @@ extension HMGDataWithHorizontalGraphView {
           .catalogFont(type: .TextKRMedium10)
           .foregroundColor(.gray600)
         Spacer()
-        Text("\(state.EngineOutput.output)/\(state.EngineOutput.maxRPM)")
+        Text("\(state.engineOutput.output.toRPMMetricDescription())/\(state.engineOutput.maxRPM)")
           .catalogFont(type: .HeadKRRegular22)
       }
       Spacer().frame(height: 5)
-      BarHorizontalView(percent: $percent)
+      BarHorizontalView(percent: state.enginePercent)
 
       HStack(alignment: .bottom) {
         Text("최대토크(kgf・m/rpm)")
           .catalogFont(type: .TextKRMedium10)
           .foregroundColor(.gray600)
         Spacer()
-        Text("\(state.Torque.torque)/\(state.Torque.minRPM)-\(state.Torque.maxRPM)")
+        Text("\(state.torque.torque.toRPMMetricDescription())/\(state.torque.minRPM)-\(state.torque.maxRPM)")
           .catalogFont(type: .HeadKRRegular22)
       }
       Spacer().frame(height: 5)
-      BarHorizontalView(percent: $percent)
+      BarHorizontalView(percent: state.torquePercent)
         .frame(height: 4)
     }
   }
 
 }
 
+fileprivate extension Double {
+  
+  func toRPMMetricDescription() -> String {
+    
+    if Double(Int(self)) == self {
+      return "\(Int(self))"
+    } else {
+      return String(format: "%.1f", self)
+    }
+      
+  }
+  
+}

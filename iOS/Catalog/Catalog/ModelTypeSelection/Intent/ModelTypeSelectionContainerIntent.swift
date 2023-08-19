@@ -132,16 +132,44 @@ extension ModelTypeSelectionContainerIntent {
       ModelTypeDetailState.init(id: $0.id, title: $0.name, description: $0.description, choiceRatio: $0.choiceRatio, imageURL: $0.imageURL, price: $0.price)
     }
     
+    var engineOutputs: [Double] = []
+    var torqueOutputs: [Double] = []
+    
     options.enumerated().forEach { index, element in
       
       if let maxOutput = element.maxOuputFromEngine,
          let maxTorque = element.maxTorqueFromEngine {
         
-        content[index].hmgData = HMGModelTypeState(EngineOutput: maxOutput, Torque: maxTorque)
+        content[index].hmgData = HMGModelTypeState(engineOutput: maxOutput, torque: maxTorque, enginePercent: 0.0, torquePercent: 0.0)
+        
+        engineOutputs.append(maxOutput.output / Double(maxOutput.maxRPM))
+        torqueOutputs.append(maxTorque.torque / Double(maxOutput.maxRPM))
     
       }
       
     }
+    
+    if engineOutputs.count == 2 && torqueOutputs.count == 2 {
+      
+      if engineOutputs[0] > engineOutputs[1] {
+        content[0].hmgData?.enginePercent = 1
+        content[1].hmgData?.enginePercent = engineOutputs[1] / engineOutputs[0]
+      } else {
+        content[0].hmgData?.enginePercent = engineOutputs[0] / engineOutputs[1]
+        content[1].hmgData?.enginePercent = 1
+      }
+      
+      if torqueOutputs[0] > torqueOutputs[1] {
+        content[0].hmgData?.torquePercent = 1
+        content[1].hmgData?.torquePercent = torqueOutputs[1] / torqueOutputs[0]
+      } else {
+        content[0].hmgData?.torquePercent = torqueOutputs[0] / torqueOutputs[1]
+        content[1].hmgData?.torquePercent = 1
+      }
+      
+    }
+    
+    
     
     return content
     
