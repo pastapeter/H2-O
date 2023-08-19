@@ -128,18 +128,22 @@ extension ModelTypeSelectionContainerIntent {
   
   private func convertToModelTypeDetail(from options: [ModelTypeOption]) -> [ModelTypeDetailState] {
   
-    let content = options.map {
-      ModelTypeContent.init(title: $0.name, description: $0.description, choiceRatio: $0.choiceRatio, imageURL: $0.imageURL, price: $0.price)
+    var content = options.map {
+      ModelTypeDetailState.init(id: $0.id, title: $0.name, description: $0.description, choiceRatio: $0.choiceRatio, imageURL: $0.imageURL, price: $0.price)
     }
     
-    let hmgData: [HMGModelTypeState?] = options.map {
-      guard let maxOutput = $0.maxOuputFromEngine, let maxTorque = $0.maxTorqueFromEngine else { return nil }
-      return HMGModelTypeState(EngineOutput: maxOutput, Torque: maxTorque)
+    options.enumerated().forEach { index, element in
+      
+      if let maxOutput = element.maxOuputFromEngine,
+         let maxTorque = element.maxTorqueFromEngine {
+        
+        content[index].hmgData = HMGModelTypeState(EngineOutput: maxOutput, Torque: maxTorque)
+    
+      }
+      
     }
     
-    return zip(content, hmgData).map {
-      ModelTypeDetailState(content: $0.0, hmgData: $0.1)
-    }
+    return content
     
   }
   
