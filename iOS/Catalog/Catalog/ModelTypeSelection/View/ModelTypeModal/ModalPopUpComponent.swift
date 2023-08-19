@@ -35,8 +35,7 @@ extension ModalPopUpComponent {
           content()
           CLButton(mainText: "선택하기", subText: state.price.signedWon,
                    height: 87,
-                   backgroundColor: .activeBlue,
-                   buttonAction: submitAction)
+                   backgroundColor: .primary0, buttonAction: submitAction)
             .frame(height: 56)
         }
         .background(.white)

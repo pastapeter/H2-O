@@ -15,7 +15,9 @@ protocol titleContainable {
   var title: String { get }
 }
 
-typealias ModalItemable = Identifiable & PriceContainable & titleContainable
+protocol ModalItemable: Identifiable & PriceContainable & titleContainable {
+  var id: Int { get }
+}
 
 
 struct ModelTypeDetailState: Equatable, ModalItemable {

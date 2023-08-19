@@ -53,8 +53,7 @@ extension ModelTypeView: View {
       .cornerRadius(8)
     }
     .CLDialogFullScreenCover(show: isModalPresenting) {
-
-      CarouselModalPopUpComponent(modalContentItems: state.modelTypeDetailState, submitAction: {
+      CarouselModalPopUpComponent(modalContentItems: state.modelTypeDetailState, selectedId: state.selectedId ,submitAction: {
         // TODO 가격 추가하기
       }, content: { detailState in
         ModelContentView(state: detailState)

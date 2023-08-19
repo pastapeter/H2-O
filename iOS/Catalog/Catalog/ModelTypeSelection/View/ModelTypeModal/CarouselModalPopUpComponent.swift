@@ -11,7 +11,7 @@ import SwiftUI
 struct CarouselModalPopUpComponent<ModalPopUpContent: View, Item: ModalItemable>: View {
 
   var modalContentItems: [Item]
-
+  var selectedId: Int
   var submitAction: () -> Void
 
   @Environment (\.dismiss)
@@ -86,10 +86,14 @@ extension CarouselModalPopUpComponent {
       titleView(state.title)
         .padding(.horizontal, 16)
       content(state)
-      CLButton(mainText: "선택하기", subText: state.price.signedWon,
-               height: CGFloat(87).scaledHeight,
-               backgroundColor: .activeBlue,
-               buttonAction: submitAction)
+      TrimSelectButton(
+        mainText: "선택하기",
+        isTrimSelected: state.id != selectedId,
+        subText: state.price.signedWon,
+        inActiveText: "선택완료",
+        height: CGFloat(87).scaledHeight,
+        buttonAction: submitAction
+      )
       .frame(height: CGFloat(56).scaledHeight)
     }
     .background(.white)
