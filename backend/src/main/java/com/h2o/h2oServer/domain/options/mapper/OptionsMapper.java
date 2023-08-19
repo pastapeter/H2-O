@@ -22,6 +22,7 @@ public interface OptionsMapper {
     List<TrimDefaultOptionEntity> findTrimDefaultOptionsWithRange(@Param("trimId") Long trimId,
                                                                   @Param("pageRange") PageRangeDto pageRange);
     List<HashTagEntity> findPackageHashTags(Long packageId);
+
     List<HashTagEntity> findOptionHashTag(Long optionId);
     Long findTrimPackageSize(Long trimId);
     Long findTrimOptionSize(@Param("trimId") Long trimId, @Param("optionType") OptionType optionType);

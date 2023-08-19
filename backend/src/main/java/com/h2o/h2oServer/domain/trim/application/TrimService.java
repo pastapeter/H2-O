@@ -122,7 +122,6 @@ public class TrimService {
         }
     }
 
-
     public PriceDistributionDto findAndScalePriceDistribution(Long trimId) {
         PriceRangeDto priceRangeDto = findPriceRange(trimId);
         Integer minPrice = priceRangeDto.getMinPrice();

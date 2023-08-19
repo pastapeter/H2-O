@@ -1,7 +1,9 @@
 package com.h2o.h2oServer.domain.quotation.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
+@ApiModel(value = "견적 저장 요청 응답")
 @Data
 public class QuotationResponseDto {
     private Long quotationId;

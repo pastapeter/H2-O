@@ -35,4 +35,44 @@
     <select id="countPackageQuotation" resultType="long">
         select count(*) from package_quotation;
     </select>
+
+    <select id="findReleaseQuotationWithVolume" resultType="ReleaseEntity">
+        select trim_id,
+               powertrain_id,
+               bodytype_id,
+               drivetrain_id,
+               internal_color_id,
+               external_color_id,
+               option_combination,
+               package_combination,
+               price,
+               count(*) as quotation_count
+        from (select id,
+                     trim_id,
+                     powertrain_id,
+                     bodytype_id,
+                     drivetrain_id,
+                     internal_color_id,
+                     external_color_id,
+                     price,
+                     option_combination,
+                     GROUP_CONCAT(p.package_id ORDER BY p.package_id ASC) AS package_combination
+              from (select id,
+                           trim_id,
+                           powertrain_id,
+                           bodytype_id,
+                           drivetrain_id,
+                           internal_color_id,
+                           external_color_id,
+                           price,
+                           GROUP_CONCAT(o.option_id ORDER BY o.option_id ASC) AS option_combination
+                    from sold_car
+                             join sold_car_extra_options as o
+                                  on (sold_car.trim_id = #{trimId} and sold_car.id = o.sold_car_id)
+                    group by id) as option_concatted
+                       join sold_car_package as p on (option_concatted.id = p.sold_car_id)
+              group by id) as all_concatted
+        group by trim_id, powertrain_id, bodytype_id, drivetrain_id, internal_color_id, external_color_id, price,
+                 option_combination, package_combination;
+    </select>
 </mapper>
