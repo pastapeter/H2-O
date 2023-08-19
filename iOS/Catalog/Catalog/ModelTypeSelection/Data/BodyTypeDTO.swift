@@ -16,7 +16,7 @@ struct BodyTypeDTO: Codable {
     let image: String?
 }
 
-extension BodyTypeDTO {
+extension BodyTypeDTO: ModelTypeDomainConvertable {
   
   func toDomain() throws -> ModelTypeOption {
     

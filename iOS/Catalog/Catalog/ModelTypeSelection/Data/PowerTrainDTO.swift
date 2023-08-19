@@ -7,6 +7,9 @@
 
 import Foundation
 
+protocol ModelTypeDomainConvertable {
+  func toDomain() throws -> ModelTypeOption
+}
 
 enum ModelTypeToDomainError: LocalizedError {
   case noIdInResponse(from: ModelTypeToDomainError.ModelType)
@@ -21,7 +24,7 @@ enum ModelTypeToDomainError: LocalizedError {
   
 }
 
-struct PowerTrainDTO: Codable {
+struct PowerTrainDTO: Codable, ModelTypeDomainConvertable {
     let id: Int?
     let name: String?
     let price: Int?

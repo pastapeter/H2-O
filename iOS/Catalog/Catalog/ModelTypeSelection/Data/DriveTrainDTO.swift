@@ -16,7 +16,7 @@ struct DriveTrainDTO: Codable {
     let image: String?
 }
 
-extension DriveTrainDTO {
+extension DriveTrainDTO: ModelTypeDomainConvertable {
   
   func toDomain() throws -> ModelTypeOption {
     
