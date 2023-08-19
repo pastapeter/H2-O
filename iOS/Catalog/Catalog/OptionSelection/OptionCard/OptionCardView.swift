@@ -15,7 +15,6 @@ struct OptionCardView: IntentBindingType, View {
   @SwiftUI.State var isModalPresenting = false
   @SwiftUI.State var isSelected: Bool = false
 
-  var detailState: ModelTypeDetailState = .init(content: .mock(), hmgData: .mock())
 
     var body: some View {
       
@@ -75,11 +74,7 @@ struct OptionCardView: IntentBindingType, View {
         .optionCardBackground(isSelected: isSelected)
         .cornerRadius(2)
         .CLDialogFullScreenCover(show: $isModalPresenting) {
-          ModalPopUpComponent(state: detailState.content, submitAction: {
-            // TODO 가격 추가하기
-          }, content: {
-            ModelContentView(state: detailState)
-          })
+          Rectangle().fill(.red)
         }
       }
       .buttonStyle(EmptyButtonStyle())
