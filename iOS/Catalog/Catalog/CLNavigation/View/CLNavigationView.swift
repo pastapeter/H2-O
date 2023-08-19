@@ -33,7 +33,7 @@ extension CLNavigationView: View {
   var body: some View {
     VStack(spacing: 0) {
       CLTopNaviBar(intent: intent)
-      CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: menuStatus, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"])
+      CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: menuStatus, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"], showNavigationDivider: true)
       ZStack {
         TabView(selection: currentPageBinding) {
 
@@ -42,8 +42,8 @@ extension CLNavigationView: View {
               carId: 1),
             repository: TrimSelectionRepository(), quotation: Quotation.shared, navigationIntent: intent))
           .tag(0)
-          ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(),
-                                                              repository: MockModelTypeRepository()))
+          
+          ModelTypeSelectionContainerView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager()))))
           .tag(1)
 
           ExternalSelectionContainerView.build(
