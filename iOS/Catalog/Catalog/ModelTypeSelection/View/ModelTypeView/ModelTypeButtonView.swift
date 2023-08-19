@@ -34,7 +34,7 @@ struct ModelTypeButtonView: View {
           }
         }
       }
-      .padding(EdgeInsets(top: 8, leading: 13, bottom: 7, trailing: 8))
+      .padding(EdgeInsets(top: CGFloat(8).scaledHeight, leading: CGFloat(13).scaledWidth, bottom: CGFloat(7).scaledHeight, trailing: CGFloat(8).scaledWidth))
       .cornerRadius(4)
       .buttonSelected(isselected: state.isSelected)
     }
