@@ -50,7 +50,9 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
     case .fetchCardState(let from, let to):
       fetchCardState(from: from, to: to)
     case .onTapOption(let id):
-      parent?.selectedOption(with: id)
+      if state.isExtraOptionTab {
+        parent?.selectedOption(with: id)
+      }
     case .cardStates(let states):
       state.cardStates = states
     }
