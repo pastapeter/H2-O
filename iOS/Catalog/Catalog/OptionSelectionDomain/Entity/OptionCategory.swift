@@ -55,7 +55,7 @@ enum OptionCategory: CustomStringConvertible {
     return [.total, .detail, .accessory, .wheel]
   }
 
-  static var defaultOptionFiletr: [OptionCategory] {
+  static var defaultOptionFilter: [OptionCategory] {
     return [.total, .powerTrain, .AISafeguardTech, .safe, .exterior, .interior, .seat, .comfort, .multimedia]
   }
   
