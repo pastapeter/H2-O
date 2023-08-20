@@ -1,5 +1,6 @@
 package com.h2o.h2oServer.domain.model_type.mapper;
 
+import com.h2o.h2oServer.domain.model_type.BodyTypeFixture;
 import com.h2o.h2oServer.domain.model_type.Entity.BodytypeEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.CarBodytypeEntity;
 import org.assertj.core.api.SoftAssertions;
@@ -31,12 +32,7 @@ class BodytypeMapperTest {
     void findById() {
         //given
         Long bodytypeId = 1L;
-        BodytypeEntity bodytype = BodytypeEntity.builder()
-                .id(bodytypeId)
-                .name("name1")
-                .description("description1")
-                .image("img_url1")
-                .build();
+        BodytypeEntity bodytype = BodyTypeFixture.generateBodytypeEntity();
 
         //when
         BodytypeEntity foundBodytype = bodytypeMapper.findById(bodytypeId);
@@ -52,25 +48,7 @@ class BodytypeMapperTest {
     void findBodytypeByCarId() {
         //given
         Long carId = 1L;
-        CarBodytypeEntity entity1 = CarBodytypeEntity.builder()
-                .carId(carId)
-                .name("name1")
-                .description("description1")
-                .image("img_url1")
-                .bodytypeId(1L)
-                .price(10000)
-                .choiceRatio(0.11f)
-                .build();
-
-        CarBodytypeEntity entity2 = CarBodytypeEntity.builder()
-                .carId(carId)
-                .name("name2")
-                .description("description2")
-                .image("img_url2")
-                .bodytypeId(2L)
-                .price(20000)
-                .choiceRatio(0.21f)
-                .build();
+        List<CarBodytypeEntity> expectedCarBodytypeEntities = BodyTypeFixture.generateCarBodyTypeEntities();
 
         //when
         List<CarBodytypeEntity> foundEntities = bodytypeMapper.findBodytypesByCarId(carId);
@@ -81,8 +59,7 @@ class BodytypeMapperTest {
         softly.assertThat(foundEntities).as("유효한 데이터만 매핑되었는지 확인")
                 .hasSize(2);
         softly.assertThat(foundEntities).as("carId에 해당하는 Entity가 모두 매핑되었는지 확인")
-                .contains(entity1)
-                .contains(entity2);
+                .containsAll(expectedCarBodytypeEntities);
         softly.assertAll();
     }
 

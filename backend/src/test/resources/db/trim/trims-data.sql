@@ -13,8 +13,8 @@ VALUES
 
 INSERT INTO trims (id, car_id, name, description, price)
 VALUES
-    (1, 1, 'Trim 1', 'Basic Trim', 1500),
-    (2, 1, 'Trim 2', 'Advanced Trim', 2500),
+    (1, 1, 'Trim A', 'Description of Trim A', 50000),
+    (2, 1, 'Trim B', 'Description of Trim b', 70000),
     (3, 2, 'Trim 3', 'Standard Trim', 2000),
     (4, 2, 'Trim 4', 'Premium Trim', 3000),
     (5, 3, 'Trim 5', 'Basic Trim', 1200),

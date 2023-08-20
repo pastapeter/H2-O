@@ -176,6 +176,31 @@ public class QuotationService {
         return QuotationResponseDto.of(quotationId);
     }
 
+    private void insertIntoOptionQuotation(List<Long> optionIds, Long quotationId) {
+        OptionQuotationEntity optionQuotationEntity = OptionQuotationEntity.builder()
+                .quotationId(quotationId)
+                .optionIds(optionIds)
+                .build();
+
+        quotationMapper.saveOptionQuotation(optionQuotationEntity);
+    }
+
+    private void insertIntoPackageQuotation(List<Long> packageIds, Long quotationId) {
+        PackageQuotationEntity packageQuotationEntity = PackageQuotationEntity.builder()
+                .quotationId(quotationId)
+                .packageIds(packageIds)
+                .build();
+
+        quotationMapper.savePackageQuotation(packageQuotationEntity);
+    }
+
+    private Long insertIntoQuotation(QuotationRequestDto quotationRequestDto) {
+        QuotationDto quotationDto = QuotationDto.of(quotationRequestDto);
+        quotationMapper.saveQuotation(quotationDto);
+
+        return quotationDto.getId();
+    }
+
     private void validateQuotationRequest(QuotationRequestDto quotationRequestDto) {
         validateCarExistence(quotationRequestDto);
         validateTrimExistence(quotationRequestDto);
@@ -217,7 +242,6 @@ public class QuotationService {
                     throw new NoSuchPackageException();
                 });
     }
-
     private void validateOptionExistence(QuotationRequestDto quotationRequestDto) {
         quotationRequestDto.getOptionIds().stream()
                 .filter(id -> !optionMapper.checkIfOptionExists(id))
@@ -227,28 +251,4 @@ public class QuotationService {
                 });
     }
 
-    private Long insertIntoQuotation(QuotationRequestDto quotationRequestDto) {
-        QuotationDto quotationDto = QuotationDto.of(quotationRequestDto);
-        quotationMapper.saveQuotation(quotationDto);
-
-        return quotationDto.getId();
-    }
-
-    private void insertIntoOptionQuotation(List<Long> optionIds, Long quotationId) {
-        OptionQuotationEntity optionQuotationEntity = OptionQuotationEntity.builder()
-                .quotationId(quotationId)
-                .optionIds(optionIds)
-                .build();
-
-        quotationMapper.saveOptionQuotation(optionQuotationEntity);
-    }
-
-    private void insertIntoPackageQuotation(List<Long> packageIds, Long quotationId) {
-        PackageQuotationEntity packageQuotationEntity = PackageQuotationEntity.builder()
-                .quotationId(quotationId)
-                .packageIds(packageIds)
-                .build();
-
-        quotationMapper.savePackageQuotation(packageQuotationEntity);
-    }
 }

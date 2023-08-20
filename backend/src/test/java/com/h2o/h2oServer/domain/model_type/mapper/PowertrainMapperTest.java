@@ -4,6 +4,7 @@ import com.h2o.h2oServer.domain.model_type.Entity.CarPowerTrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainOutputEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainTorqueEntity;
+import com.h2o.h2oServer.domain.model_type.PowertrainFixture;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -33,12 +34,7 @@ class PowertrainMapperTest {
     void findById() {
         //given
         Long powertrainId = 1L;
-        PowertrainEntity powertrain = PowertrainEntity.builder()
-                .id(powertrainId)
-                .name("powertrain1")
-                .description("description1")
-                .image("img_url1")
-                .build();
+        PowertrainEntity powertrain = PowertrainFixture.generatePowertrainEntity(powertrainId);
 
         //when
         PowertrainEntity foundPowertrain = powertrainMapper.findById(powertrainId);
@@ -53,12 +49,7 @@ class PowertrainMapperTest {
     void findOutput() {
         //given
         Long powertrainId = 1L;
-        PowertrainOutputEntity output = PowertrainOutputEntity.builder()
-                .powertrainId(powertrainId)
-                .output(202.2f)
-                .minRpm(1000)
-                .maxRpm(1000)
-                .build();
+        PowertrainOutputEntity output = PowertrainFixture.generatePowertrainOutputEntity(powertrainId);
 
         //when
         PowertrainOutputEntity foundOutput = powertrainMapper.findOutput(powertrainId);
@@ -73,12 +64,7 @@ class PowertrainMapperTest {
     void findTorque() {
         //given
         Long powertrainId = 1L;
-        PowertrainTorqueEntity torque = PowertrainTorqueEntity.builder()
-                .powertrainId(powertrainId)
-                .torque(100.1f)
-                .minRpm(3000)
-                .maxRpm(3000)
-                .build();
+        PowertrainTorqueEntity torque = PowertrainFixture.generatePowertrainTorqueEntity(powertrainId);
 
         //when
         PowertrainTorqueEntity foundTorque = powertrainMapper.findTorque(powertrainId);
@@ -93,38 +79,17 @@ class PowertrainMapperTest {
     void findPowertrainsByCarId() {
         //given
         Long carId = 1L;
-        CarPowerTrainEntity entity1 = CarPowerTrainEntity.builder()
-                .carId(carId)
-                .name("powertrain1")
-                .description("description1")
-                .image("img_url1")
-                .powertrainId(1L)
-                .price(100000)
-                .choiceRatio(0.22f)
-                .build();
 
-        CarPowerTrainEntity entity2 = CarPowerTrainEntity.builder()
-                .carId(carId)
-                .name("powertrain2")
-                .description("description2")
-                .image("img_url2")
-                .powertrainId(2L)
-                .price(300000)
-                .choiceRatio(0.21f)
-                .build();
+        List<CarPowerTrainEntity> expectedCarPowerTrainEntities = PowertrainFixture.generateCarPowerTrainEntities(carId);
 
         //when
         List<CarPowerTrainEntity> foundEntities = powertrainMapper.findPowertrainsByCarId(carId);
 
         //then
-        softly.assertThat(foundEntities).as("유효한 데이터가 매핑되었는지 확인")
-                .isNotEmpty();
         softly.assertThat(foundEntities).as("유효한 데이터만 매핑되었는지 확인")
                 .hasSize(2);
         softly.assertThat(foundEntities).as("carId에 해당하는 Entity가 모두 매핑되었는지 확인")
-                .contains(entity1)
-                .contains(entity2);
-
+                .containsAll(expectedCarPowerTrainEntities);
         softly.assertAll();
     }
 

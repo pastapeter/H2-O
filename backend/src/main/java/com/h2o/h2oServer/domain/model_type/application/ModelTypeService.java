@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ModelTypeService {
-
     private final PowertrainMapper powerTrainMapper;
     private final BodytypeMapper bodyTypeMapper;
     private final DrivetrainMapper driveTrainMapper;
@@ -42,7 +41,16 @@ public class ModelTypeService {
         Long powertrainId = powertrain.getPowertrainId();
 
         PowertrainOutputEntity output = powerTrainMapper.findOutput(powertrainId);
+
+        if (output == null) {
+            throw new NoSuchCarException();
+        }
+
         PowertrainTorqueEntity torque = powerTrainMapper.findTorque(powertrainId);
+
+        if (torque == null) {
+            throw new NoSuchCarException();
+        }
 
         return CarPowertrainDto.of(powertrain, output, torque);
     }

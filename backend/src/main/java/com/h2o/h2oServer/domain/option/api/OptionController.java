@@ -24,7 +24,7 @@ public class OptionController {
     })
     @GetMapping("/trim/{trimId}/option/{optionId}")
     public OptionDetailsDto getOptionInformation(@PathVariable Long trimId, @PathVariable Long optionId) {
-        OptionDetailsDto optionInformation = optionService.findOptionInformation(optionId, trimId);
+        OptionDetailsDto optionInformation = optionService.findDetailedOptionInformation(optionId, trimId);
         return optionInformation;
     }
 }

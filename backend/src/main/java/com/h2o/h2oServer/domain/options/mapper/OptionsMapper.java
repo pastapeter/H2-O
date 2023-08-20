@@ -13,17 +13,25 @@ import java.util.List;
 @Mapper
 public interface OptionsMapper {
     List<TrimExtraOptionEntity> findTrimPackages(Long trimId);
+
     List<TrimExtraOptionEntity> findTrimPackagesWithRange(@Param("trimId") Long trimId,
                                                           @Param("pageRange") PageRangeDto pageRange);
+
     List<TrimExtraOptionEntity> findTrimExtraOptions(Long trimId);
+
     List<TrimExtraOptionEntity> findTrimExtraOptionsWithRange(@Param("trimId") Long trimId,
                                                               @Param("pageRange") PageRangeDto pageRange);
+
     List<TrimDefaultOptionEntity> findTrimDefaultOptions(Long trimId);
+
     List<TrimDefaultOptionEntity> findTrimDefaultOptionsWithRange(@Param("trimId") Long trimId,
                                                                   @Param("pageRange") PageRangeDto pageRange);
+
     List<HashTagEntity> findPackageHashTags(Long packageId);
 
     List<HashTagEntity> findOptionHashTag(Long optionId);
+
     Long findTrimPackageSize(Long trimId);
+
     Long findTrimOptionSize(@Param("trimId") Long trimId, @Param("optionType") OptionType optionType);
 }

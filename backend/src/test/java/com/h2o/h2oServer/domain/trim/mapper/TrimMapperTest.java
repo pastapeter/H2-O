@@ -1,5 +1,8 @@
 package com.h2o.h2oServer.domain.trim.mapper;
 
+import com.h2o.h2oServer.domain.trim.ExternalColorFixture;
+import com.h2o.h2oServer.domain.trim.InternalColorFixture;
+import com.h2o.h2oServer.domain.trim.TrimFixture;
 import com.h2o.h2oServer.domain.trim.entity.ExternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.InternalColorEntity;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
@@ -26,88 +29,137 @@ class TrimMapperTest {
         softly = new SoftAssertions();
     }
 
-    @Test
-    @DisplayName("존재하는 회원에 대해서, 해당하는 row를 Trim 객체에 담아 반환한다.")
+    @Nested
+    @DisplayName("트림 검색 테스트")
     @Sql("classpath:db/trim/trims-data.sql")
-    void findById() {
-        //given
-        Long targetId = 1L;
-        TrimEntity expectedTrimEntity = TrimEntity.builder()
-                .id(targetId)
-                .name("Trim 1")
-                .description("Basic Trim")
-                .price(1500)
-                .carId(1L)
-                .build();
+    class FindTest {
+        @Test
+        @DisplayName("존재하는 회원에 대해서, 해당하는 row를 Trim 객체에 담아 반환한다.")
+        void findById() {
+            //given
+            Long targetId = 1L;
+            TrimEntity expectedTrimEntity = TrimFixture.generateTrimEntity();
 
-        //when
-        TrimEntity actualTrimEntity = trimMapper.findById(targetId);
+            //when
+            TrimEntity actualTrimEntity = trimMapper.findById(targetId);
 
-        //then
-        softly.assertThat(actualTrimEntity).as("유효한 데이터가 매핑되었는지 확인").isNotNull();
-        softly.assertThat(actualTrimEntity).as("데이터베이스에 존재하는 데이터인지 확인").isEqualTo(expectedTrimEntity);
-        softly.assertAll();
+            //then
+            softly.assertThat(actualTrimEntity).as("데이터베이스에 존재하는 데이터인지 확인").isEqualTo(expectedTrimEntity);
+            softly.assertAll();
+        }
+
+        @Test
+        @DisplayName("존재하지 않는 트림에 대해서는 null을 반환한다.")
+        void findByIdWithoutResult() {
+            //given
+            Long targetId = Long.MAX_VALUE;
+
+            //when
+            TrimEntity actualTrimEntity = trimMapper.findById(targetId);
+
+            //then
+            assertThat(actualTrimEntity).isNull();
+        }
+
+        @Test
+        @DisplayName("존재하는 회원에 대해서, 해당하는 row를 Trim 객체에 담아 반환한다.")
+        void findByCarId() {
+            //given
+            Long targetCarId = 1L;
+            List<TrimEntity> expectedTrimEntities = TrimFixture.generateTrimEntityList();
+
+            //when
+            List<TrimEntity> actualTrimEntities = trimMapper.findByCarId(targetCarId);
+
+            //then
+            softly.assertThat(actualTrimEntities).as("유효한 데이터만 매핑되었는지 확인").hasSize(2);
+            softly.assertThat(actualTrimEntities).as("CarId에 해당하는 trim 객체가 모두 매핑되었는지 확인")
+                    .containsAll(expectedTrimEntities);
+            softly.assertAll();
+        }
+
+        @Test
+        @DisplayName("존재하지 않는 차량에 대해서는 빈 배열을 반환한다.")
+        void findByCarIdWithoutResult() {
+            //given
+            Long targetCarId = Long.MAX_VALUE;
+
+            //when
+            List<TrimEntity> actualTrimEntities = trimMapper.findByCarId(targetCarId);
+
+            //then
+            assertThat(actualTrimEntities).isEmpty();
+        }
     }
 
-    @Test
-    @DisplayName("존재하지 않는 회원에 대해서는 null을 반환한다.")
-    @Sql("classpath:db/trim/trims-data.sql")
-    void findByIdWithoutResult() {
-        //given
-        Long targetId = Long.MAX_VALUE;
+    @Nested
+    @DisplayName("색상 조회 테스트")
+    class FindColorTest {
+        @Test
+        @DisplayName("존재하는 trim에 대한 외부 색상 요청일 경우 externalColorEntity를 반환한다.")
+        @Sql("classpath:db/trim/external-color-data.sql")
+        void findExternalColor() {
+            //given
+            Long trimId = 1L;
+            List<ExternalColorEntity> expectedExternalColorEntities = ExternalColorFixture.generateExternalColorEntityList();
 
-        //when
-        TrimEntity actualTrimEntity = trimMapper.findById(targetId);
+            //when
+            List<ExternalColorEntity> actualExternalColorEntities = trimMapper.findExternalColor(trimId);
 
-        //then
-        assertThat(actualTrimEntity).isNull();
-    }
+            //then
+            assertThat(actualExternalColorEntities).as("유효한 데이터가 매핑된다.").isNotEmpty();
+            assertThat(actualExternalColorEntities).as("유효한 데이터가 매핑된다.").hasSize(2);
+            softly.assertThat(actualExternalColorEntities).as("trimId에 해당하는 externalColorEntity 객체가 모두 매핑되었는지 확인")
+                    .containsAll(expectedExternalColorEntities);
+            softly.assertAll();
+        }
 
-    @Test
-    @DisplayName("존재하는 회원에 대해서, 해당하는 row를 Trim 객체에 담아 반환한다.")
-    @Sql("classpath:db/trim/trims-data.sql")
-    void findByCarId() {
-        //given
-        Long targetCarId = 1L;
-        TrimEntity expectedTrimEntity1 = TrimEntity.builder()
-                .id(1L)
-                .name("Trim 1")
-                .description("Basic Trim")
-                .price(1500)
-                .carId(1L)
-                .build();
-        TrimEntity expectedTrimEntity2 = TrimEntity.builder()
-                .id(2L)
-                .name("Trim 2")
-                .description("Advanced Trim")
-                .price(2500)
-                .carId(1L)
-                .build();
+        @Test
+        @DisplayName("존재하지 않는 trim에 대해서는 빈 배열을 반환한다.")
+        @Sql("classpath:db/trim/external-color-data.sql")
+        void findExternalColorNotExists() {
+            //given
+            Long trimId = Long.MAX_VALUE;
 
-        //when
-        List<TrimEntity> actualTrimEntities = trimMapper.findByCarId(targetCarId);
+            //when
+            List<ExternalColorEntity> actualExternalColorEntity = trimMapper.findExternalColor(trimId);
 
-        //then
-        softly.assertThat(actualTrimEntities).as("유효한 데이터가 매핑되었는지 확인").isNotEmpty();
-        softly.assertThat(actualTrimEntities).as("유효한 데이터만 매핑되었는지 확인").hasSize(2);
-        softly.assertThat(actualTrimEntities).as("CarId에 해당하는 trim 객체가 모두 매핑되었는지 확인")
-                .contains(expectedTrimEntity1)
-                .contains(expectedTrimEntity2);
-        softly.assertAll();
-    }
+            //then
+            assertThat(actualExternalColorEntity).isEmpty();
+        }
 
-    @Test
-    @DisplayName("존재하지 않는 회원에 대해서는 null을 반환한다.")
-    @Sql("classpath:db/trim/trims-data.sql")
-    void findByCarIdWithoutResult() {
-        //given
-        Long targetCarId = Long.MAX_VALUE;
+        @Test
+        @DisplayName("존재하는 trim에 대한 내부 색상 요청일 경우 InternalColorEntity를 반환한다. ")
+        @Sql("classpath:db/trim/internal-color-data.sql")
+        void findInternalColor() {
+            //given
+            Long trimId = 1L;
+            List<InternalColorEntity> expectedInternalColorEntities = InternalColorFixture.generateInernalColorEntityList();
 
-        //when
-        List<TrimEntity> actualTrimEntities = trimMapper.findByCarId(targetCarId);
+            //when
+            List<InternalColorEntity> actualEntities = trimMapper.findInternalColor(trimId);
 
-        //then
-        assertThat(actualTrimEntities).isEmpty();
+            //then
+            softly.assertThat(actualEntities).as("유효한 데이터가 매핑되었는지 확인").isNotEmpty();
+            softly.assertThat(actualEntities).as("유효한 데이터만 매핑되었는지 확인").hasSize(2);
+            softly.assertThat(actualEntities).as("trimId에 해당하는 InternalColorEntity 객체가 모두 매핑되었는지 확인")
+                    .containsAll(expectedInternalColorEntities);
+            softly.assertAll();
+        }
+
+        @Test
+        @DisplayName("존재하지 않는 trim에 대해서는 빈 배열을 반환한다.")
+        @Sql("classpath:db/trim/internal-color-data.sql")
+        void findInternalColorNotExists() {
+            //given
+            Long trimId = Long.MAX_VALUE;
+
+            //when
+            List<InternalColorEntity> actualInternalColorEntity = trimMapper.findInternalColor(trimId);
+
+            //then
+            assertThat(actualInternalColorEntity).isEmpty();
+        }
     }
 
     @Test
@@ -115,81 +167,13 @@ class TrimMapperTest {
     @Sql("classpath:db/trim/trims-data.sql")
     void findAll() {
         //given
-        Long expectedLength = 10L;
+        long expectedLength = 10L;
 
         //when
         List<TrimEntity> actualTrimEntities = trimMapper.findAll();
 
         //then
         assertThat(actualTrimEntities).as("db에 존재하는 row의 개수와 길이가 같은지 확인").hasSize(Math.toIntExact(expectedLength));
-    }
-
-    @Test
-    @DisplayName("유효한 trim에 대해서, externalColorEntity를 반환한다.")
-    @Sql("classpath:db/trim/external-color-data.sql")
-    void findExternalColor() {
-        //given
-        Long trimId = 1L;
-        ExternalColorEntity expectedExternalColorEntity1 = ExternalColorEntity.builder()
-                .colorCode("#FF0000")
-                .choiceRatio(0.3f)
-                .id(1L)
-                .name("Red")
-                .price(2000)
-                .build();
-        ExternalColorEntity expectedExternalColorEntity2 = ExternalColorEntity.builder()
-                .colorCode("#0000FF")
-                .choiceRatio(0.5f)
-                .id(2L)
-                .name("Blue")
-                .price(1800)
-                .build();
-
-        //when
-        List<ExternalColorEntity> actualExternalColorEntities = trimMapper.findExternalColor(trimId);
-
-        //then
-        assertThat(actualExternalColorEntities).as("유효한 데이터가 매핑된다.").isNotEmpty();
-        assertThat(actualExternalColorEntities).as("유효한 데이터가 매핑된다.").hasSize(2);
-        softly.assertThat(actualExternalColorEntities).as("trimId에 해당하는 externalColorEntity 객체가 모두 매핑되었는지 확인")
-                .contains(expectedExternalColorEntity1)
-                .contains(expectedExternalColorEntity2);
-        softly.assertAll();
-    }
-
-    @Test
-    @DisplayName("존재하는 trimId에 대한 내부 색상 요청에 대해서 InternalColorEntity List를 반환한다. ")
-    @Sql("classpath:db/trim/internal-color-data.sql")
-    void findInternalColor() {
-        //given
-        Long trimId = 1L;
-        InternalColorEntity expectEntity1 = InternalColorEntity.builder()
-                .id(1L)
-                .choiceRatio(0.3f)
-                .price(2000)
-                .fabricImage("fabric_image_url_1")
-                .internalImage("internal_image_url_1")
-                .name("Red")
-                .build();
-        InternalColorEntity expectEntity2 = InternalColorEntity.builder()
-                .id(2L)
-                .choiceRatio(0.2f)
-                .price(1500)
-                .fabricImage("fabric_image_url_2")
-                .internalImage("internal_image_url_2")
-                .name("Blue")
-                .build();
-
-        //when
-        List<InternalColorEntity> actualEntities = trimMapper.findInternalColor(trimId);
-
-        //then
-        softly.assertThat(actualEntities).as("유효한 데이터가 매핑되었는지 확인").isNotEmpty();
-        softly.assertThat(actualEntities).as("유효한 데이터만 매핑되었는지 확인").hasSize(2);
-        softly.assertThat(actualEntities).as("trimId에 해당하는 InternalColorEntity 객체가 모두 매핑되었는지 확인")
-                .contains(expectEntity1)
-                .contains(expectEntity2);
-        softly.assertAll();
     }
 
     @Test
@@ -207,32 +191,36 @@ class TrimMapperTest {
         assertThat(actualPrice).isEqualTo(expectedPrice);
     }
 
-    @Test
-    @DisplayName("존재하는 트림인 경우 true를 반환한다.")
-    @Sql("classpath:db/trim/trims-data.sql")
-    void checkIfTrimExists() {
-        //given
-        Long id = 1L;
+    @Nested
+    @DisplayName("존재 여부 확인 쿼리 테스트")
+    class checkIfTrimExistTest {
+        @Test
+        @DisplayName("존재하는 트림인 경우 true를 반환한다.")
+        @Sql("classpath:db/trim/trims-data.sql")
+        void checkIfTrimExists() {
+            //given
+            Long id = 1L;
 
-        //when
-        Boolean isExists = trimMapper.checkIfTrimExists(id);
+            //when
+            Boolean isExists = trimMapper.checkIfTrimExists(id);
 
-        //then
-        assertThat(isExists).isTrue();
-    }
+            //then
+            assertThat(isExists).isTrue();
+        }
 
-    @Test
-    @DisplayName("존재하지 않는 트림인 경우 false를 반환한다.")
-    @Sql("classpath:db/trim/trims-data.sql")
-    void checkIfTrimExistsFalse() {
-        //given
-        Long id = 11L;
+        @Test
+        @DisplayName("존재하지 않는 트림인 경우 false를 반환한다.")
+        @Sql("classpath:db/trim/trims-data.sql")
+        void checkIfTrimExistsFalse() {
+            //given
+            Long id = 11L;
 
-        //when
-        Boolean isExists = trimMapper.checkIfTrimExists(id);
+            //when
+            Boolean isExists = trimMapper.checkIfTrimExists(id);
 
-        //then
-        assertThat(isExists).isFalse();
+            //then
+            assertThat(isExists).isFalse();
+        }
     }
 
     @Test

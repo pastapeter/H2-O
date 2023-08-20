@@ -18,7 +18,7 @@ public class OptionService {
 
     private final OptionMapper optionMapper;
 
-    public OptionDetailsDto findOptionInformation(Long optionId, Long trimId) {
+    public OptionDetailsDto findDetailedOptionInformation(Long optionId, Long trimId) {
         OptionDetailsEntity optionDetailsEntity = optionMapper.findOptionDetails(optionId, trimId);
 
         validateExistenceOfOption(optionDetailsEntity);

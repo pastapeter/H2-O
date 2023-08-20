@@ -1,5 +1,6 @@
 package com.h2o.h2oServer.domain.model_type.mapper;
 
+import com.h2o.h2oServer.domain.model_type.DrivetrainFixture;
 import com.h2o.h2oServer.domain.model_type.Entity.CarDrivetrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.DrivetrainEntity;
 import org.assertj.core.api.SoftAssertions;
@@ -31,12 +32,7 @@ class DrivetrainMapperTest {
     void findById() {
         //given
         Long drivetrainId = 1L;
-        DrivetrainEntity drivetrain = DrivetrainEntity.builder()
-                .id(1L)
-                .name("name1")
-                .description("description1")
-                .image("img_url1")
-                .build();
+        DrivetrainEntity drivetrain = DrivetrainFixture.generateDrivetrainEntity(drivetrainId);
 
         //when
         DrivetrainEntity foundDrivetrain = drivetrainMapper.findById(drivetrainId);
@@ -52,37 +48,17 @@ class DrivetrainMapperTest {
     void findDrivetrainsByCarId() {
         //given
         Long carId = 1L;
-        CarDrivetrainEntity entity1 = CarDrivetrainEntity.builder()
-                .carId(carId)
-                .name("name1")
-                .description("description1")
-                .image("img_url1")
-                .drivetrainId(1L)
-                .price(10000)
-                .choiceRatio(0.22f)
-                .build();
 
-        CarDrivetrainEntity entity2 = CarDrivetrainEntity.builder()
-                .carId(carId)
-                .name("name2")
-                .description("description2")
-                .image("img_url2")
-                .drivetrainId(2L)
-                .price(20000)
-                .choiceRatio(0.23f)
-                .build();
+        List<CarDrivetrainEntity> carDrivetrainEntities = DrivetrainFixture.generateCarDrivetrainEntities(1L);
 
         //when
         List<CarDrivetrainEntity> foundEntities = drivetrainMapper.findDrivetrainsByCarId(carId);
 
         //then
-        softly.assertThat(foundEntities).as("유효한 데이터가 매핑되었는지 확인")
-                .isNotEmpty();
         softly.assertThat(foundEntities).as("유효한 데이터만 매핑되었는지 확인")
                 .hasSize(2);
         softly.assertThat(foundEntities).as("carId에 해당하는 Entity가 모두 매핑되었는지 확인")
-                .contains(entity1)
-                .contains(entity2);
+                .containsAll(carDrivetrainEntities);
 
         softly.assertAll();
     }
