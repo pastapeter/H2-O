@@ -87,7 +87,11 @@ extension OptionCardScrollIntent {
     Task {
       do {
         let states: [DefaultOption] = try await repository.fetchAllOptions()
-        let defaultCellInfos = states.map { return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags, name: $0.name, containsHmgData: $0.containsHmgData, category: $0.category) }
+        let defaultCellInfos = states.map { return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags,
+                                                                         name: $0.name,
+                                                                         imageURL: $0.image,
+                                                                         containsHmgData: $0.containsHmgData,
+                                                                         category: $0.category) }
         self.totalCardState = defaultCellInfos
         send(action: .cardStates(states: totalCardState))
       } catch (let e) {
