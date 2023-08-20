@@ -29,7 +29,7 @@ enum OptionCategory: CustomStringConvertible {
     case .detail:
       return "상세종목"
     case .accessory:
-      return "악세서리"
+      return "악세사리"
     case .wheel:
       return "휠"
     case .powerTrain:
@@ -75,7 +75,7 @@ extension OptionCategory {
         "편의" : .comfort,
         "멀티미디어" : .multimedia,
         "상세품목" : .detail,
-        "악세서리" : .accessory,
+        "악세사리" : .accessory,
         "휠" : .wheel,
       ]
     
