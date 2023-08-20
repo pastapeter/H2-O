@@ -567,7 +567,7 @@
 			children = (
 				B19823FF2A8F99B000795B44 /* Utils */,
 				ED2B8CEA2A8D27C700F561FA /* QuotationComplete */,
-				B167221E2A8C9E1C002B45A6 /* OptionSelection */,
+				B167221E2A8C9E1C002B45A6 /* OptionSelectionDomain */,
 				B1F988DF2A8B1C3700C7B65F /* InteriorColorSelection */,
 				B16DFF482A8A3E2C00642730 /* ExternalColorSelection */,
 				B1604D0E2A8255D200C7B07D /* TrimSelection */,
@@ -684,22 +684,14 @@
 			path = FilterButton;
 			sourceTree = "<group>";
 		};
-		B15B4F442A8E822E00101DCB /* OptionCardScroll */ = {
+		B15B4F442A8E822E00101DCB /* OptionCardScrollFeature */ = {
 			isa = PBXGroup;
 			children = (
 				B1E512372A8D490B005B195D /* OptionCardScrollIntent.swift */,
 				B1E512352A8D48F4005B195D /* OptionCardScrollModel.swift */,
 				B16722222A8CA67E002B45A6 /* OptionCardScollView.swift */,
 			);
-			path = OptionCardScroll;
-			sourceTree = "<group>";
-		};
-		B15B4F452A8E823A00101DCB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B1E512292A8CF2DC005B195D /* OptionCategory.swift */,
-			);
-			path = Model;
+			path = OptionCardScrollFeature;
 			sourceTree = "<group>";
 		};
 		B15B4F472A8E9E3B00101DCB /* Data */ = {
@@ -837,28 +829,27 @@
 			path = ShowDetailButton;
 			sourceTree = "<group>";
 		};
-		B167221E2A8C9E1C002B45A6 /* OptionSelection */ = {
+		B167221E2A8C9E1C002B45A6 /* OptionSelectionDomain */ = {
 			isa = PBXGroup;
 			children = (
-				B19824052A8FABB200795B44 /* Entity */,
+				B198242D2A91ED1300795B44 /* Components */,
 				B15B4F472A8E9E3B00101DCB /* Data */,
-				B19824152A909E8B00795B44 /* OptionSelectionContainer */,
-				B15B4F452A8E823A00101DCB /* Model */,
-				B15B4F3E2A8E81B000101DCB /* FilterButton */,
-				B15B4F442A8E822E00101DCB /* OptionCardScroll */,
-				B167221F2A8C9E28002B45A6 /* OptionCard */,
+				B19824052A8FABB200795B44 /* Entity */,
+				B19824152A909E8B00795B44 /* OptionSelection */,
+				B15B4F442A8E822E00101DCB /* OptionCardScrollFeature */,
+				B167221F2A8C9E28002B45A6 /* OptionCardFeature */,
 			);
-			path = OptionSelection;
+			path = OptionSelectionDomain;
 			sourceTree = "<group>";
 		};
-		B167221F2A8C9E28002B45A6 /* OptionCard */ = {
+		B167221F2A8C9E28002B45A6 /* OptionCardFeature */ = {
 			isa = PBXGroup;
 			children = (
 				B16722202A8C9E36002B45A6 /* OptionCardView.swift */,
 				B15B4F3F2A8E81E800101DCB /* OptionCardViewIntent.swift */,
 				B15B4F412A8E821100101DCB /* OptionCardModel.swift */,
 			);
-			path = OptionCard;
+			path = OptionCardFeature;
 			sourceTree = "<group>";
 		};
 		B16722252A8CBB01002B45A6 /* ImageTag */ = {
@@ -1003,6 +994,7 @@
 		B19824052A8FABB200795B44 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				B1E512292A8CF2DC005B195D /* OptionCategory.swift */,
 				EDCF32FF2A8B91EA00C46A4B /* ExtraOption.swift */,
 				ED1A70A62A8371CA00F7920F /* DefaultOption.swift */,
 				B198240A2A8FB31100795B44 /* DetailOptionInfo.swift */,
@@ -1031,14 +1023,22 @@
 			path = NetworkRequest;
 			sourceTree = "<group>";
 		};
-		B19824152A909E8B00795B44 /* OptionSelectionContainer */ = {
+		B19824152A909E8B00795B44 /* OptionSelection */ = {
 			isa = PBXGroup;
 			children = (
 				B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */,
 				B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */,
 				B1E512332A8D2F16005B195D /* OptionSelectionIntent.swift */,
 			);
-			path = OptionSelectionContainer;
+			path = OptionSelection;
+			sourceTree = "<group>";
+		};
+		B198242D2A91ED1300795B44 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B15B4F3E2A8E81B000101DCB /* FilterButton */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		B1EEBA872A869E8E008FC6A4 /* HMGData */ = {

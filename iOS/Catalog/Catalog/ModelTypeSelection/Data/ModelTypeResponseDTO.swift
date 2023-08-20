@@ -47,7 +47,7 @@ extension ModelTypeResponseDTO {
           modelTypeOptions.append(modelTypeOption)
         } catch(let e) {
           print("🚨 Error \(e.localizedDescription)")
-          break
+          continue
         }
       }
       
