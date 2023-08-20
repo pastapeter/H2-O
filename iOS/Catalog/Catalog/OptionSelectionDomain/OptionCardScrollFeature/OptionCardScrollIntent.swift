@@ -41,16 +41,7 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
   func mutate(action: OptionCardScrollModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onAppear:
-      
-      if totalCardState.isEmpty {
-        if state.isExtraOptionTab {
-          fetchAllExtraOptions()
-        } else {
-          fetchAllDefaultOptions()
-        }
-      } else {
-        filterOptions(with: state.filterState.filters[state.filterState.selectedFilterId])
-      }
+      onAppear()
     case .onTapFilterButton(let index):
       state.filterState.selectedFilterId = index
       filterOptions(with: state.filterState.filters[index])
@@ -68,6 +59,18 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
 // MARK: - Private Function
 
 extension OptionCardScrollIntent {
+  
+  private func onAppear() {
+    if totalCardState.isEmpty {
+      if state.isExtraOptionTab {
+        fetchAllExtraOptions()
+      } else {
+        fetchAllDefaultOptions()
+      }
+    } else {
+      filterOptions(with: state.filterState.filters[state.filterState.selectedFilterId])
+    }
+  }
   
   private func filterOptions(with category: OptionCategory) {
     if category != .total {
