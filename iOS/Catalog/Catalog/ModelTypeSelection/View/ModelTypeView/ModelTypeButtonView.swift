@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ModelTypeButtonView: View {
 
-  var state: OptionState
+  var state: ModelTypeOptionState
   var action: (Int) -> Void
 
     var body: some View {
@@ -17,9 +17,11 @@ struct ModelTypeButtonView: View {
         action(state.id)
       } label: {
         VStack(alignment: .leading) {
-          Text("\(Text("\(state.frequency)%").foregroundColor(state.isSelected ? .activeBlue2 : .gray600))의 선택")
-            .foregroundColor(.gray500)
-            .catalogFont(type: .HeadKRMedium14)
+          if let choiceRatio = state.choiceRatio {
+            choiceRatioView(with: choiceRatio.description)
+          } else {
+            choiceRatioView(with: " ")
+          }
           Text(state.title)
             .catalogFont(type: .HeadKRMedium16)
             .foregroundColor(state.isSelected ? .gray900 : .gray600)
@@ -36,6 +38,17 @@ struct ModelTypeButtonView: View {
       .cornerRadius(4)
       .buttonSelected(isselected: state.isSelected)
     }
+}
+
+extension ModelTypeButtonView {
+  
+  @ViewBuilder
+  private func choiceRatioView(with ratio: String) -> some View {
+    Text("\(Text("\(ratio)%").foregroundColor(state.isSelected ? .activeBlue2 : .gray600))의 선택")
+      .foregroundColor(.gray500)
+      .catalogFont(type: .HeadKRMedium14)
+  }
+  
 }
 
 struct ModelTypeButtonView_Previews: PreviewProvider {

@@ -9,7 +9,7 @@ import Foundation
 
 enum ModelTypeRequest {
   case fetchOptions(carId: Int)
-  case calculateFuelAndDisplacementRequestDTO(powertrainId: Int, drivetrainId: Int)
+  case calculateFuelAndDisplacement(powertrainId: Int, drivetrainId: Int)
 }
 
 extension ModelTypeRequest: RequestProtocol {
@@ -20,40 +20,48 @@ extension ModelTypeRequest: RequestProtocol {
     switch self {
       case .fetchOptions(let carId):
         return "/car/\(carId)/model-type"
-      case .calculateFuelAndDisplacementRequestDTO(let powertrainId, let drivetrainId):
-        return "/technical-spec?powertrainId=\(powertrainId)&drivetrainId=\(drivetrainId)"
+      case .calculateFuelAndDisplacement:
+        return "/technical-spec"
     }
   }
+  
   var headers: [String: String] {
-    switch self {
-      default:
-        return [:]
-    }
+    [:]
   }
+  
   var params: [String: Any] {
-    switch self {
-    default:
-      return [:]
-    }
+    [:]
   }
+  
   var requestType: RequestType {
-    switch self {
-      default:
-        return .GET
-    }
+    .GET
   }
+  
   var cachePolicy: URLRequest.CachePolicy {
-    return .returnCacheDataElseLoad
+    switch self {
+    case .fetchOptions:
+      return .returnCacheDataElseLoad
+    case .calculateFuelAndDisplacement:
+      return .reloadIgnoringLocalCacheData
+    }
+    
   }
 
   var timeOutInterval: TimeInterval {
     return 2
   }
+  
   var urlParams: [String: String?] {
-    return [:]
+    switch self {
+    case .calculateFuelAndDisplacement(let powertrainId, let drivetrainId):
+      return ["drivetrainId":"\(drivetrainId)", "powertrainId": "\(powertrainId)"]
+    default:
+      return [:]
+    }
   }
+  
   var secureType: SecureType {
-    return .https
+    return .http
   }
 
 }

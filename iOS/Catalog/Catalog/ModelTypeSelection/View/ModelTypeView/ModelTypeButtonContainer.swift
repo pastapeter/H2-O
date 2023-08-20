@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ModelTypeButtonContainer: View {
   var intent: ModelTypeIntentType
-  var options: [OptionState]
+  var options: [ModelTypeOptionState]
 }
 
 extension ModelTypeButtonContainer {
@@ -18,7 +18,7 @@ extension ModelTypeButtonContainer {
       ForEach(options.indices, id: \.self) { i in
         ModelTypeButtonView(state: options[i], action: { id in
           if let index = options.firstIndex(where: { $0.id == id }) {
-            intent.send(action: .onTapOptions(index: index))
+            intent.send(action: .onTapOptions(index: index, id: id))
           }
         })
       }

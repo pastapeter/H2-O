@@ -10,13 +10,13 @@ import SwiftUI
 struct FuelEfficiencyAverageBannerState: Equatable {
 
   static func mock() -> Self {
-    .init(engine: "디젤2.2", wheelType: "2WD", displacement: CLNumber(2199), fuelEfficiency: CLNumber(12))
+    .init(engine: "디젤2.2", wheelType: "2WD", displacement: CLNumber(2199), fuelEfficiency: 12)
   }
 
   var engine: String
   var wheelType: String
   var displacement: CLNumber
-  var fuelEfficiency: CLNumber
+  var fuelEfficiency: Double
 
 }
 

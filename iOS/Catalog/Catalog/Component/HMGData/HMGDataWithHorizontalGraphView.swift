@@ -7,28 +7,16 @@
 
 import SwiftUI
 
-struct RpmData: Equatable {
-  var maxOutput: Int
-  var output: Int
-  var maxRpm: Int
-  var minRpm: Int
-}
-
-struct HMGDataState: Equatable {
-  static func mock() -> Self {
-    return HMGDataState(
-      EngineOutput: RpmData(maxOutput: 202, output: 202, maxRpm: 3800, minRpm: 3800),
-      Torque: RpmData(maxOutput: 45, output: 45, maxRpm: 2750, minRpm: 1750))
-  }
-
-  var EngineOutput: RpmData
-  var Torque: RpmData
+struct HMGModelTypeState: Equatable {
+ 
+  var EngineOutput: MaxOutputFromEngine
+  var Torque: MaxTorqueFromEngine
 
 }
 
 struct HMGDataWithHorizontalGraphView: View {
 
-  var state: HMGDataState
+  var state: HMGModelTypeState
   @State var percent: Double = 0.5
 
 }
@@ -42,7 +30,7 @@ extension HMGDataWithHorizontalGraphView {
           .catalogFont(type: .TextKRMedium10)
           .foregroundColor(.gray600)
         Spacer()
-        Text("\(state.EngineOutput.output)/\(state.EngineOutput.maxRpm)")
+        Text("\(state.EngineOutput.output)/\(state.EngineOutput.maxRPM)")
           .catalogFont(type: .HeadKRRegular22)
       }
       Spacer().frame(height: 5)
@@ -53,7 +41,7 @@ extension HMGDataWithHorizontalGraphView {
           .catalogFont(type: .TextKRMedium10)
           .foregroundColor(.gray600)
         Spacer()
-        Text("\(state.Torque.output)/\(state.Torque.minRpm)-\(state.Torque.maxRpm)")
+        Text("\(state.Torque.torque)/\(state.Torque.minRPM)-\(state.Torque.maxRPM)")
           .catalogFont(type: .HeadKRRegular22)
       }
       Spacer().frame(height: 5)
@@ -64,8 +52,3 @@ extension HMGDataWithHorizontalGraphView {
 
 }
 
-struct HMGDataWithHorizontalGraphView_Previews: PreviewProvider {
-    static var previews: some View {
-      HMGDataWithHorizontalGraphView(state: .mock())
-    }
-}

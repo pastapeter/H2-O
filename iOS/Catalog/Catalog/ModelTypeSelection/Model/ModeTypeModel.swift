@@ -17,11 +17,10 @@ enum ModelTypeModel: Equatable {
 
     var title: String = "파워트레인"
     var imageURL: URL?
-    var optionStates: [OptionState] = [
-      OptionState(id: .init(), isSelected: true, frequency: Int.random(in: 0...90), title: "디젤2.2", price: CLNumber(0)),
-      OptionState(id: .init(), isSelected: false, frequency: 38, title: "가솔린3.8", price: CLNumber(280000))
-    ]
+    var containsHMGData = true
+    var optionStates: [ModelTypeOptionState] = []
     var selectedIndex: Int = 0
+    var selectedId: Int = 1
     var modelTypeDetailState: [ModelTypeDetailState] = []
     var isModalPresenting = false
 
@@ -29,21 +28,21 @@ enum ModelTypeModel: Equatable {
 
   enum ViewAction: Equatable {
     case onTapDetailButton(isPresenting: Bool)
-    case onTapOptions(index: Int)
+    case onTapOptions(index: Int, id: Int)
   }
 
 }
 
 struct ModelTypeDetailState: Equatable {
   var content: ModelTypeContent
-  var hmgData: HMGDataState?
+  var hmgData: HMGModelTypeState?
 }
 
-struct OptionState: Equatable, Hashable {
+struct ModelTypeOptionState: Equatable, Hashable {
 
   var id: Int
   var isSelected: Bool = true
-  var frequency: Int = 0
+  var choiceRatio: CLNumber?
   var title: String = "디젤"
   var price: CLNumber = .init(0)
 

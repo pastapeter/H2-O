@@ -15,13 +15,20 @@ final class ModelTypeRepository: ModelTypeRepositoryProtocol {
     self.modelTypeRequestManager = modelTypeRequestManager
   }
 
-  func fetch(carId: Int) async throws -> [ModelTypeOption] {
+  func fetch(carId: Int) async throws -> [ModelType] {
+    
     let dto: ModelTypeResponseDTO = try await modelTypeRequestManager.perform(ModelTypeRequest.fetchOptions(carId: carId))
-    return []
+    
+    return dto.toDomain()
+    
   }
 
   func calculateFuelAndDisplacement(with powerTrainId: Int, andwith driverTrainId: Int) async throws -> ResultOfCalculationOfFuelAndDisplacement {
-    return .mock()
+    
+    let dto: TechnicalSpecResponseDTO = try await modelTypeRequestManager.perform(ModelTypeRequest.calculateFuelAndDisplacement(powertrainId: powerTrainId, drivetrainId: driverTrainId))
+    
+    return try dto.toDomain()
+    
   }
 
 }
@@ -29,10 +36,10 @@ final class ModelTypeRepository: ModelTypeRepositoryProtocol {
 final class MockModelTypeRepository: ModelTypeRepositoryProtocol {
 
   func calculateFuelAndDisplacement(with powerTrainId: Int, andwith driverTrainId: Int) async throws -> ResultOfCalculationOfFuelAndDisplacement {
-    return ResultOfCalculationOfFuelAndDisplacement.init(displacement: 2199, fuelEfficiency: 12)
+    return ResultOfCalculationOfFuelAndDisplacement.init(displacement: CLNumber(2199), fuelEfficiency: 12.0)
   }
 
-  func fetch(carId: Int) async throws -> [ModelTypeOption] {
+  func fetch(carId: Int) async throws -> [ModelType] {
 
     let manager = RequestManager(apiManager: MockAPIManager())
     guard let data = JSONLoader.load(with: "ModelType") else {
@@ -43,39 +50,7 @@ final class MockModelTypeRepository: ModelTypeRepositoryProtocol {
       url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))
     ]
 
-    return [
-      ModelTypeOption(title: "파워트레인", options: [
-        OptionState(id: 0, isSelected: true, frequency: Int.random(in: 0...90), title: "디젤2.2", price: CLNumber(0)),
-        OptionState(id: 1, isSelected: false, frequency: 38, title: "가솔린3.8", price: CLNumber(280000))
-      ], optionsInDetail: []),
-
-      ModelTypeOption(title: "바디타입", options: [
-        .init(id: 0,
-              isSelected: true,
-              frequency: Int.random(in: 0..<100),
-              title: "7인승",
-              price: CLNumber(0)),
-        .init(id: 1,
-              isSelected: false,
-              frequency: .random(in: 0..<100),
-              title: "10인승",
-              price: .init(280000))
-      ], optionsInDetail: []),
-
-      ModelTypeOption(title: "구동방식", options: [
-        .init(id: 0,
-              isSelected: true,
-              frequency: .random(in: 0..<100),
-              title: "2WD",
-              price: .init(0)),
-        .init(id: 1,
-              isSelected: false,
-              frequency: .random(in: 0..<100),
-              title: "4WD",
-              price: .init(237000))
-      ], optionsInDetail: [])
-
-    ]
+    return []
 
   }
 

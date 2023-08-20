@@ -31,7 +31,7 @@ extension ModelTypeSelectionContainerView: View {
             .catalogFont(type: .HeadKRMedium18)
             .padding(.horizontal, 16)
           ForEach(state.modelTypeStateArray, id: \.self) { state in
-            ModelTypeView.build(intent: .init(initialState: state))
+            ModelTypeView.build(intent: .init(initialState: state, parent: intent))
           }
           Spacer().frame(height: 38)
           HMGDataBannerComponent {
@@ -56,8 +56,3 @@ extension ModelTypeSelectionContainerView {
   }
 }
 
-struct ModelTypeSelectionContainerView_Previews: PreviewProvider {
-  static var previews: some View {
-    return ModelTypeSelectionContainerView.build(intent: .init(initialState: .mock(), repository: MockModelTypeRepository()))
-  }
-}

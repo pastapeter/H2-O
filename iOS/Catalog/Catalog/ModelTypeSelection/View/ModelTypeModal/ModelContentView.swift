@@ -34,10 +34,12 @@ extension ModelContentView {
               .catalogFont(type: .HeadKRMedium18)
               .foregroundColor(.gray900)
             Spacer()
-            Text("\(Text("\(content.frequency)%").foregroundColor(.activeBlue))의 선택")
-              .catalogFont(type: .TextKRMedium12)
+            if let choiceRatio = content.choiceRatio {
+              Text("\(Text("\(choiceRatio.description)%").foregroundColor(.activeBlue))의 선택")
+                .catalogFont(type: .TextKRMedium12)
+            }
           }
-          Text(content.description)
+          Text(content.description ?? "")
             .catalogFont(type: .TextKRRegular12)
             .foregroundColor(.gray800)
             .multilineTextAlignment(.leading)
@@ -57,8 +59,3 @@ extension ModelContentView {
 
 }
 
-struct ModelContentView_Previews: PreviewProvider {
-    static var previews: some View {
-      ModelContentView(state: .init(content: .mock(), hmgData: .mock()))
-    }
-}
