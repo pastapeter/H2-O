@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
+import { ErrorBoundary } from '@/components/common';
 import { SelectionProvider, SlideProvider, StyleProvider } from '@/providers';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -8,7 +9,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <StyleProvider>
       <SelectionProvider>
         <SlideProvider>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </SlideProvider>
       </SelectionProvider>
     </StyleProvider>

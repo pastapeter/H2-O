@@ -17,3 +17,4 @@ export { MainSelector } from './MainSelector';
 export { HashTag } from './HashTag';
 export { Circle } from './Shape';
 export { Loading } from './Loading';
+export { ErrorBoundary } from './ErrorBoundary';

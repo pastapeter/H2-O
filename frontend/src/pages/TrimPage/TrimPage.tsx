@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import type { Offsets } from '@/types';
 import type { TrimResponse } from '@/types/interface';
 import { getTrims } from '@/apis/trim';
-import { Banner } from '@/components/common';
+import { Banner, Loading } from '@/components/common';
 import { GuidePopup, PracticalInfo, TrimImageList, TrimSelector } from '@/components/trim';
 import { useFetcher, useSafeContext, useToggle } from '@/hooks';
 import { hasLocalStorageItem, setLocalStorageItem } from '@/utils/localStorage';
@@ -20,12 +20,9 @@ function TrimPage() {
   const [offsets, setOffsets] = useState<Offsets>({ offsetX: 0, offsetY: 0 });
   const [selectedTrim, setSelectedTrim] = useState<TrimResponse | null>(null);
 
-  const {
-    isLoading,
-    data: trimList,
-    error,
-  } = useFetcher({
+  const { isLoading, data: trimList } = useFetcher({
     fetchFn: () => getTrims(selectionInfo.model.id),
+    deferTime: 500,
     onSuccess: (data) => {
       const selected = data[TRIM_DEFAULT_IDX];
       setSelectedTrim(selected);
@@ -53,9 +50,7 @@ function TrimPage() {
     setSelectedTrim(trim);
   };
 
-  // TODO: 로딩, 에러 UI 처리
-  if (isLoading || !selectedTrim) return <div>로딩 ㅋ</div>;
-  if (error) return <div>에러 ㅋ</div>;
+  if (isLoading || !selectedTrim) return <Loading fullPage />;
 
   const { id, name, description, images, options } = selectedTrim;
 

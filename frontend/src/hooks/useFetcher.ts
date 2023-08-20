@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from 'react';
+import { useErrorBoundary } from 'react-error-boundary';
 
 interface Props<TData> {
   fetchFn: () => Promise<TData>;
@@ -44,6 +45,7 @@ function useFetcher<TData = unknown>({
   onSuccess,
   onError,
 }: Props<TData>) {
+  const { showBoundary } = useErrorBoundary();
   const initialState: State<TData> = {
     isLoading: false,
     data: null,
@@ -79,6 +81,7 @@ function useFetcher<TData = unknown>({
         if (err instanceof Error) {
           dispatch({ type: 'ERROR', payload: err });
           if (onError) onError(err);
+          showBoundary(err);
         }
       }
     })();

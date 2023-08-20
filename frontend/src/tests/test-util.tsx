@@ -1,12 +1,15 @@
 import { PropsWithChildren, ReactElement } from 'react';
 import { render } from '@testing-library/react';
+import { ErrorBoundary } from '@/components/common';
 import { SelectionProvider, SlideProvider, StyleProvider } from '@/providers';
 
 function AllProviders({ children }: PropsWithChildren) {
   return (
     <StyleProvider>
       <SelectionProvider>
-        <SlideProvider>{children}</SlideProvider>
+        <SlideProvider>
+          <ErrorBoundary>{children}</ErrorBoundary>
+        </SlideProvider>
       </SelectionProvider>
     </StyleProvider>
   );
