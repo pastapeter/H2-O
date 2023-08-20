@@ -17,4 +17,8 @@ protocol OptionSelectionRepositoryProtocol {
   
   func fetchPackageInfo(of packageID: Int) async throws -> PackageInfo
   
+  func fetchAllDefaultOptions() async throws -> [DefaultOption]
+  
+  func fetchAllExtraOptions() async throws -> [ExtraOption]
+  
 }
