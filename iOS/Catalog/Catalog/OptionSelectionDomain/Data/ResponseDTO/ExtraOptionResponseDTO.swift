@@ -42,12 +42,18 @@ extension ExtraOptionResponseDTO {
       optionCategory = OptionCategory(categoryStr) ?? .total
     }
     
+    var choiceRatioDomain: CLNumber?
+    if let choiceRatio = choiceRatio {
+      choiceRatioDomain = CLNumber(Int32(choiceRatio))
+    }
+    
     return ExtraOption(id: id,
                        isPackage: isPackage ?? false,
                        category: optionCategory,
                        name: name,
                        hashTags: hashTags ?? [],
                        containsHmgData: containsHmgData ?? false,
+                       choiceRatio: choiceRatioDomain,
                        price: CLNumber(Int32(price)))
     
     
