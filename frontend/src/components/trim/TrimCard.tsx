@@ -32,6 +32,7 @@ function TrimCard({ id, description, title, price, ...restProps }: Props) {
         payload: { minPrice: data.minPrice, maxPrice: data.maxPrice },
       });
       setCurrentSlide(currentSlide + 1);
+      setSubmitted(false);
     },
     enabled: submitted,
   });

@@ -1,5 +1,5 @@
-export { default as CTAButton } from './CTAButton';
-export { default as CTACTypeButton } from './CTACTypeButton';
-export { default as CategoryButton } from './CategoryButton';
-export { default as PriceSummaryButton } from './PriceSummaryButton';
-export { default as ImageButton } from './ImageButton';
+export * from './CTAButton';
+export * from './CTACTypeButton';
+export * from './CategoryButton';
+export * from './PriceSummaryButton';
+export * from './ImageButton';

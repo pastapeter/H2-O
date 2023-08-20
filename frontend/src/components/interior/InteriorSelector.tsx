@@ -15,7 +15,7 @@ interface Props {
 
 function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
   const imageLoaderRef = useRef(getImagePreloader());
-  const { currentSlice, hasPaigination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
+  const { currentSlice, hasPagination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
     usePagination({
       data: optionList,
     });
@@ -35,7 +35,7 @@ function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
       <div>
         <Flex justifyContent='space-between' alignItems='center' marginBottom={12}>
           <h2>내장 색상을 선택해주세요.</h2>
-          {hasPaigination && (
+          {hasPagination && (
             <Flex alignItems='center' gap={8}>
               <Icon
                 css={pagingButtonStyle(isStartPage)}

@@ -7,10 +7,11 @@ import { ReactComponent as Logo } from '@/assets/logo/logo.svg';
 
 function Header() {
   const { status, setOff, setOn } = useToggle(false);
+
   return (
     <HeaderContainer>
-      <h1>
-        <Logo onClick={setOn} />
+      <h1 onClick={setOn}>
+        <Logo />
       </h1>
       <div>
         <HeaderLeft>

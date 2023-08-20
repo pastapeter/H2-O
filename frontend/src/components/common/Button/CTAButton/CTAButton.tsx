@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -9,9 +9,19 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
 }
 
-function CTAButton({ children, size = 'medium', ...restProps }: Props) {
+function CTAButton({ children, size = 'medium', onClick, ...restProps }: Props) {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    onClick?.(e);
+    const target = e.currentTarget;
+    target.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+      target.style.pointerEvents = 'auto';
+    }, 500);
+  };
+
   return (
-    <StyledButton size={size} {...restProps}>
+    <StyledButton size={size} onClick={handleClick} {...restProps}>
       {children}
     </StyledButton>
   );

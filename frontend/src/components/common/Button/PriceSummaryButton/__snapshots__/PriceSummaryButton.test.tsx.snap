@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PriceSummaryButton 컴포넌트 테스트 > PriceSummaryButton 스냅샷 테스트 > 버튼의 스냅샷이 일치한다. 1`] = `
+<button
+  class="css-1pyqmbm"
+>
+  버튼
+</button>
+`;

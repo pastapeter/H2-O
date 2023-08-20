@@ -43,6 +43,17 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        extendDefaults: true,
+        types: {
+          '{}': false,
+        },
+      },
+    ],
+    'testing-library/await-async-events': ['off'],
+    'testing-library/no-await-sync-events': ['error', { eventModules: ['fire-event', 'user-event'] }],
   },
   settings: {
     react: {

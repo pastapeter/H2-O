@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CTAButton 컴포넌트 테스트 > CTACTypeButton 스냅샷 테스트 > color 속성이 gray일 때 스냅샷이 일치한다. 1`] = `
+<button
+  class="css-1v9lhno"
+  color="gray"
+>
+  버튼
+</button>
+`;
+
+exports[`CTAButton 컴포넌트 테스트 > CTACTypeButton 스냅샷 테스트 > color 속성이 primary 일 때 스냅샷이 일치한다. 1`] = `
+<button
+  class="css-42uj9a"
+  color="primary"
+>
+  버튼
+</button>
+`;
+
+exports[`CTAButton 컴포넌트 테스트 > CTACTypeButton 스냅샷 테스트 > size 속성이 large일 때 스냅샷이 일치한다. 1`] = `
+<button
+  class="css-h9qj5o"
+  color="gray"
+>
+  버튼
+</button>
+`;
+
+exports[`CTAButton 컴포넌트 테스트 > CTACTypeButton 스냅샷 테스트 > size 속성이 small일 때 스냅샷이 일치한다. 1`] = `
+<button
+  class="css-1v9lhno"
+  color="gray"
+>
+  버튼
+</button>
+`;

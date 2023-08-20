@@ -10,7 +10,7 @@ function usePaigination<T>({ data, initialPage = 0, pageSize = 4 }: Props<T>) {
   const [currentPage, setCurrentPage] = useState(initialPage);
 
   const totalPage = Math.ceil(data.length / pageSize);
-  const hasPaigination = totalPage > 1;
+  const hasPagination = totalPage > 1;
   const isStartPage = currentPage === 0;
   const isEndPage = currentPage === totalPage - 1;
   const startIdx = pageSize * currentPage;
@@ -36,7 +36,7 @@ function usePaigination<T>({ data, initialPage = 0, pageSize = 4 }: Props<T>) {
 
   return {
     currentSlice,
-    hasPaigination,
+    hasPagination,
     isStartPage,
     isEndPage,
     startIdx,

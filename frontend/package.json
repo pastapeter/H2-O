@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit --pretty --project tsconfig.json",
     "prepare": "cd .. && husky install frontend/.husky && chmod ug+x frontend/.husky/*",
     "test": "vitest run",
+    "test:snapshot-update": "vitest run -u",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch"
   },

@@ -11,7 +11,7 @@ interface Props {
 }
 
 function ExteriorSelector({ exteriorList, selectedColor, onSelectColor }: Props) {
-  const { currentSlice, hasPaigination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
+  const { currentSlice, hasPagination, isStartPage, isEndPage, currentPage, totalPage, prevPage, nextPage } =
     usePagination({
       data: exteriorList,
     });
@@ -35,7 +35,7 @@ function ExteriorSelector({ exteriorList, selectedColor, onSelectColor }: Props)
           );
         })}
       </ExteriorList>
-      {hasPaigination && (
+      {hasPagination && (
         <ButtonContainer isEndPage={isEndPage} isStartPage={isStartPage}>
           <Icon className='left-arrow' iconType='ArrowRight' size={24} onClick={prevPage} />
           <span>

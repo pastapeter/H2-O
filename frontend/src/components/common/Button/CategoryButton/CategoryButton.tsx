@@ -2,10 +2,10 @@ import type { ButtonHTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  isClicked: boolean;
+  isClicked?: boolean;
 }
 
-function CategoryButton({ children, isClicked, ...restProps }: Props) {
+function CategoryButton({ children, isClicked = false, ...restProps }: Props) {
   return (
     <StyledButton isClicked={isClicked} {...restProps}>
       {children}
