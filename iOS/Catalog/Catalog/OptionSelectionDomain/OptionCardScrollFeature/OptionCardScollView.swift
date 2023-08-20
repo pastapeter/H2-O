@@ -36,7 +36,7 @@ extension OptionCardScollView: View {
     }
     .padding(.horizontal, 16)
     .onAppear {
-      intent.send(action: .cardStates(states: OptionCardModel.State.mock()))
+      intent.send(action: .onAppear)
     }
   }
   
