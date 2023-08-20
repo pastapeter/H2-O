@@ -41,10 +41,15 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
   func mutate(action: OptionCardScrollModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onAppear:
-      if state.isExtraOptionTab {
-        fetchAllExtraOptions()
+      
+      if totalCardState.isEmpty {
+        if state.isExtraOptionTab {
+          fetchAllExtraOptions()
+        } else {
+          fetchAllDefaultOptions()
+        }
       } else {
-        fetchAllDefaultOptions()
+        filterOptions(with: state.filterState.filters[state.filterState.selectedFilterId])
       }
     case .onTapFilterButton(let index):
       state.filterState.selectedFilterId = index
