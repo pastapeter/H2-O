@@ -8,38 +8,38 @@
 import Foundation
 import Combine
 
-protocol ModelTypeIntentType {
+protocol ModelTypeCellIntentType {
 
-  var state: ModelTypeModel.State { get }
+  var state: ModelTypeCellModel.State { get }
 
-  func send(action: ModelTypeModel.ViewAction, viewEffect: (() -> Void)?)
+  func send(action: ModelTypeCellModel.ViewAction, viewEffect: (() -> Void)?)
 
-  func send(action: ModelTypeModel.ViewAction)
+  func send(action: ModelTypeCellModel.ViewAction)
 
 }
 
-final class ModelTypeIntent: ObservableObject {
+final class ModelTypeCellIntent: ObservableObject {
 
-  init(initialState: State, parent: ModelTypeSelectionContainerIntentType? = nil) {
+  init(initialState: State, parent: ModelTypeSelectionIntentType? = nil) {
     state = initialState
     self.parent = parent
   }
 
-  typealias State = ModelTypeModel.State
+  typealias State = ModelTypeCellModel.State
 
-  typealias ViewAction = ModelTypeModel.ViewAction
+  typealias ViewAction = ModelTypeCellModel.ViewAction
 
   @Published var state: State = .init()
 
   var cancellable: Set<AnyCancellable> = []
   
-  weak var parent: ModelTypeSelectionContainerIntentType?
+  weak var parent: ModelTypeSelectionIntentType?
 
 }
 
-extension ModelTypeIntent: ModelTypeIntentType, IntentType {
+extension ModelTypeCellIntent: ModelTypeCellIntentType, IntentType {
 
-  func mutate(action: ModelTypeModel.ViewAction, viewEffect: (() -> Void)?) {
+  func mutate(action: ModelTypeCellModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onTapDetailButton(let isPresenting):
       state.isModalPresenting = isPresenting
@@ -58,7 +58,7 @@ extension ModelTypeIntent: ModelTypeIntentType, IntentType {
 
 }
 
-extension ModelTypeIntent {
+extension ModelTypeCellIntent {
   
   private func toggleAll(id: Int) {
     for i in 0..<state.optionStates.count {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModelContentView: View {
+struct ModelTypeModalContentView: View {
 
   private var state: ModelTypeDetailState
 
@@ -17,7 +17,7 @@ struct ModelContentView: View {
 
 }
 
-extension ModelContentView {
+extension ModelTypeModalContentView {
 
   var body: some View {
     

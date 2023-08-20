@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-struct ModelTypeView: IntentBindingType {
+struct ModelTypeCellView: IntentBindingType {
   
-  @StateObject var container: Container<ModelTypeIntentType, ModelTypeModel.State>
-  var intent: ModelTypeIntentType { container.intent }
-  var state: ModelTypeModel.State { intent.state }
+  @StateObject var container: Container<ModelTypeCellIntentType, ModelTypeCellModel.State>
+  
+  var intent: ModelTypeCellIntentType { container.intent }
+  
+  var state: ModelTypeCellModel.State { intent.state }
+  
 }
 
-extension ModelTypeView {
+extension ModelTypeCellView {
   
   private var isModalPresenting: Binding<Bool> {
     .init(get: { state.isModalPresenting && !state.modelTypeDetailState.isEmpty },
@@ -23,7 +26,7 @@ extension ModelTypeView {
   
 }
 
-extension ModelTypeView: View {
+extension ModelTypeCellView: View {
   
   var body: some View {
     VStack(alignment: .leading) {
@@ -58,7 +61,7 @@ extension ModelTypeView: View {
         intent.send(action: .onTapDetailButton(isPresenting: !state.isModalPresenting))
         // TODO 가격 추가하기
       }, content: { detailState in
-        ModelContentView(state: detailState)
+        ModelTypeModalContentView(state: detailState)
       })
     }
     .padding(.horizontal, 16)
@@ -66,17 +69,17 @@ extension ModelTypeView: View {
 
 }
 
-extension ModelTypeView {
+extension ModelTypeCellView {
   @ViewBuilder
-  static func build(intent: ModelTypeIntent) -> some View {
-    ModelTypeView(container: .init(intent: intent as ModelTypeIntent,
+  static func build(intent: ModelTypeCellIntent) -> some View {
+    ModelTypeCellView(container: .init(intent: intent as ModelTypeCellIntent,
                                    state: intent.state,
                                    modelChangePublisher: intent.objectWillChange))
   }
 }
 
-struct ModelTypeView_Previews: PreviewProvider {
+struct ModelTypeCellView_Previews: PreviewProvider {
   static var previews: some View {
-    return ModelTypeView.build(intent: .init(initialState: .init()))
+    return ModelTypeCellView.build(intent: .init(initialState: .init()))
   }
 }

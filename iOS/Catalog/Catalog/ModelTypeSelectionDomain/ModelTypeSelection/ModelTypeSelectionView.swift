@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct ModelTypeSelectionContainerView: IntentBindingType {
+struct ModelTypeSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<ModelTypeSelectionContainerIntentType, ModelTypeSelectionContainerModel.State>
+  @StateObject var container: Container<ModelTypeSelectionIntentType, ModelTypeSelectionModel.State>
 
-  var intent: ModelTypeSelectionContainerIntentType {
+  var intent: ModelTypeSelectionIntentType {
     container.intent
   }
-  var state: ModelTypeSelectionContainerModel.State {
+  var state: ModelTypeSelectionModel.State {
     intent.state
   }
 
 }
 
-extension ModelTypeSelectionContainerView: View {
+extension ModelTypeSelectionView: View {
 
   var body: some View {
     ScrollView {
@@ -31,7 +31,7 @@ extension ModelTypeSelectionContainerView: View {
             .catalogFont(type: .HeadKRMedium18)
             .padding(.horizontal, 16)
           ForEach(state.modelTypeStateArray, id: \.self) { state in
-            ModelTypeView.build(intent: .init(initialState: state, parent: intent))
+            ModelTypeCellView.build(intent: .init(initialState: state, parent: intent))
           }
           Spacer().frame(height: 38)
           HMGDataBannerComponent {
@@ -48,10 +48,10 @@ extension ModelTypeSelectionContainerView: View {
 
 }
 
-extension ModelTypeSelectionContainerView {
+extension ModelTypeSelectionView {
   @ViewBuilder
-  static func build(intent: ModelTypeSelectionContainerIntent) -> some View {
-    ModelTypeSelectionContainerView(container:
+  static func build(intent: ModelTypeSelectionIntent) -> some View {
+    ModelTypeSelectionView(container:
         .init(intent: intent, state: intent.state, modelChangePublisher: intent.objectWillChange))
   }
 }

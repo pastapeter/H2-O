@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ModelTypeModel: Equatable {
+enum ModelTypeCellModel: Equatable {
 
   struct State: Equatable, Hashable {
 

@@ -8,17 +8,17 @@
 import Foundation
 import Combine
 
-protocol ModelTypeSelectionContainerIntentType: AnyObject {
+protocol ModelTypeSelectionIntentType: AnyObject {
 
-  var state: ModelTypeSelectionContainerModel.State { get }
+  var state: ModelTypeSelectionModel.State { get }
 
-  func send(action: ModelTypeSelectionContainerModel.ViewAction)
+  func send(action: ModelTypeSelectionModel.ViewAction)
 
-  func send(action: ModelTypeSelectionContainerModel.ViewAction, viewEffect: (() -> Void)?)
+  func send(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?)
 
 }
 
-final class ModelTypeSelectionContainerIntent: ObservableObject {
+final class ModelTypeSelectionIntent: ObservableObject {
 
   init(initialState: State, repository: ModelTypeRepositoryProtocol) {
     state = initialState
@@ -27,9 +27,9 @@ final class ModelTypeSelectionContainerIntent: ObservableObject {
 
   private var repository: ModelTypeRepositoryProtocol
 
-  typealias State = ModelTypeSelectionContainerModel.State
+  typealias State = ModelTypeSelectionModel.State
 
-  typealias ViewAction = ModelTypeSelectionContainerModel.ViewAction
+  typealias ViewAction = ModelTypeSelectionModel.ViewAction
 
   @Published var state: State
 
@@ -40,9 +40,9 @@ final class ModelTypeSelectionContainerIntent: ObservableObject {
   
 }
 
-extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentType, IntentType {
+extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
 
-  func mutate(action: ModelTypeSelectionContainerModel.ViewAction, viewEffect: (() -> Void)?) {
+  func mutate(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onAppear:
       Task {
@@ -63,14 +63,14 @@ extension ModelTypeSelectionContainerIntent: ModelTypeSelectionContainerIntentTy
 
 // MARK: - Private Function
 
-extension ModelTypeSelectionContainerIntent {
+extension ModelTypeSelectionIntent {
   
   private func calculateFuelEfficiency(typeID: Int, selectedOptionId: Int) async {
   
       do {
         
-        let powerTrainID = ModelTypeSelectionContainerModel.ModelTypeID.powerTrain.rawValue
-        let driveTrainID = ModelTypeSelectionContainerModel.ModelTypeID.driveTrain.rawValue
+        let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue
+        let driveTrainID = ModelTypeSelectionModel.ModelTypeID.driveTrain.rawValue
         
         if typeID == powerTrainID {
           self.powerTrainOptionId = selectedOptionId
@@ -101,7 +101,7 @@ extension ModelTypeSelectionContainerIntent {
     
   }
 
-  private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeModel.State] {
+  private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeCellModel.State] {
     options.map {
       .init(title: $0.title,
             imageURL: $0.options[0].imageURL,

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ModelTypeButtonContainer: View {
-  var intent: ModelTypeIntentType
+  var intent: ModelTypeCellIntentType
   var options: [ModelTypeOptionState]
 }
 
@@ -28,6 +28,6 @@ extension ModelTypeButtonContainer {
 
 struct ModelTypeButtonContainer_Previews: PreviewProvider {
     static var previews: some View {
-      ModelTypeButtonContainer(intent: ModelTypeIntent(initialState: ModelTypeIntent.State()), options: [])
+      ModelTypeButtonContainer(intent: ModelTypeCellIntent(initialState: .init()), options: [])
     }
 }

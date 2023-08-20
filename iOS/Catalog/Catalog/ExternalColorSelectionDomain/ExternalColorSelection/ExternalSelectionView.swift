@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ExternalSelectionContainerView: IntentBindingType {
+struct ExternalSelectionView: IntentBindingType {
 
   @StateObject var container: Container<ExternalSelectionIntentType, ExternalSelectionModel.State>
 
@@ -21,7 +21,7 @@ struct ExternalSelectionContainerView: IntentBindingType {
 
 }
 
-extension ExternalSelectionContainerView: View {
+extension ExternalSelectionView: View {
 
   var body: some View {
     VStack {
@@ -45,11 +45,11 @@ extension ExternalSelectionContainerView: View {
 
 }
 
-extension ExternalSelectionContainerView {
+extension ExternalSelectionView {
 
   @ViewBuilder
   static func build(intent: ExternalSelectionIntent) -> some View {
-    ExternalSelectionContainerView(container: .init(intent: intent,
+    ExternalSelectionView(container: .init(intent: intent,
                                                     state: intent.state,
                                                     modelChangePublisher: intent.objectWillChange))
   }
@@ -58,7 +58,7 @@ extension ExternalSelectionContainerView {
 
 struct ExternalSelectionContainerView_Previews: PreviewProvider {
     static var previews: some View {
-      ExternalSelectionContainerView.build(intent: .init(initialState: .init(selectedTrimId: 123),
+      ExternalSelectionView.build(intent: .init(initialState: .init(selectedTrimId: 123),
                                                          repository: MockExternalRepository()))
     }
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum ModelTypeSelectionContainerModel {
+enum ModelTypeSelectionModel {
 
   struct State: Equatable {
 
     var selectedTrimId: Int = 1
-    var modelTypeStateArray: [ModelTypeModel.State] = []
+    var modelTypeStateArray: [ModelTypeCellModel.State] = []
     var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerState = .mock()
   }
 
