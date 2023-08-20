@@ -47,6 +47,12 @@ extension ExtraOptionResponseDTO {
       choiceRatioDomain = CLNumber(Int32(choiceRatio))
     }
     
+    var optionImageURL: URL?
+    
+    if let optionImageURLStr = image {
+      optionImageURL = URL(string: optionImageURLStr)
+    }
+    
     return ExtraOption(id: id,
                        isPackage: isPackage ?? false,
                        category: optionCategory,
@@ -54,7 +60,9 @@ extension ExtraOptionResponseDTO {
                        hashTags: hashTags ?? [],
                        containsHmgData: containsHmgData ?? false,
                        choiceRatio: choiceRatioDomain,
-                       price: CLNumber(Int32(price)))
+                       price: CLNumber(Int32(price)),
+                       image: optionImageURL
+      )
     
     
   }
