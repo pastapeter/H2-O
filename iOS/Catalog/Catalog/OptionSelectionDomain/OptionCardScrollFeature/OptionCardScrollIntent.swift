@@ -20,9 +20,10 @@ protocol OptionCardScrollIntentType: AnyObject {
 
 final class OptionCardScrollIntent: ObservableObject {
 
-  init(initialState: State, repository: OptionSelectionRepositoryProtocol) {
+  init(initialState: State, repository: OptionSelectionRepositoryProtocol, parent: OptionSelectionCollectable?) {
     state = initialState
     self.repository = repository
+    self.parent = parent
   }
 
   typealias State = OptionCardScrollModel.State
@@ -33,6 +34,7 @@ final class OptionCardScrollIntent: ObservableObject {
   var cancellable: Set<AnyCancellable> = []
   private var repository: OptionSelectionRepositoryProtocol
   private var totalCardState: [OptionCardModel.State] = []
+  private weak var parent: OptionSelectionCollectable?
 
 }
 
@@ -48,7 +50,7 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
     case .fetchCardState(let from, let to):
       fetchCardState(from: from, to: to)
     case .onTapOption(let id):
-      state.selectedOptionId = id
+      parent?.selectedOption(with: id)
     case .cardStates(let states):
       state.cardStates = states
     }
