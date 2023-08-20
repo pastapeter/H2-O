@@ -14,8 +14,8 @@ struct CLNavigationMenuView: View {
   var menuStatus: [CLNavigationMenuTitleView.Status]?
   var navigationMenuTitles: [String]
   var titleFont: CatalogTextType = .HeadKRMedium14
-  var horizontalSpacing: CGFloat = 11
-  var verticalSpacing: CGFloat = 6
+  var horizontalSpacing: CGFloat = CGFloat(11).scaledWidth
+  var verticalSpacing: CGFloat = CGFloat(6).scaledHeight
   var showNavigationDivider: Bool = false
 
   var body: some View {

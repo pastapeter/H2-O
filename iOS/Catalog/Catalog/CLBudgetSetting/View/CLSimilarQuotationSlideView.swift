@@ -27,7 +27,7 @@ struct CLSimilarQuotationSlideView: View {
                 }
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 4)
-                        .frame(width: maxCoordinate, height: 6)
+                    .frame(width: maxCoordinate, height: CGFloat(6).scaledHeight)
                         .foregroundColor(Color.primary400)
                     HStack {
                         Image("blue_pincette")
@@ -56,11 +56,11 @@ struct CLSimilarQuotationSlideView: View {
             }
             // MARK: - 내 견적, 유사 견적 텍스트
             HStack {
-                Spacer().frame(width: 104)
+              Spacer().frame(width: CGFloat(104).scaledWidth)
                 HStack(spacing: 4) {
                     Circle()
                         .fill(Color.activeBlue)
-                        .frame(width: 8, height: 8)
+                        .frame(width: CGFloat(8).scaledWidth, height: CGFloat(8).scaledHeight)
                         .padding(.leading, 5)
                     Text("내 견적")
                         .catalogFont(type: .TextKRMedium10)
@@ -69,16 +69,16 @@ struct CLSimilarQuotationSlideView: View {
                 HStack(spacing: 4) {
                     Circle()
                         .fill(Color.white)
-                        .frame(width: 8, height: 8)
+                        .frame(width: CGFloat(8).scaledWidth, height: CGFloat(8).scaledHeight)
                         .padding(.leading, 5)
                     Text("유사견적")
                         .catalogFont(type: .TextKRMedium10)
                         .foregroundColor(Color.white)
                 }
-                Spacer().frame(width: 104)
+              Spacer().frame(width: CGFloat(104).scaledWidth)
             }
         }
-        .frame(height: 62)
+        .frame(height: CGFloat(62).scaledHeight)
         .padding(.bottom, 9)
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CLPopUp: View {
+  let paddingEdge: Edge.Set
   let rectangleImage: String
   let width: CGFloat
   let height: CGFloat
@@ -15,6 +16,7 @@ struct CLPopUp: View {
   var accentText: String?
   let description: String
   var cancelAction: () -> Void
+  var hasCancelButton: Bool
   var body: some View {
 
     VStack(alignment: .leading, spacing: 0) {
@@ -24,20 +26,23 @@ struct CLPopUp: View {
             .catalogFont(type: .HeadKRMedium14)
           Spacer()
         }
-        CLCancelButton {
-          cancelAction()
+        if hasCancelButton {
+          CLCancelButton {
+            cancelAction()
+          }
         }
       }
         Divider()
           .frame(width: 36, height: 1)
           .background(Color.primary200)
-          .padding(.top, 16)
-          .padding(.bottom, 20)
+          .padding(.top, CGFloat(16).scaledHeight)
+          .padding(.bottom, CGFloat(20).scaledHeight)
       Text(description)
         .catalogFont(type: .TextKRRegular12)
         .foregroundColor(Color.primary500)
     }
-    .padding(.horizontal, 20)
+    .padding(paddingEdge, 10)
+    .padding(.horizontal, CGFloat(20).scaledWidth)
     .frame(width: width, height: height)
     .background(Image(rectangleImage))
   }
@@ -56,12 +61,14 @@ extension CLPopUp {
 
 struct CLPopUp_Previews: PreviewProvider {
   static var previews: some View {
-    CLPopUp(   rectangleImage: "guide_popup_rectangle",
-               width: 256,
-               height: 236,
-               title: "현대자동차만이\n제공하는 실활용 데이터로\n합리적인 차량을 만들어 보세요.",
-               accentText: "실활용 데이터",
-               description: "HMG Data 마크는 Hyundai Motor Group\n에서만 제공하는 데이터입니다.\n주행 중 운전자들이 실제로 얼마나 활용하는지를\n추적해 수치화한 데이터 입니다.",
-               cancelAction: { })
+    CLPopUp(paddingEdge: .top,
+            rectangleImage: "similar_quide_popup",
+            width: CGFloat(250).scaledWidth,
+            height: CGFloat(155.5).scaledHeight,
+            title: "내 견적과 비슷한 실제 출고 견적들을\n확인하고 비교해보세요.",
+            accentText: "내 견적과 비슷한 실제 출고 견적",
+            description: "유사 견적이란, 내 견적과 해시태그 유사도가\n높은 다른 사람들의 실제 출고 견적이에요.",
+            cancelAction: { },
+            hasCancelButton: false)
   }
 }

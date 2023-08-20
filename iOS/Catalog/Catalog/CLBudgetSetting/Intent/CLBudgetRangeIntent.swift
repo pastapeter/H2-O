@@ -21,8 +21,9 @@ protocol CLBudgetRangeIntentType {
 final class CLBudgetRangeIntent: ObservableObject {
 
     // MARK: - LifeCycle
-    init(initialState: State) {
+  init(initialState: State, navigationIntent: CLNavigationIntentType) {
         state = initialState
+    self.navigationIntent = navigationIntent
     }
 
     // MARK: - Internal
@@ -31,6 +32,7 @@ final class CLBudgetRangeIntent: ObservableObject {
 
     @Published var state: State = State(currentQuotationPrice: CLNumber(30000000),
                                         budgetPrice: CLNumber(40000000), status: .default)
+  let navigationIntent: CLNavigationIntentType
     var quotation = Quotation.shared
     var cancellable: Set<AnyCancellable> = []
 }
@@ -58,6 +60,8 @@ extension CLBudgetRangeIntent: CLBudgetRangeIntentType, IntentType {
 
             case .budgetGapChanged:
                 state.budgetGap = CLNumber(abs(state.budgetPrice.value - state.currentQuotationPrice.value))
+          case .onTapSimilarQuotationButton:
+            navigationIntent.send(action: .onTapSimilarQuotationButton)
         }
     }
 }

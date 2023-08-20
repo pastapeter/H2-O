@@ -25,6 +25,7 @@ struct DetailQuotationTitle: View {
 
         }
       }
+      .frame(height: 48)
       .background(Color("background2"))
     }
 }

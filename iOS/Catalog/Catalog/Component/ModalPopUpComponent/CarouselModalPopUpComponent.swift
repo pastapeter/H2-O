@@ -86,9 +86,9 @@ extension CarouselModalPopUpComponent {
       titleView(state.title)
         .padding(.horizontal, 16)
       content(state)
-      TrimSelectButton(
+      CLInActiceButton(
         mainText: "선택하기",
-        isTrimSelected: state.id != selectedId,
+        isInactive: state.id != selectedId,
         subText: state.price.signedWon,
         inActiveText: "선택완료",
         height: CGFloat(87).scaledHeight,

@@ -22,8 +22,10 @@ extension BottomArea: View {
         CLDualChoiceButton(leftText: "이전",
                            rightText: "다음",
                            height: 52,
-                           leftAction: { print("이전 버튼 클릭") },
-                           rightAction: { print("다음 버튼 클릭") })
+                           leftAction: { intent.send(action: .onTapNavTab(index: intent.state
+                            .currentPage - 1)) },
+                           rightAction: { intent.send(action: .onTapNavTab(index: intent.state
+                            .currentPage + 1)) })
       }
     }
 }

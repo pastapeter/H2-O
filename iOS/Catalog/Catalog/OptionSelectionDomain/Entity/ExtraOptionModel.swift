@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ExtraOptionModel {
+struct ExtraOptionModel: Encodable, Equatable {
+  var id: Int
   var isPackage: Bool
   var category: Category
   var name: String

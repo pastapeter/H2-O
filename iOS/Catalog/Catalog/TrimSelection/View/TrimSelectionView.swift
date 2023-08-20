@@ -17,12 +17,14 @@ struct TrimSelectionView: IntentBindingType {
 
 extension TrimSelectionView: View {
   var body: some View {
-    VStack {
+    VStack(spacing: 0) {
       Text("트림을 선택해주세요.").catalogFont(type: .HeadKRMedium18).leadingTitle()
+        .padding(.top, CGFloat(20).scaledHeight)
+        .padding(.bottom, CGFloat(12).scaledHeight)
 
       SnapCarousel(items: state.trims,
-                   spacing: 16,
-                   trailingSpace: 32,
+                   spacing: CGFloat(16).scaledWidth,
+                   trailingSpace: CGFloat(32).scaledWidth,
                    index: $currentIndexBinding) { trim in
         GeometryReader { proxy in
           let size = proxy.size
@@ -33,8 +35,8 @@ extension TrimSelectionView: View {
      .onChange(of: currentIndexBinding) { _ in
        intent.send(action: .trimSelected(index: currentIndexBinding))
      }
+     .frame(height: CGFloat(480).scaledHeight)
 
-      Spacer().frame(height: 15)
 
       // Indicator
       HStack(spacing: 10) {
@@ -46,10 +48,11 @@ extension TrimSelectionView: View {
             .animation(.spring(), value: currentIndexBinding == index)
         }
       }
+      .padding(.top, 12)
       .padding(.bottom, 20)
 
       CLButton(mainText: "\(state.selectedTrim?.name ?? "") 선택하기",
-               height: 60,
+               height: CGFloat(60).scaledHeight,
                backgroundColor: Color.primary700,
                buttonAction: { intent.send(action: .onTapTrimSelectButton) })
     }

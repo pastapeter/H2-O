@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DriveTrainModel {
+struct DriveTrainModel: Equatable {
   var id: Int
   var name: String
   var price: CLNumber

@@ -42,10 +42,7 @@ struct ColorSelectionComponent<ColorContent: View>: View {
             Spacer()
             Image("check").renderingMode(.template).foregroundColor(state.isSelected ? .activeBlue2 : .gray200)
           }
-          Spacer()
         }
-        .padding(.horizontal, CGFloat(12).scaledHeight)
-        .padding(.bottom, CGFloat(12).scaledHeight)
       }
       .selectedCardStyle(isSelected: state.isSelected)
       .buttonSelected(isselected: state.isSelected)

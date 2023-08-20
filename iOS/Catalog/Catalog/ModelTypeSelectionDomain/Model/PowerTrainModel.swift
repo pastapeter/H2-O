@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PowerTrainModel {
+struct PowerTrainModel: Equatable {
   var id: Int
   var name: String
   var price: CLNumber

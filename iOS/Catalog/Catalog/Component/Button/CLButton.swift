@@ -32,7 +32,6 @@ struct CLButton: View {
             }
             .frame(maxWidth: width ?? .infinity, maxHeight: height)
             .background(backgroundColor)
-            .ignoresSafeArea()
         }
         .buttonStyle(.plain)
     }

@@ -14,7 +14,6 @@ extension View {
       self
       Spacer()
     }
-    .frame(height: 56)
     .padding(.leading, 20)
   }
 }

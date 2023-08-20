@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BodyTypeModel {
+struct BodyTypeModel: Equatable {
   var id: Int
   var name: String
   var price: CLNumber

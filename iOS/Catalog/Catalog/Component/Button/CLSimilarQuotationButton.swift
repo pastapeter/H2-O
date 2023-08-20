@@ -10,10 +10,10 @@ import SwiftUI
 struct CLSimilarQuotationButton: View {
 
     @Binding var isExceedBudget: Bool
-
+    let intent: CLBudgetRangeIntentType
     var body: some View {
         Button {
-            print("유사 출고 견적 확인 페이지로 이동")
+          intent.send(action: .onTapSimilarQuotationButton)
         } label: {
             Text(isExceedBudget ? "유사견적 확인" : "유사 출고 견적 확인하기")
                     .catalogFont(type: .HeadKRMedium14)

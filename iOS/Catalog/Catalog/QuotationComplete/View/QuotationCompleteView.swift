@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import UIKit
+
 
 struct QuotationCompleteView {
   var quotation = Quotation.shared
   var (positionX, positionY): (CGFloat, CGFloat) = (0, 0)
   @SwiftUI.State var isExternal: Bool = true
-  @State var showSheet: Bool = false
+  @SwiftUI.State var showSheet: Bool = false
 }
 
 extension QuotationCompleteView: View {
@@ -19,9 +21,9 @@ extension QuotationCompleteView: View {
     VStack {
       ZStack {
         if isExternal {
-            QuotationExteriorView()
+          QuotationExteriorView()
         } else {
-            QuotationInteriorView()
+          QuotationInteriorView()
         }
         VStack {
           Spacer()
@@ -33,16 +35,17 @@ extension QuotationCompleteView: View {
         .gesture(
           DragGesture()
             .onChanged { gesture in
-             if gesture.translation.height < 20 {
+              if gesture.translation.height < 20 {
                 showSheet = true
               }
             }
-          )
+        )
+
     }
     .sheet(isPresented: $showSheet) {
-       QuotationCompleteSheet()
+      QuotationCompleteSheet()
     }
-
+    
   }
 }
 

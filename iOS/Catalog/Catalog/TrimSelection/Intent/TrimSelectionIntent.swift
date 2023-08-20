@@ -75,6 +75,8 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
             quotation.send(action: .isTrimSelected(defaultCarQuotation: defaultQuotation,
                                                    minPrice: minPrice,
                                                    maxPrice: maxPrice))
+            
+            
             state.isTrimSelected = true
             navigationIntent.send(action: .onTapNavTab(index: 1))
           } catch let error {

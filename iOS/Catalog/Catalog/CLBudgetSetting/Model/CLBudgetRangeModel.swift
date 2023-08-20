@@ -29,6 +29,7 @@ enum CLBudgetRangeModel {
 
   enum ViewAction: Equatable {
     case onAppear
+    case onTapSimilarQuotationButton
     case budgetChanged(newBudgetPrice: CLNumber)
     case quotationPriceChanged(newQuotationPrice: CLNumber)
     case exceedBudgetChanged

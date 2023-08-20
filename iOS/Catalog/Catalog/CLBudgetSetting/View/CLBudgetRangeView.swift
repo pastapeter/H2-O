@@ -61,8 +61,8 @@ extension CLBudgetRangeView: View {
             }
           }
         }
-        .padding(.top, 9.5)
-        .padding(.bottom, isFloatingExpanded ? 15.5 : 8.5)
+        .padding(.top, CGFloat(9.5).scaledHeight)
+        .padding(.bottom, isFloatingExpanded ? CGFloat(15.5).scaledHeight : CGFloat(8.5).scaledHeight)
 
         if isFloatingExpanded {
           // MARK: - 슬라이더
@@ -83,7 +83,7 @@ extension CLBudgetRangeView: View {
           }
           // MARK: - 확인 버튼
           if state.status == .complete {
-            CLSimilarQuotationButton(isExceedBudget: isExceedBudgetBinding)
+            CLSimilarQuotationButton(isExceedBudget: isExceedBudgetBinding, intent: intent)
           }
         }
       }
@@ -93,8 +93,7 @@ extension CLBudgetRangeView: View {
       Spacer()
     }
     .padding(.horizontal, 12)
-    .padding(.bottom, 20)
-    .padding(.top, 12)
+    .padding(.top, CGFloat(12).scaledHeight)
     .onAppear {
       intent.send(action: .onAppear)
       if state.status == .similarQuotation || state.status == .complete {
@@ -130,14 +129,14 @@ extension CLBudgetRangeView {
     }
 }
 
- struct CLBudgetRangeView_Previews: PreviewProvider {
-    static var previews: some View {
-        CLBudgetRangeView.build(
-            intent: CLBudgetRangeIntent(initialState: .init(
-              currentQuotationPrice: CLNumber(40000000),
-              budgetPrice: CLNumber(40750000),
-              status: .default)
-            )
-        )
-    }
- }
+// struct CLBudgetRangeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CLBudgetRangeView.build(
+//            intent: CLBudgetRangeIntent(initialState: .init(
+//              currentQuotationPrice: CLNumber(40000000),
+//              budgetPrice: CLNumber(40750000),
+//              status: .default), navigationIntent: <#CLNavigationIntentType#>
+//            )
+//        )
+//    }
+// }

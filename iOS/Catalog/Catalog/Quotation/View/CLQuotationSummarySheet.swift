@@ -110,7 +110,6 @@ struct CLQuotationSummarySheet: View {
         showQuotationSummarySheet = false
 
       }
-      .padding(.bottom, 0.1)
     }
 
   }

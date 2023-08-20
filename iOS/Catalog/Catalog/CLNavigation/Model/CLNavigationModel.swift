@@ -15,6 +15,7 @@ enum CLNavigationModel {
     }
 
     var currentPage: Int
+    var showQuotationSummarySheet: Bool
 
   }
   enum ViewAction: Equatable {
@@ -22,5 +23,7 @@ enum CLNavigationModel {
     case onTapFinish
     case onTapLogo
     case onTapSwitchVehicleModel
+    case onTapSimilarQuotationButton
+    case onTapSimilarQuotationBackButton
   }
 }

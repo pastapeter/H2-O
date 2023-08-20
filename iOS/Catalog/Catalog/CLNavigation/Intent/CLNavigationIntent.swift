@@ -18,7 +18,7 @@ final class CLNavigationIntent: ObservableObject {
 
   // MARK: - Internal
 
-  @Published var state: State = State(currentPage: 0)
+  @Published var state: State = State(currentPage: 0, showQuotationSummarySheet: false)
   var quotation = Quotation.shared
   var cancellable: Set<AnyCancellable> = []
 }
@@ -41,6 +41,10 @@ extension CLNavigationIntent: CLNavigationIntentType, IntentType {
       state.currentPage = 0
     case .onTapSwitchVehicleModel:
       print("didTapSwitchVehicleModel")
+    case .onTapSimilarQuotationButton:
+      state.showQuotationSummarySheet = true
+      case .onTapSimilarQuotationBackButton:
+        state.showQuotationSummarySheet = false
     }
   }
 }

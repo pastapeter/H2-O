@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct CarQuotation {
+struct CarQuotation: Equatable {
   var model: SummaryQuotationInfo = SummaryQuotationInfo(title: "모델", name: "팰리세이드", price: CLNumber(3880000))
   var trim: Trim
   var powertrain: PowerTrainModel

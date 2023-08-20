@@ -59,7 +59,7 @@ extension ExternalSelectionIntent: ExternalSelectionIntentType, IntentType {
       }
     case .changeSelectedExternalImageURL:
       print("External Image Urls")
-    case .onTapColor(id: let id):
+    case .onTapColor(let id):
       state.selectedColorId = id
       for i in state.colors.indices {
         if state.colors[i].color.id == id {

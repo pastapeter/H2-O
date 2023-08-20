@@ -13,39 +13,47 @@ struct HMGDataCard: View {
 
   var body: some View {
     ZStack(alignment: .leading) {
-      VStack(alignment: .leading, spacing: 12) {
-
+      
+      VStack(alignment: .leading) {
         HMGTag()
-
-        Text(attributedString)
-          .catalogFont(type: .TextKRMedium12)
-
-        HStack(spacing: 36) {
-          ForEach(0..<options.count) { idx in
-            VStack(spacing: 4) {
-              Text(options[idx].optionTitle)
-                .catalogFont(type: .TextKRRegular10)
-                .foregroundColor(Color.gray900)
-                .frame(height: 36, alignment: .topLeading)
-
-              Divider().frame(width: 60)
-
-              Text("\(options[idx].optionFrequency)회")
-                .catalogFont(type: .HeadKRRegular24)
-                .foregroundColor(Color.gray900)
-              Text("15,000km 당")
-                .catalogFont(type: .TextKRRegular10)
-                .foregroundColor(Color.gray600)
-            }
-            .frame(width: 60)
-          }
-        }
         Spacer()
       }
 
+      VStack(alignment: .leading , spacing: 16) {
+        
+          Text(attributedString)
+            .catalogFont(type: .TextKRMedium12)
+            .frame(width: CGFloat(252).scaledWidth, height: CGFloat(16).scaledWidth, alignment: .leading)
+            .padding(.top, CGFloat(12).scaledHeight)
+
+          if options.isEmpty {
+            Spacer().frame(height: CGFloat(94).scaledHeight)
+          } else {
+            HStack(spacing: CGFloat(36).scaledWidth) {
+              ForEach(0..<options.count) { idx in
+                VStack(spacing: 4) {
+                  Text(options[idx].optionTitle)
+                    .catalogFont(type: .TextKRRegular10)
+                    .foregroundColor(Color.gray900)
+                    .frame(height: CGFloat(36).scaledHeight, alignment: .topLeading)
+
+                  Divider().frame(width: CGFloat(60).scaledWidth)
+
+                  Text("\(options[idx].optionFrequency)회")
+                    .catalogFont(type: .HeadKRRegular24)
+                    .foregroundColor(Color.gray900)
+                  Text("15,000km 당")
+                    .catalogFont(type: .TextKRRegular10)
+                    .foregroundColor(Color.gray600)
+                }
+                .frame(width: CGFloat(60).scaledWidth, height: CGFloat(94).scaledHeight)
+              }
+            }
+          }
+      }
+      
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .padding(.bottom, 10)
     .background(Color.gray50)
   }
 }
