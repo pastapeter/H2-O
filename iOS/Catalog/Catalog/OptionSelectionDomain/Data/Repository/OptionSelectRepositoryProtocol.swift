@@ -7,18 +7,26 @@
 
 import Foundation
 
-protocol OptionSelectionRepositoryProtocol {
+protocol DefaultOptionSelectionRepositoryProtocol  {
   
-  func fetchExtraOption(from startIndex: Int, to lastIndex: Int) async throws -> [ExtraOption]
+  func fetchAllOptions() async throws -> [DefaultOption]
   
-  func fetchDefaultOption(from startIndex: Int, to lastIndex: Int) async throws -> [DefaultOption]
+  func fetchOption(from startIndex: Int, to lastIndex: Int) async throws -> [DefaultOption]
+  
+}
+
+protocol ExtraOptionSelectionRepositoryProtocol {
+  
+  func fetchOption(from startIndex: Int, to lastIndex: Int) async throws -> [ExtraOption]
+  
+  func fetchAllOptions() async throws -> [ExtraOption]
+    
+}
+
+protocol OptionSelectionRepositoryProtocol: DefaultOptionSelectionRepositoryProtocol, ExtraOptionSelectionRepositoryProtocol {
   
   func fetchDetailInfo(of optionID: Int) async throws -> DetailOptionInfo
   
   func fetchPackageInfo(of packageID: Int) async throws -> PackageInfo
-  
-  func fetchAllDefaultOptions() async throws -> [DefaultOption]
-  
-  func fetchAllExtraOptions() async throws -> [ExtraOption]
   
 }
