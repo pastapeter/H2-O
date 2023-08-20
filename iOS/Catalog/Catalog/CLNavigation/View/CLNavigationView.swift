@@ -43,10 +43,10 @@ extension CLNavigationView: View {
             repository: TrimSelectionRepository(), quotation: Quotation.shared, navigationIntent: intent))
           .tag(0)
           
-          ModelTypeSelectionContainerView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager()))))
+          ModelTypeSelectionView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager()))))
           .tag(1)
 
-          ExternalSelectionContainerView.build(
+          ExternalSelectionView.build(
             intent: .init(initialState: .init(selectedTrimId: 2),
                           repository: ExteriorColorRepository(
                             requestManager: RequestManager(

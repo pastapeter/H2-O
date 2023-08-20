@@ -362,6 +362,6 @@ struct CatalogFont: ViewModifier {
 extension Text {
   func catalogFont(type: CatalogTextType) -> some View {
     ModifiedContent(content: self.tracking(type.letterSpacing),
-                    modifier: CatalogFont(font: type.font, lineHeight: type.lineHeight))
+                    modifier: CatalogFont(font: type.font, lineHeight: CGFloat(type.lineHeight).scaledHeight))
   }
 }
