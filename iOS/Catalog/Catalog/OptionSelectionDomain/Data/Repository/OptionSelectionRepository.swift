@@ -8,13 +8,44 @@
 import Foundation
 
 final class OptionSelectionRepository: OptionSelectionRepositoryProtocol {
- 
+  
   private var requestManager: RequestManagerProtocol
   private var trimID: Int
   
   init(requestManager: RequestManagerProtocol, trimID: Int) {
     self.requestManager = requestManager
     self.trimID = trimID
+  }
+  
+  func fetchAllDefaultOptions() async throws -> [DefaultOption] {
+    
+    let dto: [DefaultOptionResponseDTO] = try await requestManager.perform(OptionSelectionRequest.fetchAllDefaultOption(trimID: trimID))
+    
+    let entity = dto.compactMap {
+      do {
+      return try $0.toDomain()
+      } catch(let e) {
+        print("🚨 Error \(e.localizedDescription)")
+        return nil
+      }
+    }
+    
+    return entity
+  }
+  
+  func fetchAllExtraOptions() async throws -> [ExtraOption] {
+    let dto: [ExtraOptionResponseDTO] = try await requestManager.perform(
+      OptionSelectionRequest.fetchAllExtraOption(trimID: trimID))
+    
+    let entity = dto.compactMap { do {
+      return try $0.toDomain()
+    } catch(let e) {
+      print("🚨 Error \(e.localizedDescription)")
+      return nil
+    }}
+    
+    return entity
+    
   }
   
   func fetchExtraOption(from startIndex: Int, to lastIndex: Int) async throws -> [ExtraOption] {
