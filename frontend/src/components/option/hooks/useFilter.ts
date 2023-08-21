@@ -1,6 +1,6 @@
-import { ChangeEventHandler, useReducer } from 'react';
-import { HASHTAG_LIST, defaultOptionCategoryList, extraOptionCategoryList } from '../mock/mock';
+import { useCallback, useReducer } from 'react';
 import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interface';
+import { HASHTAG_LIST, defaultOptionCategoryList, extraOptionCategoryList } from '@/components/option/constants';
 
 type Action =
   | {
@@ -12,7 +12,8 @@ type Action =
   | { type: 'CLICK_EXTRA_CATEGORY'; payload: number }
   | { type: 'CLICK_DEFAULT_CATEGORY'; payload: number }
   | { type: 'CHANGE_INPUT'; payload: string }
-  | { type: 'CLICK_SEARCH_BUTTON' };
+  | { type: 'SET_EXTRA_OPTION_LIST'; payload: ExtraOptionResponse[] }
+  | { type: 'SET_DEFAULT_OPTION_LIST'; payload: DefaultOptionResponse[] };
 
 type State = {
   isExtraOption: boolean;
@@ -25,15 +26,34 @@ type State = {
   input: string;
 };
 
-const filterExtraOption = (input: string, entireList: ExtraOptionResponse[]) => {
+interface ExtraFilterProps {
+  input: string;
+  entireList: ExtraOptionResponse[];
+}
+
+interface DefaultFilterProps {
+  input: string;
+  entireList: DefaultOptionResponse[];
+}
+
+const filterExtraOption = ({ input, entireList }: ExtraFilterProps) => {
   if (extraOptionCategoryList.includes(input)) return entireList.filter((option) => option.category === input);
   if (HASHTAG_LIST.includes(input)) return entireList.filter((option) => option.hashTags.includes(input));
   return entireList.filter((option) => option.name.includes(input));
 };
 
-const filterDefaultOption = (input: string, entireList: DefaultOptionResponse[]) => {
+const filterDefaultOption = ({ input, entireList }: DefaultFilterProps) => {
   if (defaultOptionCategoryList.includes(input)) return entireList.filter((option) => option.category === input);
   return entireList.filter((option) => option.name.includes(input));
+};
+
+const debounceFunction = <T extends unknown[]>(callback: (...args: T) => void, delay: number) => {
+  let timer: NodeJS.Timeout;
+
+  return (...args: T) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => callback(...args), delay);
+  };
 };
 
 function reducer(state: State, action: Action): State {
@@ -67,27 +87,13 @@ function reducer(state: State, action: Action): State {
           : state.defaultOptionEntireList,
       };
     case 'CHANGE_INPUT':
-      return {
-        ...state,
-        extraOptionList: state.isExtraOption
-          ? filterExtraOption(action.payload, state.extraOptionEntireList)
-          : state.extraOptionList,
-        defaultOptionList: state.isExtraOption
-          ? state.defaultOptionList
-          : filterDefaultOption(action.payload, state.defaultOptionEntireList),
-        input: action.payload,
-      };
-    case 'CLICK_SEARCH_BUTTON':
-      return {
-        ...state,
-        extraOptionList: state.isExtraOption
-          ? filterExtraOption(state.input, state.extraOptionEntireList)
-          : state.extraOptionList,
-        defaultOptionList: state.isExtraOption
-          ? state.defaultOptionList
-          : filterDefaultOption(state.input, state.defaultOptionEntireList),
-        input: '',
-      };
+      return { ...state, input: action.payload };
+    case 'SET_EXTRA_OPTION_LIST':
+      return { ...state, extraOptionList: action.payload };
+    case 'SET_DEFAULT_OPTION_LIST': {
+      return { ...state, defaultOptionList: action.payload };
+    }
+
     default:
       throw new Error('옵션 선택 action error');
   }
@@ -120,10 +126,28 @@ function useFilter() {
   const handleClickDefaultCategory = (categoryIdx: number) => () =>
     dispatch({ type: 'CLICK_DEFAULT_CATEGORY', payload: categoryIdx });
 
-  const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) =>
-    dispatch({ type: 'CHANGE_INPUT', payload: e.target.value });
+  const searchExtraOption = useCallback(
+    debounceFunction(
+      (props: ExtraFilterProps) => dispatch({ type: 'SET_EXTRA_OPTION_LIST', payload: filterExtraOption(props) }),
+      300,
+    ),
+    [],
+  );
 
-  const handleClickSearchButton = () => dispatch({ type: 'CLICK_SEARCH_BUTTON' });
+  const searchDefaultOption = useCallback(
+    debounceFunction(
+      (props: DefaultFilterProps) => dispatch({ type: 'SET_DEFAULT_OPTION_LIST', payload: filterDefaultOption(props) }),
+      300,
+    ),
+    [],
+  );
+
+  const handleChangeInput = (value: string) => {
+    state.isExtraOption
+      ? searchExtraOption({ input: value, entireList: state.extraOptionEntireList })
+      : searchDefaultOption({ input: value, entireList: state.defaultOptionEntireList });
+    dispatch({ type: 'CHANGE_INPUT', payload: value });
+  };
 
   return {
     state,
@@ -133,7 +157,6 @@ function useFilter() {
     handleClickExtraCategory,
     handleClickDefaultCategory,
     handleChangeInput,
-    handleClickSearchButton,
   } as const;
 }
 

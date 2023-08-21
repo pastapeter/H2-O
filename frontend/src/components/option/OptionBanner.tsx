@@ -1,7 +1,7 @@
 import { HTMLAttributes, PropsWithChildren, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import HMGDetail from './utils/HMGDetail';
+import { HMGDetail, OverFlowColumnText, OverFlowRowText } from './utils';
 import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/interface';
 import {
   Divider,
@@ -33,7 +33,7 @@ function OptionBanner({ children, subTitle, title, imgUrl, ...restProps }: Props
           {subTitle}
         </Typography>
         <Typography as='h2' font='HeadKRBold32' color='primary700' className='title'>
-          {title}
+          <OverFlowRowText length={490} text={title} />
         </Typography>
         {children}
       </MainContainer>
@@ -49,9 +49,7 @@ function GeneralOptionBanner({ optionInfo }: { optionInfo: GeneralOptionResponse
   const containsHGMData = containsChoiceCount || containsUseCount;
   return (
     <OptionBanner subTitle={category} title={name} imgUrl={image}>
-      <Typography font='TextKRRegular12' color='gray800' marginTop={8} className='description'>
-        {description}
-      </Typography>
+      <div className='description'>{description && <OverFlowColumnText text={description} length={36} />}</div>
       {containsHGMData && (
         <HMGDetail overHalf={hmgData.overHalf} choiceCount={hmgData.choiceCount} useCount={hmgData.useCount} />
       )}
@@ -61,10 +59,10 @@ function GeneralOptionBanner({ optionInfo }: { optionInfo: GeneralOptionResponse
 
 function PackageOptionBanner({ optionInfo }: { optionInfo: PackageOptionResponse }) {
   const { colors } = useTheme();
-  const [componentIdx, setComponentIdx] = useState(0);
+  const [subOptionIdx, setSubOptionIdx] = useState(0);
 
   const handleClickComponent = (idx: number) => () => {
-    setComponentIdx(idx);
+    setSubOptionIdx(idx);
   };
 
   const pagingButtonStyle = (isLast: boolean) => css`
@@ -81,7 +79,7 @@ function PackageOptionBanner({ optionInfo }: { optionInfo: PackageOptionResponse
     <OptionBanner
       subTitle={optionInfo.category}
       title={optionInfo.name}
-      imgUrl={optionInfo.components[componentIdx].image}
+      imgUrl={optionInfo.components[subOptionIdx].image}
     >
       {/* 패키지 옵션 확인 페이지네이션 */}
       <Flex gap={8} marginTop={10} alignItems='center'>
@@ -90,24 +88,28 @@ function PackageOptionBanner({ optionInfo }: { optionInfo: PackageOptionResponse
           {currentSlice.map((component, idx) => (
             <StyledOptionButton
               key={startIdx + idx}
-              isClicked={startIdx + idx === componentIdx}
+              isClicked={startIdx + idx === subOptionIdx}
               onClick={handleClickComponent(startIdx + idx)}
             >
-              <span>{component.name}</span>
-              <StyleDivder length={58} color='gray800' isClicked={startIdx + idx === componentIdx} />
+              <OverFlowRowText text={component.name} length={100} />
+              <StyleDivder length={58} color='gray800' isClicked={startIdx + idx === subOptionIdx} />
             </StyledOptionButton>
           ))}
         </Flex>
         <Icon iconType='ArrowRight' size={24} onClick={nextPage} css={pagingButtonStyle(isEndPage)} />
       </Flex>
       {/* 패키지 옵션 설명 */}
-      <Typography font='TextKRRegular12' color='gray800' marginTop={8} className='description'>
-        {optionInfo.components[componentIdx].description}
-      </Typography>
+      <div className='description'>
+        <OverFlowColumnText
+          key={optionInfo.components[subOptionIdx].description}
+          text={optionInfo.components[subOptionIdx].description}
+          length={36}
+        />
+      </div>
       <HMGDetail
         overHalf={optionInfo.isOverHalf}
         choiceCount={optionInfo.choiceCount}
-        useCount={optionInfo.components[componentIdx].useCount}
+        useCount={optionInfo.components[subOptionIdx].useCount}
       />
       <Typography font='TextKRRegular12' color='gray800' marginTop={8}></Typography>
     </OptionBanner>
@@ -153,19 +155,9 @@ const MainContainer = styled.div`
   height: max-content;
 
   .description {
-    height: 36px;
-    overflow: scroll;
-  }
-  &::-webkit-scrollbar {
-    display: block;
-    width: 2px;
-  }
-
-  .title {
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    ${({ theme }) => theme.typography.TextKRRegular12}
+    color: ${({ theme }) => theme.colors.gray800};
+    margin-top: 8px;
   }
 `;
 
@@ -173,13 +165,6 @@ const StyledOptionButton = styled.div<{ isClicked: boolean }>`
   ${({ theme }) => theme.flex.flexCenterCol}
   ${({ theme, isClicked }) => (isClicked ? theme.typography.TextKRMedium14 : theme.typography.TextKRRegular14)}
   color: ${({ theme, isClicked }) => (isClicked ? theme.colors.gray800 : theme.colors.gray400)};
-
-  span {
-    max-width: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 `;
 
 const StyleDivder = styled(Divider)<{ isClicked: boolean }>`

@@ -1,17 +1,18 @@
 import { Fragment, memo, useEffect, useState } from 'react';
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/interface';
 import { getOptionInfo, getOptionList, getPackageInfo } from '@/apis/option';
-import { CategoryButton, Flex, Footer, Icon, Loading, MainSelector } from '@/components/common';
+import { CategoryButton, Flex, Footer, Loading, MainSelector } from '@/components/common';
 import {
   DefaultOptionSelector,
   ExtraOptionSelector,
   GeneralOptionBanner,
   PackageOptionBanner,
 } from '@/components/option';
+import { defaultOptionCategoryList, extraOptionCategoryList } from '@/components/option/constants';
 import { useFilter } from '@/components/option/hooks';
-import { defaultOptionCategoryList, extraOptionCategoryList } from '@/components/option/mock/mock';
+import { SearchBar } from '@/components/option/utils';
 import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
 
@@ -20,7 +21,6 @@ const checkPackageOption = (data: GeneralOptionResponse | PackageOptionResponse)
 };
 
 function OptionPage() {
-  const theme = useTheme();
   const { selectionInfo } = useSafeContext(SelectionContext);
   const [data, setData] = useState<GeneralOptionResponse | PackageOptionResponse>();
   const trimId = selectionInfo.trim?.id;
@@ -32,7 +32,6 @@ function OptionPage() {
     handleClickExtraCategory,
     handleClickDefaultCategory,
     handleChangeInput,
-    handleClickSearchButton,
   } = useFilter();
 
   const { isLoading, error } = useFetcher({
@@ -67,7 +66,7 @@ function OptionPage() {
     }
   };
 
-  // 옵션 카드 selector이 바뀔 경우 배너 정보 변화
+  // 옵션 카드 selector이 바뀔 경우 배너는 리스트에 젤 첫번쨰 카드의 정보
   useEffect(() => {
     (async function () {
       if (!extraOptionList[0] || !defaultOptionList[0]) return;
@@ -87,7 +86,11 @@ function OptionPage() {
   return (
     <Fragment>
       {/* 배너 */}
-      {checkPackageOption(data) ? <PackageOptionBanner optionInfo={data} /> : <GeneralOptionBanner optionInfo={data} />}
+      {checkPackageOption(data) ? (
+        <PackageOptionBanner key={data.name} optionInfo={data} />
+      ) : (
+        <GeneralOptionBanner key={data.name} optionInfo={data} />
+      )}
       <MainSelector>
         {/* 카테고리 버튼 + 검색창 */}
         <ButtonContainer>
@@ -100,21 +103,16 @@ function OptionPage() {
                 기본옵션
               </Tab>
             </Flex>
-            <InputContainer>
-              <Flex justifyContent='center' alignItems='center' width={`100%`}>
-                <StyledInput
-                  type='text'
-                  value={input}
-                  placeholder={
-                    isExtraOption ? '옵션명, 해시태그, 카테고리로 검색해보세요.' : '옵션명, 카테고리로 검색해보세요.'
-                  }
-                  onChange={handleChangeInput}
-                />
-              </Flex>
-              <StyledIcon justifyContent='center' alignItems='center' onClick={handleClickSearchButton}>
-                <Icon iconType='CarbonSearch' size={18} color={theme.colors.gray700} />
-              </StyledIcon>
-            </InputContainer>
+            {isExtraOption ? (
+              <SearchBar
+                isExtraOption={true}
+                optionList={extraOptionList}
+                input={input}
+                filterList={handleChangeInput}
+              />
+            ) : (
+              <SearchBar optionList={defaultOptionList} input={input} filterList={handleChangeInput} />
+            )}
           </Flex>
           <Flex gap={8}>
             {isExtraOption
@@ -182,34 +180,4 @@ const Tab = styled.button<{ isActive: boolean }>`
       `;
     }
   }}
-`;
-
-const InputContainer = styled.div`
-  ${({ theme }) => theme.flex.flexBetweenRow}
-  width: 400px;
-  height: 32px;
-  border: 1px solid ${({ theme }) => theme.colors.gray200};
-  border-radius: 2px;
-`;
-
-const StyledInput = styled.input`
-  ${({ theme }) => theme.typography.TextKRRegular12}
-  color: ${({ theme }) => theme.colors.gray900};
-  width: 308px;
-  height: 24px;
-  border: none;
-
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.gray600};
-  }
-  &:focus {
-    outline: none;
-  }
-`;
-
-const StyledIcon = styled(Flex)`
-  background-color: ${({ theme }) => theme.colors.gray100};
-  border-left: 1px solid ${({ theme }) => theme.colors.gray200};
-  width: 67px;
-  height: 100%;
 `;
