@@ -71,14 +71,14 @@ extension DetailOptionResponseDTO {
     }
     
     
-    return DetailOptionInfo(category: optionCategory,
+    return DetailOptionInfo(id: .init(), category: optionCategory,
                             containsChoiceCount: containsChoiceCount ?? false,
                             containsUseCount: containsUseCount ?? false,
                             description: description,
                             hashTags: hashTags ?? [],
                             hmgData: hmgData?.toDomain(),
                             image: imageURL,
-                            name: name,
+                            title: name,
                             price: CLNumber(Int32(price)))
     
   }

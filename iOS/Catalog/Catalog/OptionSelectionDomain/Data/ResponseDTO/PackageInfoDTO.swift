@@ -22,7 +22,6 @@ struct PackageComponentResponseDTO: Codable {
     let description: String?
     let hashTags: [String]?
     let useCount: Int?
-    let price: Int?
     let containsHmgData: Bool?
 }
 
@@ -30,11 +29,15 @@ extension PackageComponentResponseDTO {
   func toDomain() throws -> PackageComponent {
     
     guard let name = name else { throw PackageInfoToDomainError.noComponentNameInResponse }
-    guard let price = price else { throw PackageInfoToDomainError.noComponentPriceInResponse }
     
     var imageURL: URL?
     if let imageURLstr = image {
       imageURL = URL(string: imageURLstr)
+    }
+    
+    var useCountCLNumber: CLNumber?
+    if let useCount = useCount {
+      useCountCLNumber = CLNumber(Int32(useCount))
     }
     
     return .init(name: name,
@@ -42,8 +45,7 @@ extension PackageComponentResponseDTO {
                  image: imageURL,
                  description: description,
                  hashTags: hashTags ?? [],
-                 useCount: useCount,
-                 price: price,
+                 useCount: useCountCLNumber,
                  containsHmgData: containsHmgData ?? false)
     
   }
@@ -68,10 +70,22 @@ extension PackageResponseDTO {
     guard let name = name else { throw PackageInfoToDomainError.noPackageNameInResponse }
     guard let price = price else { throw PackageInfoToDomainError.noPackagePriceInResponse }
     
-    return .init(name: name,
-                 price: price,
-                 choiceRatio: choiceRatio,
-                 choiceCount: choiceCount,
+    var choiceRatioCLNumber: CLNumber?
+    var choiceCountCLNumber: CLNumber?
+    
+    if let choiceRatio = choiceRatio {
+      choiceRatioCLNumber = CLNumber(Int32(choiceRatio))
+    }
+    
+    if let choiceCount = choiceCount {
+      choiceCountCLNumber = CLNumber(Int32(choiceCount))
+    }
+    
+    return .init(id: .init(),
+                  title: name,
+                 price: CLNumber(Int32(price)),
+                 choiceRatio: choiceRatioCLNumber,
+                 choiceCount: choiceCountCLNumber,
                  isOverHalf: isOverHalf,
                  hashTags: hashTags ?? [],
                  components: components?.compactMap{

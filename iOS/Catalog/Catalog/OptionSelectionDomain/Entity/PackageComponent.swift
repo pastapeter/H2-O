@@ -7,15 +7,18 @@
 
 import Foundation
 
-struct PackageComponent {
+struct PackageComponent: Hashable {
+  
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(name)
+  }
   
   let name: String
   let category: OptionCategory
   let image: URL?
   let description: String?
   let hashTags: [String]
-  let useCount: Int?
-  let price: Int
+  let useCount: CLNumber?
   let containsHmgData: Bool
   
 }
