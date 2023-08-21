@@ -146,7 +146,6 @@
 		B1CB88AD2A928FF800E12981 /* OptionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88AC2A928FF800E12981 /* OptionImageView.swift */; };
 		B1CB88AF2A92980200E12981 /* OptionModalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88AE2A92980200E12981 /* OptionModalImageView.swift */; };
 		B1CB88B12A929A2400E12981 /* OptionModalHMGDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B02A929A2400E12981 /* OptionModalHMGDataView.swift */; };
-		B1CB88B32A929E5900E12981 /* OptionModalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B22A929E5900E12981 /* OptionModalContent.swift */; };
 		B1CB88B52A92F1E800E12981 /* OptionModalTabContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B42A92F1E800E12981 /* OptionModalTabContentView.swift */; };
 		B1CB88B82A938A0E00E12981 /* TransparentZStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B72A938A0E00E12981 /* TransparentZStack.swift */; };
 		B1CB88BB2A93D87C00E12981 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88BA2A93D87C00E12981 /* ExpandableText.swift */; };
@@ -411,7 +410,6 @@
 		B1CB88AC2A928FF800E12981 /* OptionImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionImageView.swift; sourceTree = "<group>"; };
 		B1CB88AE2A92980200E12981 /* OptionModalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModalImageView.swift; sourceTree = "<group>"; };
 		B1CB88B02A929A2400E12981 /* OptionModalHMGDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModalHMGDataView.swift; sourceTree = "<group>"; };
-		B1CB88B22A929E5900E12981 /* OptionModalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModalContent.swift; sourceTree = "<group>"; };
 		B1CB88B42A92F1E800E12981 /* OptionModalTabContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModalTabContentView.swift; sourceTree = "<group>"; };
 		B1CB88B72A938A0E00E12981 /* TransparentZStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentZStack.swift; sourceTree = "<group>"; };
 		B1CB88BA2A93D87C00E12981 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
@@ -1190,7 +1188,6 @@
 				B1CB88AA2A928FA800E12981 /* OptionModalContentView.swift */,
 				B1CB88B02A929A2400E12981 /* OptionModalHMGDataView.swift */,
 				B1CB88B42A92F1E800E12981 /* OptionModalTabContentView.swift */,
-				B1CB88B22A929E5900E12981 /* OptionModalContent.swift */,
 			);
 			path = OptionModalContentFeature;
 			sourceTree = "<group>";
@@ -1821,7 +1818,6 @@
 				B1CB88AD2A928FF800E12981 /* OptionImageView.swift in Sources */,
 				B1604D362A83776200C7B07D /* DataParser.swift in Sources */,
 				ED2B8CE72A8CFE0C00F561FA /* MaxMinPriceDTO.swift in Sources */,
-				B1CB88B32A929E5900E12981 /* OptionModalContent.swift in Sources */,
 				B1A76B802A88CD92009C84EF /* ModeTypeCellModel.swift in Sources */,
 				B1084BEB2A87DF2B00AE1758 /* BlurredFullScreenCover.swift in Sources */,
 				B1CB88B12A929A2400E12981 /* OptionModalHMGDataView.swift in Sources */,
