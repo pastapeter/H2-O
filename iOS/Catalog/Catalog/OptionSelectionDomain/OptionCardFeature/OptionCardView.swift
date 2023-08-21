@@ -57,11 +57,21 @@ extension OptionCardView: View {
       .CLDialogFullScreenCover(show: $isModalPresenting, content: { [self] in
         TransparentZStack {
           if state.isPackage {
-            ModalPopUpComponent(state: self.state.packageOption, submitAction: { }) { _ in
+            ModalPopUpComponent(state: self.state.packageOption, submitAction: {
+              intent.send(action: .onTap(id: self.state.id)) {
+                self.isSelected.toggle()
+                self.isModalPresenting.toggle()
+              }
+            }) { _ in
               OptionModalTabContentView(state: self.state.packageOption)
             }
           } else {
-            ModalPopUpComponent(state: self.state.defaultOptionDetail, submitAction: { }) { _ in
+            ModalPopUpComponent(state: self.state.defaultOptionDetail, submitAction: {
+              intent.send(action: .onTap(id: self.state.id)) {
+                self.isSelected.toggle()
+                self.isModalPresenting.toggle()
+              }
+            }) { _ in
               OptionModalContentView(state: self.state.defaultOptionDetail)
             }
           }
