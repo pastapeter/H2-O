@@ -10,12 +10,17 @@ import Foundation
 enum OptionCardModel {
 
   struct State: Equatable, Hashable {
+    static func == (lhs: OptionCardModel.State, rhs: OptionCardModel.State) -> Bool {
+      lhs.id == rhs.id
+    }
+    
     
     func hash(into hasher: inout Hasher) {
       hasher.combine(id)
     }
     
     var id: Int
+    var isPackage: Bool = false
     var hashTags: [String]
     var name: String
     var choiceRatio: CLNumber?
@@ -23,6 +28,8 @@ enum OptionCardModel {
     var price: CLNumber?
     var containsHmgData: Bool
     var category: OptionCategory
+    var defaultOptionDetail: DetailOptionInfo = .mock()
+    var packageOption: PackageInfo = .mock()
     
   }
 

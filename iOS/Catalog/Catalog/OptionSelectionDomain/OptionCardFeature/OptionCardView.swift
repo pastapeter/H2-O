@@ -54,11 +54,19 @@ extension OptionCardView: View {
       .frame(height: CGFloat(212).scaledHeight)
       .optionCardBackground(isSelected: isSelected)
       .cornerRadius(2)
-      .CLDialogFullScreenCover(show: $isModalPresenting) {
-        ModalPopUpComponent(state: OptionModalContent(id: 0, price: CLNumber(400000), title: "2열 통풍시트"), submitAction: { }) {
-          OptionModalTabContentView()
+      .CLDialogFullScreenCover(show: $isModalPresenting, content: { [self] in
+        TransparentZStack {
+          if state.isPackage {
+            ModalPopUpComponent(state: self.state.packageOption, submitAction: { }) { _ in
+              OptionModalTabContentView(state: self.state.packageOption)
+            }
+          } else {
+            ModalPopUpComponent(state: self.state.defaultOptionDetail, submitAction: { }) { _ in
+              OptionModalContentView(state: self.state.defaultOptionDetail)
+            }
+          }
         }
-      }
+      })
     }
     .buttonStyle(EmptyButtonStyle())
   }
@@ -137,7 +145,13 @@ extension OptionCardView {
               }
             })
           } else {
-            Button(action: {}) {
+            Button(action: {
+              
+              intent.send(action: .onTapDetail) {
+                isModalPresenting.toggle()
+              }
+              
+            }) {
               Text("상세보기")
                 .catalogFont(type: .TextKRMedium12)
             }
