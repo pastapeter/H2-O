@@ -1,6 +1,6 @@
 package com.h2o.h2oServer.domain.model_type.mapper;
 
-import com.h2o.h2oServer.domain.model_type.Entity.CarPowerTrainEntity;
+import com.h2o.h2oServer.domain.model_type.Entity.CarPowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainOutputEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainTorqueEntity;
@@ -52,7 +52,7 @@ class PowertrainMapperTest {
         PowertrainOutputEntity output = PowertrainFixture.generatePowertrainOutputEntity(powertrainId);
 
         //when
-        PowertrainOutputEntity foundOutput = powertrainMapper.findOutput(powertrainId);
+        PowertrainOutputEntity foundOutput = powertrainMapper.findOutput(powertrainId).get();
 
         //then
         softly.assertThat(foundOutput).as("유효한 데이터가 매핑되었는지 확인")
@@ -67,7 +67,7 @@ class PowertrainMapperTest {
         PowertrainTorqueEntity torque = PowertrainFixture.generatePowertrainTorqueEntity(powertrainId);
 
         //when
-        PowertrainTorqueEntity foundTorque = powertrainMapper.findTorque(powertrainId);
+        PowertrainTorqueEntity foundTorque = powertrainMapper.findTorque(powertrainId).get();
 
         //then
         softly.assertThat(foundTorque).as("유효한 데이터가 매핑되었는지 확인")
@@ -80,10 +80,10 @@ class PowertrainMapperTest {
         //given
         Long carId = 1L;
 
-        List<CarPowerTrainEntity> expectedCarPowerTrainEntities = PowertrainFixture.generateCarPowerTrainEntities(carId);
+        List<CarPowertrainEntity> expectedCarPowerTrainEntities = PowertrainFixture.generateCarPowertrainEntities(carId);
 
         //when
-        List<CarPowerTrainEntity> foundEntities = powertrainMapper.findPowertrainsByCarId(carId);
+        List<CarPowertrainEntity> foundEntities = powertrainMapper.findPowertrainsByCarId(carId);
 
         //then
         softly.assertThat(foundEntities).as("유효한 데이터만 매핑되었는지 확인")
@@ -100,7 +100,7 @@ class PowertrainMapperTest {
         Long id = 1L;
 
         //when
-        Boolean isExists = powertrainMapper.checkIfPowertrainExists(id);
+        boolean isExists = powertrainMapper.checkIfPowertrainExists(id);
 
         //then
         assertThat(isExists).isTrue();
@@ -113,7 +113,7 @@ class PowertrainMapperTest {
         Long id = 5L;
 
         //when
-        Boolean isExists = powertrainMapper.checkIfPowertrainExists(id);
+        boolean isExists = powertrainMapper.checkIfPowertrainExists(id);
 
         //then
         assertThat(isExists).isFalse();

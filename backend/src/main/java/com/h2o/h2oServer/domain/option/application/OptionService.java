@@ -19,9 +19,8 @@ public class OptionService {
     private final OptionMapper optionMapper;
 
     public OptionDetailsDto findDetailedOptionInformation(Long optionId, Long trimId) {
-        OptionDetailsEntity optionDetailsEntity = optionMapper.findOptionDetails(optionId, trimId);
-
-        validateExistenceOfOption(optionDetailsEntity);
+        OptionDetailsEntity optionDetailsEntity = optionMapper.findOptionDetails(optionId, trimId)
+                .orElseThrow(NoSuchOptionException::new);
 
         List<HashTagEntity> hashTagEntities = optionMapper.findHashTag(optionId);
 
@@ -29,18 +28,10 @@ public class OptionService {
     }
 
     public OptionDto findOptionInformation(Long optionId) {
-        OptionEntity optionEntity = optionMapper.findOption(optionId);
-
-        validateExistenceOfOption(optionEntity);
+        OptionEntity optionEntity = optionMapper.findOption(optionId).orElseThrow(NoSuchOptionException::new);
 
         List<HashTagEntity> hashTagEntities = optionMapper.findHashTag(optionId);
 
         return OptionDto.of(optionEntity, hashTagEntities);
-    }
-
-    private static void validateExistenceOfOption(Object optionDetailsEntity) {
-        if (optionDetailsEntity == null) {
-            throw new NoSuchOptionException();
-        }
     }
 }

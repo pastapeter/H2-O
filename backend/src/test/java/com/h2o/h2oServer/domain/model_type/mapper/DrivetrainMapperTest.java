@@ -70,7 +70,7 @@ class DrivetrainMapperTest {
         Long drivetrainId = 1L;
 
         //when
-        Boolean isExists = drivetrainMapper.checkIfDrivetrainExists(drivetrainId);
+        boolean isExists = drivetrainMapper.checkIfDrivetrainExists(drivetrainId);
 
         //then
         assertThat(isExists).isTrue();
@@ -83,7 +83,7 @@ class DrivetrainMapperTest {
         Long drivetrainId = 5L;
 
         //when
-        Boolean isExists = drivetrainMapper.checkIfDrivetrainExists(drivetrainId);
+        boolean isExists = drivetrainMapper.checkIfDrivetrainExists(drivetrainId);
 
         //then
         assertThat(isExists).isFalse();

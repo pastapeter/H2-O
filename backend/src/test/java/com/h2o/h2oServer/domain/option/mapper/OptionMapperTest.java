@@ -33,7 +33,7 @@ class OptionMapperTest {
         OptionDetailsEntity expectedOptionDetailsEntity = OptionFixture.generateOptionDetailsEntity();
 
         //when
-        OptionDetailsEntity actualOptionDetailsEntity = optionMapper.findOptionDetails(optionId, trimId);
+        OptionDetailsEntity actualOptionDetailsEntity = optionMapper.findOptionDetails(optionId, trimId).get();
 
         //then
         softly.assertThat(actualOptionDetailsEntity).as("유효한 데이터가 매핑되었는지 확인").isNotNull();
@@ -68,7 +68,7 @@ class OptionMapperTest {
             Long optionId = 1L;
 
             //when
-            Boolean isExists = optionMapper.checkIfOptionExists(optionId);
+            boolean isExists = optionMapper.checkIfOptionExists(optionId);
 
             //then
             assertThat(isExists).isTrue();
@@ -81,7 +81,7 @@ class OptionMapperTest {
             Long optionId = 5L;
 
             //when
-            Boolean isExists = optionMapper.checkIfOptionExists(optionId);
+            boolean isExists = optionMapper.checkIfOptionExists(optionId);
 
             //then
             assertThat(isExists).isFalse();

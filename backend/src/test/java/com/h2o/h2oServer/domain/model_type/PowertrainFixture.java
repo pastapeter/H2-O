@@ -1,6 +1,6 @@
 package com.h2o.h2oServer.domain.model_type;
 
-import com.h2o.h2oServer.domain.model_type.Entity.CarPowerTrainEntity;
+import com.h2o.h2oServer.domain.model_type.Entity.CarPowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainOutputEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainTorqueEntity;
@@ -21,8 +21,8 @@ public class PowertrainFixture {
         return generatePowertrainEntity(1L);
     }
 
-    public static List<CarPowerTrainEntity> generateCarPowerTrainEntities(Long carId) {
-        return List.of(CarPowerTrainEntity.builder()
+    public static List<CarPowertrainEntity> generateCarPowertrainEntities(Long carId) {
+        return List.of(CarPowertrainEntity.builder()
                         .carId(carId)
                         .name("powertrain1")
                         .description("description1")
@@ -31,7 +31,7 @@ public class PowertrainFixture {
                         .price(100000)
                         .choiceRatio(0.22f)
                         .build(),
-                CarPowerTrainEntity.builder()
+                CarPowertrainEntity.builder()
                         .carId(carId)
                         .name("powertrain2")
                         .description("description2")
@@ -42,8 +42,8 @@ public class PowertrainFixture {
                         .build());
     }
 
-    public static List<CarPowerTrainEntity> generateCarPowerTrainEntities() {
-        return generateCarPowerTrainEntities(1L);
+    public static List<CarPowertrainEntity> generateCarPowertrainEntities() {
+        return generateCarPowertrainEntities(1L);
     }
 
     public static PowertrainOutputEntity generatePowertrainOutputEntity(Long powertrainId) {

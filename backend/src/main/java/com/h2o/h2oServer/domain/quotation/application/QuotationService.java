@@ -134,7 +134,8 @@ public class QuotationService {
             if (quotationRequestDto.getOptionIds().contains(optionId)) {
                 continue;
             }
-            OptionDetailsEntity optionDetailsEntity = optionMapper.findOptionDetails(optionId, releaseEntity.getTrimId());
+            OptionDetailsEntity optionDetailsEntity = optionMapper.findOptionDetails(optionId, releaseEntity.getTrimId())
+                    .orElseThrow(NoSuchOptionException::new);
             optionSummaryDtos.add(OptionSummaryDto.of(optionId, optionDetailsEntity));
 
             if (optionSummaryDtos.size() > 1) {

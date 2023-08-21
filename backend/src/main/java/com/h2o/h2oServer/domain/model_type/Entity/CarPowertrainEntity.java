@@ -5,7 +5,7 @@ import lombok.*;
 @Getter
 @Builder
 @EqualsAndHashCode
-public class CarPowerTrainEntity {
+public class CarPowertrainEntity {
     private Long carId;
     private Long powertrainId;
     private String name;

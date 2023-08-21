@@ -1,6 +1,6 @@
 package com.h2o.h2oServer.domain.model_type.dto;
 
-import com.h2o.h2oServer.domain.model_type.Entity.CarPowerTrainEntity;
+import com.h2o.h2oServer.domain.model_type.Entity.CarPowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainOutputEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainTorqueEntity;
 import io.swagger.annotations.ApiModel;
@@ -31,7 +31,7 @@ public class CarPowertrainDto {
     }
 
     public static CarPowertrainDto of(
-            CarPowerTrainEntity carPowerTrainEntity,
+            CarPowertrainEntity carPowerTrainEntity,
             PowertrainOutputEntity powertrainOutputEntity,
             PowertrainTorqueEntity powertrainTorqueEntity
     ) {

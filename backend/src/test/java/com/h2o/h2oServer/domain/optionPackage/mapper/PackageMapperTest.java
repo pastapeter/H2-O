@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,7 +37,7 @@ class PackageMapperTest {
             PackageEntity expectedPackageEntity = PackageFixture.generatePackageEntity();
 
             //when
-            PackageEntity actualPackageEntity = packageMapper.findPackage(trimId, packageId);
+            PackageEntity actualPackageEntity = packageMapper.findPackage(trimId, packageId).get();
 
             //then
             softly.assertThat(actualPackageEntity).as("유효한 데이터가 매핑되었는지 확인").isNotNull();
@@ -52,10 +53,10 @@ class PackageMapperTest {
             Long trimId = 2L;
 
             //when
-            PackageEntity actualPackageEntity = packageMapper.findPackage(trimId, packageId);
+            Optional<PackageEntity> actualPackageEntity = packageMapper.findPackage(trimId, packageId);
 
             //then
-            assertThat(actualPackageEntity).isNull();
+            assertThat(actualPackageEntity).isEmpty();
         }
     }
 
@@ -108,7 +109,7 @@ class PackageMapperTest {
             Long id = 1L;
 
             //when
-            Boolean isExists = packageMapper.checkIfPackageExists(id);
+            boolean isExists = packageMapper.checkIfPackageExists(id);
 
             //then
             assertThat(isExists).isTrue();
@@ -122,7 +123,7 @@ class PackageMapperTest {
             Long id = 5L;
 
             //when
-            Boolean isExists = packageMapper.checkIfPackageExists(id);
+            boolean isExists = packageMapper.checkIfPackageExists(id);
 
             //then
             assertThat(isExists).isFalse();

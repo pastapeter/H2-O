@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -41,7 +42,7 @@ class TrimMapperTest {
             TrimEntity expectedTrimEntity = TrimFixture.generateTrimEntity();
 
             //when
-            TrimEntity actualTrimEntity = trimMapper.findById(targetId);
+            TrimEntity actualTrimEntity = trimMapper.findById(targetId).get();
 
             //then
             softly.assertThat(actualTrimEntity).as("데이터베이스에 존재하는 데이터인지 확인").isEqualTo(expectedTrimEntity);
@@ -55,10 +56,10 @@ class TrimMapperTest {
             Long targetId = Long.MAX_VALUE;
 
             //when
-            TrimEntity actualTrimEntity = trimMapper.findById(targetId);
+            Optional<TrimEntity> actualTrimEntity = trimMapper.findById(targetId);
 
             //then
-            assertThat(actualTrimEntity).isNull();
+            assertThat(actualTrimEntity).isEmpty();
         }
 
         @Test
@@ -202,7 +203,7 @@ class TrimMapperTest {
             Long id = 1L;
 
             //when
-            Boolean isExists = trimMapper.checkIfTrimExists(id);
+            boolean isExists = trimMapper.checkIfTrimExists(id);
 
             //then
             assertThat(isExists).isTrue();
@@ -216,7 +217,7 @@ class TrimMapperTest {
             Long id = 11L;
 
             //when
-            Boolean isExists = trimMapper.checkIfTrimExists(id);
+            boolean isExists = trimMapper.checkIfTrimExists(id);
 
             //then
             assertThat(isExists).isFalse();

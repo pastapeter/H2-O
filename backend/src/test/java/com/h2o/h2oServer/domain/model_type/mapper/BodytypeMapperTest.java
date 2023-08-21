@@ -1,6 +1,6 @@
 package com.h2o.h2oServer.domain.model_type.mapper;
 
-import com.h2o.h2oServer.domain.model_type.BodyTypeFixture;
+import com.h2o.h2oServer.domain.model_type.BodytypeFixture;
 import com.h2o.h2oServer.domain.model_type.Entity.BodytypeEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.CarBodytypeEntity;
 import org.assertj.core.api.SoftAssertions;
@@ -32,7 +32,7 @@ class BodytypeMapperTest {
     void findById() {
         //given
         Long bodytypeId = 1L;
-        BodytypeEntity bodytype = BodyTypeFixture.generateBodytypeEntity();
+        BodytypeEntity bodytype = BodytypeFixture.generateBodytypeEntity();
 
         //when
         BodytypeEntity foundBodytype = bodytypeMapper.findById(bodytypeId);
@@ -48,7 +48,7 @@ class BodytypeMapperTest {
     void findBodytypeByCarId() {
         //given
         Long carId = 1L;
-        List<CarBodytypeEntity> expectedCarBodytypeEntities = BodyTypeFixture.generateCarBodyTypeEntities();
+        List<CarBodytypeEntity> expectedCarBodytypeEntities = BodytypeFixture.generateCarBodytypeEntities();
 
         //when
         List<CarBodytypeEntity> foundEntities = bodytypeMapper.findBodytypesByCarId(carId);
@@ -70,7 +70,7 @@ class BodytypeMapperTest {
         Long id = 1L;
 
         //when
-        Boolean isExists = bodytypeMapper.checkIfBodytypeExists(id);
+        boolean isExists = bodytypeMapper.checkIfBodytypeExists(id);
 
         //then
         assertThat(isExists).isTrue();
@@ -83,7 +83,7 @@ class BodytypeMapperTest {
         Long id = 5L;
 
         //when
-        Boolean isExists = bodytypeMapper.checkIfBodytypeExists(id);
+        boolean isExists = bodytypeMapper.checkIfBodytypeExists(id);
 
         //then
         assertThat(isExists).isFalse();

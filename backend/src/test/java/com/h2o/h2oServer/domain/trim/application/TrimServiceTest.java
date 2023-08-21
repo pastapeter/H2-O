@@ -2,6 +2,8 @@ package com.h2o.h2oServer.domain.trim.application;
 
 import com.h2o.h2oServer.domain.car.mapper.CarMapper;
 import com.h2o.h2oServer.domain.model_type.application.ModelTypeService;
+import com.h2o.h2oServer.domain.trim.Exception.NoSuchExternalColorException;
+import com.h2o.h2oServer.domain.trim.Exception.NoSuchInternalColorException;
 import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
 import com.h2o.h2oServer.domain.trim.dto.ExternalColorDto;
 import com.h2o.h2oServer.domain.trim.dto.InternalColorDto;
@@ -18,6 +20,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.h2o.h2oServer.domain.option.OptionFixture.generateOptionStatisticsList;
 import static com.h2o.h2oServer.domain.trim.ExternalColorFixture.generateExternalColorEntityList;
@@ -111,7 +114,7 @@ class TrimServiceTest {
         }
 
         @Test
-        @DisplayName("존재하지 않는 externalColor에 대한 요청인 경우, NoSuchTrimException을 발생시킨다.")
+        @DisplayName("존재하지 않는 externalColor에 대한 요청인 경우, NoSuchExternalColorException을 발생시킨다.")
         void findExternalColorInformationNotExist() {
             //given
             Long trimId = 1L;
@@ -120,7 +123,7 @@ class TrimServiceTest {
             //when
             //then
             assertThatThrownBy(() -> trimService.findExternalColorInformation(trimId))
-                    .isInstanceOf(NoSuchTrimException.class);
+                    .isInstanceOf(NoSuchExternalColorException.class);
         }
 
         @Test
@@ -143,7 +146,7 @@ class TrimServiceTest {
         }
 
         @Test
-        @DisplayName("존재하지 않는 internalColor에 대한 요청인 경우, NoSuchTrimException을 발생시킨다.")
+        @DisplayName("존재하지 않는 internalColor에 대한 요청인 경우, NoSuchInternalException을 발생시킨다.")
         void findInternalColorInformationNotExist() {
             //given
             Long trimId = 1L;
@@ -152,7 +155,7 @@ class TrimServiceTest {
             //when
             //then
             assertThatThrownBy(() -> trimService.findInternalColorInformation(trimId))
-                    .isInstanceOf(NoSuchTrimException.class);
+                    .isInstanceOf(NoSuchInternalColorException.class);
         }
     }
 
@@ -172,7 +175,7 @@ class TrimServiceTest {
             long carId = 1L;
             int trimPrice = 50000;
 
-            when(trimMapper.findById(trimId)).thenReturn(generateTrimEntity(carId));
+            when(trimMapper.findById(trimId)).thenReturn(Optional.ofNullable(generateTrimEntity(carId)));
             when(trimMapper.findMaximumComponentPrice(trimId)).thenReturn(maxComponentPrice);
             when(carMapper.findMaximumModelTypePrice(carId)).thenReturn(maxModeltypePrice);
             when(carMapper.findMinimumModelTypePrice(carId)).thenReturn(minModeltypePrice);
@@ -193,7 +196,7 @@ class TrimServiceTest {
             //given
             Long trimId = 1L;
             Long carId = 1L;
-            when(trimMapper.findById(trimId)).thenReturn(generateTrimEntity(carId));
+            when(trimMapper.findById(trimId)).thenReturn(Optional.ofNullable(generateTrimEntity(carId)));
             when(trimMapper.findMaximumComponentPrice(trimId)).thenReturn(5000000);
             when(carMapper.findMaximumModelTypePrice(carId)).thenReturn(5000000);
             when(carMapper.findMinimumModelTypePrice(carId)).thenReturn(0);

@@ -9,6 +9,7 @@ import com.h2o.h2oServer.domain.model_type.mapper.DrivetrainMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.PowertrainMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.TechnicalSpecMapper;
 import com.h2o.h2oServer.domain.trim.dto.DefaultTrimCompositionDto;
+import com.h2o.h2oServer.global.util.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,9 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ModelTypeService {
-    private final PowertrainMapper powerTrainMapper;
-    private final BodytypeMapper bodyTypeMapper;
-    private final DrivetrainMapper driveTrainMapper;
+    private final PowertrainMapper powertrainMapper;
+    private final BodytypeMapper bodytypeMapper;
+    private final DrivetrainMapper drivetrainMapper;
     private final TechnicalSpecMapper technicalSpecMapper;
 
     public ModelTypeDto findModelTypes(Long carId) {
@@ -28,77 +29,58 @@ public class ModelTypeService {
     }
 
     private List<CarPowertrainDto> findPowertrains(Long carId) {
-        List<CarPowerTrainEntity> powertrainEntities = powerTrainMapper.findPowertrainsByCarId(carId);
+        List<CarPowertrainEntity> powertrains = powertrainMapper.findPowertrainsByCarId(carId);
 
-        validateExistenceOfCarId(powertrainEntities);
+        Validator.validateExistenceOfCarId(powertrains);
 
-        return powertrainEntities.stream()
+        return powertrains.stream()
                 .map(this::mapToPowerTrainDto)
                 .collect(Collectors.toList());
     }
 
-    private CarPowertrainDto mapToPowerTrainDto(CarPowerTrainEntity powertrain) {
+    private CarPowertrainDto mapToPowerTrainDto(CarPowertrainEntity powertrain) {
         Long powertrainId = powertrain.getPowertrainId();
 
-        PowertrainOutputEntity output = powerTrainMapper.findOutput(powertrainId);
+        PowertrainOutputEntity output = powertrainMapper.findOutput(powertrainId)
+                .orElseThrow(NoSuchCarException::new);
 
-        if (output == null) {
-            throw new NoSuchCarException();
-        }
-
-        PowertrainTorqueEntity torque = powerTrainMapper.findTorque(powertrainId);
-
-        if (torque == null) {
-            throw new NoSuchCarException();
-        }
+        PowertrainTorqueEntity torque = powertrainMapper.findTorque(powertrainId)
+                .orElseThrow(NoSuchCarException::new);
 
         return CarPowertrainDto.of(powertrain, output, torque);
     }
 
     private List<CarBodytypeDto> findBodytypes(Long carId) {
-        List<CarBodytypeEntity> bodytypes = bodyTypeMapper.findBodytypesByCarId(carId);
+        List<CarBodytypeEntity> bodytypes = bodytypeMapper.findBodytypesByCarId(carId);
 
-        validateExistenceOfCarId(bodytypes);
+        Validator.validateExistenceOfCarId(bodytypes);
 
         return CarBodytypeDto.listOf(bodytypes);
     }
 
     private List<CarDrivetrainDto> findDrivetrains(Long carId) {
-        List<CarDrivetrainEntity> drivetrains = driveTrainMapper.findDrivetrainsByCarId(carId);
+        List<CarDrivetrainEntity> drivetrains = drivetrainMapper.findDrivetrainsByCarId(carId);
 
-        validateExistenceOfCarId(drivetrains);
+        Validator.validateExistenceOfCarId(drivetrains);
 
         return CarDrivetrainDto.listOf(drivetrains);
     }
 
     public TechnicalSpecDto findTechnicalSpec(Long powertrainId, Long drivetrainId) {
-        TechnicalSpecEntity technicalSpecEntity = technicalSpecMapper.findSpec(powertrainId, drivetrainId);
+        TechnicalSpecEntity technicalSpec = technicalSpecMapper.findSpec(powertrainId, drivetrainId)
+                .orElseThrow(NoSuchTechnicalSpecException::new);
 
-        validateExistenceOfTechnicalSpec(technicalSpecEntity);
-
-        return TechnicalSpecDto.of(technicalSpecEntity);
+        return TechnicalSpecDto.of(technicalSpec);
     }
     public DefaultTrimCompositionDto findDefaultModelType(Long carId) {
-        CarDrivetrainDto carDrivetrainDto = CarDrivetrainDto.of(driveTrainMapper.findDefaultDrivetrainByCarId(carId));
-        CarBodytypeDto carBodytypeDto = CarBodytypeDto.of(bodyTypeMapper.findDefaultBodytypeByCarId(carId));
-        CarPowertrainDto carPowertrainDto = mapToPowerTrainDto(powerTrainMapper.findDefaultPowertrainByCarId(carId));
+        CarDrivetrainDto carDrivetrainDto = CarDrivetrainDto.of(drivetrainMapper.findDefaultDrivetrainByCarId(carId));
+        CarBodytypeDto carBodytypeDto = CarBodytypeDto.of(bodytypeMapper.findDefaultBodytypeByCarId(carId));
+        CarPowertrainDto carPowertrainDto = mapToPowerTrainDto(powertrainMapper.findDefaultPowertrainByCarId(carId));
 
         return DefaultTrimCompositionDto.builder()
                 .bodytype(carBodytypeDto)
                 .drivetrain(carDrivetrainDto)
                 .powertrain(carPowertrainDto)
                 .build();
-    }
-
-    private void validateExistenceOfCarId(List entities) {
-        if (entities == null || entities.isEmpty()) {
-            throw new NoSuchCarException();
-        }
-    }
-
-    private void validateExistenceOfTechnicalSpec(TechnicalSpecEntity technicalSpecEntity) {
-        if (technicalSpecEntity == null) {
-            throw new NoSuchTechnicalSpecException();
-        }
     }
 }

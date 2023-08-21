@@ -9,6 +9,8 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @MybatisTest
@@ -40,7 +42,7 @@ class TechnicalSpecMapperTest {
                 .build();
 
         //when
-        TechnicalSpecEntity actualEntity = technicalSpecMapper.findSpec(powertrainId, drivetrainId);
+        TechnicalSpecEntity actualEntity = technicalSpecMapper.findSpec(powertrainId, drivetrainId).get();
 
         //then
         softly.assertThat(actualEntity.getDisplacement()).as("배기량을 알 수 있다.")
@@ -58,14 +60,14 @@ class TechnicalSpecMapperTest {
         Long notExistDrivetrainId = 20L;
 
         //when
-        TechnicalSpecEntity actualEntity = technicalSpecMapper.findSpec(
+        Optional<TechnicalSpecEntity> actualEntity = technicalSpecMapper.findSpec(
                 notExistPowertrainId,
                 notExistDrivetrainId
         );
 
         //then
         softly.assertThat(actualEntity).as("null이 반환된다.")
-                .isNull();
+                .isEmpty();
     }
 
     @Test

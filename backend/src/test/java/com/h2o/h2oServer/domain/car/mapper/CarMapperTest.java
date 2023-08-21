@@ -52,7 +52,7 @@ class CarMapperTest {
         Long carId = 1L;
 
         //when
-        Boolean isExists = carMapper.checkIfCarExists(carId);
+        boolean isExists = carMapper.checkIfCarExists(carId);
 
         //then
         assertThat(isExists).isTrue();
@@ -66,7 +66,7 @@ class CarMapperTest {
         Long carId = 4L;
 
         //when
-        Boolean isExists = carMapper.checkIfCarExists(carId);
+        boolean isExists = carMapper.checkIfCarExists(carId);
 
         //then
         assertThat(isExists).isFalse();

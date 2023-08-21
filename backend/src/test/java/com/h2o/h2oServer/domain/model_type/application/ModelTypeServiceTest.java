@@ -20,32 +20,33 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.h2o.h2oServer.domain.model_type.DrivetrainFixture.*;
 import static com.h2o.h2oServer.domain.model_type.PowertrainFixture.*;
-import static com.h2o.h2oServer.domain.model_type.BodyTypeFixture.*;
+import static com.h2o.h2oServer.domain.model_type.BodytypeFixture.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 class ModelTypeServiceTest {
     private ModelTypeService modelTypeService;
-    private PowertrainMapper powerTrainMapper;
-    private BodytypeMapper bodyTypeMapper;
-    private DrivetrainMapper driveTrainMapper;
+    private PowertrainMapper powertrainMapper;
+    private BodytypeMapper bodytypeMapper;
+    private DrivetrainMapper drivetrainMapper;
     private TechnicalSpecMapper technicalSpecMapper;
     private SoftAssertions softly;
 
     @BeforeEach
     void setup() {
-        powerTrainMapper = Mockito.mock(PowertrainMapper.class);
-        bodyTypeMapper = Mockito.mock(BodytypeMapper.class);
-        driveTrainMapper = Mockito.mock(DrivetrainMapper.class);
+        powertrainMapper = Mockito.mock(PowertrainMapper.class);
+        bodytypeMapper = Mockito.mock(BodytypeMapper.class);
+        drivetrainMapper = Mockito.mock(DrivetrainMapper.class);
         technicalSpecMapper = Mockito.mock(TechnicalSpecMapper.class);
-        modelTypeService = new ModelTypeService(powerTrainMapper,
-                bodyTypeMapper,
-                driveTrainMapper,
+        modelTypeService = new ModelTypeService(powertrainMapper,
+                bodytypeMapper,
+                drivetrainMapper,
                 technicalSpecMapper);
         softly = new SoftAssertions();
     }
@@ -55,11 +56,11 @@ class ModelTypeServiceTest {
     void findModelTypes() {
         //given
         Long carId = 1L;
-        when(powerTrainMapper.findPowertrainsByCarId(carId)).thenReturn(generateCarPowerTrainEntities());
-        when(powerTrainMapper.findOutput(anyLong())).thenReturn(generatePowertrainOutputEntity());
-        when(powerTrainMapper.findTorque(anyLong())).thenReturn(generatePowertrainTorqueEntity());
-        when(bodyTypeMapper.findBodytypesByCarId(carId)).thenReturn(generateCarBodyTypeEntities());
-        when(driveTrainMapper.findDrivetrainsByCarId(carId)).thenReturn(generateCarDrivetrainEntities());
+        when(powertrainMapper.findPowertrainsByCarId(carId)).thenReturn(generateCarPowertrainEntities());
+        when(powertrainMapper.findOutput(anyLong())).thenReturn(Optional.ofNullable(generatePowertrainOutputEntity()));
+        when(powertrainMapper.findTorque(anyLong())).thenReturn(Optional.ofNullable(generatePowertrainTorqueEntity()));
+        when(bodytypeMapper.findBodytypesByCarId(carId)).thenReturn(generateCarBodytypeEntities());
+        when(drivetrainMapper.findDrivetrainsByCarId(carId)).thenReturn(generateCarDrivetrainEntities());
 
         //when
         ModelTypeDto modelTypeDto = modelTypeService.findModelTypes(carId);
@@ -79,18 +80,18 @@ class ModelTypeServiceTest {
     @ParameterizedTest
     @DisplayName("존재하지 않는 차량에 대해서 NoSuchCarException을 발생시킨다.")
     @MethodSource("provideInvalidResultsOfMappers")
-    void findModelTypesNotExists(List<CarPowerTrainEntity> carPowerTrainEntities,
+    void findModelTypesNotExists(List<CarPowertrainEntity> carPowertrainEntities,
                                  PowertrainOutputEntity powertrainOutputEntity,
                                  PowertrainTorqueEntity powertrainTorqueEntity,
                                  List<CarBodytypeEntity> carBodytypeEntities,
                                  List<CarDrivetrainEntity> carDrivetrainEntities) {
         //given
         Long carId = 1L;
-        when(powerTrainMapper.findPowertrainsByCarId(carId)).thenReturn(carPowerTrainEntities);
-        when(powerTrainMapper.findOutput(anyLong())).thenReturn(powertrainOutputEntity);
-        when(powerTrainMapper.findTorque(anyLong())).thenReturn(powertrainTorqueEntity);
-        when(bodyTypeMapper.findBodytypesByCarId(carId)).thenReturn(carBodytypeEntities);
-        when(driveTrainMapper.findDrivetrainsByCarId(carId)).thenReturn(carDrivetrainEntities);
+        when(powertrainMapper.findPowertrainsByCarId(carId)).thenReturn(carPowertrainEntities);
+        when(powertrainMapper.findOutput(anyLong())).thenReturn(Optional.ofNullable(powertrainOutputEntity));
+        when(powertrainMapper.findTorque(anyLong())).thenReturn(Optional.ofNullable(powertrainTorqueEntity));
+        when(bodytypeMapper.findBodytypesByCarId(carId)).thenReturn(carBodytypeEntities);
+        when(drivetrainMapper.findDrivetrainsByCarId(carId)).thenReturn(carDrivetrainEntities);
 
         //when
         //then
@@ -104,35 +105,35 @@ class ModelTypeServiceTest {
                         List.of(),
                         generatePowertrainOutputEntity(),
                         generatePowertrainTorqueEntity(),
-                        generateCarBodyTypeEntities(),
+                        generateCarBodytypeEntities(),
                         generateCarDrivetrainEntities()
                 ),
                 Arguments.of(
-                        generateCarPowerTrainEntities(),
+                        generateCarPowertrainEntities(),
                         null,
                         generatePowertrainTorqueEntity(),
-                        generateCarBodyTypeEntities(),
+                        generateCarBodytypeEntities(),
                         generateCarDrivetrainEntities()
                 ),
                 Arguments.of(
-                        generateCarPowerTrainEntities(),
+                        generateCarPowertrainEntities(),
                         generatePowertrainOutputEntity(),
                         null,
-                        generateCarBodyTypeEntities(),
+                        generateCarBodytypeEntities(),
                         generateCarDrivetrainEntities()
                 ),
                 Arguments.of(
-                        generateCarPowerTrainEntities(),
+                        generateCarPowertrainEntities(),
                         generatePowertrainOutputEntity(),
                         generatePowertrainTorqueEntity(),
                         List.of(),
                         generateCarDrivetrainEntities()
                 ),
                 Arguments.of(
-                        generateCarPowerTrainEntities(),
+                        generateCarPowertrainEntities(),
                         generatePowertrainOutputEntity(),
                         generatePowertrainTorqueEntity(),
-                        generateCarBodyTypeEntities(),
+                        generateCarBodytypeEntities(),
                         List.of()
                 )
         );

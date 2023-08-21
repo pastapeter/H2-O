@@ -20,9 +20,8 @@ public class PackageService {
     private final OptionService optionService;
 
     public PackageDetailsDto findPackageInformation(Long trimId, Long packageId) {
-        PackageEntity packageEntity = packageMapper.findPackage(trimId, packageId);
-
-        validateExistenceOfPackage(packageEntity);
+        PackageEntity packageEntity = packageMapper.findPackage(trimId, packageId)
+                .orElseThrow(NoSuchPackageException::new);
 
         List<HashTagEntity> hashTagEntities = packageMapper.findHashTag(packageId);
         List<Long> optionComponentsIds = packageMapper.findOptionComponent(packageId);
@@ -32,11 +31,5 @@ public class PackageService {
                 .collect(Collectors.toList());
 
         return PackageDetailsDto.of(packageEntity, hashTagEntities, optionDtos);
-    }
-
-    private static void validateExistenceOfPackage(PackageEntity packageEntity) {
-        if (packageEntity == null) {
-            throw new NoSuchPackageException();
-        }
     }
 }

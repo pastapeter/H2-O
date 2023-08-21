@@ -16,6 +16,7 @@ import com.h2o.h2oServer.domain.trim.entity.OptionStatisticsEntity;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
 import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
 import com.h2o.h2oServer.domain.trim.mapper.TrimMapper;
+import com.h2o.h2oServer.global.util.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class TrimService {
     public List<TrimDto> findTrimInformation(Long carId) {
         List<TrimEntity> trimEntities = trimMapper.findByCarId(carId);
 
-        validateExistence(trimEntities);
+        Validator.validateExistenceOfTrim(trimEntities);
 
         return trimEntities.stream()
                 .map(this::manipulateTrimEntity)
@@ -45,7 +46,7 @@ public class TrimService {
     public List<ExternalColorDto> findExternalColorInformation(Long trimId) {
         List<ExternalColorEntity> externalColorEntities = trimMapper.findExternalColor(trimId);
 
-        validateExistence(externalColorEntities);
+        Validator.validateExistenceOfExternalColor(externalColorEntities);
 
         return externalColorEntities.stream()
                 .map(this::manipulateExternalColorEntity)
@@ -70,7 +71,7 @@ public class TrimService {
     public List<InternalColorDto> findInternalColorInformation(Long trimId) {
         List<InternalColorEntity> internalColorEntities = trimMapper.findInternalColor(trimId);
 
-        validateExistence(internalColorEntities);
+        Validator.validateExistenceOfInternalColor(internalColorEntities);
 
         return internalColorEntities.stream()
                 .map(InternalColorDto::of)
@@ -78,9 +79,7 @@ public class TrimService {
     }
 
     public PriceRangeDto findPriceRange(Long trimId) {
-        TrimEntity trimEntity = trimMapper.findById(trimId);
-
-        validateExistence(trimEntity);
+        TrimEntity trimEntity = trimMapper.findById(trimId).orElseThrow(NoSuchTrimException::new);
 
         Long carId = trimEntity.getCarId();
         int trimPrice = trimEntity.getPrice();
@@ -94,9 +93,8 @@ public class TrimService {
     }
 
     public DefaultTrimCompositionDto findDefaultComposition(Long trimId) {
-        TrimEntity trimEntity = trimMapper.findById(trimId);
+        TrimEntity trimEntity = trimMapper.findById(trimId).orElseThrow(NoSuchTrimException::new);
 
-        validateExistence(trimEntity);
         Long carId = trimEntity.getCarId();
         DefaultTrimCompositionDto defaultTrimCompositionDto = modelTypeService.findDefaultModelType(carId);
 
@@ -108,18 +106,6 @@ public class TrimService {
         defaultTrimCompositionDto.setExternalColor(ExternalColorDto.of(defaultExternalColor, imageEntities));
 
         return defaultTrimCompositionDto;
-    }
-
-    private static void validateExistence(TrimEntity trimEntity) {
-        if (trimEntity == null) {
-            throw new NoSuchTrimException();
-        }
-    }
-
-    private static void validateExistence(List entities) {
-        if (entities == null || entities.isEmpty()) {
-            throw new NoSuchTrimException();
-        }
     }
 
     public PriceDistributionDto findAndScalePriceDistribution(Long trimId) {

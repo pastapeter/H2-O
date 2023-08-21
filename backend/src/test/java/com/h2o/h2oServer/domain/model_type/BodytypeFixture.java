@@ -5,7 +5,7 @@ import com.h2o.h2oServer.domain.model_type.Entity.CarBodytypeEntity;
 
 import java.util.List;
 
-public class BodyTypeFixture {
+public class BodytypeFixture {
 
     public static BodytypeEntity generateBodytypeEntity() {
         return BodytypeEntity.builder()
@@ -16,7 +16,7 @@ public class BodyTypeFixture {
                 .build();
     }
 
-    public static CarBodytypeEntity generateCarBodyTypeEntity() {
+    public static CarBodytypeEntity generateCarBodytypeEntity() {
         return CarBodytypeEntity.builder()
                 .carId(1L)
                 .name("name1")
@@ -28,7 +28,7 @@ public class BodyTypeFixture {
                 .build();
     }
 
-    public static List<CarBodytypeEntity> generateCarBodyTypeEntities() {
+    public static List<CarBodytypeEntity> generateCarBodytypeEntities() {
         return List.of(CarBodytypeEntity.builder()
                         .carId(1L)
                         .name("name1")

@@ -31,10 +31,6 @@
         where trim_id = #{id}
     </select>
 
-    <select id="showTables" resultType="string">
-        SHOW TABLES
-    </select>
-
     <select id="findAll" resultType="TrimEntity">
         select id, name, description, price, car_id
         from trims

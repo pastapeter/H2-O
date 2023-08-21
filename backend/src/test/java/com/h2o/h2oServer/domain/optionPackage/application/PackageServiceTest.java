@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.h2o.h2oServer.domain.option.HashTagFixture.generateHashTagEntities;
 import static org.mockito.Mockito.when;
@@ -40,7 +41,7 @@ class PackageServiceTest {
         Long trimId = 1L;
         Long packageId = 1L;
         List<OptionDto> expectedOptionDtos = generateOptionDtos();
-        when(packageMapper.findPackage(trimId, packageId)).thenReturn(PackageFixture.generatePackageEntity());
+        when(packageMapper.findPackage(trimId, packageId)).thenReturn(Optional.ofNullable(PackageFixture.generatePackageEntity()));
         when(packageMapper.findHashTag(packageId)).thenReturn(generateHashTagEntities());
         when(packageMapper.findOptionComponent(packageId)).thenReturn(List.of(1L, 2L));
         when(optionService.findOptionInformation(1L)).thenReturn(expectedOptionDtos.get(0));

@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.Optional;
+
 import static com.h2o.h2oServer.domain.option.HashTagFixture.generateHashTagEntities;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
@@ -39,18 +41,25 @@ class OptionServiceTest {
             //given
             long optionId = 1L;
             long trimId = 1L;
-            when(optionMapper.findOptionDetails(optionId, trimId)).thenReturn(OptionFixture.generateOptionDetailsEntity());
-            when(optionMapper.findHashTag(optionId)).thenReturn(generateHashTagEntities());
+            when(optionMapper.findOptionDetails(optionId, trimId))
+                    .thenReturn(Optional.ofNullable(OptionFixture.generateOptionDetailsEntity()));
+            when(optionMapper.findHashTag(optionId))
+                    .thenReturn(generateHashTagEntities());
 
             //when
             OptionDetailsDto actualOptionDetailsDto = optionService.findDetailedOptionInformation(optionId, trimId);
 
             //then
-            softly.assertThat(actualOptionDetailsDto).as("null이 아니다.").isNotNull();
-            softly.assertThat(actualOptionDetailsDto.getHashTags()).as("세 개의 hashtag 정보를 포함한다.").hasSize(3);
-            softly.assertThat(actualOptionDetailsDto.getName()).as("name = Option 1이다.").isEqualTo("Option 1");
-            softly.assertThat(actualOptionDetailsDto.getCategory()).as("category = 성능/파워트레인").isEqualTo(OptionCategory.POWERTRAIN_PERFORMANCE.getLabel());
-            softly.assertThat(actualOptionDetailsDto.getHmgData()).as("유효한 hmgData를 포함한다.").isEqualTo(OptionStatisticsDto.of(0.3f, 13));
+            softly.assertThat(actualOptionDetailsDto).as("null이 아니다.")
+                    .isNotNull();
+            softly.assertThat(actualOptionDetailsDto.getHashTags()).as("세 개의 hashtag 정보를 포함한다.")
+                    .hasSize(3);
+            softly.assertThat(actualOptionDetailsDto.getName()).as("name = Option 1이다.")
+                    .isEqualTo("Option 1");
+            softly.assertThat(actualOptionDetailsDto.getCategory()).as("category = 성능/파워트레인")
+                    .isEqualTo(OptionCategory.POWERTRAIN_PERFORMANCE.getLabel());
+            softly.assertThat(actualOptionDetailsDto.getHmgData()).as("유효한 hmgData를 포함한다.")
+                    .isEqualTo(OptionStatisticsDto.of(0.3f, 13));
             softly.assertAll();
         }
         @Test
@@ -59,7 +68,7 @@ class OptionServiceTest {
             //given
             long optionId = 1L;
             long trimId = 1L;
-            when(optionMapper.findOptionDetails(optionId, trimId)).thenReturn(null);
+            when(optionMapper.findOptionDetails(optionId, trimId)).thenReturn(Optional.empty());
 
             //when
             //then
@@ -75,17 +84,21 @@ class OptionServiceTest {
         void findOptionInformation() {
             //given
             long optionId = 1L;
-            when(optionMapper.findOption(optionId)).thenReturn(OptionFixture.generateOptionEntity());
+            when(optionMapper.findOption(optionId)).thenReturn(Optional.ofNullable(OptionFixture.generateOptionEntity()));
             when(optionMapper.findHashTag(optionId)).thenReturn(generateHashTagEntities());
 
             //when
             OptionDto actualOptionDto = optionService.findOptionInformation(optionId);
 
             //then
-            softly.assertThat(actualOptionDto).as("null이 아니다.").isNotNull();
-            softly.assertThat(actualOptionDto.getHashTags()).as("세 개의 hashtag 정보를 포함한다.").hasSize(3);
-            softly.assertThat(actualOptionDto.getName()).as("name = Option 1이다.").isEqualTo("Option 1");
-            softly.assertThat(actualOptionDto.getCategory()).as("category = 성능/파워트레인").isEqualTo(OptionCategory.POWERTRAIN_PERFORMANCE.getLabel());
+            softly.assertThat(actualOptionDto).as("null이 아니다.")
+                    .isNotNull();
+            softly.assertThat(actualOptionDto.getHashTags()).as("세 개의 hashtag 정보를 포함한다.")
+                    .hasSize(3);
+            softly.assertThat(actualOptionDto.getName()).as("name = Option 1이다.")
+                    .isEqualTo("Option 1");
+            softly.assertThat(actualOptionDto.getCategory()).as("category = 성능/파워트레인")
+                    .isEqualTo(OptionCategory.POWERTRAIN_PERFORMANCE.getLabel());
             softly.assertAll();
         }
 
@@ -94,7 +107,7 @@ class OptionServiceTest {
         void findOptionInformationNotExists() {
             //given
             long optionId = 1L;
-            when(optionMapper.findOption(optionId)).thenReturn(null);
+            when(optionMapper.findOption(optionId)).thenReturn(Optional.empty());
 
             //when
             //then

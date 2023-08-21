@@ -7,6 +7,7 @@ import com.h2o.h2oServer.domain.options.entity.TrimExtraOptionEntity;
 import com.h2o.h2oServer.domain.options.enums.OptionType;
 import com.h2o.h2oServer.domain.options.mapper.OptionsMapper;
 import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
+import com.h2o.h2oServer.global.util.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,37 +23,37 @@ public class OptionsService {
 
     public List<TrimExtraOptionDto> findTrimPackages(Long trimId) {
         List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimPackages(trimId);
-        validateExistenceOfOptions(extraOptionEntities);
+        Validator.validateExistenceOfOptions(extraOptionEntities);
         return addPackages(extraOptionEntities);
     }
 
     public List<TrimExtraOptionDto> findTrimPackages(Long trimId, PageRangeDto pageRangeDto) {
         List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimPackagesWithRange(trimId, pageRangeDto);
-        validateExistenceOfOptions(extraOptionEntities);
+        Validator.validateExistenceOfOptions(extraOptionEntities);
         return addPackages(extraOptionEntities);
     }
 
     public List<TrimExtraOptionDto> findTrimExtraOptions(Long trimId) {
         List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimExtraOptions(trimId);
-        validateExistenceOfOptions(extraOptionEntities);
+        Validator.validateExistenceOfOptions(extraOptionEntities);
         return addExtraOptions(extraOptionEntities);
     }
 
     public List<TrimExtraOptionDto> findTrimExtraOptions(Long trimId, PageRangeDto pageRangeDto) {
         List<TrimExtraOptionEntity> extraOptionEntities = optionsMapper.findTrimExtraOptionsWithRange(trimId, pageRangeDto);
-        validateExistenceOfOptions(extraOptionEntities);
+        Validator.validateExistenceOfOptions(extraOptionEntities);
         return addExtraOptions(extraOptionEntities);
     }
 
     public List<TrimDefaultOptionDto> findTrimDefaultOptions(Long trimId) {
         List<TrimDefaultOptionEntity> defaultOptionEntities = optionsMapper.findTrimDefaultOptions(trimId);
-        validateExistenceOfOptions(defaultOptionEntities);
+        Validator.validateExistenceOfOptions(defaultOptionEntities);
         return addDefaultOptions(defaultOptionEntities);
     }
 
     public List<TrimDefaultOptionDto> findTrimDefaultOptions(Long trimId, PageRangeDto pageRangeDto) {
         List<TrimDefaultOptionEntity> defaultOptionEntities = optionsMapper.findTrimDefaultOptionsWithRange(trimId, pageRangeDto);
-        validateExistenceOfOptions(defaultOptionEntities);
+        Validator.validateExistenceOfOptions(defaultOptionEntities);
         return addDefaultOptions(defaultOptionEntities);
     }
 
@@ -115,11 +116,5 @@ public class OptionsService {
         }
 
         return trimDefaultOptionDtos;
-    }
-
-    private static void validateExistenceOfOptions(List entities) {
-        if (entities == null || entities.isEmpty()) {
-            throw new NoSuchTrimException();
-        }
     }
 }
