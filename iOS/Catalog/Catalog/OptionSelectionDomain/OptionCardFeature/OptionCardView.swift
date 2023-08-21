@@ -15,6 +15,7 @@ struct OptionCardView: IntentBindingType {
   @SwiftUI.State var isModalPresenting = false
   @SwiftUI.State var isSelected: Bool = false
 
+
 }
 
 extension OptionCardView: View {
@@ -54,7 +55,9 @@ extension OptionCardView: View {
       .optionCardBackground(isSelected: isSelected)
       .cornerRadius(2)
       .CLDialogFullScreenCover(show: $isModalPresenting) {
-        Rectangle().fill(.red)
+        ModalPopUpComponent(state: OptionModalContent(id: 0, price: CLNumber(400000), title: "2열 통풍시트"), submitAction: { }) {
+          OptionModalTabContentView()
+        }
       }
     }
     .buttonStyle(EmptyButtonStyle())
