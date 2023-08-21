@@ -58,7 +58,7 @@ function ResultPage() {
         </ContentsWrapper>
       </SummaryContainer>
       <MainContainer>
-        <ContentsWrapper flexDirection='column'>
+        <ContentsWrapper flexDirection='column' paddingBottom={200}>
           <DetailEstimate
             powerTrain={powerTrain}
             bodyType={bodyType}
@@ -93,8 +93,8 @@ export default _ResultPage;
 const ContentsWrapper = styled(Flex)`
   position: relative;
   width: 100%;
+  min-height: inherit;
   max-width: 1024px;
-  height: 100%;
   margin: 0 auto;
 `;
 
@@ -106,7 +106,6 @@ const SummaryContainer = styled.div`
 
 const MainContainer = styled.div`
   width: 100%;
-  height: 100%;
   min-height: 1305px;
   background-color: white;
 `;

@@ -17,6 +17,11 @@ export interface TrimPriceRangeResponse {
   minPrice: number;
 }
 
+export interface TrimPriceDistributionResponse {
+  unit: number;
+  quantityPerUnit: number[];
+}
+
 export interface MaxOutput {
   output: number;
   minRpm: number;

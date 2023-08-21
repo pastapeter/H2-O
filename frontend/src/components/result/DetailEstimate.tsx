@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { SimilarEstimationPopup } from '../similarEstimation';
-import Accordian from './EstimateAccordian';
 import PriceGraph from './PriceGraph';
 import { getPriceSum } from './utils';
 import { Divider, Flex, HMGTag, Typography } from '@/components/common';
+import { EstimateAccordian as Accordian } from '@/components/result';
+import { SimilarEstimationPopup } from '@/components/similarEstimation';
 import { useToggle } from '@/hooks';
 import type {
   ExteriorColorInfo,
@@ -100,12 +100,7 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
               <br />
               <Highlight>견적 가격의 분포</Highlight>입니다.
             </Typography>
-            <Divider
-              css={css`
-                background-color: ${colors.gray100};
-              `}
-              length='100%'
-            />
+            <Divider color='gray100' length='100%' />
             <PriceGraph />
           </GraphContainer>
           <GraphContainer>

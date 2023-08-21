@@ -1,4 +1,4 @@
-import type { TrimPriceRangeResponse, TrimResponse } from '@/types/interface';
+import type { TrimPriceDistributionResponse, TrimPriceRangeResponse, TrimResponse } from '@/types/interface';
 import { api } from '@/utils/fetch';
 
 export const getTrims = async (carId: number) => {
@@ -9,6 +9,12 @@ export const getTrims = async (carId: number) => {
 
 export const getTrimPriceRange = async (trimId: number) => {
   const response = await api.get<TrimPriceRangeResponse>(`/trim/${trimId}/price-range`);
+
+  return response;
+};
+
+export const getTrimPriceDistribution = async (trimId: number) => {
+  const response = await api.get<TrimPriceDistributionResponse>(`/trim/${trimId}/price-distribution`);
 
   return response;
 };
