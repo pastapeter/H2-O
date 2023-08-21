@@ -15,6 +15,8 @@ protocol OptionCardScrollIntentType: AnyObject {
   func send(action: OptionCardScrollModel.ViewAction)
 
   func send(action: OptionCardScrollModel.ViewAction, viewEffect: (() -> Void)?)
+  
+  var repository: OptionSelectionRepositoryProtocol { get }
 
 }
 
@@ -32,7 +34,7 @@ final class OptionCardScrollIntent: ObservableObject {
   @Published var state: State
 
   var cancellable: Set<AnyCancellable> = []
-  private var repository: OptionSelectionRepositoryProtocol
+  private(set) var repository: OptionSelectionRepositoryProtocol
   private var totalCardState: [OptionCardModel.State] = []
   private weak var parent: OptionSelectionCollectable?
 
@@ -93,7 +95,11 @@ extension OptionCardScrollIntent {
                                                                          name: $0.name,
                                                                          imageURL: $0.image,
                                                                          containsHmgData: $0.containsHmgData,
-                                                                         category: $0.category) }
+                                                                         category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock()) }
+        
+        
+        
+        
         self.totalCardState = defaultCellInfos
         send(action: .cardStates(states: totalCardState))
       } catch (let e) {
@@ -109,7 +115,7 @@ extension OptionCardScrollIntent {
     Task {
       do {
         let states: [ExtraOption] = try await repository.fetchAllOptions()
-        let extraCellInfos = states.map { return OptionCardModel.State(id: $0.id,
+        let extraCellInfos = states.map { return OptionCardModel.State(id: $0.id, isPackage: $0.isPackage,
                                 hashTags: $0.hashTags,
                                 name: $0.name,
                                 choiceRatio: $0.choiceRatio,
@@ -135,10 +141,9 @@ extension OptionCardScrollIntent {
           let states : [ExtraOption] = try await repository.fetchOption(from: from, to: to)
           
           let carStateArray = states.map {
-            return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags, name: $0.name, choiceRatio: $0.choiceRatio, imageURL: $0.image, price: $0.price, containsHmgData: $0.containsHmgData, category: $0.category)
+            return OptionCardModel.State(id: $0.id, isPackage: $0.isPackage, hashTags: $0.hashTags, name: $0.name, choiceRatio: $0.choiceRatio, imageURL: $0.image, price: $0.price, containsHmgData: $0.containsHmgData, category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock())
           }
           
-
           send(action: .cardStates(states: carStateArray))
         
         } else {
