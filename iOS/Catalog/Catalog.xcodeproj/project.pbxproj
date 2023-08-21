@@ -148,6 +148,9 @@
 		B1CB88B12A929A2400E12981 /* OptionModalHMGDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B02A929A2400E12981 /* OptionModalHMGDataView.swift */; };
 		B1CB88B32A929E5900E12981 /* OptionModalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B22A929E5900E12981 /* OptionModalContent.swift */; };
 		B1CB88B52A92F1E800E12981 /* OptionModalTabContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B42A92F1E800E12981 /* OptionModalTabContentView.swift */; };
+		B1CB88B82A938A0E00E12981 /* TransparentZStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88B72A938A0E00E12981 /* TransparentZStack.swift */; };
+		B1CB88BB2A93D87C00E12981 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88BA2A93D87C00E12981 /* ExpandableText.swift */; };
+		B1CB88BD2A93D90100E12981 /* ExpandableTextHelperFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88BC2A93D90100E12981 /* ExpandableTextHelperFunction.swift */; };
 		B1E5122A2A8CF2DC005B195D /* OptionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512292A8CF2DC005B195D /* OptionCategory.swift */; };
 		B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */; };
 		B1E512322A8D2E31005B195D /* OptionSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */; };
@@ -410,6 +413,9 @@
 		B1CB88B02A929A2400E12981 /* OptionModalHMGDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModalHMGDataView.swift; sourceTree = "<group>"; };
 		B1CB88B22A929E5900E12981 /* OptionModalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModalContent.swift; sourceTree = "<group>"; };
 		B1CB88B42A92F1E800E12981 /* OptionModalTabContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModalTabContentView.swift; sourceTree = "<group>"; };
+		B1CB88B72A938A0E00E12981 /* TransparentZStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentZStack.swift; sourceTree = "<group>"; };
+		B1CB88BA2A93D87C00E12981 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
+		B1CB88BC2A93D90100E12981 /* ExpandableTextHelperFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextHelperFunction.swift; sourceTree = "<group>"; };
 		B1E512292A8CF2DC005B195D /* OptionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCategory.swift; sourceTree = "<group>"; };
 		B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionView.swift; sourceTree = "<group>"; };
 		B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionModel.swift; sourceTree = "<group>"; };
@@ -1142,6 +1148,7 @@
 			children = (
 				B156463A2A8653D000FAD379 /* CarouselModalPopUpComponent.swift */,
 				B198242B2A91388D00795B44 /* ModalPopUpComponent.swift */,
+				B1CB88B72A938A0E00E12981 /* TransparentZStack.swift */,
 			);
 			path = ModalPopUpComponent;
 			sourceTree = "<group>";
@@ -1186,6 +1193,15 @@
 				B1CB88B22A929E5900E12981 /* OptionModalContent.swift */,
 			);
 			path = OptionModalContentFeature;
+			sourceTree = "<group>";
+		};
+		B1CB88B92A93D86800E12981 /* ExpandableText */ = {
+			isa = PBXGroup;
+			children = (
+				B1CB88BA2A93D87C00E12981 /* ExpandableText.swift */,
+				B1CB88BC2A93D90100E12981 /* ExpandableTextHelperFunction.swift */,
+			);
+			path = ExpandableText;
 			sourceTree = "<group>";
 		};
 		B1EEBA872A869E8E008FC6A4 /* HMGData */ = {
@@ -1376,6 +1392,7 @@
 		ED779C3E2A7A799A007F67B7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B1CB88B92A93D86800E12981 /* ExpandableText */,
 				B19824382A91FD7A00795B44 /* ModalPopUpComponent */,
 				EDD3F0BA2A8E6A59006CE38A /* Text */,
 				B149BD212A8CE5A4009A3C6B /* FilterButton */,
@@ -1716,6 +1733,7 @@
 				B1F988E72A8B3E2E00C7B65F /* InteriorColorState.swift in Sources */,
 				ED1C70652A89C43F0049D275 /* TrimSelectionIntent.swift in Sources */,
 				B16DFF3A2A8958CF00642730 /* MaxOutputFromEngine.swift in Sources */,
+				B1CB88B82A938A0E00E12981 /* TransparentZStack.swift in Sources */,
 				B1EEBA8B2A86A3AE008FC6A4 /* BarHorizontalView.swift in Sources */,
 				B1604D1A2A82588F00C7B07D /* URLSessionProtocol.swift in Sources */,
 				B15B4F4B2A8E9ECC00101DCB /* OptionSelectRepositoryProtocol.swift in Sources */,
@@ -1881,6 +1899,7 @@
 				B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */,
 				B16DFF412A895B8200642730 /* ResultOfCalculationOfFuelAndDisplacement.swift in Sources */,
 				B1604D4A2A83BECC00C7B07D /* MockAPIManager.swift in Sources */,
+				B1CB88BD2A93D90100E12981 /* ExpandableTextHelperFunction.swift in Sources */,
 				B149BD1E2A8CC8BD009A3C6B /* HMGButton.swift in Sources */,
 				B19824202A90AF2800795B44 /* DriveTrainDTO.swift in Sources */,
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
@@ -1913,6 +1932,7 @@
 				B1604D232A82609600C7B07D /* CLNetworkError.swift in Sources */,
 				ED64109C2A7FE1870033AEBC /* CLBudgetRangeIntent.swift in Sources */,
 				ED6410922A7FC4FF0033AEBC /* CLButton.swift in Sources */,
+				B1CB88BB2A93D87C00E12981 /* ExpandableText.swift in Sources */,
 				ED6410942A7FC4FF0033AEBC /* CLDualChoiceButton.swift in Sources */,
 				B15B4F4F2A8EA5C100101DCB /* OptionSelectionRepository.swift in Sources */,
 				B1E512382A8D490B005B195D /* OptionCardScrollIntent.swift in Sources */,
