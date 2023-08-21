@@ -22,7 +22,7 @@ struct CLNavigationMenuView: View {
 
   var body: some View {
     if scrollable {
-      ScrollView(.horizontal) {
+      ScrollView(.horizontal, showsIndicators: false) {
         navigationTabbarView()
       }
     } else {
