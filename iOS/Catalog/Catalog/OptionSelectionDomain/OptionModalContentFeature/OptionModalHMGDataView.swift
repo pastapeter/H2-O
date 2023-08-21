@@ -8,12 +8,24 @@
 import SwiftUI
 
 struct OptionModalHMGDataView: View {
+  
+  var state: DetailOptionInfo.HMGData
+  
     var body: some View {
       HStack {
-        makeSubContentView(title: "구매자의 절반 이상이\n선택했어요.", data: "2,384개", caption: "최근 90일 동안")
+        if let overhalf = state.isOverHalf, let choiceCount = state.choiceCount {
+          makeSubContentView(title: "구매자의 \(overhalf ? "절반 이상이" : "절반 이하가")\n선택했어요.", data: "\(choiceCount.description)개", caption: "최근 90일 동안")
+        } else {
+          Rectangle().fill(.clear)
+        }
         Spacer().frame(width: CGFloat(27).scaledWidth)
-        makeSubContentView(title: "주행 중 실제로\n이만큼 사용해요.", data: "73번", caption: "1.5만km 당")
+        if let usecount = state.useCount {
+          makeSubContentView(title: "주행 중 실제로\n이만큼 사용해요.", data: "\(usecount.description)번", caption: "1.5만km 당")
+        } else {
+          Rectangle().fill(.clear)
+        }
       }
+      .padding(.bottom, 14)
     }
 }
 
@@ -34,10 +46,4 @@ extension OptionModalHMGDataView {
         .foregroundColor(.gray600)
     }
   }
-}
-
-struct OptionModalHMGDataView_Previews: PreviewProvider {
-    static var previews: some View {
-        OptionModalHMGDataView()
-    }
 }
