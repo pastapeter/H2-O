@@ -39,7 +39,7 @@ public class ControllerAdvice {
 
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ErrorResponse> defaultHandler(final Exception e,
-                                                                   final HttpServletRequest request) {
+                                                        final HttpServletRequest request) {
         ErrorReport errorReport = new ErrorReport(request, e);
         logger.error(errorReport.log(), e);
 

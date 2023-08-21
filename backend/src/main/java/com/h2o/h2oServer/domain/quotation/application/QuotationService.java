@@ -245,6 +245,7 @@ public class QuotationService {
                     throw new NoSuchPackageException();
                 });
     }
+
     private void validateOptionExistence(QuotationRequestDto quotationRequestDto) {
         quotationRequestDto.getOptionIds().stream()
                 .filter(id -> !optionMapper.checkIfOptionExists(id))

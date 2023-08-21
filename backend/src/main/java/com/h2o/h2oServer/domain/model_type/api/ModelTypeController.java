@@ -23,7 +23,7 @@ public class ModelTypeController {
     @ApiOperation(value = "차량 모델 타입 정보 조회", notes = "car_id를 기준으로 가능한 모델타입 정보를 반환하는 API")
     @ApiImplicitParam(name = "carId", value = "차량 인덱스 번호")
     @GetMapping("/car/{carId}/model-type")
-    public ModelTypeDto modelType(@PathVariable Long carId) {
+    public ModelTypeDto getModelType(@PathVariable Long carId) {
         return modelTypeService.findModelTypes(carId);
     }
 
@@ -33,7 +33,7 @@ public class ModelTypeController {
             @ApiImplicitParam(name = "drivetrainId", value = "구동방식 인덱스 번호")
     })
     @GetMapping("/technical-spec")
-    public TechnicalSpecDto technicalSpec(@RequestParam Long powertrainId, @RequestParam Long drivetrainId) {
+    public TechnicalSpecDto getTechnicalSpec(@RequestParam Long powertrainId, @RequestParam Long drivetrainId) {
         return modelTypeService.findTechnicalSpec(powertrainId, drivetrainId);
     }
 }

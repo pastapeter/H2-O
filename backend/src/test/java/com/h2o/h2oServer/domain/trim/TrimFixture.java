@@ -1,5 +1,7 @@
 package com.h2o.h2oServer.domain.trim;
 
+import com.h2o.h2oServer.domain.option.OptionFixture;
+import com.h2o.h2oServer.domain.trim.dto.TrimDto;
 import com.h2o.h2oServer.domain.trim.entity.TrimEntity;
 
 import java.util.List;
@@ -42,5 +44,11 @@ public class TrimFixture {
                 .price(50000)
                 .carId(1L)
                 .build();
+    }
+
+    public static TrimDto generateTrimDto() {
+        return TrimDto.of(generateTrimEntity(),
+                ImageFixture.generateImageEntityList(),
+                OptionFixture.generateOptionStatisticsList());
     }
 }

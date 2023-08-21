@@ -2,6 +2,7 @@ package com.h2o.h2oServer.domain.model_type;
 
 import com.h2o.h2oServer.domain.model_type.Entity.CarDrivetrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.DrivetrainEntity;
+import com.h2o.h2oServer.domain.model_type.dto.CarDrivetrainDto;
 
 import java.util.List;
 
@@ -44,4 +45,9 @@ public class DrivetrainFixture {
     public static List<CarDrivetrainEntity> generateCarDrivetrainEntities() {
         return generateCarDrivetrainEntities(1L);
     }
+
+    public static CarDrivetrainDto generateCarDrivetrainDto() {
+        return CarDrivetrainDto.of(generateCarDrivetrainEntities().get(0));
+    }
+
 }

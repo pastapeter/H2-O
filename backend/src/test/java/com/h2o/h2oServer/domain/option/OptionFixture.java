@@ -1,5 +1,6 @@
 package com.h2o.h2oServer.domain.option;
 
+import com.h2o.h2oServer.domain.option.dto.OptionDto;
 import com.h2o.h2oServer.domain.option.entity.OptionDetailsEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionEntity;
 import com.h2o.h2oServer.domain.option.entity.enums.OptionCategory;
@@ -44,5 +45,13 @@ public class OptionFixture {
                 .useCount(12.5f)
                 .category(OptionCategory.POWERTRAIN_PERFORMANCE)
                 .build();
+    }
+
+    public static List<OptionDto> generateOptionDtoList() {
+        OptionEntity optionEntity = generateOptionEntity();
+        return List.of(
+                OptionDto.of(optionEntity, HashTagFixture.generateHashTagEntities()),
+                OptionDto.of(optionEntity, HashTagFixture.generateHashTagEntities())
+        );
     }
 }

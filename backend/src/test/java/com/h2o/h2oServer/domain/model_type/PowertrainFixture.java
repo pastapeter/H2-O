@@ -4,10 +4,16 @@ import com.h2o.h2oServer.domain.model_type.Entity.CarPowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainOutputEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainTorqueEntity;
+import com.h2o.h2oServer.domain.model_type.dto.CarPowertrainDto;
 
 import java.util.List;
 
 public class PowertrainFixture {
+    public static CarPowertrainDto generateCarPowertrainDto() {
+        return CarPowertrainDto.of(generateCarPowertrainEntities().get(0),
+                generatePowertrainOutputEntity(),
+                generatePowertrainTorqueEntity());
+    }
     public static PowertrainEntity generatePowertrainEntity(Long id) {
         return PowertrainEntity.builder()
                 .id(id)
