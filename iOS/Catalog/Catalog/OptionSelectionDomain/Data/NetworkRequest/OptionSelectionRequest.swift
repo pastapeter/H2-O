@@ -36,7 +36,7 @@ extension OptionSelectionRequest: RequestProtocol {
     case .fetchExtraOption(let trimID, _, _), .fetchAllExtraOption(let trimID):
        return "/trim/\(trimID)/extra-option"
     case .fetchDetailOf(let trimID, let optionID):
-      return "/trim/\(trimID)/option\(optionID)"
+      return "/trim/\(trimID)/option/\(optionID)"
     case .fetchPackage(let trimID, let packageID):
       return "/trim/\(trimID)/package/\(packageID)"
     }
