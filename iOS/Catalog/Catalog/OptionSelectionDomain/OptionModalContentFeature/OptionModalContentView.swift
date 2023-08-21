@@ -1,4 +1,4 @@
-//
+  //
 //  OptionModalContentView.swift
 //  Catalog
 //
@@ -9,33 +9,37 @@ import SwiftUI
 
 struct OptionModalContentView: View {
   
-  var hashTags: [String]
-  var description: String?
-  @State var isFold = true
+  var state: DetailOptionInfo
+  @State var isFold = false
   
     var body: some View {
       VStack(alignment: .leading, spacing: 0) {
-        OptionModalImageView(hashTags: hashTags)
-        VStack(alignment: .leading) {
-          Spacer().frame(height: CGFloat(12).scaledHeight)
-          Text(description ?? "")
-            .catalogFont(type: .TextKRRegular12)
-            .foregroundColor(.gray800)
-            .multilineTextAlignment(.leading)
-            .padding(.horizontal, CGFloat(16).scaledWidth)
+        OptionModalImageView(imageURL: state.image, hashTags: state.hashTags)
+        Spacer().frame(height: 12)
+        ExpandableText(text: state.description ?? "", isFold: $isFold)
+          .font(CatalogTextType.TextKRRegular12.font)
+          .foregroundColor(.gray800)
+          .expandButton(TextSet(text: "더보기", font: .TextKRRegular12, color: .gray800))
+          .lineLimit(4)
+          .fixedSize(horizontal: false, vertical: true)
+          .padding(.horizontal, 16)
+          .frame(height: CGFloat(104).scaledHeight, alignment: .top)
+          
+        if !isFold {
+          Group {
+            if let hmgData = state.hmgData {
+              HMGDataBannerComponent {
+                OptionModalHMGDataView(state: hmgData)
+              }
+              .frame(height: CGFloat(145).scaledHeight)
+            } else {
+              Rectangle()
+                .fill(.clear)
+            }
+          }
+        } else {
           Spacer()
         }
-        Spacer().frame(height: CGFloat(27).scaledHeight)
-        HMGDataBannerComponent {
-          OptionModalHMGDataView()
-        }
-        .frame(height: CGFloat(110).scaledHeight)
       }
-    }
-}
-
-struct OptionModalContentView_Previews: PreviewProvider {
-    static var previews: some View {
-      OptionModalContentView(hashTags: ["장거리운전"], description: "시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 편의장치입니다. 시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 편의장치입니다.")
     }
 }
