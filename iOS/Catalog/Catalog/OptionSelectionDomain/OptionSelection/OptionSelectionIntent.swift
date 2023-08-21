@@ -41,11 +41,7 @@ final class OptionSelectionIntent: ObservableObject {
   @Published var state: State
 
   var cancellable: Set<AnyCancellable> = []
-  private(set) var selectedExtraOptions: Set<Int> = [] {
-    didSet {
-        print(selectedExtraOptions)
-    }
-  }
+  private(set) var selectedExtraOptions: Set<Int> = []
   private(set) var repository: OptionSelectionRepositoryProtocol
 
 }
