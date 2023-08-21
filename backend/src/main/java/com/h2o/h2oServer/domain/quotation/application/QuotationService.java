@@ -104,6 +104,7 @@ public class QuotationService {
             String drivetrainName = drivetrainMapper.findById(releaseEntity.getDrivetrainId()).getName();
             String image = externalColorMapper.findImages(releaseEntity.getExternalColorId()).get(SIDE_IMAGE_INDEX).getImage();
             int price = releaseEntity.getPrice();
+            int salesCount = releaseEntity.getQuotationCount();
 
             List<OptionSummaryDto> optionSummaryDtos = extractOptionSummary(quotationRequestDto, releaseEntity);
 
@@ -115,6 +116,7 @@ public class QuotationService {
                             .build(),
                     image,
                     price,
+                    salesCount,
                     optionSummaryDtos
             ));
         }

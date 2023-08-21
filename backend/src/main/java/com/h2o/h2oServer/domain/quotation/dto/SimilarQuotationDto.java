@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 public class SimilarQuotationDto {
     private ModelTypeNameDto modelType;
+    private Integer salesCount;
     private String image;
     private Integer price;
     private List<OptionSummaryDto> options;
@@ -20,11 +21,13 @@ public class SimilarQuotationDto {
     public static SimilarQuotationDto of(ModelTypeNameDto modelTypeNameDto,
                                          String image,
                                          Integer price,
+                                         Integer salesCount,
                                          List<OptionSummaryDto> options) {
         return SimilarQuotationDto.builder()
                 .modelType(modelTypeNameDto)
                 .image(image)
                 .price(price)
+                .salesCount(salesCount)
                 .options(options)
                 .build();
     }
