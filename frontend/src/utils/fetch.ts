@@ -24,6 +24,7 @@ function get<TResponse>(url: string, options?: RequestInit) {
   return request<TResponse>(url, {
     method: 'GET',
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     ...options,
