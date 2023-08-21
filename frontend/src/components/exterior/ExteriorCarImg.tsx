@@ -1,8 +1,8 @@
 import { MouseEventHandler, useLayoutEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Loading } from '../common';
-import { useRotate } from './hooks';
+import { Loading } from '@/components/common';
+import { useRotate } from '@/components/exterior/hooks/useRotate';
 import { ReactComponent as Ellipse } from '@/assets/shape/ellipse.svg';
 
 interface Props {
