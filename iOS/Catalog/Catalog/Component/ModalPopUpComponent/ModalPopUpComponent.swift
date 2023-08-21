@@ -20,7 +20,7 @@ struct ModalPopUpComponent<ModalPopUpContent: View, Item: ModalItemable>: View {
 
   @State private var animateContent: Bool = false
 
-  @ViewBuilder var content: () -> ModalPopUpContent
+  @ViewBuilder var content: (Item) -> ModalPopUpContent
 
 }
 
@@ -29,10 +29,10 @@ extension ModalPopUpComponent {
   var body: some View {
     VStack {
       if animateView {
-        VStack {
+        VStack(spacing: 0) {
           titleView(state.title)
             .padding(.horizontal, 16)
-          content()
+          content(state)
           CLButton(mainText: "선택하기", subText: state.price.signedWon,
                    height: 87,
                    backgroundColor: .primary0, buttonAction: submitAction)
@@ -80,7 +80,6 @@ extension ModalPopUpComponent {
         }
       }
     }
-    .padding(.top, 20)
-    .padding(.bottom, 12)
+    .frame(height: CGFloat(60).scaledHeight)
   }
 }
