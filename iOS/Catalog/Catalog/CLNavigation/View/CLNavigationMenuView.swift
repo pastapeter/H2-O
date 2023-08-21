@@ -17,6 +17,7 @@ struct CLNavigationMenuView: View {
   var horizontalSpacing: CGFloat = CGFloat(11).scaledWidth
   var verticalSpacing: CGFloat = CGFloat(6).scaledHeight
   var showNavigationDivider: Bool = false
+  var barType: CLNavigationMenuTitleView.BarType = .fixed
   var scrollable: Bool = false
 
   var body: some View {
@@ -38,7 +39,7 @@ struct CLNavigationMenuView: View {
           CLNavigationMenuTitleView(currentPage: self.$currentPage,
                                     status: menuStatus?[index], namespace: namespace.self,
                                     navigationMenuTitle: name,
-                                    page: index, font: titleFont, spacing: verticalSpacing)
+                                    page: index, font: titleFont, spacing: verticalSpacing, barWidthType: barType)
           .frame(minWidth: CGFloat(52).scaledWidth)
         }
       }

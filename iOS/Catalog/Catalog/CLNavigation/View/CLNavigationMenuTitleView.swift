@@ -25,6 +25,11 @@ struct CLNavigationMenuTitleView: View {
       }
     }
   }
+  
+  enum BarType {
+    case fixed
+    case dynamic
+  }
 
   @Binding var currentPage: Int
   var status: Status?
@@ -33,6 +38,10 @@ struct CLNavigationMenuTitleView: View {
   var page: Int
   var font: CatalogTextType
   var spacing: CGFloat = 6
+  var barWidthType: BarType = .fixed
+  
+  @State private var barWidth: CGFloat = 18
+  @State private var textSize: CGSize = .zero
 
   var body: some View {
     Button {
@@ -43,9 +52,16 @@ struct CLNavigationMenuTitleView: View {
         if currentPage == page {
           Text(navigationMenuTitle)
             .catalogFont(type: font)
+            .background(ViewGeometry())
+            .onPreferenceChange(ViewSizeKey.self) {
+              if barWidthType == .dynamic {
+                textSize = $0
+                barWidth = textSize.width * 2/3
+              }
+            }
             .foregroundColor(Status.active.color)
           Color.black
-            .frame(width: 18, height: 2)
+            .frame(width: barWidth, height: 2)
             .cornerRadius(1)
             .matchedGeometryEffect(id: "underline", in: namespace, properties: .frame)
         } else {
@@ -61,4 +77,22 @@ struct CLNavigationMenuTitleView: View {
     .buttonStyle(.plain)
 
   }
+}
+
+
+struct ViewSizeKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        value = nextValue()
+    }
+}
+
+struct ViewGeometry: View {
+    var body: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .preference(key: ViewSizeKey.self, value: geometry.size)
+        }
+    }
 }
