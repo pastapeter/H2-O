@@ -1,5 +1,5 @@
 async function request<TResponse>(url: string, options: RequestInit = {}): Promise<TResponse> {
-  const baseUrl = `http://localhost:5173/api${url}`;
+  const baseUrl = `/api${url}`;
 
   const cacheStorage = await caches.open('cache');
   const cachedResponse = await cacheStorage.match(url);
