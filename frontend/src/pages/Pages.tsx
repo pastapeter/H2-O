@@ -1,8 +1,8 @@
-import ExteriorPage from './ExteriorPage';
-import InteriorPage from './InteriorPage';
-import ModelPage from './ModelPage';
-import OptionPage from './OptionPage';
-import ResultPage from './ResultPage';
+import { ExteriorPage } from './ExteriorPage';
+import { InteriorPage } from './InteriorPage';
+import { ModelPage } from './ModelPage';
+import { OptionPage } from './OptionPage';
+import { ResultPage } from './ResultPage';
 import { TrimPage } from './TrimPage';
 import { PageCarousel as Carousel } from '@/components/carousel';
 import { useSafeContext } from '@/hooks';
