@@ -44,17 +44,32 @@ class APIManager: APIManagerProtocol {
       print("캐시에서 가져오는 중")
       return cachedresponse.data
     } else {
-      // 없으면 서버에서 가져와
-      let (data, response) = try await urlSession.makeData(from: requestObject)
-      guard let httpResponse = response as? HTTPURLResponse,
-            httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-        do {
-          return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse)
-        } catch let e {
-          throw e
+      
+      do {
+        let (data, response) = try await urlSession.makeData(from: requestObject)
+        
+        guard let httpResponse = response as? HTTPURLResponse else { throw CLNetworkError.invalidURL }
+        
+        guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+          do {
+            return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse(reason: httpResponse.statusCode))
+          } catch let e {
+            throw e
+          }
+        }
+
+        return data
+
+      } catch(let e) {
+        
+        if (e as? URLError)?.code == .timedOut {
+          return try await retryRequestRecursively(requestObject, dueTo: .timeout)
+        } else {
+          print("🚨 URLError \(e.localizedDescription)")
+          return try await retryRequestRecursively(requestObject, dueTo: .URLError(message: (e as? URLError)?.localizedDescription))
         }
       }
-      return data
+      
     }
   }
 
@@ -95,9 +110,12 @@ extension APIManager {
     guard let retrier = self.retrier else {
       return .doNotRetry
     }
-
+    
     request.prepareForRetry()
+    
+     
     let retryResult = try await retrier.retry(request, for: urlSession, dueTo: error)
+    
     guard let retryResultError = retryResult.error else {
       return retryResult
     }
