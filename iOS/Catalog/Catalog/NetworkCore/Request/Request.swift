@@ -7,21 +7,18 @@
 
 import Foundation
 
-class Request {
-
+actor Request {
+  
   var urlRequest: URLRequest
   var retryCount: Int
-  var serialQueue: DispatchQueue = .init(label: "RequestQueue")
-
+  
   init(urlRequest: URLRequest) {
     self.urlRequest = urlRequest
     self.retryCount = 0
   }
-
+  
   func prepareForRetry() {
-    serialQueue.sync { [weak self] in
-      self?.retryCount += 1
-    }
+    self.retryCount += 1
   }
-
+  
 }
