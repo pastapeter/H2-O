@@ -7,6 +7,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  redis:
+    host: localhost
+    port: 6379
 mybatis:
   type-aliases-package: com.h2o.h2oServer.domain
   mapper-locations: static/mapper/**/*.xml

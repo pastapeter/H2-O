@@ -28,6 +28,8 @@ import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
 import com.h2o.h2oServer.domain.trim.mapper.TrimMapper;
 import com.h2o.h2oServer.global.util.ListStringParser;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +40,8 @@ import static com.h2o.h2oServer.global.util.ListStringParser.*;
 @Service
 @RequiredArgsConstructor
 public class QuotationService {
-    public static final double SIMILARITY_LOWER_BOUND = 0.2;
+
+    private static final double SIMILARITY_LOWER_BOUND = 0.2;
     public static final double SIMILARITY_UPPER_BOUND = 0.9;
     public static final int SIDE_IMAGE_INDEX = 12;
 
@@ -51,6 +54,7 @@ public class QuotationService {
     private final OptionMapper optionMapper;
     private final PackageMapper packageMapper;
     private final ExternalColorMapper externalColorMapper;
+    private final CosineSimilarityCalculator cosineSimilarityCalculator;
 
     public QuotationCountDto findNumberOfIdenticalQuotations(QuotationRequestDto quotationRequestDto) {
         QuotationDto quotationDto = QuotationDto.of(quotationRequestDto);
@@ -66,7 +70,6 @@ public class QuotationService {
     }
 
     public List<SimilarQuotationDto> findSimilarQuotations(QuotationRequestDto quotationRequestDto) {
-
         //1. 요청된 견적의 해시태그 벡터 초기화
         Map<HashTag, Integer> requestHashTagCount = new HashMap<>();
 
@@ -95,7 +98,7 @@ public class QuotationService {
             collectHashTagsOfPackages(packageIds, hashTagCount);
 
             //유사도 계산 후 queue에 추가
-            double similarity = CosineSimilarityCalculator.calculateCosineSimilarity(requestHashTagCount, hashTagCount);
+            double similarity = cosineSimilarityCalculator.calculateCosineSimilarity(requestHashTagCount, hashTagCount);
 
             if (similarity < SIMILARITY_LOWER_BOUND || similarity > SIMILARITY_UPPER_BOUND) {
                 continue;

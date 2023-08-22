@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ public class TrimController {
 
     @ApiOperation(value = "차량의 트림 정보 조회", notes = "car_id를 기준으로 모든 트림 정보를 반환하는 API")
     @ApiImplicitParam(name = "carId", value = "차종 인덱스 번호")
+    @Cacheable(key = "#carId", value = "testCache", cacheManager = "contentCacheManager")
     @GetMapping("car/{carId}/trim")
     public List<TrimDto> getTrimInformation(@PathVariable Long carId) {
         return trimService.findTrimInformation(carId);

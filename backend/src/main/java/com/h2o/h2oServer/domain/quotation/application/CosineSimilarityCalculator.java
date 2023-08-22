@@ -1,20 +1,22 @@
 package com.h2o.h2oServer.domain.quotation.application;
 
 import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class CosineSimilarityCalculator {
 
     private static final List<HashTag> hashTagIndex = List.of(HashTag.values());
 
-    public static double calculateCosineSimilarity(Map<HashTag, Integer> map1, Map<HashTag, Integer> map2) {
+    public double calculateCosineSimilarity(Map<HashTag, Integer> map1, Map<HashTag, Integer> map2) {
         return calculateCosineSimilarity(toVector(map1), toVector(map2));
     }
 
-    public static double calculateCosineSimilarity(int[] vector1, int[] vector2) {
+    public double calculateCosineSimilarity(int[] vector1, int[] vector2) {
         if (vector1.length != vector2.length) {
             throw new IllegalArgumentException("두 벡터의 길이가 다릅니다.");
         }

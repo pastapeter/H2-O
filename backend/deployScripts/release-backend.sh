@@ -17,6 +17,6 @@ echo "Pulling the latest Docker image from Docker Hub..."
 docker pull $DOCKER_IMAGE_NAME
 
 echo "Starting the new container..."
-docker run -d -p 8080:8080 $DOCKER_IMAGE_NAME
+docker run -d -p 8080:8080 --network server-network $DOCKER_IMAGE_NAME
 
 echo "Deployment completed successfully."

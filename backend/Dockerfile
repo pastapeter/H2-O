@@ -12,4 +12,4 @@ ENV MYSQL_PASSWORD $MYSQL_PASSWORD
 COPY build/libs/*.jar h2o-server.jar
 
 EXPOSE 8080
-ENTRYPOINT java "-Dspring.datasource.driver-class-name=$MYSQL_DRIVER" "-Dspring.datasource.url=$MYSQL_URL" "-Dspring.datasource.username=$MYSQL_USERNAME" "-Dspring.datasource.password=$MYSQL_PASSWORD" "-jar" "/h2o-server.jar"
+ENTRYPOINT java "-Dspring.datasource.driver-class-name=$MYSQL_DRIVER" "-Dspring.datasource.url=$MYSQL_URL" "-Dspring.datasource.username=$MYSQL_USERNAME" "-Dspring.datasource.password=$MYSQL_PASSWORD" "-Dspring.redis.host=$REDIS_HOST" "-Dspring.redis.port=$REDIS_PORT" "-jar" "/h2o-server.jar"

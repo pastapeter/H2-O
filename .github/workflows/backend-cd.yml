@@ -1,4 +1,4 @@
-name: release server application
+dsasdname: release server application
 
 on:
   push:
@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           
       - name: Build the Docker image  
-        run: docker build -t bumstead/h2o-backend-server:latest ${{ env.working-directory }} --build-arg MYSQL_URL=${{ secrets.MYSQL_URL }} --build-arg MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }} --build-arg MYSQL_PASSWORD="" --build-arg MYSQL_DRIVER=${{ secrets.mysql_driver }}
+        run: docker build -t bumstead/h2o-backend-server:latest ${{ env.working-directory }} --build-arg MYSQL_URL=${{ secrets.MYSQL_URL }} --build-arg MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }} --build-arg MYSQL_PASSWORD=""  --build-arg REDIS_HOST=${{ secrets.redis_host }} --build-arg REDIS_PORT=${{ secrets.redis_port }}
 
       - name: Push the Docker image
         run: docker push bumstead/h2o-backend-server:latest

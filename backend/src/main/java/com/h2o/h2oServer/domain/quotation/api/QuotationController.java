@@ -9,6 +9,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Api(tags = "견적")
 public class QuotationController {
-
     private final QuotationService quotationService;
 
     @ApiOperation(value = "견적 정보 저장", notes = "견적 정보를 저장하는 API")
@@ -35,6 +36,7 @@ public class QuotationController {
     @ApiImplicitParam(name = "quotationRequestDto", value = "비교할 견적 정보")
     @PostMapping("/similar")
     public List<SimilarQuotationDto> getSimilarQuotations(@RequestBody QuotationRequestDto quotationRequestDto) {
+
         return quotationService.findSimilarQuotations(quotationRequestDto);
     }
 

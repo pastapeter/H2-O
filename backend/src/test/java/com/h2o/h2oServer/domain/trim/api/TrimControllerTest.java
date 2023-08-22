@@ -8,11 +8,13 @@ import com.h2o.h2oServer.domain.trim.ExternalColorFixture;
 import com.h2o.h2oServer.domain.trim.InternalColorFixture;
 import com.h2o.h2oServer.domain.trim.application.TrimService;
 import com.h2o.h2oServer.domain.trim.dto.*;
+import com.h2o.h2oServer.global.config.RedisConfig;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
@@ -28,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = TrimController.class)
 @AutoConfigureMockMvc
+@Import(RedisConfig.class)
 class TrimControllerTest {
 
     @Autowired

@@ -3,6 +3,8 @@ package com.h2o.h2oServer.domain.quotation.application;
 import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +12,11 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
 
+@SpringBootTest
 class CosineSimilarityCalculatorTest {
+
+    @Autowired
+    CosineSimilarityCalculator cosineSimilarityCalculator;
 
     @Test
     @DisplayName("해시태그 벡터의 코사인 유사도를 반환한다.")
@@ -29,7 +35,7 @@ class CosineSimilarityCalculatorTest {
         double expectedSimilarity = 0.8908708063747479;
 
         //when
-        double similarity = CosineSimilarityCalculator.calculateCosineSimilarity(vector1, vector2);
+        double similarity = cosineSimilarityCalculator.calculateCosineSimilarity(vector1, vector2);
 
         //then
         assertThat(similarity).isCloseTo(expectedSimilarity, offset(0.01));
@@ -52,7 +58,7 @@ class CosineSimilarityCalculatorTest {
         double expectedSimilarity = 1.0;
 
         //when
-        double similarity = CosineSimilarityCalculator.calculateCosineSimilarity(vector1, vector2);
+        double similarity = cosineSimilarityCalculator.calculateCosineSimilarity(vector1, vector2);
 
         //then
         assertThat(similarity).isCloseTo(expectedSimilarity, offset(0.01));
