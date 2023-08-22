@@ -42,13 +42,27 @@ extension ExtraOptionResponseDTO {
       optionCategory = OptionCategory(categoryStr) ?? .total
     }
     
+    var choiceRatioDomain: CLNumber?
+    if let choiceRatio = choiceRatio {
+      choiceRatioDomain = CLNumber(Int32(choiceRatio))
+    }
+    
+    var optionImageURL: URL?
+    
+    if let optionImageURLStr = image {
+      optionImageURL = URL(string: optionImageURLStr)
+    }
+    
     return ExtraOption(id: id,
                        isPackage: isPackage ?? false,
                        category: optionCategory,
                        name: name,
                        hashTags: hashTags ?? [],
                        containsHmgData: containsHmgData ?? false,
-                       price: CLNumber(Int32(price)))
+                       choiceRatio: choiceRatioDomain,
+                       price: CLNumber(Int32(price)),
+                       image: optionImageURL
+      )
     
     
   }

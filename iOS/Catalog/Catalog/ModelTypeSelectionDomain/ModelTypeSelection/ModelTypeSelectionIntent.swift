@@ -46,8 +46,12 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
     switch action {
     case .onAppear:
       Task {
+        //TODO: State를 Car Quotation에서 받아오기
+        // 썡
+        //TODO: API를 쏴야할때 안쏴야할때 체크하기
         let options = try await repository.fetch(carId: state.selectedTrimId)
         send(action: .modelTypeOptions(options: options))
+        //TODO: State를 Car Quotation
         send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: self.powerTrainOptionId))
       }
     case .calculateFuelEfficiency(let typeID, let selectedOptionId):
@@ -69,7 +73,7 @@ extension ModelTypeSelectionIntent {
   
       do {
         
-        let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue
+        let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue //
         let driveTrainID = ModelTypeSelectionModel.ModelTypeID.driveTrain.rawValue
         
         if typeID == powerTrainID {
@@ -78,8 +82,13 @@ extension ModelTypeSelectionIntent {
           self.driveTrainOptionId = selectedOptionId
         }
         
-        let powerTrainTitle = quotation.state.quotation?.powertrain.name ?? ""
-        let driveTrainTitle = quotation.state.quotation?.drivetrain.name ?? ""
+        let powerTrainTitle = state.modelTypeStateArray[powerTrainID]
+                  .optionStates[self.powerTrainOptionId - 1]
+                  .title
+                
+                let driveTrainTitle = state.modelTypeStateArray[driveTrainID]
+                  .optionStates[self.driveTrainOptionId - 1]
+                  .title
       
       
         let result = try await self.repository

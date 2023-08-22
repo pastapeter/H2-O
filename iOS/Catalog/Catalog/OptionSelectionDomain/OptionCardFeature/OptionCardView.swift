@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OptionCardView: IntentBindingType, View {
+struct OptionCardView: IntentBindingType {
   
   var container: Container<OptionCardViewIntentType, OptionCardModel.State>
   var intent: OptionCardViewIntentType { container.intent }
@@ -16,82 +16,135 @@ struct OptionCardView: IntentBindingType, View {
   @SwiftUI.State var isSelected: Bool = false
 
 
-    var body: some View {
-      
-      Button {
-        intent.send(action: .onTap(id: state.id)) {
-          if state.price != nil {
-            isSelected.toggle()
-          } else {
-            isSelected = false
-          }
-        }
-      } label: {
-        VStack(spacing: 0) {
-          optionImageView()
-            .frame(height: CGFloat(128).scaledHeight)
-          VStack(alignment: .leading, spacing: 0) {
-            Spacer().frame(height: CGFloat(12).scaledHeight)
-            if let choiceRatio = state.choiceRatio {
-              Text("\(Text("\(choiceRatio.description)%").foregroundColor(.activeBlue2))가 선택했어요")
-                .foregroundColor(.gray500)
-                .catalogFont(type: .TextKRMedium12)
-            } else {
-              Text(" ")
-                .foregroundColor(.gray500)
-                .catalogFont(type: .TextKRMedium12)
-            }
-            HStack(alignment: .lastTextBaseline) {
-              VStack(alignment: .leading, spacing: 0) {
-                Text(state.name)
-                  .catalogFont(type: .HeadKRMedium16)
-                  .multilineTextAlignment(.leading)
-                  .foregroundColor(.gray900)
-                Text(state.price?.signedWon ?? "기본포함")
-                  .foregroundColor(.gray900)
-                  .catalogFont(type: .TextKRMedium14)
-              }
-              Spacer()
-              if state.price != nil {
-                ZStack {
-                  Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: CGFloat(40).scaledWidth, height: CGFloat(40).scaledWidth)
-                    .background(isSelected ? .activeBlue : Color.gray50)
-                    .overlay(
-                      RoundedRectangle(cornerRadius: 2)
-                        .inset(by: 0.5)
-                        .stroke(isSelected ? .activeBlue : Color.gray100, lineWidth: 1))
-                  Image("check").renderingMode(.template).foregroundColor(isSelected ? .white : .gray200)
-                }
-              }
-            }
-            Spacer().frame(height: CGFloat(12).scaledHeight)
-          }
-          .padding(.horizontal, CGFloat(12).scaledHeight)
-        }
-        .frame(height: CGFloat(212).scaledHeight)
-        .optionCardBackground(isSelected: isSelected)
-        .cornerRadius(2)
-        .CLDialogFullScreenCover(show: $isModalPresenting) {
-          Rectangle().fill(.red)
-        }
-      }
-      .buttonStyle(EmptyButtonStyle())
-    }
-
 }
 
+extension OptionCardView: View {
+  
+  var body: some View {
+    
+    Button {
+      intent.send(action: .onTap(id: state.id)) {
+        if state.price != nil {
+          isSelected.toggle()
+        } else {
+          isSelected = false
+        }
+      }
+    } label: {
+      VStack(spacing: 0) {
+        optionImageView()
+          .frame(height: CGFloat(128).scaledHeight)
+        VStack(alignment: .leading, spacing: 0) {
+          Spacer().frame(height: CGFloat(12).scaledHeight)
+          choiceRatioView()
+          HStack(alignment: .lastTextBaseline) {
+            VStack(alignment: .leading, spacing: 0) {
+              titleView()
+              priceView()
+            }
+            Spacer()
+            if state.price != nil {
+              optionCheckView()
+            }
+          }
+          Spacer().frame(height: CGFloat(12).scaledHeight)
+        }
+        .padding(.horizontal, CGFloat(12).scaledHeight)
+      }
+      .frame(height: CGFloat(212).scaledHeight)
+      .optionCardBackground(isSelected: isSelected)
+      .cornerRadius(2)
+      .CLDialogFullScreenCover(show: $isModalPresenting, content: {
+        TransparentZStack {
+          if state.isPackage {
+            ModalPopUpComponent(state: self.state.packageOption, submitAction: {
+              intent.send(action: .onTap(id: self.state.id)) {
+                self.isSelected.toggle()
+                self.isModalPresenting.toggle()
+              }
+            }) { _ in
+              OptionModalTabContentView(state: self.state.packageOption)
+            }
+          } else {
+            ModalPopUpComponent(state: self.state.defaultOptionDetail, submitAction: {
+              intent.send(action: .onTap(id: self.state.id)) {
+                self.isSelected.toggle()
+                self.isModalPresenting.toggle()
+              }
+            }) { _ in
+              OptionModalContentView(state: self.state.defaultOptionDetail)
+            }
+          }
+        }
+      })
+    }
+    .buttonStyle(EmptyButtonStyle())
+  }
+  
+}
+
+// MARK: - Private View
 extension OptionCardView {
   
   @ViewBuilder
-  func optionImageView() -> some View {
+  private func choiceRatioView() -> some View {
+    if let choiceRatio = state.choiceRatio {
+      Text("\(Text("\(choiceRatio.description)%").foregroundColor(.activeBlue2))가 선택했어요")
+        .foregroundColor(.gray500)
+        .catalogFont(type: .TextKRMedium12)
+    } else {
+      Text(" ")
+        .foregroundColor(.gray500)
+        .catalogFont(type: .TextKRMedium12)
+    }
+  }
+  
+  @ViewBuilder
+  private func priceView() -> some View {
+    
+    Text(state.price?.signedWon ?? "기본포함")
+      .foregroundColor(.gray900)
+      .catalogFont(type: .TextKRMedium14)
+    
+  }
+  
+  @ViewBuilder
+  private func titleView() -> some View {
+    Text(state.name)
+      .catalogFont(type: .HeadKRMedium16)
+      .multilineTextAlignment(.leading)
+      .foregroundColor(.gray900)
+  }
+  
+  @ViewBuilder
+  private func optionCheckView() -> some View {
+    
     ZStack {
-      Image("cooling")
-        .resizable()
-        .scaledToFill()
-        .frame(height: CGFloat(128).scaledHeight)
-        .clipped()
+      Rectangle()
+        .foregroundColor(.clear)
+        .frame(width: CGFloat(40).scaledWidth, height: CGFloat(40).scaledWidth)
+        .background(isSelected ? .activeBlue : Color.gray50)
+        .overlay(
+          RoundedRectangle(cornerRadius: 2)
+            .inset(by: 0.5)
+            .stroke(isSelected ? .activeBlue : Color.gray100, lineWidth: 1))
+      Image("check").renderingMode(.template).foregroundColor(isSelected ? .white : .gray200)
+    }
+    
+  }
+  
+  @ViewBuilder
+  private func optionImageView() -> some View {
+    ZStack {
+      AsyncImage(url: state.imageURL) { image in
+        image
+          .resizable()
+          .scaledToFill()
+          .frame(height: CGFloat(128).scaledHeight)
+          .clipped()
+      } placeholder: {
+        ProgressView()
+      }
       VStack(spacing: 0) {
         HStack {
           Spacer()
@@ -102,7 +155,13 @@ extension OptionCardView {
               }
             })
           } else {
-            Button(action: {}) {
+            Button(action: {
+              
+              intent.send(action: .onTapDetail) {
+                isModalPresenting.toggle()
+              }
+              
+            }) {
               Text("상세보기")
                 .catalogFont(type: .TextKRMedium12)
             }
@@ -122,6 +181,11 @@ extension OptionCardView {
     }
   }
   
+}
+
+// MARK: - Builder
+extension OptionCardView {
+  
   @ViewBuilder
   static func build(intent: OptionCardViewIntent) -> some View {
     OptionCardView(container: .init(intent: intent,
@@ -131,6 +195,7 @@ extension OptionCardView {
   
 }
 
+// MARK: - Private Modifier
 fileprivate extension View {
 
   @ViewBuilder

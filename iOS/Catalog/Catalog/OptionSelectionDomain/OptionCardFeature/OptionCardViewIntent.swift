@@ -20,9 +20,10 @@ protocol OptionCardViewIntentType {
 
 final class OptionCardViewIntent: ObservableObject {
   
-  init(initialState: State, parent: OptionCardScrollIntentType) {
+  init(initialState: State, parent: OptionCardScrollIntentType, repository: OptionSelectionRepositoryProtocol) {
     state = initialState
     self.parent = parent
+    self.repository = repository
   }
   
   typealias State = OptionCardModel.State
@@ -32,6 +33,7 @@ final class OptionCardViewIntent: ObservableObject {
   
   var cancellable: Set<AnyCancellable> = []
   weak var parent: OptionCardScrollIntentType?
+  private var repository: OptionSelectionRepositoryProtocol
   
 }
 
@@ -40,7 +42,26 @@ extension OptionCardViewIntent: OptionCardViewIntentType, IntentType {
   func mutate(action: OptionCardModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onTapDetail:
-      viewEffect?()
+      
+      Task {
+        do {
+          if state.isPackage {
+            state.packageOption = try await repository.fetchPackageInfo(of: state.id)
+            await MainActor.run(body: {
+              viewEffect?()
+            })
+          } else {
+            state.defaultOptionDetail = try await repository.fetchDetailInfo(of: state.id)
+            await MainActor.run(body: {
+              viewEffect?()
+            })
+          }
+        } catch (let e) {
+          print(e)
+        }
+        
+      }
+      
     case .onTap(let id):
       parent?.send(action: .onTapOption(id: id))
       viewEffect?()

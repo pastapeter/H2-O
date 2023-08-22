@@ -8,7 +8,7 @@
 import Foundation
 
 final class OptionSelectionRepository: OptionSelectionRepositoryProtocol {
- 
+  
   private var requestManager: RequestManagerProtocol
   private var trimID: Int
   
@@ -17,22 +17,51 @@ final class OptionSelectionRepository: OptionSelectionRepositoryProtocol {
     self.trimID = trimID
   }
   
-  func fetchExtraOption(from startIndex: Int, to lastIndex: Int) async throws -> [ExtraOption] {
+  func fetchDetailInfo(of optionID: Int) async throws -> DetailOptionInfo {
     
-    let dto: [ExtraOptionResponseDTO] = try await requestManager.perform(
-      OptionSelectionRequest.fetchExtraOption(trimID: trimID, from: startIndex, to: lastIndex))
+    let dto: DetailOptionResponseDTO = try await requestManager.perform(
+      OptionSelectionRequest.fetchDetailOf(trimID: trimID, optionID: optionID)
+    )
     
-    let entity = dto.compactMap { do {
+    return try dto.toDomain(with: optionID)
+    
+  }
+  
+  func fetchPackageInfo(of packageID: Int) async throws -> PackageInfo {
+    
+    let dto: PackageResponseDTO = try await requestManager.perform(
+      OptionSelectionRequest.fetchPackage(trimID: trimID, packageID: packageID)
+    )
+    
+    return try dto.toDomain(with: packageID)
+    
+  }
+  
+  
+  
+}
+
+// MARK: - DefaultOptionSelectionRepositoryProtocol
+
+extension OptionSelectionRepository {
+  
+  func fetchAllOptions() async throws -> [DefaultOption] {
+    
+    let dto: [DefaultOptionResponseDTO] = try await requestManager.perform(OptionSelectionRequest.fetchAllDefaultOption(trimID: trimID))
+    
+    let entity = dto.compactMap {
+      do {
       return try $0.toDomain()
-    } catch(let e) {
-      print("🚨 Error \(e.localizedDescription)")
-      return nil
-    }}
+      } catch(let e) {
+        print("🚨 Error \(e.localizedDescription)")
+        return nil
+      }
+    }
     
     return entity
   }
   
-  func fetchDefaultOption(from startIndex: Int, to lastIndex: Int) async throws -> [DefaultOption] {
+  func fetchOption(from startIndex: Int, to lastIndex: Int) async throws -> [DefaultOption] {
     
     let dto: [DefaultOptionResponseDTO] = try await requestManager.perform(
       OptionSelectionRequest.fetchDefaultOption(trimID: trimID, from: startIndex, to: lastIndex)
@@ -49,26 +78,41 @@ final class OptionSelectionRepository: OptionSelectionRepositoryProtocol {
     
   }
   
-  func fetchDetailInfo(of optionID: Int) async throws -> DetailOptionInfo {
+}
+
+
+// MARK: - DefaultOptionSelectionRepositoryProtocol
+
+extension OptionSelectionRepository {
+  
+  func fetchAllOptions() async throws -> [ExtraOption] {
+    let dto: [ExtraOptionResponseDTO] = try await requestManager.perform(
+      OptionSelectionRequest.fetchAllExtraOption(trimID: trimID))
     
-    let dto: DetailOptionResponseDTO = try await requestManager.perform(
-      OptionSelectionRequest.fetchDetailOf(trimID: trimID, optionID: optionID)
-    )
+    let entity = dto.compactMap { do {
+      return try $0.toDomain()
+    } catch(let e) {
+      print("🚨 Error \(e.localizedDescription)")
+      return nil
+    }}
     
-    return try dto.toDomain()
+    return entity
     
   }
   
-  func fetchPackageInfo(of packageID: Int) async throws -> PackageInfo {
+  func fetchOption(from startIndex: Int, to lastIndex: Int) async throws -> [ExtraOption] {
     
-    let dto: PackageResponseDTO = try await requestManager.perform(
-      OptionSelectionRequest.fetchPackage(trimID: trimID, packageID: packageID)
-    )
+    let dto: [ExtraOptionResponseDTO] = try await requestManager.perform(
+      OptionSelectionRequest.fetchExtraOption(trimID: trimID, from: startIndex, to: lastIndex))
     
-    return try dto.toDomain()
+    let entity = dto.compactMap { do {
+      return try $0.toDomain()
+    } catch(let e) {
+      print("🚨 Error \(e.localizedDescription)")
+      return nil
+    }}
     
+    return entity
   }
-  
-  
   
 }

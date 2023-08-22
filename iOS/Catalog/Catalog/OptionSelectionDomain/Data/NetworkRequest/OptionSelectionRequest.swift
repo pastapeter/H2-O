@@ -17,6 +17,10 @@ enum OptionSelectionRequest {
   
   case fetchPackage(trimID: Int, packageID: Int)
   
+  case fetchAllDefaultOption(trimID: Int)
+  
+  case fetchAllExtraOption(trimID: Int)
+  
 }
 
 extension OptionSelectionRequest: RequestProtocol {
@@ -27,14 +31,14 @@ extension OptionSelectionRequest: RequestProtocol {
  
   var path: String {
     switch self {
-    case .fetchDefaultOption(let trimID, _, _):
-      return "trim/\(trimID)/default-option"
-    case .fetchExtraOption(let trimID, _, _):
-       return "trim/\(trimID)/extra-option"
+    case .fetchDefaultOption(let trimID, _, _), .fetchAllDefaultOption(let trimID):
+      return "/trim/\(trimID)/default-option"
+    case .fetchExtraOption(let trimID, _, _), .fetchAllExtraOption(let trimID):
+       return "/trim/\(trimID)/extra-option"
     case .fetchDetailOf(let trimID, let optionID):
-      return "trim/\(trimID)/option\(optionID)"
+      return "/trim/\(trimID)/option/\(optionID)"
     case .fetchPackage(let trimID, let packageID):
-      return "trim/\(trimID)/package/\(packageID)"
+      return "/trim/\(trimID)/package/\(packageID)"
     }
   }
   

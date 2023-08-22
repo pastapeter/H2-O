@@ -7,15 +7,24 @@
 
 import Foundation
 
-struct PackageInfo {
+struct PackageInfo: ModalItemable, Equatable {
   
-  let name: String
+  let id: Int
+  let title: String
   let category: OptionCategory = .total
-  let price: Int
-  let choiceRatio: Int?
-  let choiceCount: Int?
+  let price: CLNumber
+  let choiceRatio: CLNumber?
+  let choiceCount: CLNumber?
   let isOverHalf: Bool?
   let hashTags: [String]
   let components: [PackageComponent]
+  
+}
+
+extension PackageInfo {
+  
+  static func mock() -> Self {
+    .init(id: .init(), title: "", price: .init(0), choiceRatio: nil, choiceCount: nil, isOverHalf: nil, hashTags: [], components: [])
+  }
   
 }

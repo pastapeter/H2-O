@@ -50,9 +50,8 @@
                     carId: 1),
                   repository: TrimSelectionRepository(), quotation: Quotation.shared, navigationIntent: intent))
                 .tag(0)
-                ModelTypeSelectionView.build(intent: .init(initialState: .init(),
-                                                                    repository: MockModelTypeRepository()))
-                .tag(1)
+                ModelTypeSelectionView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager()))))
+                          .tag(1)
                 
                 ExternalSelectionView.build(
                   intent: .init(initialState: .init(selectedTrimId: 2),

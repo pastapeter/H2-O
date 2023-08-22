@@ -55,7 +55,7 @@ struct DetailOptionResponseDTO: Codable {
 
 extension DetailOptionResponseDTO {
   
-  func toDomain() throws -> DetailOptionInfo {
+  func toDomain(with optionID: Int) throws -> DetailOptionInfo {
     
     guard let name = name else { throw DetailOptionToDomainError.noNameInResponse }
     guard let price = price else { throw DetailOptionToDomainError.noNameInResponse }
@@ -71,14 +71,14 @@ extension DetailOptionResponseDTO {
     }
     
     
-    return DetailOptionInfo(category: optionCategory,
+    return DetailOptionInfo(id: optionID, category: optionCategory,
                             containsChoiceCount: containsChoiceCount ?? false,
                             containsUseCount: containsUseCount ?? false,
                             description: description,
                             hashTags: hashTags ?? [],
                             hmgData: hmgData?.toDomain(),
                             image: imageURL,
-                            name: name,
+                            title: name,
                             price: CLNumber(Int32(price)))
     
   }
