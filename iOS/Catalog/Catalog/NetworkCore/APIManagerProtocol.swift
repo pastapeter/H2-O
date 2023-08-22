@@ -28,6 +28,8 @@ class APIManager: APIManagerProtocol {
   convenience init(configuation: URLSessionConfiguration = URLSessionConfiguration.default,
                    retrier: RequestRetrier? = nil,
                    cachedResponseHandler: CachedResponseHandler? = nil) {
+    
+    configuation.urlCache = URLCache.shared
     let session = URLSession(configuration: configuation)
     self.init(urlSession: session, retrier: retrier, cachedResponseHandler: cachedResponseHandler)
   }
@@ -35,17 +37,25 @@ class APIManager: APIManagerProtocol {
   func perform(_ request: RequestProtocol) async throws -> Data {
 
     let requestObject = try request.createRequest()
-    let (data, response) = try await urlSession.makeData(from: requestObject)
-    guard let httpResponse = response as? HTTPURLResponse,
-          httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-
-      do {
-        return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse)
-      } catch let e {
-        throw e
+    
+    //1. URLCache에서 cacheResponse 있는지
+    
+    if let cachedresponse = URLCache.shared.cachedResponse(for: requestObject.urlRequest) {
+      print("캐시에서 가져오는 중")
+      return cachedresponse.data
+    } else {
+      // 없으면 서버에서 가져와
+      let (data, response) = try await urlSession.makeData(from: requestObject)
+      guard let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+        do {
+          return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse)
+        } catch let e {
+          throw e
+        }
       }
+      return data
     }
-    return data
   }
 
   func retryRequestRecursively(_ request: Request, dueTo error: CLNetworkError) async throws -> Data {
