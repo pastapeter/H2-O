@@ -20,7 +20,7 @@ function Banner({
   ...restProps
 }: PropsWithChildren<Props>) {
   return (
-    <BannerContainer backgroundColor={backgroundColor} {...restProps}>
+    <BannerContainer role='banner' backgroundColor={backgroundColor} {...restProps}>
       <div>
         {title && (
           <TitleContainer isTitleColorWhite={isTitleColorWhite}>

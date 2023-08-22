@@ -5,9 +5,9 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   title?: string;
 }
 
-function MainSelector({ children, title }: PropsWithChildren<Props>) {
+function MainSelector({ children, title, ...restProps }: PropsWithChildren<Props>) {
   return (
-    <MainSelectorContainer>
+    <MainSelectorContainer {...restProps}>
       <div>
         {title && <h2 className='title'>{title}</h2>}
         {children}

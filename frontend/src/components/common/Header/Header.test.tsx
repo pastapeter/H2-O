@@ -8,6 +8,12 @@ describe('Header 컴포넌트 테스트', () => {
     document.body.appendChild(portalRoot);
   });
 
+  it('Header가 정상적으로 렌더링된다.', () => {
+    render(<Header />);
+
+    expect(screen.getByTestId('header')).toBeInTheDocument();
+  });
+
   it('로고를 클릭할 시 종료 확인 모달이 표시된다.', async () => {
     render(<Header />);
     const logo = screen.getByRole('heading', { level: 1 });
@@ -41,5 +47,11 @@ describe('Header 컴포넌트 테스트', () => {
     await waitFor(() => {
       expect(tab).toHaveStyle('color: #00397B');
     });
+  });
+
+  it('Header 스냅샷 테스트', () => {
+    render(<Header />);
+
+    expect(screen.getByTestId('header')).toMatchSnapshot();
   });
 });

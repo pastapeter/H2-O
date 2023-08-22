@@ -13,7 +13,7 @@ function NavBar() {
   };
 
   return (
-    <NavContainer>
+    <NavContainer role='navigation'>
       {TAB_LIST.map((tab, idx) => (
         <Tab key={tab} state={getTabState(currentSlide, idx)} onClick={() => handleClickTab(idx)}>
           {tab}

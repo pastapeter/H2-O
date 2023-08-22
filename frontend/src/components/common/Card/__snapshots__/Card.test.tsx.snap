@@ -1,0 +1,39 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card 컴포넌트 테스트 > Card 스냅샷 테스트 > isSelected가 true일 때 스냅샷 테스트 1`] = `
+.emotion-0 {
+  border: 1px solid #00AAD2;
+  background-color: #00AAD21A;
+  color: #212122;
+  cursor: pointer;
+}
+
+.emotion-0:hover {
+  border-color: #00AAD2;
+}
+
+<div
+  class="emotion-0"
+>
+  카드
+</div>
+`;
+
+exports[`Card 컴포넌트 테스트 > Card 스냅샷 테스트 > 카드 스냅샷 테스트 1`] = `
+.emotion-0 {
+  border: 1px solid #DADCDD;
+  background-color: white;
+  color: #A3A6AA;
+  cursor: pointer;
+}
+
+.emotion-0:hover {
+  border-color: #00AAD2;
+}
+
+<div
+  class="emotion-0"
+>
+  카드
+</div>
+`;

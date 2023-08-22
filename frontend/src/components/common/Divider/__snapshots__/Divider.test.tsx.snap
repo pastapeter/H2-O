@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Divider 컴포넌트 테스트 > Divider 스냅샷 테스트 > color 가 주어졌을 때 1`] = `
+.emotion-0 {
+  background-color: #00AAD2;
+  width: 100%;
+  height: 1px;
+}
+
+<div
+  class="emotion-0"
+  color="activeBlue"
+  data-testid="divider"
+/>
+`;
+
+exports[`Divider 컴포넌트 테스트 > Divider 스냅샷 테스트 > horizontal 일 때 1`] = `
+.emotion-0 {
+  background-color: #B6B8BB;
+  width: 100%;
+  height: 1px;
+}
+
+<div
+  class="emotion-0"
+  data-testid="divider"
+/>
+`;
+
+exports[`Divider 컴포넌트 테스트 > Divider 스냅샷 테스트 > vertical 일 때 1`] = `
+.emotion-0 {
+  background-color: #B6B8BB;
+  width: 1px;
+  height: 100%;
+}
+
+<div
+  class="emotion-0"
+  data-testid="divider"
+/>
+`;

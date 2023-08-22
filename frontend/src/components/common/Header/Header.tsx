@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import CloseMyCarPopup from './CloseMyCarPopup';
-import NavBar from './NavBar';
+import { NavBar } from './NavBar';
 import { Icon } from '@/components/common';
 import { useToggle } from '@/hooks';
 import { ReactComponent as Logo } from '@/assets/logo/logo.svg';
@@ -9,7 +9,7 @@ function Header() {
   const { status, setOff, setOn } = useToggle(false);
 
   return (
-    <HeaderContainer>
+    <HeaderContainer data-testid='header'>
       <h1 onClick={setOn}>
         <Logo />
       </h1>

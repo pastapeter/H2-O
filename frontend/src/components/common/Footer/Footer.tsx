@@ -20,6 +20,7 @@ function Footer({ children, isSticky = false }: PropsWithChildren<Props>) {
 
   return (
     <FooterContainer
+      data-testid='footer'
       as='footer'
       justifyContent='flex-end'
       height={120}
