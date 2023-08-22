@@ -1,5 +1,5 @@
 async function request<TResponse>(url: string, options: RequestInit = {}): Promise<TResponse> {
-  const baseUrl = `${import.meta.env.VITE_CLIENT_URL}/api${url}`;
+  const baseUrl = `${import.meta.env.VITE_API_BASE_URL}${url}`;
 
   const cacheStorage = await caches.open('cache');
   const cachedResponse = await cacheStorage.match(url);
