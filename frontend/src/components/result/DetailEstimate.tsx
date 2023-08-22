@@ -1,20 +1,26 @@
-import { Fragment } from 'react';
-import { css, useTheme } from '@emotion/react';
+import { Fragment, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import BarGraph from './BarGraph';
 import PriceGraph from './PriceGraph';
 import { getPriceSum } from './utils';
-import { Divider, Flex, HMGTag, Typography } from '@/components/common';
+import { QutationBody } from '@/types/interface';
+import { postSalesCount, postSimilarOption } from '@/apis/quotation';
+import { Divider, Flex, HMGTag, Loading, Typography } from '@/components/common';
 import { EstimateAccordian as Accordian } from '@/components/result';
 import { SimilarEstimationPopup } from '@/components/similarEstimation';
-import { useToggle } from '@/hooks';
-import type {
-  ExteriorColorInfo,
-  ExtraOptionsInfo,
-  InteriorColorInfo,
-  SelectionInfoWithImage,
+import { useFetcher, useSafeContext, useToggle } from '@/hooks';
+import {
+  type ExteriorColorInfo,
+  type ExtraOptionsInfo,
+  type InteriorColorInfo,
+  SelectionContext,
+  type SelectionInfoWithImage,
 } from '@/providers/SelectionProvider';
+import { SlideContext } from '@/providers/SlideProvider';
 
 interface Props {
+  carId: number;
+  trimId: number;
   powerTrain: SelectionInfoWithImage;
   bodyType: SelectionInfoWithImage;
   driveTrain: SelectionInfoWithImage;
@@ -23,9 +29,66 @@ interface Props {
   extraOptions: ExtraOptionsInfo;
 }
 
-function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions }: Props) {
-  const { colors } = useTheme();
+function DetailEstimate({
+  carId,
+  trimId,
+  powerTrain,
+  bodyType,
+  driveTrain,
+  exteriorColor,
+  interiorColor,
+  extraOptions,
+}: Props) {
   const { status, setOff, setOn } = useToggle(false);
+  const { currentSlide, setCurrentSlide } = useSafeContext(SlideContext);
+  const [submit, setSubmit] = useState(false);
+
+  const body: QutationBody = {
+    carId: carId,
+    externalColorId: exteriorColor.id,
+    internalColorId: interiorColor.id,
+    modelTypeIds: { bodytypeId: bodyType.id, drivetrainId: driveTrain.id, powertrainId: powerTrain.id },
+    optionIds: extraOptions.optionList.filter((opt) => opt.isPackage === false).map((opt) => opt.id),
+    packageIds: extraOptions.optionList.filter((opt) => opt.isPackage === true).map((opt) => opt.id),
+    trimId: trimId,
+  };
+
+  const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
+  const handleModifyButton = (idx: number) => () => {
+    setCurrentSlide(idx);
+  };
+  const handleDeleteButton = (idx: number) => () => {
+    if (!selectionInfo.extraOptions) return;
+
+    dispatch({
+      type: 'SET_EXTRA_OPTIONS',
+      payload: selectionInfo.extraOptions?.optionList.filter((item) => item.id !== idx),
+    });
+  };
+
+  const { isLoading: quotationLoading, data: estimationList } = useFetcher({
+    fetchFn: () => postSimilarOption(body),
+    onSuccess: () => {
+      setSubmit(false);
+    },
+    enabled: submit && currentSlide === 5,
+  });
+
+  const { isLoading: salesLoading, data: nowSalesCount } = useFetcher({
+    fetchFn: () => postSalesCount(body),
+    onSuccess: () => {
+      setSubmit(false);
+    },
+    enabled: submit && currentSlide === 5,
+  });
+
+  useEffect(() => {
+    setSubmit(true);
+  }, [extraOptions.optionList]);
+
+  const isLoading = quotationLoading || salesLoading;
+  const isFetchData = estimationList && estimationList.length && nowSalesCount;
+
   return (
     <Fragment>
       <Typography as='h3' font='HeadKRMedium18' color='gray900' marginTop={20} marginBottom={12}>
@@ -40,6 +103,7 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
                 thumbnail={powerTrain.image}
                 name={powerTrain.name}
                 price={powerTrain.price}
+                handleClickButton={handleModifyButton(1)}
               />
             )}
             {bodyType && (
@@ -48,6 +112,7 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
                 thumbnail={bodyType.image}
                 name={bodyType.name}
                 price={bodyType.price}
+                handleClickButton={handleModifyButton(1)}
               />
             )}
             {driveTrain && (
@@ -56,6 +121,7 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
                 thumbnail={driveTrain.image}
                 name={driveTrain.name}
                 price={driveTrain.price}
+                handleClickButton={handleModifyButton(1)}
               />
             )}
           </Accordian>
@@ -70,6 +136,7 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
                 colorCode={exteriorColor.colorCode}
                 name={exteriorColor.name}
                 price={exteriorColor.price}
+                handleClickButton={handleModifyButton(2)}
               />
             )}
             {interiorColor && (
@@ -78,12 +145,20 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
                 thumbnail={interiorColor.fabricImage}
                 name={interiorColor.name}
                 price={interiorColor.price}
+                handleClickButton={handleModifyButton(3)}
               />
             )}
           </Accordian>
-          <Accordian label='추가옵션' totalPrice={extraOptions.price} isExpanded>
+          <Accordian label='추가옵션' totalPrice={extraOptions.price}>
             {extraOptions.optionList.map((opt) => (
-              <Accordian.Detail key={opt.id} thumbnail={opt.image} name={opt.name} price={opt.price} />
+              <Accordian.Detail
+                key={opt.id}
+                thumbnail={opt.image}
+                name={opt.name}
+                price={opt.price}
+                isModify={!opt.isQuotation}
+                handleClickButton={opt.isQuotation ? handleDeleteButton(opt.id) : handleModifyButton(4)}
+              />
             ))}
           </Accordian>
           <Accordian label='탁송' totalPrice={0} />
@@ -103,9 +178,9 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
             <Divider color='gray100' length='100%' />
             <PriceGraph />
           </GraphContainer>
-          <GraphContainer>
+          <SalesBarContainer flexDirection='column'>
             <StyledHMGTag variant='small' />
-            <Typography font='HeadKRMedium16' color='gray900' marginBottom={15}>
+            <Typography font='HeadKRMedium16' color='gray900' marginBottom={10}>
               <Highlight>내 견적과 비슷한 실제 출고 견적</Highlight>들을
               <br />
               확인하고 비교해보세요.
@@ -114,19 +189,32 @@ function DetailEstimate({ powerTrain, bodyType, driveTrain, exteriorColor, inter
               유사 출고 견적이란, 내 견적과 해시태그 유사도가
               <br /> 높은 다른 사람들의 실제 출고 견적이에요.
             </Typography>
-            <Divider
-              css={css`
-                background-color: ${colors.gray100};
-              `}
-              length='100%'
-            />
-            <StyledButton onClick={setOn}>
-              <Typography font='HeadKRMedium14' color='primary500'>
-                유사 출고 견적 확인하기
-              </Typography>
-            </StyledButton>
-            {status && <SimilarEstimationPopup closeEstimationPopup={setOff} />}
-          </GraphContainer>
+            <Divider color='gray100' length='100%' />
+            {isLoading ? (
+              <Flex width='100%' justifyContent='center' height={170}>
+                <Loading />
+              </Flex>
+            ) : isFetchData ? (
+              <Flex flexDirection='column' justifyContent='space-between' height='100%' paddingTop={13}>
+                <BarGraph
+                  salesCount={nowSalesCount.salesCount}
+                  quotationSalesCount={estimationList.map((item) => item.salesCount)}
+                />
+                <StyledButton onClick={setOn}>
+                  <Typography font='HeadKRMedium14' color='primary500'>
+                    유사 출고 견적 확인하기
+                  </Typography>
+                </StyledButton>
+                {status && <SimilarEstimationPopup closeEstimationPopup={setOff} response={estimationList} />}
+              </Flex>
+            ) : (
+              <Flex width='100%' justifyContent='center' alignItems='center' height={170}>
+                <Typography color='gray300' font='HeadKRMedium14'>
+                  유사견적이 없습니다.
+                </Typography>
+              </Flex>
+            )}
+          </SalesBarContainer>
         </Flex>
       </Flex>
     </Fragment>
@@ -137,10 +225,19 @@ export default DetailEstimate;
 
 const GraphContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.blueBg};
+  flex-direction: column;
   position: relative;
   width: 347px;
   height: 349px;
   padding: 40px 16px 21px 16px;
+`;
+
+const SalesBarContainer = styled(Flex)`
+  background-color: ${({ theme }) => theme.colors.gray50};
+  position: relative;
+  width: 347px;
+  height: 385px;
+  padding: 40px 16px 15px 16px;
 `;
 
 const StyledHMGTag = styled(HMGTag)`

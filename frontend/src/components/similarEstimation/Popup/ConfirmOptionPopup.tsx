@@ -19,9 +19,20 @@ function ConfirmOptionPopup({ closeSimilarEstimationPopup, closePopup, optionLis
     closeSimilarEstimationPopup();
     setCurrentSlide(5);
 
+    const newOptionList = optionList.map((item) => {
+      return {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        isPackage: false,
+        isQuotation: true,
+      };
+    });
+
     dispatch({
       type: 'SET_EXTRA_OPTIONS',
-      payload: selectionInfo.extraOptions ? selectionInfo.extraOptions.optionList.concat(optionList) : optionList,
+      payload: selectionInfo.extraOptions ? selectionInfo.extraOptions.optionList.concat(newOptionList) : newOptionList,
     });
   };
 

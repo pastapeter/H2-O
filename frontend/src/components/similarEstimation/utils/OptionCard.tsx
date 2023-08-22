@@ -1,12 +1,12 @@
 import { HTMLAttributes } from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import type { QuotationOption } from '@/types/interface';
 import { Typography, Card as _Card, Icon as _Icon } from '@/components/common';
 import { toPriceFormatString } from '@/utils/string';
-import type { SelectionInfoWithImage } from '@/providers/SelectionProvider';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  option: SelectionInfoWithImage;
+  option: QuotationOption;
   isClicked: boolean;
 }
 

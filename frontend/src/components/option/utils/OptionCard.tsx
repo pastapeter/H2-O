@@ -5,7 +5,7 @@ import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interfa
 import { Card, Flex, HMGTag, HashTag, Typography } from '@/components/common';
 import { CheckBox } from '@/components/option/utils';
 import { toPriceFormatString } from '@/utils/string';
-import { SelectionInfoWithImage } from '@/providers/SelectionProvider';
+import type { OptionInfo } from '@/providers/SelectionProvider';
 
 interface CardProps {
   image: string;
@@ -33,8 +33,8 @@ function OptionCard({ children, image, hashTags, containsHmgData, ...restProps }
 interface ExtraProps extends HTMLAttributes<HTMLDivElement> {
   info: ExtraOptionResponse;
   isChecked?: boolean;
-  addOption?: (idx: SelectionInfoWithImage) => void;
-  removeOption?: (idx: SelectionInfoWithImage) => void;
+  addOption: (idx: Omit<OptionInfo, 'isQuotation'>) => void;
+  removeOption: (idx: Omit<OptionInfo, 'isQuotation'>) => void;
 }
 
 function ExtraOptionCard({ info, isChecked, addOption, removeOption, ...restProps }: ExtraProps) {
@@ -42,10 +42,10 @@ function ExtraOptionCard({ info, isChecked, addOption, removeOption, ...restProp
 
   const handleClickIcon: MouseEventHandler<HTMLButtonElement> = () => {
     setIsActive((prev) => !prev);
-    const { id, name, price, image } = info;
+    const { id, name, price, image, isPackage } = info;
     isActive
-      ? removeOption && removeOption({ id: id, name: name, price: price, image: image })
-      : addOption && addOption({ id: id, name: name, price: price, image: image });
+      ? removeOption && removeOption({ id: id, name: name, price: price, image: image, isPackage: isPackage })
+      : addOption && addOption({ id: id, name: name, price: price, image: image, isPackage: isPackage });
   };
 
   useEffect(() => {

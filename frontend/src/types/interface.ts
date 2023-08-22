@@ -143,3 +143,41 @@ export interface PackageOptionResponse {
     },
   ];
 }
+
+export interface QutationBody {
+  carId: number;
+  externalColorId: number;
+  internalColorId: number;
+  modelTypeIds: {
+    bodytypeId: number;
+    drivetrainId: number;
+    powertrainId: number;
+  };
+  optionIds: number[];
+  packageIds: number[];
+  trimId: number;
+}
+
+export interface QuotationOption {
+  category: string;
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+}
+
+export interface QutationResponse {
+  image: string;
+  modelType: {
+    bodytypeName: string;
+    drivetrainName: string;
+    powertrainName: string;
+  };
+  options: QuotationOption[];
+  price: number;
+  salesCount: number;
+}
+
+export interface SalesCountResponse {
+  salesCount: number;
+}

@@ -1,6 +1,7 @@
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { OptionCard } from './utils';
+import type { QutationResponse } from '@/types/interface';
 import { Flex, HMGTag, HashTag, Icon, Typography } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
@@ -9,15 +10,6 @@ import { SelectionContext, SelectionInfoWithImage } from '@/providers/SelectionP
 
 const estimationOrder = ['첫번째', '두번째', '세번째', '네번째'];
 
-// TODO: API 명세서 나오면 데이터 형식 맞추기
-interface EstimationResponse {
-  id: number;
-  name: string;
-  hashTags: string[];
-  price: number;
-  options: SelectionInfoWithImage[];
-}
-
 interface Props {
   prevPage: () => void;
   nextPage: () => void;
@@ -25,7 +17,7 @@ interface Props {
   isActive: boolean;
   isStartPage: boolean;
   isLastPage: boolean;
-  estimation: EstimationResponse;
+  estimation: QutationResponse;
   addData: (data: SelectionInfoWithImage) => void;
   removeData: (data: SelectionInfoWithImage) => void;
   hasData: (data: SelectionInfoWithImage) => boolean;
@@ -51,7 +43,7 @@ function EstimationCard({
 
   return (
     <CardContainer>
-      <Flex height='100%' paddingTop={48} paddingLeft={48} gap={20}>
+      <Flex height='100%' paddingTop={48} paddingLeft={40} gap={20}>
         <Icon iconType='ArrowLeft' css={StyleIcon(isActive && !isStartPage, false)} onClick={prevPage} />
         <Flex flexDirection='column' justifyContent='space-between' paddingBottom={52}>
           <Flex flexDirection='column'>
@@ -59,13 +51,13 @@ function EstimationCard({
               {estimationOrder[cardIdx]} 유사견적서
             </Typography>
             <Typography font='HeadKRBold18' color='primary700'>
-              {estimation.name}
+              Le Blanc
             </Typography>
           </Flex>
           <Flex gap={5}>
-            {estimation.hashTags.map((hashTag) => (
-              <HashTag title={hashTag} key={hashTag} />
-            ))}
+            <HashTag title={estimation.modelType.bodytypeName} />
+            <HashTag title={estimation.modelType.drivetrainName} />
+            <HashTag title={estimation.modelType.powertrainName} />
           </Flex>
           <Flex flexDirection='column'>
             <Typography font='HeadKRMedium14' color='primary700'>
@@ -76,7 +68,7 @@ function EstimationCard({
             </Typography>
           </Flex>
         </Flex>
-        <StlyedImg src='/images/exterior2.png' />
+        <StlyedImg src={estimation.image} />
       </Flex>
       <HMGInfo flexDirection='column' gap={10}>
         <HMGTag />

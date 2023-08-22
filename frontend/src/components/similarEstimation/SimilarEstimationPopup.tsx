@@ -3,25 +3,34 @@ import styled from '@emotion/styled';
 import EstimationCard from './EstimationCard';
 import { ConfirmClosePopup, ConfirmOptionPopup } from './Popup';
 import PriceStaticBar from './SimilarEstimationPriceBar';
-import { ESTIMATION_LIST } from './mock/mock';
-import { CTAButton, Circle, Flex, Popup, Typography, Icon as _Icon } from '@/components/common';
+import { QutationResponse } from '@/types/interface';
+import { CTAButton, Circle, Flex, Loading, Popup, Typography, Icon as _Icon } from '@/components/common';
 import { usePagination, useToggle } from '@/hooks';
 import useSetList from '@/hooks/useSetList';
 import { SelectionInfoWithImage } from '@/providers/SelectionProvider';
 
 interface Props {
   closeEstimationPopup: () => void;
+  response: QutationResponse[];
 }
 
-function SimilarEstimationPopup({ closeEstimationPopup }: Props) {
+function SimilarEstimationPopup({ closeEstimationPopup, response: estimationList }: Props) {
   const { prevPage, nextPage, currentPage, isStartPage, isEndPage } = usePagination({
-    data: ESTIMATION_LIST,
+    data: estimationList,
     pageSize: 1,
   });
   const { dataList, addData, removeData, hasData, isEmptyList } = useSetList<SelectionInfoWithImage>({});
+
   const toggleClosePopup = useToggle(false);
   const toggleConfirmPopup = useToggle(false);
   const theme = useTheme();
+
+  if (!estimationList)
+    return (
+      <Popup size='large' handleClickDimmed={closeEstimationPopup}>
+        <Loading />
+      </Popup>
+    );
 
   return (
     <Popup size='large' handleClickDimmed={toggleClosePopup.setOn}>
@@ -41,13 +50,13 @@ function SimilarEstimationPopup({ closeEstimationPopup }: Props) {
               <br /> 내 견적과 해시태그 유사도가 높은 다른 사람들의 실제 출고 견적이에요.
             </Typography>
           </Flex>
-          <PriceStaticBar estimationPrice={ESTIMATION_LIST[currentPage].price} />
+          <PriceStaticBar estimationPrice={estimationList[currentPage].price} />
         </Header>
         <CarouselContainer>
           <EstimationCardList pageIdx={currentPage}>
-            {ESTIMATION_LIST.map((item, idx) => (
+            {estimationList.map((item, idx) => (
               <EstimationCard
-                key={item.id}
+                key={item.image + idx}
                 prevPage={prevPage}
                 nextPage={nextPage}
                 cardIdx={idx}
@@ -63,7 +72,7 @@ function SimilarEstimationPopup({ closeEstimationPopup }: Props) {
           </EstimationCardList>
         </CarouselContainer>
         <Flex gap={8} width='100%' justifyContent='center'>
-          {Array(ESTIMATION_LIST.length)
+          {Array(estimationList.length)
             .fill(1)
             .map((_, idx) => (
               <Flex key={idx}>

@@ -4,9 +4,11 @@ import { PageContext } from '@/components/carousel/PageCarousel';
 import { CTAButton, Flex, ImageButton, Typography } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
+import { SelectionContext } from '@/providers/SelectionProvider';
 
 function ResultFooter() {
   const slideRef = useSafeContext(PageContext);
+  const { totalPrice } = useSafeContext(SelectionContext);
 
   const handleClickImageButton: MouseEventHandler<HTMLButtonElement> = () => {
     slideRef.current?.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -20,7 +22,7 @@ function ResultFooter() {
           최종 견적 가격
         </Typography>
         <Typography as='strong' font='HeadKRMedium24' color='primary500'>
-          {toSeparatedNumberFormat(55560000)} 원
+          {toSeparatedNumberFormat(totalPrice)} 원
         </Typography>
       </Flex>
       <Flex alignItems='center' gap={17} width='100%'>

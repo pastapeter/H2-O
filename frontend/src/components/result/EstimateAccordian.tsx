@@ -17,6 +17,8 @@ interface DetailProps {
   thumbnail?: string;
   name: string;
   price: number;
+  isModify?: boolean;
+  handleClickButton: () => void;
 }
 
 function EstimateAccordian({
@@ -90,12 +92,12 @@ function EstimateAccordian({
   );
 }
 
-function Detail({ thumbnail, colorCode, type, name, price }: DetailProps) {
+function Detail({ thumbnail, colorCode, type, name, price, isModify = true, handleClickButton }: DetailProps) {
   return (
     <DetailContainer>
       <Flex width='100%' height='55px' gap={16}>
         <ImageContainer colorCode={colorCode}>
-          {thumbnail && <Thumbnail src={thumbnail} alt='외장 이미지' />}
+          {thumbnail && <Thumbnail src={thumbnail} alt='선택사항 썸네일 이미지' />}
         </ImageContainer>
         <Flex justifyContent='space-between' alignItems='center' width='100%'>
           <Flex flexDirection='column' height='100%' gap={10}>
@@ -109,9 +111,9 @@ function Detail({ thumbnail, colorCode, type, name, price }: DetailProps) {
             </Typography>
           </Flex>
           <Flex flexDirection='column' alignItems='flex-end' gap={10}>
-            <Typography font='HeadKRMedium14' color='primary500'>
-              수정하기
-            </Typography>
+            <ModifyButton isModify={isModify} onClick={handleClickButton}>
+              {isModify ? '수정하기' : '삭제하기'}
+            </ModifyButton>
             <Typography font='TextKRRegular14' color='gray900'>{`${toPriceFormatString(price)}원`}</Typography>
           </Flex>
         </Flex>
@@ -158,4 +160,9 @@ const Thumbnail = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const ModifyButton = styled.button<{ isModify: boolean }>`
+  ${({ theme }) => theme.typography.HeadKRMedium14}
+  color: ${({ theme, isModify }) => (isModify ? theme.colors.primary500 : theme.colors.sand)}
 `;

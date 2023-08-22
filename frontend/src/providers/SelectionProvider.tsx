@@ -24,9 +24,14 @@ export interface InteriorColorInfo extends SelectionInfoWithImage {
   fabricImage: string;
 }
 
+export interface OptionInfo extends SelectionInfoWithImage {
+  isPackage: boolean;
+  isQuotation: boolean;
+}
+
 export interface ExtraOptionsInfo {
   price: number;
-  optionList: SelectionInfoWithImage[];
+  optionList: OptionInfo[];
 }
 
 type State = {
@@ -52,7 +57,7 @@ type Action =
   | { type: 'SET_EXTERIOR_COLOR'; payload: ExteriorColorInfo }
   | { type: 'SET_INTERIOR_COLOR'; payload: InteriorColorInfo }
   | { type: 'SET_DISPLACEMENT_AND_FUEL_EFFICIENCY'; payload: TechnicalSpecResponse }
-  | { type: 'SET_EXTRA_OPTIONS'; payload: SelectionInfoWithImage[] };
+  | { type: 'SET_EXTRA_OPTIONS'; payload: OptionInfo[] };
 
 const initialState: State = {
   model: {

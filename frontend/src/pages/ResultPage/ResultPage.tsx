@@ -15,6 +15,7 @@ function ResultPage() {
   const { selectionInfo } = useSafeContext(SelectionContext);
 
   const {
+    model,
     trim,
     powerTrain,
     bodyType,
@@ -60,6 +61,8 @@ function ResultPage() {
       <MainContainer>
         <ContentsWrapper flexDirection='column' paddingBottom={200}>
           <DetailEstimate
+            carId={model.id}
+            trimId={trim.id}
             powerTrain={powerTrain}
             bodyType={bodyType}
             driveTrain={driveTrain}

@@ -13,8 +13,10 @@ async function request<TResponse>(url: string, options: RequestInit = {}): Promi
     throw new Error(`${res.status} 에러가 발생했습니다.`);
   }
 
-  const responseWithDate = await getResponseWithDate(res);
-  await cacheStorage.put(url, responseWithDate);
+  if (options.method === 'GET') {
+    const responseWithDate = await getResponseWithDate(res);
+    await cacheStorage.put(url, responseWithDate);
+  }
 
   const json = await res.json();
   return json;
@@ -31,10 +33,13 @@ function get<TResponse>(url: string, options?: RequestInit) {
   });
 }
 
-function post<TBody extends BodyInit, TResponse>(url: string, body: TBody) {
+function post<TBody, TResponse>(url: string, body: TBody) {
   return request<TResponse>(url, {
     method: 'POST',
-    body,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
   });
 }
 

@@ -1,13 +1,9 @@
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Circle, Flex, Marker, Typography } from '@/components/common';
+import { Circle, Flex, Loading, Marker, Typography } from '@/components/common';
 import { useSafeContext } from '@/hooks';
-import { setPriceFormat } from '@/utils/number';
+import { setPriceFormat, toSeparatedNumberFormat } from '@/utils/number';
 import { SelectionContext } from '@/providers/SelectionProvider';
-
-// TODO: API 연결해서 가져오기
-const MAX_PRICE = 53460000;
-const MIN_PRICE = 38460000;
 
 const SLIDER_WIDTH = 311;
 
@@ -17,7 +13,11 @@ interface Props {
 
 function SimilarEstimationPriceBar({ estimationPrice }: Props) {
   const theme = useTheme();
-  const { totalPrice } = useSafeContext(SelectionContext);
+  const { totalPrice, selectionInfo } = useSafeContext(SelectionContext);
+
+  if (!selectionInfo.priceRange) return <Loading />;
+
+  const { minPrice, maxPrice } = selectionInfo.priceRange;
 
   return (
     <PriceBarContainer>
@@ -26,18 +26,19 @@ function SimilarEstimationPriceBar({ estimationPrice }: Props) {
           유사견적 가격
         </Typography>
         <PriceInfo>
-          내 견적보다 &nbsp;<Typography color='activeBlue2'>{Math.abs(estimationPrice - totalPrice)}</Typography>원
-          {estimationPrice >= totalPrice ? ' 비싸요.' : ' 저렴해요.'}
+          내 견적보다 &nbsp;
+          <Typography color='activeBlue2'>{toSeparatedNumberFormat(Math.abs(estimationPrice - totalPrice))}</Typography>
+          원{estimationPrice >= totalPrice ? ' 비싸요.' : ' 저렴해요.'}
         </PriceInfo>
       </Flex>
       <Flex flexDirection='column' gap={4}>
         <PriceBar>
-          <Marker color={theme.colors.activeBlue} css={StyleMarker(totalPrice, MIN_PRICE, MAX_PRICE - MIN_PRICE)} />
-          <Marker color={theme.colors.white} css={StyleMarker(estimationPrice, MIN_PRICE, MAX_PRICE - MIN_PRICE)} />
+          <Marker color={theme.colors.activeBlue} css={StyleMarker(totalPrice, minPrice, maxPrice - minPrice)} />
+          <Marker color={theme.colors.white} css={StyleMarker(estimationPrice, minPrice, maxPrice - minPrice)} />
         </PriceBar>
         <PriceRange justifyContent='space-between'>
-          <span>{setPriceFormat(MIN_PRICE)}만원</span>
-          <span>{setPriceFormat(MAX_PRICE)}만원</span>
+          <span>{setPriceFormat(minPrice)}만원</span>
+          <span>{setPriceFormat(maxPrice)}만원</span>
         </PriceRange>
       </Flex>
       <Flex justifyContent='center' gap={16}>
