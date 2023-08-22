@@ -13,7 +13,7 @@ struct DetailOptionInfo: ModalItemable, Equatable {
   }
   
   
-  let id: UUID
+  let id: Int
   let category: OptionCategory
   let containsChoiceCount: Bool
   let containsUseCount: Bool

@@ -23,7 +23,7 @@ final class OptionSelectionRepository: OptionSelectionRepositoryProtocol {
       OptionSelectionRequest.fetchDetailOf(trimID: trimID, optionID: optionID)
     )
     
-    return try dto.toDomain()
+    return try dto.toDomain(with: optionID)
     
   }
   
@@ -33,7 +33,7 @@ final class OptionSelectionRepository: OptionSelectionRepositoryProtocol {
       OptionSelectionRequest.fetchPackage(trimID: trimID, packageID: packageID)
     )
     
-    return try dto.toDomain()
+    return try dto.toDomain(with: packageID)
     
   }
   

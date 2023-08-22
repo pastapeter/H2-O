@@ -65,7 +65,7 @@ struct PackageResponseDTO: Codable {
 
 extension PackageResponseDTO {
   
-  func toDomain() throws -> PackageInfo {
+  func toDomain(with packageID: Int) throws -> PackageInfo {
     
     guard let name = name else { throw PackageInfoToDomainError.noPackageNameInResponse }
     guard let price = price else { throw PackageInfoToDomainError.noPackagePriceInResponse }
@@ -81,7 +81,7 @@ extension PackageResponseDTO {
       choiceCountCLNumber = CLNumber(Int32(choiceCount))
     }
     
-    return .init(id: .init(),
+    return .init(id: packageID,
                   title: name,
                  price: CLNumber(Int32(price)),
                  choiceRatio: choiceRatioCLNumber,

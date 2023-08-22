@@ -9,7 +9,7 @@ import Foundation
 
 struct PackageInfo: ModalItemable, Equatable {
   
-  let id: UUID
+  let id: Int
   let title: String
   let category: OptionCategory = .total
   let price: CLNumber
