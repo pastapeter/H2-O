@@ -54,7 +54,7 @@ extension OptionCardView: View {
       .frame(height: CGFloat(212).scaledHeight)
       .optionCardBackground(isSelected: isSelected)
       .cornerRadius(2)
-      .CLDialogFullScreenCover(show: $isModalPresenting, content: { [self] in
+      .CLDialogFullScreenCover(show: $isModalPresenting, content: {
         TransparentZStack {
           if state.isPackage {
             ModalPopUpComponent(state: self.state.packageOption, submitAction: {

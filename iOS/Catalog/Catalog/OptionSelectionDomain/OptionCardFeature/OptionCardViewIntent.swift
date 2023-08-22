@@ -47,10 +47,14 @@ extension OptionCardViewIntent: OptionCardViewIntentType, IntentType {
         do {
           if state.isPackage {
             state.packageOption = try await repository.fetchPackageInfo(of: state.id)
-            viewEffect?()
+            await MainActor.run(body: {
+              viewEffect?()
+            })
           } else {
             state.defaultOptionDetail = try await repository.fetchDetailInfo(of: state.id)
-            viewEffect?()
+            await MainActor.run(body: {
+              viewEffect?()
+            })
           }
         } catch (let e) {
           print(e)
