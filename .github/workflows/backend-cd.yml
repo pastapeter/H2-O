@@ -1,4 +1,4 @@
-dsasdname: release server application
+name: release server application
 
 on:
   push:
