@@ -108,6 +108,10 @@ public class QuotationService {
 
         //4. entity to DTO 변환
         for (int index = 0; index < 4; index++) {
+            if (similarityQueue.isEmpty()) {
+                break;
+            }
+
             ReleaseEntity releaseEntity = similarityQueue.poll().getKey();
 
             String powertrainName = powertrainMapper.findById(releaseEntity.getPowertrainId()).getName();
