@@ -31,7 +31,7 @@ class CLAPIRetrier: RequestRetrier {
         return .doNotRetryWithError(CLNetworkError.retryFailed(reason: .timeOut))
       }
     default:
-      return .doNotRetryWithError(CLNetworkError.invalidServerResponse)
+      return .doNotRetryWithError(CLNetworkError.invalidServerResponse(reason: response.statusCode))
     }
 
   }
