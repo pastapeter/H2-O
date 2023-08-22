@@ -11,6 +11,6 @@ public class AppConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("https://h2-cartalog.site", "https://www.h2-cartalog.site")
-                .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name());
+                .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.OPTIONS.name());
     }
 }
