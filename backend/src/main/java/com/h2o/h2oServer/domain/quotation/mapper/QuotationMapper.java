@@ -24,4 +24,12 @@ public interface QuotationMapper {
     long countPackageQuotation();
 
     List<ReleaseEntity> findReleaseQuotationWithVolume(Long trimId);
+
+    Integer countIdenticalQuotation(QuotationDto quotationDto,
+                                     String optionCombination,
+                                     String packageCombination);
+
+    List<String> findIdenticalQuotations(QuotationDto quotationDto,
+                 String optionCombination,
+                 String packageCombination);
 }

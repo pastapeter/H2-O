@@ -18,10 +18,7 @@ import com.h2o.h2oServer.domain.option.exception.NoSuchOptionException;
 import com.h2o.h2oServer.domain.option.mapper.OptionMapper;
 import com.h2o.h2oServer.domain.optionPackage.exception.NoSuchPackageException;
 import com.h2o.h2oServer.domain.optionPackage.mapper.PackageMapper;
-import com.h2o.h2oServer.domain.quotation.dto.QuotationRequestDto;
-import com.h2o.h2oServer.domain.quotation.dto.QuotationResponseDto;
-import com.h2o.h2oServer.domain.quotation.dto.QuotationDto;
-import com.h2o.h2oServer.domain.quotation.dto.SimilarQuotationDto;
+import com.h2o.h2oServer.domain.quotation.dto.*;
 import com.h2o.h2oServer.domain.quotation.entity.OptionQuotationEntity;
 import com.h2o.h2oServer.domain.quotation.entity.PackageQuotationEntity;
 import com.h2o.h2oServer.domain.quotation.entity.ReleaseEntity;
@@ -29,13 +26,14 @@ import com.h2o.h2oServer.domain.quotation.mapper.QuotationMapper;
 import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
 import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
 import com.h2o.h2oServer.domain.trim.mapper.TrimMapper;
+import com.h2o.h2oServer.global.util.ListStringParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-import static com.h2o.h2oServer.global.util.StringParser.*;
+import static com.h2o.h2oServer.global.util.ListStringParser.*;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +51,19 @@ public class QuotationService {
     private final OptionMapper optionMapper;
     private final PackageMapper packageMapper;
     private final ExternalColorMapper externalColorMapper;
+
+    public QuotationCountDto findNumberOfIdenticalQuotations(QuotationRequestDto quotationRequestDto) {
+        QuotationDto quotationDto = QuotationDto.of(quotationRequestDto);
+        String optionCombination = ListStringParser.parseToString(quotationRequestDto.getOptionIds());
+        String packageCombination = ListStringParser.parseToString(quotationRequestDto.getPackageIds());
+
+        return QuotationCountDto.builder()
+                .salesCount(quotationMapper.findIdenticalQuotations(quotationDto,
+                        optionCombination,
+                        packageCombination)
+                        .size())
+                .build();
+    }
 
     public List<SimilarQuotationDto> findSimilarQuotations(QuotationRequestDto quotationRequestDto) {
 
@@ -254,5 +265,4 @@ public class QuotationService {
                     throw new NoSuchOptionException();
                 });
     }
-
 }

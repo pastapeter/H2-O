@@ -88,9 +88,9 @@ class QuotationMapperTest {
                     .isEqualTo(2L);
         }
     }
-    
+
     @Test
-    @DisplayName("동일한 출고 견적의 데이터와 갯수 정보를 반환한다.")
+    @DisplayName("출고 견적 별 데이터와 갯수 정보를 반환한다.")
     @Sql("classpath:db/quotation/release-data.sql")
     void findReleaseQuotationWithVolume() {
         //given
@@ -115,7 +115,7 @@ class QuotationMapperTest {
                 .externalColorId(1L)
                 .price(30000)
                 .trimId(2L)
-                .quotationCount(1)
+                .quotationCount(2)
                 .optionCombination("1")
                 .packageCombination("1,2")
                 .build();
@@ -125,5 +125,30 @@ class QuotationMapperTest {
         //then
         assertThat(actualReleaseEntities).contains(expectedReleaseEntity)
                 .contains(expectedReleaseEntity2);
+    }
+
+    @Test
+    @DisplayName("동일한 출고 견적의 수를 반환한다.")
+    @Sql("classpath:db/quotation/release-data.sql")
+    void findIndenticalQuotation() {
+        //given
+        QuotationDto quotationDto = new QuotationDto(
+                1L, 2L, 1L, 1L, 1L, 1L, 1L
+        );
+
+        String optionCombination = "1";
+        String packageCombination = "1,2";
+
+        System.out.println(quotationMapper.findIdenticalQuotations(quotationDto, optionCombination, packageCombination));
+        //when
+        Integer actualNumber = quotationMapper.findIdenticalQuotations(
+                        quotationDto,
+                        optionCombination,
+                        packageCombination
+                )
+                .size();
+
+        //then
+        assertThat(actualNumber).isEqualTo(2);
     }
 }

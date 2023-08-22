@@ -13,6 +13,8 @@ import com.h2o.h2oServer.domain.option.exception.NoSuchOptionException;
 import com.h2o.h2oServer.domain.option.mapper.OptionMapper;
 import com.h2o.h2oServer.domain.optionPackage.exception.NoSuchPackageException;
 import com.h2o.h2oServer.domain.optionPackage.mapper.PackageMapper;
+import com.h2o.h2oServer.domain.quotation.dto.QuotationCountDto;
+import com.h2o.h2oServer.domain.quotation.dto.QuotationDto;
 import com.h2o.h2oServer.domain.quotation.dto.QuotationRequestDto;
 import com.h2o.h2oServer.domain.quotation.dto.QuotationResponseDto;
 import com.h2o.h2oServer.domain.quotation.mapper.QuotationMapper;
@@ -25,7 +27,10 @@ import org.mockito.Mockito;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.List;
+
 import static com.h2o.h2oServer.domain.quotation.QuotationFixture.generateQuotationRequestDto;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
@@ -188,5 +193,27 @@ class QuotationServiceTest {
                 .as("롤백되면 응답 객체가 생성되지 않는다.")
                 .isNull();
         softly.assertAll();
+    }
+
+    @Test
+    @DisplayName("요청받은 견적의 출고 대수를 반환한다.")
+    void findNumberOfIdenticalQuotations() {
+        //given
+        QuotationRequestDto requestDto = generateQuotationRequestDto();
+        String optionCombination = "8,9,10";
+        String packageCombination = "11";
+        when(quotationMapper.findIdenticalQuotations(QuotationDto.of(requestDto),
+                optionCombination,
+                packageCombination))
+                .thenReturn(List.of("mock1", "mock2"));
+        QuotationCountDto expectedQuotationCountDto = QuotationCountDto.builder()
+                .salesCount(2)
+                .build();
+
+        //when
+        QuotationCountDto actualQuotationCountDto = quotationService.findNumberOfIdenticalQuotations(requestDto);
+
+        //then
+        assertThat(actualQuotationCountDto).isEqualTo(expectedQuotationCountDto);
     }
 }
