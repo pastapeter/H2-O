@@ -9,12 +9,11 @@ import SwiftUI
 
 struct CLInActiceButton: View {
 
-  @State var mainText: String
-
-  var isInactive: Bool
+  var mainText: String
+  @Environment(\.isEnabled) var isEnabled: Bool
   var subText: String?
   var inActiveText: String?
-  var height: CGFloat
+  let height: CGFloat
   var width: CGFloat?
   let buttonAction: () -> Void
 
@@ -34,15 +33,14 @@ extension CLInActiceButton {
               }
               Spacer()
             }
-            Text(isInactive ? mainText : (inActiveText ?? ""))
+            Text(isEnabled ? mainText : (inActiveText ?? ""))
               .catalogFont(type: .HeadKRMedium16)
               .frame(maxWidth: width ?? .infinity, minHeight: 24)
           }
           .frame(minHeight: CGFloat(height).scaledHeight)
 
         }
-      
         .buttonStyle(CLInActiveButtonStyle())
-        .disabled(!isInactive)
+        .disabled(!isEnabled)
     }
 }

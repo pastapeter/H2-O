@@ -7,10 +7,18 @@
 
 import SwiftUI
 
-struct HMGDataCard: View {
-
+struct HMGDataCard {
   var options: [HMGDatum]
+  var attributedString: AttributedString {
+    var text: AttributedString = "해당 트림에 포함된 옵션들의 실활용 데이터에요."
+    guard let targetRange = text.range(of: "실활용 데이터") else { return "" }
+    text.foregroundColor = Color.gray900
+    text[targetRange].foregroundColor = Color.activeBlue
+    return text
+  }
+}
 
+extension HMGDataCard: View {
   var body: some View {
     ZStack(alignment: .leading) {
       
@@ -18,40 +26,38 @@ struct HMGDataCard: View {
         HMGTag()
         Spacer()
       }
-
+      
       VStack(alignment: .leading , spacing: 16) {
+        Text(attributedString)
+          .catalogFont(type: .TextKRMedium12)
+          .frame(width: CGFloat(252).scaledWidth, height: CGFloat(16).scaledWidth, alignment: .leading)
+          .padding(.top, CGFloat(12).scaledHeight)
         
-          Text(attributedString)
-            .catalogFont(type: .TextKRMedium12)
-            .frame(width: CGFloat(252).scaledWidth, height: CGFloat(16).scaledWidth, alignment: .leading)
-            .padding(.top, CGFloat(12).scaledHeight)
-
-          if options.isEmpty {
-            Spacer().frame(height: CGFloat(94).scaledHeight)
-          } else {
-            HStack(spacing: CGFloat(36).scaledWidth) {
-              ForEach(0..<options.count) { idx in
-                VStack(spacing: 4) {
-                  Text(options[idx].optionTitle)
-                    .catalogFont(type: .TextKRRegular10)
-                    .foregroundColor(Color.gray900)
-                    .frame(height: CGFloat(36).scaledHeight, alignment: .topLeading)
-
-                  Divider().frame(width: CGFloat(60).scaledWidth)
-
-                  Text("\(options[idx].optionFrequency)회")
-                    .catalogFont(type: .HeadKRRegular24)
-                    .foregroundColor(Color.gray900)
-                  Text("15,000km 당")
-                    .catalogFont(type: .TextKRRegular10)
-                    .foregroundColor(Color.gray600)
-                }
-                .frame(width: CGFloat(60).scaledWidth, height: CGFloat(94).scaledHeight)
+        if options.isEmpty {
+          Spacer().frame(height: CGFloat(94).scaledHeight)
+        } else {
+          HStack(spacing: CGFloat(36).scaledWidth) {
+            ForEach(0..<options.count) { idx in
+              VStack(spacing: 4) {
+                Text(options[idx].optionTitle)
+                  .catalogFont(type: .TextKRRegular10)
+                  .foregroundColor(Color.gray900)
+                  .frame(height: CGFloat(36).scaledHeight, alignment: .topLeading)
+                
+                Divider().frame(width: CGFloat(60).scaledWidth)
+                
+                Text("\(options[idx].optionFrequency)회")
+                  .catalogFont(type: .HeadKRRegular24)
+                  .foregroundColor(Color.gray900)
+                Text("15,000km 당")
+                  .catalogFont(type: .TextKRRegular10)
+                  .foregroundColor(Color.gray600)
               }
+              .frame(width: CGFloat(60).scaledWidth, height: CGFloat(94).scaledHeight)
             }
           }
+        }
       }
-      
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.gray50)
@@ -66,12 +72,4 @@ struct HMGDataCard_Previews: PreviewProvider {
   }
 }
 
-extension HMGDataCard {
-  var attributedString: AttributedString {
-    var text: AttributedString = "해당 트림에 포함된 옵션들의 실활용 데이터에요."
-    guard let targetRange = text.range(of: "실활용 데이터") else { return "" }
-    text.foregroundColor = Color.gray900
-    text[targetRange].foregroundColor = Color.activeBlue
-    return text
-  }
-}
+

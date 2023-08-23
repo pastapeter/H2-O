@@ -102,10 +102,29 @@ struct CLQuotationSummarySheet: View {
           CLLinearGradient(height: 48, startPoint: .bottom, endPoint: .top)
         }
       }
-      CLQuotationPriceBar(showQuotationSummarySheet:
-                            $showQuotationSummarySheet,
-                          currentQuotationPrice: currentQuotationPrice,
-                          buttonText: "요약 닫기")
+    CLQuotationPriceBar(showQuotationSummarySheet:
+    $showQuotationSummarySheet,
+                        state: Quotation.shared.state,
+    content: {
+      Button {
+          showQuotationSummarySheet.toggle()
+      } label: {
+          Text("요약 닫기")
+              .catalogFont(type: .TextKRMedium14)
+              .frame(width: 86, height: 36)
+              .foregroundColor(Color.primary0)
+              .overlay(
+                  Capsule(style: .continuous)
+                      .stroke(Color.primary0)
+              )
+      }
+      .buttonStyle(.plain)
+      Spacer()
+    })
+//      CLQuotationPriceBar(showQuotationSummarySheet:
+//                            $showQuotationSummarySheet,
+//                          currentQuotationPrice: currentQuotationPrice,
+//                          buttonText: "요약 닫기")
       CLButton(mainText: "견적 완료하기", height: 52, backgroundColor: Color.primary700) {
         showQuotationSummarySheet = false
 

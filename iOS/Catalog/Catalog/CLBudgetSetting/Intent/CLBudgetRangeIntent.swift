@@ -32,7 +32,7 @@ final class CLBudgetRangeIntent: ObservableObject {
 
     @Published var state: State = State(currentQuotationPrice: CLNumber(30000000),
                                         budgetPrice: CLNumber(40000000), status: .default)
-  let navigationIntent: CLNavigationIntentType
+    let navigationIntent: CLNavigationIntentType
     var quotation = Quotation.shared
     var cancellable: Set<AnyCancellable> = []
 }

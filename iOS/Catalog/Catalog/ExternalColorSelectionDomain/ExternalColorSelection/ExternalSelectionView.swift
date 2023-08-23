@@ -24,19 +24,21 @@ struct ExternalSelectionView: IntentBindingType {
 extension ExternalSelectionView: View {
 
   var body: some View {
-    VStack {
-    ProgressView()
-    .frame(height: CGFloat(292).scaledHeight)
-      Spacer().frame(height: CGFloat(20).scaledHeight)
-      VStack(alignment: .leading, spacing: 0) {
-        Text("외장 색상을 선택해주세요")
-          .catalogFont(type: .HeadKRMedium18)
-        Spacer().frame(height: 8)
-        ExternalColorSelectionHorizontalList(state: state.colors,
-                                             intent: intent)
-        Spacer()
+    ScrollView {
+      VStack {
+        ProgressView()
+          .frame(height: CGFloat(292).scaledHeight)
+        Spacer().frame(height: CGFloat(20).scaledHeight)
+        VStack(alignment: .leading, spacing: 0) {
+          Text("외장 색상을 선택해주세요")
+            .catalogFont(type: .HeadKRMedium18)
+          Spacer().frame(height: 8)
+          ExternalColorSelectionHorizontalList(state: state.colors,
+                                               intent: intent)
+          Spacer()
+        }
+        .padding(.leading, 20)
       }
-      .padding(.leading, 20)
     }
     .onAppear {
       intent.send(action: .onAppear)

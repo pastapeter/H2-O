@@ -9,13 +9,13 @@ import SwiftUI
 
 struct SimilarQuotationTopBar: View {
   
-  let navigationIntent: CLNavigationIntentType
+  var intent: SimilarQuotationIntentType
   var body: some View {
     VStack {
       ZStack {
         HStack {
           Button {
-            navigationIntent.send(action: .onTapSimilarQuotationBackButton)
+            intent.send(action: .onTapBackButton)
           } label: {
             Image("arrow_left")
           }

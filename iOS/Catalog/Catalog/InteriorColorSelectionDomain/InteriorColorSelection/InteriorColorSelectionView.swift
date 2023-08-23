@@ -24,26 +24,28 @@ struct InteriorColorSelectionView: IntentBindingType {
 extension InteriorColorSelectionView: View {
 
   var body: some View {
-    VStack {
-      AsyncImage(url: state.selectedInteriorImageURL) { image in
-      image
-        .resizable()
-        .frame(width: UIScreen.main.bounds.width)
-    } placeholder: {
-      ProgressView()
-    }
-    .frame(height: CGFloat(292).scaledHeight)
-      Spacer().frame(height: 20)
-      VStack(alignment: .leading, spacing: 0) {
-        Text("내장 색상을 선택해주세요")
-          .catalogFont(type: .HeadKRMedium18)
-        Spacer().frame(height: 8)
-        InteriorColorSelectionHorizontalList(state: state.trimColors,
-                                             intent: self.intent,
-                                             height: UIScreen.main.bounds.height * 177 / 812)
-        Spacer()
+    ScrollView {
+      VStack {
+        AsyncImage(url: state.selectedInteriorImageURL) { image in
+          image
+            .resizable()
+            .frame(width: UIScreen.main.bounds.width)
+        } placeholder: {
+          ProgressView()
+        }
+        .frame(height: CGFloat(292).scaledHeight)
+        Spacer().frame(height: 20)
+        VStack(alignment: .leading, spacing: 0) {
+          Text("내장 색상을 선택해주세요")
+            .catalogFont(type: .HeadKRMedium18)
+          Spacer().frame(height: 8)
+          InteriorColorSelectionHorizontalList(state: state.trimColors,
+                                               intent: self.intent,
+                                               height: UIScreen.main.bounds.height * 177 / 812)
+          Spacer()
+        }
+        .padding(.leading, 20)
       }
-      .padding(.leading, 20)
     }
     .onAppear {
       intent.send(action: .onAppear)

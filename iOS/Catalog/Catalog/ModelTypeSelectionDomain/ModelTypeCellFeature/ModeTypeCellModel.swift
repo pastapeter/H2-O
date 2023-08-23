@@ -30,9 +30,7 @@ enum ModelTypeCellModel: Equatable {
     case onTapDetailButton(isPresenting: Bool)
     case onTapOptions(id: Int)
   }
-
 }
-
 
 
 struct ModelTypeOptionState: Equatable, Hashable {
@@ -43,4 +41,17 @@ struct ModelTypeOptionState: Equatable, Hashable {
   var title: String = "디젤"
   var price: CLNumber = .init(0)
 
+}
+
+extension ModelTypeDetailState {
+  func convertModelTypeDetailStateToModelTypeOption() -> ModelTypeOption {
+    return ModelTypeOption(id: id,
+                           name: title,
+                           choiceRatio: choiceRatio,
+                           price: price,
+                           imageURL: imageURL,
+                           maxOuputFromEngine: self.hmgData?.engineOutput,
+                           maxTorqueFromEngine: self.hmgData?.torque
+                           )
+    }
 }

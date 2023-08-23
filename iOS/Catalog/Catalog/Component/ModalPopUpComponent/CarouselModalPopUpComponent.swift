@@ -88,7 +88,6 @@ extension CarouselModalPopUpComponent {
       content(state)
       CLInActiceButton(
         mainText: "선택하기",
-        isInactive: isInactive(state: state),
         subText: state.price.signedWon,
         inActiveText: "선택완료",
         height: CGFloat(87).scaledHeight,
@@ -98,6 +97,7 @@ extension CarouselModalPopUpComponent {
           }
         }
       )
+      .disabled(state.id as! Int == selectedId)
       .frame(height: CGFloat(56).scaledHeight)
     }
     .background(.white)

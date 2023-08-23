@@ -22,7 +22,10 @@ struct SimilarQuotation: Equatable, Identifiable {
           drivetrainName: "2WD",
           price: CLNumber(23233), options: [
             SimilarQuotationOption.mock(),
-            SimilarQuotationOption.mock()
+            SimilarQuotationOption(
+              id: 5,
+              name: "ㅎㅎ",
+              price: CLNumber(10900))
           ])
   }
 }

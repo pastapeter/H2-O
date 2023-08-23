@@ -51,7 +51,6 @@ extension PackageComponentResponseDTO {
   }
 }
 
-
 struct PackageResponseDTO: Codable {
     let name: String?
     let category: String?

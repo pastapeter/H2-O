@@ -23,12 +23,11 @@ protocol ModalItemable: Identifiable & PriceContainable & titleContainable {
 struct ModelTypeDetailState: Equatable, ModalItemable {
   typealias ID = Int
   
-  var id: ID
+  var id: Int
   var title: String
   var description: String?
   var choiceRatio: CLNumber?
   var imageURL: URL?
   var price: CLNumber
   var hmgData: HMGModelTypeState?
-  
 }

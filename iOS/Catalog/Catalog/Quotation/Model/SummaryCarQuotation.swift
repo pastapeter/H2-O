@@ -7,14 +7,16 @@
 
 import Foundation
 
-struct SummaryQuotationInfo: Hashable {
+struct SummaryQuotationInfo: Hashable, Equatable {
+  var index: Int
   var title: String
   var name: String
   var price: CLNumber
   var image: URL?
+  var isSimilarOption: Bool = false
 }
 
-struct SummaryCarQuotation {
+struct SummaryCarQuotation: Equatable {
   var externalImage: URL?
   var internalImage: URL?
   var model: SummaryQuotationInfo
