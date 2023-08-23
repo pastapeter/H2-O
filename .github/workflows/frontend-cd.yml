@@ -8,17 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
-
-      - name: Setting node js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -28,18 +20,22 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
+        working-directory: ./frontend
 
       - name: Setting environment variables
-        env:
-          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
         run: |
           echo "VITE_API_BASE_URL=$VITE_API_BASE_URL" >> .env
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+        working-directory: ./frontend
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
+        working-directory: ./frontend
 
       - name: Build
         run: yarn build
+        working-directory: ./frontend
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -48,12 +44,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Deploy
+      - name: Deploy S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp \
-            --recursive \
+          aws s3 sync \
             --region ap-northeast-2 \
-            dist s3://h2-cartalog.site
+            dist s3://h2-cartalog.site \
+            --delete
+        working-directory: ./frontend
 
       - name: CloudFront Invalidation
         env:
