@@ -138,7 +138,7 @@ extension ImageCacheService {
       let data = try JSONEncoder().encode(image)
       self.diskCache.saveIntoCache(data: data, key: imageURL.path)
     } catch {
-      print("data로 변환할수 없습니다. \(error) ")
+      Log.error(message: ImageCacheError.notAvailableDecoding.localizedDescription, error: error)
     }
 
   }
@@ -151,7 +151,7 @@ extension ImageCacheService {
       await self.saveIntoMemoryCache(with: imageURL, image: cacheImage)
       return cacheImage
     } catch {
-      print("DiskCache에서 Data를 받아올 수 없습니다. \(error)")
+      Log.error(message: ImageCacheError.notAvailableToFetchFromDiskCache.localizedDescription, error: error)
      return nil
     }
     

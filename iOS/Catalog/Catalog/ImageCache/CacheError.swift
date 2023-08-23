@@ -9,8 +9,29 @@ import Foundation
 
 enum ImageCacheError: LocalizedError {
   case imageNotModified
+  case notAvailableDecoding
+  case notAvailableToFetchFromDiskCache
   case networkError(reason: CLNetworkError)
   case fileManagerError(reason: FileManagerError)
+}
+
+extension ImageCacheError {
+  
+  var localizedDescription: String? {
+    switch self {
+    case .imageNotModified:
+      return "304 - 이미지는 그대로입니다."
+    case .notAvailableDecoding:
+      return "DecodingError입니다."
+    case .notAvailableToFetchFromDiskCache:
+      return "디스크캐시로부터 데이터를 불러올 수 없습니다."
+    case .networkError(let reason):
+      return "네트워크 애러 \(reason)"
+    case .fileManagerError(let reason):
+      return "파일메니저 애러 \(reason)"
+    }
+  }
+  
 }
 
 enum DiskCacheError: LocalizedError {
