@@ -8,9 +8,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
+
+      - name: Setting node js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -29,14 +37,12 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-        working-directory: ./frontend
 
       - name: Build
         run: yarn build
-        working-directory: ./frontend
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -44,7 +50,6 @@ jobs:
 
       - name: Deploy
         run: |
-          cd ./frontend
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
