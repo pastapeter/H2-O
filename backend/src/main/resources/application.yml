@@ -18,5 +18,4 @@ mybatis:
   type-handlers-package: com.h2o.h2oServer.global.typeHandler
 
 server:
-  port: 443
-
+  port: 80

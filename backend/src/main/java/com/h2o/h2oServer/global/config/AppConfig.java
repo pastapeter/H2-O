@@ -12,6 +12,7 @@ public class AppConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
+                        "http://localhost:4173",
                         "http://localhost:5173",
                         "https://www.h2-cartalog.site",
                         "https://www.h2-cartalog.site:443",
