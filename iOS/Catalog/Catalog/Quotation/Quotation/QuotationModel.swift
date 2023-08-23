@@ -20,14 +20,15 @@ enum QuotationModel {
     case isTrimSelected(defaultCarQuotation: CarQuotation, minPrice: CLNumber, maxPrice: CLNumber)
 
     case isTrimChanged(trim: Trim)
-    case isPowertrainChanged(powertrain: PowerTrainModel)
-    case isBodyTypeChanged(bodytype: BodyTypeModel)
-    case isDrivetrainChanged(drivetrain: DriveTrainModel)
+    case isPowertrainChanged(powertrain: ModelTypeOption)
+    case isBodyTypeChanged(bodytype: ModelTypeOption)
+    case isDrivetrainChanged(drivetrain: ModelTypeOption)
     // TODO: - 색상 모델 채우기
     case isExternalColorChanged
     case isInternalColorChanged
     case isOptionChanged(option: ExtraOptionModel)
-
     case isPriceChanged
+    case onTapCompleteButton
+    case similarOptionsAdded(option: [any QuotationOptionable])
   }
 }

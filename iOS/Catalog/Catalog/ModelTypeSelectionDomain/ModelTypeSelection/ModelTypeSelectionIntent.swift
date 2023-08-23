@@ -9,30 +9,30 @@ import Foundation
 import Combine
 
 protocol ModelTypeSelectionIntentType: AnyObject {
-
+  
   var state: ModelTypeSelectionModel.State { get }
-
+  
   func send(action: ModelTypeSelectionModel.ViewAction)
-
+  
   func send(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?)
-
+  
 }
 
 final class ModelTypeSelectionIntent: ObservableObject {
-
+  
   init(initialState: State, repository: ModelTypeRepositoryProtocol) {
     state = initialState
     self.repository = repository
   }
-
+  
   private var repository: ModelTypeRepositoryProtocol
-
+  
   typealias State = ModelTypeSelectionModel.State
-
+  
   typealias ViewAction = ModelTypeSelectionModel.ViewAction
-
+  
   @Published var state: State
-
+  
   var cancellable: Set<AnyCancellable> = []
   private var quotation = Quotation.shared
   private var powerTrainOptionId: Int = 1
@@ -41,28 +41,30 @@ final class ModelTypeSelectionIntent: ObservableObject {
 }
 
 extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
-
+  
   func mutate(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
-    case .onAppear:
-      Task {
-        //TODO: State를 Car Quotation에서 받아오기
-        // 썡
-        //TODO: API를 쏴야할때 안쏴야할때 체크하기
-        let options = try await repository.fetch(carId: state.selectedTrimId)
-        send(action: .modelTypeOptions(options: options))
-        //TODO: State를 Car Quotation
-        send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: self.powerTrainOptionId))
-      }
-    case .calculateFuelEfficiency(let typeID, let selectedOptionId):
-      Task {
-        await calculateFuelEfficiency(typeID:typeID, selectedOptionId: selectedOptionId)
-      }
-    case .modelTypeOptions(let options):
-      state.modelTypeStateArray = convertToModelTypeModelState(from: options)
+      case .onAppear:
+        Task {
+          let options = try await repository.fetch(carId: state.selectedTrimId)
+          send(action: .modelTypeOptions(options: options))
+          send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: self.powerTrainOptionId))
+        }
+      case .calculateFuelEfficiency(let typeID, let selectedOptionId):
+        Task {
+          await calculateFuelEfficiency(typeID:typeID, selectedOptionId: selectedOptionId)
+        }
+      case .modelTypeOptions(let options):
+        state.modelTypeStateArray = convertToModelTypeModelState(from: options)
+        
+      case .powertrainSelected(option: let option):
+        Quotation.shared.send(action: .isPowertrainChanged(powertrain: option))
+      case .bodytypeSelected(option: let option):
+        Quotation.shared.send(action: .isBodyTypeChanged(bodytype: option))
+      case .drivetrainSelected(option: let option):
+        Quotation.shared.send(action: .isDrivetrainChanged(drivetrain: option))
     }
   }
-
 }
 
 // MARK: - Private Function
@@ -70,42 +72,37 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
 extension ModelTypeSelectionIntent {
   
   private func calculateFuelEfficiency(typeID: Int, selectedOptionId: Int) async {
-  
-      do {
-        
-        let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue //
-        let driveTrainID = ModelTypeSelectionModel.ModelTypeID.driveTrain.rawValue
-        
-        if typeID == powerTrainID {
-          self.powerTrainOptionId = selectedOptionId
-        } else if typeID == driveTrainID {
-          self.driveTrainOptionId = selectedOptionId
-        }
-        
-        let powerTrainTitle = state.modelTypeStateArray[powerTrainID]
-                  .optionStates[self.powerTrainOptionId - 1]
-                  .title
-                
-                let driveTrainTitle = state.modelTypeStateArray[driveTrainID]
-                  .optionStates[self.driveTrainOptionId - 1]
-                  .title
+    
+    do {
       
+      let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue
+      let driveTrainID = ModelTypeSelectionModel.ModelTypeID.driveTrain.rawValue
       
-        let result = try await self.repository
-          .calculateFuelAndDisplacement(with: self.powerTrainOptionId,
-                                        andwith: self.driveTrainOptionId)
-        
-        state.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
-                                                 wheelType: driveTrainTitle,
-                                                 displacement: result.displacement,
-                                                 fuelEfficiency: result.fuelEfficiency)
-        
-      } catch (let e) {
-        print(e)
+      if typeID == powerTrainID {
+        self.powerTrainOptionId = selectedOptionId
+      } else if typeID == driveTrainID {
+        self.driveTrainOptionId = selectedOptionId
       }
+      
+      let powerTrainTitle = quotation.state.quotation?.powertrain.name ?? ""
+      let driveTrainTitle = quotation.state.quotation?.drivetrain.name ?? ""
+      
+      
+      let result = try await self.repository
+        .calculateFuelAndDisplacement(with: self.powerTrainOptionId,
+                                      andwith: self.driveTrainOptionId)
+      
+      state.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
+                                               wheelType: driveTrainTitle,
+                                               displacement: result.displacement,
+                                               fuelEfficiency: result.fuelEfficiency)
+      
+    } catch (let e) {
+      print(e)
+    }
     
   }
-
+  
   private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeCellModel.State] {
     options.map {
       .init(title: $0.title,
@@ -115,7 +112,7 @@ extension ModelTypeSelectionIntent {
             modelTypeDetailState: convertToModelTypeDetail(from: $0.options)
       )
     }
-     
+    
   }
   
   private func convertToModelTypeOptionState(from options: [ModelTypeOption]) -> [ModelTypeOptionState] {
@@ -132,7 +129,7 @@ extension ModelTypeSelectionIntent {
   }
   
   private func convertToModelTypeDetail(from options: [ModelTypeOption]) -> [ModelTypeDetailState] {
-  
+    
     var content = options.map {
       ModelTypeDetailState.init(id: $0.id, title: $0.name, description: $0.description, choiceRatio: $0.choiceRatio, imageURL: $0.imageURL, price: $0.price)
     }
@@ -149,7 +146,7 @@ extension ModelTypeSelectionIntent {
         
         engineOutputs.append(maxOutput.output / Double(maxOutput.maxRPM))
         torqueOutputs.append(maxTorque.torque / Double(maxOutput.maxRPM))
-    
+        
       }
       
     }

@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct ResultOfCalculationOfFuelAndDisplacement {
-
+struct ResultOfCalculationOfFuelAndDisplacement: Equatable {
   var displacement: CLNumber
   var fuelEfficiency: Double
-  
 }

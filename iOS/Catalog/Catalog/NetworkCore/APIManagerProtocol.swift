@@ -44,7 +44,11 @@ class APIManager: APIManagerProtocol {
       print("캐시에서 가져오는 중")
       return cachedresponse.data
     } else {
-      
+     
+    let (data, response) = try await urlSession.makeData(from: requestObject)
+    guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+            
       do {
         let (data, response) = try await urlSession.makeData(from: requestObject)
         

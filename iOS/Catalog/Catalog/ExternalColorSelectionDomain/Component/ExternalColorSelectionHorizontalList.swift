@@ -27,13 +27,13 @@ struct ExternalColorSelectionHorizontalList: View {
   var height: CGFloat = CGFloat(177).scaledHeight
 
   var body: some View {
-    HorizontalScroller(height: height) {
-      ForEach(state.indices, id: \.self) { i in
-        ColorSelectionView<ExternalColorDisplayView>.build(action: {
-          intent.send(action: .onTapColor(id: state[i].color.id))
-        }, colorState: state[i].toColorInfoState())
+      HorizontalScroller(height: height) {
+        ForEach(state.indices, id: \.self) { i in
+          ColorSelectionView<ExternalColorDisplayView>.build(action: {
+            intent.send(action: .onTapColor(id: state[i].color.id))
+          }, colorState: state[i].toColorInfoState())
+        }
       }
-    }
   }
 }
 

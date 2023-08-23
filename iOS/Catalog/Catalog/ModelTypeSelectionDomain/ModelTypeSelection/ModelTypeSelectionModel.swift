@@ -19,6 +19,9 @@ enum ModelTypeSelectionModel {
   enum ViewAction {
     case onAppear
     case modelTypeOptions(options: [ModelType])
+    case powertrainSelected(option: ModelTypeOption)
+    case bodytypeSelected(option: ModelTypeOption)
+    case drivetrainSelected(option: ModelTypeOption)
     case calculateFuelEfficiency(typeId: Int, selectedOptionId: Int)
   }
   

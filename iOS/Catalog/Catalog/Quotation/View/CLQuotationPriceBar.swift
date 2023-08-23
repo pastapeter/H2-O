@@ -7,30 +7,19 @@
 
 import SwiftUI
 
-struct CLQuotationPriceBar: View {
+struct CLQuotationPriceBar<Content>: View where Content: View {
+  @Binding var showQuotationSummarySheet: Bool
+  var state: QuotationModel.State
+  @ViewBuilder let content: Content
+}
 
-    @Binding var showQuotationSummarySheet: Bool
-    @State var currentQuotationPrice: CLNumber
-
-    var buttonText: String
+extension CLQuotationPriceBar {
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
                 HStack {
-                    Button {
-                        showQuotationSummarySheet.toggle()
-                    } label: {
-                        Text(buttonText)
-                            .catalogFont(type: .TextKRMedium14)
-                            .frame(width: 86, height: 36)
-                            .foregroundColor(Color.primary0)
-                            .overlay(
-                                Capsule(style: .continuous)
-                                    .stroke(Color.primary0)
-                            )
-                    }
-                    .buttonStyle(.plain)
-                    Spacer()
+                  content
+                  Spacer()
                 }
                 .padding(.leading, 20)
                 HStack {
@@ -39,7 +28,7 @@ struct CLQuotationPriceBar: View {
                         Text("현재 견적 가격")
                             .catalogFont(type: .TextKRRegular12)
                             .foregroundColor(Color.gray700)
-                        Text(currentQuotationPrice.wonWithSpacing)
+                      Text(state.totalPrice.wonWithSpacing)
                             .catalogFont(type: .HeadKRMedium20)
                             .foregroundColor(Color.primary0)
                     }
@@ -50,3 +39,5 @@ struct CLQuotationPriceBar: View {
         }
     }
 }
+
+

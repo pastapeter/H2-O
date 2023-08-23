@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExtraOptionModel: Encodable, Equatable {
+struct ExtraOptionModel: Encodable, Equatable, QuotationOptionable {
   var id: Int
   var isPackage: Bool
   var category: Category
@@ -17,4 +17,5 @@ struct ExtraOptionModel: Encodable, Equatable {
   var conainsHmgData: Bool
   var choiceRatio: Int
   var price: CLNumber
+  var isSimilarOption: Bool = false
 }

@@ -68,7 +68,7 @@ extension SnapCarousel {
         }
       }
       .padding(.horizontal, spacing)
-      .offset(x: 16 + (CGFloat(currentIndex) * -width) + CGFloat((adjustmentWidth)) + offset)
+      .offset(x: spacing + (CGFloat(currentIndex) * -width) + CGFloat((adjustmentWidth)) + offset)
       .gesture(
         DragGesture()
           .updating($offset) { value, state, _ in
