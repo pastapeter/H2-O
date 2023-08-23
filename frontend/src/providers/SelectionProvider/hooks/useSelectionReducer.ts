@@ -1,40 +1,16 @@
-import { Dispatch, PropsWithChildren, createContext, useMemo, useReducer } from 'react';
-import { TechnicalSpecResponse } from '@/types/interface';
+import { useReducer } from 'react';
+import type { TechnicalSpecResponse } from '@/types/interface';
+import type {
+  ExteriorColorInfo,
+  ExtraOptionsInfo,
+  InteriorColorInfo,
+  OptionInfo,
+  PriceRangeInfo,
+  SelectionInfo,
+  SelectionInfoWithImage,
+} from '@/providers/SelectionProvider/types';
 
-export interface SelectionInfo {
-  id: number;
-  name: string;
-  price: number;
-}
-
-export interface PriceRangeInfo {
-  minPrice: number;
-  maxPrice: number;
-}
-
-export interface SelectionInfoWithImage extends SelectionInfo {
-  image: string;
-}
-
-export interface ExteriorColorInfo extends SelectionInfoWithImage {
-  colorCode: string;
-}
-
-export interface InteriorColorInfo extends SelectionInfoWithImage {
-  fabricImage: string;
-}
-
-export interface OptionInfo extends SelectionInfoWithImage {
-  isPackage: boolean;
-  isQuotation: boolean;
-}
-
-export interface ExtraOptionsInfo {
-  price: number;
-  optionList: OptionInfo[];
-}
-
-type State = {
+export type State = {
   model: SelectionInfo;
   trim?: SelectionInfo;
   priceRange?: PriceRangeInfo;
@@ -48,7 +24,7 @@ type State = {
   extraOptions?: ExtraOptionsInfo;
 };
 
-type Action =
+export type Action =
   | { type: 'SET_TRIM'; payload: SelectionInfo }
   | { type: 'SET_PRICE_RANGE'; payload: PriceRangeInfo }
   | { type: 'SET_POWER_TRAIN'; payload: SelectionInfoWithImage }
@@ -175,34 +151,8 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-interface SelectionContextType {
-  selectionInfo: State;
-  totalPrice: number;
-  dispatch: Dispatch<Action>;
+function useSelectionReducer() {
+  return useReducer(reducer, initialState);
 }
 
-export const SelectionContext = createContext<SelectionContextType | null>(null);
-
-function SelectionProvider({ children }: PropsWithChildren) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const totalPrice = useMemo(() => {
-    const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions } = state;
-    const options = [trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions];
-
-    return options.reduce((acc, curr) => acc + (curr?.price || 0), 0);
-  }, [state]);
-
-  const contextValue = useMemo(
-    () => ({
-      selectionInfo: state,
-      totalPrice,
-      dispatch,
-    }),
-    [state, totalPrice],
-  );
-
-  return <SelectionContext.Provider value={contextValue}>{children}</SelectionContext.Provider>;
-}
-
-export default SelectionProvider;
+export default useSelectionReducer;
