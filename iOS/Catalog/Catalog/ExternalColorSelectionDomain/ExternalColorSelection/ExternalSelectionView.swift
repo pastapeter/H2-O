@@ -34,7 +34,9 @@ extension ExternalSelectionView: View {
             .catalogFont(type: .HeadKRMedium18)
           Spacer().frame(height: 8)
           ExternalColorSelectionHorizontalList(state: state.colors,
-                                               intent: intent)
+                                               intent: intent,
+                                               height: UIScreen.main.bounds.height * 183 / 812
+          )
           Spacer()
         }
         .padding(.leading, 20)
