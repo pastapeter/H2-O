@@ -832,7 +832,7 @@
 				B1604D262A8265B500C7B07D /* RequestManager.swift */,
 				B1604D282A82660700C7B07D /* APIManagerProtocol.swift */,
 				B1604D4D2A83E86000C7B07D /* Retrier */,
-				B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */,
+				B1CB88BF2A9451F900E12981 /* URLCache */,
 				B1604D352A83776200C7B07D /* DataParser.swift */,
 			);
 			path = NetworkCore;
@@ -1270,6 +1270,14 @@
 				B1CB88BC2A93D90100E12981 /* ExpandableTextHelperFunction.swift */,
 			);
 			path = ExpandableText;
+			sourceTree = "<group>";
+		};
+		B1CB88BF2A9451F900E12981 /* URLCache */ = {
+			isa = PBXGroup;
+			children = (
+				B1604D2C2A82A7C100C7B07D /* CachedResponseHandler.swift */,
+			);
+			path = URLCache;
 			sourceTree = "<group>";
 		};
 		B1EEBA872A869E8E008FC6A4 /* HMGData */ = {

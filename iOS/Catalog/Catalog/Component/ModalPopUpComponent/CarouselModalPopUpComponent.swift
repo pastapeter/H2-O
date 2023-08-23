@@ -43,7 +43,6 @@ extension CarouselModalPopUpComponent {
             }
           }
           .onChange(of: currentIndexBinding) { _ in
-            print(currentIndexBinding)
           }
           .frame(height: CGFloat(487).scaledHeight)
           

@@ -28,6 +28,8 @@ class APIManager: APIManagerProtocol {
   convenience init(configuation: URLSessionConfiguration = URLSessionConfiguration.default,
                    retrier: RequestRetrier? = nil,
                    cachedResponseHandler: CachedResponseHandler? = nil) {
+    
+    configuation.urlCache = URLCache.shared
     let session = URLSession(configuration: configuation)
     self.init(urlSession: session, retrier: retrier, cachedResponseHandler: cachedResponseHandler)
   }
@@ -35,16 +37,44 @@ class APIManager: APIManagerProtocol {
   func perform(_ request: RequestProtocol) async throws -> Data {
 
     let requestObject = try request.createRequest()
+    
+    //1. URLCache에서 cacheResponse 있는지
+    
+    if let cachedresponse = URLCache.shared.cachedResponse(for: requestObject.urlRequest) {
+      print("캐시에서 가져오는 중")
+      return cachedresponse.data
+    } else {
+     
     let (data, response) = try await urlSession.makeData(from: requestObject)
     guard let httpResponse = response as? HTTPURLResponse,
           httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+            
       do {
-        return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse)
-      } catch let e {
-        throw e
+        let (data, response) = try await urlSession.makeData(from: requestObject)
+        
+        guard let httpResponse = response as? HTTPURLResponse else { throw CLNetworkError.invalidURL }
+        
+        guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+          do {
+            return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse(reason: httpResponse.statusCode))
+          } catch let e {
+            throw e
+          }
+        }
+
+        return data
+
+      } catch(let e) {
+        
+        if (e as? URLError)?.code == .timedOut {
+          return try await retryRequestRecursively(requestObject, dueTo: .timeout)
+        } else {
+          print("🚨 URLError \(e.localizedDescription)")
+          return try await retryRequestRecursively(requestObject, dueTo: .URLError(message: (e as? URLError)?.localizedDescription))
+        }
       }
+      
     }
-    return data
   }
 
   func retryRequestRecursively(_ request: Request, dueTo error: CLNetworkError) async throws -> Data {
@@ -84,9 +114,12 @@ extension APIManager {
     guard let retrier = self.retrier else {
       return .doNotRetry
     }
-
+    
     request.prepareForRetry()
+    
+     
     let retryResult = try await retrier.retry(request, for: urlSession, dueTo: error)
+    
     guard let retryResultError = retryResult.error else {
       return retryResult
     }

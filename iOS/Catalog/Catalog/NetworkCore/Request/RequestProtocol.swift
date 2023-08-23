@@ -40,7 +40,7 @@ extension RequestProtocol {
   }
 
   var timeOutInterval: TimeInterval {
-    2
+    10
   }
 
   var port: Int {
