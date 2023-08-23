@@ -1,8 +1,7 @@
 import { Fragment, memo, useState } from 'react';
-import styled from '@emotion/styled';
 import type { ExteriorColorResponse } from '@/types/interface';
 import { getExteriorColors } from '@/apis/exterior';
-import { Banner, Footer, PriceStaticBar as _PriceStaticBar } from '@/components/common';
+import { Banner, Footer } from '@/components/common';
 import { ExteriorCarImg, ExteriorSelector } from '@/components/exterior';
 import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
@@ -53,17 +52,9 @@ function ExteriorPage() {
         />
       )}
       <Footer />
-      <PriceStaticBar />
     </Fragment>
   );
 }
 
 const _ExteriorPage = memo(ExteriorPage);
 export default _ExteriorPage;
-
-const PriceStaticBar = styled(_PriceStaticBar)`
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-`;

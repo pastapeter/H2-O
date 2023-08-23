@@ -1,10 +1,11 @@
-import { HTMLAttributes, MouseEventHandler, useEffect, useState } from 'react';
+import { HTMLAttributes, useEffect, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
+import { Theme } from '@emotion/react/macro';
 import styled from '@emotion/styled';
 import Slider from './Slider';
 import { getTrimPriceRange } from '@/apis/trim';
-import { Icon, Loading } from '@/components/common';
-import { useSafeContext } from '@/hooks';
+import { Flex, Icon } from '@/components/common';
+import { useSafeContext, useToggle } from '@/hooks';
 import { setPriceFormat, toSeparatedNumberFormat } from '@/utils/number';
 import { SelectionContext } from '@/providers/SelectionProvider';
 
@@ -26,83 +27,63 @@ const DEFAULT_TRIM_IDX = 2;
 
 function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProps) {
   const theme = useTheme();
-
   const { totalPrice, selectionInfo, dispatch } = useSafeContext(SelectionContext);
-
-  const [isActive, setIsActive] = useState(false);
+  const { toggle, status: isActive } = useToggle(false);
   const [sliderInfo, setSliderInfo] = useState<SliderInfo | null>(null);
   const [priceRange, setPriceRange] = useState<PriceRange | null>(null);
-
-  const handleClick: MouseEventHandler<SVGSVGElement> = () => {
-    setIsActive((state) => !state);
-  };
 
   const handleChangeSliderInfo = (targetValue: number) => {
     setSliderInfo({ isOverPrice: totalPrice > targetValue, value: targetValue });
   };
 
-  useEffect(() => {
-    if (!selectionInfo.priceRange) {
-      (async function () {
-        const response = await getTrimPriceRange(DEFAULT_TRIM_IDX);
-        dispatch({
-          type: 'SET_PRICE_RANGE',
-          payload: { minPrice: response.minPrice, maxPrice: response.maxPrice },
-        });
-
-        const mean = (response.minPrice + response.maxPrice) / 2;
-        setSliderInfo({
-          isOverPrice: totalPrice > mean,
-          value: mean,
-        });
-
-        setPriceRange({ minPrice: response.minPrice, maxPrice: response.maxPrice });
-      })();
-
-      return;
-    }
-
-    const { minPrice, maxPrice } = selectionInfo.priceRange;
-    const mean = (minPrice + maxPrice) / 2;
+  const updatePriceStaicBar = (minPrice: number, maxPrice: number) => {
+    const meanPrice = (minPrice + maxPrice) / 2;
 
     setSliderInfo({
-      isOverPrice: totalPrice > mean,
-      value: mean,
+      isOverPrice: totalPrice > meanPrice,
+      value: meanPrice,
     });
 
     setPriceRange({ minPrice: minPrice, maxPrice: maxPrice });
+  };
+
+  useEffect(() => {
+    if (selectionInfo.priceRange) {
+      updatePriceStaicBar(selectionInfo.priceRange.minPrice, selectionInfo.priceRange.maxPrice);
+      return;
+    }
+
+    (async function () {
+      const response = await getTrimPriceRange(DEFAULT_TRIM_IDX);
+      dispatch({
+        type: 'SET_PRICE_RANGE',
+        payload: {
+          minPrice: response.minPrice,
+          maxPrice: response.maxPrice,
+        },
+      });
+    })();
   }, [selectionInfo.priceRange]);
 
-  if (!sliderInfo || !priceRange)
-    return (
-      <PriceStaticBarContainer isActive={isActive}>
-        <Loading />
-      </PriceStaticBarContainer>
-    );
+  useEffect(() => {
+    if (sliderInfo) setSliderInfo({ isOverPrice: totalPrice > sliderInfo?.value, value: sliderInfo?.value });
+  }, [totalPrice]);
+
+  if (!sliderInfo || !priceRange) return null;
 
   return (
     <PriceStaticBarContainer isActive={isActive} {...restProps}>
-      <PriceInfo>
-        <Title>예산 범위</Title>
-        <Summary>
-          설정한 예산까지 &nbsp;
-          <Price isOverPrice={sliderInfo.isOverPrice}>
-            {toSeparatedNumberFormat(Math.abs(sliderInfo.value - totalPrice))}원
-          </Price>
-          &nbsp;{sliderInfo.isOverPrice ? '더 들었어요.' : '남았어요.'}
-        </Summary>
-        <Icon
-          iconType='ArrowDown'
-          color={theme.colors.gray50}
-          onClick={handleClick}
-          css={css`
-            cursor: pointer;
-            transform: ${isActive && `rotate(-180deg)`};
-          `}
-        />
+      <PriceInfo isOverPrice={sliderInfo.isOverPrice}>
+        <span className='title'>예산 범위</span>
+        <span className='summary'>
+          설정한 예산까지{' '}
+          <span className='price'>{toSeparatedNumberFormat(Math.abs(sliderInfo.value - totalPrice))}원</span>
+          {sliderInfo.isOverPrice ? ' 더 들었어요.' : ' 남았어요.'}
+        </span>
+        <Icon iconType='ArrowDown' onClick={toggle} css={IconStyle(isActive, theme)} />
       </PriceInfo>
       {isActive && (
-        <StyledActive>
+        <Flex flexDirection='column' justifyContent='space-between' gap={8}>
           <Slider
             sliderInfo={sliderInfo}
             minPrice={priceRange.minPrice}
@@ -115,11 +96,13 @@ function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProp
             <span>{setPriceFormat(priceRange.minPrice)}만원</span>
             <span>{setPriceFormat(priceRange.maxPrice)}만원</span>
           </PriceRange>
-        </StyledActive>
+        </Flex>
       )}
     </PriceStaticBarContainer>
   );
 }
+
+export default PriceStaticBar;
 
 const PriceStaticBarContainer = styled.div<{ isActive: boolean }>`
   ${({ theme }) => theme.flex.flexBetweenCol};
@@ -132,31 +115,26 @@ const PriceStaticBarContainer = styled.div<{ isActive: boolean }>`
   overflow: hidden;
 `;
 
-const PriceInfo = styled.div`
+const PriceInfo = styled.div<{ isOverPrice: boolean }>`
   ${({ theme }) => theme.flex.flexCenterRow};
   width: 100%;
   gap: 9px;
-`;
 
-const Title = styled.span`
-  ${({ theme }) => theme.typography.HeadKRMedium14}
-  color: ${({ theme }) => theme.colors.gray50};
-`;
+  .title {
+    ${({ theme }) => theme.typography.HeadKRMedium14}
+    color: ${({ theme }) => theme.colors.gray50};
+  }
 
-const Summary = styled.span`
-  ${({ theme }) => theme.typography.TextKRRegular12}
-  text-align: right;
-  width: 218px;
-`;
+  .summary {
+    ${({ theme }) => theme.typography.TextKRRegular12}
+    text-align: right;
+    width: 218px;
+  }
 
-const Price = styled.span<Pick<SliderInfo, 'isOverPrice'>>`
-  ${({ theme }) => theme.typography.TextKRMedium12}
-  color: ${({ theme, isOverPrice }) => (isOverPrice ? theme.colors.sand : theme.colors.activeBlue2)};
-`;
-
-const StyledActive = styled.div`
-  ${({ theme }) => theme.flex.flexBetweenCol}
-  gap:4px;
+  .price {
+    ${({ theme }) => theme.typography.TextKRMedium12}
+    color: ${({ theme, isOverPrice }) => (isOverPrice ? theme.colors.sand : theme.colors.activeBlue2)};
+  }
 `;
 
 const PriceRange = styled.div`
@@ -165,4 +143,11 @@ const PriceRange = styled.div`
   color: ${({ theme }) => theme.colors.primary200};
 `;
 
-export default PriceStaticBar;
+const IconStyle = (isActive: boolean, theme: Theme) => {
+  return css`
+    fill: ${theme.colors.gray50};
+    transform: ${isActive && `rotate(-180deg)`};
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  `;
+};

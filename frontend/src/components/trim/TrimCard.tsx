@@ -27,10 +27,13 @@ function TrimCard({ id, description, title, price, ...restProps }: Props) {
   const { isLoading } = useFetcher({
     fetchFn: () => getTrimPriceRange(id),
     onSuccess: (data) => {
+      const { minPrice, maxPrice } = data;
+
       dispatch({
         type: 'SET_PRICE_RANGE',
-        payload: { minPrice: data.minPrice, maxPrice: data.maxPrice },
+        payload: { minPrice: minPrice, maxPrice: maxPrice },
       });
+
       setCurrentSlide(currentSlide + 1);
       setSubmitted(false);
     },

@@ -1,12 +1,16 @@
 import type { SVGProps } from 'react';
+import { useTheme } from '@emotion/react';
+import { Colors } from '@/styles/colors';
 import { ReactComponent as MarkerIcon } from '@/assets/marker.svg';
 
 interface Props extends SVGProps<SVGSVGElement> {
-  color: string;
+  color?: Colors;
 }
 
-function Marker({ color, ...restProps }: Props) {
-  return <MarkerIcon fill={color} {...restProps} />;
+function Marker({ color = 'white', ...restProps }: Props) {
+  const theme = useTheme();
+
+  return <MarkerIcon fill={theme.colors[color]} {...restProps} />;
 }
 
 export default Marker;

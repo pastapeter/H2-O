@@ -1,4 +1,4 @@
-import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
+import type { Dispatch, PropsWithChildren, SetStateAction } from 'react';
 import { createContext, useState } from 'react';
 
 export interface SlideContextType {

@@ -33,8 +33,8 @@ function SimilarEstimationPriceBar({ estimationPrice }: Props) {
       </Flex>
       <Flex flexDirection='column' gap={4}>
         <PriceBar>
-          <Marker color={theme.colors.activeBlue} css={StyleMarker(totalPrice, minPrice, maxPrice - minPrice)} />
-          <Marker color={theme.colors.white} css={StyleMarker(estimationPrice, minPrice, maxPrice - minPrice)} />
+          <Marker color='activeBlue' css={StyleMarker(totalPrice, minPrice, maxPrice - minPrice)} />
+          <Marker color='white' css={StyleMarker(estimationPrice, minPrice, maxPrice - minPrice)} />
         </PriceBar>
         <PriceRange justifyContent='space-between'>
           <span>{setPriceFormat(minPrice)}만원</span>

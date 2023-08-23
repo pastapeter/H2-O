@@ -1,5 +1,5 @@
 import type { ChangeEventHandler } from 'react';
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Marker from './Marker';
 
@@ -21,9 +21,6 @@ interface Props {
 }
 
 function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, handleChangeSliderInfo }: Props) {
-  const RANGE = maxPrice - minPrice;
-  const theme = useTheme();
-
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const targetValue = Number(e.target.value);
     handleChangeSliderInfo(targetValue);
@@ -37,7 +34,7 @@ function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, handle
     <SliderContainer>
       <StyledSlider
         type='range'
-        percent={((sliderInfo.value - minPrice) / RANGE) * 100}
+        percent={((sliderInfo.value - minPrice) / (maxPrice - minPrice)) * 100}
         isOverPrice={sliderInfo.isOverPrice}
         isComplete={isComplete}
         min={minPrice}
@@ -48,19 +45,14 @@ function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, handle
         readOnly
       />
       <Marker
-        color={sliderInfo.isOverPrice ? theme.colors.sand : theme.colors.activeBlue}
-        css={css`
-          position: absolute;
-          top: 50%;
-          transform: translateY(-60%);
-          left: ${((totalPrice - minPrice) / RANGE) * SLIDER_WIDTH}px;
-          z-index: 1;
-          pointer-events: none;
-        `}
+        color={sliderInfo.isOverPrice ? 'sand' : 'activeBlue'}
+        css={MarkerStyle({ totalPrice, minPrice, maxPrice })}
       />
     </SliderContainer>
   );
 }
+
+export default Slider;
 
 const SliderContainer = styled.div`
   ${({ theme }) => theme.flex.flexEndRow}
@@ -88,4 +80,17 @@ const StyledSlider = styled.input<{ percent: number; isOverPrice: boolean; isCom
   }
 `;
 
-export default Slider;
+const MarkerStyle = ({ totalPrice, minPrice, maxPrice }: Pick<Props, 'totalPrice' | 'minPrice' | 'maxPrice'>) => {
+  const range = maxPrice - minPrice;
+  const leftPosition = ((totalPrice - minPrice) / range) * SLIDER_WIDTH;
+
+  return css`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    left: ${leftPosition}px;
+    transition: left 0.3s ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+  `;
+};

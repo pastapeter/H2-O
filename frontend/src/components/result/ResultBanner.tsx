@@ -1,7 +1,7 @@
 import { ChangeEventHandler, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Flex, Toggle, Typography, PriceStaticBar as _PriceStaticBar } from '@/components/common';
+import { Flex, Toggle, Typography } from '@/components/common';
 
 interface Props {
   trimName: string;
@@ -32,7 +32,6 @@ function ResultBanner({ trimName, exteriorImage, interiorImage }: Props) {
         {trimName}
       </Typography>
       {isExterior && <CarImage src={carImage} alt={carImageAlt} />}
-      <PriceStaticBar />
       <Toggle size='large' isChecked={isExterior} handleChangeToggle={handleChangeToggle} />
     </Container>
   );
@@ -53,13 +52,6 @@ const Container = styled(Flex)`
     rgba(255, 255, 255, 0) 100%
   );
   transform: translateX(0);
-`;
-
-const PriceStaticBar = styled(_PriceStaticBar)`
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
 `;
 
 const CarImage = styled.img`

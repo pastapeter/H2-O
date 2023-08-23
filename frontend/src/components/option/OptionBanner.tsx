@@ -3,15 +3,7 @@ import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { HMGDetail, OverFlowColumnText, OverFlowRowText } from './utils';
 import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/interface';
-import {
-  Divider,
-  Flex,
-  Icon,
-  ImageButton,
-  Typography,
-  Banner as _Banner,
-  PriceStaticBar as _PriceStaticBar,
-} from '@/components/common';
+import { Divider, Flex, Icon, ImageButton, Typography, Banner as _Banner } from '@/components/common';
 import { usePagination } from '@/hooks';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -39,7 +31,6 @@ function OptionBanner({ children, subTitle, title, imgUrl, ...restProps }: Props
       </MainContainer>
       {imgUrl && <MainImg src={imgUrl} />}
       <ShowImageButton onClick={handleClickShowImgButton}>{isShowImg ? '이미지 접기' : '이미지 확인'}</ShowImageButton>
-      <PriceStaticBar />
     </Banner>
   );
 }
@@ -136,13 +127,6 @@ const MainImg = styled.img`
 const ShowImageButton = styled(ImageButton)`
   position: absolute;
   bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
-const PriceStaticBar = styled(_PriceStaticBar)`
-  position: absolute;
-  top: 16px;
   left: 50%;
   transform: translateX(-50%);
 `;

@@ -2,7 +2,7 @@ import { Fragment, memo, useState } from 'react';
 import styled from '@emotion/styled';
 import type { BodyType, DriveTrain, PowerTrain, TechnicalSpecResponse } from '@/types/interface';
 import { getModelTypes } from '@/apis/model';
-import { Banner, Footer, PriceStaticBar as _PriceStaticBar } from '@/components/common';
+import { Banner, Footer } from '@/components/common';
 import { BottomHMGData, ModelOptionDetail, ModelTypeSelector } from '@/components/model';
 import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
@@ -83,7 +83,6 @@ function ModelPage() {
           setTechnicalSpec={setTechnicalSpec}
         />
       </Footer>
-      <PriceStaticBar />
     </Fragment>
   );
 }
@@ -97,11 +96,4 @@ const Image = styled.img`
   right: 0;
   width: 632px;
   height: 100%;
-`;
-
-const PriceStaticBar = styled(_PriceStaticBar)`
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
 `;
