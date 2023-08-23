@@ -18,17 +18,15 @@ struct InteriorColorDisplayView: ColorContentable {
   
   @ViewBuilder
   private func imageDisplayView() -> some View {
-    GeometryReader { proxy in
-      switch color {
-      case .interior(let fabricImageURL, _):
-        AsyncCachedImage(url: fabricImageURL) { image in
-        image
-          .resizable()
-          .frame(height: proxy.size.height)
-      } 
-      case .exterior(_):
-        EmptyView()
-      }
+    switch color {
+    case .interior(let fabricImageURL, _):
+      AsyncCachedImage(url: fabricImageURL) { image in
+      image
+        .resizable()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    case .exterior(_):
+      EmptyView()
     }
   }
 
