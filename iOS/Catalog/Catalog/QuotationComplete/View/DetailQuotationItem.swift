@@ -22,7 +22,7 @@ extension DetailQuotationItem: View {
     HStack {
       
       // 이미지
-      AsyncImage(url: info.image) { image in
+      AsyncCachedImage(url: info.image) { image in
         image
           .resizable()
       } placeholder: {

@@ -21,13 +21,11 @@ struct InteriorColorDisplayView: ColorContentable {
     GeometryReader { proxy in
       switch color {
       case .interior(let fabricImageURL, _):
-        AsyncImage(url: fabricImageURL) { image in
+        AsyncCachedImage(url: fabricImageURL) { image in
         image
           .resizable()
           .frame(height: proxy.size.height)
-      } placeholder: {
-        ProgressView()
-        }
+      } 
       case .exterior(_):
         EmptyView()
       }

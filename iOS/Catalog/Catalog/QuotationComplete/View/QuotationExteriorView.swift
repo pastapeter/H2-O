@@ -19,12 +19,10 @@ struct QuotationExteriorView: View {
         Text(quotation.state.quotation?.trim.name ?? "")
           .catalogFont(type: .HeadKRBold65)
           .foregroundColor(.white)
-        AsyncImage(url: quotation.state.quotation?.trim.externalImage) { image in
+        AsyncCachedImage(url: quotation.state.quotation?.trim.externalImage) { image in
           image
             .resizable()
             .frame(maxWidth: .infinity, maxHeight: externalImageHeight)
-        } placeholder: {
-          EmptyView()
         }
       }
       .background(

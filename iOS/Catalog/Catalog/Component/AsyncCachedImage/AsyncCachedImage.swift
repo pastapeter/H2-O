@@ -146,5 +146,17 @@ extension AsyncCachedImage {
       self.fail = fail
       self.status = status
   }
+  
+  init(
+      url: URL?,
+      content: @escaping (Image) -> Content,
+      placeholder: @escaping () -> Placeholder
+  ) where Fail == EmptyView {
+      self._imageURL = .constant(url)
+      self.content = content
+      self.placeholder = placeholder
+      self.fail = nil
+      self.status = status
+  }
 
 }
