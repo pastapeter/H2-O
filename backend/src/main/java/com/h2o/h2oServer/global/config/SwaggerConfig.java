@@ -1,5 +1,7 @@
 package com.h2o.h2oServer.global.config;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -12,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+@OpenAPIDefinition(servers = {@Server(url = "https://api.h2-cartalog.site", description = "API 서버 URL")})
 public class SwaggerConfig {
     @Bean
     public Docket api() {
