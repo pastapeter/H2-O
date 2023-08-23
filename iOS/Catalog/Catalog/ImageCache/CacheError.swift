@@ -14,6 +14,8 @@ enum ImageCacheError: LocalizedError {
 }
 
 enum DiskCacheError: LocalizedError {
+  case notAvailableOfFetchingData(key: String)
+  case notAvailableOfFetchingData(path: String)
   case notAvailableOfWritingDataWith(key: String, path: String)
   case notAvailabletoUpdateDate
   case notAvailableToLoadFolderInSubDirectory
@@ -24,9 +26,12 @@ enum DiskCacheError: LocalizedError {
 }
 
 extension DiskCacheError {
-  var errorDescription: String? {
+  var localizedDescription: String? {
     switch self {
-    
+    case .notAvailableOfFetchingData(let key):
+      return "\(key)값을 가진 data를 받아올 수 없습니다."
+    case .notAvailableOfFetchingData(let path):
+      return "\(path)에서 data를 받아올 수 없습니다."
     case .notAvailableOfWritingDataWith(let key, let path):
       return "해당 키값\(key)을 가진 fileURL \(path)에 데이터 쓰기 실패했습니다."
     case .notAvailabletoUpdateDate:
@@ -45,4 +50,16 @@ extension DiskCacheError {
 
 enum FileManagerError: LocalizedError {
   case notAvailableOfCreatingFolder
+  case notAvailableOfFetchContentByProperties
+}
+
+extension FileManagerError {
+  var localizedDescription: String? {
+    switch self {
+    case .notAvailableOfCreatingFolder:
+      return "폴더 생성에 오류가 생겼습니다."
+    case .notAvailableOfFetchContentByProperties:
+      return "폴더 내부 content를 프로퍼티를 통해 가져오는 것에 오류가 발생하였습니다."
+    }
+  }
 }

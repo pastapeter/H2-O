@@ -55,7 +55,7 @@ class DiskCache {
       if let data = data {
         self.saveIntoCache(data, key: key)
       } else {
-        print("Failed to get data for key \(key)")
+        Log.error(message: DiskCacheError.notAvailableOfFetchingData(key: key).localizedDescription)
       }
     }
   }
@@ -70,7 +70,7 @@ class DiskCache {
       self.updateDiskAccessDate(by: key)
       return data
     } catch {
-      print("\(path)에서 data를 받아올 수 없습니다.")
+      Log.error(message: DiskCacheError.notAvailableOfFetchingData(path: path).localizedDescription, error: error)
       throw error
     }
   }
