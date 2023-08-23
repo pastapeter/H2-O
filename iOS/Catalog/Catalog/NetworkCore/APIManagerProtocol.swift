@@ -35,7 +35,7 @@ class APIManager: APIManagerProtocol {
   }
 
   func perform(_ request: RequestProtocol) async throws -> Data {
-
+    
     let requestObject = try request.createRequest()
     
     //1. URLCache에서 cacheResponse 있는지
@@ -44,37 +44,41 @@ class APIManager: APIManagerProtocol {
       Log.debug(message: "캐시에서 가져오는 중")
       return cachedresponse.data
     } else {
-     
-    let (data, response) = try await urlSession.makeData(from: requestObject)
-    guard let httpResponse = response as? HTTPURLResponse,
-          httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-            
-      do {
-        let (data, response) = try await urlSession.makeData(from: requestObject)
+      
+      let (data, response) = try await urlSession.makeData(from: requestObject)
+      guard let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
         
-        guard let httpResponse = response as? HTTPURLResponse else { throw CLNetworkError.invalidURL }
-        
-        guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-          do {
-            return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse(reason: httpResponse.statusCode))
-          } catch let e {
-            throw e
+        do {
+          let (data, response) = try await urlSession.makeData(from: requestObject)
+          
+          guard let httpResponse = response as? HTTPURLResponse else { throw CLNetworkError.invalidURL }
+          
+          guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+            do {
+              return try await retryRequestRecursively(requestObject, dueTo: .invalidServerResponse(reason: httpResponse.statusCode))
+            } catch let e {
+              throw e
+            }
+          }
+          Log.debug(message: "서버에서 가져오는 중")
+          return data
+          
+        } catch(let e) {
+          
+          if (e as? URLError)?.code == .timedOut {
+            return try await retryRequestRecursively(requestObject, dueTo: .timeout)
+          } else {
+            Log.debug(message: "🚨 URLError \(e.localizedDescription)")
+            return try await retryRequestRecursively(requestObject, dueTo: .URLError(message: (e as? URLError)?.localizedDescription))
           }
         }
-        Log.debug(message: "서버에서 가져오는 중")
-        return data
-
-      } catch(let e) {
         
-        if (e as? URLError)?.code == .timedOut {
-          return try await retryRequestRecursively(requestObject, dueTo: .timeout)
-        } else {
-          Log.debug(message: "🚨 URLError \(e.localizedDescription)")
-          return try await retryRequestRecursively(requestObject, dueTo: .URLError(message: (e as? URLError)?.localizedDescription))
-        }
       }
       
+      return data
     }
+    
   }
 
   func retryRequestRecursively(_ request: Request, dueTo error: CLNetworkError) async throws -> Data {

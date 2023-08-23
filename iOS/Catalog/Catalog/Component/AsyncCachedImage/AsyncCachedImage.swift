@@ -74,15 +74,15 @@ struct AsyncCachedImage<Content: View, Placeholder: View, Fail: View>: View {
   var imageView: some View {
       switch status {
       case .idle:
-          ProgressView()
+        LoadingView(title: "기다려주세요")
       case .loading:
           if let placeholder {
               placeholder()
           } else {
-            ProgressView()
+            LoadingView(title: "기다려주세요")
           }
       case .failed(let error):
-        ProgressView()
+        LoadingView(title: "기다려주세요")
       case .loaded(let image):
           content(image)
       }
