@@ -49,28 +49,29 @@ class ImageCacheService: CacheServiceProtocol {
     //1. NSCache 먼저 확인하기
     if let image = await self.checkMemoryCache(url) {
       Log.debug(message: "메모리캐시에 있음")
-//      1. 디비에 있는걸 먼저 보내
       return image.imageData
-//      2. 네트워크 연결해서 다른지 아닌지 확인한다
-//      3. 다르면 바꿔, 다르지 않으면, 바꾸지 않아
-//      do {
-//        // 서버에 이미지가 바뀌었는지 확인하고
-//        return try await getImage(with: url, etag: image.etag).imageData
-//      } catch {
-//        // 바뀌지 않았으면 내려보내
-//        return image.imageData
-//      }
+      /*
+       do {
+         // 서버에 이미지가 바뀌었는지 확인하고
+         return try await getImage(with: url, etag: image.etag).imageData
+       } catch {
+         // 바뀌지 않았으면 내려보내
+         return image.imageData
+       }
+       */
     }
     
     //2. DiskCache 확인하기
     if let image = await self.checkDiskCache(url) {
       Log.debug(message: "디스크캐시에 있음")
       return image.imageData
-//      do {
-//        return try await getImage(with: url, etag: image.etag).imageData
-//      } catch {
-//        return image.imageData
-//      }
+      /*
+       do {
+         return try await getImage(with: url, etag: image.etag).imageData
+       } catch {
+         return image.imageData
+       }
+       */
     }
     
     //3. Network Request
