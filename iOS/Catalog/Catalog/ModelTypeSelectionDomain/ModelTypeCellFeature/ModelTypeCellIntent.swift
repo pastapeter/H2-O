@@ -64,7 +64,7 @@ extension ModelTypeCellIntent {
       }
     }
     else if state.title == "구동방식" {
-      parent?.send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: state.selectedIndex))
+      parent?.send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: state.selectedId))
       if let selectedOption = selectedModelTypeOption(of: id) {
         parent?.send(action: .drivetrainSelected(option: selectedOption))
       }
