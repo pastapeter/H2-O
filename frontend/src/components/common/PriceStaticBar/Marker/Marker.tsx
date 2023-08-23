@@ -10,7 +10,7 @@ interface Props extends SVGProps<SVGSVGElement> {
 function Marker({ color = 'white', ...restProps }: Props) {
   const theme = useTheme();
 
-  return <MarkerIcon fill={theme.colors[color]} {...restProps} />;
+  return <MarkerIcon data-testid='marker' fill={theme.colors[color]} {...restProps} />;
 }
 
 export default Marker;

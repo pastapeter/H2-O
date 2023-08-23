@@ -1,7 +1,7 @@
 import { ChangeEventHandler, MouseEventHandler, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { CTAButton, Flex, Icon, Popup, Toggle, Typography } from '@/components/common';
+import { CTAButton, Flex, Icon, Loading, Popup, Toggle, Typography } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
 import { toPriceFormatString } from '@/utils/string';
@@ -43,11 +43,15 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
   const { trim, powerTrain, bodyType, driveTrain, exteriorColor, interiorColor, extraOptions } = selectionInfo;
 
   if (!trim || !powerTrain || !bodyType || !driveTrain || !exteriorColor || !interiorColor || !extraOptions)
-    return <div>로딩중...</div>;
+    return (
+      <Popup size='large' handleClickDimmed={handleClickCloseButton}>
+        <Loading />
+      </Popup>
+    );
 
   return (
     <Popup size='large' handleClickDimmed={handleClickCloseButton}>
-      <SummaryPopupContainer>
+      <SummaryPopupContainer data-testid='summary-modal'>
         <HeaderContainer>
           견적요약
           <CancelIcon iconType='Cancel' onClick={handleClickCloseButton} />

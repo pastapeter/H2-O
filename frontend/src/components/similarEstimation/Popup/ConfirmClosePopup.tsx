@@ -22,7 +22,6 @@ function ConfirmClosePopup({ closePopup, closeSimilarEstimationPopup, isEmptyOpt
   return (
     <ConfirmPopup
       hasCancelButton={true}
-      cancelButtonLabel='취소'
       confirmButtonLabel={isEmptyOption ? '종료' : '확인'}
       handleClickCancelButton={closePopup}
       handleClickConfirmButton={handleClickConfirmButton}

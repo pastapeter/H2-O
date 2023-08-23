@@ -13,7 +13,6 @@ function CloseMyCarPopup({ handleClickCancelButton }: Props) {
   return (
     <ConfirmPopup
       hasCancelButton={true}
-      cancelButtonLabel='취소'
       confirmButtonLabel='종료'
       handleClickCancelButton={handleClickCancelButton}
       handleClickConfirmButton={handleClickConfirmButton}

@@ -2,7 +2,7 @@ import { HTMLAttributes, useEffect, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import { Theme } from '@emotion/react/macro';
 import styled from '@emotion/styled';
-import Slider from './Slider';
+import { Slider } from './Slider';
 import { getTrimPriceRange } from '@/apis/trim';
 import { Flex, Icon } from '@/components/common';
 import { useSafeContext, useToggle } from '@/hooks';

@@ -3,15 +3,15 @@ import styled from '@emotion/styled';
 import { Dimmed, Portal } from '@/components/common';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  size: 'small' | 'large';
+  size?: 'small' | 'large';
   handleClickDimmed: MouseEventHandler<HTMLDivElement>;
 }
 
-function Popup({ children, size, handleClickDimmed, ...restProps }: PropsWithChildren<Props>) {
+function Popup({ children, size = 'small', handleClickDimmed, ...restProps }: PropsWithChildren<Props>) {
   return (
     <Portal>
-      <Dimmed onClick={handleClickDimmed} {...restProps} />
-      <PopupContainer size={size} {...restProps}>
+      <Dimmed data-testid='dimmed' onClick={handleClickDimmed} {...restProps} />
+      <PopupContainer role='dialog' size={size} {...restProps}>
         {children}
       </PopupContainer>
     </Portal>

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Portal 컴포넌트 테스트 > Portal 컴포넌트 스냅샷 테스트 1`] = `
+<div
+  id="portal-root"
+/>
+`;

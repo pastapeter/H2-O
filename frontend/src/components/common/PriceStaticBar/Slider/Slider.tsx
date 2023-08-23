@@ -1,17 +1,16 @@
-import type { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler, HTMLAttributes } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Marker from './Marker';
-
-const SLIDER_WIDTH = 311;
-const STEP_SIZE = 100000;
+import { SLIDER_WIDTH, STEP_SIZE } from './constants';
+import '@/components/common/';
+import { Marker } from '@/components/common/PriceStaticBar';
 
 interface SliderInfo {
   value: number;
   isOverPrice: boolean;
 }
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   sliderInfo: SliderInfo;
   minPrice: number;
   maxPrice: number;
@@ -20,7 +19,15 @@ interface Props {
   handleChangeSliderInfo: (targetValue: number) => void;
 }
 
-function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, handleChangeSliderInfo }: Props) {
+function Slider({
+  sliderInfo,
+  minPrice,
+  maxPrice,
+  totalPrice,
+  isComplete,
+  handleChangeSliderInfo,
+  ...restProps
+}: Props) {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const targetValue = Number(e.target.value);
     handleChangeSliderInfo(targetValue);
@@ -31,8 +38,9 @@ function Slider({ sliderInfo, minPrice, maxPrice, totalPrice, isComplete, handle
   };
 
   return (
-    <SliderContainer>
+    <SliderContainer {...restProps}>
       <StyledSlider
+        role='slider'
         type='range'
         percent={((sliderInfo.value - minPrice) / (maxPrice - minPrice)) * 100}
         isOverPrice={sliderInfo.isOverPrice}
@@ -74,6 +82,7 @@ const StyledSlider = styled.input<{ percent: number; isOverPrice: boolean; isCom
     -webkit-appearance: none;
     width: ${({ isComplete }) => (isComplete ? 0 : 21)}px;
     height: ${({ isComplete }) => (isComplete ? 0 : 20)}px;
+    // border-radius
     background-image: ${({ isOverPrice }) =>
       isOverPrice ? `  url('/slider-thumb-over.svg')` : `  url('/slider-thumb-under.svg')`};
     cursor: pointer;

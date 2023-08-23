@@ -19,9 +19,10 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   </ConfirmPopup>
  * ```
  */
+
 function ConfirmPopup({
   hasCancelButton,
-  cancelButtonLabel,
+  cancelButtonLabel = '취소',
   confirmButtonLabel,
   handleClickCancelButton,
   handleClickConfirmButton,
@@ -29,8 +30,8 @@ function ConfirmPopup({
   ...restProps
 }: PropsWithChildren<Props>) {
   return (
-    <Popup size='small' handleClickDimmed={handleClickCancelButton} {...restProps}>
-      <ConfirmPopupContainer>
+    <Popup handleClickDimmed={handleClickCancelButton} {...restProps}>
+      <ConfirmPopupContainer data-testid='confirm-modal'>
         <ContentContainer>{children}</ContentContainer>
         <ButtonContainer>
           {hasCancelButton && (
