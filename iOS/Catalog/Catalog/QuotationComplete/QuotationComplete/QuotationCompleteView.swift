@@ -21,8 +21,13 @@ struct QuotationCompleteView: IntentBindingType {
   }
   
   @SwiftUI.State var isExternal: Bool = true
-  @SwiftUI.State var showSheet: Bool = false
+}
 
+extension QuotationCompleteView {
+  var showSheetBinding: Binding<Bool> {
+    .init(get: { state.showSheet },
+          set: { bool in intent.send(action: .showSheetChanged(showSheet: bool)) } )
+  }
 }
 
 extension QuotationCompleteView: View {
@@ -45,13 +50,13 @@ extension QuotationCompleteView: View {
           DragGesture()
             .onChanged { gesture in
               if gesture.translation.height < 20 {
-                showSheet = true
+                showSheetBinding.wrappedValue = true
               }
             }
         )
 
     }
-    .sheet(isPresented: $showSheet) {
+    .sheet(isPresented: showSheetBinding) {
       QuotationCompleteSheet(state: state,
                              modelName: intent.quotationService.getModelName(),
                              intent: intent)
@@ -59,11 +64,11 @@ extension QuotationCompleteView: View {
     .onAppear {
       intent.send(action: .onAppear)
     }
+
   }
 }
 
 extension QuotationCompleteView {
-
   @ViewBuilder
   static func build(intent: QuotationCompleteIntent) -> some View {
     QuotationCompleteView(container: .init(intent: intent,

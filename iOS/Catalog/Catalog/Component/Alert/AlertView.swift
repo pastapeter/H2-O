@@ -18,11 +18,8 @@ protocol AlertContentable: View {
 protocol AlertView: View {
 
   associatedtype AlertContent: AlertContentable
-
-  var cancelAction: () -> Void { get }
-
-  var submitAction: () -> Void { get }
-
-  var body: AlertViewComponent<AlertContent> { get }
+  associatedtype ButtonContent: ButtonContentable
+  associatedtype ButtonContentView: View
+  var body: AlertViewComponent<AlertContent, ButtonContent, ButtonContentView> { get }
 
 }

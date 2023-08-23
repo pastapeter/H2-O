@@ -16,6 +16,8 @@ enum CLNavigationModel {
 
     var currentPage: Int
     var showQuotationSummarySheet: Bool
+    var alertCase: CLNavigationView.AlertCase
+    var showAlert: Bool
 
   }
   enum ViewAction: Equatable {
@@ -25,5 +27,6 @@ enum CLNavigationModel {
     case onTapSwitchVehicleModel
     case onTapSimilarQuotationButton
     case onTapSimilarQuotationBackButton
+    case showAlertChanged(showAlert: Bool)
   }
 }

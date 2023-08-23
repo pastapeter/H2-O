@@ -33,7 +33,9 @@ final class SimilarQuotationIntent: ObservableObject {
   
   @Published var state: State = .init(currentSimilarQuotationIndex: 0,
                                       similarQuotations: [.mock(), .mock(), .mock()],
-                                      selectedOptions: [])
+                                      selectedOptions: [],
+                                      alertCase: .noOption,
+                                      showAlert: false)
   
   var cancellable: Set<AnyCancellable> = []
   private var repository: SimilarQuotationRepositoryProtocol
@@ -54,14 +56,22 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
             print(String(describing: e))
           }
         }
+        
       case .onTapBackButton:
-        navigationIntent.send(action: .onTapSimilarQuotationBackButton)
-        print("뒤로가기 버튼 클릭")
-      case .onTapAddButton:
-        Quotation.shared.send(action: .similarOptionsAdded(option: state.selectedOptions))
-        send(action: .onTapBackButton)
-        print("추가하기 버튼 클릭")
-
+        if state.selectedOptions.isEmpty {
+          state.alertCase = .noOption
+        } else {
+          state.alertCase = .optionButQuit
+        }
+        
+      case .onTapAddButton(let title, let count):
+        state.alertCase = .addOption(title: title, count: count)
+        send(action: .showAlertChanged(showAlert: true))
+        
+      case .onTapHelpButton:
+        state.alertCase = .help
+        send(action: .showAlertChanged(showAlert: true))
+        
       case .optionSelected(let selectedOption):
         if state.selectedOptions.contains(selectedOption) {
           state.selectedOptions = state.selectedOptions.filter { $0 != selectedOption }
@@ -72,6 +82,18 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
       case .currentSimilarQuotationIndexChanged(let index):
         state.currentSimilarQuotationIndex = index
         budgetRangeIntent.send(action: .budgetChanged(newBudgetPrice: state.similarQuotations[index].price))
+        
+      case .choiceQuit:
+        send(action: .showAlertChanged(showAlert: false))
+        navigationIntent.send(action: .onTapSimilarQuotationBackButton)
+        state.selectedOptions = []
+        
+      case .choiceAdd:
+        Quotation.shared.send(action: .similarOptionsAdded(option: state.selectedOptions))
+        send(action: .choiceQuit)
+        
+      case .showAlertChanged(let showAlert):
+        state.showAlert = showAlert
     }
   }
 }

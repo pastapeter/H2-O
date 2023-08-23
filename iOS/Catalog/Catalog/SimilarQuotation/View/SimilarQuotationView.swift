@@ -12,15 +12,17 @@ struct SimilarQuotationView {
   var intent: SimilarQuotationIntentType { container.intent }
   var state: SimilarQuotationModel.State { intent.state }
   
-  @SwiftUI.State var showHelp: Bool = false
-  @SwiftUI.State var currentIndex: Int = 0 {
-    didSet(index) {
-      intent.send(action: .currentSimilarQuotationIndexChanged(index: index))
-    }
-  }
+  @SwiftUI.State var currentIndex: Int = 0
   let budgetPrice: CLNumber = CLNumber(50000000)
   let quotation = Quotation.shared
   let navigationIntent: CLNavigationIntentType
+}
+
+extension SimilarQuotationView {
+  var showAlertBinding: Binding<Bool> {
+    .init(get: { state.showAlert } ,
+          set: { bool in intent.send(action: .showAlertChanged(showAlert: bool)) })
+  }
 }
 
 extension SimilarQuotationView: View {
@@ -30,7 +32,7 @@ extension SimilarQuotationView: View {
     NavigationView {
       ZStack {
         VStack {
-          SimilarQuotationTopBar(intent: intent)
+          SimilarQuotationTopBar(showAlert: showAlertBinding, intent: intent)
           
           CLBudgetRangeView.build(intent:
               .init(initialState:
@@ -54,53 +56,43 @@ extension SimilarQuotationView: View {
             }
           }
                        .frame(height: CGFloat(449).scaledHeight)
+                       .onChange(of: currentIndex) { newValue in
+                         intent.send(action: .currentSimilarQuotationIndexChanged(index: newValue))
+                       }
           
-          
-          HStack(spacing: 10) {
-            ForEach(state.similarQuotations.indices, id: \.self) { index in
-              Capsule()
-                .fill(currentIndex == index ? Color.primary0 : Color.gray200)
-                .frame(width: (currentIndex == index ? 15 : 5), height: 5)
-                .scaleEffect((currentIndex == index) ? 1.4 : 1)
-                .animation(.spring(), value: currentIndex == index)
-            }
-          }
-          .padding(.bottom, CGFloat(12).scaledHeight)
+          ScrollIndicator(spacing: 10,
+                          count: state.similarQuotations.count,
+                          bigWidth: 15,
+                          smallWidth: 5,
+                          height: 5,
+                          bigScaleEffect: 1.4,
+                          smallScaleEffect: 1,
+                          bottomPadding: 12,
+                          currentIndex: $currentIndex)
           
           CLInActiceButton(mainText: "내 견적서에 추가하기",
                            subText: "선택된 옵션\(state.selectedOptions.count)개",
                            inActiveText: "옵션을 선택해 추가해보세요.",
                            height: CGFloat(52).scaledHeight,
-                           buttonAction: { intent.send(action: .onTapAddButton)
-          })
+                           buttonAction: {  intent.send(action: .onTapAddButton(title: state.selectedOptions[0].name, count: state.selectedOptions.count)) })
           .disabled(state.selectedOptions.isEmpty)
         }
-        .padding([.top, .bottom], 1)
-        
-        
-        if showHelp {
-          SimilarQuotationHelpView()
-        }
-        
-        VStack(alignment: .trailing) {
-          HStack(alignment: .top) {
-            Spacer()
-            Button {
-              showHelp.toggle()
-            } label: {
-              Image("help").frame(width: 24, height: 24)
-            }
-          }
-          Spacer()
-        }
-        .padding(.top, 32)
-        .padding(.horizontal, 16)
+        HelpIcon(intent: intent, showAlert: showAlertBinding)
       }
-      
+      .onAppear { intent.send(action: .onAppear(quotation: quotation.state.quotation!))
+      }
     }
-    //TODO: - Quotation 받아오는 방식 변경하기
-    .onAppear { intent.send(action: .onAppear(quotation: quotation.state.quotation!))
-      
+    .CLDialogFullScreenCover(show: showAlertBinding) {
+      switch state.alertCase {
+        case .noOption:
+          noOptionAlertView()
+        case .optionButQuit:
+          optionButQuitAlertView()
+        case .addOption(let title, let count):
+          addOptionAlertView(title: title, count: count)
+        case .help:
+          SimilarQuotationHelpView(showAlert: showAlertBinding, intent: intent)
+      }
     }
     .navigationBarBackButtonHidden()
   }
@@ -111,7 +103,6 @@ extension SimilarQuotationView: View {
 extension SimilarQuotationView {
   @ViewBuilder
   static func build(intent: SimilarQuotationIntent, navitationIntent: CLNavigationIntentType) -> some View {
-    
     SimilarQuotationView(container: .init(
       intent: intent as SimilarQuotationIntent,
       state: intent.state,
@@ -119,15 +110,3 @@ extension SimilarQuotationView {
   }
 }
 
-
-//struct SimilarQuotationView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    let navigationIntent: CLNavigationIntentType = CLNavigationIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: true))
-//
-//    SimilarQuotationView.build(intent: .init(initialState: .init(currentSimilarQuotationIndex: 0, similarQuotations: [SimilarQuotation.mock(),SimilarQuotation.mock()], selectedOptions: []),
-//                                             repository: SimilarQuotationRepository(requestManager: RequestManager(apiManager: APIManager())), budgetRangeIntent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: .init(0), budgetPrice: .init(0), status: .similarQuotation), navigationIntent: CLNavigationIntent(initialState: .init(currentPage: 0, showQuotationSummarySheet: false)))),
-//                               navitationIntent: navigationIntent)
-//  }
-//}
-//
-//

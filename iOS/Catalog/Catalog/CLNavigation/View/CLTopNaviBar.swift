@@ -10,7 +10,7 @@ import SwiftUI
 struct CLTopNaviBar: View {
 
   var intent: CLNavigationIntentType
-
+  
   var body: some View {
     ZStack(alignment: .center) {
       HStack(alignment: .center) {
@@ -40,5 +40,6 @@ struct CLTopNaviBar: View {
       }
     }
     .padding(.bottom, 10)
+    }
   }
-}
+

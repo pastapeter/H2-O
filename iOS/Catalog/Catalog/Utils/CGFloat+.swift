@@ -2,7 +2,7 @@
 //  CGFloat+.swift
 //  Catalog
 //
-//  Created by Jung peter on 8/18/23.
+//  Created by H1-mycardeepdive-iOS on 8/18/23.
 //
 
 import SwiftUI

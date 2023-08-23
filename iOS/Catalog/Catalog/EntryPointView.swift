@@ -8,23 +8,19 @@
 import SwiftUI
 
 struct EntryPointView: View {
-  @State var showPopUp: Bool = true
   var body: some View {
-      ZStack {
-        VStack(spacing: 0) {
-          CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0, showQuotationSummarySheet: false)))
-        }
-        if showPopUp {
-          EntryGuide(showEntryGuide: $showPopUp)
-        }
+    ZStack {
+      VStack(spacing: 0) {
+        CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0,showQuotationSummarySheet: false, alertCase: .guide, showAlert: true)))
       }
-      .ignoresSafeArea()
+    }
+    .ignoresSafeArea()
     
   }
 }
 
 struct TrimSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-      EntryPointView()
-    }
+  static var previews: some View {
+    EntryPointView()
+  }
 }

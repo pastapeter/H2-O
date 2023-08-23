@@ -13,13 +13,19 @@ enum SimilarQuotationModel {
     var currentSimilarQuotationIndex: Int
     var similarQuotations: [SimilarQuotation]
     var selectedOptions: [SimilarQuotationOption]
+    var alertCase: SimilarQuotationView.AlertCase
+    var showAlert: Bool
   }
   
   enum ViewAction: Equatable {
     case onAppear(quotation: CarQuotation)
     case currentSimilarQuotationIndexChanged(index: Int)
     case optionSelected(selectedOption: SimilarQuotationOption)
-    case onTapAddButton
+    case onTapAddButton(title: String, count: Int)
     case onTapBackButton
+    case onTapHelpButton
+    case choiceQuit
+    case choiceAdd
+    case showAlertChanged(showAlert: Bool)
   }
 }

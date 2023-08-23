@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SimilarQuotationTopBar: View {
-  
+  @Binding var showAlert: Bool
   var intent: SimilarQuotationIntentType
   var body: some View {
     VStack {
@@ -16,6 +16,7 @@ struct SimilarQuotationTopBar: View {
         HStack {
           Button {
             intent.send(action: .onTapBackButton)
+            showAlert = true
           } label: {
             Image("arrow_left")
           }

@@ -14,7 +14,7 @@ struct CLOptionSelectAlertContentView: AlertContentable {
     var body: some View {
       VStack {
         Spacer().frame(height: 57)
-        Text("\(Text(info ?? "").foregroundColor(.activeBlue))의 옵션이\n내 견적서에 추가되었습니다.")
+        Text("\(Text(info ?? "").foregroundColor(Color.primary500))의 옵션이\n내 견적서에 추가되었습니다.")
           .catalogFont(type: .TextKRMedium14)
           .frame(height: 51, alignment: .top)
           .multilineTextAlignment(.center)
@@ -26,6 +26,6 @@ struct CLOptionSelectAlertContentView: AlertContentable {
 
 struct CLOptionSelectAlertContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CLOptionSelectAlertContentView()
+      CLOptionSelectAlertContentView( info: "2열 통풍시트")
     }
 }

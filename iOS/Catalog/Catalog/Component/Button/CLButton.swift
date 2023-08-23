@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+protocol CLButtonProtocol: View { }
+
 struct CLButton: View {
 
     var mainText: String
@@ -36,3 +38,4 @@ struct CLButton: View {
         .buttonStyle(.plain)
     }
 }
+

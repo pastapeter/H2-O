@@ -14,6 +14,15 @@ struct QuotationCompleteSheet {
   var quotation = Quotation.shared
   var intent: QuotationCompleteIntentType
 }
+
+
+extension QuotationCompleteSheet {
+  var showAlertBinding: Binding<Bool> {
+    .init(get: { state.showAlert }, set: { _ in })
+  }
+}
+
+
 extension QuotationCompleteSheet: View {
   var body: some View {
     ScrollView {
@@ -75,6 +84,13 @@ extension QuotationCompleteSheet: View {
         }
       }
     }
-    
+    .CLDialogFullScreenCover(show: showAlertBinding) {
+      switch state.alertCase {
+        case .delete(let id):
+          deleteAlertView(id: id)
+        case .modify(let index, let title):
+          modifyAlertView(index: index, title: title)
+      }
+    }
   }
 }
