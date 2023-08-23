@@ -14,6 +14,8 @@ public class AppConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                         "http://localhost:4173",
                         "http://localhost:5173",
+                        "https://api.h2-cartalog.site",
+                        "https://api.h2-cartalog.site:443",
                         "https://www.h2-cartalog.site",
                         "https://www.h2-cartalog.site:443",
                         "https://h2-cartalog.site",
