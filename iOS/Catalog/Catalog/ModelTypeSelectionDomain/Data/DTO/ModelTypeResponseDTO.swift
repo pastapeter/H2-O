@@ -46,7 +46,7 @@ extension ModelTypeResponseDTO {
           let modelTypeOption: ModelTypeOption = try dto.toDomain()
           modelTypeOptions.append(modelTypeOption)
         } catch(let e) {
-          print("🚨 Error \(e.localizedDescription)")
+          Log.debug(message: "🚨 \(e.localizedDescription)")
           continue
         }
       }

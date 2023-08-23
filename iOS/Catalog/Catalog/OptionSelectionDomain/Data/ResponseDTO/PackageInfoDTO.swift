@@ -90,7 +90,7 @@ extension PackageResponseDTO {
                  components: components?.compactMap{
                   do { return try $0.toDomain() }
                   catch(let e) {
-                    print("🚨 Error \(e)")
+                    Log.debug(message: "🚨 \(e.localizedDescription)")
                     return nil }
                   } ?? [])
   

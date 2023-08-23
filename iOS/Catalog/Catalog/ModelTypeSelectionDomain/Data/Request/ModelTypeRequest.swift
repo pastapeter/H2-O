@@ -60,8 +60,4 @@ extension ModelTypeRequest: RequestProtocol {
     }
   }
   
-  var secureType: SecureType {
-    return .http
-  }
-
 }

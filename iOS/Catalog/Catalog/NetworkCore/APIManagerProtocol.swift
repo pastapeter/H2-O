@@ -41,7 +41,7 @@ class APIManager: APIManagerProtocol {
     //1. URLCache에서 cacheResponse 있는지
     
     if let cachedresponse = URLCache.shared.cachedResponse(for: requestObject.urlRequest) {
-      print("캐시에서 가져오는 중")
+      Log.debug(message: "캐시에서 가져오는 중")
       return cachedresponse.data
     } else {
      
@@ -61,7 +61,7 @@ class APIManager: APIManagerProtocol {
             throw e
           }
         }
-
+        Log.debug(message: "서버에서 가져오는 중")
         return data
 
       } catch(let e) {
@@ -69,7 +69,7 @@ class APIManager: APIManagerProtocol {
         if (e as? URLError)?.code == .timedOut {
           return try await retryRequestRecursively(requestObject, dueTo: .timeout)
         } else {
-          print("🚨 URLError \(e.localizedDescription)")
+          Log.debug(message: "🚨 URLError \(e.localizedDescription)")
           return try await retryRequestRecursively(requestObject, dueTo: .URLError(message: (e as? URLError)?.localizedDescription))
         }
       }

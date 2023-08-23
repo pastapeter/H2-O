@@ -52,8 +52,4 @@ extension ExteriorColorRequest: ColorRequestProtocol {
     }
   }
 
-  var secureType: SecureType {
-    return .http
-  }
-
 }

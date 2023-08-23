@@ -17,7 +17,7 @@ protocol RequestProtocol {
 
   var params: [String: Any] { get }
 
-  var port: Int { get }
+  var port: Int? { get }
 
   var urlParams: [String: String?] { get }
 
@@ -38,13 +38,17 @@ extension RequestProtocol {
   var contentType: ContentType {
     .JSON
   }
+  
+  var secureType: SecureType {
+    .https
+  }
 
   var timeOutInterval: TimeInterval {
     10
   }
 
-  var port: Int {
-    8080
+  var port: Int? {
+    nil
   }
 
   func createRequest() throws -> Request {
