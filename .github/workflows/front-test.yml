@@ -1,0 +1,28 @@
+name: front test
+
+on:
+  pull_request:
+    branches: ["main", "dev-fe"]
+    paths:
+      - "frontend/**"
+
+jobs:
+  front-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Setting node js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run test
+        run: yarn test
