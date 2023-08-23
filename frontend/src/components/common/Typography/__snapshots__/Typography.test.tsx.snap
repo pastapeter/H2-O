@@ -1,0 +1,570 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > CaptionENMedium12 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > CaptionENMedium14 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > DisplayText 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 146px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadENBold10 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadENBold22 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadENBold24 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadENMedium20 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadEnBold26 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRBold12 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRBold18 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRBold20 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRBold22 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRBold24 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRBold26 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRBold32 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRMedium14 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRMedium16 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRMedium18 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRMedium20 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRMedium22 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRMedium24 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRMedium26 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRRegular20 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRRegular22 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRRegular24 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > HeadKRRegular26 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Head KR;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextENMedium14 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextENMedium16 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextENMedium18 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRMedium10 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRMedium12 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRMedium14 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRMedium16 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRMedium18 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRRegular10 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRRegular12 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRRegular14 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;
+
+exports[`Typography 컴포넌트 테스트 > Typography 스냅샷 테스트 > TextKRRegular18 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+<p
+  class="emotion-0"
+  data-testid="typography"
+/>
+`;

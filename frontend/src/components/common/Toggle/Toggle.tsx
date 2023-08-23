@@ -22,7 +22,7 @@ function Toggle({ isChecked, size, handleChangeToggle, ...restProps }: Props) {
         `}
       />
       <ToggleLabel htmlFor={id} isChecked={isChecked} size={size}>
-        <ToggleSwitch isChecked={isChecked} size={size}></ToggleSwitch>
+        <ToggleSwitch isChecked={isChecked} size={size} />
         <ToggleItem isChecked={isChecked} size={size}>
           외장
         </ToggleItem>

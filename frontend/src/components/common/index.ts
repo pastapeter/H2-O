@@ -15,6 +15,6 @@ export { Divider } from './Divider';
 export { Toggle } from './Toggle';
 export { MainSelector } from './MainSelector';
 export { HashTag } from './HashTag';
-export { Circle } from './Shape';
+export { Circle } from './Circle';
 export { Loading } from './Loading';
 export { ErrorBoundary } from './ErrorBoundary';
