@@ -9,6 +9,18 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/tests/setup.ts',
+    reporters: ['default', 'html'],
+    coverage: {
+      enabled: true,
+      reporter: ['html'],
+    },
+    deps: {
+      optimizer: {
+        web: {
+          enabled: false,
+        },
+      },
+    },
   },
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, './src') }],

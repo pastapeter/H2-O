@@ -6,6 +6,7 @@ import { CacheStorageMock } from './CacheStorageMock';
 import { server } from '@/mocks/server';
 import { expect } from 'vitest';
 import 'vitest-canvas-mock';
+import 'vitest-localstorage-mock';
 
 vi.stubGlobal('caches', new CacheStorageMock());
 

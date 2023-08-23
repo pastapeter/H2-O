@@ -7,7 +7,7 @@ interface CarouselProps {
 }
 function Carousel({ children, currentSlide }: PropsWithChildren<CarouselProps>) {
   return (
-    <CarouselContainer>
+    <CarouselContainer data-testid='carousel'>
       <CarouselSlideList currentSlide={currentSlide}>{children}</CarouselSlideList>
     </CarouselContainer>
   );
