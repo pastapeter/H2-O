@@ -1,6 +1,5 @@
 package com.h2o.h2oServer;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +21,6 @@ public class CorsTest {
     private MockMvc mockMvc;
 
     @Test
-    @Disabled
     @DisplayName("다른 호스트의 요청이 들어올 때 CORS 에러가 발생한다.")
     void corsOtherHost() throws Exception {
         mockMvc.perform(createPingRequest("https://example.com"))
@@ -30,7 +28,6 @@ public class CorsTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("다른 프로토콜로 요청이 들어올 때 CORS 에러가 발생한다.")
     void corsOtherProtocol() throws Exception {
         mockMvc.perform(createPingRequest("http://h2-cartalog.site"))
@@ -38,7 +35,6 @@ public class CorsTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("다른 포트로 요청이 들어올 때 CORS 에러가 발생한다.")
     void corsOtherPortNumber() throws Exception {
         mockMvc.perform(createPingRequest("https://h2-cartalog.site:3300"))
@@ -47,7 +43,6 @@ public class CorsTest {
 
 
     @ParameterizedTest
-    @Disabled
     @DisplayName("지정한 origin으로 요청이 들어올 때는 CORS 에러가 발생하지 않는다.")
     @ValueSource(strings = {"https://h2-cartalog.site", "https://www.h2-cartalog.site"})
     void pass(String origin) throws Exception {

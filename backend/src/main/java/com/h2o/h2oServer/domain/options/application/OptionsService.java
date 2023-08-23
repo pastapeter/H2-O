@@ -6,7 +6,6 @@ import com.h2o.h2oServer.domain.options.entity.TrimDefaultOptionEntity;
 import com.h2o.h2oServer.domain.options.entity.TrimExtraOptionEntity;
 import com.h2o.h2oServer.domain.options.enums.OptionType;
 import com.h2o.h2oServer.domain.options.mapper.OptionsMapper;
-import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
 import com.h2o.h2oServer.global.util.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

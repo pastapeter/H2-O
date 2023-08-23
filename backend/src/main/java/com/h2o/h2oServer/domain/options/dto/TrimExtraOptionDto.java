@@ -15,18 +15,23 @@ public class TrimExtraOptionDto {
     private String category;
     private String name;
     private String image;
+    private String pcImage;
+    private String mobileImage;
     private Integer price;
     private boolean containsHmgData;
     private Boolean isPackage;
     private Integer choiceRatio;
     private List<String> hashTags;
 
-    private TrimExtraOptionDto(boolean isPackage, Long id, String category, String name, String image,
-                               Integer price, List<String> hashTags) {
+    private TrimExtraOptionDto(boolean isPackage, Long id, String category, String name,
+                               String image, String pcImage, String mobileImage, Integer price,
+                               List<String> hashTags) {
         this.id = id;
         this.category = category;
         this.name = name;
         this.image = image;
+        this.pcImage = pcImage;
+        this.mobileImage = mobileImage;
         this.price = price;
         this.isPackage = isPackage;
         this.hashTags = hashTags;
@@ -39,6 +44,8 @@ public class TrimExtraOptionDto {
                 trimExtraOptionEntity.getCategory().getLabel(),
                 trimExtraOptionEntity.getName(),
                 trimExtraOptionEntity.getImage(),
+                trimExtraOptionEntity.getPcImage(),
+                trimExtraOptionEntity.getMobileImage(),
                 trimExtraOptionEntity.getPrice(),
                 hashTagEntities.stream()
                         .map(hashTagEntity -> hashTagEntity.getName().getLabel())

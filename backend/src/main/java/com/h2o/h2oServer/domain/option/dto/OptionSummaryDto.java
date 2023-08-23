@@ -13,6 +13,8 @@ public class OptionSummaryDto {
     private String name;
     private String category;
     private String image;
+    private String pcImage;
+    private String mobileImage;
     private Integer price;
 
     public static OptionSummaryDto of(Long id, OptionDetailsEntity optionEntity) {
@@ -20,6 +22,8 @@ public class OptionSummaryDto {
                 .id(id)
                 .name(optionEntity.getName())
                 .image(optionEntity.getImage())
+                .pcImage(optionEntity.getPcImage())
+                .mobileImage(optionEntity.getMobileImage())
                 .category(optionEntity.getCategory().getLabel())
                 .price(optionEntity.getPrice())
                 .build();

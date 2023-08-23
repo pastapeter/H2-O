@@ -20,6 +20,8 @@ public class OptionDetailsDto {
     private String category;
     private List<String> hashTags;
     private String image;
+    private String pcImage;
+    private String mobileImage;
     private String description;
     private OptionStatisticsDto hmgData;
     private Integer price;
@@ -46,6 +48,8 @@ public class OptionDetailsDto {
                         .map(hashTagEntity -> hashTagEntity.getName().getLabel())
                         .collect(Collectors.toList()))
                 .image(optionDetailsEntity.getImage())
+                .pcImage(optionDetailsEntity.getPcImage())
+                .mobileImage(optionDetailsEntity.getMobileImage())
                 .description(optionDetailsEntity.getDescription())
                 .price(optionDetailsEntity.getPrice())
                 .containsChoiceCount(containsChoiceRatio(optionDetailsEntity))

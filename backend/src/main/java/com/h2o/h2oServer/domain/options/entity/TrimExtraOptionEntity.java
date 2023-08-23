@@ -12,6 +12,8 @@ public class TrimExtraOptionEntity {
     private Long id;
     private String name;
     private String image;
+    private String pcImage;
+    private String mobileImage;
     private OptionCategory category;
     private Float choiceRatio;
     private Integer price;

@@ -15,14 +15,18 @@ public class TrimDefaultOptionDto {
     private String category;
     private String name;
     private String image;
+    private String pcImage;
+    private String mobileImage;
     private List<String> hashTags;
     private boolean containsHmgData;
 
-    private TrimDefaultOptionDto(Long id, String category, String name, String image, List<String> hashTags) {
+    private TrimDefaultOptionDto(Long id, String category, String name, String image, String pcImage, String mobileImage, List<String> hashTags) {
         this.id = id;
         this.category = category;
         this.name = name;
         this.image = image;
+        this.pcImage = pcImage;
+        this.mobileImage = mobileImage;
         this.hashTags = hashTags;
     }
 
@@ -32,6 +36,8 @@ public class TrimDefaultOptionDto {
                 trimDefaultOptionEntity.getCategory().getLabel(),
                 trimDefaultOptionEntity.getName(),
                 trimDefaultOptionEntity.getImage(),
+                trimDefaultOptionEntity.getPcImage(),
+                trimDefaultOptionEntity.getMobileImage(),
                 hashTagEntities.stream()
                         .map(hashTagEntity -> hashTagEntity.getName().getLabel())
                         .collect(Collectors.toList())

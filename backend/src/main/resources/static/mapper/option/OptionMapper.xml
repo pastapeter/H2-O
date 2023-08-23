@@ -3,14 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.h2o.h2oServer.domain.option.mapper.OptionMapper">
     <select id="findOptionDetails" resultType="OptionDetailsEntity">
-        select name, image, description, category, use_count, choice_ratio, price, option_type
+        select name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, description, category, use_count, choice_ratio, price, option_type
         from options
         join trims_options on trims_options.option_id = options.id
         where trims_options.trim_id = #{trimId} and options.id = #{id}
     </select>
 
     <select id="findOption" resultType="OptionEntity">
-        select name, image, description, category, use_count
+        select name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, description, category, use_count
         from options
         where options.id = #{optionId}
     </select>

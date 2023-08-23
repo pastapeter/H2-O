@@ -6,6 +6,7 @@ import com.h2o.h2oServer.domain.quotation.entity.PackageQuotationEntity;
 
 import com.h2o.h2oServer.domain.quotation.entity.ReleaseEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,11 +26,11 @@ public interface QuotationMapper {
 
     List<ReleaseEntity> findReleaseQuotationWithVolume(Long trimId);
 
-    Integer countIdenticalQuotation(QuotationDto quotationDto,
-                                     String optionCombination,
-                                     String packageCombination);
+    Integer countIdenticalQuotation(@Param("quotationDto") QuotationDto quotationDto,
+                                    @Param("optionCombination") String optionCombination,
+                                    @Param("packageCombination") String packageCombination);
 
-    List<String> findIdenticalQuotations(QuotationDto quotationDto,
-                 String optionCombination,
-                 String packageCombination);
+    List<String> findIdenticalQuotations(@Param("quotationDto") QuotationDto quotationDto,
+                                         @Param("optionCombination") String optionCombination,
+                                         @Param("packageCombination") String packageCombination);
 }

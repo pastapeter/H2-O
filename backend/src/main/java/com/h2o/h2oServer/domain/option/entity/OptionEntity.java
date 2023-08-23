@@ -9,6 +9,8 @@ import lombok.Data;
 public class OptionEntity {
     private String name;
     private String image;
+    private String pcImage;
+    private String mobileImage;
     private String description;
     private OptionCategory category;
     private Float useCount;

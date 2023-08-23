@@ -49,12 +49,16 @@ CREATE TABLE `internal_color`
 
 CREATE TABLE `options`
 (
-    `id`          BIGINT       NOT NULL,
-    `name`        VARCHAR(255) NOT NULL,
-    `image`       TEXT         NOT NULL,
-    `description` TEXT NULL,
-    `use_count`   FLOAT NULL,
-    `category`    VARCHAR(20)  NOT NULL
+    `id`                        BIGINT       NOT NULL,
+    `name`                      VARCHAR(255) NOT NULL,
+    `image`                     TEXT         NOT NULL,
+    `pc_thumbnail_image`	    TEXT	     NULL,
+    `pc_detail_image`	        TEXT	     NULL,
+    `mobile_thumbnail_image`	TEXT	     NULL,
+    `mobile_detail_image`	    TEXT	     NULL,
+    `description`               TEXT         NULL,
+    `use_count`                 FLOAT        NULL,
+    `category`	                VARCHAR(20)  NOT NULL
 );
 
 CREATE TABLE `powertrain`
@@ -73,10 +77,14 @@ CREATE TABLE `hashtag`
 
 CREATE TABLE `package`
 (
-    `id`       BIGINT       NOT NULL,
-    `name`     VARCHAR(255) NOT NULL,
-    `image`    TEXT         NOT NULL,
-    `category` VARCHAR(20)  NOT NULL
+    `id`                        BIGINT       NOT NULL,
+    `name`                      VARCHAR(255) NOT NULL,
+    `image`                     TEXT         NOT NULL,
+    `pc_thumbnail_image`	    TEXT	     NULL,
+    `pc_detail_image`	        TEXT	     NULL,
+    `mobile_thumbnail_image`	TEXT	     NULL,
+    `mobile_detail_image`	    TEXT	     NULL,
+    `category`                  VARCHAR(20)  NOT NULL
 );
 
 CREATE TABLE `quotation`
