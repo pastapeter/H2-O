@@ -33,13 +33,11 @@ struct TrimCardView: View {
       .frame(height: CGFloat(130).scaledHeight)
       
       GeometryReader { proxy in
-        AsyncImage(url: trim.externalImage, content: { image in
+        AsyncCachedImage(url: trim.externalImage, content: { image in
           image
             .resizable()
             .scaledToFill()
             .frame(width: CGFloat(343).scaledWidth)
-        }, placeholder: {
-          ProgressView()
         })
         .offset(x: proxy.size.width / 4)
       }

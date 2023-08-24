@@ -32,22 +32,20 @@ struct CLQuotationSummarySheet: View {
             ZStack {
               if isExternal {
                 VStack {
-                  AsyncImage(url: summaryQuotation.externalImage) { image in
-                    image
-                      .resizable()
-                      .scaledToFit()
-                    Spacer().frame(height: 20)
-                  } placeholder: {
-                    EmptyView()
+                  AsyncCachedImage(url: summaryQuotation.externalImage) { image in
+                    VStack(spacing: 0) {
+                      image
+                        .resizable()
+                        .scaledToFit()
+                      Spacer().frame(height: 20)
+                    }
                   }
                 }
               } else {
-                AsyncImage(url: summaryQuotation.internalImage) { image in
+                AsyncCachedImage(url: summaryQuotation.internalImage) { image in
                   image
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width)
-                } placeholder: {
-                  EmptyView()
                 }
               }
               VStack {

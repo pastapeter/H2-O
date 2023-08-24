@@ -14,15 +14,12 @@ struct OptionModalImageView: View {
   
     var body: some View {
       ZStack {
-        AsyncImage(url: imageURL) { image in
+        AsyncCachedImage(url: imageURL) { image in
           image
             .resizable()
             .scaledToFill()
             .frame(height: CGFloat(170).scaledHeight)
-        } placeholder: {
-          ProgressView()
         }
-          
         VStack(spacing: 0) {
           HStack {
             ForEach(hashTags.indices, id: \.self) { i in

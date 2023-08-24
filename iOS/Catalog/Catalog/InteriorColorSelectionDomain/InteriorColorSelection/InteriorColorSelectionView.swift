@@ -26,13 +26,11 @@ extension InteriorColorSelectionView: View {
   var body: some View {
     ScrollView {
       VStack {
-        AsyncImage(url: state.selectedInteriorImageURL) { image in
+        AsyncCachedImage(url: state.selectedInteriorImageURL) { image in
           image
             .resizable()
             .frame(width: UIScreen.main.bounds.width)
-        } placeholder: {
-          ProgressView()
-        }
+        } 
         .frame(height: CGFloat(292).scaledHeight)
         Spacer().frame(height: 20)
         VStack(alignment: .leading, spacing: 0) {

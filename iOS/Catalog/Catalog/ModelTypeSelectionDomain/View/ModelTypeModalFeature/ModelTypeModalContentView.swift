@@ -22,13 +22,11 @@ extension ModelTypeModalContentView {
   var body: some View {
     
       VStack {
-        AsyncImage(url: state.imageURL) { image in
+        AsyncCachedImage(url: state.imageURL) { image in
           image
             .resizable()
             .frame(height: CGFloat(170).scaledHeight)
-        } placeholder: {
-          ProgressView()
-        }
+        } 
         VStack(alignment: .leading) {
           HStack {
             Text(state.title)

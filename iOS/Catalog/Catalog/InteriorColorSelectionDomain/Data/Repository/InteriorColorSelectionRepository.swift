@@ -21,7 +21,7 @@ final class InteriorColorSelectionRepository: InteriorColorSelectionRepositoryPr
       do {
         return try dto.toDomain()
       } catch let e {
-        print("🚨", e.localizedDescription)
+        Log.debug(message: "🚨 \(e.localizedDescription)")
        return nil
       }
     }

@@ -35,12 +35,10 @@ extension ModelTypeCellView: View {
       Spacer().frame(height: 8)
       VStack {
         ZStack(alignment: .topTrailing) {
-          AsyncImage(url: state.imageURL) { image in
+          AsyncCachedImage(url: state.imageURL) { image in
             image
               .resizable()
               .frame(maxWidth: CGFloat(UIScreen.main.bounds.width - 32).scaledWidth, maxHeight: CGFloat(130).scaledHeight)
-          } placeholder: {
-            ProgressView()
           }
           HMGButton {
             intent.send(action: .onTapDetailButton(isPresenting: !state.isModalPresenting))

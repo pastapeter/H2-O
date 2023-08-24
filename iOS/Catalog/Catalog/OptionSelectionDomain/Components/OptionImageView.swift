@@ -18,15 +18,13 @@ struct OptionImageView: View {
   
     var body: some View {
       ZStack {
-        AsyncImage(url: imageURL) { image in
+        AsyncCachedImage(url: imageURL) { image in
           image
             .resizable()
             .scaledToFill()
             .frame(height: CGFloat(128).scaledHeight)
             .clipped()
-        } placeholder: {
-          ProgressView()
-        }
+        } 
         VStack(spacing: 0) {
           HStack {
             Spacer()

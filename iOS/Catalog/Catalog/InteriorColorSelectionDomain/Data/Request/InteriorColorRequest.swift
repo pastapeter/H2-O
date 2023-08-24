@@ -43,8 +43,5 @@ extension InteriorColorRequest: RequestProtocol {
     .reloadRevalidatingCacheData
   }
 
-  var secureType: SecureType {
-    .http
-  }
 
 }

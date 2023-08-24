@@ -60,8 +60,4 @@ extension TrimSelectionRequest: RequestProtocol {
     return [:]
   }
 
-  var secureType: SecureType {
-    return .http
-  }
-
 }

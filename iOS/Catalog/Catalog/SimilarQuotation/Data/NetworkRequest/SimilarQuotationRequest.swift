@@ -48,8 +48,5 @@ extension SimilarQuotationRequest: RequestProtocol {
     .useProtocolCachePolicy
   }
   
-  var secureType: SecureType {
-    .http
-  }
 }
 

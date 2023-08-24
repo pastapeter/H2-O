@@ -70,8 +70,4 @@ extension OptionSelectionRequest: RequestProtocol {
     .reloadIgnoringLocalCacheData
   }
   
-    var secureType: SecureType {
-      .http
-    }
-  
 }

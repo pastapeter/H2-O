@@ -25,13 +25,11 @@ extension SimilarQuotationCardImage: View {
             .foregroundColor(.sand)
         }
         Spacer()
-        AsyncImage(url: similarQuotation.image, content: { image in
+        AsyncCachedImage(url: similarQuotation.image, content: { image in
           image
             .resizable()
             .scaledToFill()
             .frame(width: CGFloat(343).scaledWidth)
-        }, placeholder: {
-          ProgressView()
         })
         .frame(maxHeight: .infinity, alignment: .trailing)
       }

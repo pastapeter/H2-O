@@ -22,7 +22,7 @@ final class ExteriorColorRepository: ExteriorColorRepositoryProtocol {
       do {
         return try $0.toDomain()
       } catch let e {
-        print("🚨", e.localizedDescription)
+        Log.debug(message: "🚨 \(e.localizedDescription)")
         return nil
       }
     }

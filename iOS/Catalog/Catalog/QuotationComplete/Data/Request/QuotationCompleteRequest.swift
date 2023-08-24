@@ -51,8 +51,4 @@ extension QuotationCompleteRequest: RequestProtocol {
       return .returnCacheDataElseLoad
   }
   
-  var secureType: SecureType {
-    return .http
-  }
-  
 }

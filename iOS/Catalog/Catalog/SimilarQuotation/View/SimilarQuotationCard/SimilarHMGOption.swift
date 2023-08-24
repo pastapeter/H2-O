@@ -17,12 +17,10 @@ struct SimilarHMGOption: View {
       intent.send(action: .optionSelected(selectedOption: option))
     } label: {
       VStack(spacing: 0) {
-        AsyncImage(url: option.image) { image in
+        AsyncCachedImage(url: option.image) { image in
           image
             .resizable()
-        } placeholder: {
-          ProgressView()
-        }
+        } 
         .frame(height: CGFloat(89).scaledHeight)
 
         VStack(alignment: .leading, spacing: 0) {

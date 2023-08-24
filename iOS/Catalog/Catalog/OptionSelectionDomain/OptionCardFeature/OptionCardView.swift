@@ -79,6 +79,7 @@ extension OptionCardView: View {
       })
     }
     .buttonStyle(EmptyButtonStyle())
+    
   }
   
 }
@@ -135,15 +136,10 @@ extension OptionCardView {
   
   @ViewBuilder
   private func optionImageView() -> some View {
+    
     ZStack {
-      AsyncImage(url: state.imageURL) { image in
-        image
-          .resizable()
-          .scaledToFill()
-          .frame(height: CGFloat(128).scaledHeight)
-          .clipped()
-      } placeholder: {
-        ProgressView()
+      AsyncCachedImage(url: state.imageURL) { image in
+        image.resizable()
       }
       VStack(spacing: 0) {
         HStack {

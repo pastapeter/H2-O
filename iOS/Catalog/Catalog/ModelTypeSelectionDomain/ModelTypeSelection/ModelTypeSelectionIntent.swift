@@ -87,10 +87,10 @@ extension ModelTypeSelectionIntent {
       let powerTrainTitle = quotation.state.quotation?.powertrain.name ?? ""
       let driveTrainTitle = quotation.state.quotation?.drivetrain.name ?? ""
       
-      
+      print(powerTrainOptionId, driveTrainOptionId)
       let result = try await self.repository
-        .calculateFuelAndDisplacement(with: self.powerTrainOptionId,
-                                      andwith: self.driveTrainOptionId)
+        .calculateFuelAndDisplacement(with: self.driveTrainOptionId,
+                                      andwith: self.powerTrainOptionId)
       
       state.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
                                                wheelType: driveTrainTitle,
