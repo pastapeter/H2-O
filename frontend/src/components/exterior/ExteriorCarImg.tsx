@@ -53,6 +53,7 @@ function ExteriorCarImg({ name, imgUrlList }: Props) {
           onMouseDown={handleMouseDown}
           onMouseMove={state.isMouseDown ? handleMouseMove : preventEventDefault}
           onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
         >
           {imgUrlList.map((imgSrc, idx) => (
             <StyleImg src={imgSrc} key={idx} isDisplay={idx === state.nextImgIdx ? true : false} />
