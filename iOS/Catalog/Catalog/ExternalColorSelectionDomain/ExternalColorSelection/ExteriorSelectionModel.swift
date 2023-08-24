@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ExternalSelectionModel {
+enum ExteriorSelectionModel {
 
   struct State: Equatable {
     var selectedTrimId: Int

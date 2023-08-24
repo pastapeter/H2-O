@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ExternalColorDisplayView: ColorContentable {
+struct ExteriorColorDisplayView: ColorContentable {
 
   var isSelected: Bool
   var color: CarColorType

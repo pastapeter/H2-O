@@ -8,17 +8,17 @@
 import Foundation
 import Combine
 
-protocol ExternalSelectionIntentType {
+protocol ExteriorSelectionIntentType {
 
-  var state: ExternalSelectionModel.State { get }
+  var state: ExteriorSelectionModel.State { get }
 
-  func send(action: ExternalSelectionModel.ViewAction)
+  func send(action: ExteriorSelectionModel.ViewAction)
 
-  func send(action: ExternalSelectionModel.ViewAction, viewEffect: (() -> Void)?)
+  func send(action: ExteriorSelectionModel.ViewAction, viewEffect: (() -> Void)?)
 
 }
 
-final class ExternalSelectionIntent: ObservableObject {
+final class ExteriorSelectionIntent: ObservableObject {
 
   init(initialState: State, repository: ExteriorColorRepositoryProtocol) {
     state = initialState
@@ -27,9 +27,9 @@ final class ExternalSelectionIntent: ObservableObject {
 
   private var repository: ExteriorColorRepositoryProtocol
 
-  typealias State = ExternalSelectionModel.State
+  typealias State = ExteriorSelectionModel.State
 
-  typealias ViewAction = ExternalSelectionModel.ViewAction
+  typealias ViewAction = ExteriorSelectionModel.ViewAction
 
   @Published var state: State
 
@@ -37,9 +37,9 @@ final class ExternalSelectionIntent: ObservableObject {
 
 }
 
-extension ExternalSelectionIntent: ExternalSelectionIntentType, IntentType {
+extension ExteriorSelectionIntent: ExteriorSelectionIntentType, IntentType {
 
-  func mutate(action: ExternalSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
+  func mutate(action: ExteriorSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onAppear:
       Task {

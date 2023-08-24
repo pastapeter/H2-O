@@ -20,16 +20,16 @@ struct CardModifier: ViewModifier {
   }
 }
 
-struct ExternalColorSelectionHorizontalList: View {
+struct ExteriorColorSelectionHorizontalList: View {
 
   var state: [ExteriorColorState]
-  var intent: ExternalSelectionIntentType
+  var intent: ExteriorSelectionIntentType
   var height: CGFloat = CGFloat(177).scaledHeight
 
   var body: some View {
       HorizontalScroller(height: height) {
         ForEach(state.indices, id: \.self) { i in
-          ColorSelectionView<ExternalColorDisplayView>.build(action: {
+          ColorSelectionView<ExteriorColorDisplayView>.build(action: {
             intent.send(action: .onTapColor(id: state[i].color.id))
           }, colorState: state[i].toColorInfoState())
         }
