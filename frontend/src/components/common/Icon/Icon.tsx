@@ -15,7 +15,7 @@ function Icon({ iconType, color, size = DEFAULT_SIZE, ...restProps }: Props) {
   const theme = useTheme();
   const Icon = icons[iconType];
 
-  return <Icon fill={color || theme.colors.gray800} width={size} height={size} {...restProps} />;
+  return <Icon data-testid={iconType} fill={color || theme.colors.gray800} width={size} height={size} {...restProps} />;
 }
 
 export default Icon;

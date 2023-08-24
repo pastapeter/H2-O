@@ -58,20 +58,23 @@ function SummaryPopup({ handleClickCloseButton }: SummaryPopupProps) {
         </HeaderContainer>
         <MainContainer>
           <LeftContainer>
-            {isExterior ? <StyleImg src={exteriorColor.image} /> : <StyleImg src={interiorColor.image} />}
+            <StyleImg
+              src={isExterior ? exteriorColor.image : interiorColor.image}
+              alt={isExterior ? '외장색상 이미지' : '내장색상 이미지'}
+            />
             <Toggle isChecked={isExterior} size='small' handleChangeToggle={handleChangeToggle} />
           </LeftContainer>
           <RightContainer>
             <OptionSummary type='모델' name='팰리세이드' price={0} />
             {trim && <OptionSummary type='트림' name={trim.name} price={trim.price} />}
-            <Divider />
+            <Divider data-testid='divider' />
             {powerTrain && <OptionSummary type='파워트레인' name={powerTrain.name} price={powerTrain.price} />}
             {bodyType && <OptionSummary type='바디타입' name={bodyType.name} price={bodyType.price} />}
             {driveTrain && <OptionSummary type='구동방식' name={driveTrain.name} price={driveTrain.price} />}
-            <Divider />
+            <Divider data-testid='divider' />
             {interiorColor && <OptionSummary type='외장색상' name={exteriorColor.name} price={exteriorColor.price} />}
             {exteriorColor && <OptionSummary type='내장색상' name={interiorColor.name} price={interiorColor.price} />}
-            <Divider />
+            <Divider data-testid='divider' />
             {extraOptions.optionList.length ? (
               extraOptions.optionList.map((option) => (
                 <OptionSummary key={option.id} type='옵션' name={option.name} price={option.price} />

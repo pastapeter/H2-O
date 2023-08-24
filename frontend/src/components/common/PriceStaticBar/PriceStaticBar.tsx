@@ -72,7 +72,7 @@ function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProp
   if (!sliderInfo || !priceRange) return null;
 
   return (
-    <PriceStaticBarContainer isActive={isActive} {...restProps}>
+    <PriceStaticBarContainer data-testid='price-static-bar' isActive={isActive} {...restProps}>
       <PriceInfo isOverPrice={sliderInfo.isOverPrice}>
         <span className='title'>예산 범위</span>
         <span className='summary'>
