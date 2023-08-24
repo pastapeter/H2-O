@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import styled from '@emotion/styled';
-import type { TechnicalSpecResponse } from '@/types/interface';
+import type { TechnicalSpecResponse } from '@/types/response';
 import { getTechnicalSpec } from '@/apis/model';
 import { Divider, Flex, Typography, HMGTag as _HMGTag, Loading as _Loading } from '@/components/common';
 import { useFetcher } from '@/hooks';
@@ -22,7 +22,7 @@ function BottomHMGData({ powerTrain, driveTrain, setTechnicalSpec }: BottomHMGDa
   const powerTrainId = powerTrain?.id;
   const driveTrainId = driveTrain?.id;
 
-  const { isLoading, data, error } = useFetcher({
+  const { isLoading, data } = useFetcher({
     fetchFn: () => getTechnicalSpec(powerTrainId as number, driveTrainId as number),
     enabled: !!powerTrain && !!driveTrain,
     dependency: [powerTrainId, driveTrainId],
@@ -31,8 +31,6 @@ function BottomHMGData({ powerTrain, driveTrain, setTechnicalSpec }: BottomHMGDa
       setTechnicalSpec(data);
     },
   });
-
-  if (error) return <div>에러 ㅋ</div>;
 
   return (
     <Container justifyContent='space-between'>

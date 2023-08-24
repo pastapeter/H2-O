@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import ModelTypeCard from './ModelTypeCard';
-import type { BodyType, DriveTrain, PowerTrain } from '@/types/interface';
+import type { BodyType, DriveTrain, PowerTrain } from '@/types/response';
 import { Flex, Typography } from '@/components/common';
 
 type ModelType = PowerTrain | BodyType | DriveTrain;

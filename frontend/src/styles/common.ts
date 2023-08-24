@@ -36,13 +36,5 @@ export const FLEX = {
   },
 } as const;
 
-export const SPACING = {
-  spaceDefault: {
-    padding: `0 128px`,
-  },
-};
-
 export type FlexType = typeof FLEX;
-export type SpacingType = typeof SPACING;
 export type FlexVariant = keyof FlexType;
-export type SpacingVariant = keyof SpacingType;

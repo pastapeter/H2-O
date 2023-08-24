@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import type { TechnicalSpecResponse } from '@/types/interface';
+import type { TechnicalSpecResponse } from '@/types/response';
 import type {
   ExteriorColorInfo,
   ExtraOptionsInfo,

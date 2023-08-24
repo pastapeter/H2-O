@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import styled from '@emotion/styled';
 import { MainSelector } from '../common/MainSelector';
 import TrimCard from './TrimCard';
-import { TrimResponse } from '@/types/interface';
+import { TrimResponse } from '@/types/response';
 import { getImagePreloader } from '@/utils/image';
 
 interface Props {

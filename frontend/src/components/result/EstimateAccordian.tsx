@@ -1,5 +1,5 @@
 import { type HTMLAttributes, type MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Flex, Icon, Typography } from '@/components/common';
 import { toPriceFormatString } from '@/utils/string';
@@ -29,8 +29,6 @@ function EstimateAccordian({
   isExpanded: isExpandedFromProps = false,
   ...restProps
 }: EstimateAccordianProps) {
-  const { colors } = useTheme();
-
   const [isExpanded, setIsExpanded] = useState(isExpandedFromProps);
   const expandableRef = useRef<HTMLDivElement | null>(null);
   const detailRef = useRef<HTMLDivElement | null>(null);
@@ -78,7 +76,7 @@ function EstimateAccordian({
               transition: transform 0.5s ease;
             `}
             iconType='ArrowDown'
-            fill={colors.gray900}
+            color='gray900'
             onClick={handleClickToggle}
           />
         </Flex>

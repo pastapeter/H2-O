@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import ModelTypeOptionList from './ModelTypeOptionList';
-import { BodyType, DriveTrain, PowerTrain } from '@/types/interface';
+import { BodyType, DriveTrain, PowerTrain } from '@/types/response';
 import type { CurrentModel } from '@/pages/ModelPage';
 import { Flex } from '@/components/common';
 import { useSafeContext } from '@/hooks';

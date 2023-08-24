@@ -1,5 +1,4 @@
 import { HTMLAttributes } from 'react';
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Icon } from '@/components/common';
 
@@ -8,10 +7,9 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 }
 
 function CheckBox({ isActive, ...restProps }: Props) {
-  const theme = useTheme();
   return (
     <StyleIcon isActive={isActive} {...restProps}>
-      <Icon iconType='Check' size={24} color={isActive ? theme.colors.white : theme.colors.gray500} />
+      <Icon iconType='Check' size={24} color={isActive ? 'white' : 'gray500'} />
     </StyleIcon>
   );
 }

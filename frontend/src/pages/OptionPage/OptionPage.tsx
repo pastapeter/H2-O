@@ -1,7 +1,7 @@
 import { Fragment, memo, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/interface';
+import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/response';
 import { getOptionInfo, getOptionList, getPackageInfo } from '@/apis/option';
 import { CategoryButton, Flex, Footer, Loading, MainSelector } from '@/components/common';
 import {
@@ -10,7 +10,7 @@ import {
   GeneralOptionBanner,
   PackageOptionBanner,
 } from '@/components/option';
-import { defaultOptionCategoryList, extraOptionCategoryList } from '@/components/option/constants';
+import { DEFAULT_CATEGORY_OPTION_LIST, EXTRA_OPTION_CATEGORY_LIST } from '@/components/option/constants';
 import { useFilter } from '@/components/option/hooks';
 import { SearchBar } from '@/components/option/utils';
 import { useFetcher, useSafeContext } from '@/hooks';
@@ -34,7 +34,7 @@ function OptionPage() {
     handleChangeInput,
   } = useFilter();
 
-  const { isLoading, error } = useFetcher({
+  const { isLoading } = useFetcher({
     fetchFn: () => getOptionList(trimId as number),
     enabled: !!selectionInfo.trim,
     onSuccess: (data) => {
@@ -80,8 +80,7 @@ function OptionPage() {
     })();
   }, [extraOptionList, defaultOptionList, isExtraOption]);
 
-  if (isLoading || !extraOptionList || !defaultOptionList || !data) return <Loading fullPage={true} />;
-  if (error) return <div>에러 ㅋ</div>;
+  if (isLoading || !extraOptionList || !defaultOptionList || !data) return <Loading />;
 
   return (
     <Fragment>
@@ -116,7 +115,7 @@ function OptionPage() {
           </Flex>
           <Flex gap={8}>
             {isExtraOption
-              ? extraOptionCategoryList.map((category, idx) => (
+              ? EXTRA_OPTION_CATEGORY_LIST.map((category, idx) => (
                   <CategoryButton
                     key={category}
                     isClicked={idx === extraCategoryIdx}
@@ -125,7 +124,7 @@ function OptionPage() {
                     {category}
                   </CategoryButton>
                 ))
-              : defaultOptionCategoryList.map((category, idx) => (
+              : DEFAULT_CATEGORY_OPTION_LIST.map((category, idx) => (
                   <CategoryButton
                     key={category}
                     isClicked={idx === defaultCategoryIdx}

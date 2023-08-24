@@ -1,6 +1,6 @@
 import { Fragment, memo } from 'react';
 import styled from '@emotion/styled';
-import { Flex, Typography } from '@/components/common';
+import { Flex, Loading, Typography } from '@/components/common';
 import { DetailEstimate, ResultBanner, ResultFooter } from '@/components/result';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
@@ -27,7 +27,6 @@ function ResultPage() {
     fuelEfficiency,
   } = selectionInfo;
 
-  // 일단 대충 로딩 처리
   if (
     !trim ||
     !powerTrain ||
@@ -39,7 +38,7 @@ function ResultPage() {
     !fuelEfficiency ||
     !extraOptions
   )
-    return <div>로딩중...</div>;
+    return <Loading />;
 
   return (
     <Fragment>

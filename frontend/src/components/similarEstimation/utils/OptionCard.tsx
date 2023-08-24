@@ -1,7 +1,6 @@
 import { HTMLAttributes } from 'react';
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { QuotationOption } from '@/types/interface';
+import type { QuotationOption } from '@/types/response';
 import { Typography, Card as _Card, Icon as _Icon } from '@/components/common';
 import { toPriceFormatString } from '@/utils/string';
 
@@ -12,14 +11,14 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 function OptionCard({ option, isClicked, ...restProps }: Props) {
   const { name, price, image } = option;
-  const theme = useTheme();
+
   return (
     <Card isClicked={isClicked} {...restProps}>
       <CardThumbnail src={image} alt='option-thumbnail' />
       <OptionInfoContainer>
         <Typography font='TextKRMedium12'>{name}</Typography>
         <Typography font='TextKRMedium10'>{toPriceFormatString(price)}원</Typography>
-        <Icon iconType='Check' size={24} color={isClicked ? theme.colors.activeBlue : theme.colors.gray200} />
+        <Icon iconType='Check' size={24} color={isClicked ? 'activeBlue' : 'gray200'} />
       </OptionInfoContainer>
     </Card>
   );

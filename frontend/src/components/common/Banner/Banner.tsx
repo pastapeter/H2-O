@@ -1,6 +1,6 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
-import { replaceToRealNewLine } from '@/utils/string';
+import { Flex, Typography } from '@/components/common';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -21,16 +21,16 @@ function Banner({
 }: PropsWithChildren<Props>) {
   return (
     <BannerContainer role='banner' backgroundColor={backgroundColor} {...restProps}>
-      <div>
+      <Flex justifyContent='space-between' width='100%' height='100%'>
         {title && (
-          <TitleContainer isTitleColorWhite={isTitleColorWhite}>
+          <TitleContainer flexDirection='column' gap={4} isTitleColorWhite={isTitleColorWhite}>
             <h3>{subTitle}</h3>
             <h2>{title}</h2>
-            {description && <Description>{replaceToRealNewLine(description)}</Description>}
+            {description && <Description font='TextKRRegular14'>{description}</Description>}
           </TitleContainer>
         )}
         {children}
-      </div>
+      </Flex>
     </BannerContainer>
   );
 }
@@ -45,37 +45,29 @@ const BannerContainer = styled.div<Pick<Props, 'backgroundColor'>>`
   box-shadow: 0px 0px 8px 0px rgba(131, 133, 136, 0.2);
 
   & > div {
-    ${({ theme }) => theme.flex.flexBetweenRow}
     max-width: 1024px;
-    width: 100%;
-    height: 100%;
     margin: 0 auto;
   }
 `;
 
-const TitleContainer = styled.div<Pick<Props, 'isTitleColorWhite'>>`
+const TitleContainer = styled(Flex)<Pick<Props, 'isTitleColorWhite'>>`
   position: fixed;
-  width: 400px;
   top: 72px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  width: 400px;
 
-  h3 {
+  & > h3 {
     ${({ theme }) => theme.typography.TextKRRegular14}
     color: ${({ isTitleColorWhite, theme }) => (isTitleColorWhite ? 'white' : theme.colors.gray900)};
   }
 
-  h2 {
+  & > h2 {
     ${({ theme }) => theme.typography.HeadKRBold32}
     color: ${({ isTitleColorWhite, theme }) => (isTitleColorWhite ? 'white' : theme.colors.primary700)};
   }
 `;
 
-const Description = styled.p`
-  ${({ theme }) => theme.typography.TextKRRegular12}
+const Description = styled(Typography)`
   width: 100%;
-  white-space: pre-line;
   word-break: keep-all;
   margin-bottom: 24px;
 `;

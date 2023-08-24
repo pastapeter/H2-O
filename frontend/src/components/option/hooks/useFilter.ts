@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from 'react';
-import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interface';
-import { HASHTAG_LIST, defaultOptionCategoryList, extraOptionCategoryList } from '@/components/option/constants';
+import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/response';
+import { DEFAULT_CATEGORY_OPTION_LIST, EXTRA_OPTION_CATEGORY_LIST, HASHTAG_LIST } from '@/components/option/constants';
 
 type Action =
   | {
@@ -37,13 +37,13 @@ interface DefaultFilterProps {
 }
 
 const filterExtraOption = ({ input, entireList }: ExtraFilterProps) => {
-  if (extraOptionCategoryList.includes(input)) return entireList.filter((option) => option.category === input);
+  if (EXTRA_OPTION_CATEGORY_LIST.includes(input)) return entireList.filter((option) => option.category === input);
   if (HASHTAG_LIST.includes(input)) return entireList.filter((option) => option.hashTags.includes(input));
   return entireList.filter((option) => option.name.includes(input));
 };
 
 const filterDefaultOption = ({ input, entireList }: DefaultFilterProps) => {
-  if (defaultOptionCategoryList.includes(input)) return entireList.filter((option) => option.category === input);
+  if (DEFAULT_CATEGORY_OPTION_LIST.includes(input)) return entireList.filter((option) => option.category === input);
   return entireList.filter((option) => option.name.includes(input));
 };
 
@@ -75,7 +75,7 @@ function reducer(state: State, action: Action): State {
         ...state,
         extraCategoryIdx: action.payload,
         extraOptionList: action.payload
-          ? state.extraOptionEntireList.filter((opt) => opt.category === extraOptionCategoryList[action.payload])
+          ? state.extraOptionEntireList.filter((opt) => opt.category === EXTRA_OPTION_CATEGORY_LIST[action.payload])
           : state.extraOptionEntireList,
       };
     case 'CLICK_DEFAULT_CATEGORY':
@@ -83,7 +83,7 @@ function reducer(state: State, action: Action): State {
         ...state,
         defaultCategoryIdx: action.payload,
         defaultOptionList: action.payload
-          ? state.defaultOptionEntireList.filter((opt) => opt.category === defaultOptionCategoryList[action.payload])
+          ? state.defaultOptionEntireList.filter((opt) => opt.category === DEFAULT_CATEGORY_OPTION_LIST[action.payload])
           : state.defaultOptionEntireList,
       };
     case 'CHANGE_INPUT':

@@ -31,12 +31,7 @@ function ExteriorCard({ colorName, colorHexCode, choiceRatio, price, isClicked, 
         </div>
         <p className='price'>{toPriceFormatString(price)} 원</p>
       </TextContainer>
-      <Icon
-        iconType='Check'
-        size={24}
-        color={isClicked ? theme.colors.activeBlue : theme.colors.gray200}
-        css={StyleIcon}
-      />
+      <Icon iconType='Check' size={24} color={isClicked ? 'activeBlue' : 'gray200'} css={StyleIcon} />
     </Card>
   );
 }

@@ -2,7 +2,7 @@ import { HTMLAttributes, PropsWithChildren, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { HMGDetail, OverFlowColumnText, OverFlowRowText } from './utils';
-import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/interface';
+import type { GeneralOptionResponse, PackageOptionResponse } from '@/types/response';
 import { Divider, Flex, Icon, ImageButton, Typography, Banner as _Banner } from '@/components/common';
 import { usePagination } from '@/hooks';
 
@@ -60,6 +60,7 @@ function PackageOptionBanner({ optionInfo }: { optionInfo: PackageOptionResponse
     fill: ${isLast ? colors.gray200 : colors.gray600};
     cursor: ${isLast ? 'not-allowed' : 'pointer'};
   `;
+
   const { currentSlice, isStartPage, isEndPage, startIdx, prevPage, nextPage } = usePagination({
     data: optionInfo.components?.sort((a, b) => a.name.localeCompare(b.name)) || [],
   });

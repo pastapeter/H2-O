@@ -1,8 +1,8 @@
 import { Fragment, memo, useState } from 'react';
 import { css } from '@emotion/react';
-import type { InteriorColorResponse } from '@/types/interface';
+import type { InteriorColorResponse } from '@/types/response';
 import { getInteriorColors } from '@/apis/interior';
-import { Banner, Footer } from '@/components/common';
+import { Banner, Footer, Loading } from '@/components/common';
 import { InteriorSelector } from '@/components/interior';
 import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
@@ -12,11 +12,7 @@ function InteriorPage() {
   const [selectedColor, setSelectedColor] = useState<InteriorColorResponse | null>(null);
   const trimId = selectionInfo.trim?.id;
 
-  const {
-    isLoading,
-    data: interiorColorList,
-    error,
-  } = useFetcher({
+  const { isLoading, data: interiorColorList } = useFetcher({
     fetchFn: () => getInteriorColors(trimId as number),
     enabled: !!selectionInfo.trim,
     onSuccess: (data) => {
@@ -35,8 +31,7 @@ function InteriorPage() {
     dispatch({ type: 'SET_INTERIOR_COLOR', payload: { id, name, price, image: bannerImage, fabricImage } });
   };
 
-  if (isLoading || !selectedColor) return <div>로딩 ㅋ</div>;
-  if (error) return <div>에러 ㅋ</div>;
+  if (isLoading || !selectedColor) return <Loading />;
 
   const { name, bannerImage } = selectedColor;
 

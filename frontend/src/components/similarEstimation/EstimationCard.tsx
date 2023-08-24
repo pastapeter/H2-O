@@ -1,7 +1,7 @@
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { OptionCard } from './utils';
-import type { QutationResponse } from '@/types/interface';
+import type { QutationResponse } from '@/types/response';
 import { Flex, HMGTag, HashTag, Icon, Typography } from '@/components/common';
 import { useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
@@ -55,9 +55,9 @@ function EstimationCard({
             </Typography>
           </Flex>
           <Flex gap={5}>
-            <HashTag title={estimation.modelType.bodytypeName} />
-            <HashTag title={estimation.modelType.drivetrainName} />
-            <HashTag title={estimation.modelType.powertrainName} />
+            <HashTag>{estimation.modelType.bodytypeName}</HashTag>
+            <HashTag>{estimation.modelType.drivetrainName}</HashTag>
+            <HashTag>{estimation.modelType.powertrainName}</HashTag>
           </Flex>
           <Flex flexDirection='column'>
             <Typography font='HeadKRMedium14' color='primary700'>

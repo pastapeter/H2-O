@@ -1,4 +1,4 @@
-import { ModelTypeResponse, TechnicalSpecResponse } from '@/types/interface';
+import { ModelTypeResponse, TechnicalSpecResponse } from '@/types/response';
 import { api } from '@/utils/fetch';
 
 export const getModelTypes = async (carId: number) => {

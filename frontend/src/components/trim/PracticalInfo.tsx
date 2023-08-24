@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
-import type { TrimOption } from '@/types/interface';
+import type { TrimOption } from '@/types/response';
 import { HMGTag } from '@/components/common';
 import { toSeparatedNumberFormat } from '@/utils/number';
 

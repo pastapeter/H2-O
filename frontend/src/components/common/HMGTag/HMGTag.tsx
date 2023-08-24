@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
+import { Flex } from '@/components/common';
 
 type TagVariant = 'default' | 'small';
 
@@ -9,7 +10,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 function HMGTag({ variant = 'default', ...restProps }: Props) {
   return (
-    <Container variant={variant} {...restProps}>
+    <Container alignItems='center' justifyContent='center' variant={variant} {...restProps}>
       HMG Data
     </Container>
   );
@@ -17,13 +18,10 @@ function HMGTag({ variant = 'default', ...restProps }: Props) {
 
 export default HMGTag;
 
-const Container = styled.div<Props>`
+const Container = styled(Flex)<Props>`
   ${({ theme }) => theme.typography.HeadENBold10}
-  ${({ theme }) => theme.flex.flexCenterRow}
   background-color: ${({ theme }) => theme.colors.activeBlue2};
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   width: 70px;
-  height: 32px;
-
-  ${({ variant }) => variant === 'small' && 'height: 20px;'}
+  height: ${({ variant }) => (variant === 'small' ? 20 : 32)}px;
 `;

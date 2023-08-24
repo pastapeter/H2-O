@@ -2,7 +2,7 @@ import type { MouseEventHandler, PropsWithChildren } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Offsets } from '@/types';
-import { Dimmed, Icon, Portal } from '@/components/common';
+import { Dimmed, Portal, Icon as _Icon } from '@/components/common';
 
 interface Props {
   isOpen: boolean;
@@ -40,17 +40,7 @@ function GuidePopup({ children, isOpen, offsets, onClose }: PropsWithChildren<Pr
                 'HMG Data 마크는 Hyundai Motor Group에서만 제공하는 데이터입니다.\n주행 중 운전자들이 실제로 얼마나 활용하는지를 추적해 수치화한 데이터 입니다.'
               }
             </Description>
-            <Icon
-              iconType='Cancel'
-              onClick={onClose}
-              css={css`
-                position: absolute;
-                top: 17px;
-                right: 17px;
-                cursor: pointer;
-                color: ${theme.colors.gray800};
-              `}
-            />
+            <Icon iconType='Cancel' onClick={onClose} color='gray800' />
           </GuideBox>
         </Container>
       </Portal>
@@ -63,6 +53,13 @@ const Container = styled.div<Offsets>`
   top: ${({ offsetY }) => offsetY - 166}px;
   left: ${({ offsetX }) => offsetX + 16}px;
   z-index: 15;
+`;
+
+const Icon = styled(_Icon)`
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  cursor: pointer;
 `;
 
 const GuideBox = styled.div`
@@ -96,6 +93,10 @@ const GuideBox = styled.div`
 
 const Title = styled.p`
   ${({ theme }) => theme.typography.HeadKRMedium14};
+
+  & > span {
+    color: ${({ theme }) => theme.colors.activeBlue};
+  }
 `;
 
 const Divider = styled.div`

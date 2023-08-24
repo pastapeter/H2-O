@@ -1,8 +1,8 @@
 import { Fragment, memo, useState } from 'react';
 import styled from '@emotion/styled';
-import type { BodyType, DriveTrain, PowerTrain, TechnicalSpecResponse } from '@/types/interface';
+import type { BodyType, DriveTrain, PowerTrain, TechnicalSpecResponse } from '@/types/response';
 import { getModelTypes } from '@/apis/model';
-import { Banner, Footer } from '@/components/common';
+import { Banner, Footer, Loading } from '@/components/common';
 import { BottomHMGData, ModelOptionDetail, ModelTypeSelector } from '@/components/model';
 import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
@@ -25,11 +25,7 @@ function ModelPage() {
   const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
   const [currentModel, setCurrentModel] = useState<CurrentModel | null>(null);
 
-  const {
-    isLoading,
-    data: modelTypeData,
-    error,
-  } = useFetcher({
+  const { isLoading, data: modelTypeData } = useFetcher({
     fetchFn: () => getModelTypes(selectionInfo.model.id),
     onSuccess: (data) => {
       const { powertrains, bodytypes, drivetrains } = data;
@@ -49,8 +45,7 @@ function ModelPage() {
     dispatch({ type: 'SET_DISPLACEMENT_AND_FUEL_EFFICIENCY', payload: { displacement, fuelEfficiency } });
   };
 
-  if (isLoading || !currentModel) return <div>로딩 ㅋ</div>;
-  if (error) return <div>에러 ㅋ</div>;
+  if (isLoading || !currentModel) return <Loading />;
 
   const { sort, type } = currentModel;
   const { name, description, image } = type;

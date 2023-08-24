@@ -3,7 +3,7 @@ import type {
   ExtraOptionResponse,
   GeneralOptionResponse,
   PackageOptionResponse,
-} from '@/types/interface';
+} from '@/types/response';
 import { api } from '@/utils/fetch';
 
 export const getOptionList = async (trimId: number) => {

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import BarGraph from './BarGraph';
 import PriceGraph from './PriceGraph';
 import { getPriceSum } from './utils';
-import { QutationBody } from '@/types/interface';
+import { QuotationBody } from '@/types/response';
 import { postSalesCount, postSimilarOption } from '@/apis/quotation';
 import { Divider, Flex, HMGTag, Loading, Typography } from '@/components/common';
 import { EstimateAccordian as Accordian } from '@/components/result';
@@ -43,7 +43,7 @@ function DetailEstimate({
   const { currentSlide, setCurrentSlide } = useSafeContext(SlideContext);
   const [submit, setSubmit] = useState(false);
 
-  const body: QutationBody = {
+  const body: QuotationBody = {
     carId: carId,
     externalColorId: exteriorColor.id,
     internalColorId: interiorColor.id,

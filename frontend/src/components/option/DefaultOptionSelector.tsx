@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { DefaultOptionResponse } from '@/types/interface';
+import type { DefaultOptionResponse } from '@/types/response';
 import { Flex, Typography } from '@/components/common';
 import { OptionCard } from '@/components/option/utils';
 

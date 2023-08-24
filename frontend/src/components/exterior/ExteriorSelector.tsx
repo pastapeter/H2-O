@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { ExteriorColorResponse } from '@/types/interface';
+import type { ExteriorColorResponse } from '@/types/response';
 import { Icon, MainSelector } from '@/components/common';
 import { ExteriorCard } from '@/components/exterior';
 import { usePagination } from '@/hooks';

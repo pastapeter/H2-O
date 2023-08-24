@@ -1,7 +1,6 @@
 import { ChangeEventHandler, HTMLAttributes, KeyboardEventHandler, useEffect, useState } from 'react';
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interface';
+import { DefaultOptionResponse, ExtraOptionResponse } from '@/types/response';
 import { Flex, Icon } from '@/components/common';
 import { OverFlowRowText } from '@/components/option/utils';
 
@@ -13,7 +12,6 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 function SearchBar({ isExtraOption = false, input, optionList, filterList }: Props) {
-  const theme = useTheme();
   const [dropDownList, setDropDownList] = useState<ExtraOptionResponse[] | DefaultOptionResponse[]>(optionList);
   const [isActive, setIsActive] = useState(false);
   const [itemIdx, setItemIdx] = useState(-1);
@@ -73,12 +71,7 @@ function SearchBar({ isExtraOption = false, input, optionList, filterList }: Pro
           />
         </Flex>
         <StyledIcon justifyContent='center' alignItems='center'>
-          <Icon
-            iconType='CarbonSearch'
-            size={18}
-            color={theme.colors.gray700}
-            onClick={() => handleSearchItem(input)}
-          />
+          <Icon iconType='CarbonSearch' size={18} color='gray700' onClick={() => handleSearchItem(input)} />
         </StyledIcon>
       </InputContainer>
       {isActive && (

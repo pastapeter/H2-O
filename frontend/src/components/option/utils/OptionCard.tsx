@@ -1,7 +1,7 @@
 import { HTMLAttributes, MouseEventHandler, PropsWithChildren, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/interface';
+import type { DefaultOptionResponse, ExtraOptionResponse } from '@/types/response';
 import { Card, Flex, HMGTag, HashTag, Typography } from '@/components/common';
 import { CheckBox } from '@/components/option/utils';
 import { toPriceFormatString } from '@/utils/string';
@@ -19,8 +19,8 @@ function OptionCard({ children, image, hashTags, containsHmgData, ...restProps }
       <Flex flexDirection='column-reverse' height={160} width='100%' position='relative'>
         <Thumbnail src={image} loading='lazy' />
         <HashTagContainer flexDirection='row' position='absolute' gap={8}>
-          {hashTags.map((hashTag, idx) => (
-            <HashTag key={idx} title={hashTag} />
+          {hashTags.map((hashTag) => (
+            <HashTag key={hashTag}>{hashTag}</HashTag>
           ))}
         </HashTagContainer>
         {containsHmgData && <HMGTag css={HMGTagPosition} />}
@@ -53,7 +53,7 @@ function ExtraOptionCard({ info, isChecked, addOption, removeOption, ...restProp
   }, [isChecked]);
 
   return (
-    <OptionCard image={info.image} hashTags={info.hashTags} containsHmgData={info.containsHmgData} {...restProps}>
+    <OptionCard image={info.pcImage} hashTags={info.hashTags} containsHmgData={info.containsHmgData} {...restProps}>
       <MainContainer>
         <Flex flexDirection='column'>
           <Typography font='TextKRRegular12' color='gray700'>
@@ -78,7 +78,7 @@ interface DefaultProps extends HTMLAttributes<HTMLDivElement> {
 
 function DefaultOptionCard({ info, ...restProps }: DefaultProps) {
   return (
-    <OptionCard image={info.image} hashTags={info.hashTags} containsHmgData={info.containsHmgData} {...restProps}>
+    <OptionCard image={info.pcImage} hashTags={info.hashTags} containsHmgData={info.containsHmgData} {...restProps}>
       <MainContainer>
         <Typography color='gray900' font='HeadKRMedium16'>
           {info.name}

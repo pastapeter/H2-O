@@ -1,7 +1,7 @@
 import { Fragment, memo, useState } from 'react';
-import type { ExteriorColorResponse } from '@/types/interface';
+import type { ExteriorColorResponse } from '@/types/response';
 import { getExteriorColors } from '@/apis/exterior';
-import { Banner, Footer } from '@/components/common';
+import { Banner, Footer, Loading } from '@/components/common';
 import { ExteriorCarImg, ExteriorSelector } from '@/components/exterior';
 import { useFetcher, useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
@@ -11,11 +11,7 @@ function ExteriorPage() {
   const [selectedColor, setSelectedColor] = useState<ExteriorColorResponse | null>(null);
   const trimId = selectionInfo.trim?.id;
 
-  const {
-    isLoading,
-    data: exteriorColorList,
-    error,
-  } = useFetcher({
+  const { isLoading, data: exteriorColorList } = useFetcher({
     fetchFn: () => getExteriorColors(trimId as number),
     enabled: !!selectionInfo.trim,
     onSuccess: (data) => {
@@ -34,8 +30,7 @@ function ExteriorPage() {
     dispatch({ type: 'SET_EXTERIOR_COLOR', payload: { id, name, price, image: images[0], colorCode: hexCode } });
   };
 
-  if (isLoading || !selectedColor) return <div>로딩 ㅋ</div>;
-  if (error) return <div>에러 ㅋ</div>;
+  if (isLoading || !selectedColor) return <Loading />;
 
   const { name, images } = selectedColor;
 

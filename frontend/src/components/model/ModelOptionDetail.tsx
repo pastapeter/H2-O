@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { calculateRatios, getFractionString } from './utils';
-import { MaxOutput, MaxTorque, PowerTrain } from '@/types/interface';
+import { MaxOutput, MaxTorque, PowerTrain } from '@/types/response';
 import { Flex, HMGTag, Typography } from '@/components/common';
 
 interface ModelOptionDetailProps {

@@ -1,4 +1,4 @@
-import type { TrimPriceDistributionResponse, TrimPriceRangeResponse, TrimResponse } from '@/types/interface';
+import type { TrimPriceDistributionResponse, TrimPriceRangeResponse, TrimResponse } from '@/types/response';
 import { api } from '@/utils/fetch';
 
 export const getTrims = async (carId: number) => {

@@ -1,7 +1,7 @@
 import { Fragment, memo, useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import type { Offsets } from '@/types';
-import type { TrimResponse } from '@/types/interface';
+import type { TrimResponse } from '@/types/response';
 import { getTrims } from '@/apis/trim';
 import { Banner, Loading } from '@/components/common';
 import { GuidePopup, PracticalInfo, TrimImageList, TrimSelector } from '@/components/trim';
@@ -35,11 +35,11 @@ function TrimPage() {
   const targetRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!targetRef.current) return;
+    if (!targetRef.current || isLoading) return;
 
     const { left, top } = targetRef.current.getBoundingClientRect();
     setOffsets({ offsetX: left, offsetY: top });
-  }, [targetRef.current]);
+  }, [targetRef.current, isLoading]);
 
   const handleClosePopup = () => {
     setOff();

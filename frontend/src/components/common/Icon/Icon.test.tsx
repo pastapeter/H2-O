@@ -1,5 +1,6 @@
 import Icon from './Icon';
 import { render, screen } from '@/tests/test-util';
+import { COLORS } from '@/styles/colors';
 
 describe('Icon 컴포넌트 테스트', () => {
   it('Icon이 정상적으로 렌더링된다.', () => {
@@ -17,9 +18,9 @@ describe('Icon 컴포넌트 테스트', () => {
   });
 
   it('color props로 색상을 조절할 수 있다.', () => {
-    render(<Icon data-testid='icon' iconType='ArrowBack' color='red' />);
+    render(<Icon data-testid='icon' iconType='ArrowBack' color='activeBlue' />);
 
-    expect(screen.getByTestId('icon')).toHaveAttribute('fill', 'red');
+    expect(screen.getByTestId('icon')).toHaveAttribute('fill', COLORS.activeBlue);
   });
 
   describe('Icon 컴포넌트 스냅샷 테스트', () => {

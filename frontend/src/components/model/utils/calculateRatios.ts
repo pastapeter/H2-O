@@ -1,4 +1,4 @@
-import { MaxOutput, MaxTorque, PowerTrain } from '@/types/interface';
+import { MaxOutput, MaxTorque, PowerTrain } from '@/types/response';
 
 export const calculateRatios = (powertrains: PowerTrain[], maxOutput: MaxOutput, maxTorque: MaxTorque) => {
   const maxOutputRatio = Math.max(

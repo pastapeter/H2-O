@@ -1,6 +1,5 @@
 import { HTMLAttributes, useEffect, useState } from 'react';
-import { css, useTheme } from '@emotion/react';
-import { Theme } from '@emotion/react/macro';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Slider } from './Slider';
 import { getTrimPriceRange } from '@/apis/trim';
@@ -26,7 +25,6 @@ interface PriceStaticBarProps extends HTMLAttributes<HTMLDivElement> {
 const DEFAULT_TRIM_IDX = 2;
 
 function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProps) {
-  const theme = useTheme();
   const { totalPrice, selectionInfo, dispatch } = useSafeContext(SelectionContext);
   const { toggle, status: isActive } = useToggle(false);
   const [sliderInfo, setSliderInfo] = useState<SliderInfo | null>(null);
@@ -80,7 +78,7 @@ function PriceStaticBar({ isComplete = false, ...restProps }: PriceStaticBarProp
           <span className='price'>{toSeparatedNumberFormat(Math.abs(sliderInfo.value - totalPrice))}원</span>
           {sliderInfo.isOverPrice ? ' 더 들었어요.' : ' 남았어요.'}
         </span>
-        <Icon iconType='ArrowDown' onClick={toggle} css={IconStyle(isActive, theme)} />
+        <Icon iconType='ArrowDown' color='gray50' onClick={toggle} css={IconStyle(isActive)} />
       </PriceInfo>
       {isActive && (
         <Flex flexDirection='column' justifyContent='space-between' gap={8}>
@@ -143,9 +141,8 @@ const PriceRange = styled.div`
   color: ${({ theme }) => theme.colors.primary200};
 `;
 
-const IconStyle = (isActive: boolean, theme: Theme) => {
+const IconStyle = (isActive: boolean) => {
   return css`
-    fill: ${theme.colors.gray50};
     transform: ${isActive && `rotate(-180deg)`};
     transition: transform 0.3s ease-in-out;
     cursor: pointer;

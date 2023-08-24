@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Card, Icon, Typography } from '@/components/common';
 import { toPriceFormatString } from '@/utils/string';
@@ -11,8 +11,6 @@ export interface Props extends ComponentProps<typeof Card> {
 }
 
 function ModelTypeCard({ choiceRatio, name, price, isSelected, ...restProps }: Props) {
-  const { colors } = useTheme();
-
   return (
     <StyledCard isSelected={isSelected} {...restProps}>
       <Typography font='TextKRRegular12' color='gray700'>
@@ -29,7 +27,7 @@ function ModelTypeCard({ choiceRatio, name, price, isSelected, ...restProps }: P
       </Typography>
       <Icon
         iconType='Check'
-        color={isSelected ? colors.activeBlue : colors.gray200}
+        color={isSelected ? 'activeBlue' : 'gray200'}
         css={css`
           position: absolute;
           bottom: 8px;

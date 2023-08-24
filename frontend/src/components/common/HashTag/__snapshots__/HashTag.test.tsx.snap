@@ -2,31 +2,28 @@
 
 exports[`HashTag 컴포넌트 테스트 > HashTag 스냅샷 테스트 1`] = `
 .emotion-0 {
-  color: #F7F8F9;
   font-family: Hyundai Sans Text KR;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.03em;
+  background-color: #75757580;
+  color: #F7F8F9;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #75757580;
-  border-radius: 2px;
   padding: 2px 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  border-radius: 2px;
 }
 
-<span
+<div
   class="emotion-0"
-  color="gray50"
 >
   해시태그
-</span>
+</div>
 `;

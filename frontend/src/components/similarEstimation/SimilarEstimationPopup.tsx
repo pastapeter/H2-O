@@ -3,10 +3,9 @@ import styled from '@emotion/styled';
 import EstimationCard from './EstimationCard';
 import { ConfirmClosePopup, ConfirmOptionPopup } from './Popup';
 import PriceStaticBar from './SimilarEstimationPriceBar';
-import { QutationResponse } from '@/types/interface';
+import { QutationResponse } from '@/types/response';
 import { CTAButton, Circle, Flex, Loading, Popup, Typography, Icon as _Icon } from '@/components/common';
-import { usePagination, useToggle } from '@/hooks';
-import useSetList from '@/hooks/useSetList';
+import { useDataList, usePagination, useToggle } from '@/hooks';
 import { SelectionInfoWithImage } from '@/providers/SelectionProvider';
 
 interface Props {
@@ -19,7 +18,7 @@ function SimilarEstimationPopup({ closeEstimationPopup, response: estimationList
     data: estimationList,
     pageSize: 1,
   });
-  const { dataList, addData, removeData, hasData, isEmptyList } = useSetList<SelectionInfoWithImage>({});
+  const { dataList, addData, removeData, hasData, isEmptyList } = useDataList<SelectionInfoWithImage>({});
 
   const toggleClosePopup = useToggle(false);
   const toggleConfirmPopup = useToggle(false);

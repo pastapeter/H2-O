@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import InteriorCard from './InteriorCard';
-import type { InteriorColorResponse } from '@/types/interface';
+import type { InteriorColorResponse } from '@/types/response';
 import { Flex, Icon, Typography } from '@/components/common';
 import { usePagination } from '@/hooks';
 import { getImagePreloader } from '@/utils/image';
@@ -37,19 +37,9 @@ function InteriorSelector({ optionList, selectedColor, onSelectColor }: Props) {
           <h2>내장 색상을 선택해주세요.</h2>
           {hasPagination && (
             <Flex alignItems='center' gap={8}>
-              <Icon
-                css={pagingButtonStyle(isStartPage)}
-                iconType='ArrowLeft'
-                color={colors.gray600}
-                onClick={prevPage}
-              />
+              <Icon css={pagingButtonStyle(isStartPage)} iconType='ArrowLeft' color='gray600' onClick={prevPage} />
               <Typography font='HeadKRMedium14' color='gray500'>{`${currentPage + 1}/${totalPage}`}</Typography>
-              <Icon
-                css={pagingButtonStyle(isEndPage)}
-                iconType='ArrowRight'
-                color={colors.gray600}
-                onClick={nextPage}
-              />
+              <Icon css={pagingButtonStyle(isEndPage)} iconType='ArrowRight' color='gray600' onClick={nextPage} />
             </Flex>
           )}
         </Flex>

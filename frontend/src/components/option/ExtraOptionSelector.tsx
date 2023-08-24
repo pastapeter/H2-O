@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import styled from '@emotion/styled';
-import type { ExtraOptionResponse } from '@/types/interface';
+import type { ExtraOptionResponse } from '@/types/response';
 import { Flex, Typography } from '@/components/common';
 import { OptionCard } from '@/components/option/utils';
-import { useSafeContext } from '@/hooks';
-import useSetList from '@/hooks/useSetList';
+import { useDataList, useSafeContext } from '@/hooks';
 import { OptionInfo, SelectionContext } from '@/providers/SelectionProvider';
 
 interface Props {
@@ -15,7 +14,7 @@ interface Props {
 function ExtraOptionSelector({ optionList, handleClickOptionCard }: Props) {
   const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
 
-  const { dataList, addData, removeData, hasData } = useSetList<Omit<OptionInfo, 'isQuotation'>>({
+  const { dataList, addData, removeData, hasData } = useDataList<Omit<OptionInfo, 'isQuotation'>>({
     initDataList: selectionInfo.extraOptions?.optionList.map((item) => {
       const { isQuotation, ...rest } = item;
       return rest;
