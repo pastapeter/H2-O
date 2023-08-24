@@ -30,6 +30,7 @@ dependencies {
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 	implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
 	implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
 
 	runtimeOnly 'com.h2database:h2'

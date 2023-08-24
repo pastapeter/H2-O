@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ public class PackageController {
             @ApiImplicitParam(name = "packageId", value = "패키지 인덱스 번호")
     })
     @GetMapping("trim/{trimId}/package/{packageId}")
+    @Cacheable(value = "packageDetail", cacheManager = "contentCacheManager")
     public PackageDetailsDto getPackageInformation(@PathVariable Long trimId, @PathVariable Long packageId) {
         return packageService.findPackageInformation(trimId, packageId);
     }

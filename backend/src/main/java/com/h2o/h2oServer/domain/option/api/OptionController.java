@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class OptionController {
             @ApiImplicitParam(name = "trimId", value = "트림 인덱스 번호"),
             @ApiImplicitParam(name = "optionId", value = "옵션 인덱스 번호")
     })
+    @Cacheable(value = "optionDetail", cacheManager = "contentCacheManager")
     @GetMapping("/trim/{trimId}/option/{optionId}")
     public OptionDetailsDto getOptionInformation(@PathVariable Long trimId, @PathVariable Long optionId) {
         return optionService.findDetailedOptionInformation(optionId, trimId);

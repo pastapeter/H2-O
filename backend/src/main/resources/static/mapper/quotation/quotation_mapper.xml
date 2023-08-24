@@ -3,7 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.h2o.h2oServer.domain.quotation.mapper.QuotationMapper">
-    <insert id="saveQuotation" parameterType="QuotationDto" useGeneratedKeys="true" keyProperty="id">
+    <cache readOnly="true"/>
+    <insert id="saveQuotation"
+            parameterType="QuotationDto"
+            useGeneratedKeys="true"
+            keyProperty="id">
         insert into quotation(car_id, trim_id, powertrain_id, bodytype_id, drivetrain_id, internal_color_id, external_color_id)
         values (#{carId}, #{trimId}, #{powertrainId}, #{bodytypeId}, #{drivetrainId}, #{internalColorId}, #{externalColorId});
     </insert>
@@ -76,7 +80,7 @@
                  option_combination, package_combination;
     </select>
 
-    <select id="countIdenticalQuotation" resultType="java.lang.Integer">
+    <select id="countIdenticalQuotation" resultType="java.lang.Integer" useCache="false">
         with option_count as (select id, GROUP_CONCAT(o.option_id ORDER BY o.option_id ASC) AS option_combination
                 from sold_car as s
                         join sold_car_extra_options as o
@@ -97,7 +101,7 @@
             ) as a
     </select>
 
-    <select id="findIdenticalQuotations" resultType="string">
+    <select id="findIdenticalQuotations" resultType="string" useCache="false">
         with option_count as (select id, GROUP_CONCAT(o.option_id ORDER BY o.option_id ASC) AS option_combination
                       from sold_car as s
                                join sold_car_extra_options as o

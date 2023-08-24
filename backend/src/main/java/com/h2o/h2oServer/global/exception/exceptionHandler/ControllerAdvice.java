@@ -6,6 +6,8 @@ import com.h2o.h2oServer.domain.model_type.exception.NoSuchDriveTrainException;
 import com.h2o.h2oServer.domain.model_type.exception.NoSuchPowertrainException;
 import com.h2o.h2oServer.domain.option.exception.NoSuchOptionException;
 import com.h2o.h2oServer.domain.optionPackage.exception.NoSuchPackageException;
+import com.h2o.h2oServer.domain.trim.Exception.NoSuchExternalColorException;
+import com.h2o.h2oServer.domain.trim.Exception.NoSuchInternalColorException;
 import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
 import com.h2o.h2oServer.global.exception.ErrorResponse;
 import org.slf4j.Logger;
@@ -30,7 +32,9 @@ public class ControllerAdvice {
             NoSuchCarException.class,
             NoSuchTrimException.class,
             NoSuchOptionException.class,
-            NoSuchPackageException.class
+            NoSuchPackageException.class,
+            NoSuchInternalColorException.class,
+            NoSuchExternalColorException.class
     })
     public ResponseEntity<ErrorResponse> handleNotFoundExceptions(final RuntimeException e) {
         ErrorResponse errorResponse = ErrorResponse.of(e.getMessage());

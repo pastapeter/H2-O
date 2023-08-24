@@ -4,8 +4,10 @@ import com.h2o.h2oServer.domain.option.dto.OptionStatisticsDto.OptionStatisticsD
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionDetailsEntity;
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +17,8 @@ import static com.h2o.h2oServer.domain.option.dto.OptionStatisticsDto.SELL_NUMBE
 @ApiModel(value = "옵션 세부 사항 정보 조회 응답")
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OptionDetailsDto {
     private String name;
     private String category;

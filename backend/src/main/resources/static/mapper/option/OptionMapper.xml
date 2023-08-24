@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.h2o.h2oServer.domain.option.mapper.OptionMapper">
+    <cache readOnly="true"/>
     <select id="findOptionDetails" resultType="OptionDetailsEntity">
         select name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, description, category, use_count, choice_ratio, price, option_type
         from options
@@ -28,5 +29,4 @@
         FROM options
         WHERE id = #{id}
     </select>
-
 </mapper>

@@ -4,10 +4,14 @@ import com.h2o.h2oServer.domain.model_type.Entity.CarPowertrainEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainOutputEntity;
 import com.h2o.h2oServer.domain.model_type.Entity.PowertrainTorqueEntity;
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @ApiModel(value = "차량 모델 타입 정보 조회 응답 - 파워트레인 타입 정보")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CarPowertrainDto {
     private Long id;
     private String name;
@@ -17,18 +21,6 @@ public class CarPowertrainDto {
     private String image;
     private PowertrainOutputDto maxOutput;
     private PowertrainTorqueDto maxTorque;
-
-    private CarPowertrainDto(Long id, String name, Integer price, Integer choiceRatio, String description, String image,
-                            PowertrainOutputDto maxOutput, PowertrainTorqueDto maxTorque) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.choiceRatio = choiceRatio;
-        this.description = description;
-        this.image = image;
-        this.maxOutput = maxOutput;
-        this.maxTorque = maxTorque;
-    }
 
     public static CarPowertrainDto of(
             CarPowertrainEntity carPowerTrainEntity,

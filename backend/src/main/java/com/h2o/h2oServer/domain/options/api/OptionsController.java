@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ public class OptionsController {
             @ApiImplicitParam(name = "fromOption", value = "[페이징] 조회할 추가 옵션의 시작 위치"),
             @ApiImplicitParam(name = "countOption", value = "[페이징] 조회할 추가 옵션의 개수")
     })
+    @Cacheable(key = "#trimId", value = "extraOptions", cacheManager = "contentCacheManager")
     @GetMapping("/trim/{trimId}/extra-option")
     public List<TrimExtraOptionDto> getExtraOptions(@PathVariable Long trimId,
                                                     @RequestParam(required = false) Long fromPackage,
@@ -68,6 +70,7 @@ public class OptionsController {
             @ApiImplicitParam(name = "from", value = "[페이징] 조회할 기본 옵션의 시작 위치"),
             @ApiImplicitParam(name = "count", value = "[페이징] 조회할 기본 옵션의 개수")
     })
+    @Cacheable(key = "#trimId", value = "defaultOptions", cacheManager = "contentCacheManager")
     @GetMapping("/trim/{trimId}/default-option")
     public List<TrimDefaultOptionDto> getDefaultOptions(@PathVariable Long trimId,
                                                         @RequestParam(required = false) Long from,

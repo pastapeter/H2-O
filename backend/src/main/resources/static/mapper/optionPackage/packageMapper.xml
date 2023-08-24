@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.h2o.h2oServer.domain.optionPackage.mapper.PackageMapper">
+    <cache readOnly="true"/>
     <select id="findPackage" resultType="PackageEntity">
         select name, category, price, choice_ratio
         from package

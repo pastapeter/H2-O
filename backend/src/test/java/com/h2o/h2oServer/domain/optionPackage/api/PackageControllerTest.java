@@ -6,6 +6,7 @@ import com.h2o.h2oServer.domain.optionPackage.PackageFixture;
 import com.h2o.h2oServer.domain.optionPackage.application.PackageService;
 import com.h2o.h2oServer.domain.optionPackage.dto.PackageDetailsDto;
 import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
+import com.h2o.h2oServer.global.config.RedisConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.when;
@@ -23,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = PackageController.class)
 @AutoConfigureMockMvc
+@Import(RedisConfig.class)
 class PackageControllerTest {
 
     @Autowired

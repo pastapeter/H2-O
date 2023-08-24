@@ -2,8 +2,10 @@ package com.h2o.h2oServer.domain.quotation.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class QuotationDto {
+public class QuotationDto implements Serializable {
     private Long id;
     private Long carId;
     private Long trimId;

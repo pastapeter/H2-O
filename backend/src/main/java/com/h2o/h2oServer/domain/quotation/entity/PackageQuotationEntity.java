@@ -4,12 +4,13 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Builder
 @EqualsAndHashCode
-public class PackageQuotationEntity {
+public class PackageQuotationEntity implements Serializable {
     private Long quotationId;
     private List<Long> packageIds;
 }

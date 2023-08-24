@@ -1,14 +1,14 @@
 package com.h2o.h2oServer.domain.option.dto;
 
 import io.swagger.annotations.ApiModel;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 @ApiModel(value = "옵션 세부 정보 조회 응답 - hmg Data 정보")
 @Builder
 @Getter
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class OptionStatisticsDto {
     public static final int SELL_NUMBER = 3509;
     private Boolean isOverHalf;

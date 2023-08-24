@@ -5,11 +5,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Getter
 @Builder
 @EqualsAndHashCode
 @ToString
-public class ReleaseEntity {
+public class ReleaseEntity implements Serializable {
     private Long trimId;
     private Long powertrainId;
     private Long bodytypeId;

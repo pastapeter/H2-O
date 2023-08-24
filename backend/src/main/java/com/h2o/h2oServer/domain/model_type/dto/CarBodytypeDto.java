@@ -2,13 +2,17 @@ package com.h2o.h2oServer.domain.model_type.dto;
 
 import com.h2o.h2oServer.domain.model_type.Entity.CarBodytypeEntity;
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ApiModel(value = "차량 모델 타입 정보 조회 응답 - 바디 타입 정보")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CarBodytypeDto {
     private Long id;
     private String name;
@@ -16,15 +20,6 @@ public class CarBodytypeDto {
     private String image;
     private Integer price;
     private Integer choiceRatio;
-
-    private CarBodytypeDto(Long id, String name, String description, String image, Integer price, Integer choiceRatio) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.price = price;
-        this.choiceRatio = choiceRatio;
-    }
 
     public static CarBodytypeDto of(CarBodytypeEntity carBodytypeEntity) {
         return new CarBodytypeDto(
