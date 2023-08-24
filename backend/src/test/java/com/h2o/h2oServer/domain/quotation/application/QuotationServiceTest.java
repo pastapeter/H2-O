@@ -2,23 +2,28 @@ package com.h2o.h2oServer.domain.quotation.application;
 
 import com.h2o.h2oServer.domain.car.exception.NoSuchCarException;
 import com.h2o.h2oServer.domain.car.mapper.CarMapper;
-import com.h2o.h2oServer.domain.model_type.dto.ModelTypeIdDto;
+import com.h2o.h2oServer.domain.model_type.BodytypeFixture;
+import com.h2o.h2oServer.domain.model_type.DrivetrainFixture;
+import com.h2o.h2oServer.domain.model_type.PowertrainFixture;
 import com.h2o.h2oServer.domain.model_type.exception.NoSuchBodyTypeException;
 import com.h2o.h2oServer.domain.model_type.exception.NoSuchDriveTrainException;
 import com.h2o.h2oServer.domain.model_type.exception.NoSuchPowertrainException;
 import com.h2o.h2oServer.domain.model_type.mapper.BodytypeMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.DrivetrainMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.PowertrainMapper;
+import com.h2o.h2oServer.domain.option.HashTagFixture;
+import com.h2o.h2oServer.domain.option.OptionFixture;
+import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
 import com.h2o.h2oServer.domain.option.exception.NoSuchOptionException;
 import com.h2o.h2oServer.domain.option.mapper.OptionMapper;
 import com.h2o.h2oServer.domain.optionPackage.exception.NoSuchPackageException;
 import com.h2o.h2oServer.domain.optionPackage.mapper.PackageMapper;
-import com.h2o.h2oServer.domain.quotation.dto.QuotationCountDto;
-import com.h2o.h2oServer.domain.quotation.dto.QuotationDto;
-import com.h2o.h2oServer.domain.quotation.dto.QuotationRequestDto;
-import com.h2o.h2oServer.domain.quotation.dto.QuotationResponseDto;
+import com.h2o.h2oServer.domain.quotation.dto.*;
+import com.h2o.h2oServer.domain.quotation.entity.ReleaseEntity;
 import com.h2o.h2oServer.domain.quotation.mapper.QuotationMapper;
 import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
+import com.h2o.h2oServer.domain.trim.ExternalColorFixture;
+import com.h2o.h2oServer.domain.trim.ImageFixture;
 import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
 import com.h2o.h2oServer.domain.trim.mapper.TrimMapper;
 import org.assertj.core.api.SoftAssertions;
@@ -28,10 +33,14 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
+import java.util.Optional;
 
+import static com.h2o.h2oServer.domain.option.HashTagFixture.*;
+import static com.h2o.h2oServer.domain.quotation.QuotationFixture.*;
 import static com.h2o.h2oServer.domain.quotation.QuotationFixture.generateQuotationRequestDto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @MybatisTest
@@ -175,6 +184,139 @@ class QuotationServiceTest {
             //then
             assertThatThrownBy(() -> quotationService.saveQuotation(generateQuotationRequestDto()))
                     .isInstanceOf(NoSuchPackageException.class);
+        }
+
+    }
+    
+    @Nested
+    @DisplayName("유사 견적 추천 기능 테스트")
+    class findSimilarQuotationTest {
+
+        private QuotationRequestDto quotationRequestDto;
+
+        @BeforeEach
+        void setup() {
+            quotationRequestDto = generateQuotationRequestDto();
+
+            when(quotationMapper.findReleaseQuotationWithVolume(quotationRequestDto.getTrimId()))
+                    .thenReturn(generateReleaseEntityList());
+            when(packageMapper.findHashTag(11L))
+                    .thenReturn(generateHashTagEntities());
+            when(packageMapper.findHashTag(12L))
+                    .thenReturn(generateHashTagEntities(List.of(HashTag.LEISURE, HashTag.LEISURE)));
+            when(optionMapper.findHashTag(8L))
+                    .thenReturn(HashTagFixture.generateHashTagEntities(List.of(HashTag.COMMUTE, HashTag.COMFORTABLE)));
+            when(optionMapper.findHashTag(9L))
+                    .thenReturn(HashTagFixture.generateHashTagEntities(List.of(HashTag.MALE, HashTag.CHILD_COMMUTE, HashTag.STYLE)));
+            when(optionMapper.findHashTag(10L))
+                    .thenReturn(HashTagFixture.generateHashTagEntities(List.of(HashTag.STYLE, HashTag.STYLE, HashTag.COUPLE)));
+            when(optionMapper.findHashTag(11L))
+                    .thenReturn(HashTagFixture.generateHashTagEntities(List.of(HashTag.COMMUTE, HashTag.COMFORTABLE)));
+            when(powertrainMapper.findById(1L)).thenReturn(PowertrainFixture.generatePowertrainEntity());
+            when(bodytypeMapper.findById(1L)).thenReturn(BodytypeFixture.generateBodytypeEntity());
+            when(drivetrainMapper.findById(1L)).thenReturn(DrivetrainFixture.generateDrivetrainEntity());
+            when(externalColorMapper.findImages(1L)).thenReturn(ImageFixture.generateExternalImageEntityList());
+            when(optionMapper.findOptionDetails(anyLong(), anyLong())).thenReturn(Optional.of(OptionFixture.generateOptionDetailsEntity()));
+        }
+
+        @Test
+        @DisplayName("유사 견적을 추천한다.")
+        void findSimilarQuotation() {
+            //given
+            when(cosineSimilarityCalculator.calculateCosineSimilarity(anyMap(), anyMap())).thenReturn(0.7);
+
+            //when
+            List<SimilarQuotationDto> actualSimilarQuotationDto = quotationService.findSimilarQuotations(quotationRequestDto);
+
+            //then
+            softly.assertThat(actualSimilarQuotationDto.size()).isEqualTo(1);
+            SimilarQuotationDto similarQuotationDto = actualSimilarQuotationDto.get(0);
+            softly.assertThat(similarQuotationDto.getImage()).isEqualTo("url1");
+            softly.assertThat(similarQuotationDto.getPrice()).isEqualTo(20);
+            softly.assertAll();
+        }
+
+        @Test
+        @DisplayName("유사도가 < 20%, > 90%인 경우는 추천하지 않는다.")
+        void withSimilarityOutOfBound() {
+            //given
+
+            when(quotationMapper.findReleaseQuotationWithVolume(quotationRequestDto.getTrimId()))
+                    .thenReturn(List.of(
+                            ReleaseEntity.builder()
+                                    .packageCombination("11,12")
+                                    .optionCombination("8,9,10,12")
+                                    .quotationCount(32)
+                                    .price(10)
+                                    .trimId(5L)
+                                    .externalColorId(1L)
+                                    .internalColorId(3L)
+                                    .drivetrainId(1L)
+                                    .bodytypeId(1L)
+                                    .powertrainId(1L)
+                                    .build(),
+                            ReleaseEntity.builder()
+                                    .packageCombination("11")
+                                    .optionCombination("8,9,11")
+                                    .quotationCount(32)
+                                    .price(20)
+                                    .trimId(5L)
+                                    .externalColorId(1L)
+                                    .internalColorId(3L)
+                                    .drivetrainId(1L)
+                                    .bodytypeId(1L)
+                                    .powertrainId(1L)
+                                    .build()
+                    ));
+            when(optionMapper.findHashTag(12L))
+                    .thenReturn(HashTagFixture.generateHashTagEntities(List.of(HashTag.COMMUTE, HashTag.COMFORTABLE)));
+            when(cosineSimilarityCalculator.calculateCosineSimilarity(anyMap(), anyMap())).thenReturn(0.1);
+
+            //when
+            List<SimilarQuotationDto> actualSimilarQuotationDto = quotationService.findSimilarQuotations(quotationRequestDto);
+
+            //then
+            assertThat(actualSimilarQuotationDto.size()).isEqualTo(0);
+        }
+
+        @Test
+        @DisplayName("요청 견적보다 추가 견적이 없는 경우 추천하지 않는다.")
+        void withoutAdditionalOptions() {
+            //given
+            when(quotationMapper.findReleaseQuotationWithVolume(quotationRequestDto.getTrimId()))
+                    .thenReturn(List.of(
+                            ReleaseEntity.builder()
+                                    .packageCombination("11,12")
+                                    .optionCombination("8,9")
+                                    .quotationCount(32)
+                                    .price(10)
+                                    .trimId(5L)
+                                    .externalColorId(1L)
+                                    .internalColorId(3L)
+                                    .drivetrainId(1L)
+                                    .bodytypeId(1L)
+                                    .powertrainId(1L)
+                                    .build(),
+                            ReleaseEntity.builder()
+                                    .packageCombination("11")
+                                    .optionCombination("8,10")
+                                    .quotationCount(32)
+                                    .price(20)
+                                    .trimId(5L)
+                                    .externalColorId(1L)
+                                    .internalColorId(3L)
+                                    .drivetrainId(1L)
+                                    .bodytypeId(1L)
+                                    .powertrainId(1L)
+                                    .build()
+                    ));
+            when(cosineSimilarityCalculator.calculateCosineSimilarity(anyMap(), anyMap())).thenReturn(0.7);
+
+            //when
+            List<SimilarQuotationDto> actualSimilarQuotationDto = quotationService.findSimilarQuotations(quotationRequestDto);
+
+            //then
+            assertThat(actualSimilarQuotationDto.size()).isEqualTo(0);
         }
     }
 

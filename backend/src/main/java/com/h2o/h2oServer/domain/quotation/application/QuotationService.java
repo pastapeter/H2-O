@@ -95,7 +95,7 @@ public class QuotationService {
             //3-2. 패키지에 포함된 해시태그 정보 가져오기
             collectHashTagsOfPackages(packageIds, hashTagCount);
 
-            //유사도 계산 후 queue에 추가
+            //3-3. 유사도 계산 후 queue에 추가
             double similarity = cosineSimilarityCalculator.calculateCosineSimilarity(requestHashTagCount, hashTagCount);
 
             if (similarity < SIMILARITY_LOWER_BOUND || similarity > SIMILARITY_UPPER_BOUND) {
@@ -114,6 +114,10 @@ public class QuotationService {
             }
 
             ReleaseEntity releaseEntity = similarityQueue.poll().getKey();
+
+            if (isOptionsSubset(quotationRequestDto, releaseEntity)) {
+                continue;
+            }
 
             String powertrainName = powertrainMapper.findById(releaseEntity.getPowertrainId()).getName();
             String bodytypeName = bodytypeMapper.findById(releaseEntity.getBodytypeId()).getName();
@@ -138,6 +142,11 @@ public class QuotationService {
         }
 
         return similarQuotationDtos;
+    }
+
+    private static boolean isOptionsSubset(QuotationRequestDto quotationRequestDto, ReleaseEntity releaseEntity) {
+        List<Long> optionIdsOfRelease = parseToLongList(releaseEntity.getOptionCombination());
+        return new HashSet<>(quotationRequestDto.getOptionIds()).containsAll(optionIdsOfRelease);
     }
 
     private List<OptionSummaryDto> extractOptionSummary(QuotationRequestDto quotationRequestDto,

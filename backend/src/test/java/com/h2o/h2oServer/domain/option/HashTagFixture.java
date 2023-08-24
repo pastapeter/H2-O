@@ -4,6 +4,7 @@ import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HashTagFixture {
 
@@ -19,5 +20,11 @@ public class HashTagFixture {
                         .name(HashTag.SPORTS)
                         .build()
         );
+    }
+
+    public static List<HashTagEntity> generateHashTagEntities(List<HashTag> hashTags) {
+        return hashTags.stream()
+                .map(hashTag -> HashTagEntity.builder().name(hashTag).build())
+                .collect(Collectors.toList());
     }
 }
