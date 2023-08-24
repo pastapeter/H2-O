@@ -52,7 +52,8 @@ class ImageCacheService: CacheServiceProtocol {
             let imageData = try await self.getImage(with: url, etag: image.etag).imageData
             continuation.yield(imageData)
           } catch {
-            continuation.yield(image.imageData)
+          
+
           }
           
         } else if let image = await self.checkDiskCache(url) {
@@ -63,7 +64,7 @@ class ImageCacheService: CacheServiceProtocol {
             let imageData = try await self.getImage(with: url, etag: image.etag).imageData
             continuation.yield(imageData)
           } catch {
-            continuation.yield(image.imageData)
+
           }
           
         } else {
