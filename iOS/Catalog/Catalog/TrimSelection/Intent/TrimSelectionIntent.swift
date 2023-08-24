@@ -10,7 +10,7 @@ import Combine
 
 protocol TrimSelectionIntentType {
 
-  var state: TrimSelectionModel.State { get }
+  var viewState: TrimSelectionModel.State { get }
 
   func send(action: TrimSelectionModel.ViewAction)
 
@@ -21,21 +21,21 @@ final class TrimSelectionIntent: ObservableObject {
 
   // MARK: - LifeCycle
 
-  init(initialState: State, repository: TrimSelectionRepositoryProtocol, quotation: Quotation, navigationIntent: CLNavigationIntentType) {
-    state = initialState
+  init(initialState: ViewState, repository: TrimSelectionRepositoryProtocol, quotation: Quotation, navigationIntent: CLNavigationIntentType) {
+    viewState = initialState
     self.repository = repository
     self.quotation
     self.navigationIntent = navigationIntent
   }
 
   // MARK: - Internal
-  typealias State = TrimSelectionModel.State
+  typealias ViewState = TrimSelectionModel.State
   typealias ViewAction = TrimSelectionModel.ViewAction
 
   private var repository: TrimSelectionRepositoryProtocol
   private var quotation = Quotation.shared
   private var navigationIntent: CLNavigationIntentType
-  @Published var state: State = State(selectedTrim: nil, carId: 1)
+  @Published var viewState: ViewState = ViewState(selectedTrim: nil, carId: 1)
 
   var cancellable: Set<AnyCancellable> = []
 }
@@ -47,26 +47,26 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
       case .enteredTrimPage:
         Task {
           do {
-            let trims = try await repository.fetchTrims(of: state.carId)
+            let trims = try await repository.fetchTrims(of: viewState.carId)
             self.send(action: .fetchTrims(trims: trims))
           } catch let error {
-            state.error = error as? TrimSelectionError
+            viewState.error = error as? TrimSelectionError
           }
         }
 
       case .fetchTrims(let trims):
         if !trims.isEmpty {
-          state.trims = trims
-          state.selectedTrim = trims.first
+          viewState.trims = trims
+          viewState.selectedTrim = trims.first
         } else {
           // TODO: trim Intent Error 만들고 정의하삼
         }
         // 트림 선택할 경우. 트림 id
       case .trimSelected(let index):
-        state.selectedTrim = state.trims[index]
+      viewState.selectedTrim = viewState.trims[index]
 
       case .onTapTrimSelectButton:
-        guard let trim = state.selectedTrim else { return }
+        guard let trim = viewState.selectedTrim else { return }
         quotation.send(action: .isTrimChanged(trim: trim))
         Task {
           do {
@@ -77,10 +77,10 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
                                                    maxPrice: maxPrice))
             
             
-            state.isTrimSelected = true
+            viewState.isTrimSelected = true
             navigationIntent.send(action: .onTapNavTab(index: 1))
           } catch let error {
-            state.error = error as? TrimSelectionError
+            viewState.error = error as? TrimSelectionError
           }
         }
     }

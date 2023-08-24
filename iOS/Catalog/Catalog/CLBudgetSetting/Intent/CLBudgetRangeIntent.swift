@@ -10,7 +10,7 @@ import Combine
 
 protocol CLBudgetRangeIntentType {
 
-    var state: CLBudgetRangeModel.State { get }
+    var viewState: CLBudgetRangeModel.State { get }
 
     func send(action: CLBudgetRangeModel.ViewAction)
 
@@ -21,16 +21,16 @@ protocol CLBudgetRangeIntentType {
 final class CLBudgetRangeIntent: ObservableObject {
 
     // MARK: - LifeCycle
-  init(initialState: State, navigationIntent: CLNavigationIntentType) {
-        state = initialState
+  init(initialState: ViewState, navigationIntent: CLNavigationIntentType) {
+        viewState = initialState
     self.navigationIntent = navigationIntent
     }
 
     // MARK: - Internal
-    typealias State = CLBudgetRangeModel.State
+    typealias ViewState = CLBudgetRangeModel.State
     typealias ViewAction = CLBudgetRangeModel.ViewAction
 
-    @Published var state: State = State(currentQuotationPrice: CLNumber(30000000),
+    @Published var viewState: ViewState = ViewState(currentQuotationPrice: CLNumber(30000000),
                                         budgetPrice: CLNumber(40000000), status: .default)
     let navigationIntent: CLNavigationIntentType
     var quotation = Quotation.shared
@@ -41,25 +41,25 @@ extension CLBudgetRangeIntent: CLBudgetRangeIntentType, IntentType {
     func mutate(action: CLBudgetRangeModel.ViewAction, viewEffect: (() -> Void)?) {
         switch action {
             case .onAppear:
-            state.currentQuotationPrice = quotation.state.totalPrice
-            print(quotation.state.minPrice, quotation.state.maxPrice)
-            state.minimumPrice = quotation.state.minPrice
-            state.maximumPrice = quotation.state.maxPrice
+            viewState.currentQuotationPrice = quotation.viewState.totalPrice
+            print(quotation.viewState.minPrice, quotation.viewState.maxPrice)
+            viewState.minimumPrice = quotation.viewState.minPrice
+            viewState.maximumPrice = quotation.viewState.maxPrice
             case .budgetChanged(let newBudgetPrice):
-                state.budgetPrice = newBudgetPrice
+                viewState.budgetPrice = newBudgetPrice
                 send(action: .budgetGapChanged)
                 send(action: .exceedBudgetChanged)
 
             case .quotationPriceChanged(let newQuotationPrice):
-                state.currentQuotationPrice = newQuotationPrice
+                viewState.currentQuotationPrice = newQuotationPrice
                 send(action: .budgetGapChanged)
                 send(action: .exceedBudgetChanged)
 
             case .exceedBudgetChanged:
-                state.isExceedBudget = state.budgetPrice < state.currentQuotationPrice
+                viewState.isExceedBudget = viewState.budgetPrice < viewState.currentQuotationPrice
 
             case .budgetGapChanged:
-                state.budgetGap = CLNumber(abs(state.budgetPrice.value - state.currentQuotationPrice.value))
+                viewState.budgetGap = CLNumber(abs(viewState.budgetPrice.value - viewState.currentQuotationPrice.value))
           case .onTapSimilarQuotationButton:
             navigationIntent.send(action: .onTapSimilarQuotationButton)
         }

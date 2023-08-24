@@ -10,9 +10,9 @@ import Combine
 
 protocol IntentType: AnyObject {
   associatedtype ViewAction
-  associatedtype State
+  associatedtype ViewState
 
-  var state: State { get set }
+  var viewState: ViewState { get set }
   var cancellable: Set<AnyCancellable> { get set }
 
   func send(action: ViewAction)

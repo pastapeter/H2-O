@@ -10,7 +10,7 @@ import Combine
 
 protocol OptionSelectionIntentType {
 
-  var state: OptionSelectionModel.State { get }
+  var viewState: OptionSelectionModel.State { get }
 
   func send(action: OptionSelectionModel.ViewAction)
 
@@ -30,15 +30,15 @@ protocol OptionSelectionCollectable: AnyObject {
 
 final class OptionSelectionIntent: ObservableObject {
 
-  init(initialState: State, repository: OptionSelectionRepositoryProtocol) {
-    state = initialState
+  init(initialState: ViewState, repository: OptionSelectionRepositoryProtocol) {
+    viewState = initialState
     self.repository = repository
   }
 
-  typealias State = OptionSelectionModel.State
+  typealias ViewState = OptionSelectionModel.State
   typealias ViewAction = OptionSelectionModel.ViewAction
 
-  @Published var state: State
+  @Published var viewState: ViewState
 
   var cancellable: Set<AnyCancellable> = []
   private(set) var selectedExtraOptions: Set<Int> = []
@@ -63,7 +63,7 @@ extension OptionSelectionIntent: OptionSelectionIntentType, IntentType {
   func mutate(action: OptionSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onTapTab(let index):
-      state.currentPage = index
+      viewState.currentPage = index
     case .onAppear:
       break
     }

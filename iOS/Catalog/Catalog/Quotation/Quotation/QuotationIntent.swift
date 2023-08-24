@@ -18,12 +18,12 @@ final class Quotation: ObservableObject {
   static let shared = Quotation(initialState: .init(totalPrice: CLNumber(0), minPrice: CLNumber(50000000), maxPrice: CLNumber(99999999)),
                                 repository: QuotationRepository(quotationRequestManager: RequestManager(apiManager: APIManager())))
   
-  private init(initialState: State, repository: QuotationRepositoryProtocol) {
-    state = initialState
+  private init(initialState: ViewState, repository: QuotationRepositoryProtocol) {
+    viewState = initialState
     self.repostitory = repository
   }
   
-  @Published var state: State = .init(
+  @Published var viewState: ViewState = .init(
     totalPrice: CLNumber(0),
     minPrice: CLNumber(0),
     maxPrice: CLNumber(99999999))
@@ -33,31 +33,31 @@ final class Quotation: ObservableObject {
 
 extension Quotation: QuotationIntentType, IntentType {
   
-  typealias State = QuotationModel.State
+  typealias ViewState = QuotationModel.State
   typealias ViewAction = QuotationModel.ViewAction
   
   func mutate(action: QuotationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .isTrimSelected(let carQuotation, let minPrice, let maxPrice):
-        state.quotation = carQuotation
-        state.minPrice = minPrice
-        state.maxPrice = maxPrice
+      viewState.quotation = carQuotation
+        viewState.minPrice = minPrice
+        viewState.maxPrice = maxPrice
         send(action: .isPriceChanged)
         
       case .isTrimChanged(let trim):
-        state.quotation?.trim = trim
+        viewState.quotation?.trim = trim
         send(action: .isPriceChanged)
         
       case .isPowertrainChanged(let powertrain):
-        state.quotation?.powertrain = powertrain
+        viewState.quotation?.powertrain = powertrain
         send(action: .isPriceChanged)
         
       case .isBodyTypeChanged(let bodytype):
-        state.quotation?.bodytype = bodytype
+        viewState.quotation?.bodytype = bodytype
         send(action: .isPriceChanged)
         
       case .isDrivetrainChanged(let drivetrain):
-        state.quotation?.drivetrain = drivetrain
+        viewState.quotation?.drivetrain = drivetrain
         send(action: .isPriceChanged)
         
         // TODO: - 색상 모델 채우기
@@ -66,11 +66,11 @@ extension Quotation: QuotationIntentType, IntentType {
       case .isOptionChanged(let option): return
         
       case .isPriceChanged:
-        state.totalPrice = (state.quotation?.calculateTotalPrice() ?? CLNumber(0))
+        viewState.totalPrice = (viewState.quotation?.calculateTotalPrice() ?? CLNumber(0))
       case .onTapCompleteButton:
         Task {
           do {
-             if let requestQuotation = state.quotation {
+             if let requestQuotation = viewState.quotation {
                let quotationId = try await repostitory.saveFinalQuotation(with: requestQuotation)
                print(quotationId)
             }
@@ -79,9 +79,9 @@ extension Quotation: QuotationIntentType, IntentType {
           }
         }
       case .similarOptionsAdded(let options):
-        state.quotation?.options.append(contentsOf: options)
+        viewState.quotation?.options.append(contentsOf: options)
       case .similarOptionsDeleted(let optionIndex):
-        state.quotation?.options = (state.quotation?.options.filter{$0.id != optionIndex}) ?? []
+        viewState.quotation?.options = (viewState.quotation?.options.filter{$0.id != optionIndex}) ?? []
     }
   }
 }
@@ -89,7 +89,7 @@ extension Quotation: QuotationIntentType, IntentType {
 //extension Quotation: QuotationPriceViewable {
 //  
 //  private(set) var totalQuotationPrice: CLNumber {
-//    return state.totalPrice
+//    return viewState.totalPrice
 //  }
 //  
 //}
@@ -97,7 +97,7 @@ extension Quotation: QuotationIntentType, IntentType {
 
 protocol QuotationIntentType {
   
-  var state: QuotationModel.State { get }
+  var viewState: QuotationModel.State { get }
   
   func send(action: QuotationModel.ViewAction)
   
@@ -107,16 +107,16 @@ protocol QuotationIntentType {
 
 extension Quotation: QuotationCompleteService {
   func getModelName() -> String {
-    return state.quotation?.model.name ?? ""
+    return viewState.quotation?.model.name ?? ""
   }
   
   func getPowertrainAndDriveTrain() -> (Int, Int) {
-    guard let powertrainId = state.quotation?.powertrain.id else { return (0, 0) }
-    guard let drivetrainId = state.quotation?.drivetrain.id else { return (0, 0) }
+    guard let powertrainId = viewState.quotation?.powertrain.id else { return (0, 0) }
+    guard let drivetrainId = viewState.quotation?.drivetrain.id else { return (0, 0) }
     return (powertrainId, drivetrainId)
   }
   
   func getSummary() -> SummaryCarQuotation {
-    return state.quotation?.toSummary() ?? SummaryCarQuotation.mock()
+    return viewState.quotation?.toSummary() ?? SummaryCarQuotation.mock()
   }
 }

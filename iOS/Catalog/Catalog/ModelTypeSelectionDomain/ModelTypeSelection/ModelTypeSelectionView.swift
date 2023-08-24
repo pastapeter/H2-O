@@ -9,11 +9,16 @@ import SwiftUI
 
 struct ModelTypeSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<ModelTypeSelectionIntentType, ModelTypeSelectionModel.State>
+  @StateObject var container: Container<ModelTypeSelectionIntentType, ModelTypeSelectionModel.ViewState>
 
   var intent: ModelTypeSelectionIntentType {
     container.intent
   }
+  
+  var viewState: ModelTypeSelectionModel.ViewState {
+    intent.viewState
+  }
+  
   var state: ModelTypeSelectionModel.State {
     intent.state
   }
@@ -35,7 +40,7 @@ extension ModelTypeSelectionView: View {
           }
           Spacer().frame(height: 38)
           HMGDataBannerComponent {
-            FuelEfficiencyAverageBannerView(state: state.fuelEfficiencyAverageState)
+            FuelEfficiencyAverageBannerView(state: viewState.fuelEfficiencyAverageState)
           }
         }
       }
@@ -52,7 +57,7 @@ extension ModelTypeSelectionView {
   @ViewBuilder
   static func build(intent: ModelTypeSelectionIntent) -> some View {
     ModelTypeSelectionView(container:
-        .init(intent: intent, state: intent.state, modelChangePublisher: intent.objectWillChange))
+        .init(intent: intent, state: intent.viewState, modelChangePublisher: intent.objectWillChange))
   }
 }
 

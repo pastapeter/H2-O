@@ -12,13 +12,13 @@ final class CLNavigationIntent: ObservableObject {
   
   // MARK: - LifeCycle
   
-  init(initialState: State) {
-    state = initialState
+  init(initialState: ViewState) {
+    viewState = initialState
   }
   
   // MARK: - Internal
   
-  @Published var state: State = State(currentPage: 0,
+  @Published var viewState: ViewState = ViewState(currentPage: 0,
                                       showQuotationSummarySheet: false,
                                       alertCase: .guide,
                                       showAlert: true)
@@ -29,7 +29,7 @@ final class CLNavigationIntent: ObservableObject {
 extension CLNavigationIntent: CLNavigationIntentType, IntentType {
   typealias ViewAction = CLNavigationModel.ViewAction
   
-  typealias State = CLNavigationModel.State
+  typealias ViewState = CLNavigationModel.State
   
   func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
@@ -38,34 +38,33 @@ extension CLNavigationIntent: CLNavigationIntentType, IntentType {
         //          print("페이지 이동 불가")
         //        } else {
         //        }
-        state.currentPage = index
-        print(state.currentPage)
+        viewState.currentPage = index
         
       case .onTapFinish:
         send(action: .showAlertChanged(showAlert: true))
-        state.alertCase = .quit
+        viewState.alertCase = .quit
         
       case .onTapLogo:
-        state.currentPage = 0
+        viewState.currentPage = 0
         
       case .onTapSwitchVehicleModel:
         print("didTapSwitchVehicleModel")
         
       case .onTapSimilarQuotationButton:
-        state.showQuotationSummarySheet = true
+        viewState.showQuotationSummarySheet = true
         
       case .onTapSimilarQuotationBackButton:
-        state.showQuotationSummarySheet = false
+        viewState.showQuotationSummarySheet = false
         
       case .showAlertChanged(let showAlert):
-        state.showAlert = showAlert
+        viewState.showAlert = showAlert
     }
   }
 }
 
 protocol CLNavigationIntentType: AnyObject {
   
-  var state: CLNavigationModel.State { get }
+  var viewState: CLNavigationModel.State { get }
   
   func send(action: CLNavigationModel.ViewAction)
   

@@ -15,8 +15,8 @@ struct ExteriorSelectionView: IntentBindingType {
     container.intent
   }
 
-  var state: ExteriorSelectionModel.State {
-    intent.state
+  var viewState: ExteriorSelectionModel.State {
+    intent.viewState
   }
 
 }
@@ -33,7 +33,7 @@ extension ExteriorSelectionView: View {
           Text("외장 색상을 선택해주세요")
             .catalogFont(type: .HeadKRMedium18)
           Spacer().frame(height: 8)
-          ExteriorColorSelectionHorizontalList(state: state.colors,
+          ExteriorColorSelectionHorizontalList(state: viewState.colors,
                                                intent: intent,
                                                height: UIScreen.main.bounds.height * 183 / 812
           )
@@ -54,7 +54,7 @@ extension ExteriorSelectionView {
   @ViewBuilder
   static func build(intent: ExteriorSelectionIntent) -> some View {
     ExteriorSelectionView(container: .init(intent: intent,
-                                                    state: intent.state,
+                                                    state: intent.viewState,
                                                     modelChangePublisher: intent.objectWillChange))
   }
 

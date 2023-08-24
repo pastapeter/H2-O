@@ -10,7 +10,7 @@ import Combine
 
 protocol SimilarQuotationIntentType {
   
-  var state: SimilarQuotationModel.State { get }
+  var viewState: SimilarQuotationModel.State { get }
   
   func send(action: SimilarQuotationModel.ViewAction, viewEffect: (() -> Void)?)
   
@@ -20,18 +20,18 @@ protocol SimilarQuotationIntentType {
 
 final class SimilarQuotationIntent: ObservableObject {
   
-  init(initialState: State, repository: SimilarQuotationRepositoryProtocol, navigationIntent: CLNavigationIntentType, budgetRangeIntent: CLBudgetRangeIntentType) {
-    state = initialState
+  init(initialState: ViewState, repository: SimilarQuotationRepositoryProtocol, navigationIntent: CLNavigationIntentType, budgetRangeIntent: CLBudgetRangeIntentType) {
+    viewState = initialState
     self.repository = repository
     self.navigationIntent = navigationIntent
     self.budgetRangeIntent = budgetRangeIntent
   }
   
-  typealias State = SimilarQuotationModel.State
+  typealias ViewState = SimilarQuotationModel.State
   
   typealias ViewAction = SimilarQuotationModel.ViewAction
   
-  @Published var state: State = .init(currentSimilarQuotationIndex: 0,
+  @Published var viewState: ViewState = .init(currentSimilarQuotationIndex: 0,
                                       similarQuotations: [.mock(), .mock(), .mock()],
                                       selectedOptions: [],
                                       alertCase: .noOption,
@@ -51,49 +51,49 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
         Task {
           do {
             let similarQuotations = try await repository.fetchSimilarQuotation(quotation: quotation)
-            state.similarQuotations = similarQuotations
+            viewState.similarQuotations = similarQuotations
           } catch(let e) {
             print(String(describing: e))
           }
         }
         
       case .onTapBackButton:
-        if state.selectedOptions.isEmpty {
-          state.alertCase = .noOption
+        if viewState.selectedOptions.isEmpty {
+          viewState.alertCase = .noOption
         } else {
-          state.alertCase = .optionButQuit
+          viewState.alertCase = .optionButQuit
         }
         
       case .onTapAddButton(let title, let count):
-        state.alertCase = .addOption(title: title, count: count)
+        viewState.alertCase = .addOption(title: title, count: count)
         send(action: .showAlertChanged(showAlert: true))
         
       case .onTapHelpButton:
-        state.alertCase = .help
+        viewState.alertCase = .help
         send(action: .showAlertChanged(showAlert: true))
         
       case .optionSelected(let selectedOption):
-        if state.selectedOptions.contains(selectedOption) {
-          state.selectedOptions = state.selectedOptions.filter { $0 != selectedOption }
+        if viewState.selectedOptions.contains(selectedOption) {
+          viewState.selectedOptions = viewState.selectedOptions.filter { $0 != selectedOption }
         } else {
-          state.selectedOptions.append(selectedOption)
+          viewState.selectedOptions.append(selectedOption)
         }
         
       case .currentSimilarQuotationIndexChanged(let index):
-        state.currentSimilarQuotationIndex = index
-        budgetRangeIntent.send(action: .budgetChanged(newBudgetPrice: state.similarQuotations[index].price))
+        viewState.currentSimilarQuotationIndex = index
+        budgetRangeIntent.send(action: .budgetChanged(newBudgetPrice: viewState.similarQuotations[index].price))
         
       case .choiceQuit:
         send(action: .showAlertChanged(showAlert: false))
         navigationIntent.send(action: .onTapSimilarQuotationBackButton)
-        state.selectedOptions = []
+        viewState.selectedOptions = []
         
       case .choiceAdd:
-        Quotation.shared.send(action: .similarOptionsAdded(option: state.selectedOptions))
+        Quotation.shared.send(action: .similarOptionsAdded(option: viewState.selectedOptions))
         send(action: .choiceQuit)
         
       case .showAlertChanged(let showAlert):
-        state.showAlert = showAlert
+        viewState.showAlert = showAlert
     }
   }
 }

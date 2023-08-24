@@ -13,14 +13,14 @@ struct ModelTypeCellView: IntentBindingType {
   
   var intent: ModelTypeCellIntentType { container.intent }
   
-  var state: ModelTypeCellModel.State { intent.state }
+  var viewState: ModelTypeCellModel.State { intent.viewState }
   
 }
 
 extension ModelTypeCellView {
   
   private var isModalPresenting: Binding<Bool> {
-    .init(get: { state.isModalPresenting && !state.modelTypeDetailState.isEmpty },
+    .init(get: { viewState.isModalPresenting && !viewState.modelTypeDetailState.isEmpty },
           set: { intent.send(action: .onTapDetailButton(isPresenting: $0)) })
   }
   
@@ -30,23 +30,23 @@ extension ModelTypeCellView: View {
   
   var body: some View {
     VStack(alignment: .leading) {
-      Text(state.title)
+      Text(viewState.title)
         .catalogFont(type: .HeadKRMedium18)
       Spacer().frame(height: 8)
       VStack {
         ZStack(alignment: .topTrailing) {
-          AsyncCachedImage(url: state.imageURL) { image in
+          AsyncCachedImage(url: viewState.imageURL) { image in
             image
               .resizable()
               .frame(maxWidth: CGFloat(UIScreen.main.bounds.width - 32).scaledWidth, maxHeight: CGFloat(130).scaledHeight)
           }
           HMGButton {
-            intent.send(action: .onTapDetailButton(isPresenting: !state.isModalPresenting))
+            intent.send(action: .onTapDetailButton(isPresenting: !viewState.isModalPresenting))
           }
           
         }
         Spacer().frame(height: 8)
-        ModelTypeButtonContainer(intent: intent, options: state.optionStates)
+        ModelTypeButtonContainer(intent: intent, options: viewState.optionStates)
         .padding(.horizontal, 4)
         .padding(.bottom, 4)
       }
@@ -54,9 +54,9 @@ extension ModelTypeCellView: View {
       .cornerRadius(8)
     }
     .CLDialogFullScreenCover(show: isModalPresenting) {
-      CarouselModalPopUpComponent(modalContentItems: state.modelTypeDetailState, selectedId: state.selectedId ,submitAction: { id in
+      CarouselModalPopUpComponent(modalContentItems: viewState.modelTypeDetailState, selectedId: viewState.selectedId ,submitAction: { id in
         intent.send(action: .onTapOptions(id: id))
-        intent.send(action: .onTapDetailButton(isPresenting: !state.isModalPresenting))
+        intent.send(action: .onTapDetailButton(isPresenting: !viewState.isModalPresenting))
         // TODO 가격 추가하기
       }, content: { detailState in
         ModelTypeModalContentView(state: detailState)
@@ -71,7 +71,7 @@ extension ModelTypeCellView {
   @ViewBuilder
   static func build(intent: ModelTypeCellIntent) -> some View {
     ModelTypeCellView(container: .init(intent: intent as ModelTypeCellIntent,
-                                   state: intent.state,
+                                   state: intent.viewState,
                                    modelChangePublisher: intent.objectWillChange))
   }
 }

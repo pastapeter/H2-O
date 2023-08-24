@@ -14,7 +14,7 @@ struct QuotationInteriorView: View {
   var body: some View {
     HStack {
       GeometryReader { proxy in
-        AsyncCachedImage(url: quotation.state.quotation?.trim.internalImage) { img in
+        AsyncCachedImage(url: quotation.viewState.quotation?.trim.internalImage) { img in
           img
             .offset(x: offset)
             .gesture(

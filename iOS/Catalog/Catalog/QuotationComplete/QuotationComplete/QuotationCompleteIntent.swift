@@ -10,7 +10,7 @@ import Combine
 
 protocol QuotationCompleteIntentType {
   
-  var state: QuotationCompleteModel.State { get }
+  var viewState: QuotationCompleteModel.State { get }
   
   func send(action: QuotationCompleteModel.ViewAction)
   
@@ -23,17 +23,17 @@ protocol QuotationCompleteIntentType {
 
 final class QuotationCompleteIntent: ObservableObject {
   
-  init(initialState: State, repository: QuotationCompleteRepositoryProtocol, quotationService: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
-    state = initialState
+  init(initialState: ViewState, repository: QuotationCompleteRepositoryProtocol, quotationService: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
+    viewState = initialState
     self.repository = repository
     self.quotationService = quotationService
     self.navigationIntent = navigationIntent
   }
   
-  typealias State = QuotationCompleteModel.State
+  typealias ViewState = QuotationCompleteModel.State
   typealias ViewAction = QuotationCompleteModel.ViewAction
   
-  @Published var state: State
+  @Published var viewState: ViewState
   
   var cancellable: Set<AnyCancellable> = []
   var quotationService: QuotationCompleteService
@@ -52,19 +52,19 @@ extension QuotationCompleteIntent: QuotationCompleteIntentType, IntentType {
           do {
             let ids = try quotationService.getPowertrainAndDriveTrain()
             let resultOfCalculation = try await repository.calculateFuelAndDisplacement(with: ids.0, andwith: ids.1)
-            state.technicalSpec = resultOfCalculation
+            viewState.technicalSpec = resultOfCalculation
           } catch(let e) {
             print("@@@@배기량 계산 실패 \(e)")
           }
         }
-        state.summaryQuotation = Quotation.shared.getSummary()
+        viewState.summaryQuotation = Quotation.shared.getSummary()
         
       case .onTapDeleteButton(let id):
-        state.alertCase = .delete(id: id)
+        viewState.alertCase = .delete(id: id)
         send(action: .showAlertChanged(showAlert: true))
         
       case .onTapModifyButton(let navigationIndex, let title):
-        state.alertCase = .modify(index: navigationIndex, title: title)
+        viewState.alertCase = .modify(index: navigationIndex, title: title)
         send(action: .showAlertChanged(showAlert: true))
 
       case .movePage(let index):
@@ -79,9 +79,9 @@ extension QuotationCompleteIntent: QuotationCompleteIntentType, IntentType {
         send(action: .showAlertChanged(showAlert: false))
 
       case .showSheetChanged(let showSheet):
-        state.showSheet = showSheet
+        viewState.showSheet = showSheet
       case .showAlertChanged(let showAlert):
-        state.showAlert = showAlert
+        viewState.showAlert = showAlert
     }
   }
 }

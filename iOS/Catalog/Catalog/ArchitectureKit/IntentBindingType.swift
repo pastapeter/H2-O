@@ -14,6 +14,6 @@ protocol IntentBindingType {
 
   var container: Container<IntentType, State> { get }
   var intent: IntentType { get }
-  var state: State { get }
+  var viewState: State { get }
 
 }

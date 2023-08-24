@@ -10,7 +10,7 @@ import Combine
 
 protocol OptionCardScrollIntentType: AnyObject {
 
-  var state: OptionCardScrollModel.State { get }
+  var viewState: OptionCardScrollModel.State { get }
 
   func send(action: OptionCardScrollModel.ViewAction)
 
@@ -22,16 +22,16 @@ protocol OptionCardScrollIntentType: AnyObject {
 
 final class OptionCardScrollIntent: ObservableObject {
 
-  init(initialState: State, repository: OptionSelectionRepositoryProtocol, parent: OptionSelectionCollectable?) {
-    state = initialState
+  init(initialState: ViewState, repository: OptionSelectionRepositoryProtocol, parent: OptionSelectionCollectable?) {
+    viewState = initialState
     self.repository = repository
     self.parent = parent
   }
 
-  typealias State = OptionCardScrollModel.State
+  typealias ViewState = OptionCardScrollModel.State
   typealias ViewAction = OptionCardScrollModel.ViewAction
 
-  @Published var state: State
+  @Published var viewState: ViewState
 
   var cancellable: Set<AnyCancellable> = []
   private(set) var repository: OptionSelectionRepositoryProtocol
@@ -47,16 +47,16 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
     case .onAppear:
       onAppear()
     case .onTapFilterButton(let index):
-      state.filterState.selectedFilterId = index
-      filterOptions(with: state.filterState.filters[index])
+      viewState.filterState.selectedFilterId = index
+      filterOptions(with: viewState.filterState.filters[index])
     case .fetchCardState(let from, let to):
       fetchCardState(from: from, to: to)
     case .onTapOption(let id):
-      if state.isExtraOptionTab {
+      if viewState.isExtraOptionTab {
         parent?.selectedOption(with: id)
       }
     case .cardStates(let states):
-      state.cardStates = states
+      viewState.cardStates = states
     }
   }
   
@@ -68,21 +68,21 @@ extension OptionCardScrollIntent {
   
   private func onAppear() {
     if totalCardState.isEmpty {
-      if state.isExtraOptionTab {
+      if viewState.isExtraOptionTab {
         fetchAllExtraOptions()
       } else {
         fetchAllDefaultOptions()
       }
     } else {
-      filterOptions(with: state.filterState.filters[state.filterState.selectedFilterId])
+      filterOptions(with: viewState.filterState.filters[viewState.filterState.selectedFilterId])
     }
   }
   
   private func filterOptions(with category: OptionCategory) {
     if category != .total {
-      state.cardStates = self.totalCardState.filter { $0.category == category }
+      viewState.cardStates = self.totalCardState.filter { $0.category == category }
     } else {
-      state.cardStates = self.totalCardState
+      viewState.cardStates = self.totalCardState
     }
   }
   
@@ -91,11 +91,7 @@ extension OptionCardScrollIntent {
     Task {
       do {
         let states: [DefaultOption] = try await repository.fetchAllOptions()
-        let defaultCellInfos = states.map { return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags,
-                                                                         name: $0.name,
-                                                                         imageURL: $0.image,
-                                                                         containsHmgData: $0.containsHmgData,
-                                                                         category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock()) }
+        let defaultCellInfos = states.map { return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags, name: $0.name, imageURL: $0.image, containsHmgData: $0.containsHmgData, category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock()) }
         
         
         
@@ -104,7 +100,7 @@ extension OptionCardScrollIntent {
         send(action: .cardStates(states: totalCardState))
       } catch (let e) {
         print(e)
-        state.error = e
+        viewState.error = e
       }
     }
     
@@ -127,7 +123,7 @@ extension OptionCardScrollIntent {
         send(action: .cardStates(states: totalCardState))
       } catch (let e) {
         print(e)
-        state.error = e
+        viewState.error = e
       }
     }
     
@@ -137,7 +133,7 @@ extension OptionCardScrollIntent {
     
     Task {
       do {
-        if state.isExtraOptionTab {
+        if viewState.isExtraOptionTab {
           let states : [ExtraOption] = try await repository.fetchOption(from: from, to: to)
           
           let carStateArray = states.map {
@@ -154,7 +150,7 @@ extension OptionCardScrollIntent {
           send(action: .cardStates(states: carStateArray))
         }
       } catch(let e) {
-        state.error = e
+        viewState.error = e
       }
     }
   }

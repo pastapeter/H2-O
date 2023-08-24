@@ -16,10 +16,10 @@ struct QuotationExteriorView: View {
     var body: some View {
       VStack {
         Spacer().frame(height: titleTopPadding)
-        Text(quotation.state.quotation?.trim.name ?? "")
+        Text(quotation.viewState.quotation?.trim.name ?? "")
           .catalogFont(type: .HeadKRBold65)
           .foregroundColor(.white)
-        AsyncCachedImage(url: quotation.state.quotation?.trim.externalImage) { image in
+        AsyncCachedImage(url: quotation.viewState.quotation?.trim.externalImage) { image in
           image
             .resizable()
             .frame(maxWidth: .infinity, maxHeight: externalImageHeight)

@@ -10,6 +10,8 @@ import Combine
 
 protocol ModelTypeSelectionIntentType: AnyObject {
   
+  var viewState: ModelTypeSelectionModel.ViewState { get }
+  
   var state: ModelTypeSelectionModel.State { get }
   
   func send(action: ModelTypeSelectionModel.ViewAction)
@@ -20,18 +22,20 @@ protocol ModelTypeSelectionIntentType: AnyObject {
 
 final class ModelTypeSelectionIntent: ObservableObject {
   
-  init(initialState: State, repository: ModelTypeRepositoryProtocol) {
+  init(initialState: ModelTypeSelectionModel.State, initialViewState: ViewState, repository: ModelTypeRepositoryProtocol) {
     state = initialState
+    viewState = initialViewState
     self.repository = repository
   }
   
   private var repository: ModelTypeRepositoryProtocol
   
-  typealias State = ModelTypeSelectionModel.State
+  typealias ViewState = ModelTypeSelectionModel.ViewState
   
   typealias ViewAction = ModelTypeSelectionModel.ViewAction
   
-  @Published var state: State
+  @Published var viewState: ViewState
+  var state: ModelTypeSelectionModel.State
   
   var cancellable: Set<AnyCancellable> = []
   private var quotation = Quotation.shared
@@ -41,12 +45,12 @@ final class ModelTypeSelectionIntent: ObservableObject {
 }
 
 extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
-  
+ 
   func mutate(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .onAppear:
         Task {
-          let options = try await repository.fetch(carId: state.selectedTrimId)
+          let options = try await repository.fetch(carId: viewState.selectedTrimId)
           send(action: .modelTypeOptions(options: options))
           send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: self.powerTrainOptionId))
         }
@@ -55,7 +59,7 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
           await calculateFuelEfficiency(typeID:typeID, selectedOptionId: selectedOptionId)
         }
       case .modelTypeOptions(let options):
-        state.modelTypeStateArray = convertToModelTypeModelState(from: options)
+      state.modelTypeStateArray = convertToModelTypeModelState(from: options)
         
       case .powertrainSelected(option: let option):
         Quotation.shared.send(action: .isPowertrainChanged(powertrain: option))
@@ -84,15 +88,15 @@ extension ModelTypeSelectionIntent {
         self.driveTrainOptionId = selectedOptionId
       }
       
-      let powerTrainTitle = quotation.state.quotation?.powertrain.name ?? ""
-      let driveTrainTitle = quotation.state.quotation?.drivetrain.name ?? ""
+      let powerTrainTitle = quotation.viewState.quotation?.powertrain.name ?? ""
+      let driveTrainTitle = quotation.viewState.quotation?.drivetrain.name ?? ""
       
       print(powerTrainOptionId, driveTrainOptionId)
       let result = try await self.repository
         .calculateFuelAndDisplacement(with: self.driveTrainOptionId,
                                       andwith: self.powerTrainOptionId)
       
-      state.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
+      viewState.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
                                                wheelType: driveTrainTitle,
                                                displacement: result.displacement,
                                                fuelEfficiency: result.fuelEfficiency)

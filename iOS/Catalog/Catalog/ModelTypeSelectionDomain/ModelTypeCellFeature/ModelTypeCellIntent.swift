@@ -10,7 +10,7 @@ import Combine
 
 protocol ModelTypeCellIntentType {
   
-  var state: ModelTypeCellModel.State { get }
+  var viewState: ModelTypeCellModel.State { get }
   
   func send(action: ModelTypeCellModel.ViewAction, viewEffect: (() -> Void)?)
   
@@ -20,16 +20,16 @@ protocol ModelTypeCellIntentType {
 
 final class ModelTypeCellIntent: ObservableObject {
   
-  init(initialState: State, parent: ModelTypeSelectionIntentType? = nil) {
-    state = initialState
+  init(initialState: ViewState, parent: ModelTypeSelectionIntentType? = nil) {
+    viewState = initialState
     self.parent = parent
   }
   
-  typealias State = ModelTypeCellModel.State
+  typealias ViewState = ModelTypeCellModel.State
   
   typealias ViewAction = ModelTypeCellModel.ViewAction
   
-  @Published var state: State = .init()
+  @Published var viewState: ViewState = .init()
   
   var cancellable: Set<AnyCancellable> = []
   
@@ -42,10 +42,10 @@ extension ModelTypeCellIntent: ModelTypeCellIntentType, IntentType {
   func mutate(action: ModelTypeCellModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .onTapDetailButton(let isPresenting):
-        state.isModalPresenting = isPresenting
+        viewState.isModalPresenting = isPresenting
       case .onTapOptions(let id):
         toggleAll(id: id)
-        state.selectedId = id
+        viewState.selectedId = id
         sendOptionToQuotationService(of: id)
     }
   }
@@ -53,18 +53,18 @@ extension ModelTypeCellIntent: ModelTypeCellIntentType, IntentType {
 
 extension ModelTypeCellIntent {
   private func selectedModelTypeOption(of id: Int) -> ModelTypeOption? {
-    state.modelTypeDetailState.first { $0.id == id }?.convertModelTypeDetailStateToModelTypeOption()
+    viewState.modelTypeDetailState.first { $0.id == id }?.convertModelTypeDetailStateToModelTypeOption()
   }
   
   private func sendOptionToQuotationService(of id: Int) {
-    if state.title == "파워트레인" {
-      parent?.send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: state.selectedId))
+    if viewState.title == "파워트레인" {
+      parent?.send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: viewState.selectedId))
       if let selectedOption = selectedModelTypeOption(of: id) {
         parent?.send(action: .powertrainSelected(option: selectedOption))
       }
     }
-    else if state.title == "구동방식" {
-      parent?.send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: state.selectedId))
+    else if viewState.title == "구동방식" {
+      parent?.send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: viewState.selectedId))
       if let selectedOption = selectedModelTypeOption(of: id) {
         parent?.send(action: .drivetrainSelected(option: selectedOption))
       }
@@ -80,11 +80,11 @@ extension ModelTypeCellIntent {
 extension ModelTypeCellIntent {
   
   private func toggleAll(id: Int) {
-    for i in 0..<state.optionStates.count {
-      if state.optionStates[i].id == id {
-        state.optionStates[i].isSelected = true
+    for i in 0..<viewState.optionStates.count {
+      if viewState.optionStates[i].id == id {
+        viewState.optionStates[i].isSelected = true
       } else {
-        state.optionStates[i].isSelected = false
+        viewState.optionStates[i].isSelected = false
       }
     }
   }

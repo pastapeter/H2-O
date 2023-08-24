@@ -8,13 +8,13 @@
 import Combine
 import Foundation
 
-final class Container<Intent, State>: ObservableObject {
+final class Container<Intent, ViewState>: ObservableObject {
 
   // MARK: Lifecycle
 
   init(
     intent: Intent,
-    state: State,
+    state: ViewState,
     modelChangePublisher: ObjectWillChangePublisher) {
     self.intent = intent
     self.state = state
@@ -28,7 +28,7 @@ final class Container<Intent, State>: ObservableObject {
   // MARK: Internal
 
   let intent: Intent
-  let state: State
+  let state: ViewState
 
   // MARK: Private
 

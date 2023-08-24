@@ -68,7 +68,7 @@ extension QuotationCompleteSheet: View {
         Text("상세견적").catalogFont(type: .HeadKRMedium16).leadingTitle()
         
         // 상세견적
-        DetailQuotationList(intent: intent, state: intent.state)
+        DetailQuotationList(intent: intent, state: intent.viewState)
         
         Button {
           presentationMode.wrappedValue.dismiss()

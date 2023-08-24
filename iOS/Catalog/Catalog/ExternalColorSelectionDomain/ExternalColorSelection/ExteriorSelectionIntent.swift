@@ -10,7 +10,7 @@ import Combine
 
 protocol ExteriorSelectionIntentType {
 
-  var state: ExteriorSelectionModel.State { get }
+  var viewState: ExteriorSelectionModel.State { get }
 
   func send(action: ExteriorSelectionModel.ViewAction)
 
@@ -20,18 +20,18 @@ protocol ExteriorSelectionIntentType {
 
 final class ExteriorSelectionIntent: ObservableObject {
 
-  init(initialState: State, repository: ExteriorColorRepositoryProtocol) {
-    state = initialState
+  init(initialState: ViewState, repository: ExteriorColorRepositoryProtocol) {
+    viewState = initialState
     self.repository = repository
   }
 
   private var repository: ExteriorColorRepositoryProtocol
 
-  typealias State = ExteriorSelectionModel.State
+  typealias ViewState = ExteriorSelectionModel.State
 
   typealias ViewAction = ExteriorSelectionModel.ViewAction
 
-  @Published var state: State
+  @Published var viewState: ViewState
 
   var cancellable: Set<AnyCancellable> = []
 
@@ -44,7 +44,7 @@ extension ExteriorSelectionIntent: ExteriorSelectionIntentType, IntentType {
     case .onAppear:
       Task {
         do {
-          let externalColors = try await repository.fetch(with: state.selectedTrimId)
+          let externalColors = try await repository.fetch(with: viewState.selectedTrimId)
           send(action: .fetchColors(colors: externalColors))
         } catch let _ {
           // TODO: Error Handling
@@ -52,7 +52,7 @@ extension ExteriorSelectionIntent: ExteriorSelectionIntentType, IntentType {
       }
     case .fetchColors(let colors):
       let colorStates = colors.map { ExteriorColorState(isSelected: false, color: $0) }
-      state.colors = colorStates
+      viewState.colors = colorStates
       if !colorStates.isEmpty {
         send(action: .onTapColor(id: colorStates[0].color.id))
         // TODO:
@@ -60,13 +60,13 @@ extension ExteriorSelectionIntent: ExteriorSelectionIntentType, IntentType {
     case .changeSelectedExternalImageURL:
       print("External Image Urls")
     case .onTapColor(let id):
-      state.selectedColorId = id
-      for i in state.colors.indices {
-        if state.colors[i].color.id == id {
-          state.colors[i].isSelected = true
+      viewState.selectedColorId = id
+      for i in viewState.colors.indices {
+        if viewState.colors[i].color.id == id {
+          viewState.colors[i].isSelected = true
           send(action: .changeSelectedExternalImageURL(url: []))
         } else {
-          state.colors[i].isSelected = false
+          viewState.colors[i].isSelected = false
         }
       }
     }

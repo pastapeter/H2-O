@@ -11,18 +11,18 @@ struct CLBudgetRangeView: IntentBindingType {
     @StateObject var container: Container<CLBudgetRangeIntentType, CLBudgetRangeModel.State>
 
     var intent: CLBudgetRangeIntentType { container.intent }
-    var state: CLBudgetRangeModel.State { intent.state }
+    var viewState: CLBudgetRangeModel.State { intent.viewState }
 
     @SwiftUI.State var isFloatingExpanded: Bool = false
 }
 
 extension CLBudgetRangeView {
     var budgetPriceBinding: Binding<CLNumber> {
-        .init(get: { state.budgetPrice },
+        .init(get: { viewState.budgetPrice },
               set: { intent.send(action: .budgetChanged(newBudgetPrice: $0)) })
     }
     var isExceedBudgetBinding: Binding<Bool> {
-        .init(get: { state.isExceedBudget },
+        .init(get: { viewState.isExceedBudget },
               set: { _ in intent.send(action: .exceedBudgetChanged) })
     }
 }
@@ -42,7 +42,7 @@ extension CLBudgetRangeView: View {
         // MARK: - 예산범위 title
         ZStack {
           HStack {
-            Text(state.status == .similarQuotation ? "유사견적 가격" : "예산 범위")
+            Text(viewState.status == .similarQuotation ? "유사견적 가격" : "예산 범위")
               .catalogFont(type: .HeadKRMedium14)
               .foregroundColor(Color.gray50)
             Spacer()
@@ -51,7 +51,7 @@ extension CLBudgetRangeView: View {
             Spacer()
             Text(attributedString)
               .catalogFont(type: .TextKRRegular12)
-            if state.status != .similarQuotation {
+            if viewState.status != .similarQuotation {
               Button {
                 isFloatingExpanded.toggle()
               } label: {
@@ -66,29 +66,29 @@ extension CLBudgetRangeView: View {
 
         if isFloatingExpanded {
           // MARK: - 슬라이더
-          switch state.status {
+          switch viewState.status {
             case .`default`, .complete:
               CLSliderView(intent: intent,
-                           minimumBudget: state.minimumPrice,
-                           maximumBudget: state.maximumPrice,
-                           currentQuotationPrice: state.currentQuotationPrice,
-                           status: state.status,
+                           minimumBudget: viewState.minimumPrice,
+                           maximumBudget: viewState.maximumPrice,
+                           currentQuotationPrice: viewState.currentQuotationPrice,
+                           status: viewState.status,
                            budgetPriceBinding: budgetPriceBinding,
                            isExceedBudget: isExceedBudgetBinding)
             case .similarQuotation:
-              CLSimilarQuotationSlideView(minimumBudget: state.minimumPrice,
-                                          maximumBudget: state.maximumPrice,
-                                          currentQuotationPrice: state.currentQuotationPrice,
+              CLSimilarQuotationSlideView(minimumBudget: viewState.minimumPrice,
+                                          maximumBudget: viewState.maximumPrice,
+                                          currentQuotationPrice: viewState.currentQuotationPrice,
                                           similarQuotationPrice: CLNumber(41000000))
           }
           // MARK: - 확인 버튼
-          if state.status == .complete {
+          if viewState.status == .complete {
             CLSimilarQuotationButton(isExceedBudget: isExceedBudgetBinding, intent: intent)
           }
         }
       }
       .padding(.horizontal, 16)
-      .background(state.isExceedBudget ? Color("ExceedBudgetColor") : Color.primary700)
+      .background(viewState.isExceedBudget ? Color("ExceedBudgetColor") : Color.primary700)
       .cornerRadius(10)
       Spacer()
     }
@@ -96,7 +96,7 @@ extension CLBudgetRangeView: View {
     .padding(.top, CGFloat(12).scaledHeight)
     .onAppear {
       intent.send(action: .onAppear)
-      if state.status == .similarQuotation || state.status == .complete {
+      if viewState.status == .similarQuotation || viewState.status == .complete {
         isFloatingExpanded = true
       }
     }
@@ -109,23 +109,23 @@ extension CLBudgetRangeView {
     static func build(intent: CLBudgetRangeIntent) -> some View {
         CLBudgetRangeView(container: .init(
             intent: intent as CLBudgetRangeIntentType,
-            state: intent.state,
+            state: intent.viewState,
             modelChangePublisher: intent.objectWillChange))
     }
 }
 
 extension CLBudgetRangeView {
     var attributedString: AttributedString {
-        let headString = ((state.status == .similarQuotation) ? "내 견적 " : "설정한 예산") +
-      ((!state.isExceedBudget && (state.status == .default)) ? "까지 " : "보다 ")
-        let budgetString = state.budgetGap.won
-        let tailString = (state.isExceedBudget ?
-                          "더 들었어요" : (state.status == .default) ? "남았어요" : (state.status == .complete) ? "아꼈어요" : "비싸요")
+        let headString = ((viewState.status == .similarQuotation) ? "내 견적 " : "설정한 예산") +
+      ((!viewState.isExceedBudget && (viewState.status == .default)) ? "까지 " : "보다 ")
+        let budgetString = viewState.budgetGap.won
+        let tailString = (viewState.isExceedBudget ?
+                          "더 들었어요" : (viewState.status == .default) ? "남았어요" : (viewState.status == .complete) ? "아꼈어요" : "비싸요")
         var text = AttributedString(headString + budgetString + " " + tailString + ".")
         guard let range = text.range(of: budgetString ) else { return "" }
         text.foregroundColor = Color.gray50
         text[range].font = UIFont(name: "HyundaiSansText-Medium", size: 12)
-        text[range].foregroundColor = state.isExceedBudget ? Color.sand : Color.activeBlue2
+        text[range].foregroundColor = viewState.isExceedBudget ? Color.sand : Color.activeBlue2
         return text
     }
 }

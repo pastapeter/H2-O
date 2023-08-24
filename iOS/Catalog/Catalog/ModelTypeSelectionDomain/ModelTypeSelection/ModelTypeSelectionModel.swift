@@ -9,11 +9,14 @@ import Foundation
 
 enum ModelTypeSelectionModel {
 
-  struct State: Equatable {
+  struct ViewState: Equatable {
 
     var selectedTrimId: Int = 1
-    var modelTypeStateArray: [ModelTypeCellModel.State] = []
     var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerState = .mock()
+  }
+  
+  struct State: Equatable {
+    var modelTypeStateArray: [ModelTypeCellModel.State] = []
   }
 
   enum ViewAction {

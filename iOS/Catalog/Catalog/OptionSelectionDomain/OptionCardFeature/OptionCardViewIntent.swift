@@ -10,7 +10,7 @@ import Combine
 
 protocol OptionCardViewIntentType {
   
-  var state: OptionCardModel.State { get }
+  var viewState: OptionCardModel.State { get }
 
   func send(action: OptionCardModel.ViewAction)
 
@@ -20,16 +20,16 @@ protocol OptionCardViewIntentType {
 
 final class OptionCardViewIntent: ObservableObject {
   
-  init(initialState: State, parent: OptionCardScrollIntentType, repository: OptionSelectionRepositoryProtocol) {
-    state = initialState
+  init(initialState: ViewState, parent: OptionCardScrollIntentType, repository: OptionSelectionRepositoryProtocol) {
+    viewState = initialState
     self.parent = parent
     self.repository = repository
   }
   
-  typealias State = OptionCardModel.State
+  typealias ViewState = OptionCardModel.State
   typealias ViewAction = OptionCardModel.ViewAction
   
-  @Published var state: State
+  @Published var viewState: ViewState
   
   var cancellable: Set<AnyCancellable> = []
   weak var parent: OptionCardScrollIntentType?
@@ -45,13 +45,13 @@ extension OptionCardViewIntent: OptionCardViewIntentType, IntentType {
       
       Task {
         do {
-          if state.isPackage {
-            state.packageOption = try await repository.fetchPackageInfo(of: state.id)
+          if viewState.isPackage {
+            viewState.packageOption = try await repository.fetchPackageInfo(of: viewState.id)
             await MainActor.run(body: {
               viewEffect?()
             })
           } else {
-            state.defaultOptionDetail = try await repository.fetchDetailInfo(of: state.id)
+            viewState.defaultOptionDetail = try await repository.fetchDetailInfo(of: viewState.id)
             await MainActor.run(body: {
               viewEffect?()
             })

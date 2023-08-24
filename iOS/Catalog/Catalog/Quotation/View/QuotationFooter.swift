@@ -15,7 +15,7 @@ struct QuotationFooter: IntentBindingType {
   @StateObject var container: Container<QuotationIntentType , QuotationModel.State>
   
   var intent: QuotationIntentType { container.intent }
-  var state: QuotationModel.State { intent.state }
+  var viewState: QuotationModel.State { intent.viewState }
   
   var prevAction: () -> Void
   var nextAction: () -> Void
@@ -31,7 +31,7 @@ extension QuotationFooter: View {
       if currentPage != 5 {
         CLQuotationPriceBar(
           showQuotationSummarySheet: $showQuotationSummarySheet,
-          state: state,
+          state: viewState,
           content: {
             CLCapsuleButton(width: 86, height: 36, text: "견적 요약", action: { showQuotationSummarySheet.toggle() })
           })
@@ -44,7 +44,7 @@ extension QuotationFooter: View {
         CLQuotationPriceBar(
           showQuotationSummarySheet:
             $showQuotationSummarySheet,
-          state: state,
+          state: viewState,
           content: {
             Text("합리적인 가격으로 완성된\n나만의 팰리세이드가 탄생했어요!")
               .catalogFont(type: .TextKRMedium12)
@@ -66,7 +66,7 @@ extension QuotationFooter {
     
     QuotationFooter(container: .init(
       intent: intent as QuotationIntentType,
-      state: intent.state,
+      state: intent.viewState,
       modelChangePublisher: intent.objectWillChange), prevAction: prevAction, nextAction: nextAction, showQuotationSummarySheet: .constant(false), currentPage: currentPage)
     
   }
