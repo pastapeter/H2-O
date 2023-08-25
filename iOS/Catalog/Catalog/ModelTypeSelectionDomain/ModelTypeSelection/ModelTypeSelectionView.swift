@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ModelTypeSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<ModelTypeSelectionIntentType, ModelTypeSelectionModel.ViewState>
+  @StateObject var container: Container<ModelTypeSelectionIntentType, ModelTypeSelectionModel.ViewState, ModelTypeSelectionModel.State>
 
   var intent: ModelTypeSelectionIntentType {
     container.intent
