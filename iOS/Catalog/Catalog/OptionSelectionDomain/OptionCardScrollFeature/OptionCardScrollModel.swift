@@ -9,7 +9,7 @@ import Foundation
 
 enum OptionCardScrollModel {
 
-  struct State {
+  struct ViewState {
     var filterState: FilterState = .init()
     var cardStates: [OptionCardModel.State]
     var selectedOptionId: Int = 0
@@ -17,6 +17,10 @@ enum OptionCardScrollModel {
     var endIndex: Int = 0
     var isExtraOptionTab: Bool = true
     var error: Error?
+  }
+  
+  struct State {
+    
   }
 
   enum ViewAction {

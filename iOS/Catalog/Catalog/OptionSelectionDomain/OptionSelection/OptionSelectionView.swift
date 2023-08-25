@@ -30,8 +30,8 @@ extension OptionSelectionView: View {
       
       Spacer().frame(height: 16)
       TabView(selection: currentPage) {
-        OptionCardScollView.build(intent: .init(initialState: .init(cardStates: []), repository: intent.repository, parent: intent as? OptionSelectionCollectable)).tag(0)
-        OptionCardScollView.build(intent: .init(initialState: .init(filterState: FilterState(filters: OptionCategory.defaultOptionFilter, selectedFilterId: 0) ,cardStates: [], isExtraOptionTab : false), repository: intent.repository, parent: intent as? OptionSelectionCollectable)).tag(1)
+        OptionCardScollView.build(intent: .init(initialState: .init(), initialViewState: .init(cardStates: []), repository: intent.repository, parent: intent as? OptionSelectionCollectable)).tag(0)
+        OptionCardScollView.build(intent: .init(initialState: .init(),initialViewState: .init(filterState: FilterState(filters: OptionCategory.defaultOptionFilter, selectedFilterId: 0) ,cardStates: [], isExtraOptionTab : false), repository: intent.repository, parent: intent as? OptionSelectionCollectable)).tag(1)
       }
       .tabViewStyle(.page(indexDisplayMode: .never))
     }

@@ -78,9 +78,3 @@ extension ModelTypeCellView {
                                    modelChangePublisher: intent.objectWillChange))
   }
 }
-
-struct ModelTypeCellView_Previews: PreviewProvider {
-  static var previews: some View {
-    return ModelTypeCellView.build(intent: .init(initialState: .init()))
-  }
-}

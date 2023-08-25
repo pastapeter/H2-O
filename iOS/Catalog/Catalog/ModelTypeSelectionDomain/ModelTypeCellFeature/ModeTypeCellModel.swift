@@ -26,7 +26,7 @@ enum ModelTypeCellModel: Equatable {
 
   }
   
-  struct State: Equatable {
+  struct State: Equatable, Hashable {
     
   }
 

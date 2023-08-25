@@ -10,7 +10,9 @@ import Combine
 
 protocol OptionCardScrollIntentType: AnyObject {
 
-  var viewState: OptionCardScrollModel.State { get }
+  var viewState: OptionCardScrollModel.ViewState { get }
+  
+  var state: OptionCardScrollModel.State { get }
 
   func send(action: OptionCardScrollModel.ViewAction)
 
@@ -22,16 +24,19 @@ protocol OptionCardScrollIntentType: AnyObject {
 
 final class OptionCardScrollIntent: ObservableObject {
 
-  init(initialState: ViewState, repository: OptionSelectionRepositoryProtocol, parent: OptionSelectionCollectable?) {
-    viewState = initialState
+  init(initialState: State, initialViewState: ViewState, repository: OptionSelectionRepositoryProtocol, parent: OptionSelectionCollectable?) {
+    state = initialState
+    viewState = initialViewState
     self.repository = repository
     self.parent = parent
   }
 
-  typealias ViewState = OptionCardScrollModel.State
+  typealias ViewState = OptionCardScrollModel.ViewState
   typealias ViewAction = OptionCardScrollModel.ViewAction
+  typealias State = OptionCardScrollModel.State
 
   @Published var viewState: ViewState
+  var state: State
 
   var cancellable: Set<AnyCancellable> = []
   private(set) var repository: OptionSelectionRepositoryProtocol

@@ -9,15 +9,19 @@ import SwiftUI
 
 struct OptionCardScollView: IntentBindingType {
   
-  @StateObject var container: Container<OptionCardScrollIntentType, OptionCardScrollModel.State>
+  @StateObject var container: Container<OptionCardScrollIntentType,
+                                        OptionCardScrollModel.ViewState,
+                                        OptionCardScrollModel.State>
   
   var intent: OptionCardScrollIntentType {
     container.intent
   }
   
-  var viewState: OptionCardScrollModel.State {
+  var viewState: OptionCardScrollModel.ViewState {
     intent.viewState
   }
+  
+  var state: OptionCardScrollModel.State { intent.state }
   
 }
 
@@ -44,8 +48,8 @@ extension OptionCardScollView {
   @ViewBuilder
   static func build(intent: OptionCardScrollIntent) -> some View {
     
-    OptionCardScollView(container: .init(intent: intent,
-                                                state: intent.viewState,
+    OptionCardScollView(container: .init(intent: intent, viewState: intent.viewState,
+                                                state: intent.state,
                                                 modelChangePublisher: intent.objectWillChange)
                               )
   }

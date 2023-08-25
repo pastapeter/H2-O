@@ -22,8 +22,8 @@ protocol ModelTypeCellIntentType {
 
 final class ModelTypeCellIntent: ObservableObject {
   
-  init(initialState: ViewState, parent: ModelTypeSelectionIntentType? = nil) {
-    viewState = initialState
+  init(initialState: State, parent: ModelTypeSelectionIntentType? = nil) {
+    state = initialState
     self.parent = parent
   }
   
