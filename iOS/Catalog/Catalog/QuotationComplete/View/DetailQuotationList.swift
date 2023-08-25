@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailQuotationList: View {
   var intent: QuotationCompleteIntentType
-  var state: QuotationCompleteModel.State
+  var state: QuotationCompleteModel.ViewState
   @State var modeltypeFloating = true
   @State var colorFloating = false
   @State var optionFloating = false

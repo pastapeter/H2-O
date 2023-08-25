@@ -53,7 +53,8 @@ extension QuotationCompleteView: View {
 
     }
     .sheet(isPresented: showSheetBinding) {
-      QuotationCompleteSheet(state: viewState,
+      QuotationCompleteSheet(state: state,
+                            viewState: viewState,
                              modelName: intent.quotationService.getModelName(),
                              intent: intent)
     }
