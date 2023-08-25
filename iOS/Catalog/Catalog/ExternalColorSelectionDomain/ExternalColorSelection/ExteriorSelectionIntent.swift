@@ -10,7 +10,9 @@ import Combine
 
 protocol ExteriorSelectionIntentType {
 
-  var viewState: ExteriorSelectionModel.State { get }
+  var viewState: ExteriorSelectionModel.ViewState { get }
+  
+  var state: ExteriorSelectionModel.State { get }
 
   func send(action: ExteriorSelectionModel.ViewAction)
 
@@ -20,18 +22,20 @@ protocol ExteriorSelectionIntentType {
 
 final class ExteriorSelectionIntent: ObservableObject {
 
-  init(initialState: ViewState, repository: ExteriorColorRepositoryProtocol) {
-    viewState = initialState
+  init(initialState: State, initialViewState: ViewState, repository: ExteriorColorRepositoryProtocol) {
+    viewState = initialViewState
+    state = initialState
     self.repository = repository
   }
 
   private var repository: ExteriorColorRepositoryProtocol
 
-  typealias ViewState = ExteriorSelectionModel.State
-
+  typealias ViewState = ExteriorSelectionModel.ViewState
+  typealias State = ExteriorSelectionModel.State
   typealias ViewAction = ExteriorSelectionModel.ViewAction
 
   @Published var viewState: ViewState
+  var state: State
 
   var cancellable: Set<AnyCancellable> = []
 

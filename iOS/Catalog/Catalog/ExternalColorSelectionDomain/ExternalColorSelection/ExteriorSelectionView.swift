@@ -9,15 +9,12 @@ import SwiftUI
 
 struct ExteriorSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<ExteriorSelectionIntentType, ExteriorSelectionModel.State>
+  @StateObject var container: Container<ExteriorSelectionIntentType, ExteriorSelectionModel.ViewState, ExteriorSelectionModel.State>
 
-  var intent: ExteriorSelectionIntentType {
-    container.intent
-  }
+  var intent: ExteriorSelectionIntentType { container.intent }
+  var state: ExteriorSelectionModel.State { intent.state }
 
-  var viewState: ExteriorSelectionModel.State {
-    intent.viewState
-  }
+  var viewState: ExteriorSelectionModel.ViewState { intent.viewState}
 
 }
 
@@ -53,16 +50,9 @@ extension ExteriorSelectionView {
 
   @ViewBuilder
   static func build(intent: ExteriorSelectionIntent) -> some View {
-    ExteriorSelectionView(container: .init(intent: intent,
-                                                    state: intent.viewState,
+    ExteriorSelectionView(container: .init(intent: intent, viewState: intent.viewState,
+                                                    state: intent.state,
                                                     modelChangePublisher: intent.objectWillChange))
   }
 
-}
-
-struct ExternalSelectionContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-      ExteriorSelectionView.build(intent: .init(initialState: .init(selectedTrimId: 123),
-                                                         repository: MockExteriorRepository()))
-    }
 }
