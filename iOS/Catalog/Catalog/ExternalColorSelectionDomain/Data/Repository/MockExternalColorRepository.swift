@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MockExternalRepository: ExteriorColorRepositoryProtocol {
+final class MockExteriorRepository: ExteriorColorRepositoryProtocol {
 
   func fetch(with trimId: Int) async throws -> [ExteriorColor] {
     return [

@@ -12,6 +12,8 @@ protocol CacheServiceProtocol {
 
   func setImage(_ url: URL) async throws -> Data
   
+  func setImageByStream(_ url: URL) -> AsyncThrowingStream<Data, Error>
+  
 }
 
 class ImageCacheService: CacheServiceProtocol {
@@ -27,6 +29,86 @@ class ImageCacheService: CacheServiceProtocol {
       return cachePath
   }()
   
+  func configureCache(with maximumMemoryBytes: Int, with maximumDiskBytes: Int) {
+    Task {
+      await imageMemoryCache.configureCachePolicy(with: maximumMemoryBytes)
+    }
+    diskCache = DiskCache(path: formatPath(withFormatName: "image"), size: 0, capacity: UInt64(maximumDiskBytes))
+  }
+  
+  /// Fetching by AsyncThrowingStream
+  /// - Parameter url: imageURL
+  /// - Returns: Stream
+  func setImageByStream(_ url: URL) -> AsyncThrowingStream<Data, Error> {
+    
+    return AsyncThrowingStream<Data, Error> { continuation in
+      
+      Task {
+        if let image = await self.checkMemoryCache(url) {
+          Log.debug(message: "메모리캐시에 있음")
+          continuation.yield(image.imageData)
+          
+          do {
+            let imageData = try await self.getImage(with: url, etag: image.etag).imageData
+            continuation.yield(imageData)
+          } catch {
+          
+
+          }
+          
+        } else if let image = await self.checkDiskCache(url) {
+          Log.debug(message: "디스크캐시에 있음")
+          continuation.yield(image.imageData)
+          
+          do {
+            let imageData = try await self.getImage(with: url, etag: image.etag).imageData
+            continuation.yield(imageData)
+          } catch {
+
+          }
+          
+        } else {
+          let image = try await self.getImage(with: url)
+          continuation.yield(image.imageData)
+        }
+        
+        continuation.finish()
+        
+      }
+    }
+  }
+  
+  /// Async 함수로 한번에
+  /// - Parameter url: imageURL
+  /// - Returns: ImageData
+  func setImage(_ url: URL) async throws -> Data {
+    
+    if let image = await self.checkMemoryCache(url) {
+      Log.debug(message: "메모리캐시에 있음")
+       do {
+         return try await getImage(with: url, etag: image.etag).imageData
+       } catch {
+         return image.imageData
+       }
+    }
+    
+    if let image = await self.checkDiskCache(url) {
+      Log.debug(message: "디스크캐시에 있음")
+       do {
+         return try await getImage(with: url, etag: image.etag).imageData
+       } catch {
+         return image.imageData
+       }
+    }
+    
+    return try await self.getImage(with: url).imageData
+  }
+  
+}
+
+// MARK: - Naming
+extension ImageCacheService {
+  
   private func formatPath(withFormatName formatName: String) -> String {
       let formatPath = (cachePath as NSString).appendingPathComponent(formatName)
       do {
@@ -35,47 +117,6 @@ class ImageCacheService: CacheServiceProtocol {
           print("\(formatPath)를 가진 폴더를 만드는데 실패")
       }
       return formatPath
-  }
-  
-  func configureCache(with maximumMemoryBytes: Int, with maximumDiskBytes: Int) {
-    Task {
-      await imageMemoryCache.configureCachePolicy(with: maximumMemoryBytes)
-    }
-    diskCache = DiskCache(path: formatPath(withFormatName: "image"), size: 0, capacity: UInt64(maximumDiskBytes))
-  }
-  
-  func setImage(_ url: URL) async throws -> Data {
-    
-    //1. NSCache 먼저 확인하기
-    if let image = await self.checkMemoryCache(url) {
-      Log.debug(message: "메모리캐시에 있음")
-      return image.imageData
-      /*
-       do {
-         // 서버에 이미지가 바뀌었는지 확인하고
-         return try await getImage(with: url, etag: image.etag).imageData
-       } catch {
-         // 바뀌지 않았으면 내려보내
-         return image.imageData
-       }
-       */
-    }
-    
-    //2. DiskCache 확인하기
-    if let image = await self.checkDiskCache(url) {
-      Log.debug(message: "디스크캐시에 있음")
-      return image.imageData
-      /*
-       do {
-         return try await getImage(with: url, etag: image.etag).imageData
-       } catch {
-         return image.imageData
-       }
-       */
-    }
-    
-    //3. Network Request
-    return try await self.getImage(with: url).imageData
   }
   
 }

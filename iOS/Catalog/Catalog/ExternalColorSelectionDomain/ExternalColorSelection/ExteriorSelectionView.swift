@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-struct ExternalSelectionView: IntentBindingType {
+struct ExteriorSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<ExternalSelectionIntentType, ExternalSelectionModel.State>
+  @StateObject var container: Container<ExteriorSelectionIntentType, ExteriorSelectionModel.State>
 
-  var intent: ExternalSelectionIntentType {
+  var intent: ExteriorSelectionIntentType {
     container.intent
   }
 
-  var state: ExternalSelectionModel.State {
+  var state: ExteriorSelectionModel.State {
     intent.state
   }
 
 }
 
-extension ExternalSelectionView: View {
+extension ExteriorSelectionView: View {
 
   var body: some View {
     ScrollView {
@@ -33,7 +33,7 @@ extension ExternalSelectionView: View {
           Text("외장 색상을 선택해주세요")
             .catalogFont(type: .HeadKRMedium18)
           Spacer().frame(height: 8)
-          ExternalColorSelectionHorizontalList(state: state.colors,
+          ExteriorColorSelectionHorizontalList(state: state.colors,
                                                intent: intent,
                                                height: UIScreen.main.bounds.height * 183 / 812
           )
@@ -49,11 +49,11 @@ extension ExternalSelectionView: View {
 
 }
 
-extension ExternalSelectionView {
+extension ExteriorSelectionView {
 
   @ViewBuilder
-  static func build(intent: ExternalSelectionIntent) -> some View {
-    ExternalSelectionView(container: .init(intent: intent,
+  static func build(intent: ExteriorSelectionIntent) -> some View {
+    ExteriorSelectionView(container: .init(intent: intent,
                                                     state: intent.state,
                                                     modelChangePublisher: intent.objectWillChange))
   }
@@ -62,7 +62,7 @@ extension ExternalSelectionView {
 
 struct ExternalSelectionContainerView_Previews: PreviewProvider {
     static var previews: some View {
-      ExternalSelectionView.build(intent: .init(initialState: .init(selectedTrimId: 123),
-                                                         repository: MockExternalRepository()))
+      ExteriorSelectionView.build(intent: .init(initialState: .init(selectedTrimId: 123),
+                                                         repository: MockExteriorRepository()))
     }
 }

@@ -93,17 +93,17 @@ struct AsyncCachedImage<Content: View, Placeholder: View, Fail: View>: View {
     status = .loading
     Task {
       do {
-        let imageData = try await imageCacher.setImage(url)
-        if let image = Image(data: imageData) {
-          status = .loaded(image)
-          //1
-          //downSampling -> 큰 사진을 내 화면 비율에 똑맞춰서 보여주기 -> size받아와서 그 size 에 맞춰서 사진 스케일링을 해
-        } else {
-          status = .failed(AsyncCachedImageError.invalidData)
+        for try await imageData in imageCacher.setImageByStream(url) {
+          if let image = Image(data: imageData) {
+            status = .loaded(image)
+          } else {
+            status = .failed(AsyncCachedImageError.invalidData)
+          }
         }
       } catch {
         status = .failed(error)
       }
+      
     }
   }
   
