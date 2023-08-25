@@ -9,11 +9,13 @@ import SwiftUI
 
 struct ModelTypeCellView: IntentBindingType {
   
-  @StateObject var container: Container<ModelTypeCellIntentType, ModelTypeCellModel.State>
+  @StateObject var container: Container<ModelTypeCellIntentType, ModelTypeCellModel.ViewState, ModelTypeCellModel.State>
   
   var intent: ModelTypeCellIntentType { container.intent }
   
-  var viewState: ModelTypeCellModel.State { intent.viewState }
+  var viewState: ModelTypeCellModel.ViewState { intent.viewState }
+  
+  var state: ModelTypeCellModel.State { intent.state }
   
 }
 
@@ -71,7 +73,8 @@ extension ModelTypeCellView {
   @ViewBuilder
   static func build(intent: ModelTypeCellIntent) -> some View {
     ModelTypeCellView(container: .init(intent: intent as ModelTypeCellIntent,
-                                   state: intent.viewState,
+                                       viewState: intent.viewState,
+                                   state: intent.state,
                                    modelChangePublisher: intent.objectWillChange))
   }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 enum ModelTypeCellModel: Equatable {
 
-  struct State: Equatable, Hashable {
+  struct ViewState: Equatable, Hashable {
 
     func hash(into hasher: inout Hasher) {
       hasher.combine(title)
@@ -24,6 +24,10 @@ enum ModelTypeCellModel: Equatable {
     var modelTypeDetailState: [ModelTypeDetailState] = []
     var isModalPresenting = false
 
+  }
+  
+  struct State: Equatable {
+    
   }
 
   enum ViewAction: Equatable {

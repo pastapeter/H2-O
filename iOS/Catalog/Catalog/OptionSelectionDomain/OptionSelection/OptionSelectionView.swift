@@ -45,7 +45,7 @@ extension OptionSelectionView {
   @ViewBuilder
   static func build(intent: OptionSelectionIntent) -> some View {
 
-    OptionSelectionView(container: .init(intent: intent, viewState: intent.viewState, state: intent.state, modelChangePublisher: intent.objectWillChange)
+    OptionSelectionView(container: .init(intent: intent, viewState: intent.viewState, state: intent.state, modelChangePublisher: intent.objectWillChange))
   }
 
 }

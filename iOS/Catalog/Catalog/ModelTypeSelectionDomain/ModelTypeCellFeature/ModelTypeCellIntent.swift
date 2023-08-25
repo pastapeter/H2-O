@@ -10,7 +10,9 @@ import Combine
 
 protocol ModelTypeCellIntentType {
   
-  var viewState: ModelTypeCellModel.State { get }
+  var viewState: ModelTypeCellModel.ViewState { get }
+  
+  var state: ModelTypeCellModel.State { get }
   
   func send(action: ModelTypeCellModel.ViewAction, viewEffect: (() -> Void)?)
   
@@ -25,11 +27,12 @@ final class ModelTypeCellIntent: ObservableObject {
     self.parent = parent
   }
   
-  typealias ViewState = ModelTypeCellModel.State
-  
+  typealias ViewState = ModelTypeCellModel.ViewState
+  typealias State = ModelTypeCellModel.State
   typealias ViewAction = ModelTypeCellModel.ViewAction
   
   @Published var viewState: ViewState = .init()
+  var state: State = .init()
   
   var cancellable: Set<AnyCancellable> = []
   
