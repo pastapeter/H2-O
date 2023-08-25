@@ -9,7 +9,7 @@ import Foundation
 
 enum QuotationCompleteModel {
 
-  struct State: Equatable {
+  struct ViewState: Equatable {
     var summaryQuotation: SummaryCarQuotation
     var technicalSpec: ResultOfCalculationOfFuelAndDisplacement
     var nextNavIndex: Int
@@ -17,6 +17,10 @@ enum QuotationCompleteModel {
     var showSheet: Bool 
     var showAlert: Bool
     var alertTitle: String
+  }
+  
+  struct State: Equatable {
+    
   }
 
   enum ViewAction {

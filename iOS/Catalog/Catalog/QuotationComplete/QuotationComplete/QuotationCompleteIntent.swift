@@ -10,7 +10,9 @@ import Combine
 
 protocol QuotationCompleteIntentType {
   
-  var viewState: QuotationCompleteModel.State { get }
+  var viewState: QuotationCompleteModel.ViewState { get }
+  
+  var state: QuotationCompleteModel.State { get }
   
   func send(action: QuotationCompleteModel.ViewAction)
   
@@ -23,17 +25,20 @@ protocol QuotationCompleteIntentType {
 
 final class QuotationCompleteIntent: ObservableObject {
   
-  init(initialState: ViewState, repository: QuotationCompleteRepositoryProtocol, quotationService: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
-    viewState = initialState
+  init(initialState: State, initialViewState: ViewState, repository: QuotationCompleteRepositoryProtocol, quotationService: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
+    viewState = initialViewState
+    
     self.repository = repository
     self.quotationService = quotationService
     self.navigationIntent = navigationIntent
   }
   
-  typealias ViewState = QuotationCompleteModel.State
+  typealias ViewState = QuotationCompleteModel.ViewState
+  typealias State = QuotationCompleteModel.State
   typealias ViewAction = QuotationCompleteModel.ViewAction
   
   @Published var viewState: ViewState
+  var state: QuotationCompleteModel.State
   
   var cancellable: Set<AnyCancellable> = []
   var quotationService: QuotationCompleteService
