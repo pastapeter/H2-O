@@ -9,9 +9,10 @@ import SwiftUI
 
 struct OptionSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<OptionSelectionIntentType, OptionSelectionModel.State>
+  @StateObject var container: Container<OptionSelectionIntentType, OptionSelectionModel.ViewState, OptionSelectionModel.State>
   var intent: OptionSelectionIntentType { container.intent }
-  var viewState: OptionSelectionModel.State { intent.viewState }
+  var viewState: OptionSelectionModel.ViewState { intent.viewState }
+  var state: OptionSelectionModel.State { intent.state }
 
   var currentPage: Binding<Int> {
     .init(get: { viewState.currentPage },
@@ -44,7 +45,7 @@ extension OptionSelectionView {
   @ViewBuilder
   static func build(intent: OptionSelectionIntent) -> some View {
 
-    OptionSelectionView(container: .init(intent: intent as OptionSelectionIntent, state: intent.viewState, modelChangePublisher: intent.objectWillChange))
+    OptionSelectionView(container: .init(intent: intent, viewState: intent.viewState, state: intent.state, modelChangePublisher: intent.objectWillChange)
   }
 
 }

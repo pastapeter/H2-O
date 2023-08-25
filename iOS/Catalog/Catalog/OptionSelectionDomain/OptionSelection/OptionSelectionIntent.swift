@@ -10,7 +10,9 @@ import Combine
 
 protocol OptionSelectionIntentType {
 
-  var viewState: OptionSelectionModel.State { get }
+  var viewState: OptionSelectionModel.ViewState { get }
+  
+  var state: OptionSelectionModel.State { get }
 
   func send(action: OptionSelectionModel.ViewAction)
 
@@ -35,10 +37,12 @@ final class OptionSelectionIntent: ObservableObject {
     self.repository = repository
   }
 
-  typealias ViewState = OptionSelectionModel.State
+  typealias ViewState = OptionSelectionModel.ViewState
   typealias ViewAction = OptionSelectionModel.ViewAction
+  typealias State = OptionSelectionModel.State
 
   @Published var viewState: ViewState
+  var state: OptionSelectionModel.State = .init()
 
   var cancellable: Set<AnyCancellable> = []
   private(set) var selectedExtraOptions: Set<Int> = []
