@@ -62,8 +62,8 @@ extension OptionCardViewIntent: OptionCardViewIntentType, IntentType {
         
       }
       
-    case .onTap(let id):
-      parent?.send(action: .onTapOption(id: id))
+    case .onTap(let option):
+        parent?.send(action: .onTapOption(id: option))
       viewEffect?()
     }
   }

@@ -11,7 +11,6 @@ struct QuotationCompleteSheet {
   @Environment(\.presentationMode) var presentationMode
   var state: QuotationCompleteModel.State
   var modelName: String
-  var quotation = Quotation.shared
   var intent: QuotationCompleteIntentType
 }
 

@@ -12,7 +12,7 @@ struct CLNavigationView: IntentBindingType {
   var intent: CLNavigationIntentType { container.intent }
   var state: CLNavigationModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
-  var quotation = Quotation.shared
+  let quotation = Quotation()
   @SwiftUI.State var menuStatus: [CLNavigationMenuTitleView.Status] = [.inactive,
                                                                        .inactive,
                                                                        .inactive,
@@ -48,15 +48,15 @@ extension CLNavigationView: View {
               TrimSelectionView.build(intent: TrimSelectionIntent(
                 initialState: .init(
                   carId: 1),
-                repository: TrimSelectionRepository(), quotation: Quotation.shared, navigationIntent: intent))
+                repository: TrimSelectionRepository(), quotation: quotation, navigationIntent: intent))
               .tag(0)
-              ModelTypeSelectionView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager()))))
+              ModelTypeSelectionView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager())), quotation: quotation))
                 .tag(1)
               ExteriorSelectionView.build(
                 intent: .init(initialState: .init(selectedTrimId: 2),
                               repository: ExteriorColorRepository(
                                 requestManager: RequestManager(
-                                  apiManager: ExteriorColorAPIManager()))))
+                                  apiManager: ExteriorColorAPIManager())), quotation: quotation))
               .tag(2)
               InteriorColorSelectionView.build(
                 intent: .init(initialState: .init(selectedTrimID: 2,
@@ -64,12 +64,12 @@ extension CLNavigationView: View {
                                                   trimColors: []),
                               repository: InteriorColorSelectionRepository(
                                 requestManager: RequestManager(
-                                  apiManager: InteriorAPIManager()))))
+                                  apiManager: InteriorAPIManager())), quotation: quotation))
               .tag(3)
               OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0,
                                                                           additionalOptionState: .init(cardStates: [], selectedFilterId: 0),
-                                                                          defaultOptionState: .init(cardStates: [], selectedFilterId: 0)), repository: OptionSelectionRepository(requestManager: RequestManager(apiManager: OptionSelectionAPIManager()), trimID: 2))).tag(4)
-              QuotationCompleteView.build(intent: .init(initialState: .init(summaryQuotation: SummaryCarQuotation.mock(), technicalSpec: .init(displacement: CLNumber(0), fuelEfficiency: 0.0), nextNavIndex: 0, alertCase: .delete(id: 0), showSheet: false, showAlert: false, alertTitle: ""), repository: QuotationCompleteRepository(quotationCompleteRequestManager: RequestManager(apiManager: APIManager())), quotationService: Quotation.shared, navigationIntent: intent) )
+                                                                          defaultOptionState: .init(cardStates: [], selectedFilterId: 0)), repository: OptionSelectionRepository(requestManager: RequestManager(apiManager: OptionSelectionAPIManager()), trimID: 2), quotation: quotation)).tag(4)
+              QuotationCompleteView.build(intent: .init(initialState: .init(summaryQuotation: SummaryCarQuotation.mock(), technicalSpec: .init(displacement: CLNumber(0), fuelEfficiency: 0.0), nextNavIndex: 0, alertCase: .delete(id: 0), showSheet: false, showAlert: false, alertTitle: ""), repository: QuotationCompleteRepository(quotationCompleteRequestManager: RequestManager(apiManager: APIManager())), quotation: quotation, navigationIntent: intent) )
                 .tag(5)
             }
             .onAppear { UIScrollView.appearance().isScrollEnabled = false }
@@ -78,20 +78,22 @@ extension CLNavigationView: View {
               CLBudgetRangeView.build(
                 intent: CLBudgetRangeIntent(initialState:
                     .init(
-                      currentQuotationPrice: quotation.state.totalPrice,
-                      budgetPrice: (quotation.state.maxPrice + quotation.state.minPrice) / CLNumber(2),
-                      status: .default), navigationIntent: intent)
+                      currentQuotationPrice: quotation.totalPrice,
+                      budgetPrice: (quotation.maxPrice + quotation.minPrice) / CLNumber(2),
+                      status: .default), navigationIntent: intent, quotation: quotation)
               )
             } else if state.currentPage == 5 {
               CLBudgetRangeView.build(
                 intent: CLBudgetRangeIntent(initialState:
-                    .init(currentQuotationPrice: quotation.state.totalPrice,
-                          budgetPrice: (quotation.state.maxPrice + quotation.state.minPrice) / CLNumber(2),
-                          status: .complete), navigationIntent: intent))
+                    .init(currentQuotationPrice: quotation.totalPrice,
+                          budgetPrice: (quotation.maxPrice + quotation.minPrice) / CLNumber(2),
+                          status: .complete), navigationIntent: intent, quotation: quotation))
             }
           }
           if state.currentPage != 0 {
-            QuotationFooter.build(intent: .shared,
+            QuotationFooterView.build(intent: QuotationFooterIntent(initialState: .init(totalPrice: quotation.totalPrice, summary: quotation.summary()),
+                                                                    repository: QuotationFooterRepository(quotationFooterRequestManager: RequestManager(apiManager: APIManager())),
+                                                                    quotation: quotation),
                                   prevAction: { intent.send(action: .onTapNavTab(index: state.currentPage - 1))},
                                   nextAction: { intent.send(action: .onTapNavTab(index: state.currentPage + 1))},
                                   currentPage: currentPageBinding)
@@ -99,14 +101,17 @@ extension CLNavigationView: View {
           
           NavigationLink(destination:     SimilarQuotationView.build(intent: .init(initialState: .init(currentSimilarQuotationIndex: 0, similarQuotations: [SimilarQuotation.mock(),
                                                                                                                                                             SimilarQuotation.mock(),
-                                                                                                                                                            SimilarQuotation.mock()], selectedOptions: [], alertCase: .noOption, showAlert: false), repository: SimilarQuotationMockRepository(), navigationIntent: self.intent, budgetRangeIntent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: quotation.state.totalPrice, budgetPrice: .init(0), status: .similarQuotation), navigationIntent: CLNavigationIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)))), navitationIntent: intent),
+                                                                                                                                                            SimilarQuotation.mock()], selectedOptions: [], alertCase: .noOption, showAlert: false),
+                                                                                   repository: SimilarQuotationMockRepository(),
+                                                                                   navigationIntent: self.intent,
+                                                                                   budgetRangeIntent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: quotation.totalPrice, budgetPrice: .init(0), status: .similarQuotation), navigationIntent: CLNavigationIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)), quotation: quotation), quotation: quotation), navitationIntent: intent),
                          isActive: showQuotationSummarySheetBinding,
                          label: { Text("") })
         }
         .sheet(isPresented: $showQuotationSummarySheet) {
-          CLQuotationSummarySheet(currentQuotationPrice: quotation.state.totalPrice,
-                                  summaryQuotation: quotation.state.quotation?.toSummary() ?? SummaryCarQuotation.mock(),
-                                  showQuotationSummarySheet: $showQuotationSummarySheet)
+          CLQuotationSummarySheet(currentQuotationPrice: quotation.totalPrice,
+                                  summaryQuotation: quotation.quotation.toSummary(),
+                                  showQuotationSummarySheet: $showQuotationSummarySheet, quotationState: quotation)
           
           
         }
@@ -115,9 +120,7 @@ extension CLNavigationView: View {
         makeAlertView(alertCase: state.alertCase)
       }
     }
-
   }
-  
 }
 
 extension CLNavigationView {

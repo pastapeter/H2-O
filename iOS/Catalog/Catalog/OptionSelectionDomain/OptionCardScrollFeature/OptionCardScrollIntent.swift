@@ -51,9 +51,9 @@ extension OptionCardScrollIntent: OptionCardScrollIntentType, IntentType {
       filterOptions(with: state.filterState.filters[index])
     case .fetchCardState(let from, let to):
       fetchCardState(from: from, to: to)
-    case .onTapOption(let id):
+      case .onTapOption(let option):
       if state.isExtraOptionTab {
-        parent?.selectedOption(with: id)
+        parent?.selectedOption(with: option)
       }
     case .cardStates(let states):
       state.cardStates = states
@@ -93,12 +93,8 @@ extension OptionCardScrollIntent {
         let states: [DefaultOption] = try await repository.fetchAllOptions()
         let defaultCellInfos = states.map { return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags,
                                                                          name: $0.name,
-                                                                         imageURL: $0.image,
-                                                                         containsHmgData: $0.containsHmgData,
+                                                                         imageURL: $0.image, containsHmgData: $0.containsHmgData,
                                                                          category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock()) }
-        
-        
-        
         
         self.totalCardState = defaultCellInfos
         send(action: .cardStates(states: totalCardState))
@@ -149,7 +145,12 @@ extension OptionCardScrollIntent {
         } else {
           let states: [DefaultOption] = try await repository.fetchOption(from: from, to: to)
           let carStateArray = states.map {
-            return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags, name: $0.name, imageURL: $0.image, containsHmgData: $0.containsHmgData, category: $0.category)
+            return OptionCardModel.State(id: $0.id,
+                                         hashTags: $0.hashTags,
+                                         name: $0.name,
+                                         imageURL: $0.image,
+                                         containsHmgData: $0.containsHmgData,
+                                         category: $0.category)
           }
           send(action: .cardStates(states: carStateArray))
         }

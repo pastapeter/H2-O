@@ -22,17 +22,18 @@ protocol OptionSelectionIntentType {
 
 protocol OptionSelectionCollectable: AnyObject {
   
-  var selectedExtraOptions: Set<Int> { get }
+  var selectedExtraOptions: Set<OptionCardModel.State> { get }
   
-  func selectedOption(with id: Int)
+  func selectedOption(with option: OptionCardModel.State)
   
 }
 
 final class OptionSelectionIntent: ObservableObject {
 
-  init(initialState: State, repository: OptionSelectionRepositoryProtocol) {
+  init(initialState: State, repository: OptionSelectionRepositoryProtocol, quotation: OptionSelectionService) {
     state = initialState
     self.repository = repository
+    self.quotation = quotation
   }
 
   typealias State = OptionSelectionModel.State
@@ -41,19 +42,24 @@ final class OptionSelectionIntent: ObservableObject {
   @Published var state: State
 
   var cancellable: Set<AnyCancellable> = []
-  private(set) var selectedExtraOptions: Set<Int> = []
+  private(set) var selectedExtraOptions: Set<OptionCardModel.State> = []
   private(set) var repository: OptionSelectionRepositoryProtocol
-
+  private var quotation: OptionSelectionService
 }
 
 extension OptionSelectionIntent: OptionSelectionCollectable {
   
-  func selectedOption(with id: Int) {
-    if selectedExtraOptions.contains(id) {
-      selectedExtraOptions.remove(id)
+  func selectedOption(with option: OptionCardModel.State) {
+    
+    if selectedExtraOptions.contains(option) {
+      selectedExtraOptions.remove(option)
     } else {
-      selectedExtraOptions.insert(id)
+      selectedExtraOptions.insert(option)
+      
+      quotation.updateOption(to: Array(selectedExtraOptions))
     }
+   
+    
   }
 
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuotationExteriorView: View {
-  var quotation = Quotation.shared
+  let quotation: QuotationCompleteService
   let modalTopHeight: CGFloat = 30
   let titleTopPadding: CGFloat = 177
   let externalImageHeight: CGFloat = 222
@@ -16,10 +16,10 @@ struct QuotationExteriorView: View {
     var body: some View {
       VStack {
         Spacer().frame(height: titleTopPadding)
-        Text(quotation.state.quotation?.trim.name ?? "")
+        Text(quotation.trimName())
           .catalogFont(type: .HeadKRBold65)
           .foregroundColor(.white)
-        AsyncCachedImage(url: quotation.state.quotation?.trim.externalImage) { image in
+        AsyncCachedImage(url: quotation.exteriorImage()) { image in
           image
             .resizable()
             .frame(maxWidth: .infinity, maxHeight: externalImageHeight)
@@ -33,8 +33,3 @@ struct QuotationExteriorView: View {
     }
 }
 
-struct QuotationExternalView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuotationExteriorView()
-    }
-}

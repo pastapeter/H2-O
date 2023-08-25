@@ -63,7 +63,7 @@ extension SimilarQuotationOptionResponseDTO {
     
     return SimilarQuotationOption(id: optionId,
                                   name: optionName,
-                                  image: URL(string: optionImage),
+                                  imageURL: URL(string: optionImage),
                                   price: CLNumber(Int32(optionPrice)))
   }
 }

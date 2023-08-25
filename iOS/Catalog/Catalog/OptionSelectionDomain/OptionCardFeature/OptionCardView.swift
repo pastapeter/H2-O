@@ -23,7 +23,7 @@ extension OptionCardView: View {
   var body: some View {
     
     Button {
-      intent.send(action: .onTap(id: state.id)) {
+      intent.send(action: .onTap(option: state)) {
         if state.price != nil {
           isSelected.toggle()
         } else {
@@ -58,7 +58,7 @@ extension OptionCardView: View {
         TransparentZStack {
           if state.isPackage {
             ModalPopUpComponent(state: self.state.packageOption, submitAction: {
-              intent.send(action: .onTap(id: self.state.id)) {
+              intent.send(action: .onTap(option: self.state)) {
                 self.isSelected.toggle()
                 self.isModalPresenting.toggle()
               }
@@ -67,7 +67,7 @@ extension OptionCardView: View {
             }
           } else {
             ModalPopUpComponent(state: self.state.defaultOptionDetail, submitAction: {
-              intent.send(action: .onTap(id: self.state.id)) {
+              intent.send(action: .onTap(option: self.state)) {
                 self.isSelected.toggle()
                 self.isModalPresenting.toggle()
               }
@@ -103,7 +103,7 @@ extension OptionCardView {
   @ViewBuilder
   private func priceView() -> some View {
     
-    Text(state.price?.signedWon ?? "기본포함")
+    Text(state.price?.signedWon ?? "")
       .foregroundColor(.gray900)
       .catalogFont(type: .TextKRMedium14)
     

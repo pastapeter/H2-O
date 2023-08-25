@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct QuotationInteriorView: View {
-  var quotation = Quotation.shared
+  let quotation: QuotationCompleteService
   let imageHalfWidth: CGFloat = 360
   @State var offset: CGFloat = 0
   var body: some View {
     HStack {
       GeometryReader { proxy in
-        AsyncCachedImage(url: quotation.state.quotation?.trim.internalImage) { img in
+        AsyncCachedImage(url: quotation.interiorImage()) { img in
           img
             .offset(x: offset)
             .gesture(
@@ -33,8 +33,3 @@ struct QuotationInteriorView: View {
   }
 }
 
-struct QuotationInteriorView_Previews: PreviewProvider {
-  static var previews: some View {
-    QuotationInteriorView()
-  }
-}

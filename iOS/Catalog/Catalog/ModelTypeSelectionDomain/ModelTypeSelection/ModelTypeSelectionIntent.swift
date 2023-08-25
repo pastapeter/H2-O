@@ -20,9 +20,11 @@ protocol ModelTypeSelectionIntentType: AnyObject {
 
 final class ModelTypeSelectionIntent: ObservableObject {
   
-  init(initialState: State, repository: ModelTypeRepositoryProtocol) {
+  init(initialState: State, repository: ModelTypeRepositoryProtocol, quotation: ModeltypeSelectionService) {
     state = initialState
     self.repository = repository
+    self.quotation = quotation
+
   }
   
   private var repository: ModelTypeRepositoryProtocol
@@ -34,7 +36,7 @@ final class ModelTypeSelectionIntent: ObservableObject {
   @Published var state: State
   
   var cancellable: Set<AnyCancellable> = []
-  private var quotation = Quotation.shared
+  private var quotation: ModeltypeSelectionService
   private var powerTrainOptionId: Int = 1
   private var driveTrainOptionId: Int = 1
   
@@ -58,11 +60,13 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
         state.modelTypeStateArray = convertToModelTypeModelState(from: options)
         
       case .powertrainSelected(option: let option):
-        Quotation.shared.send(action: .isPowertrainChanged(powertrain: option))
+        quotation.updatePowertrain(option: option)
+        
       case .bodytypeSelected(option: let option):
-        Quotation.shared.send(action: .isBodyTypeChanged(bodytype: option))
+        quotation.updateBodytype(option: option)
+        
       case .drivetrainSelected(option: let option):
-        Quotation.shared.send(action: .isDrivetrainChanged(drivetrain: option))
+        quotation.updateDrivetrain(option: option)
     }
   }
 }
@@ -84,10 +88,9 @@ extension ModelTypeSelectionIntent {
         self.driveTrainOptionId = selectedOptionId
       }
       
-      let powerTrainTitle = quotation.state.quotation?.powertrain.name ?? ""
-      let driveTrainTitle = quotation.state.quotation?.drivetrain.name ?? ""
+      let powerTrainTitle = quotation.powertrainName()
+      let driveTrainTitle = quotation.drivetrainName()
       
-      print(powerTrainOptionId, driveTrainOptionId)
       let result = try await self.repository
         .calculateFuelAndDisplacement(with: self.driveTrainOptionId,
                                       andwith: self.powerTrainOptionId)
@@ -98,7 +101,7 @@ extension ModelTypeSelectionIntent {
                                                fuelEfficiency: result.fuelEfficiency)
       
     } catch (let e) {
-      print(e)
+      print(e.localizedDescription)
     }
     
   }

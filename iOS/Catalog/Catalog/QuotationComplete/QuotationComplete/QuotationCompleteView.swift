@@ -35,9 +35,9 @@ extension QuotationCompleteView: View {
     VStack {
       ZStack {
         if isExternal {
-          QuotationExteriorView()
+          QuotationExteriorView(quotation: intent.quotation)
         } else {
-          QuotationInteriorView()
+          QuotationInteriorView(quotation: intent.quotation)
         }
         VStack {
           Spacer()
@@ -58,7 +58,7 @@ extension QuotationCompleteView: View {
     }
     .sheet(isPresented: showSheetBinding) {
       QuotationCompleteSheet(state: state,
-                             modelName: intent.quotationService.getModelName(),
+                             modelName: intent.quotation.modelName(),
                              intent: intent)
     }
     .onAppear {

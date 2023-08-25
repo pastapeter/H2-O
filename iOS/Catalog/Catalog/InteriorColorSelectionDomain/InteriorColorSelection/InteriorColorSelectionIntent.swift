@@ -20,9 +20,10 @@ protocol InteriorColorSelectionIntentType {
 
 final class InteriorColorSelectionIntent: ObservableObject {
 
-  init(initialState: State, repository: InteriorColorSelectionRepositoryProtocol) {
+  init(initialState: State, repository: InteriorColorSelectionRepositoryProtocol, quotation: InteriorSelectionService) {
     state = initialState
     self.repository = repository
+    self.quotation = quotation
   }
 
   private var repository: InteriorColorSelectionRepositoryProtocol
@@ -34,6 +35,8 @@ final class InteriorColorSelectionIntent: ObservableObject {
   @Published var state: State
 
   var cancellable: Set<AnyCancellable> = []
+  
+  private var quotation: InteriorSelectionService
 
 }
 
@@ -60,6 +63,7 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
       state.selectedInteriorImageURL = url
     case .onTapColor(let id):
       state.selectedColorId = id
+        quotation.updateInteriorColor(to: state.trimColors[state.trimColors.firstIndex(where: {$0.color.id == id}) ?? 0].color)
       for i in state.trimColors.indices {
         if state.trimColors[i].color.id == id {
           state.trimColors[i].isSelected = true

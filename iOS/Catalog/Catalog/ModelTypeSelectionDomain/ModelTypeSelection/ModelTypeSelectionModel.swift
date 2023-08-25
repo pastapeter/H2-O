@@ -15,6 +15,7 @@ enum ModelTypeSelectionModel {
     var modelTypeStateArray: [ModelTypeCellModel.State] = []
     var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerState = .mock()
   }
+  
 
   enum ViewAction {
     case onAppear

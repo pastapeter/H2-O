@@ -17,16 +17,17 @@ protocol QuotationCompleteIntentType {
   func send(action: QuotationCompleteModel.ViewAction, viewEffect: (() -> Void)?)
   
   var repository: QuotationCompleteRepositoryProtocol { get }
-  var quotationService: QuotationCompleteService { get }
+  
+  var quotation: QuotationCompleteService { get }
   
 }
 
 final class QuotationCompleteIntent: ObservableObject {
   
-  init(initialState: State, repository: QuotationCompleteRepositoryProtocol, quotationService: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
+  init(initialState: State, repository: QuotationCompleteRepositoryProtocol, quotation: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
     state = initialState
     self.repository = repository
-    self.quotationService = quotationService
+    self.quotation = quotation
     self.navigationIntent = navigationIntent
   }
   
@@ -36,9 +37,9 @@ final class QuotationCompleteIntent: ObservableObject {
   @Published var state: State
   
   var cancellable: Set<AnyCancellable> = []
-  var quotationService: QuotationCompleteService
   var navigationIntent: CLNavigationIntentType
   private(set) var repository: QuotationCompleteRepositoryProtocol
+  private(set) var quotation: QuotationCompleteService
   
 }
 
@@ -50,14 +51,15 @@ extension QuotationCompleteIntent: QuotationCompleteIntentType, IntentType {
       case .onAppear:
         Task {
           do {
-            let ids = try quotationService.getPowertrainAndDriveTrain()
-            let resultOfCalculation = try await repository.calculateFuelAndDisplacement(with: ids.0, andwith: ids.1)
+            let powertrainId = quotation.powertrainId()
+            let drivetrainId = quotation.drivetrainId()
+            let resultOfCalculation = try await repository.calculateFuelAndDisplacement(with: powertrainId, andwith: drivetrainId)
             state.technicalSpec = resultOfCalculation
           } catch(let e) {
             print("@@@@배기량 계산 실패 \(e)")
           }
         }
-        state.summaryQuotation = Quotation.shared.getSummary()
+        state.summaryQuotation = quotation.summary()
         
       case .onTapDeleteButton(let id):
         state.alertCase = .delete(id: id)
@@ -74,7 +76,7 @@ extension QuotationCompleteIntent: QuotationCompleteIntentType, IntentType {
         
       case .deleteOption(let option):
         // 옵션삭제 로직
-        Quotation.shared.send(action: .similarOptionsDeleted(option: option))
+        quotation.deleteSimilarOption(id: option)
         send(action: .onAppear)
         send(action: .showAlertChanged(showAlert: false))
 

@@ -21,10 +21,10 @@ final class TrimSelectionIntent: ObservableObject {
 
   // MARK: - LifeCycle
 
-  init(initialState: State, repository: TrimSelectionRepositoryProtocol, quotation: Quotation, navigationIntent: CLNavigationIntentType) {
+  init(initialState: State, repository: TrimSelectionRepositoryProtocol, quotation: TrimSelectionService, navigationIntent: CLNavigationIntentType) {
     state = initialState
     self.repository = repository
-    self.quotation
+    self.quotation = quotation
     self.navigationIntent = navigationIntent
   }
 
@@ -33,9 +33,9 @@ final class TrimSelectionIntent: ObservableObject {
   typealias ViewAction = TrimSelectionModel.ViewAction
 
   private var repository: TrimSelectionRepositoryProtocol
-  private var quotation = Quotation.shared
+  private var quotation: TrimSelectionService
   private var navigationIntent: CLNavigationIntentType
-  @Published var state: State = State(selectedTrim: nil, carId: 1)
+  @Published var state: State = State(selectedTrim: Trim(id: 0, name: "", description: "", price: CLNumber(0), hmgData: []), carId: 1)
 
   var cancellable: Set<AnyCancellable> = []
 }
@@ -67,16 +67,11 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
 
       case .onTapTrimSelectButton:
         guard let trim = state.selectedTrim else { return }
-        quotation.send(action: .isTrimChanged(trim: trim))
         Task {
           do {
             let defaultQuotation = try await repository.fetchDefaultOptionsByTrim(of: trim)
             let (maxPrice, minPrice) = try await repository.fetchMinMaxPriceByTrim(of: trim.id)
-            quotation.send(action: .isTrimSelected(defaultCarQuotation: defaultQuotation,
-                                                   minPrice: minPrice,
-                                                   maxPrice: maxPrice))
-            
-            
+            quotation.saveDefaultQuotation(trim: trim, carQuotation: defaultQuotation, minPrice: minPrice, maxPrice: maxPrice)
             state.isTrimSelected = true
             navigationIntent.send(action: .onTapNavTab(index: 1))
           } catch let error {

@@ -12,6 +12,7 @@ struct CLQuotationSummarySheet: View {
   @State var currentQuotationPrice: CLNumber
   var summaryQuotation: SummaryCarQuotation
   @Binding var showQuotationSummarySheet: Bool
+  @State var quotationState: Quotation
 
   var body: some View {
     VStack(spacing: 0) {
@@ -102,7 +103,6 @@ struct CLQuotationSummarySheet: View {
       }
     CLQuotationPriceBar(showQuotationSummarySheet:
     $showQuotationSummarySheet,
-                        state: Quotation.shared.state,
     content: {
       Button {
           showQuotationSummarySheet.toggle()
@@ -118,11 +118,9 @@ struct CLQuotationSummarySheet: View {
       }
       .buttonStyle(.plain)
       Spacer()
-    })
-//      CLQuotationPriceBar(showQuotationSummarySheet:
-//                            $showQuotationSummarySheet,
-//                          currentQuotationPrice: currentQuotationPrice,
-//                          buttonText: "요약 닫기")
+    },
+                        quotation: quotationState)
+
       CLButton(mainText: "견적 완료하기", height: 52, backgroundColor: Color.primary700) {
         showQuotationSummarySheet = false
 

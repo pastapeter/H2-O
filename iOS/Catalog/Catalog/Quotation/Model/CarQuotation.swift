@@ -35,7 +35,7 @@ extension CarQuotation {
               drivetrain.price +
               externalColor.price +
               internalColor.price +
-              options.reduce(CLNumber(0)) { $0 + ($1.price) }
+              options.reduce(CLNumber(0)) { $0 + ($1.price ?? CLNumber(0)) }
   }
 
   func toSummary() -> SummaryCarQuotation {
@@ -85,10 +85,19 @@ extension CarQuotation {
                                                                            index: 4,
                                                                            title: "추가옵션",
                                                                            name: $0.name,
-                                                                           price: $0.price,
-                                                                           image: $0.image,
+                                                                           price: $0.price ?? CLNumber(0),
+                                                                           image: $0.imageURL,
                                                                            isSimilarOption:               $0.isSimilarOption)
     }
     )
+  }
+  
+  static func mock() -> CarQuotation {
+    CarQuotation(trim: Trim(id: 0, name: "", description: "", price: CLNumber(0), hmgData: []),
+                 powertrain: .init(id: 0, name: "", price: CLNumber(0)),
+                 bodytype: .init(id: 0, name: "", price: CLNumber(0)),
+                 drivetrain: .init(id: 0, name: "", price: CLNumber(0)),
+                 externalColor: .init(id: 0, name: "", price: CLNumber(0), hexCode: "", exteriorImages: []),
+                 internalColor: .init(id: 0, name: "", price: CLNumber(0)), options: [])
   }
 }

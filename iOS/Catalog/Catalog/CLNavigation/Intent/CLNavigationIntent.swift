@@ -22,7 +22,6 @@ final class CLNavigationIntent: ObservableObject {
                                       showQuotationSummarySheet: false,
                                       alertCase: .guide,
                                       showAlert: true)
-  var quotation = Quotation.shared
   var cancellable: Set<AnyCancellable> = []
 }
 

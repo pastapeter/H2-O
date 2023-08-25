@@ -40,7 +40,6 @@ extension TrimSelectionError {
      var selectedTrim: Trim?
      var error: TrimSelectionError?
      var carId: Int
-     var quoation = Quotation.shared
      var isTrimSelected: Bool = false
   }
 

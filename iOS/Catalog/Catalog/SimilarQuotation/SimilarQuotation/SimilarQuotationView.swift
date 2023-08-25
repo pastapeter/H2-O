@@ -14,7 +14,6 @@ struct SimilarQuotationView {
   
   @SwiftUI.State var currentIndex: Int = 0
   let budgetPrice: CLNumber = CLNumber(50000000)
-  let quotation = Quotation.shared
   let navigationIntent: CLNavigationIntentType
 }
 
@@ -36,10 +35,10 @@ extension SimilarQuotationView: View {
           
           CLBudgetRangeView.build(intent:
               .init(initialState:
-                  .init(currentQuotationPrice: quotation.state.totalPrice,
+                  .init(currentQuotationPrice: intent.quotation.totalPriceInSimilarQuotation(),
                         budgetPrice: budgetPrice,
                         status: .similarQuotation),
-                    navigationIntent: navigationIntent))
+                    navigationIntent: navigationIntent, quotation: intent.quotation as! CLBudgetPriceService))
           
           SnapCarousel(items: state.similarQuotations,
                        spacing: CGFloat(12).scaledWidth,
@@ -79,7 +78,8 @@ extension SimilarQuotationView: View {
         }
         HelpIcon(intent: intent, showAlert: showAlertBinding)
       }
-      .onAppear { intent.send(action: .onAppear(quotation: quotation.state.quotation!))
+      .onAppear {
+        intent.send(action: .onAppear(quotation: intent.quotation.quotation))
       }
     }
     .CLDialogFullScreenCover(show: showAlertBinding) {

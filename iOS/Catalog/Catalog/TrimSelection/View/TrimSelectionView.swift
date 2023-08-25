@@ -51,7 +51,7 @@ extension TrimSelectionView: View {
       .padding(.top, 12)
       .padding(.bottom, 20)
 
-      CLButton(mainText: "\(state.selectedTrim?.name ?? "") 선택하기",
+      CLButton(mainText: "\(state.trims.isEmpty ? "Exclusive" :  state.trims[currentIndexBinding].name ?? "") 선택하기",
                height: CGFloat(60).scaledHeight,
                backgroundColor: Color.primary700,
                buttonAction: { intent.send(action: .onTapTrimSelectButton) })

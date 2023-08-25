@@ -1,5 +1,5 @@
 //
-//  QuotationFooter.swift
+//  QuotationFooterView.swift
 //  Catalog
 //
 //  Created by 이수민 on 2023/08/13.
@@ -7,15 +7,11 @@
 
 import SwiftUI
 
-
-
-
-
-struct QuotationFooter: IntentBindingType {
-  @StateObject var container: Container<QuotationIntentType , QuotationModel.State>
+struct QuotationFooterView: IntentBindingType {
+  @StateObject var container: Container<QuotationFooterIntentType , QuotationFooterModel.State>
   
-  var intent: QuotationIntentType { container.intent }
-  var state: QuotationModel.State { intent.state }
+  var intent: QuotationFooterIntentType { container.intent }
+  var state: QuotationFooterModel.State { intent.state }
   
   var prevAction: () -> Void
   var nextAction: () -> Void
@@ -25,16 +21,16 @@ struct QuotationFooter: IntentBindingType {
 }
 
 
-extension QuotationFooter: View {
+extension QuotationFooterView: View {
   var body: some View {
     VStack {
       if currentPage != 5 {
         CLQuotationPriceBar(
           showQuotationSummarySheet: $showQuotationSummarySheet,
-          state: state,
           content: {
             CLCapsuleButton(width: 86, height: 36, text: "견적 요약", action: { showQuotationSummarySheet.toggle() })
-          })
+          },
+          quotation: intent.quotation as! Quotation)
         CLDualChoiceButton(leftText: "이전",
                            rightText: "다음",
                            height: 52,
@@ -44,11 +40,10 @@ extension QuotationFooter: View {
         CLQuotationPriceBar(
           showQuotationSummarySheet:
             $showQuotationSummarySheet,
-          state: state,
           content: {
             Text("합리적인 가격으로 완성된\n나만의 팰리세이드가 탄생했어요!")
               .catalogFont(type: .TextKRMedium12)
-          })
+          }, quotation: intent.quotation as! Quotation)
         CLDualChoiceButton(leftText: "공유하기",
                            rightText: "상담신청",
                            height: 52,
@@ -57,15 +52,18 @@ extension QuotationFooter: View {
       }
       
     }
+    .onAppear {
+      intent.send(action: .onAppear)
+    }
   }
 }
 
-extension QuotationFooter {
+extension QuotationFooterView {
   @ViewBuilder
-  static func build(intent: Quotation, prevAction: @escaping () -> Void, nextAction: @escaping () -> Void, currentPage: Binding<Int>) -> some View {
+  static func build(intent: QuotationFooterIntent, prevAction: @escaping () -> Void, nextAction: @escaping () -> Void, currentPage: Binding<Int>) -> some View {
     
-    QuotationFooter(container: .init(
-      intent: intent as QuotationIntentType,
+    QuotationFooterView(container: .init(
+      intent: intent,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange), prevAction: prevAction, nextAction: nextAction, showQuotationSummarySheet: .constant(false), currentPage: currentPage)
     

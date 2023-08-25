@@ -24,7 +24,7 @@ enum OptionCardScrollModel {
     case onTapFilterButton(index: Int)
     case fetchCardState(from: Int, to: Int)
     case cardStates(states: [OptionCardModel.State])
-    case onTapOption(id: Int)
+    case onTapOption(id: OptionCardModel.State)
   }
 }
 
