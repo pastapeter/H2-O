@@ -10,7 +10,9 @@ import Combine
 
 protocol SimilarQuotationIntentType {
   
-  var viewState: SimilarQuotationModel.State { get }
+  var viewState: SimilarQuotationModel.ViewState { get }
+  
+  var state: SimilarQuotationModel.State { get }
   
   func send(action: SimilarQuotationModel.ViewAction, viewEffect: (() -> Void)?)
   
@@ -27,8 +29,8 @@ final class SimilarQuotationIntent: ObservableObject {
     self.budgetRangeIntent = budgetRangeIntent
   }
   
-  typealias ViewState = SimilarQuotationModel.State
-  
+  typealias ViewState = SimilarQuotationModel.ViewState
+  typealias State = SimilarQuotationModel.State
   typealias ViewAction = SimilarQuotationModel.ViewAction
   
   @Published var viewState: ViewState = .init(currentSimilarQuotationIndex: 0,
@@ -36,7 +38,7 @@ final class SimilarQuotationIntent: ObservableObject {
                                       selectedOptions: [],
                                       alertCase: .noOption,
                                       showAlert: false)
-  
+  var state: SimilarQuotationModel.State = .init()
   var cancellable: Set<AnyCancellable> = []
   private var repository: SimilarQuotationRepositoryProtocol
   private var navigationIntent: CLNavigationIntentType
