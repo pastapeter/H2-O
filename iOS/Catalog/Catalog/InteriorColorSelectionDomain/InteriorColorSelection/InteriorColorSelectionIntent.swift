@@ -63,7 +63,7 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
       state.selectedInteriorImageURL = url
     case .onTapColor(let id):
       state.selectedColorId = id
-        quotation.updateInteriorColor(to: state.trimColors[state.trimColors.firstIndex(where: {$0.color.id == id}) ?? 0].color)
+      quotation.updateInteriorColor(to: state.trimColors.first(where: { $0.color.id == id })?.color)
       for i in state.trimColors.indices {
         if state.trimColors[i].color.id == id {
           state.trimColors[i].isSelected = true
