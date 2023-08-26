@@ -9,7 +9,7 @@ import Foundation
 
 struct ModelTypeIDRequestDTO: Codable {
   var powertrainId: Int
-  var bodyTypeId: Int
+  var bodytypeId: Int
   var drivetrainId: Int
 }
 

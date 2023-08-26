@@ -99,12 +99,7 @@ extension CLNavigationView: View {
                                   currentPage: currentPageBinding)
           }
           
-          NavigationLink(destination:     SimilarQuotationView.build(intent: .init(initialState: .init(currentSimilarQuotationIndex: 0, similarQuotations: [SimilarQuotation.mock(),
-                                                                                                                                                            SimilarQuotation.mock(),
-                                                                                                                                                            SimilarQuotation.mock()], selectedOptions: [], alertCase: .noOption, showAlert: false),
-                                                                                   repository: SimilarQuotationMockRepository(),
-                                                                                   navigationIntent: self.intent,
-                                                                                   budgetRangeIntent: CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: quotation.totalPrice, budgetPrice: .init(0), status: .similarQuotation), navigationIntent: CLNavigationIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)), quotation: quotation), quotation: quotation), navitationIntent: intent),
+          NavigationLink(destination: SimilarQuotationView.build(intent: .init(initialState: .init(currentSimilarQuotationIndex: 0, similarQuotations: [SimilarQuotation.mock(), SimilarQuotation.mock(), SimilarQuotation.mock()], selectedOptions: [], alertCase: .noOption, showAlert: false), repository: SimilarQuotationRepository(requestManager: RequestManager(apiManager: APIManager())), navigationIntent: self.intent, budgetRangeIntent: makeCLBudgetRangeIntent(), quotation: quotation), navitationIntent: intent),
                          isActive: showQuotationSummarySheetBinding,
                          label: { Text("") })
         }
@@ -124,6 +119,11 @@ extension CLNavigationView: View {
 }
 
 extension CLNavigationView {
+  
+  func makeCLBudgetRangeIntent() -> CLBudgetRangeIntent {
+    CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: quotation.totalPrice, budgetPrice: .init(0), status: .similarQuotation), navigationIntent: CLNavigationIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)), quotation: quotation)
+  }
+  
   @ViewBuilder
   static func build(intent: CLNavigationIntent) -> some View {
     CLNavigationView(container: .init(

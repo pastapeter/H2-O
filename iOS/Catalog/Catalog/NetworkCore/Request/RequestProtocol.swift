@@ -82,7 +82,11 @@ extension RequestProtocol {
     if !params.isEmpty {
       urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
     }
-    Log.debug(message: url.description)
+    
+    if let httpBody = urlRequest.httpBody, let json = try? JSONSerialization.jsonObject(with: httpBody, options: []) as? [String : Any] {
+         print(json)
+       }
+    
     return Request(urlRequest: urlRequest)
   }
 

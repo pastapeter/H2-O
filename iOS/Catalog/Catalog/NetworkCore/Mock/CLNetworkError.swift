@@ -34,7 +34,7 @@ extension CLNetworkError {
       } else if reason == 404 {
         return "잘못된 요청입니다."
       } else {
-        return "알수없는 서버 오류입니다."
+        return "알수없는 서버 오류입니다.\(reason)"
       }
     case .timeout:
       return "인터넷 상태를 확인해주세요 타임아웃 애러입니다."

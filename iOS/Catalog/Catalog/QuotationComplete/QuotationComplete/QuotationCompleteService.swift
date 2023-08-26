@@ -45,7 +45,7 @@ extension Quotation: QuotationCompleteService {
   }
 
   func exteriorImage() -> URL? {
-    quotation.externalColor.exteriorImages[0]
+    return quotation.externalColor.exteriorImages.first
   }
   
   func interiorImage() -> URL? {

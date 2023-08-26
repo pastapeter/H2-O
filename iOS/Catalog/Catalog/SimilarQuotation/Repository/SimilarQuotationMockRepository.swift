@@ -12,14 +12,14 @@ struct SimilarQuotationMockRepository: SimilarQuotationRepositoryProtocol {
   func fetchSimilarQuotation(quotation: CarQuotation) async throws -> [SimilarQuotation] {
     let manager = RequestManager(apiManager: MockAPIManager())
     guard let data = JSONLoader.load(with: "SimilarQuotations") else { return [] }
-    let url = URL(string: "http://\(API.host):8080/quotation/similar")!
+    let url = URL(string: "https://\(API.host)/quotation/similar")!
     MockURLProtocol.mockURLs = [
       url: (nil, data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil))
     ]
     let dto: [SimilarQuotationResponseDTO] = try await manager.perform( SimilarQuotationRequest.fetchSimilarQuotation(dto:
                                                       SimilarQuotationRequestDTO(carId: quotation.model.id,
                                                                                  trimId: quotation.trim.id,
-                                                                                 modelTypeIds: ModelTypeIDRequestDTO(powertrainId: quotation.powertrain.id, bodyTypeId: quotation.bodytype.id,
+                                                                                 modelTypeIds: ModelTypeIDRequestDTO(powertrainId: quotation.powertrain.id, bodytypeId: quotation.bodytype.id,
                                                                                                                      drivetrainId: quotation.drivetrain.id),
                                                                                  internalColorId: quotation.internalColor.id,
                                                                                  externalColorId: quotation.externalColor.id,

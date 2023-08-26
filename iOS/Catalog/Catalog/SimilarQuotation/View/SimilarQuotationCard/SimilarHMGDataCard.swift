@@ -33,7 +33,7 @@ extension SimilarHMGDataCard: View {
           .padding(.bottom, CGFloat(9).scaledHeight)
         
         HStack(spacing: 8) {
-          ForEach(options.indices) { optionIndex in
+          ForEach(options.indices, id: \.self) { optionIndex in
             SimilarHMGOption(option: options[optionIndex], intent: intent, state: state)
           }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
