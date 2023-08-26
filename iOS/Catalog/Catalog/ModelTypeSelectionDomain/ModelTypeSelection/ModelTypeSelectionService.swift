@@ -29,14 +29,17 @@ extension Quotation: ModeltypeSelectionService {
   
   func updatePowertrain(option: ModelTypeOption) {
     quotation.powertrain = option
+    totalPrice = quotation.calculateTotalPrice()
   }
   
   func updateBodytype(option: ModelTypeOption) {
     quotation.bodytype = option
+    totalPrice = quotation.calculateTotalPrice()
   }
   
   func updateDrivetrain(option: ModelTypeOption) {
     quotation.drivetrain = option
+    totalPrice = quotation.calculateTotalPrice()
   }
 
 }
