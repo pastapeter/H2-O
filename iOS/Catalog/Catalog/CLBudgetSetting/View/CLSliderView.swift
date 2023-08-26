@@ -13,8 +13,7 @@ struct CLSliderView: View {
 
   @State var minimumBudget: CLNumber
   @State var maximumBudget: CLNumber
-
-  @State var currentQuotationPrice: CLNumber
+  @Binding var currentQuotationPrice: CLNumber
   @State var status: CLBudgetRangeView.Status = .default
 
   @Binding var budgetPriceBinding: CLNumber

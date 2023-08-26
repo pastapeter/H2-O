@@ -21,10 +21,15 @@ extension CLBudgetRangeView {
         .init(get: { state.budgetPrice },
               set: { intent.send(action: .budgetChanged(newBudgetPrice: $0)) })
     }
+  
     var isExceedBudgetBinding: Binding<Bool> {
         .init(get: { state.isExceedBudget },
               set: { _ in intent.send(action: .exceedBudgetChanged) })
     }
+  
+  var currentQuotationPriceBinding: Binding<CLNumber> {
+    .init(get: { state.currentQuotationPrice }, set: { _ in })
+  }
 }
 
 extension CLBudgetRangeView {
@@ -71,7 +76,7 @@ extension CLBudgetRangeView: View {
               CLSliderView(intent: intent,
                            minimumBudget: state.minimumPrice,
                            maximumBudget: state.maximumPrice,
-                           currentQuotationPrice: state.currentQuotationPrice,
+                           currentQuotationPrice: currentQuotationPriceBinding,
                            status: state.status,
                            budgetPriceBinding: budgetPriceBinding,
                            isExceedBudget: isExceedBudgetBinding)

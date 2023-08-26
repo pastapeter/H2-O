@@ -8,7 +8,10 @@
 import Foundation
 
 protocol CLBudgetPriceService {
+  
   func totalPriceInBudgetPrice() -> CLNumber
+  
+  var totalPricePublisher: Published<CLNumber>.Publisher { get }
   
   var minPrice: CLNumber { get }
   var maxPrice: CLNumber { get }

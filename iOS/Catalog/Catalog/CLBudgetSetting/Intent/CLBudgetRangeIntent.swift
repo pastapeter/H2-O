@@ -42,7 +42,13 @@ extension CLBudgetRangeIntent: CLBudgetRangeIntentType, IntentType {
     func mutate(action: CLBudgetRangeModel.ViewAction, viewEffect: (() -> Void)?) {
         switch action {
             case .onAppear:
-            state.currentQuotationPrice = quotation.totalPriceInBudgetPrice()
+          quotation.totalPricePublisher
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] totalPrice in
+              send(action: .quotationPriceChanged(newQuotationPrice: totalPrice))
+            }
+            .store(in: &cancellable)
+            
             state.minimumPrice = quotation.minPrice
             state.maximumPrice = quotation.maxPrice
             case .budgetChanged(let newBudgetPrice):
@@ -51,6 +57,7 @@ extension CLBudgetRangeIntent: CLBudgetRangeIntentType, IntentType {
                 send(action: .exceedBudgetChanged)
 
             case .quotationPriceChanged(let newQuotationPrice):
+          
                 state.currentQuotationPrice = newQuotationPrice
                 send(action: .budgetGapChanged)
                 send(action: .exceedBudgetChanged)

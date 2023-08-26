@@ -45,27 +45,10 @@ extension CLNavigationView: View {
           ZStack {
             TabView(selection: currentPageBinding) {
               
-              TrimSelectionView.build(intent: TrimSelectionIntent(
-                initialState: .init(
-                  carId: 1),
-                repository: TrimSelectionRepository(), quotation: quotation, navigationIntent: intent))
-              .tag(0)
-              ModelTypeSelectionView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager())), quotation: quotation))
-                .tag(1)
-              ExteriorSelectionView.build(
-                intent: .init(initialState: .init(selectedTrimId: 2),
-                              repository: ExteriorColorRepository(
-                                requestManager: RequestManager(
-                                  apiManager: ExteriorColorAPIManager())), quotation: quotation))
-              .tag(2)
-              InteriorColorSelectionView.build(
-                intent: .init(initialState: .init(selectedTrimID: 2,
-                                                  selectedColorId: 1,
-                                                  trimColors: []),
-                              repository: InteriorColorSelectionRepository(
-                                requestManager: RequestManager(
-                                  apiManager: InteriorAPIManager())), quotation: quotation))
-              .tag(3)
+              makeTrimSelectionView()
+              makeModelSelectionView()
+              makeExteriorView()
+              makeInteriorView()
               OptionSelectionView.build(intent: .init(initialState: .init(currentPage: 0,
                                                                           additionalOptionState: .init(cardStates: [], selectedFilterId: 0),
                                                                           defaultOptionState: .init(cardStates: [], selectedFilterId: 0)), repository: OptionSelectionRepository(requestManager: RequestManager(apiManager: OptionSelectionAPIManager()), trimID: 2), quotation: quotation)).tag(4)
@@ -118,7 +101,45 @@ extension CLNavigationView: View {
   }
 }
 
+
 extension CLNavigationView {
+  
+  func makeTrimSelectionView() -> some View {
+    TrimSelectionView.build(intent: TrimSelectionIntent(
+      initialState: .init(
+        carId: 1),
+      repository: TrimSelectionRepository(), quotation: quotation, navigationIntent: intent))
+    .tag(0)
+  }
+  
+  func makeModelSelectionView() -> some View {
+    ModelTypeSelectionView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager())), quotation: quotation))
+      .tag(1)
+  }
+  
+  func makeInteriorView() -> some View {
+    
+    InteriorColorSelectionView.build(
+      intent: .init(initialState: .init(selectedTrimID: 2,
+                                        selectedColorId: 1,
+                                        trimColors: []),
+                    repository: InteriorColorSelectionRepository(
+                      requestManager: RequestManager(
+                        apiManager: InteriorAPIManager())), quotation: quotation))
+    .tag(3)
+
+  }
+  
+  func makeExteriorView() -> some View {
+    
+    ExteriorSelectionView.build(
+      intent: .init(initialState: .init(selectedTrimId: 2),
+                    repository: ExteriorColorRepository(
+                      requestManager: RequestManager(
+                        apiManager: ExteriorColorAPIManager())), quotation: quotation))
+    .tag(2)
+    
+  }
   
   func makeCLBudgetRangeIntent() -> CLBudgetRangeIntent {
     CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: quotation.totalPrice, budgetPrice: .init(0), status: .similarQuotation), navigationIntent: CLNavigationIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)), quotation: quotation)
