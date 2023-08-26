@@ -12,7 +12,7 @@ import Combine
 final class Quotation {
     
   @Published var totalPrice: CLNumber = CLNumber(0)
-  var minPrice: CLNumber = CLNumber(0)
-  var maxPrice: CLNumber = CLNumber(99999999)
-  var quotation: CarQuotation = .mock()
+  @Published var minPrice: CLNumber = CLNumber(0)
+  @Published var maxPrice: CLNumber = CLNumber(99999999)
+  @Published var quotation: CarQuotation = .mock()
 }

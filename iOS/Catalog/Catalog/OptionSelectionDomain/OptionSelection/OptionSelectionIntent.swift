@@ -55,11 +55,8 @@ extension OptionSelectionIntent: OptionSelectionCollectable {
       selectedExtraOptions.remove(option)
     } else {
       selectedExtraOptions.insert(option)
-      
-      quotation.updateOption(to: Array(selectedExtraOptions))
     }
-   
-    
+    quotation.updateOption(to: Array(selectedExtraOptions))    
   }
 
 }
