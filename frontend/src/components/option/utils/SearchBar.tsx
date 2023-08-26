@@ -12,14 +12,14 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 function SearchBar({ isExtraOption = false, input, optionList, filterList }: Props) {
-  const [dropDownList, setDropDownList] = useState<ExtraOptionResponse[] | DefaultOptionResponse[]>(optionList);
+  const [dropDownList, setDropDownList] = useState<ExtraOptionResponse[] | DefaultOptionResponse[]>([]);
   const [isActive, setIsActive] = useState(false);
   const [itemIdx, setItemIdx] = useState(-1);
 
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     filterList(e.target.value);
     if (e.target.value === '') setIsActive(false);
-    else dropDownList.length && setIsActive(true);
+    else optionList.length && setIsActive(true);
   };
 
   const handleKeyBoard: KeyboardEventHandler<HTMLInputElement> = (e) => {
@@ -49,12 +49,8 @@ function SearchBar({ isExtraOption = false, input, optionList, filterList }: Pro
   };
 
   useEffect(() => {
-    setDropDownList(optionList);
+    !input ? setDropDownList([]) : setDropDownList(optionList);
   }, [optionList]);
-
-  useEffect(() => {
-    handleSearchItem('');
-  }, [isExtraOption]);
 
   return (
     <Flex flexDirection='column' position='relative'>

@@ -102,16 +102,18 @@ function OptionPage() {
                 기본옵션
               </Tab>
             </Flex>
-            {isExtraOption ? (
-              <SearchBar
-                isExtraOption={true}
-                optionList={extraOptionList}
-                input={input}
-                filterList={handleChangeInput}
-              />
-            ) : (
-              <SearchBar optionList={defaultOptionList} input={input} filterList={handleChangeInput} />
-            )}
+            {isExtraOption
+              ? extraCategoryIdx === 0 && (
+                  <SearchBar
+                    isExtraOption={true}
+                    optionList={extraOptionList}
+                    input={input}
+                    filterList={handleChangeInput}
+                  />
+                )
+              : defaultCategoryIdx === 0 && (
+                  <SearchBar optionList={defaultOptionList} input={input} filterList={handleChangeInput} />
+                )}
           </Flex>
           <Flex gap={8}>
             {isExtraOption

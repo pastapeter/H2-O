@@ -16,6 +16,7 @@ export const HASHTAG_LIST = [
 ];
 
 export const EXTRA_OPTION_CATEGORY_LIST = ['전체', '상세품목', '액세서리', '휠'];
+export const EXTRA_OPTION_CATEGORY_LIST_FILTER = ['전체', '상세품목', '악세사리', '휠'];
 
 export const DEFAULT_CATEGORY_OPTION_LIST = [
   '전체',
