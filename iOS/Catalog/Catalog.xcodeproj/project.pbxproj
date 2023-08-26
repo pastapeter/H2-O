@@ -690,24 +690,12 @@
 		B155C0AE2A7920A800F540CB /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				B1CB88E02A99D42600E12981 /* Core */,
-				EDE7D3C22A974F320080F3C7 /* QuotationFooter */,
-				B19823FF2A8F99B000795B44 /* Utils */,
-				EDB20C002A8FD9460063CB3C /* SimilarQuotationDomain */,
-				ED2B8CEA2A8D27C700F561FA /* QuotationCompleteDomain */,
-				B167221E2A8C9E1C002B45A6 /* OptionSelectionDomain */,
-				B1F988DF2A8B1C3700C7B65F /* InteriorColorSelectionDomain */,
-				B1604D0E2A8255D200C7B07D /* TrimSelectionDomain */,
-				B16DFF482A8A3E2C00642730 /* ExteriorColorSelectionDomain */,
-				B1604D5E2A853FA200C7B07D /* ModelTypeSelectionDomain */,
-				ED6410962A7FD88E0033AEBC /* CLBudgetSetting */,
-				B155C11E2A7A789400F540CB /* AppMain */,
 				ED779C3E2A7A799A007F67B7 /* Component */,
-				B155C0EA2A792F6800F540CB /* Font */,
-				B155C0E72A792BA300F540CB /* Colors */,
+				B1CB88EF2A99D98000E12981 /* AppDomain */,
+				B155C11E2A7A789400F540CB /* AppMain */,
+				B1CB88E02A99D42600E12981 /* Core */,
+				B19823FF2A8F99B000795B44 /* Utils */,
 				B155C0DA2A79238B00F540CB /* ArchitectureKit */,
-				B155C0AF2A7920A800F540CB /* CatalogApp.swift */,
-				B155C0B12A7920A800F540CB /* EntryPointView.swift */,
 				B155C0B32A7920A900F540CB /* Assets.xcassets */,
 				B155C0B52A7920A900F540CB /* Preview Content */,
 				B155C0F82A7931B500F540CB /* Info.plist */,
@@ -782,9 +770,11 @@
 		B155C11E2A7A789400F540CB /* AppMain */ = {
 			isa = PBXGroup;
 			children = (
-				EDCF32E12A8AA16200C46A4B /* Intent */,
-				EDCF32E02A8AA15E00C46A4B /* View */,
-				EDCF32DF2A8AA15800C46A4B /* Model */,
+				B155C0AF2A7920A800F540CB /* CatalogApp.swift */,
+				B155C0B12A7920A800F540CB /* EntryPointView.swift */,
+				B1CB88F02A99D9DA00E12981 /* AppMainRoute */,
+				EDE7D3C22A974F320080F3C7 /* QuotationFooterFeature */,
+				ED6410962A7FD88E0033AEBC /* CLBudgetSettingFeature */,
 			);
 			path = AppMain;
 			sourceTree = "<group>";
@@ -1082,6 +1072,8 @@
 		B19823FF2A8F99B000795B44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B155C0EA2A792F6800F540CB /* Font */,
+				B155C0E72A792BA300F540CB /* Colors */,
 				B19824002A8F99BF00795B44 /* CGFloat+.swift */,
 				EDD79A722A936AD5005692D5 /* Encodable+.swift */,
 				B1CB88C12A94D02A00E12981 /* NSItemProvider.swift */,
@@ -1370,6 +1362,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B1CB88EF2A99D98000E12981 /* AppDomain */ = {
+			isa = PBXGroup;
+			children = (
+				EDB20C002A8FD9460063CB3C /* SimilarQuotationDomain */,
+				ED2B8CEA2A8D27C700F561FA /* QuotationCompleteDomain */,
+				B167221E2A8C9E1C002B45A6 /* OptionSelectionDomain */,
+				B1F988DF2A8B1C3700C7B65F /* InteriorColorSelectionDomain */,
+				B1604D0E2A8255D200C7B07D /* TrimSelectionDomain */,
+				B16DFF482A8A3E2C00642730 /* ExteriorColorSelectionDomain */,
+				B1604D5E2A853FA200C7B07D /* ModelTypeSelectionDomain */,
+			);
+			path = AppDomain;
+			sourceTree = "<group>";
+		};
+		B1CB88F02A99D9DA00E12981 /* AppMainRoute */ = {
+			isa = PBXGroup;
+			children = (
+				B1F2BC692A7B62E7005385E0 /* AppMainRouteIntent.swift */,
+				B155C11F2A7A78A700F540CB /* AppMainRouteView.swift */,
+				B1F2BC672A7B613B005385E0 /* AppMainRouteModel.swift */,
+			);
+			path = AppMainRoute;
+			sourceTree = "<group>";
+		};
 		B1EEBA872A869E8E008FC6A4 /* HMGData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1542,14 +1558,14 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
-		ED6410962A7FD88E0033AEBC /* CLBudgetSetting */ = {
+		ED6410962A7FD88E0033AEBC /* CLBudgetSettingFeature */ = {
 			isa = PBXGroup;
 			children = (
 				ED3E87EA2A90BF3800DCDC66 /* Model */,
 				ED3E87E92A90BF2C00DCDC66 /* Intent */,
 				ED95B0012A860E49002D7A4B /* View */,
 			);
-			path = CLBudgetSetting;
+			path = CLBudgetSettingFeature;
 			sourceTree = "<group>";
 		};
 		ED7199C72A8A8DD4008A9BB3 /* Model */ = {
@@ -1565,6 +1581,7 @@
 		ED779C3E2A7A799A007F67B7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				EDCF32E02A8AA15E00C46A4B /* NavigationView */,
 				ED260E052A9537B600C4DA2A /* SnapCarousel */,
 				ED260DF72A94D61900C4DA2A /* Loading */,
 				B1CB88D42A96333400E12981 /* AsyncCachedImage */,
@@ -1662,32 +1679,15 @@
 			path = "pop-up";
 			sourceTree = "<group>";
 		};
-		EDCF32DF2A8AA15800C46A4B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B1F2BC672A7B613B005385E0 /* AppMainRouteModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EDCF32E02A8AA15E00C46A4B /* View */ = {
+		EDCF32E02A8AA15E00C46A4B /* NavigationView */ = {
 			isa = PBXGroup;
 			children = (
 				B1F2BC5D2A7B5B50005385E0 /* TopNaviBar.swift */,
 				B1F2BC612A7B5B7A005385E0 /* NavigationMenuTitleView.swift */,
 				B1F2BC632A7B5BA3005385E0 /* NavigationMenuView.swift */,
-				B155C11F2A7A78A700F540CB /* AppMainRouteView.swift */,
 				EDBC07AC2A95F69200FE1F06 /* NavigationViewAlert.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		EDCF32E12A8AA16200C46A4B /* Intent */ = {
-			isa = PBXGroup;
-			children = (
-				B1F2BC692A7B62E7005385E0 /* AppMainRouteIntent.swift */,
-			);
-			path = Intent;
+			path = NavigationView;
 			sourceTree = "<group>";
 		};
 		EDD303FE2A8A59B100400DF9 /* Model */ = {
@@ -1882,7 +1882,7 @@
 			path = SimilarQuotation;
 			sourceTree = "<group>";
 		};
-		EDE7D3C22A974F320080F3C7 /* QuotationFooter */ = {
+		EDE7D3C22A974F320080F3C7 /* QuotationFooterFeature */ = {
 			isa = PBXGroup;
 			children = (
 				B1CB88E12A99D5F900E12981 /* View */,
@@ -1890,7 +1890,7 @@
 				EDD79A622A9361AD005692D5 /* Data */,
 				EDE7D3C32A974F3C0080F3C7 /* QuotationFooter */,
 			);
-			path = QuotationFooter;
+			path = QuotationFooterFeature;
 			sourceTree = "<group>";
 		};
 		EDE7D3C32A974F3C0080F3C7 /* QuotationFooter */ = {
