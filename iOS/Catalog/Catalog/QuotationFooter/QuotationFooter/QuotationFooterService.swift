@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import SwiftUI
+import Combine
 
 
 protocol QuotationFooterService {
   
-  var totalPrice : CLNumber { get }
+  var totalPricePublisher: Published<CLNumber>.Publisher { get }
   
   func summaryQuotation() -> SummaryCarQuotation
   
@@ -24,7 +24,11 @@ protocol QuotationFooterService {
 
 extension Quotation: QuotationFooterService {
   
+  var totalPricePublisher: Published<CLNumber>.Publisher {
+    $totalPrice
+  }
   
+
   func summaryQuotation() -> SummaryCarQuotation {
     quotation.toSummary()
   }

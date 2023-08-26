@@ -44,13 +44,19 @@ extension QuotationFooterIntent: QuotationFooterIntentType, IntentType {
   func mutate(action: QuotationFooterModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .priceChanged(let price):
-        state.totalPrice = quotation.totalPrice
+        state.totalPrice = price
+        return
       case .summaryChanged:
         state.summary = quotation.summaryQuotation()
       case .showSheet(_):
         return
       case .onAppear:
-        return
+      quotation.totalPricePublisher
+        .receive(on: RunLoop.main)
+        .sink { [unowned self] totalPrice in
+          self.send(action: .priceChanged(price: totalPrice))
+        }
+        .store(in: &cancellable)
       case .onTapCompleteButton:
         Task {
           do {
