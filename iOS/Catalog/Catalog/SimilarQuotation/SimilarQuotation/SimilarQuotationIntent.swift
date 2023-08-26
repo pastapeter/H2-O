@@ -50,10 +50,10 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
   
   func mutate(action: SimilarQuotationModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
-      case .onAppear(let quotation):
+      case .onAppear(let carQuotation):
         Task {
           do {
-            let similarQuotations = try await repository.fetchSimilarQuotation(quotation: quotation)
+            let similarQuotations = try await repository.fetchSimilarQuotation(quotation: carQuotation)
             state.similarQuotations = similarQuotations
           } catch(let e) {
             print(String(describing: e))
@@ -78,8 +78,10 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
       case .optionSelected(let selectedOption):
         if state.selectedOptions.contains(selectedOption) {
           state.selectedOptions = state.selectedOptions.filter { $0 != selectedOption }
+          quotation.addSimilarOption(options: state.selectedOptions)
         } else {
           state.selectedOptions.append(selectedOption)
+          quotation.addSimilarOption(options: state.selectedOptions)
         }
         
       case .currentSimilarQuotationIndexChanged(let index):

@@ -11,19 +11,23 @@ protocol SimilarQuotationService {
   
   var quotation: CarQuotation { get }
   
+  var totalPrice: CLNumber { get }
+  
   func addSimilarOption(options: [any QuotationOptionable])
   
-  func totalPriceInSimilarQuotation() -> CLNumber
+  var totalPriceInSimilarQuotation: Published<CLNumber>.Publisher { get }
+  
 }
 
 extension Quotation: SimilarQuotationService {
   
   func addSimilarOption(options: [any QuotationOptionable]) {
     quotation.options.append(contentsOf: options)
+    totalPrice = quotation.calculateTotalPrice()
   }
   
-  func totalPriceInSimilarQuotation() -> CLNumber {
-    totalPrice
+  var totalPriceInSimilarQuotation : Published<CLNumber>.Publisher {
+    $totalPrice
   }
 
 }

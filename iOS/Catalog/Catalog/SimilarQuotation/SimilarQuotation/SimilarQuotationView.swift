@@ -35,7 +35,7 @@ extension SimilarQuotationView: View {
           
           CLBudgetRangeView.build(intent:
               .init(initialState:
-                  .init(currentQuotationPrice: intent.quotation.totalPriceInSimilarQuotation(),
+                  .init(currentQuotationPrice: intent.quotation.totalPrice,
                         budgetPrice: budgetPrice,
                         status: .similarQuotation),
                     navigationIntent: navigationIntent, quotation: intent.quotation as! CLBudgetPriceService))
