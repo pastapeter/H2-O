@@ -38,6 +38,8 @@ final class ExternalSelectionIntent: ObservableObject {
   
   private var quotation: ExteriorSelectionService
   let imageCacher = ImageCacheService.shared
+  var imgs: [Data] = Array(repeating: Data(), count: 60)
+  
   
 }
 
@@ -58,38 +60,24 @@ extension ExternalSelectionIntent: ExteriorSelectionIntentType, IntentType {
       case .fetchColors(let colors):
         let colorStates = colors.map { ExteriorColorState(isSelected: false, color: $0) }
         state.colors = colorStates
-        
         let colorCount = state.colors.count
-        state.images = Array(repeating: [], count: colorCount)
-        //        for i in 0..<colorCount {
-        //          var imgs: [Data] = Array(repeating: Data(), count: 60)
-        //          Task {
-        //            do {
-        //              for urlIndex in 0..<state.colors[colorCount-1].color.exteriorImages.count {
-        //                imgs[urlIndex] = try await imageCacher.setImage(state.colors[colorCount-1].color.exteriorImages[urlIndex])
-        //              }
-        //              state.images.append(imgs)
-        //            } catch {
-        //              
-        //            }
-        //          }
-        //        }
         state.images = Array(repeating: [], count: colorCount)
         Task {
           do {
             for i in 0..<colorCount {
-              for url in state.colors[colorCount-1].color.exteriorImages {
-                state.images[i].append(try await imageCacher.setImage(url))
+              for urlIndex in 0..<state.colors[colorCount-1].color.exteriorImages.count {
+                imgs[urlIndex] = try await imageCacher.setImage(state.colors[i].color.exteriorImages[urlIndex])
               }
+              state.images[i] = imgs
             }
           } catch {
-            state.images = []
+              print("@@@에러")
           }
         }
         if !colorStates.isEmpty {
           send(action: .onTapColor(id: colorStates[0].color.id))
           // TODO:
-        } 
+        }
       case .changeSelectedExteriorImageURL:
         print("External Image Urls")
       case .onTapColor(let id):
