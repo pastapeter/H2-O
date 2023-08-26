@@ -23,11 +23,17 @@ extension SimilarQuotationResponseDTO {
     guard let similarPrice = price else { throw SimilarQuotationError.failedToDomain }
     guard let similarOptions = options else { throw SimilarQuotationError.failedToDomain }
     
+    var imageURL: URL?
+    if let imageStr = image {
+      imageURL = URL(string: imageStr)
+    }
+    
     let typeNamesDomain = try typeNames.toDomain()
     return SimilarQuotation(id: .init(), powertrainName: typeNamesDomain[0] ,
                             bodytypeName: typeNamesDomain[1],
                             drivetrainName: typeNamesDomain[2],
                             price: CLNumber(Int32(similarPrice)),
+                            image: imageURL,
                             options: similarOptions.compactMap({try? $0.toDomain()}))
   }
 }

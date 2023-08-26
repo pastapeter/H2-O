@@ -18,15 +18,15 @@ struct SimilarQuotation: Equatable, Identifiable {
   var options: [SimilarQuotationOption]
   
   static func mock() -> SimilarQuotation {
-    .init(id: .init(), powertrainName: "디젤 2.2",
-          bodytypeName: "7인승",
-          drivetrainName: "2WD",
-          price: CLNumber(23233), options: [
+    .init(id: .init(), powertrainName: "",
+          bodytypeName: "",
+          drivetrainName: "",
+          price: CLNumber(0), options: [
             SimilarQuotationOption.mock(),
             SimilarQuotationOption(
               id: 5,
-              name: "ㅎㅎ",
-              price: CLNumber(10900))
+              name: "",
+              price: CLNumber(0))
           ])
   }
 }

@@ -28,7 +28,6 @@ extension SimilarQuotationCardImage: View {
           image
             .resizable()
             .scaledToFill()
-            .frame(width: CGFloat(343).scaledWidth)
         })
         .frame(maxHeight: .infinity, alignment: .trailing)
       }
