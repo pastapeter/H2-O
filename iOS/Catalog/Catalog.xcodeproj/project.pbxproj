@@ -1311,7 +1311,7 @@
 			path = URLCache;
 			sourceTree = "<group>";
 		};
-		B1CB88C32A94E14100E12981 /* ImageCache */ = {
+		B1CB88C32A94E14100E12981 /* ImageCacheCore */ = {
 			isa = PBXGroup;
 			children = (
 				B1CB88C62A94E19300E12981 /* DiskCache.swift */,
@@ -1321,7 +1321,7 @@
 				B1CB88D92A96702B00E12981 /* CacheConstants.swift */,
 				B1CB88D72A96701700E12981 /* CacheError.swift */,
 			);
-			path = ImageCache;
+			path = ImageCacheCore;
 			sourceTree = "<group>";
 		};
 		B1CB88D42A96333400E12981 /* AsyncCachedImage */ = {
@@ -1343,9 +1343,9 @@
 		B1CB88E02A99D42600E12981 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				ED1A70942A8357FD00F7920F /* Quotation */,
+				ED1A70942A8357FD00F7920F /* QuotationCore */,
 				B1604D102A82569800C7B07D /* NetworkCore */,
-				B1CB88C32A94E14100E12981 /* ImageCache */,
+				B1CB88C32A94E14100E12981 /* ImageCacheCore */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1446,13 +1446,13 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		ED1A70942A8357FD00F7920F /* Quotation */ = {
+		ED1A70942A8357FD00F7920F /* QuotationCore */ = {
 			isa = PBXGroup;
 			children = (
 				EDD79A422A929139005692D5 /* Quotation */,
 				EDD79A442A92916D005692D5 /* Model */,
 			);
-			path = Quotation;
+			path = QuotationCore;
 			sourceTree = "<group>";
 		};
 		ED260DF72A94D61900C4DA2A /* Loading */ = {
