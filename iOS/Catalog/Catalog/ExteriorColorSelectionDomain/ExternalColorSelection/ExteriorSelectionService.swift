@@ -8,11 +8,14 @@
 import Foundation
 
 protocol ExteriorSelectionService: AnyObject {
-  func updateExteriorColor(to color: ExteriorColor)
+  func updateExteriorColor(to color: ExteriorColor?)
 }
 
 extension Quotation: ExteriorSelectionService {
-  func updateExteriorColor(to color: ExteriorColor) {
+  func updateExteriorColor(to color: ExteriorColor?) {
+    guard let color = color else { return }
+    Log.debug(message: color.name)
     quotation.externalColor = color
+    totalPrice = quotation.calculateTotalPrice()
   }
 }

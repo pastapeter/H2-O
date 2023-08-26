@@ -83,8 +83,9 @@ extension ExternalSelectionIntent: ExteriorSelectionIntentType, IntentType {
       case .onTapColor(let id):
         state.selectedColorId = id
         state.currentSelectedIndex = state.colors.firstIndex(where: {$0.color.id == id}) ?? 0
-        print(state.currentSelectedIndex)
-        quotation.updateExteriorColor(to: state.colors[state.colors.firstIndex(where: {$0.isSelected}) ?? 0].color)
+        
+      quotation.updateExteriorColor(to: state.colors.first(where: { $0.color.id == id })?.color)
+      
         for i in state.colors.indices {
           if state.colors[i].color.id == id {
             state.colors[i].isSelected = true
