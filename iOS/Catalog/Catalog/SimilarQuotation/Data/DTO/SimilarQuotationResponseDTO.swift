@@ -24,7 +24,7 @@ extension SimilarQuotationResponseDTO {
     guard let similarOptions = options else { throw SimilarQuotationError.failedToDomain }
     
     let typeNamesDomain = try typeNames.toDomain()
-    return SimilarQuotation(powertrainName: typeNamesDomain[0] ,
+    return SimilarQuotation(id: .init(), powertrainName: typeNamesDomain[0] ,
                             bodytypeName: typeNamesDomain[1],
                             drivetrainName: typeNamesDomain[2],
                             price: CLNumber(Int32(similarPrice)),

@@ -8,7 +8,8 @@
 import Foundation
 
 struct SimilarQuotation: Equatable, Identifiable {
-  var id: UUID?
+  
+  var id: UUID
   var powertrainName: String
   var bodytypeName: String
   var drivetrainName: String
@@ -17,7 +18,7 @@ struct SimilarQuotation: Equatable, Identifiable {
   var options: [SimilarQuotationOption]
   
   static func mock() -> SimilarQuotation {
-    .init(powertrainName: "디젤 2.2",
+    .init(id: .init(), powertrainName: "디젤 2.2",
           bodytypeName: "7인승",
           drivetrainName: "2WD",
           price: CLNumber(23233), options: [
