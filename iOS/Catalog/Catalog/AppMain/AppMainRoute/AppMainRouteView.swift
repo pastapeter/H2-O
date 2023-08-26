@@ -11,14 +11,7 @@ struct AppMainRouteView: IntentBindingType {
   @StateObject var container: Container<AppMainRouteIntentType, AppMainRouteModel.State>
   var intent: AppMainRouteIntentType { container.intent }
   var state: AppMainRouteModel.State { intent.state }
-  let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
   let quotation = Quotation()
-  @SwiftUI.State var menuStatus: [NavigationMenuTitleView.Status] = [.inactive,
-                                                                       .inactive,
-                                                                       .inactive,
-                                                                       .inactive,
-                                                                       .inactive,
-                                                                       .inactive]
   @SwiftUI.State var showQuotationSummarySheet: Bool = false
 }
 
@@ -40,7 +33,7 @@ extension AppMainRouteView: View {
       NavigationView {
         VStack(spacing: 0) {
           TopNaviBar(intent: intent)
-          NavigationMenuView(currentPage: currentPageBinding, menuStatus: menuStatus, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"])
+          NavigationMenuView(currentPage: currentPageBinding, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"], showNavigationDivider: true)
           ZStack {
             carTalogTabView()
             carTalogBudgetView()
