@@ -21,7 +21,7 @@ final class TrimSelectionIntent: ObservableObject {
 
   // MARK: - LifeCycle
 
-  init(initialState: State, repository: TrimSelectionRepositoryProtocol, quotation: TrimSelectionService, navigationIntent: CLNavigationIntentType) {
+  init(initialState: State, repository: TrimSelectionRepositoryProtocol, quotation: TrimSelectionService, navigationIntent: AppMainRouteIntentType) {
     state = initialState
     self.repository = repository
     self.quotation = quotation
@@ -34,7 +34,7 @@ final class TrimSelectionIntent: ObservableObject {
 
   private var repository: TrimSelectionRepositoryProtocol
   private var quotation: TrimSelectionService
-  private var navigationIntent: CLNavigationIntentType
+  private var navigationIntent: AppMainRouteIntentType
   @Published var state: State = State(selectedTrim: Trim(id: 0, name: "", description: "", price: CLNumber(0), hmgData: []), carId: 1)
 
   var cancellable: Set<AnyCancellable> = []

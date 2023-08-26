@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct CLNavigationMenuView: View {
+struct NavigationMenuView: View {
 
   @Binding var currentPage: Int
   @Namespace var namespace
-  var menuStatus: [CLNavigationMenuTitleView.Status]?
+  var menuStatus: [NavigationMenuTitleView.Status]?
   var navigationMenuTitles: [String]
   var titleFont: CatalogTextType = .HeadKRMedium14
   var horizontalSpacing: CGFloat = CGFloat(11).scaledWidth
   var verticalSpacing: CGFloat = CGFloat(6).scaledHeight
   var showNavigationDivider: Bool = false
-  var barType: CLNavigationMenuTitleView.BarType = .fixed
+  var barType: NavigationMenuTitleView.BarType = .fixed
   var scrollable: Bool = false
 
   var body: some View {
@@ -36,7 +36,7 @@ struct CLNavigationMenuView: View {
       HStack(spacing: horizontalSpacing) {
         ForEach(Array(zip(self.navigationMenuTitles.indices,
                           self.navigationMenuTitles)), id: \.0) { index, name in
-          CLNavigationMenuTitleView(currentPage: self.$currentPage,
+          NavigationMenuTitleView(currentPage: self.$currentPage,
                                     status: menuStatus?[index], namespace: namespace.self,
                                     navigationMenuTitle: name,
                                     page: index, font: titleFont, spacing: verticalSpacing, barWidthType: barType)

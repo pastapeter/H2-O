@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class CLNavigationIntent: ObservableObject {
+final class AppMainRouteIntent: ObservableObject {
   
   // MARK: - LifeCycle
   
@@ -25,12 +25,12 @@ final class CLNavigationIntent: ObservableObject {
   var cancellable: Set<AnyCancellable> = []
 }
 
-extension CLNavigationIntent: CLNavigationIntentType, IntentType {
-  typealias ViewAction = CLNavigationModel.ViewAction
+extension AppMainRouteIntent: AppMainRouteIntentType, IntentType {
+  typealias ViewAction = AppMainRouteModel.ViewAction
   
-  typealias State = CLNavigationModel.State
+  typealias State = AppMainRouteModel.State
   
-  func mutate(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?) {
+  func mutate(action: AppMainRouteModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .onTapNavTab(let index):
         //        if index != 0 && quotation.state.quotation == nil {
@@ -62,12 +62,12 @@ extension CLNavigationIntent: CLNavigationIntentType, IntentType {
   }
 }
 
-protocol CLNavigationIntentType: AnyObject {
+protocol AppMainRouteIntentType: AnyObject {
   
-  var state: CLNavigationModel.State { get }
+  var state: AppMainRouteModel.State { get }
   
-  func send(action: CLNavigationModel.ViewAction)
+  func send(action: AppMainRouteModel.ViewAction)
   
-  func send(action: CLNavigationModel.ViewAction, viewEffect: (() -> Void)?)
+  func send(action: AppMainRouteModel.ViewAction, viewEffect: (() -> Void)?)
   
 }

@@ -14,7 +14,7 @@ struct SimilarQuotationView {
   
   @SwiftUI.State var currentIndex: Int = 0
   let budgetPrice: CLNumber = CLNumber(50000000)
-  let navigationIntent: CLNavigationIntentType
+  let navigationIntent: AppMainRouteIntentType
 }
 
 extension SimilarQuotationView {
@@ -102,7 +102,7 @@ extension SimilarQuotationView: View {
 
 extension SimilarQuotationView {
   @ViewBuilder
-  static func build(intent: SimilarQuotationIntent, navitationIntent: CLNavigationIntentType) -> some View {
+  static func build(intent: SimilarQuotationIntent, navitationIntent: AppMainRouteIntentType) -> some View {
     SimilarQuotationView(container: .init(
       intent: intent as SimilarQuotationIntent,
       state: intent.state,

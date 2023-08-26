@@ -24,7 +24,7 @@ protocol QuotationCompleteIntentType {
 
 final class QuotationCompleteIntent: ObservableObject {
   
-  init(initialState: State, repository: QuotationCompleteRepositoryProtocol, quotation: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
+  init(initialState: State, repository: QuotationCompleteRepositoryProtocol, quotation: QuotationCompleteService, navigationIntent: AppMainRouteIntentType) {
     state = initialState
     self.repository = repository
     self.quotation = quotation
@@ -37,7 +37,7 @@ final class QuotationCompleteIntent: ObservableObject {
   @Published var state: State
   
   var cancellable: Set<AnyCancellable> = []
-  var navigationIntent: CLNavigationIntentType
+  var navigationIntent: AppMainRouteIntentType
   private(set) var repository: QuotationCompleteRepositoryProtocol
   private(set) var quotation: QuotationCompleteService
   

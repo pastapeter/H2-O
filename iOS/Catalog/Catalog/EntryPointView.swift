@@ -11,7 +11,7 @@ struct EntryPointView: View {
   var body: some View {
     ZStack {
       VStack(spacing: 0) {
-        CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0,showQuotationSummarySheet: false, alertCase: .guide, showAlert: true)))
+        AppMainRouteView.build(intent: AppMainRouteIntent(initialState: .init(currentPage: 0,showQuotationSummarySheet: false, alertCase: .guide, showAlert: true)))
       }
     }
     .ignoresSafeArea()

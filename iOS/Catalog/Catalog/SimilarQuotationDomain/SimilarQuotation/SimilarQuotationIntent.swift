@@ -21,7 +21,7 @@ protocol SimilarQuotationIntentType {
 
 final class SimilarQuotationIntent: ObservableObject {
   
-  init(initialState: State, repository: SimilarQuotationRepositoryProtocol, navigationIntent: CLNavigationIntentType, budgetRangeIntent: CLBudgetRangeIntentType, quotation: SimilarQuotationService) {
+  init(initialState: State, repository: SimilarQuotationRepositoryProtocol, navigationIntent: AppMainRouteIntentType, budgetRangeIntent: CLBudgetRangeIntentType, quotation: SimilarQuotationService) {
     state = initialState
     self.repository = repository
     self.navigationIntent = navigationIntent
@@ -41,7 +41,7 @@ final class SimilarQuotationIntent: ObservableObject {
   
   var cancellable: Set<AnyCancellable> = []
   private var repository: SimilarQuotationRepositoryProtocol
-  private var navigationIntent: CLNavigationIntentType
+  private var navigationIntent: AppMainRouteIntentType
   private var budgetRangeIntent: CLBudgetRangeIntentType
   private(set) var quotation: SimilarQuotationService
 }

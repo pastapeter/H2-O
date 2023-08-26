@@ -24,7 +24,7 @@ extension OptionSelectionView: View {
   var body: some View {
     VStack(alignment: .leading) {
       Spacer().frame(height: CGFloat(50).scaledHeight)
-      CLNavigationMenuView(currentPage: currentPage, navigationMenuTitles: state.optionMenuTitle, titleFont: .TextKRBold18, horizontalSpacing: CGFloat(24).scaledWidth, verticalSpacing: 2)
+      NavigationMenuView(currentPage: currentPage, navigationMenuTitles: state.optionMenuTitle, titleFont: .TextKRBold18, horizontalSpacing: CGFloat(24).scaledWidth, verticalSpacing: 2)
         .padding(.leading, CGFloat(20).scaledWidth)
       
       Spacer().frame(height: 16)

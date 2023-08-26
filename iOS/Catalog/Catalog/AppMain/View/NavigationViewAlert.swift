@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-extension CLNavigationView {
+extension AppMainRouteView {
   enum AlertCase: Equatable {
     case quit
     case guide
   }
 }
-extension CLNavigationView {
+extension AppMainRouteView {
   @ViewBuilder
   func makeAlertView(alertCase: AlertCase) -> some View {
     switch alertCase {

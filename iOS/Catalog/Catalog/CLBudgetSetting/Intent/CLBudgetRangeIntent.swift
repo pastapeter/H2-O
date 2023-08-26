@@ -21,7 +21,7 @@ protocol CLBudgetRangeIntentType {
 final class CLBudgetRangeIntent: ObservableObject {
 
     // MARK: - LifeCycle
-  init(initialState: State, navigationIntent: CLNavigationIntentType, quotation: CLBudgetPriceService) {
+  init(initialState: State, navigationIntent: AppMainRouteIntentType, quotation: CLBudgetPriceService) {
         state = initialState
     self.navigationIntent = navigationIntent
     self.quotation = quotation
@@ -33,7 +33,7 @@ final class CLBudgetRangeIntent: ObservableObject {
 
     @Published var state: State = State(currentQuotationPrice: CLNumber(30000000),
                                         budgetPrice: CLNumber(40000000), status: .default)
-    let navigationIntent: CLNavigationIntentType
+    let navigationIntent: AppMainRouteIntentType
     var quotation: CLBudgetPriceService
     var cancellable: Set<AnyCancellable> = []
 }

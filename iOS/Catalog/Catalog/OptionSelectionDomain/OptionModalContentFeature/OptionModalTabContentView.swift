@@ -14,7 +14,7 @@ struct OptionModalTabContentView: View {
   
     var body: some View {
       VStack(alignment: .leading) {
-        CLNavigationMenuView(currentPage: $currentPage,
+        NavigationMenuView(currentPage: $currentPage,
                              navigationMenuTitles: state.components.map { $0.name },
                              titleFont: .TextKRMedium14,
                              verticalSpacing:0,

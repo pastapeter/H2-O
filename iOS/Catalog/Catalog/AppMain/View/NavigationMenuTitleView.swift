@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CLNavigationMenuTitleView: View {
+struct NavigationMenuTitleView: View {
 
   enum Status {
     case completed

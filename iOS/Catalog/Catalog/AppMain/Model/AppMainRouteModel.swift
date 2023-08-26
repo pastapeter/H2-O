@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum CLNavigationModel {
+enum AppMainRouteModel {
 
   struct State: Equatable {
-    static func == (lhs: CLNavigationModel.State, rhs: CLNavigationModel.State) -> Bool {
+    static func == (lhs: AppMainRouteModel.State, rhs: AppMainRouteModel.State) -> Bool {
       lhs.currentPage == rhs.currentPage
     }
 
     var currentPage: Int
     var showQuotationSummarySheet: Bool
-    var alertCase: CLNavigationView.AlertCase
+    var alertCase: AppMainRouteView.AlertCase
     var showAlert: Bool
 
   }

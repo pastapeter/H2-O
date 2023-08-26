@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct CLNavigationView: IntentBindingType {
-  @StateObject var container: Container<CLNavigationIntentType, CLNavigationModel.State>
-  var intent: CLNavigationIntentType { container.intent }
-  var state: CLNavigationModel.State { intent.state }
+struct AppMainRouteView: IntentBindingType {
+  @StateObject var container: Container<AppMainRouteIntentType, AppMainRouteModel.State>
+  var intent: AppMainRouteIntentType { container.intent }
+  var state: AppMainRouteModel.State { intent.state }
   let mockImageName: [String] = ["trim", "modelType", "external", "internal", "option", "complete"]
   let quotation = Quotation()
-  @SwiftUI.State var menuStatus: [CLNavigationMenuTitleView.Status] = [.inactive,
+  @SwiftUI.State var menuStatus: [NavigationMenuTitleView.Status] = [.inactive,
                                                                        .inactive,
                                                                        .inactive,
                                                                        .inactive,
@@ -22,7 +22,7 @@ struct CLNavigationView: IntentBindingType {
   @SwiftUI.State var showQuotationSummarySheet: Bool = false
 }
 
-extension CLNavigationView {
+extension AppMainRouteView {
   var currentPageBinding: Binding<Int> {
     .init(get: { state.currentPage },
           set: { intent.send(action: .onTapNavTab(index: $0)) })
@@ -34,13 +34,13 @@ extension CLNavigationView {
   }
 }
 
-extension CLNavigationView: View {
+extension AppMainRouteView: View {
   var body: some View {
     ZStack {
       NavigationView {
         VStack(spacing: 0) {
-          CLTopNaviBar(intent: intent)
-          CLNavigationMenuView(currentPage: currentPageBinding, menuStatus: menuStatus, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"])
+          TopNaviBar(intent: intent)
+          NavigationMenuView(currentPage: currentPageBinding, menuStatus: menuStatus, navigationMenuTitles: ["트림", "타입", "외장", "내장", "옵션", "완료"])
           ZStack {
             carTalogTabView()
             carTalogBudgetView()
@@ -60,7 +60,7 @@ extension CLNavigationView: View {
 }
 
 
-extension CLNavigationView {
+extension AppMainRouteView {
   
   func makeQuotationSummarySheet() -> some View {
     CLQuotationSummarySheet(currentQuotationPrice: quotation.totalPrice,
@@ -186,21 +186,21 @@ extension CLNavigationView {
   }
   
   func makeCLBudgetRangeIntent() -> CLBudgetRangeIntent {
-    CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: quotation.totalPrice, budgetPrice: .init(0), status: .similarQuotation), navigationIntent: CLNavigationIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)), quotation: quotation)
+    CLBudgetRangeIntent(initialState: .init(currentQuotationPrice: quotation.totalPrice, budgetPrice: .init(0), status: .similarQuotation), navigationIntent: AppMainRouteIntent(initialState: .init(currentPage: 5, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)), quotation: quotation)
   }
   
   @ViewBuilder
-  static func build(intent: CLNavigationIntent) -> some View {
-    CLNavigationView(container: .init(
-      intent: intent as CLNavigationIntent,
+  static func build(intent: AppMainRouteIntent) -> some View {
+    AppMainRouteView(container: .init(
+      intent: intent as AppMainRouteIntent,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange))
   }
 }
 
-struct CLNavigationView_Previews: PreviewProvider {
+struct AppMainRouteView_Previews: PreviewProvider {
   static var previews: some View {
-    return CLNavigationView.build(intent: CLNavigationIntent(initialState: .init(currentPage: 0, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)))
+    return AppMainRouteView.build(intent: AppMainRouteIntent(initialState: .init(currentPage: 0, showQuotationSummarySheet: false, alertCase: .guide, showAlert: false)))
   }
 }
 
