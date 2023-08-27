@@ -10,7 +10,8 @@ import Combine
 
 protocol OptionCardViewIntentType {
   
-  var viewState: OptionCardModel.State { get }
+  var viewState: OptionCardModel.ViewState { get }
+  var state: OptionCardModel.State { get }
 
   func send(action: OptionCardModel.ViewAction)
 
@@ -26,10 +27,12 @@ final class OptionCardViewIntent: ObservableObject {
     self.repository = repository
   }
   
-  typealias ViewState = OptionCardModel.State
+  typealias ViewState = OptionCardModel.ViewState
+  typealias State = OptionCardModel.State
   typealias ViewAction = OptionCardModel.ViewAction
   
   @Published var viewState: ViewState
+  var state: OptionCardModel.State = .init()
   
   var cancellable: Set<AnyCancellable> = []
   weak var parent: OptionCardScrollIntentType?

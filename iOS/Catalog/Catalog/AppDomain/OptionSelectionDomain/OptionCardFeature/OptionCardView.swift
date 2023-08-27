@@ -9,9 +9,10 @@ import SwiftUI
 
 struct OptionCardView: IntentBindingType {
   
-  var container: Container<OptionCardViewIntentType, OptionCardModel.State>
+  var container: Container<OptionCardViewIntentType, OptionCardModel.ViewState, OptionCardModel.State>
   var intent: OptionCardViewIntentType { container.intent }
-  var viewState: OptionCardModel.State { intent.viewState }
+  var viewState: OptionCardModel.ViewState { intent.viewState }
+  var state: OptionCardModel.State { intent.state }
   @SwiftUI.State var isModalPresenting = false
   @SwiftUI.State var isSelected: Bool = false
 
@@ -23,7 +24,7 @@ extension OptionCardView: View {
   var body: some View {
     
     Button {
-      intent.send(action: .onTap(id: viewState.id)) {
+      intent.send(action: .onTap(option: viewState)) {
         if viewState.price != nil {
           isSelected.toggle()
         } else {
@@ -58,7 +59,7 @@ extension OptionCardView: View {
         TransparentZStack {
           if viewState.isPackage {
             ModalPopUpComponent(state: self.viewState.packageOption, submitAction: {
-              intent.send(action: .onTap(id: self.viewState.id)) {
+              intent.send(action: .onTap(option: self.viewState)) {
                 self.isSelected.toggle()
                 self.isModalPresenting.toggle()
               }
@@ -67,7 +68,7 @@ extension OptionCardView: View {
             }
           } else {
             ModalPopUpComponent(state: self.viewState.defaultOptionDetail, submitAction: {
-              intent.send(action: .onTap(id: self.viewState.id)) {
+              intent.send(action: .onTap(option: self.viewState)) {
                 self.isSelected.toggle()
                 self.isModalPresenting.toggle()
               }
@@ -185,7 +186,8 @@ extension OptionCardView {
   @ViewBuilder
   static func build(intent: OptionCardViewIntent) -> some View {
     OptionCardView(container: .init(intent: intent,
-                                    state: intent.viewState,
+                                    viewState: intent.viewState,
+                                    state: intent.state,
                                     modelChangePublisher: intent.objectWillChange))
   }
   

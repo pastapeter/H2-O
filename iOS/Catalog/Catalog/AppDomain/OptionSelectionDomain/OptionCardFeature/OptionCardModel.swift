@@ -9,10 +9,10 @@ import Foundation
 
 enum OptionCardModel {
 
-  struct State: Equatable, Hashable, QuotationOptionable {    
+  struct ViewState: Equatable, Hashable, QuotationOptionable {
     
     
-    static func == (lhs: OptionCardModel.State, rhs: OptionCardModel.State) -> Bool {
+    static func == (lhs: OptionCardModel.ViewState, rhs: OptionCardModel.ViewState) -> Bool {
       lhs.id == rhs.id
     }
     
@@ -34,9 +34,13 @@ enum OptionCardModel {
     var isSimilarOption: Bool = false
 
   }
+  
+  struct State: Equatable {
+    
+  }
 
   enum ViewAction {
     case onTapDetail
-    case onTap(option: OptionCardModel.State)
+    case onTap(option: OptionCardModel.ViewState)
   }
 }
