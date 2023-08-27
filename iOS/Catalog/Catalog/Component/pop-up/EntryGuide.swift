@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EntryGuide: View {
-  var intent: CLNavigationIntentType
+  var intent: AppMainRouteIntentType
   private let horizonalPadding = (UIScreen.main.bounds.width - 310) / 2
   var body: some View {
     DimmedZStack {
