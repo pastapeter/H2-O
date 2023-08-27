@@ -1,4 +1,4 @@
-package com.h2o.h2oServer.domain.options.entity;
+package com.h2o.h2oServer.domain.option.entity;
 
 import com.h2o.h2oServer.domain.option.entity.enums.OptionCategory;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @EqualsAndHashCode
-public class TrimExtraOptionEntity {
+public class TrimDefaultOptionEntity {
     private Long id;
     private String name;
     private String image;
@@ -16,5 +16,5 @@ public class TrimExtraOptionEntity {
     private String mobileImage;
     private OptionCategory category;
     private Float choiceRatio;
-    private Integer price;
+    private Float useCount;
 }

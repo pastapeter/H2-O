@@ -11,11 +11,13 @@
     </select>
 
     <select id="findHashTag" resultType="HashTagEntity">
-        select hashtag.name
-        from package
-                 join package_hashtag on package.id = package_hashtag.package_id
-                 join hashtag on hashtag.id = package_hashtag.hashtag_id
-        where package.id = #{packageId}
+        select name
+        from package_hashtag
+                 join hashtag
+                      on package_hashtag.hashtag_id = hashtag.id
+        where package_id = #{packageId}
+        order by hashtag_id
+            limit 5;
     </select>
 
     <select id="findOptionComponent" resultType="long">

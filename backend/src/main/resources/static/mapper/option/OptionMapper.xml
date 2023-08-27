@@ -17,11 +17,40 @@
     </select>
 
     <select id="findHashTag" resultType="HashTagEntity">
-        select hashtag.name
-        from options
-                 join options_hashtag on options.id = options_hashtag.option_id
-                 join hashtag on hashtag.id = options_hashtag.hashtag_id
-        where options.id = #{optionId}
+        select name
+        from options_hashtag
+                 join hashtag
+                      on options_hashtag.hashtag_id = hashtag.id
+        where option_id = #{optionId}
+        order by hashtag_id
+            limit 5;
+    </select>
+
+    <select id="findTrimPackages" resultType="TrimExtraOptionEntity">
+        select id, name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, category, choice_ratio, price
+        from trims_package
+                 join package
+                      on trims_package.package_id = package.id
+        where trim_id = #{trimId}
+        order by package_id;
+    </select>
+
+    <select id="findTrimExtraOptions" resultType="TrimExtraOptionEntity">
+        select id, name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, category, choice_ratio, price
+        from trims_options
+                 join options
+                      on trims_options.option_id = options.id
+        where trim_id = #{trimId} and option_type = 'extra'
+        order by option_id;
+    </select>
+
+    <select id="findTrimDefaultOptions" resultType="TrimDefaultOptionEntity">
+        select id, name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, category, choice_ratio, use_count
+        from trims_options
+                 join options
+                      on trims_options.option_id = options.id
+        where trim_id = #{trimId} and option_type = 'default'
+        order by option_id;
     </select>
 
     <select id="checkIfOptionExists" resultType="boolean">

@@ -1,4 +1,4 @@
-package com.h2o.h2oServer.domain.options.dto;
+package com.h2o.h2oServer.domain.option.dto;
 
 import lombok.Data;
 

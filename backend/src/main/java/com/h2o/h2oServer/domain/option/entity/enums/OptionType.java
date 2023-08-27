@@ -1,4 +1,4 @@
-package com.h2o.h2oServer.domain.options.enums;
+package com.h2o.h2oServer.domain.option.entity.enums;
 
 import lombok.Getter;
 

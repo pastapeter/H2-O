@@ -1,5 +1,6 @@
 package com.h2o.h2oServer.domain.options.dto;
 
+import com.h2o.h2oServer.domain.option.dto.HashTagDto;
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.enums.HashTag;
 import org.assertj.core.api.Assertions;

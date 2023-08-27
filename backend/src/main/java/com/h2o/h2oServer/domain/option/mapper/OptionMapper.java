@@ -3,6 +3,8 @@ package com.h2o.h2oServer.domain.option.mapper;
 import com.h2o.h2oServer.domain.option.entity.HashTagEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionDetailsEntity;
 import com.h2o.h2oServer.domain.option.entity.OptionEntity;
+import com.h2o.h2oServer.domain.option.entity.TrimDefaultOptionEntity;
+import com.h2o.h2oServer.domain.option.entity.TrimExtraOptionEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,6 +18,12 @@ public interface OptionMapper {
     Optional<OptionEntity> findOption(Long id);
 
     List<HashTagEntity> findHashTag(Long id);
+
+    List<TrimExtraOptionEntity> findTrimPackages(Long trimId);
+
+    List<TrimExtraOptionEntity> findTrimExtraOptions(Long trimId);
+
+    List<TrimDefaultOptionEntity> findTrimDefaultOptions(Long trimId);
 
     Boolean checkIfOptionExists(Long id);
 }
