@@ -132,7 +132,7 @@ extension AppMainRouteView {
   
   func makeFooterView() -> some View {
     
-    QuotationFooterView.build(intent: QuotationFooterIntent(initialState: .init(totalPrice: quotation.totalPrice, summary: quotation.summary()),
+    QuotationFooterView.build(intent: QuotationFooterIntent(initialViewState: .init(totalPrice: quotation.totalPrice, summary: quotation.summary()), initialState: .init(),
                                                             repository: QuotationFooterRepository(quotationFooterRequestManager: RequestManager(apiManager: APIManager())),
                                                             quotation: quotation),
                               prevAction: { intent.send(action: .onTapNavTab(index: viewState.currentPage - 1))},

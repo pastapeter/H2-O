@@ -40,7 +40,7 @@ final class OptionCardScrollIntent: ObservableObject {
 
   var cancellable: Set<AnyCancellable> = []
   private(set) var repository: OptionSelectionRepositoryProtocol
-  private var totalCardState: [OptionCardModel.State] = []
+  private var totalCardState: [OptionCardModel.ViewState] = []
   private weak var parent: OptionSelectionCollectable?
 
 }
@@ -96,7 +96,7 @@ extension OptionCardScrollIntent {
     Task {
       do {
         let states: [DefaultOption] = try await repository.fetchAllOptions()
-        let defaultCellInfos = states.map { return OptionCardModel.State(id: $0.id, hashTags: $0.hashTags,
+        let defaultCellInfos = states.map { return OptionCardModel.ViewState(id: $0.id, hashTags: $0.hashTags,
                                                                          name: $0.name,
                                                                          imageURL: $0.image, containsHmgData: $0.containsHmgData,
                                                                          category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock()) }
@@ -116,7 +116,7 @@ extension OptionCardScrollIntent {
     Task {
       do {
         let states: [ExtraOption] = try await repository.fetchAllOptions()
-        let extraCellInfos = states.map { return OptionCardModel.State(id: $0.id, isPackage: $0.isPackage,
+        let extraCellInfos = states.map { return OptionCardModel.ViewState(id: $0.id, isPackage: $0.isPackage,
                                 hashTags: $0.hashTags,
                                 name: $0.name,
                                 choiceRatio: $0.choiceRatio,
@@ -142,7 +142,7 @@ extension OptionCardScrollIntent {
           let states : [ExtraOption] = try await repository.fetchOption(from: from, to: to)
           
           let carStateArray = states.map {
-            return OptionCardModel.State(id: $0.id, isPackage: $0.isPackage, hashTags: $0.hashTags, name: $0.name, choiceRatio: $0.choiceRatio, imageURL: $0.image, price: $0.price, containsHmgData: $0.containsHmgData, category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock())
+            return OptionCardModel.ViewState(id: $0.id, isPackage: $0.isPackage, hashTags: $0.hashTags, name: $0.name, choiceRatio: $0.choiceRatio, imageURL: $0.image, price: $0.price, containsHmgData: $0.containsHmgData, category: $0.category, defaultOptionDetail: .mock(), packageOption: .mock())
           }
           
           send(action: .cardStates(states: carStateArray))
@@ -150,7 +150,7 @@ extension OptionCardScrollIntent {
         } else {
           let states: [DefaultOption] = try await repository.fetchOption(from: from, to: to)
           let carStateArray = states.map {
-            return OptionCardModel.State(id: $0.id,
+            return OptionCardModel.ViewState(id: $0.id,
                                          hashTags: $0.hashTags,
                                          name: $0.name,
                                          imageURL: $0.image,

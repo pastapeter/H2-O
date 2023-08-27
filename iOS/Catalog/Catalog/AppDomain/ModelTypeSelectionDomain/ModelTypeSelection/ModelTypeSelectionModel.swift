@@ -13,6 +13,7 @@ enum ModelTypeSelectionModel {
 
     var selectedTrimId: Int = 1
     var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerState = .mock()
+    
   }
   
   struct State: Equatable {

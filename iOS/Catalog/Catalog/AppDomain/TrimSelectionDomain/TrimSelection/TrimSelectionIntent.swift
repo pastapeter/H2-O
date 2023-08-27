@@ -10,8 +10,8 @@ import Combine
 
 protocol TrimSelectionIntentType {
 
-  var viewState: TrimSelectionModel.State { get }
-
+  var viewState: TrimSelectionModel.ViewState { get }
+  var state: TrimSelectionModel.State { get }
   func send(action: TrimSelectionModel.ViewAction)
 
   func send(action: TrimSelectionModel.ViewAction, viewEffect: (() -> Void)?)
@@ -29,13 +29,15 @@ final class TrimSelectionIntent: ObservableObject {
   }
 
   // MARK: - Internal
-  typealias ViewState = TrimSelectionModel.State
+  typealias ViewState = TrimSelectionModel.ViewState
   typealias ViewAction = TrimSelectionModel.ViewAction
+  typealias State = TrimSelectionModel.State
 
   private var repository: TrimSelectionRepositoryProtocol
-  private var quotation = TrimSelectionService
+  private var quotation : TrimSelectionService
   private var navigationIntent: AppMainRouteIntentType
   @Published var viewState: ViewState = ViewState(selectedTrim: Trim(id: 0, name: "", description: "", price: CLNumber(0), hmgData: []), carId: 1)
+  var state: TrimSelectionModel.State = .init()
 
   var cancellable: Set<AnyCancellable> = []
 }
@@ -72,7 +74,7 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
             let defaultQuotation = try await repository.fetchDefaultOptionsByTrim(of: trim)
             let (maxPrice, minPrice) = try await repository.fetchMinMaxPriceByTrim(of: trim.id)
             quotation.saveDefaultQuotation(trim: trim, carQuotation: defaultQuotation, minPrice: minPrice, maxPrice: maxPrice)
-            state.isTrimSelected = true
+            viewState.isTrimSelected = true
             navigationIntent.send(action: .onTapNavTab(index: 1))
           } catch let error {
             viewState.error = error as? TrimSelectionError

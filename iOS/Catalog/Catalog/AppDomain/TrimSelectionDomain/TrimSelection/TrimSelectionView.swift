@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TrimSelectionView: IntentBindingType {
-  @StateObject var container: Container<TrimSelectionIntentType, TrimSelectionModel.State>
+  @StateObject var container: Container<TrimSelectionIntentType, TrimSelectionModel.ViewState, TrimSelectionModel.State>
   var intent: TrimSelectionIntentType { container.intent }
-  var viewState: TrimSelectionModel.State { intent.viewState }
+  var viewState: TrimSelectionModel.ViewState { intent.viewState }
+  var state: TrimSelectionModel.State { intent.state}
   @SwiftUI.State var currentIndexBinding: Int = 0
 
 }
@@ -51,7 +52,7 @@ extension TrimSelectionView: View {
       .padding(.top, 12)
       .padding(.bottom, 20)
 
-      CLButton(mainText: "\(viewState.trims.isEmpty ? "Exclusive" :  state.trims[currentIndexBinding].name ?? "") 선택하기",
+      CLButton(mainText: "\(viewState.trims.isEmpty ? "Exclusive" :  viewState.trims[currentIndexBinding].name ?? "") 선택하기",
                height: CGFloat(60).scaledHeight,
                backgroundColor: Color.primary700,
                buttonAction: { intent.send(action: .onTapTrimSelectButton) })
@@ -66,7 +67,8 @@ extension TrimSelectionView {
 
     TrimSelectionView(container: .init(
       intent: intent as TrimSelectionIntent,
-      state: intent.viewState,
+      viewState: intent.viewState,
+      state: intent.state,
       modelChangePublisher: intent.objectWillChange))
   }
 }

@@ -31,8 +31,8 @@ extension TrimSelectionError {
 
  enum TrimSelectionModel {
 
-   struct State: Equatable {
-     static func == (lhs: TrimSelectionModel.State, rhs: TrimSelectionModel.State) -> Bool {
+   struct ViewState: Equatable {
+     static func == (lhs: TrimSelectionModel.ViewState, rhs: TrimSelectionModel.ViewState) -> Bool {
        lhs.selectedTrim == rhs.selectedTrim
      }
 
@@ -42,6 +42,11 @@ extension TrimSelectionError {
      var carId: Int
      var isTrimSelected: Bool = false
   }
+  
+   struct State: Equatable {
+     
+   }
+   
 
   enum ViewAction: Equatable {
     case onTapTrimSelectButton

@@ -110,7 +110,7 @@ extension ModelTypeSelectionIntent {
     
   }
   
-  private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeCellModel.State] {
+  private func convertToModelTypeModelViewState(from options: [ModelType]) -> [ModelTypeCellModel.ViewState] {
     options.map {
       .init(title: $0.title,
             imageURL: $0.options[0].imageURL,
@@ -118,6 +118,13 @@ extension ModelTypeSelectionIntent {
             optionStates: convertToModelTypeOptionState(from: $0.options),
             modelTypeDetailState: convertToModelTypeDetail(from: $0.options)
       )
+    }
+    
+  }
+  
+  private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeCellModel.State] {
+    options.map {_ in
+      .init()
     }
     
   }

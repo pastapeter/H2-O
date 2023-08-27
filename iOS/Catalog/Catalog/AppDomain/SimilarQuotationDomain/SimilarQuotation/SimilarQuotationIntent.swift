@@ -78,12 +78,12 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
         send(action: .showAlertChanged(showAlert: true))
         
       case .optionSelected(let selectedOption):
-        if state.selectedOptions.contains(selectedOption) {
-          state.selectedOptions = state.selectedOptions.filter { $0 != selectedOption }
-          quotation.addSimilarOption(options: state.selectedOptions)
+        if viewState.selectedOptions.contains(selectedOption) {
+          viewState.selectedOptions = viewState.selectedOptions.filter { $0 != selectedOption }
+          quotation.addSimilarOption(options: viewState.selectedOptions)
         } else {
-          state.selectedOptions.append(selectedOption)
-          quotation.addSimilarOption(options: state.selectedOptions)
+          viewState.selectedOptions.append(selectedOption)
+          quotation.addSimilarOption(options: viewState.selectedOptions)
         }
         
       case .currentSimilarQuotationIndexChanged(let index):
@@ -96,7 +96,7 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
         viewState.selectedOptions = []
         
       case .choiceAdd:
-        quotation.addSimilarOption(options: state.selectedOptions)
+        quotation.addSimilarOption(options: viewState.selectedOptions)
         send(action: .choiceQuit)
       case .showAlertChanged(let showAlert):
         viewState.showAlert = showAlert

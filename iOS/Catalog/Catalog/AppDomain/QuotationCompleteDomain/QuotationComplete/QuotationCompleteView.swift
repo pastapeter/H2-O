@@ -55,7 +55,7 @@ extension QuotationCompleteView: View {
     .sheet(isPresented: showSheetBinding) {
       QuotationCompleteSheet(state: state,
                             viewState: viewState,
-                             modelName: intent.quotationService.modelName(),
+                             modelName: intent.quotation.modelName(),
                              intent: intent)
     }
     .onAppear {
@@ -69,7 +69,8 @@ extension QuotationCompleteView {
   @ViewBuilder
   static func build(intent: QuotationCompleteIntent) -> some View {
     QuotationCompleteView(container: .init(intent: intent,
-                                           state: intent.state, viewState: intent.viewState,
+                                           viewState: intent.viewState,
+                                           state: intent.state,
                                                     modelChangePublisher: intent.objectWillChange))
   }
 }

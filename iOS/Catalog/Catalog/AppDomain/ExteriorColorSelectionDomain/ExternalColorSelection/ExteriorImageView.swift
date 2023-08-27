@@ -8,7 +8,7 @@
 import SwiftUI
 struct ExteriorImageView {
   var intent: ExteriorSelectionIntentType
-  var state: ExteriorSelectionModel.State
+  var viewState: ExteriorSelectionModel.ViewState
   @SwiftUI.State var currentIndex: Int = 0
   @SwiftUI.State var beforeIndex: Int = 0
 }
@@ -35,19 +35,19 @@ extension ExteriorImageView: View {
               }
             }
           }
-          if state.colors.isEmpty {
+          if viewState.colors.isEmpty {
             EmptyView()
           } else {
             VStack {
-              AsyncImage(url: state.colors[state.currentSelectedIndex].color.exteriorImages[currentIndex]) { image in
+              AsyncImage(url: viewState.colors[viewState.currentSelectedIndex].color.exteriorImages[currentIndex]) { image in
                 image
                   .resizable()
                   .frame(height: CGFloat(198).scaledHeight, alignment: .bottom)
               }
             placeholder: {
               VStack {
-                if (state.images[state.currentSelectedIndex].count == 60) {
-                  Image(data: state.images[state.currentSelectedIndex][beforeIndex])?
+                if (viewState.images[viewState.currentSelectedIndex].count == 60) {
+                  Image(data: viewState.images[viewState.currentSelectedIndex][beforeIndex])?
                     .resizable()
                     .frame(height: CGFloat(198).scaledHeight, alignment: .bottom)
                   
@@ -65,8 +65,8 @@ extension ExteriorImageView: View {
       .gesture(
         DragGesture()
           .onChanged { drag in
-            print(state.currentSelectedIndex)
-            let count = state.colors[state.currentSelectedIndex].color.exteriorImages.count
+            print(viewState.currentSelectedIndex)
+            let count = viewState.colors[viewState.currentSelectedIndex].color.exteriorImages.count
             // 왼쪽으로 스크롤
             if drag.translation.width < 0 {
               beforeIndex = currentIndex

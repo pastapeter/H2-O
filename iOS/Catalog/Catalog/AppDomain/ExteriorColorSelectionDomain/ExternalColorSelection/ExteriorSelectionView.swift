@@ -30,7 +30,7 @@ extension ExteriorSelectionView: View {
   var body: some View {
     ScrollView {
       VStack {
-        ExteriorImageView(intent: intent, state: state)
+        ExteriorImageView(intent: intent, viewState: viewState)
           .frame(height: CGFloat(292).scaledHeight)
         Spacer().frame(height: CGFloat(20).scaledHeight)
         VStack(alignment: .leading, spacing: 0) {
