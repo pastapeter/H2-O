@@ -909,7 +909,7 @@
 				B15646332A86526A00FAD379 /* ModelTypeModalFeature */,
 				B1604D602A85400300C7B07D /* ModelTypeButtonFeature */,
 				B19824372A91FC7300795B44 /* AverageBannerFeature */,
-				B19824362A91FC6800795B44 /* ModelTypeSelection */,
+				B19824362A91FC6800795B44 /* ModelTypeSelectionFeature */,
 				B19824352A91F88800795B44 /* ModelTypeCellFeature */,
 				B16DFF3D2A8958EC00642730 /* Entity */,
 				ED7199C72A8A8DD4008A9BB3 /* Model */,
@@ -1223,7 +1223,7 @@
 			path = ModelTypeCellFeature;
 			sourceTree = "<group>";
 		};
-		B19824362A91FC6800795B44 /* ModelTypeSelection */ = {
+		B19824362A91FC6800795B44 /* ModelTypeSelectionFeature */ = {
 			isa = PBXGroup;
 			children = (
 				ED1BDA732A8BB15600E39270 /* ModelSelectionError.swift */,
@@ -1232,7 +1232,7 @@
 				B1A76B852A892CA3009C84EF /* ModelTypeSelectionIntent.swift */,
 				EDE7D3B52A972BAB0080F3C7 /* ModelTypeSelectionService.swift */,
 			);
-			path = ModelTypeSelection;
+			path = ModelTypeSelectionFeature;
 			sourceTree = "<group>";
 		};
 		B19824372A91FC7300795B44 /* AverageBannerFeature */ = {
