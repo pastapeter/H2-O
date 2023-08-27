@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Lottie from 'lottie-react';
+import Lottie from 'lottie-light-react';
 import { Flex, Typography } from '@/components/common';
 import errorLottie from '@/assets/lotties/error.json';
 
@@ -41,5 +41,5 @@ const Button = styled.button`
 `;
 
 const lottieStyle = {
-  height: 400,
+  height: 250,
 };

@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import type { ExtraOptionResponse } from '@/types/response';
 import { Flex, Typography } from '@/components/common';
 import { OptionCard } from '@/components/option/utils';
 import { useDataList, useSafeContext } from '@/hooks';
+import { getImagePreloader } from '@/utils/image';
 import { OptionInfo, SelectionContext } from '@/providers/SelectionProvider';
 
 interface Props {
@@ -12,14 +13,16 @@ interface Props {
 }
 
 function ExtraOptionSelector({ optionList, handleClickOptionCard }: Props) {
+  const imageLoader = useRef(getImagePreloader());
   const { selectionInfo, dispatch } = useSafeContext(SelectionContext);
 
   const { dataList, addData, removeData, hasData } = useDataList<Omit<OptionInfo, 'isQuotation'>>({
-    initDataList: selectionInfo.extraOptions?.optionList.map((item) => {
-      const { isQuotation, ...rest } = item;
-      return rest;
-    }),
+    initDataList: selectionInfo.extraOptions?.optionList.map(({ isQuotation, ...rest }) => rest),
   });
+
+  const handleMouseOver = (images: string[]) => {
+    imageLoader.current(images);
+  };
 
   const compareDataList = () => {
     const globalOptionIdx = selectionInfo.extraOptions?.optionList.map((item) => item.id).sort((a, b) => a - b) || [];
@@ -75,22 +78,21 @@ function ExtraOptionSelector({ optionList, handleClickOptionCard }: Props) {
 
   return (
     <OptionContainer>
-      {optionList.map((opt) => (
-        <OptionCard.Extra
-          key={opt.id}
-          info={opt}
-          isChecked={hasData({
-            id: opt.id,
-            name: opt.name,
-            price: opt.price,
-            image: opt.image,
-            isPackage: opt.isPackage,
-          })}
-          addOption={addData}
-          removeOption={removeData}
-          onClick={handleClickOptionCard(opt.id, opt.isPackage)}
-        />
-      ))}
+      {optionList.map((option) => {
+        const { id, name, price, image, isPackage } = option;
+        const isChecked = hasData({ id, name, price, image, isPackage });
+        return (
+          <OptionCard.Extra
+            key={id}
+            info={option}
+            isChecked={isChecked}
+            addOption={addData}
+            removeOption={removeData}
+            onClick={handleClickOptionCard(id, isPackage)}
+            onMouseOver={() => handleMouseOver([image])}
+          />
+        );
+      })}
     </OptionContainer>
   );
 }

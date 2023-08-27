@@ -1,7 +1,9 @@
+import { useRef } from 'react';
 import styled from '@emotion/styled';
 import type { DefaultOptionResponse } from '@/types/response';
 import { Flex, Typography } from '@/components/common';
 import { OptionCard } from '@/components/option/utils';
+import { getImagePreloader } from '@/utils/image';
 
 interface Props {
   optionList: DefaultOptionResponse[];
@@ -9,6 +11,12 @@ interface Props {
 }
 
 function DefaultOptionSelector({ optionList, handleClickOptionCard }: Props) {
+  const imageLoader = useRef(getImagePreloader());
+
+  const handleMouseOver = (images: string[]) => {
+    imageLoader.current(images);
+  };
+
   if (!optionList.length)
     return (
       <Flex alignItems='center' justifyContent='center' height={200}>
@@ -20,9 +28,17 @@ function DefaultOptionSelector({ optionList, handleClickOptionCard }: Props) {
 
   return (
     <OptionContainer>
-      {optionList.map((opt) => (
-        <OptionCard.Default key={opt.id} info={opt} onClick={handleClickOptionCard(opt.id)} />
-      ))}
+      {optionList.map((option) => {
+        const { id, image } = option;
+        return (
+          <OptionCard.Default
+            key={id}
+            info={option}
+            onClick={handleClickOptionCard(id)}
+            onMouseOver={() => handleMouseOver([image])}
+          />
+        );
+      })}
     </OptionContainer>
   );
 }
