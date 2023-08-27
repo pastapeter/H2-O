@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct QuotationFooterView: IntentBindingType {
-  @StateObject var container: Container<QuotationFooterIntentType , QuotationFooterModel.State>
+  @StateObject var container: Container<QuotationFooterIntentType , QuotationFooterModel.ViewState, QuotationFooterModel.State>
   
   var intent: QuotationFooterIntentType { container.intent }
-  var viewState: QuotationFooterModel.State { intent.viewState }
+  var state: QuotationFooterModel.State { intent.state }
+  var viewState: QuotationFooterModel.ViewState { intent.viewState }
   
   var prevAction: () -> Void
   var nextAction: () -> Void
@@ -27,7 +28,6 @@ extension QuotationFooterView: View {
       if currentPage != 5 {
         CLQuotationPriceBar(
           showQuotationSummarySheet: $showQuotationSummarySheet,
-          state: viewState,
           content: {
             CLCapsuleButton(width: 86, height: 36, text: "견적 요약", action: { showQuotationSummarySheet.toggle() })
           },
@@ -41,7 +41,6 @@ extension QuotationFooterView: View {
         CLQuotationPriceBar(
           showQuotationSummarySheet:
             $showQuotationSummarySheet,
-          state: viewState,
           content: {
             Text("합리적인 가격으로 완성된\n나만의 팰리세이드가 탄생했어요!")
               .catalogFont(type: .TextKRMedium12)
@@ -65,8 +64,8 @@ extension QuotationFooterView {
   static func build(intent: QuotationFooterIntent, prevAction: @escaping () -> Void, nextAction: @escaping () -> Void, currentPage: Binding<Int>) -> some View {
     
     QuotationFooterView(container: .init(
-      intent: intent,
-      state: intent.viewState,
+      intent: intent, viewState: intent.viewState,
+      state: intent.state,
         modelChangePublisher: intent.objectWillChange), prevAction: prevAction, nextAction: nextAction, showQuotationSummarySheet: .constant(false), currentPage: currentPage)
     
   }
