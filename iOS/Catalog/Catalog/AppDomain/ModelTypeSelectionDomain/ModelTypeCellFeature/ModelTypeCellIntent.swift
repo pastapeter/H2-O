@@ -22,9 +22,9 @@ protocol ModelTypeCellIntentType {
 
 final class ModelTypeCellIntent: ObservableObject {
   
-  init(initialState: State, parent: ModelTypeSelectionIntentType? = nil) {
+  init(initialState: State) {
     state = initialState
-    self.parent = parent
+    viewState = .init(title: state.title, imageURL: state.imageURL, selectedIndex: state.selectedIndex, selectedId: state.selectedId, isModalPresenting: state.isModalPresenting)
   }
   
   typealias ViewState = ModelTypeCellModel.ViewState
@@ -32,11 +32,15 @@ final class ModelTypeCellIntent: ObservableObject {
   typealias ViewAction = ModelTypeCellModel.ViewAction
   
   @Published var viewState: ViewState = .init()
-  var state: State = .init()
+  {
+    didSet {
+      state = .init(title: viewState.title, imageURL: viewState.imageURL, containsHMGData: state.containsHMGData, optionStates: state.optionStates, selectedIndex: viewState.selectedIndex, selectedId: viewState.selectedId, modelTypeDetailState: state.modelTypeDetailState, isModalPresenting: viewState.isModalPresenting)
+    }
+  }
+  
+  var state: State
   
   var cancellable: Set<AnyCancellable> = []
-  
-  weak var parent: ModelTypeSelectionIntentType?
   
 }
 
@@ -44,50 +48,52 @@ extension ModelTypeCellIntent: ModelTypeCellIntentType, IntentType {
   
   func mutate(action: ModelTypeCellModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
-      case .onTapDetailButton(let isPresenting):
-        viewState.isModalPresenting = isPresenting
-      case .onTapOptions(let id):
-        toggleAll(id: id)
-        viewState.selectedId = id
-        sendOptionToQuotationService(of: id)
+    case .onTapDetailButton(let isPresenting):
+      viewState.isModalPresenting = isPresenting
+    case .onTapOptions(let id):
+      state.selectedId = id
+      toggleAll(id: id)
+      if let selectedOption = selectedModelTypeOption(of: id) {
+        state.selectedOption = selectedOption
+      }
     }
   }
 }
 
 extension ModelTypeCellIntent {
   private func selectedModelTypeOption(of id: Int) -> ModelTypeOption? {
-    viewState.modelTypeDetailState.first { $0.id == id }?.convertModelTypeDetailStateToModelTypeOption()
+    state.modelTypeDetailState.first { $0.id == id }?.convertModelTypeDetailStateToModelTypeOption()
   }
   
-  private func sendOptionToQuotationService(of id: Int) {
-    if viewState.title == "파워트레인" {
-      parent?.send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: viewState.selectedId))
-      if let selectedOption = selectedModelTypeOption(of: id) {
-        parent?.send(action: .powertrainSelected(option: selectedOption))
-      }
-    }
-    else if viewState.title == "구동방식" {
-      parent?.send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: viewState.selectedId))
-      if let selectedOption = selectedModelTypeOption(of: id) {
-        parent?.send(action: .drivetrainSelected(option: selectedOption))
-      }
-    } else {
-      if let selectedOption = selectedModelTypeOption(of: id) {
-        parent?.send(action: .bodytypeSelected(option: selectedOption))
-      }
-    }
-  }
+//  private func sendOptionToQuotationService(of id: Int) {
+//    if viewState.title == "파워트레인" {
+//      parent?.send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: viewState.selectedId))
+//      if let selectedOption = selectedModelTypeOption(of: id) {
+//        parent?.send(action: .powertrainSelected(option: selectedOption))
+//      }
+//    }
+//    else if viewState.title == "구동방식" {
+//      parent?.send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: viewState.selectedId))
+//      if let selectedOption = selectedModelTypeOption(of: id) {
+//        parent?.send(action: .drivetrainSelected(option: selectedOption))
+//      }
+//    } else {
+//      if let selectedOption = selectedModelTypeOption(of: id) {
+//        parent?.send(action: .bodytypeSelected(option: selectedOption))
+//      }
+//    }
+//  }
   
 }
 
 extension ModelTypeCellIntent {
   
   private func toggleAll(id: Int) {
-    for i in 0..<viewState.optionStates.count {
-      if viewState.optionStates[i].id == id {
-        viewState.optionStates[i].isSelected = true
+    for i in 0..<state.optionStates.count {
+      if state.optionStates[i].id == id {
+        state.optionStates[i].isSelected = true
       } else {
-        viewState.optionStates[i].isSelected = false
+        state.optionStates[i].isSelected = false
       }
     }
   }

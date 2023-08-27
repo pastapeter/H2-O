@@ -65,12 +65,21 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
         
       case .powertrainSelected(option: let option):
         quotation.updatePowertrain(option: option)
-        
+//      send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: option.id))
       case .bodytypeSelected(option: let option):
         quotation.updateBodytype(option: option)
         
       case .drivetrainSelected(option: let option):
         quotation.updateDrivetrain(option: option)
+//      send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: option.id))
+    case .getSelectedOption(let title, let option):
+      if title == "파워트레인" {
+        send(action: .powertrainSelected(option: option))
+      } else if title == "바디타입" {
+        send(action: .bodytypeSelected(option: option))
+      } else if title == "구동방식" {
+        send(action: .drivetrainSelected(option: option))
+      }
     }
   }
 }
@@ -110,21 +119,14 @@ extension ModelTypeSelectionIntent {
     
   }
   
-  private func convertToModelTypeModelViewState(from options: [ModelType]) -> [ModelTypeCellModel.ViewState] {
-    options.map {
-      .init(title: $0.title,
-            imageURL: $0.options[0].imageURL,
-            containsHMGData: $0.options[0].maxOuputFromEngine != nil,
-            optionStates: convertToModelTypeOptionState(from: $0.options),
-            modelTypeDetailState: convertToModelTypeDetail(from: $0.options)
-      )
-    }
-    
-  }
-  
   private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeCellModel.State] {
-    options.map {_ in
-      .init()
+    options.map {
+        .init(title: $0.title,
+              imageURL: $0.options[0].imageURL,
+              containsHMGData: $0.options[0].maxOuputFromEngine != nil,
+              optionStates: convertToModelTypeOptionState(from: $0.options),
+              modelTypeDetailState: convertToModelTypeDetail(from: $0.options)
+        )
     }
     
   }

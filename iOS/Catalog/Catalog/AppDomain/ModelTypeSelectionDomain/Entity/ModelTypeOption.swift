@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ModelTypeOption {
+struct ModelTypeOption: Equatable {
   
   var id: Int
   var name: String

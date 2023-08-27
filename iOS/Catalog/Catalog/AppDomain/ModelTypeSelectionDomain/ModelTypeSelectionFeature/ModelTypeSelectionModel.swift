@@ -10,10 +10,8 @@ import Foundation
 enum ModelTypeSelectionModel {
 
   struct ViewState: Equatable {
-
     var selectedTrimId: Int = 1
     var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerState = .mock()
-    
   }
   
   struct State: Equatable {
@@ -22,6 +20,7 @@ enum ModelTypeSelectionModel {
 
   enum ViewAction {
     case onAppear
+    case getSelectedOption(title: String, option: ModelTypeOption)
     case modelTypeOptions(options: [ModelType])
     case powertrainSelected(option: ModelTypeOption)
     case bodytypeSelected(option: ModelTypeOption)

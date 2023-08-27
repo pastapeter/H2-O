@@ -36,7 +36,8 @@ extension ModelTypeSelectionView: View {
             .catalogFont(type: .HeadKRMedium18)
             .padding(.horizontal, 16)
           ForEach(state.modelTypeStateArray, id: \.self) { state in
-            ModelTypeCellView.build(intent: .init(initialState: state, parent: intent))
+            ModelTypeCellView.build(intent: .init(initialState: state)) { intent.send(action: .getSelectedOption(title: $0, option: $1))
+            }
           }
           Spacer().frame(height: 38)
           HMGDataBannerComponent {
@@ -45,6 +46,7 @@ extension ModelTypeSelectionView: View {
         }
       }
     }
+    .background(.random)
     .frame(maxWidth: .infinity)
     .onAppear {
       intent.send(action: .onAppear)

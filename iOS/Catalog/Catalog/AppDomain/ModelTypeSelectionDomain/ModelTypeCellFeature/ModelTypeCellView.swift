@@ -17,12 +17,14 @@ struct ModelTypeCellView: IntentBindingType {
   
   var state: ModelTypeCellModel.State { intent.state }
   
+  var action: (String, ModelTypeOption) -> Void
+  
 }
 
 extension ModelTypeCellView {
   
   private var isModalPresenting: Binding<Bool> {
-    .init(get: { viewState.isModalPresenting && !viewState.modelTypeDetailState.isEmpty },
+    .init(get: { viewState.isModalPresenting && !state.modelTypeDetailState.isEmpty },
           set: { intent.send(action: .onTapDetailButton(isPresenting: $0)) })
   }
   
@@ -48,15 +50,19 @@ extension ModelTypeCellView: View {
           
         }
         Spacer().frame(height: 8)
-        ModelTypeButtonContainer(intent: intent, options: viewState.optionStates)
+        ModelTypeButtonContainer(options: state.optionStates) {
+          intent.send(action: .onTapOptions(id: $0))
+          action(state.title, state.selectedOption)
+        }
         .padding(.horizontal, 4)
         .padding(.bottom, 4)
       }
       .background(Color.gray50)
       .cornerRadius(8)
     }
+    .background(.random)
     .CLDialogFullScreenCover(show: isModalPresenting) {
-      CarouselModalPopUpComponent(modalContentItems: viewState.modelTypeDetailState, selectedId: viewState.selectedId ,submitAction: { id in
+      CarouselModalPopUpComponent(modalContentItems: state.modelTypeDetailState, selectedId: viewState.selectedId ,submitAction: { id in
         intent.send(action: .onTapOptions(id: id))
         intent.send(action: .onTapDetailButton(isPresenting: !viewState.isModalPresenting))
         // TODO 가격 추가하기
@@ -71,10 +77,7 @@ extension ModelTypeCellView: View {
 
 extension ModelTypeCellView {
   @ViewBuilder
-  static func build(intent: ModelTypeCellIntent) -> some View {
-    ModelTypeCellView(container: .init(intent: intent as ModelTypeCellIntent,
-                                       viewState: intent.viewState,
-                                   state: intent.state,
-                                   modelChangePublisher: intent.objectWillChange))
+  static func build(intent: ModelTypeCellIntent, action: @escaping (String, ModelTypeOption) -> Void) -> some View {
+    ModelTypeCellView(container: .init(intent: intent as ModelTypeCellIntent, viewState: intent.viewState, state: intent.state, modelChangePublisher: intent.objectWillChange), action: action)
   }
 }
