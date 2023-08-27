@@ -26,14 +26,8 @@ protocol QuotationCompleteIntentType {
 
 final class QuotationCompleteIntent: ObservableObject {
   
-<<<<<<< HEAD:iOS/Catalog/Catalog/QuotationComplete/QuotationComplete/QuotationCompleteIntent.swift
-  init(initialState: State, initialViewState: ViewState, repository: QuotationCompleteRepositoryProtocol, quotationService: QuotationCompleteService, navigationIntent: CLNavigationIntentType) {
-    viewState = initialViewState
-    
-=======
-  init(initialState: State, repository: QuotationCompleteRepositoryProtocol, quotation: QuotationCompleteService, navigationIntent: AppMainRouteIntentType) {
-    state = initialState
->>>>>>> dev-ios:iOS/Catalog/Catalog/AppDomain/QuotationCompleteDomain/QuotationComplete/QuotationCompleteIntent.swift
+  init(initialState: ViewState, repository: QuotationCompleteRepositoryProtocol, quotation: QuotationCompleteService, navigationIntent: AppMainRouteIntentType) {
+    viewState = initialState
     self.repository = repository
     self.quotation = quotation
     self.navigationIntent = navigationIntent
@@ -44,7 +38,7 @@ final class QuotationCompleteIntent: ObservableObject {
   typealias ViewAction = QuotationCompleteModel.ViewAction
   
   @Published var viewState: ViewState
-  var state: QuotationCompleteModel.State
+  var state: QuotationCompleteModel.State = .init()
   
   var cancellable: Set<AnyCancellable> = []
   var navigationIntent: AppMainRouteIntentType
@@ -61,26 +55,15 @@ extension QuotationCompleteIntent: QuotationCompleteIntentType, IntentType {
       case .onAppear:
         Task {
           do {
-<<<<<<< HEAD:iOS/Catalog/Catalog/QuotationComplete/QuotationComplete/QuotationCompleteIntent.swift
-            let ids = try quotationService.getPowertrainAndDriveTrain()
-            let resultOfCalculation = try await repository.calculateFuelAndDisplacement(with: ids.0, andwith: ids.1)
-            viewState.technicalSpec = resultOfCalculation
-=======
             let powertrainId = quotation.powertrainId()
             let drivetrainId = quotation.drivetrainId()
             let resultOfCalculation = try await repository.calculateFuelAndDisplacement(with: powertrainId, andwith: drivetrainId)
-            state.technicalSpec = resultOfCalculation
->>>>>>> dev-ios:iOS/Catalog/Catalog/AppDomain/QuotationCompleteDomain/QuotationComplete/QuotationCompleteIntent.swift
+            viewState.technicalSpec = resultOfCalculation
           } catch(let e) {
             print("@@@@배기량 계산 실패 \(e)")
           }
         }
-<<<<<<< HEAD:iOS/Catalog/Catalog/QuotationComplete/QuotationComplete/QuotationCompleteIntent.swift
-        viewState.summaryQuotation = Quotation.shared.getSummary()
-=======
-        state.summaryQuotation = quotation.summary()
->>>>>>> dev-ios:iOS/Catalog/Catalog/AppDomain/QuotationCompleteDomain/QuotationComplete/QuotationCompleteIntent.swift
-        
+        viewState.summaryQuotation = quotation.summary()
       case .onTapDeleteButton(let id):
         viewState.alertCase = .delete(id: id)
         send(action: .showAlertChanged(showAlert: true))

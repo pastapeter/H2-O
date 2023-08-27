@@ -63,20 +63,12 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
     case .changeSelectedInteriorImageURL(let url):
       viewState.selectedInteriorImageURL = url
     case .onTapColor(let id):
-<<<<<<< HEAD:iOS/Catalog/Catalog/InteriorColorSelectionDomain/InteriorColorSelection/InteriorColorSelectionIntent.swift
       viewState.selectedColorId = id
+      quotation.updateInteriorColor(to: viewState.trimColors.first(where: { $0.color.id == id })?.color)
       for i in viewState.trimColors.indices {
         if viewState.trimColors[i].color.id == id {
           viewState.trimColors[i].isSelected = true
           send(action: .changeSelectedInteriorImageURL(url: viewState.trimColors[i].color.bannerImageURL))
-=======
-      state.selectedColorId = id
-      quotation.updateInteriorColor(to: state.trimColors.first(where: { $0.color.id == id })?.color)
-      for i in state.trimColors.indices {
-        if state.trimColors[i].color.id == id {
-          state.trimColors[i].isSelected = true
-          send(action: .changeSelectedInteriorImageURL(url: state.trimColors[i].color.bannerImageURL))
->>>>>>> dev-ios:iOS/Catalog/Catalog/AppDomain/InteriorColorSelectionDomain/InteriorColorSelection/InteriorColorSelectionIntent.swift
         } else {
           viewState.trimColors[i].isSelected = false
         }

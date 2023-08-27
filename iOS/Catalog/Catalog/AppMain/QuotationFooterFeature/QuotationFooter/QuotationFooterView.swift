@@ -67,7 +67,7 @@ extension QuotationFooterView {
     QuotationFooterView(container: .init(
       intent: intent,
       state: intent.viewState,
-      modelChangePublisher: intent.objectWillChange), prevAction: prevAction, nextAction: nextAction, showQuotationSummarySheet: .constant(false), currentPage: currentPage)
+        modelChangePublisher: intent.objectWillChange), prevAction: prevAction, nextAction: nextAction, showQuotationSummarySheet: .constant(false), currentPage: currentPage)
     
   }
 }

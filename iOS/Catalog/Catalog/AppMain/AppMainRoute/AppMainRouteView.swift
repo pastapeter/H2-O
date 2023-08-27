@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AppMainRouteView: IntentBindingType {
-  @StateObject var container: Container<AppMainRouteIntentType, AppMainRouteModel.State>
+  @StateObject var container: Container<AppMainRouteIntentType, AppMainRouteModel.ViewState, AppMainRouteModel.State>
   var intent: AppMainRouteIntentType { container.intent }
+  var viewState: AppMainRouteModel.ViewState { intent.viewState }
   var state: AppMainRouteModel.State { intent.state }
   let quotation = Quotation()
   @SwiftUI.State var showQuotationSummarySheet: Bool = false
@@ -17,12 +18,12 @@ struct AppMainRouteView: IntentBindingType {
 
 extension AppMainRouteView {
   var currentPageBinding: Binding<Int> {
-    .init(get: { state.currentPage },
+    .init(get: { viewState.currentPage },
           set: { intent.send(action: .onTapNavTab(index: $0)) })
   }
   
   var showQuotationSummarySheetBinding: Binding<Bool> {
-    .init(get: { state.showQuotationSummarySheet },
+    .init(get: { viewState.showQuotationSummarySheet },
           set: {_ in })
   }
 }
@@ -45,8 +46,8 @@ extension AppMainRouteView: View {
           makeQuotationSummarySheet()
         }
       }
-      if state.showAlert {
-        makeAlertView(alertCase: state.alertCase)
+      if viewState.showAlert {
+        makeAlertView(alertCase: viewState.alertCase)
       }
     }
   }
@@ -63,7 +64,7 @@ extension AppMainRouteView {
   
   @ViewBuilder
   func ifTrimSelectionPageShowFooterView() -> some View {
-    if state.currentPage != 0 {
+    if viewState.currentPage != 0 {
       makeFooterView()
     }
   }
@@ -77,7 +78,7 @@ extension AppMainRouteView {
   
   @ViewBuilder
   func carTalogBudgetView() -> some View {
-    if state.currentPage != 0 && state.currentPage != 5 {
+    if viewState.currentPage != 0 && viewState.currentPage != 5 {
       CLBudgetRangeView.build(
         intent: CLBudgetRangeIntent(initialState:
             .init(
@@ -85,7 +86,7 @@ extension AppMainRouteView {
               budgetPrice: (quotation.maxPrice + quotation.minPrice) / CLNumber(2),
               status: .default), navigationIntent: intent, quotation: quotation)
       )
-    } else if state.currentPage == 5 {
+    } else if viewState.currentPage == 5 {
       CLBudgetRangeView.build(
         intent: CLBudgetRangeIntent(initialState:
             .init(currentQuotationPrice: quotation.totalPrice,
@@ -134,8 +135,8 @@ extension AppMainRouteView {
     QuotationFooterView.build(intent: QuotationFooterIntent(initialState: .init(totalPrice: quotation.totalPrice, summary: quotation.summary()),
                                                             repository: QuotationFooterRepository(quotationFooterRequestManager: RequestManager(apiManager: APIManager())),
                                                             quotation: quotation),
-                              prevAction: { intent.send(action: .onTapNavTab(index: state.currentPage - 1))},
-                              nextAction: { intent.send(action: .onTapNavTab(index: state.currentPage + 1))},
+                              prevAction: { intent.send(action: .onTapNavTab(index: viewState.currentPage - 1))},
+                              nextAction: { intent.send(action: .onTapNavTab(index: viewState.currentPage + 1))},
                               currentPage: currentPageBinding)
     
     
@@ -150,7 +151,7 @@ extension AppMainRouteView {
   }
   
   func makeModelSelectionView() -> some View {
-    ModelTypeSelectionView.build(intent: .init(initialState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager())), quotation: quotation))
+    ModelTypeSelectionView.build(intent: .init(initialState: .init(), initialViewState: .init(), repository: ModelTypeRepository(modelTypeRequestManager: RequestManager(apiManager: APIManager())), quotation: quotation))
       .tag(1)
   }
   
@@ -170,7 +171,7 @@ extension AppMainRouteView {
   func makeExteriorView() -> some View {
     
     ExteriorSelectionView.build(
-      intent: .init(initialState: .init(selectedTrimId: 2),
+      intent: .init(initialViewState: .init(selectedTrimId: 2),
                     repository: ExteriorColorRepository(
                       requestManager: RequestManager(
                         apiManager: ExteriorColorAPIManager())), quotation: quotation))
@@ -186,6 +187,7 @@ extension AppMainRouteView {
   static func build(intent: AppMainRouteIntent) -> some View {
     AppMainRouteView(container: .init(
       intent: intent as AppMainRouteIntent,
+      viewState: intent.viewState,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange))
   }

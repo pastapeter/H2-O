@@ -22,13 +22,16 @@ final class AppMainRouteIntent: ObservableObject {
                                       showQuotationSummarySheet: false,
                                       alertCase: .guide,
                                       showAlert: true)
+  var state: AppMainRouteModel.State = .init()
+  
   var cancellable: Set<AnyCancellable> = []
 }
 
 extension AppMainRouteIntent: AppMainRouteIntentType, IntentType {
+
+  typealias State = AppMainRouteModel.State
   typealias ViewAction = AppMainRouteModel.ViewAction
-  
-  typealias ViewState = AppMainRouteModel.State
+  typealias ViewState = AppMainRouteModel.ViewState
   
   func mutate(action: AppMainRouteModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
@@ -63,7 +66,8 @@ extension AppMainRouteIntent: AppMainRouteIntentType, IntentType {
 
 protocol AppMainRouteIntentType: AnyObject {
   
-  var viewState: AppMainRouteModel.State { get }
+  var viewState: AppMainRouteModel.ViewState { get }
+  var state: AppMainRouteModel.State { get }
   
   func send(action: AppMainRouteModel.ViewAction)
   
