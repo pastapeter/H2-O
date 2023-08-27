@@ -9,40 +9,41 @@ import Foundation
 import Combine
 
 protocol InteriorColorSelectionIntentType {
-
-  var viewState: InteriorColorSelectionModel.State { get }
-
+  
+  var viewState: InteriorColorSelectionModel.ViewState { get }
+  var state: InteriorColorSelectionModel.State { get }
   func send(action: InteriorColorSelectionModel.ViewAction)
-
+  
   func send(action: InteriorColorSelectionModel.ViewAction, viewEffect: (() -> Void)?)
-
+  
 }
 
 final class InteriorColorSelectionIntent: ObservableObject {
-
+  
   init(initialState: ViewState, repository: InteriorColorSelectionRepositoryProtocol, quotation: InteriorSelectionService) {
     viewState = initialState
     self.repository = repository
     self.quotation = quotation
   }
-
+  
   private var repository: InteriorColorSelectionRepositoryProtocol
-
-  typealias ViewState = InteriorColorSelectionModel.State
-
+  
+  typealias ViewState = InteriorColorSelectionModel.ViewState
+  typealias State = InteriorColorSelectionModel.State
   typealias ViewAction = InteriorColorSelectionModel.ViewAction
-
+  
   @Published var viewState: ViewState
-
+  var state: InteriorColorSelectionModel.State = .init()
+  
   var cancellable: Set<AnyCancellable> = []
   
   private var quotation: InteriorSelectionService
-
+  
 }
 
 extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, IntentType {
-
-
+  
+  
   func mutate(action: InteriorColorSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
     case .onAppear:
@@ -51,7 +52,7 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
           let colors = try await self.repository.fetch(with: viewState.selectedTrimID)
           send(action: .trimColors(colors: colors))
         } catch {
-
+          
         }
       }
     case .trimColors(let colors):
@@ -75,5 +76,5 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
       }
     }
   }
-
+  
 }

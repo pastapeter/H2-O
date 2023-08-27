@@ -9,15 +9,11 @@ import SwiftUI
 
 struct InteriorColorSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<InteriorColorSelectionIntentType, InteriorColorSelectionModel.State>
+  @StateObject var container: Container<InteriorColorSelectionIntentType, InteriorColorSelectionModel.ViewState, InteriorColorSelectionModel.State>
 
-  var intent: InteriorColorSelectionIntentType {
-    container.intent
-  }
-
-  var viewState: InteriorColorSelectionModel.State {
-    intent.viewState
-  }
+  var intent: InteriorColorSelectionIntentType { container.intent }
+  var state: InteriorColorSelectionModel.State { intent.state }
+  var viewState: InteriorColorSelectionModel.ViewState { intent.viewState }
 
 }
 
@@ -56,8 +52,8 @@ extension InteriorColorSelectionView {
 
   @ViewBuilder
   static func build(intent: InteriorColorSelectionIntent) -> some View {
-    InteriorColorSelectionView(container: .init(intent: intent,
-                                                state: intent.viewState,
+    InteriorColorSelectionView(container: .init(intent: intent, viewState: intent.viewState,
+                                                state: intent.state,
                                                 modelChangePublisher: intent.objectWillChange))
   }
 

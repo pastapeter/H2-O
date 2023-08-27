@@ -57,7 +57,7 @@ extension ExteriorSelectionView {
 
   @ViewBuilder
   static func build(intent: ExternalSelectionIntent) -> some View {
-    ExteriorSelectionView(container: .init(intent: intent, viewState: intent.viewState, modelChangePublisher: intent.objectWillChange))
+    ExteriorSelectionView(container: .init(intent: intent, viewState: intent.viewState, state: intent.state, modelChangePublisher: intent.objectWillChange))
   }
 
 }

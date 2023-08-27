@@ -68,9 +68,9 @@ extension ExternalSelectionIntent: ExteriorSelectionIntentType, IntentType {
           do {
             for i in 0..<colorCount {
               for urlIndex in 0..<viewState.colors[colorCount-1].color.exteriorImages.count {
-                imgs[urlIndex] = try await imageCacher.setImage(state.colors[i].color.exteriorImages[urlIndex])
+                imgs[urlIndex] = try await imageCacher.setImage(viewState.colors[i].color.exteriorImages[urlIndex])
               }
-              state.images[i] = imgs
+              viewState.images[i] = imgs
             }
           } catch {
               print("@@@에러")
