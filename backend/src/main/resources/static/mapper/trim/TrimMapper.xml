@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2o.h2oServer.domain.trim.mapper.TrimMapper">
+    <select id="findById" resultType="TrimEntity">
+        select id, name, description, price, car_id
+        from trims
+        where id = #{id}
+    </select>
+
+    <!--쿼리 최적화 필요-->
+    <select id="findOptionStatistics" resultType="OptionStatisticsEntity">
+        select id, name, use_count
+        from options
+            join trims_options
+            on options.id = trims_options.option_id
+        where trim_id = #{id}
+        order by use_count desc
+        limit 3
+    </select>
+
+    <select id="findByCarId" resultType="TrimEntity">
+        select id, name, description, price, car_id
+        from trims
+        where car_id = #{id}
+    </select>
+
+    <select id="findImages" resultType="ImageEntity">
+        select id, image
+        from trims_image
+        where trim_id = #{id}
+    </select>
+
+    <select id="findAll" resultType="TrimEntity">
+        select id, name, description, price, car_id
+        from trims
+    </select>
+
+    <!--쿼리 최적화 필요-->
+    <select id="findExternalColor" resultType="ExternalColorEntity">
+        <include refid="findExternalColor"/>
+    </select>
+
+    <select id="findInternalColor" resultType="InternalColorEntity">
+        <include refid="findInternalColor"/>
+    </select>
+
+    <select id="findDefaultExternalColor" resultType="ExternalColorEntity">
+        <include refid="findExternalColor"/>
+        limit 1
+    </select>
+  
+    <select id="findDefaultInternalColor" resultType="InternalColorEntity">
+        <include refid="findInternalColor"/>
+        limit 1
+    </select>
+
+    <select id="findQuantityBetween" resultType="integer">
+        select count(*)
+        from sold_car
+        where trim_id = #{id} and price between #{from} and #{to}
+    </select>
+
+    <select id="findMaximumComponentPrice" resultType="integer">
+      select package_price + option_price + internal_color_price + external_color_price
+      from (select trims.id, sum(trims_package.price) as package_price
+          from trims join trims_package on trims.id = trims_package.trim_id where trims.id = #{id}) as package
+              natural join (select trims.id, sum(trims_options.price) as option_price
+                  from trims join trims_options on trims.id = trims_options.trim_id where trims.id = #{id} and option_type = 'extra' group by trims.id) as options
+              natural join (select trims.id, max(trims_internal_color.price) as internal_color_price
+                  from trims join trims_internal_color on trims.id = trims_internal_color.trim_id where trims.id = #{id} group by trims.id) as internal_color
+              natural join (select trims.id, max(trims_external_color.price) as external_color_price
+                  from trims join trims_external_color on trims.id = trims_external_color.trim_id where trims.id = #{id} group by trims.id) as external_color;
+    </select>
+
+    <select id="checkIfTrimExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM trims
+        WHERE id = #{id}
+    </select>
+
+    <sql id="findInternalColor">
+        select id, name, fabric_image, internal_image, price, choice_ratio
+        from internal_color
+                join trims_internal_color on internal_color.id = trims_internal_color.internal_color_id
+        where trim_id = #{id}
+        order by choice_ratio desc, name desc
+    </sql>
+
+    <sql id="findExternalColor">
+        select id, name, color_code, choice_ratio, price
+        from external_color
+                 join trims_external_color on external_color.id = trims_external_color.external_color_id
+        where trim_id = #{id}
+        order by choice_ratio desc, name desc
+    </sql>
+</mapper>

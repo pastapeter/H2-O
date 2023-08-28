@@ -1,0 +1,11 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/backend
+    overwrite: yes
+hooks:
+  ApplicationStart:
+    - location: release-backend.sh
+      timeout: 60
+      runas: ubuntu

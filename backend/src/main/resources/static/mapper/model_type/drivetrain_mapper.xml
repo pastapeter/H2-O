@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.h2o.h2oServer.domain.model_type.mapper.DrivetrainMapper">
+    <select id="findById" resultType="DrivetrainEntity">
+        select id, name, description, image
+        from drivetrain
+        where id = #{id}
+    </select>
+
+    <select id="findDrivetrainsByCarId" resultType="CarDrivetrainEntity">
+        <include refid="findDrivetrainsByCarId"/>
+    </select>
+
+    <select id="findDefaultDrivetrainByCarId" resultType="CarDrivetrainEntity">
+        <include refid="findDrivetrainsByCarId"/>
+        limit 1
+    </select>
+
+    <select id="checkIfDrivetrainExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM drivetrain
+        WHERE id = #{id}
+    </select>
+
+    <sql id="findDrivetrainsByCarId">
+        select car_id, drivetrain_id, name, description, image, price, choice_ratio
+        from car_drivetrain
+                 join drivetrain
+                      on car_drivetrain.drivetrain_id = drivetrain.id
+        where car_id = ${carId}
+        order by drivetrain_id
+    </sql>
+</mapper>

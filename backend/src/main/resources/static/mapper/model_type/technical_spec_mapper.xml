@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.h2o.h2oServer.domain.model_type.mapper.TechnicalSpecMapper">
+    <select id="findSpec" resultType="TechnicalSpecEntity">
+        select powertrain_id, drivetrain_id, displacement, fuel_efficiency
+        from technical_spec
+        where powertrain_id = ${powertrainId} and drivetrain_id = ${drivetrainId};
+    </select>
+
+    <select id="checkIfTechnicalSpecExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM technical_spec
+        WHERE powertrain_id = #{powertrainId} and drivetrain_id = #{drivetrainId}
+    </select>
+</mapper>

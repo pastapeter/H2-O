@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2o.h2oServer.domain.option.mapper.OptionMapper">
+    <cache readOnly="true"/>
+    <select id="findOptionDetails" resultType="OptionDetailsEntity">
+        select name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, description, category, use_count, choice_ratio, price, option_type
+        from options
+        join trims_options on trims_options.option_id = options.id
+        where trims_options.trim_id = #{trimId} and options.id = #{id}
+    </select>
+
+    <select id="findOption" resultType="OptionEntity">
+        select name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, description, category, use_count
+        from options
+        where options.id = #{optionId}
+    </select>
+
+    <select id="findHashTag" resultType="HashTagEntity">
+        select name
+        from options_hashtag
+                 join hashtag
+                      on options_hashtag.hashtag_id = hashtag.id
+        where option_id = #{optionId}
+        order by hashtag_id
+            limit 5;
+    </select>
+
+    <select id="findTrimPackages" resultType="TrimExtraOptionEntity">
+        select id, name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, category, choice_ratio, price
+        from trims_package
+                 join package
+                      on trims_package.package_id = package.id
+        where trim_id = #{trimId}
+        order by package_id;
+    </select>
+
+    <select id="findTrimExtraOptions" resultType="TrimExtraOptionEntity">
+        select id, name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, category, choice_ratio, price
+        from trims_options
+                 join options
+                      on trims_options.option_id = options.id
+        where trim_id = #{trimId} and option_type = 'extra'
+        order by option_id;
+    </select>
+
+    <select id="findTrimDefaultOptions" resultType="TrimDefaultOptionEntity">
+        select id, name, image, pc_detail_image as pc_image, mobile_detail_image as mobile_image, category, choice_ratio, use_count
+        from trims_options
+                 join options
+                      on trims_options.option_id = options.id
+        where trim_id = #{trimId} and option_type = 'default'
+        order by option_id;
+    </select>
+
+    <select id="checkIfOptionExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM options
+        WHERE id = #{id}
+    </select>
+</mapper>
