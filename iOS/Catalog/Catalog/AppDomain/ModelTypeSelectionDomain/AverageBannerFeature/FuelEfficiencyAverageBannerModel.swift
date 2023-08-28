@@ -36,7 +36,7 @@ enum FuelEfficiencyAverageBannerModel {
   }
   
   enum ViewAction {
-    case calculateFuelEfficiency(typeId: Int, selectedOptionId: Int)
+    case calculateFuelEfficiency
   }
   
 }

@@ -41,6 +41,7 @@ extension FuelEfficiencyAverageBannerView: View {
         .padding(.top, 16)
         .padding(.bottom, 20)
       }
+      .onAppear { intent.send(action: .calculateFuelEfficiency)}
       .padding(.top, 12)
       .frame(maxWidth: .infinity)
     }

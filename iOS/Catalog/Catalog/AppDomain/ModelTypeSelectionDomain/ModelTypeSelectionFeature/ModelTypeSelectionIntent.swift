@@ -44,8 +44,6 @@ final class ModelTypeSelectionIntent: ObservableObject {
   
   var cancellable: Set<AnyCancellable> = []
   private(set) var quotation: ModeltypeSelectionService
-  private var powerTrainOptionId: Int = 1
-  private var driveTrainOptionId: Int = 1
   
 }
 

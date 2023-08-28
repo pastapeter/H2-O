@@ -41,8 +41,6 @@ final class FuelEfficiencyAverageBannerIntent: ObservableObject {
   var cancellable: Set<AnyCancellable> = []
   private var quotation: ModeltypeSelectionService
   private var repository: ModelTypeRepositoryProtocol
-  private var powerTrainOptionId: Int = 1
-  private var driveTrainOptionId: Int = 1
   
 }
 
@@ -50,10 +48,11 @@ extension FuelEfficiencyAverageBannerIntent: FuelEfficiencyAverageBannerIntentTy
   
   func mutate(action: FuelEfficiencyAverageBannerModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
-    case .calculateFuelEfficiency(let typeId, let selectedOptionId):
-      Task {
-        await calculateFuelEfficiency(typeID: typeId, selectedOptionId: selectedOptionId)
-      }
+    case .calculateFuelEfficiency:
+      quotation.powertrainPublisher.combineLatest(quotation.driveTrainPublisher)
+        .sink { [weak self] powertrain, driveTrain in
+          self?.calculateFuelEfficiency(powerTrain: powertrain, drivetrain: driveTrain)
+        }.store(in: &cancellable)
     }
   }
   
@@ -62,35 +61,25 @@ extension FuelEfficiencyAverageBannerIntent: FuelEfficiencyAverageBannerIntentTy
 
 extension FuelEfficiencyAverageBannerIntent {
   
-  private func calculateFuelEfficiency(typeID: Int, selectedOptionId: Int) async {
-    
-    do {
-      
-      let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue
-      let driveTrainID = ModelTypeSelectionModel.ModelTypeID.driveTrain.rawValue
-      
-      if typeID == powerTrainID {
-        self.powerTrainOptionId = selectedOptionId
-      } else if typeID == driveTrainID {
-        self.driveTrainOptionId = selectedOptionId
+  private func calculateFuelEfficiency(powerTrain: ModelTypeOption, drivetrain: ModelTypeOption) {
+    Task {
+      do {
+        
+        let powerTrainTitle = quotation.powertrain().name
+        let driveTrainTitle = quotation.drivetrain().name
+        
+        let result = try await self.repository
+          .calculateFuelAndDisplacement(with: powerTrain.id, andwith: drivetrain.id)
+        
+        viewState.displacement = result.displacement
+        viewState.fuelEfficiency = result.fuelEfficiency
+        viewState.wheelType = driveTrainTitle
+        viewState.engine = powerTrainTitle
+        
+      } catch (let e) {
+        print(e.localizedDescription)
       }
-      
-      let powerTrainTitle = quotation.powertrainName()
-      let driveTrainTitle = quotation.drivetrainName()
-      
-      let result = try await self.repository
-        .calculateFuelAndDisplacement(with: self.driveTrainOptionId,
-                                      andwith: self.powerTrainOptionId)
-      
-      viewState.displacement = result.displacement
-      viewState.fuelEfficiency = result.fuelEfficiency
-      viewState.wheelType = driveTrainTitle
-      viewState.engine = powerTrainTitle
-      
-    } catch (let e) {
-      print(e.localizedDescription)
     }
-    
   }
   
 }

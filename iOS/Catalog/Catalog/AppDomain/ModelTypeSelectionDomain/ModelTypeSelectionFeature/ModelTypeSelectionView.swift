@@ -22,10 +22,6 @@ struct ModelTypeSelectionView: IntentBindingType {
   var state: ModelTypeSelectionModel.State {
     intent.state
   }
-
-//  var fuelBinding: Binding<FuelEfficiencyAverageBannerState> {
-//    .init(get: { intent.state.fuelEfficiencyAverageState }, set: { _ in })
-//  }
   
 }
 
@@ -45,7 +41,7 @@ extension ModelTypeSelectionView: View {
           }
           Spacer().frame(height: 38)
           HMGDataBannerComponent {
-            FuelEfficiencyAverageBannerView.build(intent: .init(initialState: state.fuelEfficiencyAverageState, repository: intent.repository, quotation: intent.quotation))
+            FuelEfficiencyAverageBannerView.build(intent: .init(initialState: viewState.fuelEfficiencyAverageState, repository: intent.repository, quotation: intent.quotation))
           }
         }
       }
