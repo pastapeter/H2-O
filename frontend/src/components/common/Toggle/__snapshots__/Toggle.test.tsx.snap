@@ -78,7 +78,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -108,7 +108,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -230,7 +230,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -260,7 +260,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -382,7 +382,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -412,7 +412,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -534,7 +534,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -564,7 +564,7 @@ exports[`Toggle 컴포넌트 테스트 > Toggle 스냅샷 테스트 > size 속�
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { calculateRatios, getFractionString } from './utils';
 import { MaxOutput, MaxTorque, PowerTrain } from '@/types/response';
-import { Flex, HMGTag, Typography } from '@/components/common';
+import { Divider, Flex, HMGTag, Typography } from '@/components/common';
 
 interface ModelOptionDetailProps {
   powertrains: PowerTrain[];
@@ -31,7 +31,7 @@ function ModelOptionDetail({ powertrains, maxOutput, maxTorque }: ModelOptionDet
           })}
           ratio={outputRatio}
         />
-        <Divider />
+        <Divider vertical length='40px' color='gray200' />
         <ModelDetail
           label='최대토크(kgf·m/rpm)'
           value={getFractionString({
@@ -61,12 +61,6 @@ function ModelDetail({ label, value, ratio }: ModelDetailProps) {
 }
 
 export default ModelOptionDetail;
-
-const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray200};
-  width: 1px;
-  height: 40px;
-`;
 
 const PercentBar = styled.div<{ ratio: number }>`
   position: relative;

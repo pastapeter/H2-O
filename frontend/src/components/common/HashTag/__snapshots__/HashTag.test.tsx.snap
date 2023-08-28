@@ -2,13 +2,6 @@
 
 exports[`HashTag 컴포넌트 테스트 > HashTag 스냅샷 테스트 1`] = `
 .emotion-0 {
-  font-family: Hyundai Sans Text KR;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: -0.03em;
-  background-color: #75757580;
-  color: #F7F8F9;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -19,6 +12,13 @@ exports[`HashTag 컴포넌트 테스트 > HashTag 스냅샷 테스트 1`] = `
   align-items: center;
   padding: 2px 6px;
   border-radius: 2px;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  background-color: #75757580;
+  color: #F7F8F9;
 }
 
 <div

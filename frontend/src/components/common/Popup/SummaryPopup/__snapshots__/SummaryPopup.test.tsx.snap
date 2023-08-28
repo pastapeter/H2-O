@@ -17,7 +17,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
 }
 
 .emotion-1 {
-  font-family: Hyundai Sans Head KR;
+  font-family: Hyundai Sans Head KR,sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 28px;
@@ -163,7 +163,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -193,7 +193,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -230,7 +230,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
 
 .emotion-14 {
   color: #A3A6AA;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
@@ -259,7 +259,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
 
 .emotion-16 {
   color: #212122;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -272,7 +272,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
 
 .emotion-17 {
   color: #212122;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -298,7 +298,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
   -ms-flex-pack: end;
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
@@ -315,7 +315,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
 }
 
 .emotion-62 {
-  font-family: Hyundai Sans Head KR;
+  font-family: Hyundai Sans Head KR,sans-serif;
   font-size: 24px;
   font-weight: 500;
   line-height: 32px;
@@ -339,7 +339,7 @@ exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 18px;

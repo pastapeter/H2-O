@@ -14,7 +14,7 @@ exports[`HMGTag 컴포넌트 테스트 > HMGTag 스냅샷 테스트 > variant가
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Head;
+  font-family: Hyundai Sans Head,sans-serif;
   font-size: 10px;
   font-weight: 700;
   line-height: 12px;
@@ -46,7 +46,7 @@ exports[`HMGTag 컴포넌트 테스트 > HMGTag 스냅샷 테스트 > variant가
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Head;
+  font-family: Hyundai Sans Head,sans-serif;
   font-size: 10px;
   font-weight: 700;
   line-height: 12px;

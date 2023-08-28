@@ -2,7 +2,7 @@
 
 exports[`PriceSummaryButton 컴포넌트 테스트 > PriceSummaryButton 스냅샷 테스트 > 버튼의 스냅샷이 일치한다. 1`] = `
 .emotion-0 {
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;

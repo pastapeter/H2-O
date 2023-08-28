@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 
-const HashTag = styled.div`
-  ${({ theme }) => theme.typography.TextKRRegular12}
-  background-color: ${({ theme }) => theme.colors.hashTagBg};
-  color: ${({ theme }) => theme.colors.gray50};
-  display: flex;
-  align-items: center;
-  padding: 2px 6px;
-  border-radius: 2px;
-`;
+const HashTag = styled.div(
+  {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '2px 6px',
+    borderRadius: '2px',
+  },
+  ({ theme }) => ({
+    ...theme.typography.TextKRRegular12,
+    backgroundColor: theme.colors.hashTagBg,
+    color: theme.colors.gray50,
+  }),
+);
 
 export default HashTag;

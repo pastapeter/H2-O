@@ -1,8 +1,7 @@
 import { useRef } from 'react';
-import styled from '@emotion/styled';
-import { MainSelector } from '../common/MainSelector';
-import TrimCard from './TrimCard';
 import { TrimResponse } from '@/types/response';
+import { Flex, MainSelector } from '@/components/common';
+import { TrimCard } from '@/components/trim';
 import { getImagePreloader } from '@/utils/image';
 
 interface Props {
@@ -20,7 +19,7 @@ function TrimSelector({ trimList, selectedTrimId, onSelectTrim }: Props) {
 
   return (
     <MainSelector title='트림을 선택해주세요'>
-      <TrimList>
+      <Flex gap={16} width='100%'>
         {trimList.map((trim) => {
           const { id, name, images, ...rest } = trim;
           return (
@@ -35,15 +34,9 @@ function TrimSelector({ trimList, selectedTrimId, onSelectTrim }: Props) {
             />
           );
         })}
-      </TrimList>
+      </Flex>
     </MainSelector>
   );
 }
 
 export default TrimSelector;
-
-const TrimList = styled.ul`
-  display: flex;
-  gap: 16px;
-  width: 100%;
-`;

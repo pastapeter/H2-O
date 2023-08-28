@@ -44,7 +44,7 @@ exports[`Loading 컴포넌트 테스트 > Loading 스냅샷 테스트 > default 
 
 .emotion-2 {
   color: #00397B;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -152,7 +152,7 @@ exports[`Loading 컴포넌트 테스트 > Loading 스냅샷 테스트 > fullPage
 
 .emotion-2 {
   color: #F6F3F2;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;

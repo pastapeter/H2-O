@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
 import type { TrimOption } from '@/types/response';
-import { HMGTag } from '@/components/common';
+import { Divider, Flex, HMGTag } from '@/components/common';
 import { toSeparatedNumberFormat } from '@/utils/number';
 
 const UNIT_NUMBER = 15000;
@@ -17,16 +17,16 @@ const PracticalInfo = forwardRef<HTMLDivElement, Props>(({ options = [], ...rest
       <p>
         해당 트림 포함된 옵션들의 <span>실활용 데이터</span>에요.
       </p>
-      <OptionContainer>
+      <Flex gap={52} marginTop={16}>
         {options.map(({ dataLabel, frequency }) => (
-          <Option key={dataLabel}>
-            <OptionName>{dataLabel}</OptionName>
-            <Divider />
-            <Count>{`${Math.round(frequency)}회`}</Count>
-            <UnitOfCount>{`${toSeparatedNumberFormat(UNIT_NUMBER)}km 당`}</UnitOfCount>
+          <Option key={dataLabel} flexDirection='column'>
+            <p className='name'>{dataLabel}</p>
+            <Divider length='100%' color='gray400' />
+            <strong className='count'>{`${Math.round(frequency)}회`}</strong>
+            <span className='unit'>{`${toSeparatedNumberFormat(UNIT_NUMBER)}km 당`}</span>
           </Option>
         ))}
-      </OptionContainer>
+      </Flex>
     </PracticalInfoContainer>
   );
 });
@@ -40,8 +40,7 @@ const PracticalInfoContainer = styled.div`
   flex-direction: column;
   width: fit-content;
   margin-top: 166px;
-  padding: 0px 16px;
-  padding-bottom: 16px;
+  padding: 0px 16px 16px 16px;
   transform: translateX(-16px);
   z-index: 15;
 
@@ -55,39 +54,25 @@ const PracticalInfoContainer = styled.div`
   }
 `;
 
-const OptionContainer = styled.div`
-  display: flex;
-  gap: 52px;
-  margin-top: 16px;
-`;
-
-const Option = styled.div`
-  display: flex;
-  flex-direction: column;
+const Option = styled(Flex)`
   width: 65px;
-`;
 
-const OptionName = styled.p`
-  ${({ theme }) => theme.typography.TextKRRegular10};
-  width: 100%;
-  height: 36px;
-  word-break: keep-all;
-  margin-bottom: 4px;
-`;
+  .name {
+    ${({ theme }) => theme.typography.TextKRRegular10};
+    width: 100%;
+    height: 36px;
+    word-break: keep-all;
+    margin-bottom: 4px;
+  }
 
-const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray400};
-  width: 100%;
-  height: 1px;
-`;
+  .count {
+    ${({ theme }) => theme.typography.HeadKRRegular24};
+    color: ${({ theme }) => theme.colors.gray900};
+    margin-top: 6px;
+  }
 
-const Count = styled.div`
-  ${({ theme }) => theme.typography.HeadKRRegular24};
-  color: ${({ theme }) => theme.colors.gray900};
-  margin-top: 6px;
-`;
-
-const UnitOfCount = styled.span`
-  ${({ theme }) => theme.typography.TextKRRegular10};
-  color: ${({ theme }) => theme.colors.gray600};
+  .unit {
+    ${({ theme }) => theme.typography.TextKRRegular10};
+    color: ${({ theme }) => theme.colors.gray600};
+  }
 `;

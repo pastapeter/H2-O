@@ -10,16 +10,22 @@ describe('Typography 컴포넌트 테스트', () => {
     expect(screen.getByTestId('typography')).toBeInTheDocument();
   });
 
-  it('Typography font를 통해서 폰트를 변경할 수 있다.', () => {
+  it('Typography color를 통해서 색상을 변경할 수 있다.', () => {
     render(<Typography data-testid='typography' color='activeBlue' />);
 
-    expect(screen.getByTestId('typography')).toHaveStyle(`color: ${COLORS.activeBlue}`);
+    expect(screen.getByTestId('typography')).toHaveStyleRule('color', COLORS['activeBlue']);
   });
 
-  it('Typography color를 통해서 색상을 변경할 수 있다.', () => {
+  it('Typography font를 통해서 폰트를 변경할 수 있다.', () => {
     render(<Typography data-testid='typography' font='TextKRMedium14' />);
+    const { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing } = TYPOGRAPHY['TextKRMedium14'];
+    const typography = screen.getByTestId('typography');
 
-    expect(screen.getByTestId('typography')).toHaveStyle(TYPOGRAPHY.TextKRMedium14);
+    expect(typography).toHaveStyleRule('font-family', fontFamily);
+    expect(typography).toHaveStyleRule('font-size', fontSize);
+    expect(typography).toHaveStyleRule('font-weight', String(fontWeight));
+    expect(typography).toHaveStyleRule('line-height', lineHeight);
+    expect(typography).toHaveStyleRule('letter-spacing', letterSpacing);
   });
 
   describe('Typography 스냅샷 테스트', () => {

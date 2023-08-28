@@ -40,7 +40,7 @@ exports[`Banner 컴포넌트 테스트 > 배너 스냅샷 테스트 1`] = `
 }
 
 .emotion-2>h3 {
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -49,7 +49,7 @@ exports[`Banner 컴포넌트 테스트 > 배너 스냅샷 테스트 1`] = `
 }
 
 .emotion-2>h2 {
-  font-family: Hyundai Sans Head KR;
+  font-family: Hyundai Sans Head KR,sans-serif;
   font-size: 32px;
   font-weight: 700;
   line-height: 36px;

@@ -1,8 +1,8 @@
-import { type ComponentProps, type MouseEventHandler, useState } from 'react';
+import type { ComponentProps, MouseEventHandler } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { getTrimPriceRange } from '@/apis/trim';
-import { CTAButton, Card, Loading } from '@/components/common';
+import { CTAButton, Flex, Loading, Card as _Card } from '@/components/common';
 import { useFetcher, useSafeContext } from '@/hooks';
 import { toSeparatedNumberFormat } from '@/utils/number';
 import { SelectionContext } from '@/providers/SelectionProvider';
@@ -22,48 +22,36 @@ function TrimCard({ id, description, title, price, ...restProps }: Props) {
   const { dispatch } = useSafeContext(SelectionContext);
   const theme = useTheme();
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const { isLoading } = useFetcher({
+  const { isLoading, refetch } = useFetcher({
     fetchFn: () => getTrimPriceRange(id),
-    onSuccess: (data) => {
-      const { minPrice, maxPrice } = data;
-
+    onSuccess: ({ minPrice, maxPrice }) => {
       dispatch({
         type: 'SET_PRICE_RANGE',
-        payload: { minPrice: minPrice, maxPrice: maxPrice },
+        payload: { minPrice, maxPrice },
       });
 
       setCurrentSlide(currentSlide + 1);
-      setSubmitted(false);
     },
-    enabled: submitted,
+    enabled: false,
   });
 
-  const handleClickButton: MouseEventHandler<HTMLButtonElement> = async () => {
-    setSubmitted(true);
+  const handleButtonClick: MouseEventHandler<HTMLButtonElement> = async () => {
+    refetch();
   };
 
   if (isLoading)
-    <Card
-      css={css`
-        flex: 1;
-      `}
-    >
-      <Loading />
-    </Card>;
+    return (
+      <Card as='li' {...restProps}>
+        <Loading />
+      </Card>
+    );
 
   return (
-    <Card
-      css={css`
-        flex: 1;
-      `}
-      {...restProps}
-    >
-      <TextContainer>
-        <Description>{description}</Description>
-        <Title>{title}</Title>
-        <Price>{`${toSeparatedNumberFormat(price)} 원`}</Price>
+    <Card as='li' {...restProps}>
+      <TextContainer flexDirection='column'>
+        <p className='description'>{description}</p>
+        <h3 className='title'>{title}</h3>
+        <span className='price'>{`${toSeparatedNumberFormat(price)} 원`}</span>
       </TextContainer>
       <ButtonContainer>
         <CTAButton
@@ -73,7 +61,7 @@ function TrimCard({ id, description, title, price, ...restProps }: Props) {
           css={css`
             ${theme.typography.TextKRMedium12}
           `}
-          onClick={handleClickButton}
+          onClick={handleButtonClick}
         >
           선택하기
         </CTAButton>
@@ -84,28 +72,28 @@ function TrimCard({ id, description, title, price, ...restProps }: Props) {
 
 export default TrimCard;
 
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px 16px;
-  padding-bottom: 8px;
+const Card = styled(_Card)`
+  flex: 1;
 `;
 
-const Description = styled.p`
-  ${({ theme }) => theme.typography.TextKRRegular12}
-  color: ${({ theme }) => theme.colors.gray600};
-`;
+const TextContainer = styled(Flex)`
+  padding: 20px 16px 8px 16px;
 
-const Title = styled.h3`
-  ${({ theme }) => theme.typography.HeadENMedium20}
-`;
+  .description {
+    ${({ theme }) => theme.typography.TextKRRegular12}
+    color: ${({ theme }) => theme.colors.gray600};
+  }
 
-const Price = styled.p`
-  ${({ theme }) => theme.typography.HeadKRMedium18}
-  margin-top: 8px;
+  .title {
+    ${({ theme }) => theme.typography.HeadENMedium20}
+  }
+
+  .price {
+    ${({ theme }) => theme.typography.HeadKRMedium18}
+    margin-top: 8px;
+  }
 `;
 
 const ButtonContainer = styled.div`
-  padding: 0 12px;
-  padding-bottom: 12px;
+  padding: 0 12px 12px 12px;
 `;

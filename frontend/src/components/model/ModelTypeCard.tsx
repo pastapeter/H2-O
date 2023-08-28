@@ -1,7 +1,6 @@
 import type { ComponentProps } from 'react';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Card, Icon, Typography } from '@/components/common';
+import { Typography, Card as _Card, Icon as _Icon } from '@/components/common';
 import { toPriceFormatString } from '@/utils/string';
 
 export interface Props extends ComponentProps<typeof Card> {
@@ -12,7 +11,7 @@ export interface Props extends ComponentProps<typeof Card> {
 
 function ModelTypeCard({ choiceRatio, name, price, isSelected, ...restProps }: Props) {
   return (
-    <StyledCard isSelected={isSelected} {...restProps}>
+    <Card isSelected={isSelected} {...restProps}>
       <Typography font='TextKRRegular12' color='gray700'>
         <Typography as='span' color={isSelected ? 'activeBlue' : 'gray600'}>
           {choiceRatio}%
@@ -25,26 +24,24 @@ function ModelTypeCard({ choiceRatio, name, price, isSelected, ...restProps }: P
       <Typography font='TextKRMedium14' color={isSelected ? 'gray900' : 'gray600'}>
         {toPriceFormatString(price)} 원
       </Typography>
-      <Icon
-        iconType='Check'
-        color={isSelected ? 'activeBlue' : 'gray200'}
-        css={css`
-          position: absolute;
-          bottom: 8px;
-          right: 12px;
-        `}
-      />
-    </StyledCard>
+      <Icon iconType='Check' color={isSelected ? 'activeBlue' : 'gray200'} />
+    </Card>
   );
 }
 
 export default ModelTypeCard;
 
-const StyledCard = styled(Card)`
+const Card = styled(_Card)`
   position: relative;
   width: 159px;
   height: 76px;
   border-radius: 4px;
   padding: 8px 12px;
   ${({ isSelected }) => !isSelected && 'border-color: white'}
+`;
+
+const Icon = styled(_Icon)`
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
 `;

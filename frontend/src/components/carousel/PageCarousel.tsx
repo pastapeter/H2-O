@@ -54,4 +54,5 @@ const CarouselSlide = styled.li`
   transform: translateX(0);
   overflow-x: hidden;
   overflow-y: scroll;
+  -webkit-transform: translate3d(0, 0, 0);
 `;

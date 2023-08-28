@@ -18,7 +18,7 @@ exports[`MainSelector 컴포넌트 테스트 > MainSelector 스냅샷 테스트 
 }
 
 .emotion-0 .title {
-  font-family: Hyundai Sans Head KR;
+  font-family: Hyundai Sans Head KR,sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;

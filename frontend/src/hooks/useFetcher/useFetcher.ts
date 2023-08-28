@@ -67,28 +67,30 @@ function useFetcher<TData = unknown>({
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const _fetch = async () => {
+    try {
+      dispatch({ type: 'LOADING' });
+      const response = await fetchFn();
+      if (deferTime > 0) await sleep(deferTime);
+      dispatch({ type: 'SUCCESS', payload: response });
+      if (onSuccess) onSuccess(response);
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch({ type: 'ERROR', payload: err });
+        if (onError) onError(err);
+        showBoundary(err);
+      }
+    }
+  };
+
   useEffect(() => {
     if (!enabled) return;
 
-    (async function () {
-      try {
-        dispatch({ type: 'LOADING' });
-        const response = await fetchFn();
-        if (deferTime > 0) await sleep(deferTime);
-        dispatch({ type: 'SUCCESS', payload: response });
-        if (onSuccess) onSuccess(response);
-      } catch (err) {
-        if (err instanceof Error) {
-          dispatch({ type: 'ERROR', payload: err });
-          if (onError) onError(err);
-          showBoundary(err);
-        }
-      }
-    })();
+    _fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, ...dependency]);
 
-  return { ...state } as const;
+  return { ...state, refetch: _fetch } as const;
 }
 
 const sleep = (time: number) => {

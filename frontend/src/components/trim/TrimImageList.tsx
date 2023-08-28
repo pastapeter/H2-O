@@ -32,14 +32,14 @@ function TrimImageList({ imageSrcList }: Props) {
 
 export default TrimImageList;
 
-const TrimImageListContainer = styled.div`
+const TrimImageListContainer = styled.ul`
   position: relative;
   display: flex;
   gap: 16px;
   height: 100%;
 `;
 
-const Image = styled.div<ImageProps>`
+const Image = styled.li<ImageProps>`
   position: relative;
   height: 360px;
 

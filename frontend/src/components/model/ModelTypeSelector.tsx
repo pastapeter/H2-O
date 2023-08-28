@@ -1,8 +1,7 @@
-import styled from '@emotion/styled';
-import ModelTypeOptionList from './ModelTypeOptionList';
 import { BodyType, DriveTrain, PowerTrain } from '@/types/response';
 import type { CurrentModel } from '@/pages/ModelPage';
-import { Flex } from '@/components/common';
+import { Flex, MainSelector } from '@/components/common';
+import { ModelTypeOptionList } from '@/components/model';
 import { useSafeContext } from '@/hooks';
 import { SelectionContext } from '@/providers/SelectionProvider';
 
@@ -39,10 +38,7 @@ function ModelTypeSelector({ powerTrains, bodyTypes, driveTrains, onSelectModel 
   };
 
   return (
-    <Container>
-      <div>
-        <h2>모델타입을 선택해주세요.</h2>
-      </div>
+    <MainSelector title='모델타입을 선택해주세요.'>
       <Flex gap={16}>
         {powerTrain && (
           <ModelTypeOptionList
@@ -69,26 +65,8 @@ function ModelTypeSelector({ powerTrains, bodyTypes, driveTrains, onSelectModel 
           />
         )}
       </Flex>
-    </Container>
+    </MainSelector>
   );
 }
 
 export default ModelTypeSelector;
-
-const Container = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 420px);
-  padding-top: 16px;
-  background-color: white;
-
-  & > div {
-    max-width: 1024px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  h2 {
-    ${({ theme }) => theme.typography.HeadKRMedium16}
-    margin-bottom: 12px;
-  }
-`;

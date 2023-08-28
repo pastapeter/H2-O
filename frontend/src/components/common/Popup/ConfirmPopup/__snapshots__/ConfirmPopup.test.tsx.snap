@@ -33,7 +33,7 @@ exports[`Confirm Popup 컴포넌트 테스트 > ConfirmPopup 컴포넌트 스냅
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: Hyundai Sans Text KR,sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -77,7 +77,7 @@ exports[`Confirm Popup 컴포넌트 테스트 > ConfirmPopup 컴포넌트 스냅
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Head KR;
+  font-family: Hyundai Sans Head KR,sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -108,7 +108,7 @@ exports[`Confirm Popup 컴포넌트 테스트 > ConfirmPopup 컴포넌트 스냅
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: Hyundai Sans Head KR;
+  font-family: Hyundai Sans Head KR,sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
