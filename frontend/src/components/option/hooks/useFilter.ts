@@ -75,9 +75,9 @@ function reducer(state: State, action: Action): State {
         defaultOptionEntireList: action.payload.defaultOptionList,
       };
     case 'CLICK_EXTRA_OPTION':
-      return { ...state, isExtraOption: true, input: '', extraOptionList: state.extraOptionEntireList };
+      return { ...state, isExtraOption: true, input: '' };
     case 'CLICK_DEFAULT_OPTION':
-      return { ...state, isExtraOption: false, input: '', defaultOptionList: state.defaultOptionEntireList };
+      return { ...state, isExtraOption: false, input: '' };
     case 'CLICK_EXTRA_CATEGORY':
       return {
         ...state,
