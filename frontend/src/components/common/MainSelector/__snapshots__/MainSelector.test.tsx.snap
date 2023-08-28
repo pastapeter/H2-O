@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MainSelector 컴포넌트 테스트 > MainSelector 스냅샷 테스트 1`] = `
+.emotion-0 {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 420px);
+  padding-top: 16px;
+  background-color: #FFFFFF;
+  -webkit-filter: drop-shadow(0px 0px 8px rgba(131, 133, 136, 0.2));
+  filter: drop-shadow(0px 0px 8px rgba(131, 133, 136, 0.2));
+}
+
+.emotion-0>div {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.emotion-0 .title {
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  color: #212122;
+  padding-bottom: 12px;
+}
+
+<div
+  class="emotion-0"
+  data-testid="main"
+>
+  <div />
+</div>
+`;

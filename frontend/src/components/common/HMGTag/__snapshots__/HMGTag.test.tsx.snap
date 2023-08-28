@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HMGTag 컴포넌트 테스트 > HMGTag 스냅샷 테스트 > variant가 default일 때 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Head,sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: -0.01em;
+  background-color: #00C3F0;
+  color: #FFFFFF;
+  width: 70px;
+  height: 32px;
+}
+
+<div
+  class="emotion-0"
+>
+  HMG Data
+</div>
+`;
+
+exports[`HMGTag 컴포넌트 테스트 > HMGTag 스냅샷 테스트 > variant가 small일 때 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Head,sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: -0.01em;
+  background-color: #00C3F0;
+  color: #FFFFFF;
+  width: 70px;
+  height: 20px;
+}
+
+<div
+  class="emotion-0"
+>
+  HMG Data
+</div>
+`;

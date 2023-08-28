@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CTAButton 컴포넌트 테스트 > CategoryButton 스냅샷 테스트 > isClicked속성이 false일 때 스냅샷이 일치한다. 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  background-color: #FFFFFF;
+  color: #838588;
+  padding: 6px 20px;
+  border: 1px solid #DADCDD;
+  border-radius: 20px;
+}
+
+.emotion-0:hover {
+  color: #00397B;
+  border: 1px solid #A2C7E7;
+  background-color: #FFFFFF;
+}
+
+.emotion-0:active {
+  background-color: #CCD7E5;
+}
+
+<button
+  class="emotion-0"
+>
+  버튼
+</button>
+`;
+
+exports[`CTAButton 컴포넌트 테스트 > CategoryButton 스냅샷 테스트 > isClicked속성이 true일 때 스냅샷이 일치한다. 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  background-color: #A2C7E74D;
+  color: #00397B;
+  padding: 6px 20px;
+  border: 1px solid #A2C7E7;
+  border-radius: 20px;
+}
+
+.emotion-0:hover {
+  color: #00397B;
+  border: 1px solid #A2C7E7;
+}
+
+.emotion-0:active {
+  background-color: #CCD7E5;
+}
+
+<button
+  class="emotion-0"
+>
+  버튼
+</button>
+`;

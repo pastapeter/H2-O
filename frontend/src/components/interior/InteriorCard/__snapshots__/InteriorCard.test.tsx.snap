@@ -1,0 +1,273 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InteriorCard 컴포넌트 테스트 > InteriorCard 스냅샷 테스트 > isSelected가 false일 때 1`] = `
+.emotion-0 {
+  border: 1px solid #DADCDD;
+  background-color: white;
+  color: #A3A6AA;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 244.5px;
+  height: 110px;
+  border-radius: 2px;
+}
+
+.emotion-0:hover {
+  border-color: #00AAD2;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  padding: 14px 0px 8px 16px;
+  background-color: transparent;
+}
+
+.emotion-2 {
+  color: #838588;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+.emotion-3 {
+  color: #838588;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+.emotion-4 {
+  color: #A3A6AA;
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+}
+
+.emotion-5 {
+  color: #838588;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  margin-top: 24px;
+}
+
+.emotion-6 {
+  position: absolute;
+  bottom: 8px;
+  right: 24px;
+}
+
+<div
+  class="emotion-0"
+  data-testid="card"
+>
+  <img
+    alt="퀼팅 천연(블랙)"
+    height="100%"
+    src="https://h2o-static-contents.s3.ap-northeast-2.amazonaws.com/internal/colorchip-interior-black.png"
+    width="69px"
+  />
+  <div
+    class="emotion-1"
+  >
+    <p
+      class="emotion-2"
+      color="gray600"
+    >
+      <span
+        class="emotion-3"
+        color="gray600"
+      >
+        62
+        %
+      </span>
+      가 선택했어요
+    </p>
+    <h3
+      class="emotion-4"
+      color="gray500"
+    >
+      퀼팅 천연(블랙)
+    </h3>
+    <p
+      class="emotion-5"
+      color="gray600"
+    >
+      +0
+       원
+    </p>
+    <svg
+      class="emotion-6"
+      data-testid="Check"
+      fill="#DADCDD"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m9.7 18.025-5.7-5.7L5.425 10.9 9.7 15.175 18.875 6 20.3 7.425l-10.6 10.6Z"
+        fill="inherit"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`InteriorCard 컴포넌트 테스트 > InteriorCard 스냅샷 테스트 > isSelected가 true일 때 1`] = `
+.emotion-0 {
+  border: 1px solid #00AAD2;
+  background-color: #00AAD21A;
+  color: #212122;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 244.5px;
+  height: 110px;
+  border-radius: 2px;
+}
+
+.emotion-0:hover {
+  border-color: #00AAD2;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  padding: 14px 0px 8px 16px;
+  background-color: transparent;
+}
+
+.emotion-2 {
+  color: #838588;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+.emotion-3 {
+  color: #00AAD2;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+
+.emotion-4 {
+  color: #212122;
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+}
+
+.emotion-5 {
+  color: #212122;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  margin-top: 24px;
+}
+
+.emotion-6 {
+  position: absolute;
+  bottom: 8px;
+  right: 24px;
+}
+
+<div
+  class="emotion-0"
+  data-testid="card"
+>
+  <img
+    alt="퀼팅 천연(블랙)"
+    height="100%"
+    src="https://h2o-static-contents.s3.ap-northeast-2.amazonaws.com/internal/colorchip-interior-black.png"
+    width="69px"
+  />
+  <div
+    class="emotion-1"
+  >
+    <p
+      class="emotion-2"
+      color="gray600"
+    >
+      <span
+        class="emotion-3"
+        color="activeBlue"
+      >
+        62
+        %
+      </span>
+      가 선택했어요
+    </p>
+    <h3
+      class="emotion-4"
+      color="gray900"
+    >
+      퀼팅 천연(블랙)
+    </h3>
+    <p
+      class="emotion-5"
+      color="gray900"
+    >
+      +0
+       원
+    </p>
+    <svg
+      class="emotion-6"
+      data-testid="Check"
+      fill="#00AAD2"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m9.7 18.025-5.7-5.7L5.425 10.9 9.7 15.175 18.875 6 20.3 7.425l-10.6 10.6Z"
+        fill="inherit"
+      />
+    </svg>
+  </div>
+</div>
+`;

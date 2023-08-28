@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PriceSummaryButton 컴포넌트 테스트 > PriceSummaryButton 스냅샷 테스트 > 버튼의 스냅샷이 일치한다. 1`] = `
+.emotion-0 {
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  color: #00397B;
+  border: 1px solid #6688B0;
+  background-color: transparent;
+  padding: 6px 16px;
+  border-radius: 30px;
+}
+
+.emotion-0:hover {
+  background-color: #A2C7E74D;
+}
+
+.emotion-0:active {
+  background-color: #00397B;
+  color: white;
+}
+
+.emotion-0:disabled {
+  color: #838588;
+  background-color: transparent;
+  border-color: #DADCDD;
+  cursor: not-allowed;
+}
+
+<button
+  class="emotion-0"
+>
+  버튼
+</button>
+`;

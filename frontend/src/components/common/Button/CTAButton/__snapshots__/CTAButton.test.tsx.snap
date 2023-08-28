@@ -1,0 +1,153 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CTAButton 컴포넌트 테스트 > CTAButton 스냅샷 테스트 > size 속성이 large일 때 스냅샷이 일치한다. 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  background-color: #00224A;
+  color: #FFFFFF;
+  border-radius: 4px;
+  width: 850px;
+  height: 52px;
+}
+
+.emotion-0:hover {
+  background-color: #00397B;
+}
+
+.emotion-0:active {
+  background-color: #001731;
+}
+
+.emotion-0:disabled {
+  background-color: #C8CACC;
+  cursor: not-allowed;
+}
+
+<button
+  class="emotion-0"
+>
+  버튼
+</button>
+`;
+
+exports[`CTAButton 컴포넌트 테스트 > CTAButton 스냅샷 테스트 > size 속성이 medium일 때 스냅샷이 일치한다. 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  background-color: #00224A;
+  color: #FFFFFF;
+  border-radius: 4px;
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  width: 340px;
+  height: 44px;
+}
+
+.emotion-0:hover {
+  background-color: #00397B;
+}
+
+.emotion-0:active {
+  background-color: #001731;
+}
+
+.emotion-0:disabled {
+  background-color: #C8CACC;
+  cursor: not-allowed;
+}
+
+<button
+  class="emotion-0"
+>
+  버튼
+</button>
+`;
+
+exports[`CTAButton 컴포넌트 테스트 > CTAButton 스냅샷 테스트 > size 속성이 small일 때 스냅샷이 일치한다. 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  background-color: #00224A;
+  color: #FFFFFF;
+  border-radius: 4px;
+  width: 220px;
+  height: 36px;
+}
+
+.emotion-0:hover {
+  background-color: #00397B;
+}
+
+.emotion-0:active {
+  background-color: #001731;
+}
+
+.emotion-0:disabled {
+  background-color: #C8CACC;
+  cursor: not-allowed;
+}
+
+<button
+  class="emotion-0"
+>
+  버튼
+</button>
+`;

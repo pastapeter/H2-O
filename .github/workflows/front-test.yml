@@ -1,0 +1,32 @@
+name: front test
+
+on:
+  pull_request_target:
+    branches: ["main", "dev-fe"]
+    paths:
+      - "frontend/**"
+
+jobs:
+  front-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Setting node js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setting environment variables
+        run: |
+          echo "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}" >> .env
+        working-directory: ./frontend
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+        working-directory: ./frontend
+
+      - name: Run test
+        run: yarn test
+        working-directory: ./frontend

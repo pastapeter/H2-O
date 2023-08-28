@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Banner 컴포넌트 테스트 > 배너 스냅샷 테스트 1`] = `
+.emotion-0 {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  box-shadow: 0px 0px 8px 0px rgba(131, 133, 136, 0.2);
+}
+
+.emotion-0>div {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 4px;
+  position: fixed;
+  top: 72px;
+  width: 400px;
+}
+
+.emotion-2>h3 {
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  color: #212122;
+}
+
+.emotion-2>h2 {
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.03em;
+  color: #00224A;
+}
+
+<div
+  class="emotion-0"
+  role="banner"
+>
+  <div
+    class="emotion-1"
+    height="100%"
+    width="100%"
+  >
+    <div
+      class="emotion-2"
+    >
+      <h3>
+        서브타이틀
+      </h3>
+      <h2>
+        타이틀
+      </h2>
+    </div>
+  </div>
+</div>
+`;

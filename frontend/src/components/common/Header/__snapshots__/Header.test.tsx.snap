@@ -1,0 +1,329 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header 컴포넌트 테스트 > Header 스냅샷 테스트 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  color: #414344;
+  background-color: white;
+  border-bottom: 2px solid #DADCDD;
+  padding-top: 28px;
+  padding-bottom: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 5;
+}
+
+.emotion-0>div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 1024px;
+}
+
+.emotion-0 h1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.emotion-2 {
+  background-color: #B6B8BB;
+  width: 1px;
+  height: 13px;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  color: #DADCDD;
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  transform: translate(-50%);
+  padding-top: 30px;
+  height: 60px;
+  gap: 40px;
+}
+
+.emotion-5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 52px;
+  height: 100%;
+  position: relative;
+  background-color: transparent;
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  color: #00397B;
+}
+
+.emotion-5::after {
+  position: absolute;
+  bottom: 0;
+  content: '';
+  width: 18px;
+  height: 2px;
+  background-color: #00397B;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 52px;
+  height: 100%;
+  position: relative;
+  background-color: transparent;
+}
+
+.emotion-11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+}
+
+<header
+  class="emotion-0"
+  data-testid="header"
+>
+  <h1>
+    <svg
+      fill="none"
+      height="20"
+      width="39"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.352 19.765c10.568 0 19.133-4.38 19.133-9.78 0-5.4-8.565-9.782-19.133-9.782S.222 4.582.222 9.986c0 5.403 8.569 9.779 19.13 9.779Zm3.6-4.793c-.31.732-.868 2.31-2.125 2.943-.379.185-.854.278-1.282.285-.093.007-.157 0-.19 0-3.46 0-6.696-.468-9.414-1.271-.2-.057-.643-.168-.643-.44 0-.12.064-.217.157-.307.04-.039.097-.085.172-.15.632-.532 2.553-1.918 6.153-3.29 1.265-.481 2.843-1.085 4.497-1.431.979-.207 4.579-.75 2.672 3.664m9.668-9.857c.068-.125.16-.222.321-.229.09-.014.207.014.393.125 2.25 1.386 3.582 3.104 3.582 4.972 0 3.375-4.34 6.271-10.554 7.543-.4.078-.66.078-.753-.029-.057-.064-.075-.171 0-.3a1.07 1.07 0 0 1 .164-.225c3.382-3.986 5.961-9.854 6.69-11.557.05-.111.11-.225.157-.297M15.809 4.99c.314-.732.868-2.314 2.129-2.943.378-.19.857-.275 1.275-.29h.196c3.468 0 6.697.472 9.422 1.29.196.06.632.14.632.422 0 .125-.071.225-.16.31-.04.043-.094.093-.176.154-.632.532-2.546 1.914-6.146 3.286-1.265.493-2.854 1.085-4.5 1.439-.976.204-4.576.75-2.672-3.664m-3.46-2.536c.403-.082.706-.082.8.025.056.06.078.168 0 .3-.047.071-.086.132-.165.228-3.386 3.983-5.957 9.854-6.69 11.547-.057.122-.11.24-.153.315-.079.121-.165.21-.329.225-.082 0-.207-.018-.396-.133-2.24-1.378-3.629-3.103-3.629-4.968 0-3.371 4.35-6.278 10.558-7.54"
+        fill="#1A1A1A"
+      />
+    </svg>
+  </h1>
+  <div>
+    <div
+      class="emotion-1"
+    >
+      <div
+        class="emotion-2"
+      />
+      <button
+        class="emotion-3"
+      >
+        <span>
+          팰리세이드
+        </span>
+        <svg
+          data-testid="ArrowDown"
+          fill="#414344"
+          height="12"
+          viewBox="0 0 24 24"
+          width="12"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.835 9.165a.563.563 0 0 0-.732-.055l-.063.055-4.852 4.852-4.853-4.852a.563.563 0 0 0-.732-.055l-.063.055c-.2.2-.218.512-.055.732l.055.063 5.25 5.25c.2.2.512.218.732.055l.063-.055 5.25-5.25a.562.562 0 0 0 0-.795Z"
+            fill="inherit"
+          />
+        </svg>
+      </button>
+    </div>
+    <nav
+      class="emotion-4"
+      role="navigation"
+    >
+      <button
+        class="emotion-5"
+      >
+        트림
+      </button>
+      <button
+        class="emotion-6"
+      >
+        타입
+      </button>
+      <button
+        class="emotion-6"
+      >
+        외장
+      </button>
+      <button
+        class="emotion-6"
+      >
+        내장
+      </button>
+      <button
+        class="emotion-6"
+      >
+        옵션
+      </button>
+      <button
+        class="emotion-6"
+      >
+        완료
+      </button>
+    </nav>
+  </div>
+  <button
+    class="emotion-11"
+  >
+    <span>
+      종료
+    </span>
+    <svg
+      data-testid="Cancel"
+      fill="#414344"
+      height="12"
+      viewBox="0 0 24 24"
+      width="12"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"
+        fill="inherit"
+      />
+    </svg>
+  </button>
+</header>
+`;

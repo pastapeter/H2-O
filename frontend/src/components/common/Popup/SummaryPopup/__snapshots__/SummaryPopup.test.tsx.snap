@@ -1,0 +1,744 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SummaryPopup 컴포넌트 테스트 > SummaryPopup 스냅샷 테스트 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.emotion-1 {
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+  color: #343434;
+  width: 100%;
+  height: 53px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.emotion-2 {
+  position: absolute;
+  right: 20px;
+  top: 21px;
+  cursor: pointer;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  gap: 32px;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 62px;
+  margin-left: 40px;
+  gap: 20px;
+}
+
+.emotion-5 {
+  width: 418px;
+  height: 212px;
+  object-fit: cover;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid #EDEDEE;
+  border-radius: 22px;
+  width: 154px;
+  height: 44px;
+  pointer-events: none;
+}
+
+.emotion-7 {
+  display: none;
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.emotion-9 {
+  position: absolute;
+  left: 0px;
+  background: #00397B;
+  border-radius: 20px;
+  width: 72px;
+  height: 36px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.emotion-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  color: #F4F5F7;
+  width: 72px;
+  height: 36px;
+  z-index: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.emotion-11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  color: #B6B8BB;
+  width: 72px;
+  height: 36px;
+  z-index: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  pointer-events: fill;
+}
+
+.emotion-12 {
+  width: 324px;
+  height: 304px;
+  margin-right: 36px;
+  overflow: scroll;
+}
+
+.emotion-13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 22px;
+}
+
+.emotion-14 {
+  color: #A3A6AA;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.emotion-16 {
+  color: #212122;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emotion-17 {
+  color: #212122;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+}
+
+.emotion-23 {
+  width: 100%;
+  height: 1px;
+  margin: 16px 0px;
+  background-color: #F4F5F7;
+}
+
+.emotion-61 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #626466;
+  width: 100%;
+  height: 64px;
+  padding: 8px 36px 24px 0px;
+  gap: 8px;
+}
+
+.emotion-62 {
+  font-family: Hyundai Sans Head KR,sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.03em;
+  color: #00397B;
+}
+
+.emotion-63 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Hyundai Sans Text KR,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  background-color: #00224A;
+  color: #FFFFFF;
+  border-radius: 4px;
+  width: 850px;
+  height: 52px;
+}
+
+.emotion-63:hover {
+  background-color: #00397B;
+}
+
+.emotion-63:active {
+  background-color: #001731;
+}
+
+.emotion-63:disabled {
+  background-color: #C8CACC;
+  cursor: not-allowed;
+}
+
+<div
+  class="emotion-0"
+  data-testid="summary-modal"
+>
+  <div
+    class="emotion-1"
+  >
+    견적요약
+    <svg
+      class="emotion-2"
+      data-testid="Cancel"
+      fill="#414344"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"
+        fill="inherit"
+      />
+    </svg>
+  </div>
+  <div
+    class="emotion-3"
+  >
+    <div
+      class="emotion-4"
+    >
+      <img
+        alt="외장색상 이미지"
+        class="emotion-5"
+        src="https://h2o-static-contents.s3.ap-northeast-2.amazonaws.com/trim/le-blanc/blue_exterior/image_001.png"
+      />
+      <div
+        class="emotion-6"
+      >
+        <input
+          class="emotion-7"
+          id=":r7:"
+          type="checkbox"
+        />
+        <label
+          class="emotion-8"
+          for=":r7:"
+        >
+          <span
+            class="emotion-9"
+          />
+          <div
+            class="emotion-10"
+          >
+            외장
+          </div>
+          <div
+            class="emotion-11"
+          >
+            내장
+          </div>
+        </label>
+      </div>
+    </div>
+    <div
+      class="emotion-12"
+    >
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          모델
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            팰리세이드
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +0
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          트림
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            Le Blanc
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +38,960,000
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-23"
+        data-testid="divider"
+      />
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          파워트레인
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            디젤 2.2
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +1,480,000
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          바디타입
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            7인승
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +0
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          구동방식
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            2WD
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +0
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-23"
+        data-testid="divider"
+      />
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          외장색상
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            문라이트 블루 펄
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +0
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          내장색상
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            퀼팅 천연(블랙)
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +0
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-23"
+        data-testid="divider"
+      />
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          옵션
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            컴포트 Ⅱ
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +1,090,000
+            원
+          </span>
+        </div>
+      </div>
+      <div
+        class="emotion-13"
+        height="22px"
+        width="100%"
+      >
+        <span
+          class="emotion-14"
+          color="gray500"
+        >
+          옵션
+        </span>
+        <div
+          class="emotion-15"
+          height="100%"
+          width="100%"
+        >
+          <span
+            class="emotion-16"
+            color="gray900"
+          >
+            빌트인 캠(보조배터리 포함)
+          </span>
+          <span
+            class="emotion-17"
+            color="gray900"
+          >
+            +690,000
+            원
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-61"
+  >
+    <span>
+      현재 총 가격
+    </span>
+    <div
+      class="emotion-62"
+    >
+      42,220,000
+       원
+    </div>
+  </div>
+  <button
+    class="emotion-63"
+  >
+    견적 완료하기
+  </button>
+</div>
+`;

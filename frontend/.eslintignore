@@ -1,0 +1,12 @@
+.vscode
+.github
+.cache
+.gitignore
+coverage
+public
+node_modules
+build
+dist
+html
+yarn.lock
+README.md

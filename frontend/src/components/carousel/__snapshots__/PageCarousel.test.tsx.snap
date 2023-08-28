@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PageCarousel 컴포넌트 테스트 > PageCarousel 스냅샷 테스트 1`] = `
+.emotion-0 {
+  background-color: #F4F5F7;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+  height: calc(100vh - 60px);
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  -webkit-transform: translateX(calc(-1 * (100% + 12px)));
+  -moz-transform: translateX(calc(-1 * (100% + 12px)));
+  -ms-transform: translateX(calc(-1 * (100% + 12px)));
+  transform: translateX(calc(-1 * (100% + 12px)));
+}
+
+.emotion-2 {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+<div
+  class="emotion-0"
+  data-testid="carousel"
+>
+  <ul
+    class="emotion-1"
+  >
+    <li
+      class="emotion-2"
+    >
+      페이지1
+    </li>
+    <li
+      class="emotion-2"
+    >
+      페이지2
+    </li>
+    <li
+      class="emotion-2"
+    >
+      페이지3
+    </li>
+  </ul>
+</div>
+`;

@@ -1,0 +1,87 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Popup 컴포넌트 테스트 > Popup 컴포넌트 스냅샷 테스트 > Popup 컴포넌트 size가 large인 컴포넌트 스냅샷 1`] = `
+.emotion-0 {
+  background-color: #1F1F1FB3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+.emotion-1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  border-radius: 8px;
+  width: 850px;
+  height: 520px;
+  overflow: hidden;
+  z-index: 20;
+}
+
+<div
+  id="portal-root"
+>
+  <div
+    class="emotion-0"
+    data-testid="dimmed"
+  />
+  <div
+    class="emotion-1"
+    role="dialog"
+  />
+</div>
+`;
+
+exports[`Popup 컴포넌트 테스트 > Popup 컴포넌트 스냅샷 테스트 > Popup 컴포넌트 size가 small인 컴포넌트 스냅샷 1`] = `
+.emotion-0 {
+  background-color: #1F1F1FB3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+.emotion-1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  border-radius: 4px;
+  width: 336px;
+  height: 200px;
+  overflow: hidden;
+  z-index: 20;
+}
+
+<div
+  id="portal-root"
+>
+  <div
+    class="emotion-0"
+    data-testid="dimmed"
+  />
+  <div
+    class="emotion-1"
+    role="dialog"
+  />
+</div>
+`;

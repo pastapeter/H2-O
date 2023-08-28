@@ -1,0 +1,144 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Circle 컴포넌트 테스트 > Circle 컴포넌트 스냅샷 테스트 > Circle의 type 속성이 border인 컴포넌트 스냅샷 테스트 1`] = `
+<svg
+  data-testid="circle-border"
+  fill="none"
+  height="58"
+  viewBox="0 0 58 58"
+  width="58"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    filter="url(#filter0_i_2836_21)"
+    id="Ellipse 657"
+  >
+    <circle
+      cx="29"
+      cy="29"
+      r="28.5"
+      stroke="inherit"
+    />
+  </g>
+  <defs>
+    <filter
+      color-interpolation-filters="sRGB"
+      filterUnits="userSpaceOnUse"
+      height="58"
+      id="filter0_i_2836_21"
+      width="58"
+      x="0"
+      y="0"
+    >
+      <feflood
+        flood-opacity="0"
+        result="BackgroundImageFix"
+      />
+      <feblend
+        in="SourceGraphic"
+        in2="BackgroundImageFix"
+        mode="normal"
+        result="shape"
+      />
+      <fecolormatrix
+        in="SourceAlpha"
+        result="hardAlpha"
+        type="matrix"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+      />
+      <feoffset />
+      <fegaussianblur
+        stdDeviation="2"
+      />
+      <fecomposite
+        in2="hardAlpha"
+        k2="-1"
+        k3="1"
+        operator="arithmetic"
+      />
+      <fecolormatrix
+        type="matrix"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+      />
+      <feblend
+        in2="shape"
+        mode="normal"
+        result="effect1_innerShadow_2836_21"
+      />
+    </filter>
+  </defs>
+</svg>
+`;
+
+exports[`Circle 컴포넌트 테스트 > Circle 컴포넌트 스냅샷 테스트 > Circle의 type 속성이 fill인 컴포넌트 스냅샷 테스트 1`] = `
+<svg
+  data-testid="circle-fill"
+  height="46"
+  viewBox="0 0 46 46"
+  width="46"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    id="Ellipse 651"
+  >
+    <g
+      filter="url(#filter0_i_2836_22)"
+      id="Ellipse 650"
+    >
+      <circle
+        cx="23"
+        cy="23"
+        fill="inherit"
+        r="23"
+      />
+    </g>
+  </g>
+  <defs>
+    <filter
+      color-interpolation-filters="sRGB"
+      filterUnits="userSpaceOnUse"
+      height="46"
+      id="filter0_i_2836_22"
+      width="46"
+      x="0"
+      y="0"
+    >
+      <feflood
+        flood-opacity="0"
+        result="BackgroundImageFix"
+      />
+      <feblend
+        in="SourceGraphic"
+        in2="BackgroundImageFix"
+        mode="normal"
+        result="shape"
+      />
+      <fecolormatrix
+        in="SourceAlpha"
+        result="hardAlpha"
+        type="matrix"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+      />
+      <feoffset />
+      <fegaussianblur
+        stdDeviation="2"
+      />
+      <fecomposite
+        in2="hardAlpha"
+        k2="-1"
+        k3="1"
+        operator="arithmetic"
+      />
+      <fecolormatrix
+        type="matrix"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+      />
+      <feblend
+        in2="shape"
+        mode="normal"
+        result="effect1_innerShadow_2836_22"
+      />
+    </filter>
+  </defs>
+</svg>
+`;
