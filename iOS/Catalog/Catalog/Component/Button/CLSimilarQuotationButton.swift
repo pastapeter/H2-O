@@ -15,7 +15,7 @@ struct CLSimilarQuotationButton: View {
         Button {
           intent.send(action: .onTapSimilarQuotationButton)
         } label: {
-            Text(isExceedBudget ? "유사견적 확인" : "유사 출고 견적 확인하기")
+          Text(intent.quotation.hasExtraOption ? (isExceedBudget ? "유사견적 확인" : "유사 출고 견적 확인하기") : "옵션을 추가해주세요.")
                     .catalogFont(type: .HeadKRMedium14)
                     .foregroundColor(isExceedBudget ? Color.white : Color.primary)
                     .frame(maxWidth: .infinity, minHeight: 47)
@@ -25,5 +25,6 @@ struct CLSimilarQuotationButton: View {
                     .padding(.bottom, 13)
 
         }
+        .disabled(!intent.quotation.hasExtraOption)
     }
 }

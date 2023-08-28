@@ -26,6 +26,7 @@ struct CarouselModalPopUpComponent<ModalPopUpContent: View, Item: ModalItemable>
 
 }
 
+
 extension CarouselModalPopUpComponent {
 
   var body: some View {
@@ -78,8 +79,14 @@ extension CarouselModalPopUpComponent {
 
 extension CarouselModalPopUpComponent {
   
+  
   @ViewBuilder
   func contentView(state: Item) -> some View {
+    
+    var isSelectedBinding: Binding<Bool> {
+      .init(get: { isInactive(state: state)},
+            set: { _ in })
+    }
     
     VStack {
       titleView(state.title)
@@ -87,6 +94,7 @@ extension CarouselModalPopUpComponent {
       content(state)
       CLInActiceButton(
         mainText: "선택하기",
+        isEnabled: isSelectedBinding,
         subText: state.price.signedWon,
         inActiveText: "선택완료",
         height: CGFloat(87).scaledHeight,
@@ -96,7 +104,6 @@ extension CarouselModalPopUpComponent {
           }
         }
       )
-      .disabled(state.id as! Int == selectedId)
       .frame(height: CGFloat(56).scaledHeight)
     }
     .background(.white)

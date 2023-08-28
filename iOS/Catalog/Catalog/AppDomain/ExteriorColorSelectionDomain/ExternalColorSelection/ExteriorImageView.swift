@@ -39,7 +39,7 @@ extension ExteriorImageView: View {
             EmptyView()
           } else {
             VStack {
-              AsyncImage(url: viewState.colors[viewState.currentSelectedIndex].color.exteriorImages[currentIndex]) { image in
+              AsyncCachedImage(url: viewState.colors[viewState.currentSelectedIndex].color.exteriorImages[currentIndex]) { image in
                 image
                   .resizable()
                   .frame(height: CGFloat(198).scaledHeight, alignment: .bottom)

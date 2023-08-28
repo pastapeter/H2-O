@@ -60,7 +60,6 @@ extension ModelTypeCellView: View {
       .background(Color.gray50)
       .cornerRadius(8)
     }
-    .background(.random)
     .CLDialogFullScreenCover(show: isModalPresenting) {
       CarouselModalPopUpComponent(modalContentItems: state.modelTypeDetailState, selectedId: viewState.selectedId ,submitAction: { id in
         intent.send(action: .onTapOptions(id: id))

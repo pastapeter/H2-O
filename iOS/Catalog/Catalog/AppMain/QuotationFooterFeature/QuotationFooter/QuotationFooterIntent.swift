@@ -53,8 +53,6 @@ extension QuotationFooterIntent: QuotationFooterIntentType, IntentType {
         return
       case .summaryChanged:
       viewState.summary = quotation.summaryQuotation()
-      case .showSheet(_):
-        return
       case .onAppear:
       quotation.totalPricePublisher
         .receive(on: RunLoop.main)

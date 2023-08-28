@@ -17,7 +17,7 @@ struct QuotationFooterView: IntentBindingType {
   var prevAction: () -> Void
   var nextAction: () -> Void
   
-  @Binding var showQuotationSummarySheet: Bool
+  @Binding private var showQuotationSummarySheet: Bool
   @Binding var currentPage: Int
 }
 
@@ -27,9 +27,12 @@ extension QuotationFooterView: View {
     VStack {
       if currentPage != 5 {
         CLQuotationPriceBar(
-          showQuotationSummarySheet: $showQuotationSummarySheet,
           content: {
-            CLCapsuleButton(width: 86, height: 36, text: "견적 요약", action: { showQuotationSummarySheet.toggle() })
+            CLCapsuleButton(width: 86, height: 36, text: "견적 요약", action: {
+              
+              showQuotationSummarySheet = true
+              
+            })
           },
           quotation: intent.quotation as! Quotation)
         CLDualChoiceButton(leftText: "이전",
@@ -39,8 +42,6 @@ extension QuotationFooterView: View {
                            rightAction: { nextAction() })
       } else {
         CLQuotationPriceBar(
-          showQuotationSummarySheet:
-            $showQuotationSummarySheet,
           content: {
             Text("합리적인 가격으로 완성된\n나만의 팰리세이드가 탄생했어요!")
               .catalogFont(type: .TextKRMedium12)
@@ -61,12 +62,12 @@ extension QuotationFooterView: View {
 
 extension QuotationFooterView {
   @ViewBuilder
-  static func build(intent: QuotationFooterIntent, prevAction: @escaping () -> Void, nextAction: @escaping () -> Void, currentPage: Binding<Int>) -> some View {
+  static func build(intent: QuotationFooterIntent, prevAction: @escaping () -> Void, nextAction: @escaping () -> Void, currentPage: Binding<Int>, showQuotationSummarySheet: Binding<Bool>) -> some View {
     
     QuotationFooterView(container: .init(
       intent: intent, viewState: intent.viewState,
       state: intent.state,
-        modelChangePublisher: intent.objectWillChange), prevAction: prevAction, nextAction: nextAction, showQuotationSummarySheet: .constant(false), currentPage: currentPage)
+      modelChangePublisher: intent.objectWillChange), prevAction: prevAction, nextAction: nextAction, showQuotationSummarySheet: showQuotationSummarySheet, currentPage: currentPage)
     
   }
 }

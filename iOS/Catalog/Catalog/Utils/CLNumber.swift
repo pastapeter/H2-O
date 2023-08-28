@@ -12,7 +12,6 @@ struct CLNumber: Comparable, Hashable, Codable {
   var value: Int32 = 0
 
   init(_ price: Int32) {
-    guard price >= 0 else { print("금액이 0원 미만입니다."); return }
     self.value = price
   }
 }
@@ -44,7 +43,7 @@ extension CLNumber: CustomStringConvertible {
   }
 
   var signedWon: String {
-    return (value >= 0 ? "+" : "-") + self.won
+    return (value >= 0 ? "+" : "") + self.won
   }
 }
 
@@ -55,6 +54,10 @@ extension CLNumber {
 
   static func + (lhs: CLNumber, rhs: CLNumber) -> CLNumber {
     return CLNumber(lhs.value + rhs.value)
+  }
+  
+  static func - (lhs: CLNumber, rhs: CLNumber) -> CLNumber {
+    return CLNumber(lhs.value - rhs.value)
   }
 
   static func / (lhs: CLNumber, rhs: CLNumber) -> CLNumber {

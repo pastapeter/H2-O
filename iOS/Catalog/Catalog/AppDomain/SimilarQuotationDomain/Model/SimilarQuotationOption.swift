@@ -24,7 +24,7 @@ struct SimilarQuotationOption: Equatable, Identifiable, QuotationOptionable {
   }
 }
 
-protocol QuotationOptionable: Equatable {
+protocol QuotationOptionable: Equatable, Hashable {
   var id: Int { get set }
   var name: String { get set }
   var imageURL: URL? { get set }

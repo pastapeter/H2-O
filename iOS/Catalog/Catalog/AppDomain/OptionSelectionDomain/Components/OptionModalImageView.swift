@@ -17,7 +17,7 @@ struct OptionModalImageView: View {
         AsyncCachedImage(url: imageURL) { image in
           image
             .resizable()
-            .scaledToFill()
+            .scaledToFit()
             .frame(height: CGFloat(170).scaledHeight)
         }
         VStack(spacing: 0) {

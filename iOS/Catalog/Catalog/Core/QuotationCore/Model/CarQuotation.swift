@@ -22,6 +22,7 @@ struct CarQuotation: Equatable {
   var externalColor: ExteriorColor
   var internalColor: InteriorColor
   var options: [any QuotationOptionable]
+  var imgs: [UIImage] = Array(repeating: .init(), count: 60)
 }
 
 extension CarQuotation {

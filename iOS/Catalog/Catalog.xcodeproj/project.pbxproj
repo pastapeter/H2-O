@@ -1506,9 +1506,9 @@
 		ED2B8CEA2A8D27C700F561FA /* QuotationCompleteDomain */ = {
 			isa = PBXGroup;
 			children = (
+				EDD79A452A9292AF005692D5 /* QuotationComplete */,
 				EDD79A4F2A929C24005692D5 /* Data */,
 				EDD79A4A2A929A61005692D5 /* Repository */,
-				EDD79A452A9292AF005692D5 /* QuotationComplete */,
 				EDB20BFF2A8FC7760063CB3C /* View */,
 			);
 			path = QuotationCompleteDomain;
@@ -1647,7 +1647,6 @@
 			isa = PBXGroup;
 			children = (
 				EDE7D3BF2A974E3E0080F3C7 /* SimilarQuotation */,
-				EDD79A882A93BEF5005692D5 /* Mock */,
 				EDD79A852A93BE12005692D5 /* Repository */,
 				EDD79A782A93B102005692D5 /* Data */,
 				ED3E87DF2A90BE4F00DCDC66 /* Model */,
@@ -1880,6 +1879,7 @@
 		EDE7D3BF2A974E3E0080F3C7 /* SimilarQuotation */ = {
 			isa = PBXGroup;
 			children = (
+				EDD79A882A93BEF5005692D5 /* Mock */,
 				ED3E87E52A90BE7E00DCDC66 /* SimilarQuotationIntent.swift */,
 				ED3E87DD2A8FDA9100DCDC66 /* SimilarQuotationView.swift */,
 				ED3E87E32A90BE7200DCDC66 /* SimilarQuotationModel.swift */,

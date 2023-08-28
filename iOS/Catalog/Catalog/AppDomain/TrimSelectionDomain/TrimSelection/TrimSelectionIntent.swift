@@ -47,6 +47,7 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
   func mutate(action: TrimSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .enteredTrimPage:
+        
         Task {
           do {
             let trims = try await repository.fetchTrims(of: viewState.carId)
@@ -59,7 +60,11 @@ extension TrimSelectionIntent: TrimSelectionIntentType, IntentType {
       case .fetchTrims(let trims):
         if !trims.isEmpty {
           viewState.trims = trims
-          viewState.selectedTrim = trims.first
+          if let trim = viewState.selectedTrim  {
+            viewState.selectedTrim = trim
+          } else {
+            viewState.selectedTrim = trims.first
+          }
         } else {
           // TODO: trim Intent Error 만들고 정의하삼
         }

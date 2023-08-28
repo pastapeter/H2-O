@@ -27,7 +27,7 @@ extension HMGDataCard: View {
         Spacer()
       }
       
-      VStack(alignment: .leading , spacing: 16) {
+      VStack(alignment: .leading , spacing: CGFloat(16).scaledHeight) {
         Text(attributedString)
           .catalogFont(type: .TextKRMedium12)
           .frame(width: CGFloat(252).scaledWidth, height: CGFloat(16).scaledWidth, alignment: .leading)
@@ -38,7 +38,7 @@ extension HMGDataCard: View {
         } else {
           HStack(spacing: CGFloat(36).scaledWidth) {
             ForEach(0..<options.count) { idx in
-              VStack(spacing: 4) {
+              VStack(spacing: CGFloat(4).scaledHeight) {
                 Text(options[idx].optionTitle)
                   .catalogFont(type: .TextKRRegular10)
                   .foregroundColor(Color.gray900)

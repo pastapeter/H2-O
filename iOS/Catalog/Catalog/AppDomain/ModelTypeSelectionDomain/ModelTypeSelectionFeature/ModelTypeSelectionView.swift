@@ -46,7 +46,6 @@ extension ModelTypeSelectionView: View {
         }
       }
     }
-    .background(.random)
     .frame(maxWidth: .infinity)
     .onAppear {
       intent.send(action: .onAppear)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SimilarQuotationCardHead {
   
-  var index: Int
+  @Binding var index: Int
   var similarQuotation: SimilarQuotation
   let trimName: String
 }

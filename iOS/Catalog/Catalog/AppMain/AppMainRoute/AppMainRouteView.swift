@@ -42,9 +42,9 @@ extension AppMainRouteView: View {
           ifTrimSelectionPageShowFooterView()
           navigationLinkToSimilarQuotationView()
         }
-        .sheet(isPresented: $showQuotationSummarySheet) {
-          makeQuotationSummarySheet()
-        }
+      }
+      .sheet(isPresented: $showQuotationSummarySheet) {
+        makeQuotationSummarySheet()
       }
       if viewState.showAlert {
         makeAlertView(alertCase: viewState.alertCase)
@@ -137,9 +137,7 @@ extension AppMainRouteView {
                                                             quotation: quotation),
                               prevAction: { intent.send(action: .onTapNavTab(index: viewState.currentPage - 1))},
                               nextAction: { intent.send(action: .onTapNavTab(index: viewState.currentPage + 1))},
-                              currentPage: currentPageBinding)
-    
-    
+                              currentPage: currentPageBinding, showQuotationSummarySheet: showQuotationSummarySheetBinding)
   }
   
   func makeTrimSelectionView() -> some View {

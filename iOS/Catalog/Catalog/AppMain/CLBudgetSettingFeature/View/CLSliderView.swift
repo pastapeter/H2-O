@@ -87,8 +87,5 @@ struct CLSliderView: View {
     }
     .frame(height: CGFloat(35).scaledHeight)
     .padding(.bottom, 14)
-    .onAppear {
-      budgetPriceBinding = CLNumber((minimumBudget.value + maximumBudget.value) / 2)
-    }
   }
 }

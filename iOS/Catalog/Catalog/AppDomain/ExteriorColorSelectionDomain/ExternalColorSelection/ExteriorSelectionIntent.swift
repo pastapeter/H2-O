@@ -41,8 +41,6 @@ final class ExternalSelectionIntent: ObservableObject {
   private var quotation: ExteriorSelectionService
   let imageCacher = ImageCacheService.shared
   var imgs: [Data] = Array(repeating: Data(), count: 60)
-  
-  
 }
 
 extension ExternalSelectionIntent: ExteriorSelectionIntentType, IntentType {
@@ -54,7 +52,6 @@ extension ExternalSelectionIntent: ExteriorSelectionIntentType, IntentType {
           do {
             let externalColors = try await repository.fetch(with: viewState.selectedTrimId)
             send(action: .fetchColors(colors: externalColors))
-            
           } catch let _ {
             // TODO: Error Handling
           }

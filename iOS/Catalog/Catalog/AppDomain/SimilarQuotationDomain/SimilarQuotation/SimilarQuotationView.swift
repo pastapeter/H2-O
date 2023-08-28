@@ -24,6 +24,11 @@ extension SimilarQuotationView {
     .init(get: { viewState.showAlert } ,
           set: { bool in intent.send(action: .showAlertChanged(showAlert: bool)) })
   }
+  
+  var isSelectedOptionsEmpty: Binding<Bool> {
+    .init(get: { !viewState.selectedOptions.isEmpty },
+          set: { _ in })
+  }
 }
 
 extension SimilarQuotationView: View {
@@ -48,7 +53,7 @@ extension SimilarQuotationView: View {
                        index: $currentIndex) { similarQuotation in
             GeometryReader { proxy in
               let size = proxy.size
-              SimilarQuotationCard(index: 0,
+              SimilarQuotationCard(index: $currentIndex,
                                    similarQuotation: similarQuotation,
                                    intent: intent,
                                    state: state,
@@ -72,11 +77,11 @@ extension SimilarQuotationView: View {
                           currentIndex: $currentIndex)
           
           CLInActiceButton(mainText: "내 견적서에 추가하기",
+                           isEnabled: isSelectedOptionsEmpty,
                            subText: "선택된 옵션\(viewState.selectedOptions.count)개",
                            inActiveText: "옵션을 선택해 추가해보세요.",
                            height: CGFloat(52).scaledHeight,
                            buttonAction: {  intent.send(action: .onTapAddButton(title: viewState.selectedOptions[0].name, count: viewState.selectedOptions.count)) })
-          .disabled(viewState.selectedOptions.isEmpty)
         }
         HelpIcon(intent: intent, showAlert: showAlertBinding)
       }

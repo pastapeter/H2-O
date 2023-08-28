@@ -33,9 +33,11 @@ extension ModalPopUpComponent {
           titleView(state.title)
             .padding(.horizontal, 16)
           content(state)
-          CLButton(mainText: "선택하기", subText: state.price.signedWon,
+          CLButton(mainText: "선택하기",
+                   subText: state.price.signedWon,
                    height: 87,
-                   backgroundColor: .primary0, buttonAction: submitAction)
+                   backgroundColor: .primary0,
+                   buttonAction: submitAction)
             .frame(height: 56)
         }
         .background(.white)

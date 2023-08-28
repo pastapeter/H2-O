@@ -172,7 +172,7 @@ extension CatalogTextType {
     case .HeadENBold10:
       return UIFont(name: "HyundaiSansHead-Bold", size: 10)!
     case .HeadKRBold65:
-        return UIFont(name: "HyundaiSansTextKROTFBold", size: 65.24)!
+        return UIFont(name: "HyundaiSansHead-Bold", size: 65.24)!
     case .HeadKRBold32:
       return UIFont(name: "HyundaiSansHeadKROTFBold", size: 32)!
     case .HeadKRBold26:

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SimilarQuotationCard {
-  var index: Int
+  @Binding var index: Int
   var similarQuotation: SimilarQuotation
   var intent: SimilarQuotationIntentType
   var state: SimilarQuotationModel.State
@@ -21,7 +21,7 @@ extension SimilarQuotationCard: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
         VStack(spacing: 0) {
-          SimilarQuotationCardHead(index: index, similarQuotation: similarQuotation, trimName: trimName)
+          SimilarQuotationCardHead(index: $index, similarQuotation: similarQuotation, trimName: trimName)
           SimilarQuotationCardImage(similarQuotation: similarQuotation, intent: intent)
         }
         .padding(.leading, leadingPadding)

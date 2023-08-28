@@ -101,8 +101,7 @@ struct CLQuotationSummarySheet: View {
           CLLinearGradient(height: 48, startPoint: .bottom, endPoint: .top)
         }
       }
-    CLQuotationPriceBar(showQuotationSummarySheet:
-    $showQuotationSummarySheet,
+    CLQuotationPriceBar(
     content: {
       Button {
           showQuotationSummarySheet.toggle()

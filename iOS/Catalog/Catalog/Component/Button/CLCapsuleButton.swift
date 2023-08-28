@@ -15,7 +15,7 @@ struct CLCapsuleButton {
 extension CLCapsuleButton: View {
     var body: some View {
       Button {
-        action()
+          action()
       } label: {
         Text(text)
           .catalogFont(type: .TextKRMedium14)

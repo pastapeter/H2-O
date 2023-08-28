@@ -8,11 +8,9 @@
 import Foundation
 
 struct PackageComponent: Hashable {
-  
   func hash(into hasher: inout Hasher) {
     hasher.combine(name)
   }
-  
   let name: String
   let category: OptionCategory
   let image: URL?
@@ -20,5 +18,4 @@ struct PackageComponent: Hashable {
   let hashTags: [String]
   let useCount: CLNumber?
   let containsHmgData: Bool
-  
 }

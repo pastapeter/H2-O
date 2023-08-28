@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CLQuotationPriceBar<Content>: View where Content: View {
-  @Binding var showQuotationSummarySheet: Bool
   @ViewBuilder let content: Content
   var quotation: Quotation
 }

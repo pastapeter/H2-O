@@ -75,7 +75,7 @@ class DiskCache {
     }
   }
   
-
+  
   func removeData(with etag: String) {
     self.removeFile(atPath: self.path(forKey: etag))
   }
@@ -114,7 +114,7 @@ extension DiskCache {
   
   private func saveIntoCache(_ data: Data, key: String) {
     let path = self.path(forKey: key)
-
+    
     let fileManager = FileManager.default
     let previousAttributes : [FileAttributeKey: Any]? = try? fileManager.attributesOfItem(atPath: path)
     

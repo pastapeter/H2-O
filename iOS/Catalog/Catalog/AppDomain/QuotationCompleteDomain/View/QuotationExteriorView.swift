@@ -11,10 +11,10 @@ struct QuotationExteriorView: View {
   let quotation: QuotationCompleteService
   let modalTopHeight: CGFloat = 30
   let titleTopPadding: CGFloat = 177
-  let externalImageHeight: CGFloat = 222
+  let externalImageHeight: CGFloat = 190
 
     var body: some View {
-      VStack {
+      VStack(spacing: 0) {
         Spacer().frame(height: titleTopPadding)
         Text(quotation.trimName())
           .catalogFont(type: .HeadKRBold65)
@@ -22,13 +22,13 @@ struct QuotationExteriorView: View {
         AsyncCachedImage(url: quotation.exteriorImage()) { image in
           image
             .resizable()
+            .scaledToFit()
             .frame(maxWidth: .infinity, maxHeight: externalImageHeight)
         }
+        Spacer()
       }
       .background(
-        Image("QuotationCompleteBackground")
-          .resizable()
-          .scaledToFill()
+        LinearGradient(colors: [Color("QuotationCompleteTop"), Color("QuotationCompleteMiddle"), Color.white], startPoint: .top, endPoint: .bottom)
       )
     }
 }

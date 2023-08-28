@@ -20,7 +20,6 @@ enum QuotationFooterModel {
   
   enum ViewAction: Equatable {
     case priceChanged(price: CLNumber)
-    case showSheet(showShet: Bool)
     case summaryChanged
     case onTapCompleteButton
     case onAppear

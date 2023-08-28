@@ -9,13 +9,15 @@ import Foundation
 import Combine
 
 protocol CLBudgetRangeIntentType {
+    var viewState: CLBudgetRangeModel.ViewState { get }
+
+    var state: CLBudgetRangeModel.State { get }
+
+    func send(action: CLBudgetRangeModel.ViewAction)
+
+    func send(action: CLBudgetRangeModel.ViewAction, viewEffect: (() -> Void)?)
   
-  var viewState: CLBudgetRangeModel.ViewState { get }
-  var state: CLBudgetRangeModel.State { get }
-  func send(action: CLBudgetRangeModel.ViewAction)
-  
-  func send(action: CLBudgetRangeModel.ViewAction, viewEffect: (() -> Void)?)
-  
+    var quotation: CLBudgetPriceService { get }
 }
 
 final class CLBudgetRangeIntent: ObservableObject {

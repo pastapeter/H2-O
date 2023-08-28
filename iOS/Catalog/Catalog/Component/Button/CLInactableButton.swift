@@ -10,7 +10,7 @@ import SwiftUI
 struct CLInActiceButton: View {
 
   var mainText: String
-  @Environment(\.isEnabled) var isEnabled: Bool
+  @Binding var isEnabled: Bool
   var subText: String?
   var inActiveText: String?
   let height: CGFloat
