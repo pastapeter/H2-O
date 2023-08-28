@@ -2,17 +2,18 @@ package com.h2o.h2oServer.domain.model_type.application;
 
 import com.h2o.h2oServer.domain.car.exception.NoSuchCarException;
 import com.h2o.h2oServer.domain.model_type.Entity.*;
-import com.h2o.h2oServer.domain.model_type.dto.CarBodytypeDto;
-import com.h2o.h2oServer.domain.model_type.dto.CarDrivetrainDto;
-import com.h2o.h2oServer.domain.model_type.dto.CarPowertrainDto;
-import com.h2o.h2oServer.domain.model_type.dto.ModelTypeDto;
+import com.h2o.h2oServer.domain.model_type.TechnicalSpecFixture;
+import com.h2o.h2oServer.domain.model_type.dto.*;
+import com.h2o.h2oServer.domain.model_type.exception.NoSuchTechnicalSpecException;
 import com.h2o.h2oServer.domain.model_type.mapper.BodytypeMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.DrivetrainMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.PowertrainMapper;
 import com.h2o.h2oServer.domain.model_type.mapper.TechnicalSpecMapper;
+import com.h2o.h2oServer.domain.trim.dto.DefaultTrimCompositionDto;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -139,11 +140,74 @@ class ModelTypeServiceTest {
         );
     }
 
-    @Test
-    void findTechnicalSpec() {
+    @Nested
+    @DisplayName("최대 출력 및 최대 토크 반환 테스트")
+    class findTechnicalSpecTest {
+        @Test
+        @DisplayName("존재하는 powertrain과 drivetrain에 대한 요청일 경우 dto를 반환한다.")
+        void findTechnicalSpec() {
+            //given
+            Long powertrainId = 1L;
+            Long drivetrainId = 1L;
+            TechnicalSpecDto expectedTechnicalSpecDto = TechnicalSpecFixture.generateTechnicalSpecDto();
+
+            when(technicalSpecMapper.findSpec(powertrainId, drivetrainId))
+                    .thenReturn(Optional.ofNullable(TechnicalSpecFixture.generateTechnicalSpecEntity()));
+
+            //when
+            TechnicalSpecDto actualTechnicalSpecDto = modelTypeService.findTechnicalSpec(powertrainId, drivetrainId);
+
+            //then
+            softly.assertThat(actualTechnicalSpecDto).as("null이 아니다.")
+                    .isNotNull();
+            softly.assertThat(actualTechnicalSpecDto).as("기대한 DTO로 반환된다.")
+                    .isEqualTo(expectedTechnicalSpecDto);
+            softly.assertAll();
+        }
+
+        @Test
+        @DisplayName("존재하지 않는 powertrain 또는 drivetrain에 대한 요청일 경우 NoSuchTechnicalSpecException 반환한다.")
+        void findTechnicalSpecNoPowertrain() {
+            //given
+            Long powertrainId = 1L;
+            Long drivetrainId = 1L;
+
+            when(technicalSpecMapper.findSpec(powertrainId, drivetrainId))
+                    .thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> modelTypeService.findTechnicalSpec(powertrainId, drivetrainId))
+                    .isInstanceOf(NoSuchTechnicalSpecException.class);
+        }
     }
 
     @Test
+    @DisplayName("특정 차량 ID에 대해 drivetrain, bodytype, powertrain의 디폴트 값을 반환한다.")
     void findDefaultModelType() {
+        //given
+        Long carId = 1L;
+        Long powertrainId = 1L;
+        CarPowertrainEntity carPowertrainEntity = generateCarPowertrainEntities(carId).get(0);
+        CarDrivetrainEntity carDrivetrainEntity = generateCarDrivetrainEntities(carId).get(0);
+        CarBodytypeEntity carBodytypeEntity = generateCarBodyTypeEntities(carId).get(0);
+
+        when(powertrainMapper.findOutput(powertrainId)).thenReturn(Optional.ofNullable(generatePowertrainOutputEntity(powertrainId)));
+        when(powertrainMapper.findTorque(powertrainId)).thenReturn(Optional.ofNullable(generatePowertrainTorqueEntity(powertrainId)));
+        when(drivetrainMapper.findDefaultDrivetrainByCarId(carId)).thenReturn(carDrivetrainEntity);
+        when(bodytypeMapper.findDefaultBodytypeByCarId(carId)).thenReturn(carBodytypeEntity);
+        when(powertrainMapper.findDefaultPowertrainByCarId(carId)).thenReturn(carPowertrainEntity);
+
+        //when
+        DefaultTrimCompositionDto defaultModelType = modelTypeService.findDefaultModelType(carId);
+
+        //then
+        softly.assertThat(defaultModelType.getPowertrain()).as("기본 파워트레인을 반환한다.")
+                .isEqualTo(generateCarPowertrainDto());
+        softly.assertThat(defaultModelType.getDrivetrain()).as("기본 구동타입을 반환한다.")
+                .isEqualTo(generateCarDrivetrainDto());
+        softly.assertThat(defaultModelType.getBodytype()).as("기본 바디타입을 반환한다.")
+                .isEqualTo(generateCarBodytypeDto());
+        softly.assertAll();
     }
 }

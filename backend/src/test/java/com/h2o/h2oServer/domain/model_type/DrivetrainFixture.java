@@ -49,5 +49,4 @@ public class DrivetrainFixture {
     public static CarDrivetrainDto generateCarDrivetrainDto() {
         return CarDrivetrainDto.of(generateCarDrivetrainEntities().get(0));
     }
-
 }

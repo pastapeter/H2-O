@@ -72,6 +72,7 @@ public class ModelTypeService {
 
         return TechnicalSpecDto.of(technicalSpec);
     }
+
     public DefaultTrimCompositionDto findDefaultModelType(Long carId) {
         CarDrivetrainDto carDrivetrainDto = CarDrivetrainDto.of(drivetrainMapper.findDefaultDrivetrainByCarId(carId));
         CarBodytypeDto carBodytypeDto = CarBodytypeDto.of(bodytypeMapper.findDefaultBodytypeByCarId(carId));

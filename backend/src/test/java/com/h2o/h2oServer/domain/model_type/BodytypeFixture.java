@@ -81,9 +81,9 @@ public class BodytypeFixture {
                 .build();
     }
 
-    public static List<CarBodytypeEntity> generateCarBodyTypeEntities() {
+    public static List<CarBodytypeEntity> generateCarBodyTypeEntities(Long carId) {
         return List.of(CarBodytypeEntity.builder()
-                        .carId(1L)
+                        .carId(carId)
                         .name("name1")
                         .description("description1")
                         .image("img_url1")
@@ -92,7 +92,7 @@ public class BodytypeFixture {
                         .choiceRatio(0.11f)
                         .build(),
                 CarBodytypeEntity.builder()
-                        .carId(1L)
+                        .carId(carId)
                         .name("name2")
                         .description("description2")
                         .image("img_url2")

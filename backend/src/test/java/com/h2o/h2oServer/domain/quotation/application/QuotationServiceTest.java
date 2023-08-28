@@ -22,28 +22,28 @@ import com.h2o.h2oServer.domain.quotation.dto.*;
 import com.h2o.h2oServer.domain.quotation.entity.ReleaseEntity;
 import com.h2o.h2oServer.domain.quotation.mapper.QuotationMapper;
 import com.h2o.h2oServer.domain.trim.Exception.NoSuchTrimException;
-import com.h2o.h2oServer.domain.trim.ExternalColorFixture;
 import com.h2o.h2oServer.domain.trim.ImageFixture;
 import com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper;
 import com.h2o.h2oServer.domain.trim.mapper.TrimMapper;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
-import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
-import org.springframework.test.context.jdbc.Sql;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
 
-import static com.h2o.h2oServer.domain.option.HashTagFixture.*;
+import static com.h2o.h2oServer.domain.option.HashTagFixture.generateHashTagEntities;
 import static com.h2o.h2oServer.domain.quotation.QuotationFixture.*;
-import static com.h2o.h2oServer.domain.quotation.QuotationFixture.generateQuotationRequestDto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyMap;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-@MybatisTest
+@SpringBootTest
 class QuotationServiceTest {
 
     private static QuotationMapper quotationMapper;
@@ -318,27 +318,6 @@ class QuotationServiceTest {
             //then
             assertThat(actualSimilarQuotationDto.size()).isEqualTo(0);
         }
-    }
-
-    @Disabled
-    @Test
-    @Sql("classpath:db/quotation/quotation-tx-data.sql")
-    @DisplayName("견적이 저장되지 못하면 롤백된다.")
-    void transaction() {
-        //given
-        QuotationRequestDto request = generateQuotationRequestDto();
-
-        //when
-        QuotationResponseDto quotationResponseDto = quotationService.saveQuotation(request);
-
-        //then
-        softly.assertThat(quotationMapper.countQuotation())
-                .as("id 충돌로 인해 Quotation 테이블에 대한 롤백이 일어난다.")
-                .isEqualTo(0L);
-        softly.assertThat(quotationResponseDto)
-                .as("롤백되면 응답 객체가 생성되지 않는다.")
-                .isNull();
-        softly.assertAll();
     }
 
     @Test

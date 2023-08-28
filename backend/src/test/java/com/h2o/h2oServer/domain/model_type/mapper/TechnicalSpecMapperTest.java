@@ -1,6 +1,7 @@
 package com.h2o.h2oServer.domain.model_type.mapper;
 
 import com.h2o.h2oServer.domain.model_type.Entity.TechnicalSpecEntity;
+import com.h2o.h2oServer.domain.model_type.TechnicalSpecFixture;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -34,12 +35,7 @@ class TechnicalSpecMapperTest {
         Long powertrainId = 1L;
         Long drivetrainId = 1L;
 
-        TechnicalSpecEntity expectedEntity = TechnicalSpecEntity.builder()
-                .powertrainId(powertrainId)
-                .drivetrainId(drivetrainId)
-                .displacement(10)
-                .fuelEfficiency(10.1f)
-                .build();
+        TechnicalSpecEntity expectedEntity = TechnicalSpecFixture.generateTechnicalSpecEntity(powertrainId, drivetrainId);
 
         //when
         TechnicalSpecEntity actualEntity = technicalSpecMapper.findSpec(powertrainId, drivetrainId).get();
