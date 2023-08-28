@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import Combine
 
 struct CLQuotationSummarySheet: View {
   @State var isExternal: Bool = true
   @State var currentQuotationPrice: CLNumber
-  var summaryQuotation: SummaryCarQuotation
+  var quotation: Quotation
+  @State var summaryQuotation: SummaryCarQuotation
   @Binding var showQuotationSummarySheet: Bool
-  @State var quotationState: Quotation
+  @State var cancellable: Set<AnyCancellable> = []
 
   var body: some View {
     VStack(spacing: 0) {
@@ -101,6 +103,13 @@ struct CLQuotationSummarySheet: View {
           CLLinearGradient(height: 48, startPoint: .bottom, endPoint: .top)
         }
       }
+      .onAppear {
+        quotation.$quotation
+          .sink { quotation in
+            summaryQuotation = quotation.toSummary()
+          }
+          .store(in: &cancellable)
+      }
     CLQuotationPriceBar(
     content: {
       Button {
@@ -118,13 +127,16 @@ struct CLQuotationSummarySheet: View {
       .buttonStyle(.plain)
       Spacer()
     },
-                        quotation: quotationState)
+      quotation: quotation)
 
       CLButton(mainText: "견적 완료하기", height: 52, backgroundColor: Color.primary700) {
         showQuotationSummarySheet = false
 
       }
     }
+    .onAppear(perform: {
+      summaryQuotation = quotation.summary()
+    })
 
   }
 }

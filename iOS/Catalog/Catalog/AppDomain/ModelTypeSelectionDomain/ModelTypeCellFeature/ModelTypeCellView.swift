@@ -42,11 +42,12 @@ extension ModelTypeCellView: View {
           AsyncCachedImage(url: viewState.imageURL) { image in
             image
               .resizable()
-              .frame(maxWidth: CGFloat(UIScreen.main.bounds.width - 32).scaledWidth, maxHeight: CGFloat(130).scaledHeight)
+              .scaledToFit()
           }
           HMGButton {
             intent.send(action: .onTapDetailButton(isPresenting: !viewState.isModalPresenting))
           }
+          
           
         }
         Spacer().frame(height: 8)

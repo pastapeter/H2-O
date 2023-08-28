@@ -39,7 +39,8 @@ final class SimilarQuotationIntent: ObservableObject {
                                       similarQuotations: [.mock(), .mock(), .mock()],
                                       selectedOptions: [],
                                       alertCase: .noOption,
-                                      showAlert: false)
+                                              showAlert: false,
+                                              currentSimilarQuotationPrice: CLNumber(0))
   var state: SimilarQuotationModel.State = .init()
   var cancellable: Set<AnyCancellable> = []
   private var repository: SimilarQuotationRepositoryProtocol
@@ -100,6 +101,8 @@ extension SimilarQuotationIntent: SimilarQuotationIntentType, IntentType {
         send(action: .choiceQuit)
       case .showAlertChanged(let showAlert):
         viewState.showAlert = showAlert
+      case .priceChanged(let price):
+        viewState.currentSimilarQuotationPrice = price
     }
   }
 }

@@ -36,10 +36,6 @@ extension AppMainRouteIntent: AppMainRouteIntentType, IntentType {
   func mutate(action: AppMainRouteModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .onTapNavTab(let index):
-        //        if index != 0 && quotation.state.quotation == nil {
-        //          print("페이지 이동 불가")
-        //        } else {
-        //        }
         viewState.currentPage = index
         
       case .onTapFinish:

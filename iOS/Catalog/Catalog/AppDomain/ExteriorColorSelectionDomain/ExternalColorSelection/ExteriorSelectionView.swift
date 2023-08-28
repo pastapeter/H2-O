@@ -61,10 +61,3 @@ extension ExteriorSelectionView {
   }
 
 }
-
-//struct ExternalSelectionContainerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//      ExteriorSelectionView.build(intent: .init(initialState: .init(selectedTrimId: 123),
-//                                                repository: MockExteriorRepository(), quotation: 벼))
-//    }
-//}

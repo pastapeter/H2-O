@@ -141,6 +141,7 @@ extension OptionCardView {
     ZStack {
       AsyncCachedImage(url: viewState.imageURL) { image in
         image.resizable()
+          .clipped()
       }
       VStack(spacing: 0) {
         HStack {

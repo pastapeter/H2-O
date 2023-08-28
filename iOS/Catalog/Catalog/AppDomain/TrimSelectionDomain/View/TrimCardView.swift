@@ -36,7 +36,7 @@ struct TrimCardView: View {
         AsyncCachedImage(url: trim.externalImage, content: { image in
           image
             .resizable()
-            .scaledToFill()
+            .scaledToFit()
             .frame(width: CGFloat(343).scaledWidth)
         })
         .offset(x: proxy.size.width / 4)

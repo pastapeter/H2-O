@@ -58,8 +58,8 @@ extension AppMainRouteView {
   
   func makeQuotationSummarySheet() -> some View {
     CLQuotationSummarySheet(currentQuotationPrice: quotation.totalPrice,
-                            summaryQuotation: quotation.quotation.toSummary(),
-                            showQuotationSummarySheet: $showQuotationSummarySheet, quotationState: quotation)
+                            quotation: quotation,
+                            summaryQuotation: quotation.summary(), showQuotationSummarySheet: $showQuotationSummarySheet)
   }
   
   @ViewBuilder
@@ -125,7 +125,7 @@ extension AppMainRouteView {
   
   func makeSimilarQuotationView() -> some View {
     
-    SimilarQuotationView.build(intent: .init(initialState: .init(currentSimilarQuotationIndex: 0, similarQuotations: [], selectedOptions: [], alertCase: .noOption, showAlert: false), repository: SimilarQuotationRepository(requestManager: RequestManager(apiManager: APIManager())), navigationIntent: self.intent, budgetRangeIntent: makeCLBudgetRangeIntent(), quotation: quotation), navitationIntent: intent)
+    SimilarQuotationView.build(intent: .init(initialState: .init(currentSimilarQuotationIndex: 0, similarQuotations: [], selectedOptions: [], alertCase: .noOption, showAlert: false, currentSimilarQuotationPrice: CLNumber(0)), repository: SimilarQuotationRepository(requestManager: RequestManager(apiManager: APIManager())), navigationIntent: self.intent, budgetRangeIntent: makeCLBudgetRangeIntent(), quotation: quotation), navitationIntent: intent)
     
   }
   
@@ -137,7 +137,7 @@ extension AppMainRouteView {
                                                             quotation: quotation),
                               prevAction: { intent.send(action: .onTapNavTab(index: viewState.currentPage - 1))},
                               nextAction: { intent.send(action: .onTapNavTab(index: viewState.currentPage + 1))},
-                              currentPage: currentPageBinding, showQuotationSummarySheet: showQuotationSummarySheetBinding)
+                              currentPage: currentPageBinding, showQuotationSummarySheet: $showQuotationSummarySheet)
   }
   
   func makeTrimSelectionView() -> some View {

@@ -17,7 +17,7 @@ struct QuotationFooterView: IntentBindingType {
   var prevAction: () -> Void
   var nextAction: () -> Void
   
-  @Binding private var showQuotationSummarySheet: Bool
+  @Binding var showQuotationSummarySheet: Bool
   @Binding var currentPage: Int
 }
 
@@ -29,7 +29,6 @@ extension QuotationFooterView: View {
         CLQuotationPriceBar(
           content: {
             CLCapsuleButton(width: 86, height: 36, text: "견적 요약", action: {
-              
               showQuotationSummarySheet = true
               
             })

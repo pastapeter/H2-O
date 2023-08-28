@@ -55,14 +55,17 @@ extension InteriorColorSelectionIntent: InteriorColorSelectionIntentType, Intent
           
         }
       }
+
     case .trimColors(let colors):
       let colorStates = colors.map { InteriorColorState(isSelected: false, color: $0) }
       self.viewState.trimColors = colorStates
       if !colorStates.isEmpty {
-        send(action: .onTapColor(id: colorStates[0].color.id))
+        send(action: .onTapColor(id: colorStates[colorStates.firstIndex(where: {$0.color.id == viewState.selectedColorId}) ?? 0].color.id))
       }
+        
     case .changeSelectedInteriorImageURL(let url):
       viewState.selectedInteriorImageURL = url
+        
     case .onTapColor(let id):
       viewState.selectedColorId = id
       quotation.updateInteriorColor(to: viewState.trimColors.first(where: { $0.color.id == id })?.color)

@@ -11,6 +11,7 @@ import Combine
 protocol ExteriorSelectionIntentType {
   
   var state: ExteriorSelectionModel.State { get }
+  
   var viewState: ExteriorSelectionModel.ViewState { get }
   
   func send(action: ExteriorSelectionModel.ViewAction)
@@ -74,7 +75,7 @@ extension ExternalSelectionIntent: ExteriorSelectionIntentType, IntentType {
           }
         }
         if !colorStates.isEmpty {
-          send(action: .onTapColor(id: colorStates[0].color.id))
+          send(action: .onTapColor(id: colorStates[viewState.currentSelectedIndex].color.id))
           // TODO:
         }
       case .changeSelectedExteriorImageURL:
@@ -82,7 +83,7 @@ extension ExternalSelectionIntent: ExteriorSelectionIntentType, IntentType {
       case .onTapColor(let id):
       viewState.selectedColorId = id
       viewState.currentSelectedIndex = viewState.colors.firstIndex(where: {$0.color.id == id}) ?? 0
-        
+        print("@@@@\(id)")
       quotation.updateExteriorColor(to: viewState.colors.first(where: { $0.color.id == id })?.color)
       
         for i in viewState.colors.indices {

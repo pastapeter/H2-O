@@ -15,6 +15,7 @@ enum SimilarQuotationModel {
     var selectedOptions: [SimilarQuotationOption]
     var alertCase: SimilarQuotationView.AlertCase
     var showAlert: Bool
+    var currentSimilarQuotationPrice: CLNumber
   }
   
   struct State: Equatable {
@@ -31,5 +32,6 @@ enum SimilarQuotationModel {
     case choiceQuit
     case choiceAdd
     case showAlertChanged(showAlert: Bool)
+    case priceChanged(price: CLNumber)
   }
 }

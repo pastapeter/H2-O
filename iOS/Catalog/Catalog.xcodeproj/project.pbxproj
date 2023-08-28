@@ -297,6 +297,9 @@
 		EDF071A32A8CC588002AD0DB /* TrimDefaultOption.json in Resources */ = {isa = PBXBuildFile; fileRef = EDF071A22A8CC588002AD0DB /* TrimDefaultOption.json */; };
 		EDF071A52A8CC629002AD0DB /* TrimMaxMinPrice.json in Resources */ = {isa = PBXBuildFile; fileRef = EDF071A42A8CC629002AD0DB /* TrimMaxMinPrice.json */; };
 		EDF071A72A8CC772002AD0DB /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF071A62A8CC772002AD0DB /* MockError.swift */; };
+		EDF634712A9C678A005C3D68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF6346E2A9C678A005C3D68 /* Assets.xcassets */; };
+		EDF634722A9C678A005C3D68 /* appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = EDF6346F2A9C678A005C3D68 /* appstore.png */; };
+		EDF634732A9C678A005C3D68 /* playstore.png in Resources */ = {isa = PBXBuildFile; fileRef = EDF634702A9C678A005C3D68 /* playstore.png */; };
 		EDF882572A8A708A0077558F /* ModelTypeRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF882562A8A708A0077558F /* ModelTypeRequestDTO.swift */; };
 		EDF882592A8A71260077558F /* ModelTypeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF882582A8A71260077558F /* ModelTypeRequest.swift */; };
 /* End PBXBuildFile section */
@@ -623,6 +626,9 @@
 		EDF071A22A8CC588002AD0DB /* TrimDefaultOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TrimDefaultOption.json; sourceTree = "<group>"; };
 		EDF071A42A8CC629002AD0DB /* TrimMaxMinPrice.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TrimMaxMinPrice.json; sourceTree = "<group>"; };
 		EDF071A62A8CC772002AD0DB /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
+		EDF6346E2A9C678A005C3D68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDF6346F2A9C678A005C3D68 /* appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore.png; sourceTree = "<group>"; };
+		EDF634702A9C678A005C3D68 /* playstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playstore.png; sourceTree = "<group>"; };
 		EDF882562A8A708A0077558F /* ModelTypeRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRequestDTO.swift; sourceTree = "<group>"; };
 		EDF882582A8A71260077558F /* ModelTypeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypeRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1076,6 +1082,7 @@
 		B19823FF2A8F99B000795B44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EDF6346D2A9C678A005C3D68 /* AppIcons */,
 				B155C0EA2A792F6800F540CB /* Font */,
 				B155C0E72A792BA300F540CB /* Colors */,
 				B19824002A8F99BF00795B44 /* CGFloat+.swift */,
@@ -1909,6 +1916,16 @@
 			path = QuotationFooter;
 			sourceTree = "<group>";
 		};
+		EDF6346D2A9C678A005C3D68 /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				EDF6346E2A9C678A005C3D68 /* Assets.xcassets */,
+				EDF6346F2A9C678A005C3D68 /* appstore.png */,
+				EDF634702A9C678A005C3D68 /* playstore.png */,
+			);
+			path = AppIcons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2014,10 +2031,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF634732A9C678A005C3D68 /* playstore.png in Resources */,
 				B155C1182A7A530E00F540CB /* HyundaiSansTextKROTFRegular.otf in Resources */,
 				B155C11D2A7A531A00F540CB /* HyundaiSansHeadKROTFRegular.otf in Resources */,
 				EDD79A8A2A93BF11005692D5 /* SimilarQuotations.json in Resources */,
 				B155C11C2A7A531700F540CB /* HyundaiSansHeadKROTFMedium.otf in Resources */,
+				EDF634712A9C678A005C3D68 /* Assets.xcassets in Resources */,
+				EDF634722A9C678A005C3D68 /* appstore.png in Resources */,
 				B155C1192A7A531100F540CB /* HyundaiSansHead-Medium.otf in Resources */,
 				B155C11A2A7A531300F540CB /* HyundaiSansHead-Regular.otf in Resources */,
 				B155C11B2A7A531500F540CB /* HyundaiSansHeadKROTFBold.otf in Resources */,

@@ -21,7 +21,7 @@ struct OptionImageView: View {
         AsyncCachedImage(url: imageURL) { image in
           image
             .resizable()
-            .scaledToFill()
+            .scaledToFit()
             .frame(height: CGFloat(128).scaledHeight)
             .clipped()
         } 
