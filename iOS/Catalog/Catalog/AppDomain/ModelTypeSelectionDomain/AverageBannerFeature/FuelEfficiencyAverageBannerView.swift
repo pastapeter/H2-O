@@ -7,41 +7,41 @@
 
 import SwiftUI
 
-struct FuelEfficiencyAverageBannerState: Equatable {
+struct FuelEfficiencyAverageBannerView: IntentBindingType {
 
-  static func mock() -> Self {
-    .init(engine: "디젤2.2", wheelType: "2WD", displacement: CLNumber(2199), fuelEfficiency: 12)
+  @StateObject var container: Container<FuelEfficiencyAverageBannerIntentType, FuelEfficiencyAverageBannerModel.ViewState, FuelEfficiencyAverageBannerModel.State>
+  
+  var intent: FuelEfficiencyAverageBannerIntentType {
+    container.intent
+  }
+  
+  var viewState: FuelEfficiencyAverageBannerModel.ViewState {
+    intent.viewState
+  }
+  
+  var state: FuelEfficiencyAverageBannerModel.State {
+    intent.state
   }
 
-  var engine: String
-  var wheelType: String
-  var displacement: CLNumber
-  var fuelEfficiency: Double
-
 }
 
-struct FuelEfficiencyAverageBannerView: View {
-
-  var state: FuelEfficiencyAverageBannerState
-
-}
-
-extension FuelEfficiencyAverageBannerView {
+extension FuelEfficiencyAverageBannerView: View {
 
     var body: some View {
       VStack(alignment: .leading) {
-        Text("\(Text(state.engine).foregroundColor(.activeBlue2))와 \(Text(state.wheelType).foregroundColor(.activeBlue2))의 배기량과 평균연비입니다.")
+        Text("\(Text(viewState.engine).foregroundColor(.activeBlue2))와 \(Text(viewState.wheelType).foregroundColor(.activeBlue2))의 배기량과 평균연비입니다.")
         HStack(alignment: .center) {
-          verticalBanner(title: "배기량", dataStr: "\(state.displacement)cc")
+          verticalBanner(title: "배기량", dataStr: "\(viewState.displacement)cc")
           Spacer()
           Divider()
           Spacer()
-          verticalBanner(title: "평균연비", dataStr: "\(state.fuelEfficiency)km/L")
+          verticalBanner(title: "평균연비", dataStr: "\(viewState.fuelEfficiency)km/L")
         }
         .padding(.horizontal, 56)
         .padding(.top, 16)
         .padding(.bottom, 20)
       }
+      .onAppear { intent.send(action: .calculateFuelEfficiency)}
       .padding(.top, 12)
       .frame(maxWidth: .infinity)
     }
@@ -61,8 +61,11 @@ extension FuelEfficiencyAverageBannerView {
 
 }
 
-struct FuelEfficiencyAverageBannerView_Previews: PreviewProvider {
-    static var previews: some View {
-      FuelEfficiencyAverageBannerView(state: .mock())
-    }
+extension FuelEfficiencyAverageBannerView {
+  static func build(intent: FuelEfficiencyAverageBannerIntent) -> some View {
+    
+    FuelEfficiencyAverageBannerView(container: .init(intent: intent, viewState: intent.viewState, state: intent.state, modelChangePublisher: intent.objectWillChange))
+    
+  }
 }
+

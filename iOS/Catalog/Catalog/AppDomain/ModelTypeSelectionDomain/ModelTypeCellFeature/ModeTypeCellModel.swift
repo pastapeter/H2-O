@@ -9,7 +9,7 @@ import Foundation
 
 enum ModelTypeCellModel: Equatable {
 
-  struct State: Equatable, Hashable {
+  struct ViewState: Equatable, Hashable {
 
     func hash(into hasher: inout Hasher) {
       hasher.combine(title)
@@ -18,12 +18,28 @@ enum ModelTypeCellModel: Equatable {
     var title: String = "파워트레인"
     var imageURL: URL?
     var containsHMGData = true
+    var selectedIndex: Int = 0
+    var selectedId: Int = 1
+    var isModalPresenting = false
+
+  }
+  
+  struct State: Equatable, Hashable {
+    
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(title)
+    }
+    
+    var selectedOption: ModelTypeOption = .init(id: 0, name: "", price: CLNumber(0))
+    var title: String = "파워트레인"
+    var imageURL: URL?
+    var containsHMGData = true
     var optionStates: [ModelTypeOptionState] = []
     var selectedIndex: Int = 0
     var selectedId: Int = 1
     var modelTypeDetailState: [ModelTypeDetailState] = []
     var isModalPresenting = false
-
   }
 
   enum ViewAction: Equatable {

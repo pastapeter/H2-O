@@ -9,11 +9,15 @@ import Foundation
 
 enum OptionSelectionModel {
 
-  struct State: Equatable {
+  struct ViewState: Equatable {
     var currentPage: Int
     var optionMenuTitle = ["추가옵션", "기본옵션"]
     var additionalOptionState: OptionListState
     var defaultOptionState: OptionListState
+  }
+  
+  struct State: Equatable {
+    
   }
 
   enum ViewAction {

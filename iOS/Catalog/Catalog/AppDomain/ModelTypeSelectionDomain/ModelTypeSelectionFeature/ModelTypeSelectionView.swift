@@ -9,15 +9,20 @@ import SwiftUI
 
 struct ModelTypeSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<ModelTypeSelectionIntentType, ModelTypeSelectionModel.State>
+  @StateObject var container: Container<ModelTypeSelectionIntentType, ModelTypeSelectionModel.ViewState, ModelTypeSelectionModel.State>
 
   var intent: ModelTypeSelectionIntentType {
     container.intent
   }
+  
+  var viewState: ModelTypeSelectionModel.ViewState {
+    intent.viewState
+  }
+  
   var state: ModelTypeSelectionModel.State {
     intent.state
   }
-
+  
 }
 
 extension ModelTypeSelectionView: View {
@@ -30,16 +35,18 @@ extension ModelTypeSelectionView: View {
           Text("모델타입을 선택해주세요")
             .catalogFont(type: .HeadKRMedium18)
             .padding(.horizontal, 16)
-          ForEach(state.modelTypeStateArray, id: \.self) { state in
-            ModelTypeCellView.build(intent: .init(initialState: state, parent: intent))
+          ForEach(viewState.modelTypeStateArray, id: \.self) { state in
+            ModelTypeCellView.build(intent: .init(initialState: state)) { intent.send(action: .getSelectedOption(title: $0, option: $1))
+            }
           }
           Spacer().frame(height: 38)
           HMGDataBannerComponent {
-            FuelEfficiencyAverageBannerView(state: state.fuelEfficiencyAverageState)
+            FuelEfficiencyAverageBannerView.build(intent: .init(initialState: viewState.fuelEfficiencyAverageState, repository: intent.repository, quotation: intent.quotation))
           }
         }
       }
     }
+    .background(.random)
     .frame(maxWidth: .infinity)
     .onAppear {
       intent.send(action: .onAppear)
@@ -52,7 +59,7 @@ extension ModelTypeSelectionView {
   @ViewBuilder
   static func build(intent: ModelTypeSelectionIntent) -> some View {
     ModelTypeSelectionView(container:
-        .init(intent: intent, state: intent.state, modelChangePublisher: intent.objectWillChange))
+        .init(intent: intent, viewState: intent.viewState, state: intent.state, modelChangePublisher: intent.objectWillChange))
   }
 }
 

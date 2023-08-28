@@ -10,22 +10,18 @@ import UIKit
 
 struct QuotationCompleteView: IntentBindingType {
 
-  @StateObject var container: Container<QuotationCompleteIntentType, QuotationCompleteModel.State>
-
-  var intent: QuotationCompleteIntentType {
-    container.intent
-  }
-
-  var state: QuotationCompleteModel.State {
-    intent.state
-  }
+  @StateObject var container: Container<QuotationCompleteIntentType, QuotationCompleteModel.ViewState, QuotationCompleteModel.State>
+  
+  var intent: QuotationCompleteIntentType {  container.intent }
+  var viewState: QuotationCompleteModel.ViewState { intent.viewState }
+  var state: QuotationCompleteModel.State { intent.state }
   
   @SwiftUI.State var isExternal: Bool = true
 }
 
 extension QuotationCompleteView {
   var showSheetBinding: Binding<Bool> {
-    .init(get: { state.showSheet },
+    .init(get: { viewState.showSheet },
           set: { bool in intent.send(action: .showSheetChanged(showSheet: bool)) } )
   }
 }
@@ -58,6 +54,7 @@ extension QuotationCompleteView: View {
     }
     .sheet(isPresented: showSheetBinding) {
       QuotationCompleteSheet(state: state,
+                            viewState: viewState,
                              modelName: intent.quotation.modelName(),
                              intent: intent)
     }
@@ -72,7 +69,8 @@ extension QuotationCompleteView {
   @ViewBuilder
   static func build(intent: QuotationCompleteIntent) -> some View {
     QuotationCompleteView(container: .init(intent: intent,
-                                                    state: intent.state,
+                                           viewState: intent.viewState,
+                                           state: intent.state,
                                                     modelChangePublisher: intent.objectWillChange))
   }
 }

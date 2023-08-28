@@ -9,9 +9,13 @@ import Foundation
 
 enum QuotationFooterModel {
   
-  struct State: Equatable {
+  struct ViewState: Equatable {
     var totalPrice: CLNumber
     var summary: SummaryCarQuotation
+  }
+  
+  struct State: Equatable {
+    
   }
   
   enum ViewAction: Equatable {

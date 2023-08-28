@@ -10,6 +10,8 @@ import Combine
 
 protocol QuotationCompleteIntentType {
   
+  var viewState: QuotationCompleteModel.ViewState { get }
+  
   var state: QuotationCompleteModel.State { get }
   
   func send(action: QuotationCompleteModel.ViewAction)
@@ -24,17 +26,19 @@ protocol QuotationCompleteIntentType {
 
 final class QuotationCompleteIntent: ObservableObject {
   
-  init(initialState: State, repository: QuotationCompleteRepositoryProtocol, quotation: QuotationCompleteService, navigationIntent: AppMainRouteIntentType) {
-    state = initialState
+  init(initialState: ViewState, repository: QuotationCompleteRepositoryProtocol, quotation: QuotationCompleteService, navigationIntent: AppMainRouteIntentType) {
+    viewState = initialState
     self.repository = repository
     self.quotation = quotation
     self.navigationIntent = navigationIntent
   }
   
+  typealias ViewState = QuotationCompleteModel.ViewState
   typealias State = QuotationCompleteModel.State
   typealias ViewAction = QuotationCompleteModel.ViewAction
   
-  @Published var state: State
+  @Published var viewState: ViewState
+  var state: QuotationCompleteModel.State = .init()
   
   var cancellable: Set<AnyCancellable> = []
   var navigationIntent: AppMainRouteIntentType
@@ -54,19 +58,18 @@ extension QuotationCompleteIntent: QuotationCompleteIntentType, IntentType {
             let powertrainId = quotation.powertrainId()
             let drivetrainId = quotation.drivetrainId()
             let resultOfCalculation = try await repository.calculateFuelAndDisplacement(with: powertrainId, andwith: drivetrainId)
-            state.technicalSpec = resultOfCalculation
+            viewState.technicalSpec = resultOfCalculation
           } catch(let e) {
             print("@@@@배기량 계산 실패 \(e)")
           }
         }
-        state.summaryQuotation = quotation.summary()
-        
+        viewState.summaryQuotation = quotation.summary()
       case .onTapDeleteButton(let id):
-        state.alertCase = .delete(id: id)
+        viewState.alertCase = .delete(id: id)
         send(action: .showAlertChanged(showAlert: true))
         
       case .onTapModifyButton(let navigationIndex, let title):
-        state.alertCase = .modify(index: navigationIndex, title: title)
+        viewState.alertCase = .modify(index: navigationIndex, title: title)
         send(action: .showAlertChanged(showAlert: true))
 
       case .movePage(let index):
@@ -81,9 +84,9 @@ extension QuotationCompleteIntent: QuotationCompleteIntentType, IntentType {
         send(action: .showAlertChanged(showAlert: false))
 
       case .showSheetChanged(let showSheet):
-        state.showSheet = showSheet
+        viewState.showSheet = showSheet
       case .showAlertChanged(let showAlert):
-        state.showAlert = showAlert
+        viewState.showAlert = showAlert
     }
   }
 }

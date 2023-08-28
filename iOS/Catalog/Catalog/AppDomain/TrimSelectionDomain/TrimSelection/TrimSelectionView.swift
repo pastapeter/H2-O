@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TrimSelectionView: IntentBindingType {
-  @StateObject var container: Container<TrimSelectionIntentType, TrimSelectionModel.State>
+  @StateObject var container: Container<TrimSelectionIntentType, TrimSelectionModel.ViewState, TrimSelectionModel.State>
   var intent: TrimSelectionIntentType { container.intent }
-  var state: TrimSelectionModel.State { intent.state }
+  var viewState: TrimSelectionModel.ViewState { intent.viewState }
+  var state: TrimSelectionModel.State { intent.state}
   @SwiftUI.State var currentIndexBinding: Int = 0
 
 }
@@ -22,7 +23,7 @@ extension TrimSelectionView: View {
         .padding(.top, CGFloat(20).scaledHeight)
         .padding(.bottom, CGFloat(12).scaledHeight)
 
-      SnapCarousel(items: state.trims,
+      SnapCarousel(items: viewState.trims,
                    spacing: CGFloat(16).scaledWidth,
                    trailingSpace: CGFloat(32).scaledWidth,
                    index: $currentIndexBinding) { trim in
@@ -40,7 +41,7 @@ extension TrimSelectionView: View {
 
       // Indicator
       HStack(spacing: 10) {
-        ForEach(state.trims.indices, id: \.self) { index in
+        ForEach(viewState.trims.indices, id: \.self) { index in
           Capsule()
             .fill(currentIndexBinding == index ? Color.primary0 : Color.gray200)
             .frame(width: (currentIndexBinding == index ? 24 : 8), height: 8)
@@ -51,7 +52,7 @@ extension TrimSelectionView: View {
       .padding(.top, 12)
       .padding(.bottom, 20)
 
-      CLButton(mainText: "\(state.trims.isEmpty ? "Exclusive" :  state.trims[currentIndexBinding].name ?? "") 선택하기",
+      CLButton(mainText: "\(viewState.trims.isEmpty ? "Exclusive" :  viewState.trims[currentIndexBinding].name ?? "") 선택하기",
                height: CGFloat(60).scaledHeight,
                backgroundColor: Color.primary700,
                buttonAction: { intent.send(action: .onTapTrimSelectButton) })
@@ -66,6 +67,7 @@ extension TrimSelectionView {
 
     TrimSelectionView(container: .init(
       intent: intent as TrimSelectionIntent,
+      viewState: intent.viewState,
       state: intent.state,
       modelChangePublisher: intent.objectWillChange))
   }

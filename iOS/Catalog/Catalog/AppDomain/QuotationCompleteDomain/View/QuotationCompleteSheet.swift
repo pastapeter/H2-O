@@ -10,6 +10,7 @@ import SwiftUI
 struct QuotationCompleteSheet {
   @Environment(\.presentationMode) var presentationMode
   var state: QuotationCompleteModel.State
+  var viewState: QuotationCompleteModel.ViewState
   var modelName: String
   var intent: QuotationCompleteIntentType
 }
@@ -17,7 +18,7 @@ struct QuotationCompleteSheet {
 
 extension QuotationCompleteSheet {
   var showAlertBinding: Binding<Bool> {
-    .init(get: { state.showAlert }, set: { _ in })
+    .init(get: { viewState.showAlert }, set: { _ in })
   }
 }
 
@@ -46,7 +47,7 @@ extension QuotationCompleteSheet: View {
             Text("평균연비")
               .catalogFont(type: .TextKRRegular12)
               .foregroundColor(Color.gray600)
-            Text("\(state.technicalSpec.displacement.description)cc")
+            Text("\(viewState.technicalSpec.displacement.description)cc")
               .catalogFont(type: .HeadKRMedium18)
               .foregroundColor(Color.gray900)
           }
@@ -54,7 +55,7 @@ extension QuotationCompleteSheet: View {
             Text("배기량")
               .catalogFont(type: .TextKRRegular12)
               .foregroundColor(Color.gray600)
-            Text("\(state.technicalSpec.fuelEfficiency.description)km/I")
+            Text("\(viewState.technicalSpec.fuelEfficiency.description)km/I")
               .catalogFont(type: .HeadKRMedium18)
               .foregroundColor(Color.gray900)
           }
@@ -67,7 +68,7 @@ extension QuotationCompleteSheet: View {
         Text("상세견적").catalogFont(type: .HeadKRMedium16).leadingTitle()
         
         // 상세견적
-        DetailQuotationList(intent: intent, state: intent.state)
+        DetailQuotationList(intent: intent, state: intent.viewState)
         
         Button {
           presentationMode.wrappedValue.dismiss()
@@ -84,7 +85,7 @@ extension QuotationCompleteSheet: View {
       }
     }
     .CLDialogFullScreenCover(show: showAlertBinding) {
-      switch state.alertCase {
+      switch viewState.alertCase {
         case .delete(let id):
           deleteAlertView(id: id)
         case .modify(let index, let title):

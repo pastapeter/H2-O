@@ -167,6 +167,8 @@
 		B1CB88EB2A99D5F900E12981 /* CLQuotationSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88E62A99D5F900E12981 /* CLQuotationSummarySheet.swift */; };
 		B1CB88ED2A99D65700E12981 /* DetailQuotationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88EC2A99D65700E12981 /* DetailQuotationList.swift */; };
 		B1CB88F22A99DD0100E12981 /* QuotationFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88F12A99DD0100E12981 /* QuotationFooterView.swift */; };
+		B1CB88F42A9BE45800E12981 /* FuelEfficiencyAverageBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88F32A9BE45800E12981 /* FuelEfficiencyAverageBannerModel.swift */; };
+		B1CB88F62A9BE53100E12981 /* FuelEfficiencyAverageBannerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB88F52A9BE53100E12981 /* FuelEfficiencyAverageBannerIntent.swift */; };
 		B1E5122A2A8CF2DC005B195D /* OptionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512292A8CF2DC005B195D /* OptionCategory.swift */; };
 		B1E512302A8CF65B005B195D /* OptionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */; };
 		B1E512322A8D2E31005B195D /* OptionSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */; };
@@ -481,6 +483,8 @@
 		B1CB88E62A99D5F900E12981 /* CLQuotationSummarySheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLQuotationSummarySheet.swift; sourceTree = "<group>"; };
 		B1CB88EC2A99D65700E12981 /* DetailQuotationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailQuotationList.swift; sourceTree = "<group>"; };
 		B1CB88F12A99DD0100E12981 /* QuotationFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotationFooterView.swift; sourceTree = "<group>"; };
+		B1CB88F32A9BE45800E12981 /* FuelEfficiencyAverageBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyAverageBannerModel.swift; sourceTree = "<group>"; };
+		B1CB88F52A9BE53100E12981 /* FuelEfficiencyAverageBannerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyAverageBannerIntent.swift; sourceTree = "<group>"; };
 		B1E512292A8CF2DC005B195D /* OptionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCategory.swift; sourceTree = "<group>"; };
 		B1E5122F2A8CF65B005B195D /* OptionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionView.swift; sourceTree = "<group>"; };
 		B1E512312A8D2E31005B195D /* OptionSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionModel.swift; sourceTree = "<group>"; };
@@ -909,7 +913,7 @@
 				B15646332A86526A00FAD379 /* ModelTypeModalFeature */,
 				B1604D602A85400300C7B07D /* ModelTypeButtonFeature */,
 				B19824372A91FC7300795B44 /* AverageBannerFeature */,
-				B19824362A91FC6800795B44 /* ModelTypeSelection */,
+				B19824362A91FC6800795B44 /* ModelTypeSelectionFeature */,
 				B19824352A91F88800795B44 /* ModelTypeCellFeature */,
 				B16DFF3D2A8958EC00642730 /* Entity */,
 				ED7199C72A8A8DD4008A9BB3 /* Model */,
@@ -1223,7 +1227,7 @@
 			path = ModelTypeCellFeature;
 			sourceTree = "<group>";
 		};
-		B19824362A91FC6800795B44 /* ModelTypeSelection */ = {
+		B19824362A91FC6800795B44 /* ModelTypeSelectionFeature */ = {
 			isa = PBXGroup;
 			children = (
 				ED1BDA732A8BB15600E39270 /* ModelSelectionError.swift */,
@@ -1232,13 +1236,15 @@
 				B1A76B852A892CA3009C84EF /* ModelTypeSelectionIntent.swift */,
 				EDE7D3B52A972BAB0080F3C7 /* ModelTypeSelectionService.swift */,
 			);
-			path = ModelTypeSelection;
+			path = ModelTypeSelectionFeature;
 			sourceTree = "<group>";
 		};
 		B19824372A91FC7300795B44 /* AverageBannerFeature */ = {
 			isa = PBXGroup;
 			children = (
 				B1084BF02A8878BB00AE1758 /* FuelEfficiencyAverageBannerView.swift */,
+				B1CB88F32A9BE45800E12981 /* FuelEfficiencyAverageBannerModel.swift */,
+				B1CB88F52A9BE53100E12981 /* FuelEfficiencyAverageBannerIntent.swift */,
 			);
 			path = AverageBannerFeature;
 			sourceTree = "<group>";
@@ -2219,6 +2225,7 @@
 				B1EEBA892A869EAF008FC6A4 /* HMGDataWithHorizontalGraphView.swift in Sources */,
 				B15B4F4D2A8EA51300101DCB /* PackageInfoDTO.swift in Sources */,
 				B191DD552A8BF235008196CD /* InteriorColorResponseDTO.swift in Sources */,
+				B1CB88F62A9BE53100E12981 /* FuelEfficiencyAverageBannerIntent.swift in Sources */,
 				B1BEF0FB2A8F1890009943A3 /* OptionSelectionAPIManager.swift in Sources */,
 				B16DFF3C2A8958DB00642730 /* MaxTorqueFromEngine.swift in Sources */,
 				B1F2BC5E2A7B5B50005385E0 /* TopNaviBar.swift in Sources */,
@@ -2290,6 +2297,7 @@
 				B155C0E02A7923AE00F540CB /* Container.swift in Sources */,
 				EDD79A412A928E3E005692D5 /* SimilarQuotationCardImage.swift in Sources */,
 				ED3E87F62A911F2A00DCDC66 /* SimilarHMGOption.swift in Sources */,
+				B1CB88F42A9BE45800E12981 /* FuelEfficiencyAverageBannerModel.swift in Sources */,
 				ED1C70632A89C3C50049D275 /* Trim.swift in Sources */,
 				ED260E042A9536ED00C4DA2A /* HelpIcon.swift in Sources */,
 				B19436412A80ADD400C2FD69 /* CLSingleLineAlertContentView.swift in Sources */,

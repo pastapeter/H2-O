@@ -9,9 +9,12 @@ import Foundation
 import Combine
 
 protocol IntentType: AnyObject {
+  
   associatedtype ViewAction
+  associatedtype ViewState
   associatedtype State
 
+  var viewState: ViewState { get set }
   var state: State { get set }
   var cancellable: Set<AnyCancellable> { get set }
 

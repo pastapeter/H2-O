@@ -67,7 +67,7 @@ struct CLToggle: View {
 
 struct CLToggle_Previews: PreviewProvider {
     static var previews: some View {
-        @State var isLeft: Bool = true
+      @SwiftUI.State var isLeft: Bool = true
         CLToggle(isLeft: $isLeft)
     }
 }

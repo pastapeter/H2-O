@@ -9,8 +9,8 @@ import Foundation
 
 enum AppMainRouteModel {
 
-  struct State: Equatable {
-    static func == (lhs: AppMainRouteModel.State, rhs: AppMainRouteModel.State) -> Bool {
+  struct ViewState: Equatable {
+    static func == (lhs: AppMainRouteModel.ViewState, rhs: AppMainRouteModel.ViewState) -> Bool {
       lhs.currentPage == rhs.currentPage
     }
 
@@ -20,6 +20,11 @@ enum AppMainRouteModel {
     var showAlert: Bool
 
   }
+  
+  struct State: Equatable {
+    
+  }
+  
   enum ViewAction: Equatable {
     case onTapNavTab(index: Int)
     case onTapFinish

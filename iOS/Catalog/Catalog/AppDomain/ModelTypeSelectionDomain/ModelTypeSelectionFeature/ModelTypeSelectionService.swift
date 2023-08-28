@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 
 protocol ModeltypeSelectionService {
@@ -13,18 +14,30 @@ protocol ModeltypeSelectionService {
   func updatePowertrain(option: ModelTypeOption)
   func updateBodytype(option: ModelTypeOption)
   func updateDrivetrain(option: ModelTypeOption)
-  func powertrainName() -> String
-  func drivetrainName() -> String
-  
+  func powertrain() -> ModelTypeOption
+  func drivetrain() -> ModelTypeOption
+  var powertrainPublisher: AnyPublisher<ModelTypeOption, Never> { get }
+  var driveTrainPublisher: AnyPublisher<ModelTypeOption, Never> { get }
 }
 
 extension Quotation: ModeltypeSelectionService {
-  func powertrainName() -> String {
-    quotation.powertrain.name
+  
+  var powertrainPublisher: AnyPublisher<ModelTypeOption, Never> {
+    $quotation.map { $0.powertrain }.eraseToAnyPublisher()
   }
   
-  func drivetrainName() -> String {
-    quotation.drivetrain.name
+  var driveTrainPublisher: AnyPublisher<ModelTypeOption, Never> {
+    $quotation.map { $0.drivetrain }.eraseToAnyPublisher()
+  }
+  
+  
+  
+  func powertrain() -> ModelTypeOption {
+    quotation.powertrain
+  }
+  
+  func drivetrain() -> ModelTypeOption {
+    quotation.drivetrain
   }
   
   func updatePowertrain(option: ModelTypeOption) {

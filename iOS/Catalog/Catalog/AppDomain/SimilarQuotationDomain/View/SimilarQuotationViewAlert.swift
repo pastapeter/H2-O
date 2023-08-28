@@ -35,7 +35,7 @@ extension SimilarQuotationView {
     }, submitAction: {
       intent.send(action: .choiceQuit)
     })
-    return CLAlertView<CLOptionQuitAlertContentView, ButtonContent, AlertDoubleButton>(info: String(state.selectedOptions.count), items: buttonContent) { item in
+    return CLAlertView<CLOptionQuitAlertContentView, ButtonContent, AlertDoubleButton>(info: String(viewState.selectedOptions.count), items: buttonContent) { item in
       AlertDoubleButton(cancelAction: item.cancelAction, submitAction: item.submitAction, cancelText: item.cancelText, submitText: item.submitText)
     }
   }

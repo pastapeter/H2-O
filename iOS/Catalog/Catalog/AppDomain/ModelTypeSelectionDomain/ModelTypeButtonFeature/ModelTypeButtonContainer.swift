@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ModelTypeButtonContainer: View {
-  var intent: ModelTypeCellIntentType
-  var options: [ModelTypeOptionState]
+  @State var options: [ModelTypeOptionState]
+  var action: (Int) -> Void
 }
 
 extension ModelTypeButtonContainer {
@@ -18,7 +18,8 @@ extension ModelTypeButtonContainer {
       ForEach(options.indices, id: \.self) { i in
         ModelTypeButtonView(state: options[i], action: { id in
           if let index = options.firstIndex(where: { $0.id == id }) {
-            intent.send(action: .onTapOptions(id: id))
+            action(id)
+            toggle(with: index)
           }
         })
       }
@@ -26,8 +27,15 @@ extension ModelTypeButtonContainer {
   }
 }
 
-struct ModelTypeButtonContainer_Previews: PreviewProvider {
-    static var previews: some View {
-      ModelTypeButtonContainer(intent: ModelTypeCellIntent(initialState: .init()), options: [])
+extension ModelTypeButtonContainer {
+  func toggle(with index: Int) {
+    for i in options.indices {
+      if i == index {
+        options[i].isSelected = true
+      } else {
+        options[i].isSelected = false
+      }
     }
+  }
 }
+

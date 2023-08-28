@@ -8,7 +8,9 @@
 import Foundation
 import Combine
 
-protocol ModelTypeSelectionIntentType: AnyObject {
+protocol ModelTypeSelectionIntentType {
+  
+  var viewState: ModelTypeSelectionModel.ViewState { get }
   
   var state: ModelTypeSelectionModel.State { get }
   
@@ -16,48 +18,46 @@ protocol ModelTypeSelectionIntentType: AnyObject {
   
   func send(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?)
   
+  var repository: ModelTypeRepositoryProtocol { get }
+  var quotation: ModeltypeSelectionService { get }
+  
 }
 
 final class ModelTypeSelectionIntent: ObservableObject {
   
-  init(initialState: State, repository: ModelTypeRepositoryProtocol, quotation: ModeltypeSelectionService) {
+  init(initialState: ModelTypeSelectionModel.State, initialViewState: ViewState, repository: ModelTypeRepositoryProtocol, quotation: ModeltypeSelectionService) {
     state = initialState
+    viewState = initialViewState
     self.repository = repository
     self.quotation = quotation
 
   }
   
-  private var repository: ModelTypeRepositoryProtocol
+  private(set) var repository: ModelTypeRepositoryProtocol
   
-  typealias State = ModelTypeSelectionModel.State
+  typealias ViewState = ModelTypeSelectionModel.ViewState
   
   typealias ViewAction = ModelTypeSelectionModel.ViewAction
   
-  @Published var state: State
+  @Published var viewState: ViewState
+  var state: ModelTypeSelectionModel.State
   
   var cancellable: Set<AnyCancellable> = []
-  private var quotation: ModeltypeSelectionService
-  private var powerTrainOptionId: Int = 1
-  private var driveTrainOptionId: Int = 1
+  private(set) var quotation: ModeltypeSelectionService
   
 }
 
 extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
-  
+ 
   func mutate(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .onAppear:
         Task {
-          let options = try await repository.fetch(carId: state.selectedTrimId)
+          let options = try await repository.fetch(carId: viewState.selectedTrimId)
           send(action: .modelTypeOptions(options: options))
-          send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: self.powerTrainOptionId))
-        }
-      case .calculateFuelEfficiency(let typeID, let selectedOptionId):
-        Task {
-          await calculateFuelEfficiency(typeID:typeID, selectedOptionId: selectedOptionId)
         }
       case .modelTypeOptions(let options):
-        state.modelTypeStateArray = convertToModelTypeModelState(from: options)
+      viewState.modelTypeStateArray = convertToModelTypeModelState(from: options)
         
       case .powertrainSelected(option: let option):
         quotation.updatePowertrain(option: option)
@@ -67,6 +67,15 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
         
       case .drivetrainSelected(option: let option):
         quotation.updateDrivetrain(option: option)
+       
+    case .getSelectedOption(let title, let option):
+      if title == "파워트레인" {
+        send(action: .powertrainSelected(option: option))
+      } else if title == "바디타입" {
+        send(action: .bodytypeSelected(option: option))
+      } else if title == "구동방식" {
+        send(action: .drivetrainSelected(option: option))
+      }
     }
   }
 }
@@ -75,45 +84,14 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
 
 extension ModelTypeSelectionIntent {
   
-  private func calculateFuelEfficiency(typeID: Int, selectedOptionId: Int) async {
-    
-    do {
-      
-      let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue
-      let driveTrainID = ModelTypeSelectionModel.ModelTypeID.driveTrain.rawValue
-      
-      if typeID == powerTrainID {
-        self.powerTrainOptionId = selectedOptionId
-      } else if typeID == driveTrainID {
-        self.driveTrainOptionId = selectedOptionId
-      }
-      
-      let powerTrainTitle = quotation.powertrainName()
-      let driveTrainTitle = quotation.drivetrainName()
-      
-      let result = try await self.repository
-        .calculateFuelAndDisplacement(with: self.driveTrainOptionId,
-                                      andwith: self.powerTrainOptionId)
-      
-      state.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
-                                               wheelType: driveTrainTitle,
-                                               displacement: result.displacement,
-                                               fuelEfficiency: result.fuelEfficiency)
-      
-    } catch (let e) {
-      print(e.localizedDescription)
-    }
-    
-  }
-  
   private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeCellModel.State] {
     options.map {
-      .init(title: $0.title,
-            imageURL: $0.options[0].imageURL,
-            containsHMGData: $0.options[0].maxOuputFromEngine != nil,
-            optionStates: convertToModelTypeOptionState(from: $0.options),
-            modelTypeDetailState: convertToModelTypeDetail(from: $0.options)
-      )
+        .init(title: $0.title,
+              imageURL: $0.options[0].imageURL,
+              containsHMGData: $0.options[0].maxOuputFromEngine != nil,
+              optionStates: convertToModelTypeOptionState(from: $0.options),
+              modelTypeDetailState: convertToModelTypeDetail(from: $0.options)
+        )
     }
     
   }

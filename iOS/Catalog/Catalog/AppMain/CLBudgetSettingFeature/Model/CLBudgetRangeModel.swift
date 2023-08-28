@@ -9,7 +9,7 @@ import Foundation
 
 enum CLBudgetRangeModel {
 
-  struct State: Equatable {
+  struct ViewState: Equatable {
     var status: CLBudgetRangeView.Status
     var currentQuotationPrice: CLNumber
     var budgetPrice: CLNumber
@@ -25,6 +25,10 @@ enum CLBudgetRangeModel {
       self.budgetGap = CLNumber(abs(currentQuotationPrice.value - budgetPrice.value))
       self.status = status
     }
+  }
+  
+  struct State: Equatable {
+    
   }
 
   enum ViewAction: Equatable {

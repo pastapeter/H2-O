@@ -10,10 +10,12 @@ import Foundation
 protocol IntentBindingType {
 
   associatedtype IntentType
+  associatedtype ViewState
   associatedtype State
 
-  var container: Container<IntentType, State> { get }
+  var container: Container<IntentType, ViewState, State> { get }
   var intent: IntentType { get }
+  var viewState: ViewState { get }
   var state: State { get }
 
 }

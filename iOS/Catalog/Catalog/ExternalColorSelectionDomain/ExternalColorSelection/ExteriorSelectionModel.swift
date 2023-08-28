@@ -9,10 +9,14 @@ import Foundation
 
 enum ExteriorSelectionModel {
 
-  struct State: Equatable {
+  struct ViewState: Equatable {
     var selectedTrimId: Int
     var selectedColorId: Int = 1
     var colors: [ExteriorColorState] = []
+  }
+  
+  struct State: Equatable {
+    
   }
 
   enum ViewAction {

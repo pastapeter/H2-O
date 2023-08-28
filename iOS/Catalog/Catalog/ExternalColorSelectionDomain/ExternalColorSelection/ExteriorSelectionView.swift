@@ -9,6 +9,14 @@ import SwiftUI
 
 struct ExteriorSelectionView: IntentBindingType {
 
+<<<<<<< HEAD
+  @StateObject var container: Container<ExteriorSelectionIntentType, ExteriorSelectionModel.ViewState, ExteriorSelectionModel.State>
+
+  var intent: ExteriorSelectionIntentType { container.intent }
+  var state: ExteriorSelectionModel.State { intent.state }
+
+  var viewState: ExteriorSelectionModel.ViewState { intent.viewState}
+=======
   @StateObject var container: Container<ExteriorSelectionIntentType, ExteriorSelectionModel.State>
 
   var intent: ExteriorSelectionIntentType {
@@ -18,6 +26,7 @@ struct ExteriorSelectionView: IntentBindingType {
   var state: ExteriorSelectionModel.State {
     intent.state
   }
+>>>>>>> dev-ios
 
 }
 
@@ -33,7 +42,11 @@ extension ExteriorSelectionView: View {
           Text("외장 색상을 선택해주세요")
             .catalogFont(type: .HeadKRMedium18)
           Spacer().frame(height: 8)
+<<<<<<< HEAD
+          ExteriorColorSelectionHorizontalList(state: viewState.colors,
+=======
           ExteriorColorSelectionHorizontalList(state: state.colors,
+>>>>>>> dev-ios
                                                intent: intent,
                                                height: UIScreen.main.bounds.height * 183 / 812
           )
@@ -53,12 +66,18 @@ extension ExteriorSelectionView {
 
   @ViewBuilder
   static func build(intent: ExteriorSelectionIntent) -> some View {
+<<<<<<< HEAD
+    ExteriorSelectionView(container: .init(intent: intent, viewState: intent.viewState,
+=======
     ExteriorSelectionView(container: .init(intent: intent,
+>>>>>>> dev-ios
                                                     state: intent.state,
                                                     modelChangePublisher: intent.objectWillChange))
   }
 
 }
+<<<<<<< HEAD
+=======
 
 struct ExternalSelectionContainerView_Previews: PreviewProvider {
     static var previews: some View {
@@ -66,3 +85,4 @@ struct ExternalSelectionContainerView_Previews: PreviewProvider {
                                                          repository: MockExteriorRepository()))
     }
 }
+>>>>>>> dev-ios

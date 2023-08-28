@@ -9,12 +9,16 @@ import Foundation
 
 enum SimilarQuotationModel {
 
-  struct State: Equatable {
+  struct ViewState: Equatable {
     var currentSimilarQuotationIndex: Int
     var similarQuotations: [SimilarQuotation]
     var selectedOptions: [SimilarQuotationOption]
     var alertCase: SimilarQuotationView.AlertCase
     var showAlert: Bool
+  }
+  
+  struct State: Equatable {
+    
   }
   
   enum ViewAction: Equatable {

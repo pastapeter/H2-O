@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SimilarQuotationView {
-  @StateObject var container: Container<SimilarQuotationIntentType, SimilarQuotationModel.State>
+  @StateObject var container: Container<SimilarQuotationIntentType, SimilarQuotationModel.ViewState, SimilarQuotationModel.State>
+  
   var intent: SimilarQuotationIntentType { container.intent }
   var state: SimilarQuotationModel.State { intent.state }
+  var viewState: SimilarQuotationModel.ViewState { intent.viewState}
   
   @SwiftUI.State var currentIndex: Int = 0
   let budgetPrice: CLNumber = CLNumber(50000000)
@@ -19,7 +21,7 @@ struct SimilarQuotationView {
 
 extension SimilarQuotationView {
   var showAlertBinding: Binding<Bool> {
-    .init(get: { state.showAlert } ,
+    .init(get: { viewState.showAlert } ,
           set: { bool in intent.send(action: .showAlertChanged(showAlert: bool)) })
   }
 }
@@ -40,7 +42,7 @@ extension SimilarQuotationView: View {
                         status: .similarQuotation),
                     navigationIntent: navigationIntent, quotation: intent.quotation as! CLBudgetPriceService))
           
-          SnapCarousel(items: state.similarQuotations,
+          SnapCarousel(items: viewState.similarQuotations,
                        spacing: CGFloat(12).scaledWidth,
                        trailingSpace: CGFloat(24).scaledWidth,
                        index: $currentIndex) { similarQuotation in
@@ -60,7 +62,7 @@ extension SimilarQuotationView: View {
                        }
           
           ScrollIndicator(spacing: 10,
-                          count: state.similarQuotations.count,
+                          count: viewState.similarQuotations.count,
                           bigWidth: 15,
                           smallWidth: 5,
                           height: 5,
@@ -70,11 +72,11 @@ extension SimilarQuotationView: View {
                           currentIndex: $currentIndex)
           
           CLInActiceButton(mainText: "내 견적서에 추가하기",
-                           subText: "선택된 옵션\(state.selectedOptions.count)개",
+                           subText: "선택된 옵션\(viewState.selectedOptions.count)개",
                            inActiveText: "옵션을 선택해 추가해보세요.",
                            height: CGFloat(52).scaledHeight,
-                           buttonAction: {  intent.send(action: .onTapAddButton(title: state.selectedOptions[0].name, count: state.selectedOptions.count)) })
-          .disabled(state.selectedOptions.isEmpty)
+                           buttonAction: {  intent.send(action: .onTapAddButton(title: viewState.selectedOptions[0].name, count: viewState.selectedOptions.count)) })
+          .disabled(viewState.selectedOptions.isEmpty)
         }
         HelpIcon(intent: intent, showAlert: showAlertBinding)
       }
@@ -83,7 +85,7 @@ extension SimilarQuotationView: View {
       }
     }
     .CLDialogFullScreenCover(show: showAlertBinding) {
-      switch state.alertCase {
+      switch viewState.alertCase {
         case .noOption:
           noOptionAlertView()
         case .optionButQuit:
@@ -104,8 +106,7 @@ extension SimilarQuotationView {
   @ViewBuilder
   static func build(intent: SimilarQuotationIntent, navitationIntent: AppMainRouteIntentType) -> some View {
     SimilarQuotationView(container: .init(
-      intent: intent as SimilarQuotationIntent,
-      state: intent.state,
+      intent: intent as SimilarQuotationIntent, viewState: intent.viewState, state: intent.state,
       modelChangePublisher: intent.objectWillChange), navigationIntent: navitationIntent)
   }
 }

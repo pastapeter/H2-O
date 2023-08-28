@@ -9,15 +9,11 @@ import SwiftUI
 
 struct InteriorColorSelectionView: IntentBindingType {
 
-  @StateObject var container: Container<InteriorColorSelectionIntentType, InteriorColorSelectionModel.State>
+  @StateObject var container: Container<InteriorColorSelectionIntentType, InteriorColorSelectionModel.ViewState, InteriorColorSelectionModel.State>
 
-  var intent: InteriorColorSelectionIntentType {
-    container.intent
-  }
-
-  var state: InteriorColorSelectionModel.State {
-    intent.state
-  }
+  var intent: InteriorColorSelectionIntentType { container.intent }
+  var state: InteriorColorSelectionModel.State { intent.state }
+  var viewState: InteriorColorSelectionModel.ViewState { intent.viewState }
 
 }
 
@@ -26,7 +22,7 @@ extension InteriorColorSelectionView: View {
   var body: some View {
     ScrollView {
       VStack {
-        AsyncCachedImage(url: state.selectedInteriorImageURL) { image in
+        AsyncCachedImage(url: viewState.selectedInteriorImageURL) { image in
           image
             .resizable()
             .frame(width: UIScreen.main.bounds.width)
@@ -37,7 +33,7 @@ extension InteriorColorSelectionView: View {
           Text("내장 색상을 선택해주세요")
             .catalogFont(type: .HeadKRMedium18)
           Spacer().frame(height: 8)
-          InteriorColorSelectionHorizontalList(state: state.trimColors,
+          InteriorColorSelectionHorizontalList(state: viewState.trimColors,
                                                intent: self.intent,
                                                height: UIScreen.main.bounds.height * 177 / 812)
           Spacer()
@@ -56,7 +52,7 @@ extension InteriorColorSelectionView {
 
   @ViewBuilder
   static func build(intent: InteriorColorSelectionIntent) -> some View {
-    InteriorColorSelectionView(container: .init(intent: intent,
+    InteriorColorSelectionView(container: .init(intent: intent, viewState: intent.viewState,
                                                 state: intent.state,
                                                 modelChangePublisher: intent.objectWillChange))
   }

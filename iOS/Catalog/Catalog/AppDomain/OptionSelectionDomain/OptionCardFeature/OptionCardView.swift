@@ -9,8 +9,9 @@ import SwiftUI
 
 struct OptionCardView: IntentBindingType {
   
-  var container: Container<OptionCardViewIntentType, OptionCardModel.State>
+  var container: Container<OptionCardViewIntentType, OptionCardModel.ViewState, OptionCardModel.State>
   var intent: OptionCardViewIntentType { container.intent }
+  var viewState: OptionCardModel.ViewState { intent.viewState }
   var state: OptionCardModel.State { intent.state }
   @SwiftUI.State var isModalPresenting = false
   @SwiftUI.State var isSelected: Bool = false
@@ -23,8 +24,8 @@ extension OptionCardView: View {
   var body: some View {
     
     Button {
-      intent.send(action: .onTap(option: state)) {
-        if state.price != nil {
+      intent.send(action: .onTap(option: viewState)) {
+        if viewState.price != nil {
           isSelected.toggle()
         } else {
           isSelected = false
@@ -43,7 +44,7 @@ extension OptionCardView: View {
               priceView()
             }
             Spacer()
-            if state.price != nil {
+            if viewState.price != nil {
               optionCheckView()
             }
           }
@@ -56,23 +57,23 @@ extension OptionCardView: View {
       .cornerRadius(2)
       .CLDialogFullScreenCover(show: $isModalPresenting, content: {
         TransparentZStack {
-          if state.isPackage {
-            ModalPopUpComponent(state: self.state.packageOption, submitAction: {
-              intent.send(action: .onTap(option: self.state)) {
+          if viewState.isPackage {
+            ModalPopUpComponent(state: self.viewState.packageOption, submitAction: {
+              intent.send(action: .onTap(option: self.viewState)) {
                 self.isSelected.toggle()
                 self.isModalPresenting.toggle()
               }
             }) { _ in
-              OptionModalTabContentView(state: self.state.packageOption)
+              OptionModalTabContentView(state: self.viewState.packageOption)
             }
           } else {
-            ModalPopUpComponent(state: self.state.defaultOptionDetail, submitAction: {
-              intent.send(action: .onTap(option: self.state)) {
+            ModalPopUpComponent(state: self.viewState.defaultOptionDetail, submitAction: {
+              intent.send(action: .onTap(option: self.viewState)) {
                 self.isSelected.toggle()
                 self.isModalPresenting.toggle()
               }
             }) { _ in
-              OptionModalContentView(state: self.state.defaultOptionDetail)
+              OptionModalContentView(state: self.viewState.defaultOptionDetail)
             }
           }
         }
@@ -89,7 +90,7 @@ extension OptionCardView {
   
   @ViewBuilder
   private func choiceRatioView() -> some View {
-    if let choiceRatio = state.choiceRatio {
+    if let choiceRatio = viewState.choiceRatio {
       Text("\(Text("\(choiceRatio.description)%").foregroundColor(.activeBlue2))가 선택했어요")
         .foregroundColor(.gray500)
         .catalogFont(type: .TextKRMedium12)
@@ -103,7 +104,7 @@ extension OptionCardView {
   @ViewBuilder
   private func priceView() -> some View {
     
-    Text(state.price?.signedWon ?? "")
+    Text(viewState.price?.signedWon ?? "기본포함")
       .foregroundColor(.gray900)
       .catalogFont(type: .TextKRMedium14)
     
@@ -111,7 +112,7 @@ extension OptionCardView {
   
   @ViewBuilder
   private func titleView() -> some View {
-    Text(state.name)
+    Text(viewState.name)
       .catalogFont(type: .HeadKRMedium16)
       .multilineTextAlignment(.leading)
       .foregroundColor(.gray900)
@@ -138,13 +139,13 @@ extension OptionCardView {
   private func optionImageView() -> some View {
     
     ZStack {
-      AsyncCachedImage(url: state.imageURL) { image in
+      AsyncCachedImage(url: viewState.imageURL) { image in
         image.resizable()
       }
       VStack(spacing: 0) {
         HStack {
           Spacer()
-          if state.containsHmgData {
+          if viewState.containsHmgData {
             HMGButton(action: {
               intent.send(action: .onTapDetail) {
                 isModalPresenting.toggle()
@@ -166,8 +167,8 @@ extension OptionCardView {
         }
         Spacer()
         HStack {
-          ForEach(state.hashTags.indices, id: \.self) { i in
-            ImageTagView(title: state.hashTags[i])
+          ForEach(viewState.hashTags.indices, id: \.self) { i in
+            ImageTagView(title: viewState.hashTags[i])
           }
           Spacer()
         }
@@ -185,6 +186,7 @@ extension OptionCardView {
   @ViewBuilder
   static func build(intent: OptionCardViewIntent) -> some View {
     OptionCardView(container: .init(intent: intent,
+                                    viewState: intent.viewState,
                                     state: intent.state,
                                     modelChangePublisher: intent.objectWillChange))
   }

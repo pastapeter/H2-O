@@ -10,7 +10,9 @@ import Combine
 import SwiftUI
 
 protocol QuotationFooterIntentType {
+  
   var state: QuotationFooterModel.State { get }
+  var viewState: QuotationFooterModel.ViewState { get }
   
   func send(action: QuotationFooterModel.ViewAction)
   
@@ -21,16 +23,19 @@ protocol QuotationFooterIntentType {
 
 final class QuotationFooterIntent: ObservableObject {
   
-  init(initialState: State, repository: QuotationFooterRepositoryProtocol , quotation: QuotationFooterService) {
+  init(initialViewState: ViewState, initialState: State, repository: QuotationFooterRepositoryProtocol , quotation: QuotationFooterService) {
     state = initialState
+    
     self.repository = repository
     self.quotation = quotation
   }
   
   typealias State = QuotationFooterModel.State
+  typealias ViewState = QuotationFooterModel.ViewState
   typealias ViewAction = QuotationFooterModel.ViewAction
   
-  @Published var state: State = .init(totalPrice: CLNumber(0), summary: SummaryCarQuotation.mock())
+  @Published var viewState: ViewState = .init(totalPrice: CLNumber(0), summary: SummaryCarQuotation.mock())
+  var state: QuotationFooterModel.State = .init()
   
   var cancellable: Set<AnyCancellable> = []
   
@@ -44,10 +49,10 @@ extension QuotationFooterIntent: QuotationFooterIntentType, IntentType {
   func mutate(action: QuotationFooterModel.ViewAction, viewEffect: (() -> Void)?) {
     switch action {
       case .priceChanged(let price):
-        state.totalPrice = price
+      viewState.totalPrice = price
         return
       case .summaryChanged:
-        state.summary = quotation.summaryQuotation()
+      viewState.summary = quotation.summaryQuotation()
       case .showSheet(_):
         return
       case .onAppear:
