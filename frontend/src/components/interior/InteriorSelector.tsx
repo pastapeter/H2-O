@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import InteriorCard from './InteriorCard';
 import type { InteriorColorResponse } from '@/types/response';
 import { Flex, Icon, Typography } from '@/components/common';
+import { InteriorCard } from '@/components/interior';
 import { usePagination } from '@/hooks';
 import { getImagePreloader } from '@/utils/image';
 
