@@ -23,6 +23,10 @@ struct ModelTypeSelectionView: IntentBindingType {
     intent.state
   }
 
+//  var fuelBinding: Binding<FuelEfficiencyAverageBannerState> {
+//    .init(get: { intent.state.fuelEfficiencyAverageState }, set: { _ in })
+//  }
+  
 }
 
 extension ModelTypeSelectionView: View {
@@ -35,13 +39,13 @@ extension ModelTypeSelectionView: View {
           Text("모델타입을 선택해주세요")
             .catalogFont(type: .HeadKRMedium18)
             .padding(.horizontal, 16)
-          ForEach(state.modelTypeStateArray, id: \.self) { state in
+          ForEach(viewState.modelTypeStateArray, id: \.self) { state in
             ModelTypeCellView.build(intent: .init(initialState: state)) { intent.send(action: .getSelectedOption(title: $0, option: $1))
             }
           }
           Spacer().frame(height: 38)
           HMGDataBannerComponent {
-            FuelEfficiencyAverageBannerView(state: viewState.fuelEfficiencyAverageState)
+            FuelEfficiencyAverageBannerView.build(intent: .init(initialState: state.fuelEfficiencyAverageState, repository: intent.repository, quotation: intent.quotation))
           }
         }
       }

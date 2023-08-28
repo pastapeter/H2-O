@@ -11,11 +11,11 @@ enum ModelTypeSelectionModel {
 
   struct ViewState: Equatable {
     var selectedTrimId: Int = 1
-    var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerState = .mock()
+    var modelTypeStateArray: [ModelTypeCellModel.State] = []
   }
   
   struct State: Equatable {
-    var modelTypeStateArray: [ModelTypeCellModel.State] = []
+    var fuelEfficiencyAverageState: FuelEfficiencyAverageBannerModel.State = .mock()
   }
 
   enum ViewAction {
@@ -25,7 +25,6 @@ enum ModelTypeSelectionModel {
     case powertrainSelected(option: ModelTypeOption)
     case bodytypeSelected(option: ModelTypeOption)
     case drivetrainSelected(option: ModelTypeOption)
-    case calculateFuelEfficiency(typeId: Int, selectedOptionId: Int)
   }
   
   enum ModelTypeID: Int {

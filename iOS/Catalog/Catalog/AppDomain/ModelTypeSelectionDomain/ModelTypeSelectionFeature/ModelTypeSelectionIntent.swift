@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol ModelTypeSelectionIntentType: AnyObject {
+protocol ModelTypeSelectionIntentType {
   
   var viewState: ModelTypeSelectionModel.ViewState { get }
   
@@ -17,6 +17,9 @@ protocol ModelTypeSelectionIntentType: AnyObject {
   func send(action: ModelTypeSelectionModel.ViewAction)
   
   func send(action: ModelTypeSelectionModel.ViewAction, viewEffect: (() -> Void)?)
+  
+  var repository: ModelTypeRepositoryProtocol { get }
+  var quotation: ModeltypeSelectionService { get }
   
 }
 
@@ -30,7 +33,7 @@ final class ModelTypeSelectionIntent: ObservableObject {
 
   }
   
-  private var repository: ModelTypeRepositoryProtocol
+  private(set) var repository: ModelTypeRepositoryProtocol
   
   typealias ViewState = ModelTypeSelectionModel.ViewState
   
@@ -40,7 +43,7 @@ final class ModelTypeSelectionIntent: ObservableObject {
   var state: ModelTypeSelectionModel.State
   
   var cancellable: Set<AnyCancellable> = []
-  private var quotation: ModeltypeSelectionService
+  private(set) var quotation: ModeltypeSelectionService
   private var powerTrainOptionId: Int = 1
   private var driveTrainOptionId: Int = 1
   
@@ -54,24 +57,19 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
         Task {
           let options = try await repository.fetch(carId: viewState.selectedTrimId)
           send(action: .modelTypeOptions(options: options))
-          send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: self.powerTrainOptionId))
-        }
-      case .calculateFuelEfficiency(let typeID, let selectedOptionId):
-        Task {
-          await calculateFuelEfficiency(typeID:typeID, selectedOptionId: selectedOptionId)
         }
       case .modelTypeOptions(let options):
-      state.modelTypeStateArray = convertToModelTypeModelState(from: options)
+      viewState.modelTypeStateArray = convertToModelTypeModelState(from: options)
         
       case .powertrainSelected(option: let option):
         quotation.updatePowertrain(option: option)
-//      send(action: .calculateFuelEfficiency(typeId: 0, selectedOptionId: option.id))
+        
       case .bodytypeSelected(option: let option):
         quotation.updateBodytype(option: option)
         
       case .drivetrainSelected(option: let option):
         quotation.updateDrivetrain(option: option)
-//      send(action: .calculateFuelEfficiency(typeId: 2, selectedOptionId: option.id))
+       
     case .getSelectedOption(let title, let option):
       if title == "파워트레인" {
         send(action: .powertrainSelected(option: option))
@@ -87,37 +85,6 @@ extension ModelTypeSelectionIntent: ModelTypeSelectionIntentType, IntentType {
 // MARK: - Private Function
 
 extension ModelTypeSelectionIntent {
-  
-  private func calculateFuelEfficiency(typeID: Int, selectedOptionId: Int) async {
-    
-    do {
-      
-      let powerTrainID = ModelTypeSelectionModel.ModelTypeID.powerTrain.rawValue
-      let driveTrainID = ModelTypeSelectionModel.ModelTypeID.driveTrain.rawValue
-      
-      if typeID == powerTrainID {
-        self.powerTrainOptionId = selectedOptionId
-      } else if typeID == driveTrainID {
-        self.driveTrainOptionId = selectedOptionId
-      }
-      
-      let powerTrainTitle = quotation.powertrainName()
-      let driveTrainTitle = quotation.drivetrainName()
-      
-      let result = try await self.repository
-        .calculateFuelAndDisplacement(with: self.driveTrainOptionId,
-                                      andwith: self.powerTrainOptionId)
-      
-      viewState.fuelEfficiencyAverageState = .init(engine: powerTrainTitle,
-                                               wheelType: driveTrainTitle,
-                                               displacement: result.displacement,
-                                               fuelEfficiency: result.fuelEfficiency)
-      
-    } catch (let e) {
-      print(e.localizedDescription)
-    }
-    
-  }
   
   private func convertToModelTypeModelState(from options: [ModelType]) -> [ModelTypeCellModel.State] {
     options.map {
