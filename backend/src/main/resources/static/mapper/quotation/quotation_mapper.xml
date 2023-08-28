@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.h2o.h2oServer.domain.quotation.mapper.QuotationMapper">
+    <cache readOnly="true"/>
+    <insert id="saveQuotation"
+            parameterType="QuotationDto"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into quotation(car_id, trim_id, powertrain_id, bodytype_id, drivetrain_id, internal_color_id, external_color_id)
+        values (#{carId}, #{trimId}, #{powertrainId}, #{bodytypeId}, #{drivetrainId}, #{internalColorId}, #{externalColorId});
+    </insert>
+    
+    <insert id="saveOptionQuotation" parameterType="OptionQuotationEntity">
+        insert into options_quotation(quotation_id, option_id)
+        values
+        <foreach collection="optionIds" item="optionId" separator=",">
+            (#{quotationId}, #{optionId})
+        </foreach>
+    </insert>
+
+    <insert id="savePackageQuotation" parameterType="PackageQuotationEntity">
+        insert into package_quotation(quotation_id, package_id)
+        values
+        <foreach collection="packageIds" item="packageId" separator=",">
+            (#{quotationId}, #{packageId})
+        </foreach>
+    </insert>
+
+    <select id="countQuotation" resultType="long">
+        select count(*) from quotation;
+    </select>
+
+    <select id="countOptionQuotation" resultType="long">
+        select count(*) from options_quotation;
+    </select>
+
+    <select id="countPackageQuotation" resultType="long">
+        select count(*) from package_quotation;
+    </select>
+
+    <select id="findReleaseQuotationWithVolume" resultType="ReleaseEntity">
+        select trim_id,
+               powertrain_id,
+               bodytype_id,
+               drivetrain_id,
+               internal_color_id,
+               external_color_id,
+               option_combination,
+               package_combination,
+               price,
+               count(*) as quotation_count
+        from (select id,
+                     trim_id,
+                     powertrain_id,
+                     bodytype_id,
+                     drivetrain_id,
+                     internal_color_id,
+                     external_color_id,
+                     price,
+                     option_combination,
+                     GROUP_CONCAT(p.package_id ORDER BY p.package_id ASC) AS package_combination
+              from (select id,
+                           trim_id,
+                           powertrain_id,
+                           bodytype_id,
+                           drivetrain_id,
+                           internal_color_id,
+                           external_color_id,
+                           price,
+                           GROUP_CONCAT(o.option_id ORDER BY o.option_id ASC) AS option_combination
+                    from sold_car
+                             join sold_car_extra_options as o
+                                  on (sold_car.trim_id = #{trimId} and sold_car.id = o.sold_car_id)
+                    group by id) as option_concatted
+                       join sold_car_package as p on (option_concatted.id = p.sold_car_id)
+              group by id) as all_concatted
+        group by trim_id, powertrain_id, bodytype_id, drivetrain_id, internal_color_id, external_color_id, price,
+                 option_combination, package_combination;
+    </select>
+
+    <select id="countIdenticalQuotation" resultType="java.lang.Integer" useCache="false">
+        with option_count as (select id, GROUP_CONCAT(o.option_id ORDER BY o.option_id ASC) AS option_combination
+                from sold_car as s
+                        join sold_car_extra_options as o
+                                    on (s.id = o.sold_car_id
+                                        and s.car_id = #{quotationDto.carId}
+                                        and s.trim_id = #{quotationDto.trimId}
+                                        and s.powertrain_id = #{quotationDto.powertrainId}
+                                        and s.bodytype_id = #{quotationDto.bodytypeId}
+                                        and s.drivetrain_id = #{quotationDto.drivetrainId}
+                                        and s.internal_color_id = #{quotationDto.internalColorId}
+                                        and s.external_color_id = #{quotationDto.externalColorId})
+                    group by id, trim_id, powertrain_id, bodytype_id, drivetrain_id, internal_color_id,
+                            external_color_id, price
+                    having option_combination = #{optionCombination})
+
+        select count(*) as salesCount
+        from (
+        <include refid="soldCarPackage"/>
+            ) as a
+    </select>
+
+    <select id="findIdenticalQuotations" resultType="string" useCache="false">
+        with option_count as (select id, GROUP_CONCAT(o.option_id ORDER BY o.option_id ASC) AS option_combination
+                      from sold_car as s
+                               join sold_car_extra_options as o
+                                    on (s.id = o.sold_car_id
+                                        and s.car_id = #{quotationDto.carId}
+                                        and s.trim_id = #{quotationDto.trimId}
+                                        and s.powertrain_id = #{quotationDto.powertrainId}
+                                        and s.bodytype_id = #{quotationDto.bodytypeId}
+                                        and s.drivetrain_id = #{quotationDto.drivetrainId}
+                                        and s.internal_color_id = #{quotationDto.internalColorId}
+                                        and s.external_color_id = #{quotationDto.externalColorId})
+                      group by id, trim_id, powertrain_id, bodytype_id, drivetrain_id, internal_color_id,
+                               external_color_id, price
+                      having option_combination = #{optionCombination})
+
+        <include refid="soldCarPackage"/>
+    </select>
+
+    <sql id="soldCarPackage">
+        select GROUP_CONCAT(p.package_id ORDER BY p.package_id ASC) AS package_combination
+        from option_count
+                 join sold_car_package as p
+                      on option_count.id = p.sold_car_id
+        group by id
+        having package_combination = #{packageCombination}
+    </sql>
+</mapper>

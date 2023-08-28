@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2o.h2oServer.domain.trim.mapper.ExternalColorMapper">
+    <select id="findImages" resultType="ImageEntity">
+        select id, image
+        from external_color_image
+        where external_color_id = #{id}
+    </select>
+</mapper>

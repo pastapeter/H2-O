@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.h2o.h2oServer.domain.model_type.mapper.BodytypeMapper">
+    <select id="findById" resultType="BodytypeEntity">
+        select id, name, description, image
+        from bodytype
+        where id = #{id}
+    </select>
+
+    <select id="checkIfBodytypeExists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM bodytype
+        WHERE id = #{id}
+    </select>
+
+    <select id="findBodytypesByCarId" resultType="CarBodytypeEntity">
+        <include refid="findBodytypeByCarId"/>
+    </select>
+
+    <select id="findDefaultBodytypeByCarId" resultType="CarBodytypeEntity">
+        <include refid="findBodytypeByCarId"/>
+        limit 1
+    </select>
+
+    <sql id="findBodytypeByCarId">
+        select car_id, bodytype_id, name, description, image, price, choice_ratio
+        from car_bodytype
+                 join bodytype
+                      on car_bodytype.bodytype_id = bodytype.id
+        where car_id = ${carId}
+        order by bodytype_id
+    </sql>
+</mapper>
